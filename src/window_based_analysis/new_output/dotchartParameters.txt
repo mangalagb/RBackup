@@ -1,0 +1,23 @@
+count
+table
+data
+
+mag*0*group = cats
+VADeaths*0*main = "Death Rates in Virginia - 1940"*0*main = "Death Rates in Virginia - 1940"
+tab*0*main = "dotchart or dotplot"
+table
+VADeaths
+averages*0*labels=labels*0*xlab='average'*0*pch=20*0*xlim=c
+total
+m
+varImpData[*0*c
+varImpData[*0*c
+b*0*xlim=c
+as.matrix*0*labels = ""
+x*0*labels = row.names*0*cex=.7*0*groups = factor*0*gcolor = "black"*0*color = x*0*pch=19*0*main ="Gas cylinder"*0*xlab = "Miles Per Gallon"
+x*0*labels = row.names*0*cex=.7*0*groups = -x*0*gcolor = "black"*0*color = x*0*pch=19*0*main = "Gas"*0*xlab = "Miles Per Gallon"
+data*0*data*0*xlab="Indmed"*0*ylab="States"
+aData2[*0*2]*0*labels=aData2[*0*1]*0*xlim=c
+t*0*3]*0*main="Frequencies of topics1 - topics2"
+dat*0*dat$Value
+x*0*col="blue"*0*xlim=c*0*main=title

@@ -1,0 +1,83 @@
+x*0*y*0*z*0*lty=1
+predict.surface*0*nrow = 10
+xi*0*yi*0*zi
+xi*0*yi*0*zi
+
+m1 - m2*0*add = TRUE
+m1 - m2*0*add = TRUE
+m1 - m2*0*add = TRUE
+ak.yld
+dens
+x*0*x*0*z1
+x*0*x*0*z2*0*add = TRUE*0*col = "red"
+x*0*y*0*z*0*levels=0*0*drawlabels=FALSE
+x*0*y*0*z
+k
+s*0*add=TRUE
+axis1*0*axis2*0*wf*0*add = TRUE
+x*0*y*0*z*0*col=rainbow*0*nlevels=256
+x*0*y*0*log*0*col=rainbow*0*nlevels=256
+x*0*y*0*log*0*col=rainbow*0*nlevels=256
+x*0*y*0*z
+x*0*y*0*z*0*color.palette=rainbow
+x*0*y*0*z2*0*color.palette=rainbow
+x*0*y*0*z2*0*col=rainbow*0*nlevels=100
+x*0*y*0*volcano
+est*0*est*0*est
+time2*0*depth*0*t
+getcurve*0*add = T
+tern.grid*0*levels=c*0*add=T
+volcano*0*color = terrain.colors*0*asp = 1*0*nlevels=5
+x=seq*0*y=seq*0*mm
+lons*0*lats*0*glb.data
+lons*0*lats*0*glb.data*0*plot.axes={axis
+lons*0*lats*0*glb.data
+lons*0*lats*0*glb.data
+sig_intv*0*th_intv*0*z
+x*0*y*0*z*0*levels=0
+a*0*color.palette=heat.colors
+x=seq
+mat
+n1*0*n2*0*y
+x*0*y*0*z2*0*col=getcolor*0*nlevels=200
+x*0*y*0*z2
+gps.interp
+fld
+fld*0*add=TRUE
+fld*0*add=T
+m
+m*0*color=colorRampPalette
+x*0*y*0*z*0*level=0*0*xlim=range*0*ylim=range
+x*0*y*0*z*0*level=0*0*xlim=range*0*ylim=range*0*add=TRUE
+intflow
+x=x*0*y=y
+T.grid*0*add=TRUE*0*col=colorRampPalette*0*drawlabels=FALSE
+long*0*lati*0*t*0*add=TRUE
+long*0*lati*0*t*0*color.palette=terrain.colors*0*plot.axes=draw.map
+volcano*0*add = TRUE
+dens*0*levels=levels*0*labels=prob*0*add=T
+r*0*add=TRUE
+x=x*0*y=y*0*z=z*0*levels=levels*0*col=colorpanel*0*xlim=rev*0*ylim=rev*0*plot.axes=axis*0*xlab="x"*0*frame=FALSE
+x=x*0*y=y*0*z=z*0*levels=levels*0*col=colorpanel
+as.double*0*as.double*0*z*0*as.double*0*col = col
+z
+z=dat1*0*col=Contourcolors*0*plot.axes=points
+z=z1*0*y=c*0*col=col1*0*cex.lab=2*0*cex.main=1.1*0*nlevels=20*0*main=
+x*0*y*0*z*0*las=0*0*plot.axes={}*0*plot.title={}
+x.bin*0*y.bin*0*freq2D*0*add=TRUE*0*col=rgb
+dens*0*dat*0*cex=0.3*0*col="red"
+x*0*y*0*volcano*0*asp=1*0*frame.plot=F*0*plot.axes = {}
+volcano*0*color = jet.colors*0*asp = 1*0*nlevels=100
+bar
+bar*0*levels = 0.2*0*lwd=3*0*add=TRUE*0*lwd=c
+my.matrix*0*nlevels=10*0*color=my.heat.colors
+Longitude*0*Latitude*0*Temperature*0*ylab="Latitude"
+x=fld*0*y=fld*0*z=fld*0*color.palette=colorRampPalette*0*xlab = "Longitude"*0*ylab = "Latitude"*0*main = "Rwandan rainfall"
+x*0*y*0*z
+x*0*y*0*z*0*nlevels = 10*0*method = "edge"*0*main = "BMI"
+akima.li*0*nlevels = 3
+akima.li*0*nlevels = 3*0*add = TRUE*0*col = gray.colors
+akima.li*0*nlevels = 3*0*add = TRUE*0*col = gray.colors
+akima.li*0*nlevels = 3*0*add = TRUE*0*lty = 0
+x_1*0*x_2*0*z*0*levels=0
+f1*0*level=0.008

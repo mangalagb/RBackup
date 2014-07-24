@@ -1,0 +1,598 @@
+rnorm    ylab=NULL    main=NULL    
+log    ...    
+X    prob=TRUE    
+foo    prob=TRUE    
+vars    
+x    plot=FALSE    
+x    br=10    col=c    
+x    ...    
+x    col=cols    ...    
+we    
+x[1]:x[2]    breaks =    
+data[:    i]    
+y    seq    plot=0    
+rnorm    xlab=parse    
+a    plot=FALSE    
+a    br    plot=F    
+x    col="light blue"    
+a    breaks=breaks    plot=F    
+b    breaks=breaks    plot=F    
+a    plot=F    
+b    plot=F    
+a    breaks=breaks    plot=F    
+b    breaks=breaks    plot=F    
+a    xlim=c    col="red"    
+b    add=T    
+rbinom    breaks=function    
+x    breaks=0:    xaxt="n"    right=FALSE    freq=FALSE    
+x    br = seq    freq=F    col="black"    
+x    col="light blue"    
+carrotLengths    plot = FALSE    
+cucumberLengths    plot = FALSE    
+a    breaks=breaks    plot=F    
+b    breaks=breaks    plot=F    
+a    plot=F    
+b    plot=F    
+a    breaks=breaks    plot=F    
+b    breaks=breaks    plot=F    
+a    xlim=c    col="red"    
+b    add=T    col=rgb    
+rnorm    
+rnorm    
+rnorm    
+x    
+x    
+log10    axes = FALSE    
+dfr$x    log = "y"    
+dfr$x    
+log10    plot=F    
+d    plot=FALSE    
+d    plot=FALSE    
+datapoints    
+test.csv[test.csv    "a_pct"]    
+subset    
+
+data    col=rgb    add=TRUE    
+a    breaks=c    freq=FALSE    right=FALSE    
+vector    axes = FALSE    breaks = chartBreaks    
+rpois    plot=FALSE    breaks=0:10-0.1    
+duration    probability = TRUE    breaks = "FD"    col = "darkslategray4"    border = "seashell3"    
+A[    1]    20    plot=FALSE    
+duration    probability = TRUE    breaks = "FD"    col = "darkslategray4"    border = "seashell3"    main=""    ann=FALSE    axes=FALSE    xlim=c    ylim=c    
+out    
+degree_sequence    bins=dmax    
+foo    freq=F    
+foo    freq=F    
+runif    density=c    
+x    breaks=seq    xlim=c    xaxt="n"    
+rsn    
+xxx    breaks=brks    probability=TRUE    xlab=''    main=''    
+xxx    breaks=brks    probability=TRUE    xlab=''    main=''    
+xxx    breaks=brks    probability=TRUE    xlab=''    main=''    
+randomData    freq=FALSE    
+resample + noise    freq=FALSE    
+data.timestamps    axes=F    
+data    plot=F    
+x2    
+claim    xlim = c    freq = FALSE    breaks = br*max    col='red'    
+test$adj_unl_claim[test$adj_unl_claim < 100000]    
+gb2_agg    prob=TRUE    breaks=100000    
+x[        1]    
+x[        2]    
+x[        3]    
+dat    
+dat    
+mydata    breaks=buckets    plot=FALSE    
+dat    breaks="hours"    freq=TRUE    col = "red"    axes = FALSE    
+Data    breaks="hours"    freq=T    xlab="Time"    col="red"    main="Sat  Volume"    axes=F    
+x    
+data    
+table    xlab = "Frequency of Level Occurrence"    main = ""    
+list    breaks=length    freq=TRUE    
+sim    freq=FALSE    
+z    
+x    
+x    
+x1    plot=FALSE    
+x2    plot=FALSE    
+i    
+media.dia    main=c    
+predict    
+nig.fit    
+rnorm    
+rnorm    
+x    breaks=buc    
+yourdata    
+data    
+x    
+x    
+data    
+unclass    xaxt="n"    
+data    
+data    xaxt = "n"    
+edat    freq=F    
+x    
+energy    probability=TRUE    
+x    plot=FALSE    
+x    probability=TRUE    breaks="fd"    ylim=c    
+x    breaks=10    
+x    xlab = "Waiting interval"    ylab = "Eruption Freq"    probability = TRUE    main = "Density plot"    border = "gray"    sub= bquote    
+dat    
+runif    breaks = 6    plot = FALSE    
+d    freq=FALSE    
+many    plot=FALSE    
+few    breaks=mh    plot=FALSE    
+x    breaks = 30    freq = FALSE    
+
+xpois    
+t1    breaks=b    
+t1    breaks=15    
+t1    breaks=15    
+rnorm    freq="FALSE"    
+data_delay    plot=F    
+x    
+rnorm    
+avgdata    
+user_mean    breaks = 30    
+x    plot=F    
+x    
+hplot    plot=FALSE    freq=FALSE    
+scale    breaks=20    plot=FALSE    
+data    
+data_sub    col="red"    add=T    
+x    plot=F    
+dt1    main=""    xlab="Blood pressure"    
+perms.max    
+cs    -1:max    plot = FALSE    
+x    breaks=c    log="xy"    
+x    breaks=breaks    plot=FALSE    
+rnorm    add = TRUE    
+y    plot = FALSE    h    ylim = c    
+y    add = TRUE    
+y    add = TRUE    col = 'white'    
+WindSpeed    
+dat    xaxt='n'    
+df$hours    
+table    
+as.numeric    
+x    ....    
+
+iris    
+samples    prob=TRUE    
+rnorm    
+df[    i]    main=names    
+x    freq = FALSE    axes = FALSE    
+x    freq = FALSE    
+rnorm    
+rnorm    
+samples    bins=100    
+w    col="red"    freq=F    xlim=c    
+w    col="red"    freq=F    xlim=10+c    
+x    plot = FALSE    
+x    
+expdat    breaks=50    col="blue"    main="50 bins"    
+expdat    breaks=5    col="blue"    main="5 bins"    
+Cors    breaks=100    
+Cors[ids]    col="red"    add=TRUE    
+d1    xlab = "Percentage of variance due to c1"    main = ""    
+x    prob=FALSE    col="gray"    xlim=c    
+res    breaks=seq    
+islands    col="gray"    labels = TRUE    ylim=c    ...    
+x    plot = FALSE    
+third histogram    
+logIntensityVector    main='Intensity per feature histogram'    xlab='logged intensity'    ylab='frequencies of features'    br=6    
+d[    k]    las=1    col="grey"    main=names    xlab=""    ylab=""    
+c[ c >= seq    9 ]    
+df    breaks=breaks    plot=FALSE    right=FALSE    
+x    
+x    breaks    plot=FALSE    
+dat2    breaks = c    plot = FALSE    
+x    breaks=150    xlim=c    freq=FALSE    
+pred    breaks=30    main=''    probability=TRUE    
+X    breaks=40    col="grey"    main=expression    
+x    xlim = c    ylim = c    
+x    xaxt="n"    bty="l"    
+x    
+vec_z    breaks=20    
+alcohol    plot=FALSE    
+ce$Weight    
+x    col="gray"    
+x    plot=F    
+x    
+x    
+x    
+dat    breaks=c    breaks=c    
+JOB    main="JOB"    
+AND    main="AND"    
+DDZ    main="DDZ"    
+vals    
+x    
+x[    1]    plot=FALSE    breaks=seq    
+x[    2]    plot=FALSE    breaks=seq    
+data1    bins    plot=0    
+data2    bins    plot=0    
+d1    breaks=breaks    plot=FALSE    
+d2    breaks=breaks    plot=FALSE    
+x1    xlab=""    main="Group A"    
+x2    xlab=""    main="Group B"    
+x3    xlab=""    main=""    
+x4    xlab=""    main=""    
+mpg    
+mpg[    sapply    
+mi    
+foo    freq=F    xlim=c    breaks=50    col="blue"    
+
+x    
+d    xlim=c    
+d    axes = FALSE    
+as.numeric    
+x[    VarList[i]]    main=paste    xlab=NA    
+hh2    plot=FALSE    
+y    plot=FALSE    
+x    breaks=seq    plot=FALSE    
+y    breaks=seq    plot=FALSE    
+Data    plot=FALSE    breaks=breaks    
+ExampleData    
+ExampleData    xlab="absolute frequency"    
+ExampleData    xlim=c    
+ExampleData    main="the ... argument worked!"    col.axis=3    
+ExampleData    xlim=c    
+ExampleData    ylim=c    border="red"    
+ExampleData    breaks=20    col="orange"    
+tmp[[1]]    
+tmp[[p]]    
+
+data    breaks="FD"    col="red"    xlab="xTitle"    main="Normal pdf and     histogram"    
+mtcars    main = paste    
+mtcars    main = paste    
+log    
+iris    
+x    breaks=0:9    
+labels    
+x    plot = FALSE    
+
+
+myDF[[nm]]    main=nm    values    main=name    
+x    plot=F    breaks=10    
+y    plot=F    breaks=10    
+data[    
+x    
+temp[[x]]    main = x    
+dat    
+rnorm    
+rnorm    col = "red"    
+rnorm    col = "blue"    
+rnorm    
+newXa    
+index    breaks = 100    prob=T    
+dates    breaks = 7    freq = TRUE    
+d1    
+d1    freq=FALSE    
+dataset[    i]    main ="title"    
+dataset[[paste0    main ="title"    
+DF[    
+DF[    x]    main = gsub    xlab="Value"    2    
+DF[    x]    main = gsub    
+x    plot=FALSE    ...    
+x    col=color    xlab = xlab    main = main    ...    
+rnorm    main = title        death.cause[[i]]    
+x    prob=TRUE    
+x    breaks=100    plot=FALSE    
+x    
+out    
+a    
+TMP    breaks=c    plot=FALSE    
+TMP    breaks=c    plot=FALSE    
+df    main="Max wind speed in January"    xlab="Speed"    
+df    main="Max wind speed in 2011"    xlab="Speed"    
+a    
+d    plot=FALSE    
+data    
+x    breaks    
+d    breaks = 0:31    
+table    breaks=20    
+x    
+dat    
+data    col=colors[data]    
+m    5    
+expRandom    freq = FALSE    
+expRandom    freq = FALSE    
+islands    
+sample_avg    breaks =7    
+data    30    col="black"    freq=F    
+x    yaxt='n'    ylab='Percent'    
+a    
+a    
+a    
+tmp    
+tmp    add=TRUE    border='red'    lwd=3    
+x8    breaks = 100    
+x    main=''    
+x    xlim=xlim1    ylim=xlim1    prob=TRUE    add=TRUE    
+m[    3]    xlim=c    ylim=c    prob=TRUE    
+mymeans    
+means    col='brown'    
+
+
+rnorm    plot=  FALSE    
+rnorm    plot = FALSE    
+x    plot=FALSE    
+Data    xlim=c    breaks=c    
+plotdata    xlim=c    breaks=c    main="Untailed Data"    xaxt='n'    
+x    
+x    
+bulkdata    breaks=bins    col='gray'    ylab="Discovered"    xlab="Year"    main=""    ylim=c    axes=FALSE    
+bulkdata    breaks=bins    col='gray'    ylab="Discovered"    xlab="Year"    main=""    add=TRUE    
+
+x    breaks="FD"    
+X    color='white'    
+dataset    breaks=rep    
+dataset    breaks=seq    
+c    breaks=bins    freq= FALSE    right=FALSE    breaks=bins    freq= FALSE    right=FALSE    xaxt="n"    
+x    las=1    
+x    
+x    breaks    
+x    plot=FALSE    breaks = c    
+x    plot=FALSE    
+data[correct==1    1]    breaks=seq    plot=FALSE    
+data[correct==0    1]    breaks=seq    plot=FALSE    
+f1    freq=FALSE    breaks=breaks    
+f2    freq=FALSE    breaks=breaks    
+f3    freq=FALSE    breaks=breaks    
+f4    freq=FALSE    breaks=breaks    
+RES[[i]]    breaks=breaks    plot=FALSE    
+X[abs    
+X[abs    
+X[abs    
+X    
+out    sd    
+out    
+x    
+data    breaks=seq    
+var    breaks=seq    main = paste    xlab = ''    
+var    breaks=seq    
+x    plot=FALSE    ...    
+x    b    ...    
+x    b    ...    
+rnorm    col='blue'    xlim=c    
+rnorm    col='red'    add=T    
+df    breaks    right=FALSE    plot=FALSE    
+df    breaks    right=FALSE    plot=FALSE    
+r    
+x    
+r    breaks=30    
+mtcars[    i]    
+rep    breaks=breakval    
+x    plot = FALSE    
+x    freq=F    add=T    
+test    freq=F    xaxt="n"    xlab=""    ylab=""    main=""    
+log    
+data    
+x    col="grey"    freq=FALSE    breaks=10    
+islands    main=NULL    
+islands    col="gray"    labels = TRUE    
+df.m    
+output    
+x[    1]    
+rnorm    breaks=100    
+
+results1    breaks=bins    xlim=c    
+results2    breaks=bins    xlim=c    
+outdata    
+Youtcomes    
+x    plot = FALSE    
+nb    ]    breaks = max    
+obs    uo    
+rv    1:50    
+rv    1:50    
+samples[    i]    main=names    
+iris[    "%s"]    col="gray"    border="white"    
+r    breaks=100    col="gray"    freq=FALSE    
+
+y    breaks=c    freq=TRUE    ylim=c    
+x    
+runif    
+datavar[condvar == conds[i]]    plot=F    breaks    
+d    main=bquote    
+
+x    ...    
+rhos    
+x    breaks=100    col="grey"    
+msample    
+msample[i]    
+data    xlim=c    
+
+rb    1    
+h    prob=TRUE    main = ""    xlab = "x"    ylab = "y"    xlim = c    breaks = seq    ylim = c    
+y    col="green"    freq=F    
+x    prob=TRUE    
+rnorm    
+out[[i]][    3]    xlab="I    main=paste    
+residuals    
+residuals    
+z    xlab=""    ylab=""    main=""    yaxt="n"    
+x    breaks=0:U    
+x    breaks=0:U    
+df2    xlab=""    ylab=""    main=suy[i]    
+rnorm    
+rnorm    
+A    breaks=30    
+B    freq=F    breaks=30    col="red"    lty=0    xlim=c    freq=F    
+cors    
+rnorm    
+ts    breaks=7*24    plot=FALSE    
+y    breaks=q    labels=comma    prob=seq    breaks=q    scales=list    
+y    xaxt="n"    
+r    breaks=20    col="lightgrey"    
+mtcars    
+ranef    1]    xlab="Random 'Asym'"    main=""    
+ranef    2]    xlab="Random 'xmid'"    main=""    
+data    
+values    10    seq    
+
+grades    prob=TRUE    
+my.graph    
+apply    breaks=10    
+pmin    
+vec    breaks = 800    freq = FALSE    
+data[    1]    freq=FALSE    breaks=800    
+vec    breaks = 100    plot=FALSE    
+unlist    
+data    
+x    prob = TRUE    main = main2    xlab = xlab2    ylim = c    ...    0.3989 * mix.object$lambda/mix.object$sigma    
+x.gen    prob = TRUE    
+my.data    plot=F    
+perc    b    
+perc    
+samp    breaks = 3    col="lightblue"    border="pink"    
+x    
+aa    col="pink"    add=T    freq=F    breaks=10    
+a    plot = FALSE    
+data    breaks=seq    labels =paste0    col ="yellow"    
+x    
+x    
+x    
+y    
+a    bins    
+a    bins    
+eval    main=""    
+x    breaks = br.pts    plot = FALSE    
+x    br    plot = FALSE    
+x    
+yourvariable    
+data1    col="blue"    
+1:10    cex.main=2    cex.axis=1.2    cex.lab=1.2    main=expression    
+alpha    cex.main=2    cex.axis=1.2    cex.lab=1.2    main=NULL    
+dist    
+RandomNormal    seq    prob = TRUE    
+RandomNormal    seq    prob = TRUE    
+RandomNormal    seq    prob = TRUE    
+data    
+x    breaks=min    plot=FALSE    right=FALSE    
+dataframe[    i]    
+
+gpa    
+sat    
+x    
+dist    main = paste    
+dist    main = paste    
+d$col3    col.name=c    
+d    
+rnorm    breaks = mybreaks    
+rnorm    breaks = mybreaks    
+log10    breaks=50    col="gray"    main=""    
+reps    
+B[    2]    prob=TRUE    add=TRUE    col='blue'    
+mydata[    s]    
+
+parReplicate    
+g.grouped[[x]]    main=bquote    breaks=5    freq=T    border=F    col="lightblue"    
+x    plot=F    
+x    
+rexp    breaks=60    
+x    
+x    xlim=c    xaxt="n"    
+outcome[    11]    main = "Heart Attack"    xlim = xrange    xaxt="n"    xlab = "30-day Death Rate"    
+outcome[    17]    main = "Heart failure"    xlim = xrange    xaxt="n"    xlab = "30-day Death Rate"    
+outcome[    23]    main = "Pneumonia"    xlim = xrange    xaxt="n"    xlab = "30-day Death Rate"    
+a    main="A"    
+data[    colname]    
+x    freq=F    
+dist    
+X[X    ]    
+df    
+
+file.filtered    main = hist.title    xlab = Slope    ylab = frequency    las = 2    
+Hour    breaks=seq    main="Start time    end.time    
+Hour    breaks=seq    
+HourMinute    breaks=seq    
+x    plot=FALSE    
+d    plot=FALSE    breaks=100    
+data    freq=TRUE    breaks=bins    
+dat    brkvec    ylim    ""    
+dat    breaks=brkvec2    col="gray"    freq=FALSE    axes=FALSE    
+empl_count    breaks=yourbreaks    plot=F    
+myvalues    100    
+x    prob=T    breaks=b    
+y    prob=T    breaks=b    
+z    prob=T    breaks=b    
+t    breaks=cbreaks    ylim=c    
+iris    col="lightblue"    
+iris    col="lightblue"    
+v    w    
+data    xlim=c    breaks=100    header=FALSE    
+data    breaks=length    xlim=c    
+x    
+x    main = substitute    
+mysamp    
+d    
+d    
+rnorm    
+
+ro.FloatVector    xlab="val"    ylab="count"    main=""    
+log10    freq = FALSE    col="blue"    xaxt="n"    xlab="B"    
+
+as.POSIXlt    "hours"    
+rpois    
+sample    
+n.val    xlab="n.val > q_95%"    
+g    breaks=10    density=10    col="lightgray"    xlab="Accuracy"    main="Overall"    
+mtcars    
+mtcars    
+d    
+df    
+rep    breaks=0:5    
+x    breaks = c    freq = FALSE    
+cancerchi    
+cancerchi    
+cancerchi2    
+cancerchi3[    1]    
+cancerchi4[    1]    
+x=HES2    breaks=bin_w    plot=FALSE    
+values    
+rbeta    
+rbeta    
+rbeta    
+x    xlim=c    probability=T    nclass=max    col='lightblue'    xlab=' '    ylab=' '    axes=F    main='Positive Skewed'    
+dat    breaks = "days"    breaks = "mins"    
+X_bar    
+xbar    
+
+data    main=""    sub="Histogram of Underlying Data"    xlim=c    
+means    main=""    sub="Histogram of Means"    xlim=c    
+data    main=""    sub="Histogram of Underlying Data"    xlim=c    
+means    main=""    sub="Histogram of Means"    xlim=c    
+x    freq = FALSE    
+dat    breaks=seq    plot=FALSE    
+dat.clean    breaks = seq    plot = FALSE    
+
+
+data    
+x    col="blue"    
+x    col="blue"    
+my.data    breaks=c    xaxp=c    
+x    
+Z    breaks=20    xlim=c    
+x    plot = FALSE    breaks = breaks    
+V2    
+dat[    col]    plot=FALSE    breaks=brk    
+dataA    breaks=    
+dataB    breaks=    
+yourdata[    i]    breaks=    
+x    plot = FALSE    
+x[x != 0]    30    xlab=NA    ylab=NA    
+x    
+x    freq = FALSE    add = TRUE    plot = FALSE    
+x    
+x    
+1:10    "npc"    
+rnorm    col=i    
+Y1    breaks = 30    freq = FALSE    
+as.Date    breaks="days"    freq=TRUE    
+x.pois    breaks=100    freq=FALSE    
+mydata_x[    name]    main=h.name    xlab=name    
+faithful    ylab = expression    ylab = ""    
+faithful    ylab = "Density"    font.lab = 2    
+subset    freq=FALSE    
+test    plot=FALSE    
+test    freq=FALSE    breaks=0:10    lwd=10    lend="butt"    

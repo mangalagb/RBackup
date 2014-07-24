@@ -1,0 +1,42 @@
+1    
+type = "l"    
+n=4    type='p'    pch=4    col='blue'    lwd=2    
+type='p'    pch=1    col='red'    lwd=1.2    cex=1.2    
+1    
+1    
+n=2    
+
+1    
+n=1    
+n=1    
+2    
+1    
+n=1    
+n=1    
+type = "o"    
+type = "o"    
+
+type="l"    
+
+type="l"    
+1    
+1    
+1    type='p'    
+1    "Species B"    "Species C"    
+1    y=0.6    
+1    
+2    
+
+type='l'    
+
+1    
+1    
+
+1    type='p'    
+1    
+with    
+1    
+1    
+1    "label 2"    "label 3"    2    
+1    
+1    type    ...    

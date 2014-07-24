@@ -1,0 +1,21 @@
+
+aData2, 2], labels=aData2, 1], xlim=c
+as.matrix, labels = ""
+averages, labels=labels, xlab='average', pch=20, xlim=c
+b, xlim=c
+count
+data
+data, data, xlab="Indmed", ylab="States"
+dat, dat$Value
+m
+mag, group = cats
+t, 3], main="Frequencies of topics1 - topics2"
+table
+tab, main = "dotchart or dotplot"
+total
+VADeaths
+VADeaths, main = "Death Rates in Virginia - 1940", main = "Death Rates in Virginia - 1940"
+varImpData, c
+x, col="blue", xlim=c, main=title
+x, labels = row.names, cex=.7, groups = factor, gcolor = "black", color = x, pch=19, main ="Gas cylinder", xlab = "Miles Per Gallon"
+x, labels = row.names, cex=.7, groups = -x, gcolor = "black", color = x, pch=19, main = "Gas", xlab = "Miles Per Gallon"

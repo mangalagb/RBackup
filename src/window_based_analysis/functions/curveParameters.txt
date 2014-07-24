@@ -1,0 +1,181 @@
+3*x+1    from=-5    to=5    
+4*x+2    add=T    
+x+1    add=T    
+x^2    
+x^2    xaxs="i"    yaxs="i"    
+dnorm    add=TRUE    
+
+1-pre.ecdf    from=r[1]    to=r[2]    col="red"    xlim=r    
+1-post.ecdf    from=r[1]    to=r[2]    col="blue"    add=TRUE    
+length    from=rx[1]    to=rx[2]    col="red"    xlim=rx    ylim=c    
+length    from=rx[1]    to=rx[2]    col="blue"    add=TRUE    
+dbeta    col = "red"    
+insert_function_here    
+dnorm    50    150    
+splinefun    add=TRUE    col=2    n=1001    
+splinefun    add=TRUE    col=3    n=1001    
+invlogit    
+invlogit    
+invlogit    
+x2=0    y2=0    x1=.125    y1=.5    curvature=.5    
+x1=.375    y1=.5    x2=.5    y2=1    curvature=.5    
+x2=1    y2=0    x1=.875    y1=.5    curvature=-.5    
+x2=.625    y2=.5    x1=.5    y1=1    curvature=.5    
+df    from = 0    to = 100    
+df    from = 0    to = 100    
+df1=fstat['numdf']    df2=fstat['dendf']    col='blue'    
+dnorm    type="l"    lwd=2    col="red"    
+dnorm    type="l"    lwd=2    col="blue"    add=TRUE    
+y2    add=TRUE    col="blue"    
+expLine    0    7    n=101    add=TRUE    
+dfun    from=5    to=6    
+dnorm    -zmax    zmax    xaxt = 'n'    bty = 'n'    
+tf    from=1    to=1000    
+tf    col=2    add=TRUE    
+tf    col=4    add=TRUE    
+4/5*sqrt    from=-1    to=1    add=TRUE    col=2    
+4/5*-sqrt    from=-1    to=1    add=TRUE    col=2    
+gv    from=0    to=1    
+dfun    add=TRUE    
+x^3 - 3*x    -2    2    sub=xlabel    xlab=""    
+x^2    from=0    to =1    col="darkblue"    
+x^4    from=0    to =1    add=T    col="darkred"    
+dnorm    -5    5    add=T    col="blue"    mean=10    sd=2    
+215.47*x^0.812    
+227.0176*x^0.7828    
+
+plogis    
+plogis    min    max    add=TRUE    lwd=2    
+HillFunction    col="red"    add=TRUE    
+f    xlim=c    las=1    
+fef    from = 1    to = 10    
+dnorm    add=TRUE    
+x^2    add=TRUE    
+sqrt    add=TRUE    
+2*sqrt    add=TRUE    
+
+dnorm    -3.5    3.5    lwd=2    axes = FALSE    xlab = ""    ylab = ""    
+predict    add=TRUE    
+f    -1    1    100    -1    1    100    
+0.61838+0.08564*log    add=TRUE    
+
+dgamma    log    
+eq    add=TRUE    
+
+dbeta    add=TRUE    
+dbeta    xlim=c    ylim=c    xlab='p'    ylab='Posterior Density'    lty=2    
+dbeta    
+dbeta    col='red'    lwd=1.5    
+sapply    
+f    from=0    to=10    
+1-exp    from=0    to=370    axes=FALSE    
+f    from=-2    to=2    mf    sf    
+ttt    from=1    to=75    add=TRUE    
+dweibull    lwd=2    from = 0    to = 2    
+f2    0    1    add=TRUE    
+dnorm    add=T    col = "grey"    lwd = 2    
+dnorm    type="l"    
+dnorm    -3    +4    
+dnorm    -3    +4    
+af    add=TRUE    interval=c    
+7*x^2-0.5*x    col="grey"    add=TRUE    
+f    -2    2    ylim=c    runif    
+dexp    from = 0    to  = 10    add = TRUE    
+parabola    add = TRUE    lty = "dashed"    
+sapply    from=-5    to=5    
+parabola    add = TRUE    lty = "dashed"    
+
+dnorm    -3    4    
+s    
+s    
+s    
+quantile    
+exp    from=1    to=5    lwd=5    
+150-exp    from=1    to=5    lwd=5    col="darkblue"    add=T    
+exp    from=1    to=5    lwd=7    xlab="chi"    ylab="exp    cex.lab=2    axes=F    
+exp    from=1    to=5    lwd=5    
+150-exp    from=1    to=5    lwd=5    col="darkblue"    add=T    
+exp    from=1    to=5    lwd=7    xlab="chi"    ylab="exp    cex.lab=4    axes=F    
+f2    
+f2    
+func1    ...    n = n    col = col    main = main    
+
+expr=ff    from=0    to=2.999    xlim=c    ylim=c    xlab=""    ylab=""    from=3    to=6    add=TRUE    ff    pch=21    bg="black"    
+exp    mean - 2    mean + 2    asp = 1    
+dnorm    col = 2    add = TRUE    
+math_fun    -5    5    
+x^2    -5    5    axes=FALSE    
+x^2    -5    5    axes=FALSE    
+y    xlim=c    n=501    ylim=c    
+y    xlim = c    
+x^2    -5    5    yaxs = "i"    
+f    add = TRUE    col="green"    lwd=2    
+f    add = TRUE    col="green"    lwd=2    
+f    add = TRUE    col="orange"    lwd=2    
+f    add = TRUE    col="pink"    lwd=2    
+x^2    add = TRUE    
+2*x^2-0.2    add = TRUE    
+x^2    add = TRUE    
+2*x^2-0.2    add = TRUE    
+0.5*x^2+0.2    add = TRUE    
+dnorm    add=TRUE    col="blue"    lty="dotted"    
+dnorm    from=ToBeFilled    to=ToBeFilled    col="blue"    lty="dotted"    mean = mean    
+f    0    1    col = "green"    lwd = 1.5    add=TRUE    
+modelf    
+x^    from = 0    to = 100    col = 'red'    type = 'p'    pch = 16    n = 20    
+f    from=1    to=1e5    
+dnorm    xlim=c    
+
+f    0    500    
+M * g    0    500    add = TRUE    lty = "dashed"    
+f    0    250    add = TRUE    
+
+
+my.weibull.surv    1    100    lwd=2    col='red'    ylim=c    bty='n'    
+my.weibull.haz    1    100    lwd=2    col='blue'    bty='n'    shape    scale    
+1-    from=0    to=12    ylab=expression    col="darkred"    xlab="t"    lwd=5    ylim=c    
+0.0629*exp    
+dnorm    xlim=bounds    
+plogis    add=TRUE    
+sin    add=TRUE    col="red"    
+cos    add=TRUE    col="blue"    
+sfun    from=0    to=10    10    length=101    
+dnorm    add=TRUE    
+g    xlim=c    
+dexp    add = TRUE    col = "red"    lwd = 2    
+f2    -pi    pi    n = 100     
+1.0 *    from=80    to=250    ylim=c    
+dnorm    add = TRUE    col = "red"    
+dnorm    add = TRUE    col = "red"    
+dnorm    add = TRUE    col = "red"    
+a    .001    .999    
+b    0.001    .9999    
+m*x+y1-m*x1    from=0    to=x1    add=TRUE    
+y0 + f    from=x0-a    to=x0-a*r    add=TRUE    n=npoints    col=cols[1]    ...    
+y0 + f    from=x0+a*r    to=x0+a    add=TRUE    n=npoints    col=cols[2]    ...    
+y0 - f    from=x0-a    to=x0+a    add=TRUE    n=npoints    col=cols[3]    ...    
+x^coef    add=TRUE    lwd=2    
+y    
+fde    from=0    to=10    
+dgamma    add=TRUE    col='blue'    
+dnorm    add=TRUE    
+200 -    
+myfunc    0    1100    xlim=c    ylim=c    xlab=""    ylab=""    
+x^2 - 3*x - 10    -15    15    v=0    lty=3    
+dbeta    xlim=c    
+x^3    -3    3    col='green'    n=600    
+x^2    -3    3    col='red'    n=600    add=TRUE    
+f    0    0.035    col="red"    lower=0.0    upper=0.02    
+f    0    .04    
+x^2-0.25    add = TRUE    
+0.5-x^4    add = TRUE    
+f    
+f    col="red"    add=T    
+f    col="green"    add=T    
+f    col="blue"    add=T    
+f    col="orange"    add=T    
+pol2    col="red"    lwd=2    add=T    
+lm.f    from=-1.    to=-0.59    lwd=5    add=T    
+lm.g    from=-1.    to=-0.59    lwd=5    add=T    lty=3    
+
+

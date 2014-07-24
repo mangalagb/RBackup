@@ -1,0 +1,51 @@
+0, 0, circle = 0.2, inches = FALSE, add = TRUE, fg = 'red'
+0, 0, circles=1, bg=2, fg=NA, inches=FALSE, bty="n", xlim=c, ylim=c
+1:10, 1:10, circles = rep, lty = 2, inches = FALSE
+1:10, 1:10, circles = rep, lty = 2, inches = FALSE, add = TRUE
+1, 1, cbind, add=TRUE
+1, 1, ms.polygon, n=360, add=FALSE
+1:5, rep, circles=rep, add=TRUE, inches=.2, bg=rep, xpd=TRUE
+1:5, rep, squares=rep, add=TRUE, inches=.4, bg=rep, xpd=TRUE
+agData, agData, radii, inches=size.range2]/cm, bg="black"
+c, 1:2, size.range, xlim=c, ylim=c, inches=1/cm, bg="black", axes=FALSE, xlab="", ylab=""
+c, c, ms.polygon, xsize=c, lwd=c, n=360
+centrex, centrey, circles=radius, bg=shadesi], fg=NA, add=TRUE, inches=FALSE
+class, drv, sqrt, inches=size.range2]/cm
+crime, crime, circles=radius1:15], inches=0.5, bg=gray, xlab="Murder Rate", ylab="Burglary Rate"
+data1, 1], data1, 2], circles=data1, 3], inches=0.55, bg="lightblue", xaxt="n", yaxt="n", ylab=""
+data3], data3], symb=bwDiamond, symb.plots=TRUE, inches=0.22
+DF, DF, circles=DF, inches=0.25, bg=DF$color
+DF, DF, circles = V3, inches = 0.35, fg = "darkblue", bg = "red"
+ggs, ggs, radius, inches=0.30, xlab="Research type", ylab="Research area", xaxt="n"
+Height, Volume, circles = Girth/24, inches = FALSE, main = "Trees' Girth"
+mydata, mydata, circles=mydata, bg="#0000FF50"
+mydata, mydata, circles=mydata, bg="blue"
+mydata, mydata, circles=mydata, bg="#FF0000"
+mydata, mydata, circles=mydata, bg="red", add=TRUE
+myd, myd, ms.arrows, angle=hourAngle, add=T, col="blue", symb.plots=TRUE, adj=0
+myd, myd, ms.arrows, angle=minuteAngle, add=T, col="red", symb.plots=TRUE, adj=0
+myd, myd, ms.polygon, n=250, add=T, r=1.1, col="gray"
+pctable, pctable, circles=bubble.size, inches=.2, fg="black", bg="blue", yaxt="n", xaxt="n", xlab="Day", ylab="Weekday"
+platelay, factor, circles=rep, add=TRUE, inches=FALSE, bg=collistcolgrp]
+quakes, quakes, circles=quakes
+quakes, quakes, circles=radius
+quakes, quakes, circles=radius, inches=0.35, fg="white", bg="red", xlab="Murder Rate", ylab="Burglary Rate"
+squares=..., inches=FALSE, add=TRUE
+temp, m, add=TRUE, circles=p, inches=1/15, ann=F, bg="steelblue2", fg=NULL, m, xlab="Time", ylab="Depth", type='l', main=Namek], lwd=5, col="steelblue2"
+tms, vals, radii, xaxt='n'
+wt, mpg, ms.Cleveland, num.pt=sz, add=FALSE
+x=1:10, y=d, ms.arrows, angle=pi/2, add=T, symb.plots=TRUE, adj=1.5
+x=1e-2, y=1e2, circles=1e1, xlim=c, ylim=c, xaxt='n', yaxt='n', ann=F, log="xy"
+x, circles=size, xlim=c, cex.lab=3, cex.axis=3
+x=dfx, y=dfx, circles=dfx, inches=1/3, ann=F, bg="steelblue2", fg=NULL
+x=longitude, y=latitude, symb= ms.arrows, length=windspeed/10
+X, Y
+X, Y, circles = a
+x, y, circles=area, inches=F, ylim=c
+x, y, circles=r, fg="white", bg="red"
+x, y, circles = z
+x, y, R1, ]
+x, y, symb = ms.flags, ind=1:50, symb.plots=TRUE, add=FALSE, xlim=c, ylim=c, inches=0.75
+year, logtrans, circles=logtrans, inches=0.25, bg=intel2$HexLogClock, logtrans, color=intel2
+year, logtrans, circles=size, inches=0.05, bg=as.character
+year, logtrans, circles=size, inches=0.05, bg=intel2$HexLogClock

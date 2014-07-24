@@ -1,0 +1,371 @@
+
+0, 0
+0, 0, lty=2
+0, 1
+0.1, 0, lty='28282383'
+0, 1, -1
+0, 1, col = gray
+0, 1, col='green'
+0, 1, col='grey'
+0, 1, col="red"
+0, 1, col = "red"
+0, 1, lty=2, col="blue"
+0, 1, lwd=3, col=k
+0, 2
+0.2, 0, lty='83282823'
+0, 2/24
+0.22483, -0.07115
+0.3, 0, lty='28238328'
+0.4, 0, lty='23832828'
+0.7, 0, col="green"
+0, i
+1, 1
+1.2, 0, col="red"
+1, coef
+2, 4
+325, 0
+3.84, 0, lty=3
+5, 0
+a=0
+a=-0.05, b=1, col="red", lwd=2
+a=0.05, b=1, col="red", lwd=2
+a=0, b=0
+a = 0, b = 1
+a = 0, b = 1, ...
+a=0, b=1, col=4, lwd=3
+a=0, b=1, col="red", lty=2
+a=0, b=1, lty=2, col="grey59", lwd=1.5
+a=-1.331, b=2.522
+a=1, b=0, v=1
+a=1, b=0, v=1, min, "number", pos=2, b=0, v=1
+a=1, b=1, v=1, lty=3
+a = 40 + 160, b = 4, col = "grey90", lwd = 4
+a = 40, b = 4, col = "grey90", lwd = 4
+a=4, b=-2
+a=50, b=-1
+a=8, b=-1
+a=a, b=-1, lty=3
+a = a, b = b
+a, b=1, lty=3
+a, b, 3
+a, b, col = "blue"
+a=coef, b=coef, data=stackloss, family="symmetric"
+a=fit, b=fit
+a = fmla, b = fmla
+a=inter, b=backrot, lty=3
+a=inter, b=rot, lty=3
+c1], c2]/2, col="red"
+c1], c2]*2, col="red"
+coef
+coef1+best_Cx*coef2, -coef2
+coef1-best_Cx*coef3, coef3
+coef1pos]+best_Cx*coef2pos], -coef2pos]
+coef1pos]-best_Cx*coef3pos], coef3pos]
+coef = coef
+coef = coef, ...
+coef, coef
+coef, col="blue"
+coefs, lwd=2, col='red'
+fit
+fit1
+fit2, col="red"
+fit.bioisp]], lwd=2, col='red'
+fit, col=2
+fit, col="blue", lwd=2
+fit, col="red"
+fit, col = "red"
+fit, fit
+fit.int, col="blue"
+fit <- lm, col='red'
+fit, lwd=2, col='red'
+g
+graphic, ..., .215, .224, .223, .262, .233
+h=0
+h = 0
+h=0.04, col="red", lower=0.0, upper=0.02
+h=0:100, col="white"
+h=0:15, col="white", lty=3
+h= 0.5
+h=0:50, v=c, lty=3, col="lightgrey"
+h=0, adjust=1, bw=1
+h=0, col=1, lty=2
+h=0, col=2, eps=1e-6, c
+h=0, col="black", ...
+h=0, col="darkgray", lwd=2
+h=0, col="green"
+h=0, col="grey", lty=2, lwd=2
+h=0, col='lightgrey'
+h = 0, color = 'red', interval = c
+h=0, labels=rownames, adj=2
+h=0, lty=2
+h=0, lwd=2, col="#5B7FA3"
+h=0, v=0
+h=0, v=0, col="gray"
+h=0, v=0, col="grey90"
+h=0, v=0, lty=3, -15, 15, v=0, lty=3
+h = 0, v = 0, lty = "dotted", col = "light grey"
+h=1
+h = 1.0
+h = -10:20, col = grey, lty = 2
+h=105
+h=1:10, v=1:10, col="gray", lty=3
+h = 1:13, col = 'white'
+h = 1:25, lty=1.5, lwd=0.5, col=336
+h=1:3
+h=1:4, col=1:2
+h = 1:4, lty = 2, col = 'grey'
+h=1, lty=3, col="lightgrey"
+h=1, lwd=4
+h=2
+h =-20:20, v = -20:20
+h = 2.5
+h=34, v=0, col="gray10", lty=20
+h=37.6, v=0, col="gray10", lty=20
+h= 3.84, col='red'
+h = 40 + 128, col = "grey80"
+h = 40 + 160 + 128, col = "grey80"
+h = 40 + 160, col = "grey80"
+h = 40, col = "grey80"
+h=5
+h=50, lty=3
+h=.8, v=perc80
+h = as.numeric, col = "gray", lty = 2
+h=at, col="gray"
+h=b, ], col="red"
+h=c, col= "blue", lty= 2
+h = c, col = "gray80"
+h=c, col="grey10", lty="dotted"
+h=c, col="lightblue"
+h=c, col= palvec c, lwd=40, colors, ignore.case=TRUE, value=TRUE
+h=c, col= rep, lty=1:2, lwd=3
+h=click.loc
+h=, col=6, lty="dotted"
+h=, col="dark red"
+h=, col="lightgray", lty="dotted"
+h=c, v=c
+h = c, v = c
+h=d1, 2]
+h=fixedLatitude
+h = grid/100, v = grid/100, col = gray
+h = hlinespanel.number], col = "red", lty = "solid", lwd = 1.5
+h=horiz, v=vert, side=c, y=ylim1], labels=vert, adj=c, col='blue'
+h=hpos, col=2
+h = kg, v= meter, col="darkgrey"
+h=linloc, col="blue"
+h=linloc, col="red"
+h = loc, v = loc, col = "green"
+h=lsd1, col=3, lty=3
+h=lsd2, col=4, lty=2
+h=lsd3, col=6, lty=1
+h=, lty=2
+h=mean
+h=mean, col=2, lty=1
+h=mean, data = InsectSprays, col = "lightgray"
+h=mean, lty='dashed'
+h=median, col="green"
+h=median, col="lightblue"
+h=pretty, col="lightgrey"
+h=pretty, v=pretty, col="grey95"
+h=quantile, col="blue", lty=2
+h=quantile, col="red", lty=2
+h=quantile, lty=2, col="gray"
+h=seq
+h=seq_along, col="grey80"
+h=seq, col="grey"
+h = seq, col = 'lightgray', lty = 3
+h=seq, col="red"
+h=seq, col="white"
+h=seq, col='white', lwd=2
+h=seq, lty=2
+h=seq, lty=3, col="grey"
+h=seq, lty=6, col = "cornsilk2"
+h=seq, v=seq, col="gray", lty=3
+h = seq, v = ticks, col = "lightgray", lty = 3
+h=seq, v=time, col=gray
+h=summary
+h=thresh
+h=trans.lats, v=trans.longs
+h=usd1, col=3, lty=3
+h=usd2, col=4, lty=2
+h=usd3, col=6, lty=1
+h=v99, col="grey"
+h=ValGrd, col="grey", lty=3
+h=v, col="blue", lwd=4
+h=vmed, col="lightblue"
+h = ., v = ., y
+h=w, col="red", lwd=4
+h=x, v=y, lty=2
+h=y.0
+h=yaxisdat, col="lightgray"
+h=y, col="white", lwd=2
+h = yvals, lty = 1, lwd = 1, col = "lightgray"
+h=yvals, v=yrs, col="gray", lty=3
+h=ywhich.min, col=col.line, lty=2
+intercept, coef
+lin2, col="green", untf=TRUE
+lin, col="blue", untf=TRUE
+line1, col="cyan"
+line2, col="cyan"
+line, col="blue", untf=TRUE
+linm
+lm
+lm1
+lm, col=2
+lm, col="black"
+lm, col='blue'
+lm, col = 'blue', lwd = 3
+lm, col = 'forestgreen', lwd = 3
+lm, col="green"
+lm, col.line=col.symbol
+lm, col.line=col.symbol, lty=lty
+lm, col='red'
+lm, col="red"
+lm, col = "red"
+lm, col = "red", lwd=1.5
+lm, col='red', main='Check the axis labels'
+lm, col='red', main='Check the axis labels', y
+lm<- lm
+LM.Log, col="red"
+lm, lty = 2, col = "red"
+LMO
+lm.pos1
+lm, Type=="Quebec"
+lmx
+lm_xy, col='blue'
+m
+m1
+mod
+mod, col = "blue", lwd = 2
+mod, col = "blue", lwd = 2, ]
+mod, data = pred, col = "red", lwd = 2
+model
+model, col="red"
+model, data = cars
+modlm
+mod <- lm
+mylm
+mylm, col="red"
+myreg, col="blue"
+out.lm, col="red", lwd=1, lty=2
+predict, coef, col='red'
+reg = coef, lwd = 2
+reg, col="red"
+reg=daten_fit, col="red"
+reg=daten_fit, col="red", data = daten3:5, ], col="red"
+reg=lm
+reg = mod
+regone
+res
+rlm, ...
+rq
+rq, col = "blue"
+severity.lm, col="blue"
+site.model, lwd=2, col=colorisite]
+v
+v=0
+v=-0.25
+v=0.25
+v = 0.5, h = 1.2, col = "red"
+v = 0, col = "#c8454e", lwd = 2
+v=0, col='lightgrey'
+v = 0, lty = 2, lwd = 1, ...
+v=0, lwd=3
+v=1
+v = -10:20, col = grey, lty = 2
+v=10+, col="red"
+v=10, lwd=5
+v = 1:13, col = 'white'
+v = 1:4, lty = 2
+v=1:51
+v=1:51, 1:50
+v=152, col="red", lwd=5
+v=185, lty="dashed"
+v=1-, col="red"
+v=240, col="green", lwd=3
+v = 2.5
+v=326
+v=35, lty="dashed"
+v=385, lty="dashed"
+v=485, lty="dashed"
+v=567, col="red"
+v=585, lty="dashed"
+v=-8000, col="red", lwd=2
+v=as.Date
+v = at, lty = "dotted", col = "lightgray", lwd = 3
+v=axis.Date, col="grey80"
+v=axis.POSIXct, col = "lightgray", lty = "dotted", lwd = par
+v=c
+v=c, col="grey40"
+v=c, col = "lightgray", lty = "dotted", lwd = par
+v= c, col='red'
+v=click.loc
+v=c, lwd=3, lty=3
+v=, col=6, lty="dotted"
+v=, col="dark red"
+v=, col="gray"
+v=, col="lightgray", lty="dotted"
+v=crit, col='red'
+v = datadata, 2] == 1, 1], col = 'blue'
+v = datadata, 2] == -1, 1], col = 'red'
+v = decimal_date, col='grey', lwd=0.5
+v=dmode
+v = down
+v = estimate, col='red'
+v=inflections, col="red", lwd=3
+v = k.range, col = "grey"
+v=linePosition
+v=ln
+v=log
+v=log10, col="lightgrey"
+v=log10, col="lightgrey", lty=2
+v=m, 1], col=c
+v=max, col=gray
+v=MaxDate - 5
+v=mean
+v=mean, col="blue"
+v=mean, col='white', lwd=2
+v=mean, lty=2
+v=mean.values, col.line="red", lty = 2
+v=median.values, col.line="red"
+v=mg, col="red"
+v=min, col=4, lty=3
+v=MinDate
+v = mx, col = "blue", lwd = 2, mean = 10
+v=myden
+v=obs, col="red"
+v=p
+v=parametersi]
+v=PrbGrd, col="grey", lty=3
+v=qnorm, col="blue", lty=2
+v=qnorm, col="red", lty=2
+v=qts1], col="red"
+v=qts2], col="red"
+v=quantile, lty=2, col="red"
+v=result, col="red"
+v=seq_along
+v=seq, col='grey', lty='dotted'
+v = seq, col = 'lightgray', lty = 3
+v=seq, col = "lightgray", lty = "dotted", lwd = par
+v=seq, col="white"
+v = seq, col = "white", lwd = 2
+v=seq, lty=1, col="grey"
+v=seq, lty=2
+v=seq, lty=6, col = "cornsilk2"
+v = statObs
+v = test
+v = time
+v=time, col="lightgray", lty=3
+v = v, lty = "dotted", col = "lightgray", lwd = 3
+v=vpos
+v=x
+v = x, 1] +, col = "grey"
+v=xaxisdat, col="lightgray"
+v = x, col = "gray"
+v=x, h=y
+v = xidx095]
+v=x, lty=3
+v = xycoords, col = "grey", lty = 4
+x.lm, col="red"
+x, y
+x, y, col=z
+z

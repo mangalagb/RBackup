@@ -1,0 +1,174 @@
+
+0, 0.5, ctext, col=c
+0, 0, 'Bottom Left', adj=c
+0, 0, "GLOBAL", cex=1.5, col="grey"
+0, 1.45, "35%"
+0, 1, i, adj=c
+0, 1, "init.angle = 90", col= "red"
+0.25, 2, "Some text", pos=3
+0, 3, "Freq"
+0.5, 0.25, paste
+0.5, 0.4, paste0, cex = cex.cor
+0.5, 0.4, txt2
+0.5, 0.4, txtb, cex = 1.5
+0.5, 0.5, paste, cex=1.4
+0.5, 0.5, r, cex = cex.cor
+0.5, 0.5, r, cex = cex.cor, font=fonts
+0.5, 0.5, "side", cex=1.4
+0.5, 0.5, stars, cex = cex.cor
+0.5, 0.5, "top", cex=1.4
+0.5, 0.5, txt, cex = cex.cor * r
+0.5, 0.6, txt
+0.5, 0.6, txta, cex = 1.5
+0.5, c, txt
+0, .8, paste, offset=.3, cex=1.5, adj=c
+0, labels = paste
+10, 10, "observed corelation = "
+10, max, paste0
+1.1, 0.8
+1.1, 1.2
+1.1, 1.45, "40%"
+112, , mac, cex = 0.8, col = "#393E46"
+115, , mac, cex = 0.8, col = "#393E46"
+1:18, par, srt=90, adj=1, labels=labels, xpd=TRUE, cex=0.6
+1:19, labels=y, par, srt=45, adj=1.2, xpd=T, cex=0.3
+1, 1, "Hi", col=2, means, LETTERSlength, col=2, means, LETTERSlength, col=2
+1, 1, 'Top Right', adj=c
+1.3 * outer.radius, ylevs, round, pos = 4, xpd = TRUE
+1.5, 1.5, parse, col=colsi]
+1:ncol, rep, Colp, srt=90, pos=2
+1:ncol, rep, col.tip, srt=90, adj=c, cex=cexRow
+1:n.indiv, 0, obs.labels, pos = 4, cex=0.5, col = col.downgroups.o]
+1:n.indiv, 0, obs.labels, pos = 4, col = col.downgroups.o]
+2, 12, expression, adj=1
+2, 12, paste, adj=0
+30, usd3, "12s violation"
+5, 5, expression, cex = 1.2
+5, 5, "Foo", 1:10, LETTERS1:10]
+5, 5, labels="MyText"
+5, , "nil", font = 3
+6, 4, "Gamma"
+6, 5, "Exponential"
+6, 6, "Normal"
+6, 7, "LogNormal"
+8, w.rNN] + 2.3, "+"
+92, 4, substitute, adj=0, cex=0.85
+a, a, c, pos=2
+abs_losses, , labels=namebank, cex= 0.7, , labels=namebank, cex= 0.7, pos=3
+abs_losses, percent_losses, labels=namebank, cex= 0.7, pos=pos_vector
+A_coords1], A_coords2], "A", col = "red"
+A_coords1], A_coords2], "A", col = "white"
+B_coords1], B_coords2], "B", col = "blue"
+B_coords1], B_coords2], "B", col = "white"
+bx1, bx1, rownames, pos=4
+c, 1:2, range, col=c
+cex=1, x=x-.25, y=-1.25, labs, xpd=TRUE, srt=45, x=x-.25, y=-1.25, labs, xpd=TRUE, srt=45
+class, drv, freq
+coordinates, label =     as.data.frame, "soilType"]
+coordinates, label=cc
+coord.xy, coord.xy, c, adj=c
+endpoints1], endpoints2], lab1, xpd = TRUE
+endpoints3], endpoints4], lab2, xpd = TRUE
+GIC.Zoop, GIC.Fish+.05, labels=Dive.Number
+i-0.25, d, i], labels = d, adj = 1, cex = 0.75
+i, 0.5, lab=as.character, cex=2^
+i/4, .5, paste
+i/4, , rev
+i, d, i]+1, labels = paste0, cex = 0.75
+i, d, i], labels = d, i], cex = 0.75, adj = c
+i, j, txt, cex=0.5
+j, i, round, col="white", cex=0.6
+j, -k-0.5, labels = matrix, j]
+labels=labs, col=axiscolor, x=rep, y=1:length, srt = 0, pos = 2, xpd = TRUE
+label.xk], label.yk], labels = key.labelsk], cex = cex, adj = text.adj
+load, ind1, i]], load, ind2, i]], labels = nms
+mapdata1, .7, mapdata1, cex.lab = chr.lab
+mapdata1, -.7, mapdata1, srt = 90, cex.lab = chr.lab
+mean, 0.5, i
+myscale * heads, choices]
+my, x0, et
+obs, UP+1, Name, srt=90, adj=0
+obs, UP-1, Name, srt=90, adj=1
+outliers, 2], outliers, 3], labels=outliers, 1], cex=0.50, col=c
+par, par, labels=paste, pos=4
+par, y.label.position, y.label, xpd=TRUE, adj=1
+pca, rownames, cex=0.8, col=mycolorssort, 1:5], col = mycolors
+pcdata, axis1], pcdata, axis2]
+pcdata, axis1], pcdata, axis2], labels, adj = c
+pcdata, axis1], pcdata, axis2], labels, adj = c, shape.min, 20, shape.max, 20, label = TRUE, labels = Myname
+r*cos, r*sin, labels=ticks
+rep
+rep, 1:8-.2, , pos=2, cex=.8
+rep, 1:8-.2, , pos=4, cex=.8
+rep, 1:nrow, Rowp, pos=4
+rep, 1:nrow, row.tip, pos=4, cex=cexCol
+rep, as.vector, labels=as.vector, pos=3
+row, col, labels=matrix
+score, rownames, col=colorsz]
+sd.f * R
+sd.f * R, sd.f * sin, labels=text, pos=3
+thisx, y, txttxtstr], col=coltxtstr], adj=0
+tpos, y+2*dy, names, srt=90, adj=0
+txtpos, txtpos, txtlab, cex=1.5
+txtX, txtY, fullLabel, cex=fontsize, pos=4, srt=90, offset=0.1
+V1, V2
+var1, var2, var3
+x=-0.02, y=radii*ymult, labels=paste, pos=2, cex=cex.lab
+x0, my, et
+x0, y0, labels=labels
+x=0, y=0, labels=paste, cex=2
+x=1+0.2*cos, y=1+0.2*sin, expression
+x1, i], y1, i]
+x1, y1, wordsi], cex=sizei], offset=0, srt=rotWord*90, col=cc, ...
+x=1, y=.5, labels=expr, pos=1, cex=4
+x=1, y=.8, labels=expr2, pos=1, cex=4
+x=500, y=800, mod
+x=.5, y=.5, labels="\u0260"
+x=.5, y=.5, labels="\u0260", family="Times New Roman"
+x=as.numeric, y=value
+x=assets, y=sales, labels=substr
+x = b, y = c, label = c, xpd = TRUE, col = 'blue'
+x=b, y=c, label = c, xpd=TRUE, col='blue', ..., label=TRUE
+xcoord, ycoord, teamid, col='green'
+x=c, y=c, c, cex=2
+x=c, y=rep, labels=tblx, ]
+x=data, y=data, labels=data, pos=posni], cex=cex1, offset=offset1, col=col1
+x = dm, par, labels = paste, srt = 45, pos = 1, xpd = TRUE, cex=.7
+xh!=0], yh!=0], format, cex=text_cex, col=col
+xloc, yloc - y.off, labels, cex = cex, adj = c
+x = mehrviel.coordsi], y = artmehr.coords, i], labels = ifelse, cex = 2
+x=midpts, y=-2, names, cex=0.8, srt=45, xpd=TRUE
+xmin, ticks, ticks, xpd=TRUE, pos=2
+x, myears, event, pos = 4
+xRecips, yRecips, sPDFdonor, col=rgb, cex=0.6, pos=4, 2=l, 3=ab
+x=seq
+x = seq_along, y = -0.2, srt = 45, labels = labs, xpd = TRUE
+xstart, ystart, letters1]]i], cex=8
+xvalue + offset, yvalue, cex=0.5
+xval, yval
+xvar, yvar, labels=namelab, pos=3
+x = x + 0.2, y = y
+xx * 1.2, yy * 1.2, colnames
+xx1:n], yy1:n], df1, 1:n], col = axislabcol
+x=x, y=seq_along, label=x, pos=4
+x, y
+x, y, ...
+x=, y=-0.5, labels=paste0
+xyCoords, labels = value
+x, y, format, cex=text_cex, col=col
+x, y, Label1, col=rainbow
+x, y, label = labels, col = col, ...
+x, y, label = paste, cex = 0.6
+x, y, labels, cex = 0.8, col = 'gray20'
+x, y, labels="MyText"
+x, y, labels=seq_along, ...
+x, y, letters1:8], pos=3
+x, y, my, x]
+x, y, name, cex=1.5, font=4
+x, y, name, cex=1.5, font=4, -2
+x, y, paste, cex=0.8, y
+x, y, round, cex=0.45
+x, y, round, cex=0.8
+x, y, rownames, cex=0.8
+x, y, txt, cex = cex, font = font
+y=par, x=x.label.position, x.label, xpd=TRUE, adj=1, srt=90

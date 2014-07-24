@@ -1,0 +1,2 @@
+lat ~ long | depth*0*data = quakes*0*data = quakes*0*xlab = c*0*ylab = "Latitude"
+var1 ~ var2 | var3*0*data=dtb*0*number=num*0*overlap=.1*0*col=rainbow*0*type="o"*0*cex=2*0*pch=as.character*0*rows=1

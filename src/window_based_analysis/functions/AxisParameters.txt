@@ -1,0 +1,30 @@
+side=1    labels=FALSE    
+side=2    labels=FALSE    
+side=1    
+side=2    
+side=1    
+side=2    
+side = 2    
+at = h    labels = 10^h    side = 1    
+dates.vec    ....    
+Data    col="black"    side=1    
+Date    
+Date    
+x    side = 1    
+y    side = 2    
+x    side = side    xpd = NA    ...    
+y    side = side    xpd = NA    ...    
+x = X    side = 1    
+x = y    side = 2    ...    
+x = X    side = 1    ...    
+side=2    at=ticksAt    labels=as.character    line=0.5    
+side=4    at=ticksAt    labels=as.character    line=0.5    
+side=2    x=range    format ="%H:%M:%S"    aes    
+xorig    side = 1    cex.axis=cex.x    
+x    side = 1    
+y    side = 2    
+x = c    at = c    side = 4    
+x = c    at = c    side = 4    
+side = 1    
+x    side = 1    
+y    side = 2    

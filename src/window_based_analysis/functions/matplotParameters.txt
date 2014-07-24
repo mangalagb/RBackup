@@ -1,0 +1,98 @@
+cbind    
+df    df[    
+x    cbind    type="l"    col=c    
+1:10    data.frame    type="l"    lty=1    lwd=1    col=c    type="l"    lty=1    lwd=1    col=c    
+fVals    powsF    type="l"    lty=1    lwd=2    xlab="effect size f"    ylab="Power"    main="Power one-way ANOVA"    xaxs="i"    xlim=c    col=c    
+dVals    powsT    type="l"    lty=1    lwd=2    xlab="effect size d"    ylab="Power"    main="Power one-sample t-Test"    xaxs="i"    xlim=c    col=c    
+d.cum    type="l"    
+d.que    type="l"    measure=c    
+mat    cellcolors = color.scale    
+replicate    type="l"    
+
+d[    1]    d[    -1]    type="b"    pch=1    xaxt="n"    
+L1[    1]    L1[    -1]    type="l"    lty=1    bty="l"    las=1    
+x    cellcolors=palmat    main=paste    show.values=2    vcol=rgb    axes=FALSE    vcex=0.7    
+data.matrix    type="b"    xaxt="n"    
+xcum    type="l"    xlab="Number of Bets"    ylab="Cumulative Sum"    main="Cumulative Results"    col=rgb    
+x    cbind    
+p    t    type='l'    xlab='prob'    ylab='count'    
+x    cbind    
+x    cbind    pch=1    
+dat    col=c    pch=20    
+t    type="l"    
+counts    type="l"    lty=1    col=colors    
+dataPlot1    axes=T    frame=T    type="l"    xlab="time    ylab="temperature    main=names    
+d    type="l"    lty=1    lwd=3    las=1    
+temp1    cbind    t="l"    lty=1    col=c    
+test_transposed    type = "b"    ylab="y"    col=colors    main="MATPLOT with groups"    pch = 1:2    
+t    type="b"    pch=20    col=cl    
+df    type="b"    lty=1    pch=1    col=c    
+rnorm    col="blue"    axes=F    type="l"    lwd=10    xlab=""    ylab=""    
+rnorm    col="red"    axes=F    type="l"    lwd=10    xlab=""    ylab=""    
+x[    1]    x[    -1]    type="l"    lty = 1    
+xl    pvals    type="l"    col=cvec    lty=lvec    xlab='X label'    ylab='Y label'    
+X    t    pch=1    
+x    y    type="p"    
+1:23    t    type="l"    col=colors    lty=1    pch=markers    bty="n"    las=1    main="Categorical Percent over Time"    
+SBP.qtr.mat[    1]    SBP.qtr.mat    type="pl"    ISOdate    "10 years"    
+mat    type="l"    col="black"    lty=1    
+head    n = 6L    ...    
+data    
+data    
+data    
+data    
+x = myDat[    1]    y = myDat[    -1]    type = "p"    pch = 21    
+y = mat1    
+df1_xts_merge    type="l"    screens=1    auto.legend=TRUE    
+foo[    1]    foo[    c    t='l'    'col2'    
+mydata[    1]    mydata[    -1]    type="l"    
+x=Mvalues    show.values=2    cellcolors=Mcolors    xlab="x"    ylab="y"    axes=FALSE    vcex=0.4    
+dat[1]    dat[-1]    
+temp    type = "o"    pch = 1    
+dat    type = c    pch=1    col = 1:4    
+1:n    m    
+DF[    -1]    col=1:ncol    type='l'    lty=1    ylim=range    axes=FALSE    
+rbind    rbind    type='l'    lty=1    
+rbind    rbind    type='l'    lty=1    
+cbind    type='l'    
+t    type = "l"    
+test["time"]    test[c    type="l"    
+x    y    ...    x[    2]    2]    
+com_30    DCCrho    xaxt = "n"    type='l'    
+1:nrow    df    type="l"    
+df[    1]    df[    -1]    type="l"    
+df    df[    2:3]    type = "b"    pch=19    col = 1:2    
+lambda    b    
+lambda    b    
+as.numeric    t    type="o"    pch=19    lty=1    ann=FALSE    
+mat    type="l"    ylim=c    ylab="y TBA"    main="TBA"    xlab="x TBA"    axes=FALSE    frame.plot=FALSE    col=coll    lty=rep    
+cbind    type="l"    col=1    lty=1    
+cbind    type="l"    col=1    lty = 1    
+x=1:4    dl    type="b"    ylim=c    col=c    
+dat[    1]    dat[2:5]    type="o"    pch=19    col=c    xaxt="n"    xlab="Year-Month"    ylab="Value"    x=dat    format="%Y-%m"    
+df[    1]    df_approx    
+x=1:12    log10    type="l"    ylab="log10    xlab="log2    col=1:3    lty=1    
+testdf    show.values = TRUE    axes = FALSE    xlab = ""    ylab = ""    vcex = 2    vcol = "black"    extremes = c    
+t    show.legend = TRUE    extremes = c    
+t    show.legend = TRUE    axes = TRUE    xlab = ""    ylab = ""    extremes = c    
+
+obs_v_exp    type='l'    
+
+data1[    1:2]    xlim = c    ylim = c    
+data2[    1:2]    add=TRUE    
+seq    mat    type="n"    ylim=c    
+M    cbind    type="b"    xlab= "Minutes"    ylab=expression    xlim=range    ylim=range    
+HDL.mon.mat[    1]    HDL.mon.mat    type="pl"    
+t    ]    t="l"    lty=1    las=1    ylab="Score"    xlab="Test"    xaxt="n"    
+X    Y    type="l"    lty=1    
+x=data[[1]]    y=data[-1]    type="l"    xaxt="n"    
+1:10    log10    type="l"    xlab="log2    ylab="log10    lty=1    
+x = df[    1]    y = df[    -1]    type = "l"    
+x = df[    1]    y = df[    -1]    type = "l"    lty = 1    col = cols    
+t    type='l'    lty=1    
+data[    namesOfThreeLargest]    type="l"    
+Data[id]    type='l'    
+mmean    type="l"    lwd=3    lty=1    
+colnames    t    xlab="Tube numbers"    ylab="standard deviation"    type="b"    lty=1    pch=19    
+rownames    Alltubes    xlab="Measurement locations"    ylab="standard deviation"    type="b"    lty=1    pch=19    
+x=No.    y=cbind    type="l"    

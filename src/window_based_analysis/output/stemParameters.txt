@@ -1,0 +1,8 @@
+
+fsizes
+log
+v/100
+x
+y
+y, scale=0.5, atom=0.1
+y, scale = 2

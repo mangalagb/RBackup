@@ -1,0 +1,30 @@
+
+1.7, 2, c, col=small_col, radius=0.2
+3, 3, c, col=main_col, radius=1
+3.8, 4.5, c, col=small_col, radius=0.2
+4.3, 2, c, col=small_col, radius=0.2
+c, col=c
+c, density=c
+c, init.angle=90
+c, labels=c, length
+c, labels=labels1:2], main = "Global"
+countscounts>1]
+d2, labels=d2
+data2, data2
+data3, data3
+data, paste
+islands
+m1_sums, main="m1 - colSums"
+m2_sums, main="m2 - colSums"
+numb, col=colors, labels=numb_labels, clockwise=TRUE
+object.sizes, main="Memory usage by object"
+opt.weights, names
+pie.sales, clockwise=TRUE
+rep, col=c25
+rep, col = col, radius = radius, ...
+sex, labels = c
+table, names
+values, labels = as.expression
+x1, labels=lbls1
+x1], x2], x3]
+x=c, labels = NA

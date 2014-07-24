@@ -1,0 +1,492 @@
+a    b    3    
+2    4    
+1    1    
+model    data = cars    
+z    
+coef = coef    
+v=    col="lightgray"    lty="dotted"    
+h=    col="lightgray"    lty="dotted"    
+h=mean    data = InsectSprays    col = "lightgray"    
+model    
+c[1]	c[2]*2    col="red"    
+c[1]    c[2]/2    col="red"    
+severity.lm    col="blue"    
+line1    col="cyan"    
+line2    col="cyan"    
+v = time    
+v = k.range    col = "grey"    
+regone    
+coefs    lwd=2    col='red'    
+fit    lwd=2    col='red'    
+fit <- lm    col='red'    
+v=log10    col="lightgrey"    lty=2    
+v=log10    col="lightgrey"    
+h=pretty    col="lightgrey"    
+v = seq    col = "white"    lwd = 2    
+v = 0    col = "#c8454e"    lwd = 2    
+v = seq    col = "white"    lwd = 2    
+v = 0    col = "#c8454e"    lwd = 2    
+fit1    
+
+lm    Type=="Quebec"    
+
+lm    col = "red"    
+h = yvals    lty = 1    lwd = 1    col = "lightgray"    
+v = 0    lty = 2    lwd = 1    ...    
+0    1    
+mod    col = "blue"    lwd = 2    
+mod    col = "blue"    lwd = 2    ]    
+v=x    lty=3    
+v=xaxisdat    col="lightgray"    
+h=yaxisdat    col="lightgray"    
+v=xaxisdat    col="lightgray"    
+h=yaxisdat    col="lightgray"    
+v=xaxisdat    col="lightgray"    
+h=yaxisdat    col="lightgray"    
+v=xaxisdat    col="lightgray"    
+h=yaxisdat    col="lightgray"    
+h=linloc    col="blue"    
+h=linloc    col="red"    
+0    1    col = "red"    
+v=seq    lty=1    col="grey"    
+v=vpos    
+v=vpos    
+h = c    v = c    
+h = c    v = c    
+h=0    v=0    
+h = 0    v = 0    lty = "dotted"    col = "light grey"    
+h=0    
+v=35    lty="dashed"    
+v=185    lty="dashed"    
+v=385    lty="dashed"    
+v=485    lty="dashed"    
+v=585    lty="dashed"    
+v=time    col="lightgray"    lty=3    
+linm    
+reg=daten_fit    col="red"    data = daten[3:5    ]    col="red"    
+reg=daten_fit    col="red"    
+mod    data = pred    col = "red"    lwd = 2    
+v = down    
+h=0    
+v=0    
+v=mean    col="blue"    
+v = mx    col = "blue"    lwd = 2    mean = 10    
+h=0    v=0    
+res    
+v=qts[1]    col="red"    
+v=qts[2]    col="red"    
+lm    
+h = seq    col = 'lightgray'    lty = 3    
+v = seq    col = 'lightgray'    lty = 3    
+h = seq    col = 'lightgray'    lty = 3    
+v = seq    col = 'lightgray'    lty = 3    
+h = 1:4    lty = 2    col = 'grey'    
+v = 1:4    lty = 2    
+v=    col=6    lty="dotted"    
+h=    col=6    lty="dotted"    
+a = a    b = b    
+v=click.loc    
+h=click.loc    
+coef    
+coef    col="blue"    
+intercept    coef    
+1    coef    
+h = 1:25    lty=1.5    lwd=0.5    col=336    
+lm    col = 'forestgreen'    lwd = 3    
+lm    col = 'blue'    lwd = 3    
+h = 2.5    
+v = 2.5    
+v = statObs    
+h=50    lty=3    
+lm    col="green"    
+fit    fit    
+v=seq    lty=6    col = "cornsilk2"    
+h=seq    lty=6    col = "cornsilk2"    
+v=crit    col='red'    
+v=567    col="red"    
+graphic    ...    .215    .224    .223    .262    .233    
+lm    col="black"    
+a    b    col = "blue"    
+v=326    
+v=240    col="green"    lwd=3    
+a=coef    b=coef    data=stackloss    family="symmetric"    
+v=c    col = "lightgray"    lty = "dotted"    lwd = par    
+h=0:50    v=c    lty=3    col="lightgrey"    
+h=1    lty=3    col="lightgrey"    
+h=seq    v=time    col=gray    
+v=max    col=gray    
+lm.pos1    
+h=37.6    v=0    col="gray10"    lty=20    
+h=34    v=0    col="gray10"    lty=20    
+v = xycoords    col = "grey"    lty = 4    
+h=.8    v=perc80    
+v=axis.Date    col="grey80"    
+h = .    v = .    y    
+
+v=axis.POSIXct    col = "lightgray"    lty = "dotted"    lwd = par    
+
+0    1    
+h=0    lty=2    
+0    1    
+0    1    
+h = 1:13    col = 'white'    
+v = 1:13    col = 'white'    
+h=0:100    col="white"    
+0    2/24    
+reg = coef    lwd = 2    
+0    1    col="red"    
+lm    
+0    0    lty=2    
+3.84    0    lty=3    
+lm    
+x    y    
+5    0    
+0    0    
+v=seq    col='grey'    lty='dotted'    
+h=0    lty=2    
+h=0    lty=2    
+h=0    lty=2    
+h=mean    col=2    lty=1    
+h=usd1    col=3    lty=3    
+h=lsd1    col=3    lty=3    
+h=usd2    col=4    lty=2    
+h=lsd2    col=4    lty=2    
+h=usd3    col=6    lty=1    
+h=lsd3    col=6    lty=1    
+x.lm    col="red"    
+v = decimal_date    col='grey'    lwd=0.5    
+h=0    col="black"    ...    
+g    
+lm    
+h=0    col=1    lty=2    
+v=10    lwd=5    
+v=c    lwd=3    lty=3    
+a=1    b=0    v=1    
+a=1    b=0    v=1    min    "number"    pos=2    b=0    v=1    
+a=1    b=0    v=1    
+h=horiz    v=vert    side=c    y=ylim[1]    labels=vert    adj=c    col='blue'    
+fit    col="red"    
+fit.int    col="blue"    
+h=0    
+v=0    
+h=w    col="red"    lwd=4    
+h=v    col="blue"    lwd=4    
+a=1    b=1    v=1    lty=3    
+
+
+v=c    col="grey40"    
+h=c    col="grey10"    lty="dotted"    
+h=seq    col="white"    
+v=parameters[i]    
+lm    
+v = x    col = "gray"    
+h=1:4    col=1:2    
+h=c    col= rep    lty=1:2    lwd=3    
+a=-1.331    b=2.522    
+lm    
+a=8    b=-1    
+a=4    b=-2    
+a=8    b=-1    
+a=4    b=-2    
+
+h=2    
+h=hpos    col=2    
+h=c    col= palvec[ c    lwd=40    colors    ignore.case=TRUE    value=TRUE    
+h=0    v=0    col="grey90"    
+lm    
+0    1    
+v=c    
+model    
+model    
+h = grid/100    v = grid/100    col = gray    
+0    1    col = gray    
+h=0    
+v=0.25    
+v=-0.25    
+v=0.25    
+v=-0.25    
+v=0.25    
+v=-0.25    
+lm1    
+0    1    
+lmx    
+LMO    
+0.1    0    lty='28282383'    
+0.2    0    lty='83282823'    
+0.3    0    lty='28238328'    
+0.4    0    lty='23832828'    
+lm1    
+fit1    
+h=vmed    col="lightblue"    
+h=v99    col="grey"    
+h=median    col="lightblue"    
+h=v99    col="grey"    
+h=quantile    lty=2    col="gray"    
+h=0    
+h=quantile    col="red"    lty=2    
+h=quantile    col="blue"    lty=2    
+v=qnorm    col="red"    lty=2    
+v=qnorm    col="blue"    lty=2    
+lm1    
+fit    
+h=trans.lats    v=trans.longs    
+h=seq    lty=3    col="grey"    
+
+
+fit    
+v=x    
+lm    
+h=y.0    
+h=y.0    
+h = c    col = "gray80"    
+h = 1.0    
+v=median.values    col.line="red"    
+v=1-    col="red"    
+v=10+    col="red"    
+h=c    col= "blue"    lty= 2    
+lm    
+h=seq    col="red"    
+h=mean    
+v=xaxisdat    col="lightgray"    
+h=yaxisdat    col="lightgray"    
+v    
+v=xaxisdat    col="lightgray"    
+h=yaxisdat    col="lightgray"    
+v    
+h=thresh    
+
+lm    col='red'    main='Check the axis labels'    y    
+lm    col='red'    main='Check the axis labels'    
+v=mean    col='white'    lwd=2    
+lm    
+v=0    col='lightgrey'    
+h=0    col='lightgrey'    
+LM.Log    col="red"    
+h=seq_along    col="grey80"    
+h=seq_along    col="grey80"    
+h = seq    v = ticks    col = "lightgray"    lty = 3    
+h=yvals    v=yrs    col="gray"    lty=3    
+mod    
+mylm    col="red"    
+lm    col.line=col.symbol    
+v = x[idx095]    
+lm    col='blue'    
+h=0:15    col="white"    lty=3    
+h=0:15    col="white"    lty=3    
+lm    col.line=col.symbol    lty=lty    
+h=y[which.min    col=col.line    lty=2    
+reg    col="red"    
+coef    
+lm    
+v=log    
+v=log    
+h=0    
+h=0    adjust=1    bw=1    
+v=    col="gray"    
+h=0    col=2    eps=1e-6    c    
+h = 0    color = 'red'    interval = c    
+fit    
+v=min    col=4    lty=3    
+h=y    col="white"    lwd=2    
+h=1    
+v=1    
+h=1:10    v=1:10    col="gray"    lty=3    
+h=mean    lty='dashed'    
+h=0    
+a=0    
+h=1    lwd=4    
+fit    col="blue"    lwd=2    
+fit    
+a=fit    b=fit    
+lm_xy    col='blue'    
+
+v=p    
+h=d[1    2]    
+325    0    
+h=0    
+rq    
+rq    col = "blue"    
+lm    lty = 2    col = "red"    
+
+line    col="blue"    untf=TRUE    
+v=seq    col="white"    
+v=seq    col="white"    
+lin    col="blue"    untf=TRUE    
+lin2    col="green"    untf=TRUE    
+h=1:3    
+v=1:51    1:50    
+v=1:51    
+h=x    v=y    lty=2    
+h=x    v=y    lty=2    
+v=seq_along    
+coef1+best_Cx*coef2    -coef2    
+coef1-best_Cx*coef3    coef3    
+coef1[pos]+best_Cx*coef2[pos]    -coef2[pos]    
+coef1[pos]-best_Cx*coef3[pos]    coef3[pos]    
+m1    
+m2    col = 'red'    
+lm    
+v=mean    
+v=quantile    lty=2    col="red"    
+h=c    v=c    
+h=pretty    v=pretty    col="grey95"    
+0    1    col='grey'    
+m    
+lm    
+lm    
+predict    coef    col='red'    
+lm    col="red"    
+v=dmode    
+rlm    ...    
+model    
+a=0    b=1    lty=2    col="grey59"    lwd=1.5    
+lm    col = "red"    lwd=1.5    
+v=seq    col = "lightgray"    lty = "dotted"    lwd = par    
+mylm    
+fit    col = "red"    
+v=mean.values    col.line="red"    lty = 2    
+v=as.Date    
+h=5    
+h=105    
+1.2    0    col="red"    
+0.7    0    col="green"    
+v=0    lwd=3    
+v=0    lwd=3    
+v=mg    col="red"    
+0.22483    -0.07115    
+coef    
+coef = coef    ...    
+coef = coef    ...    
+lm    
+lm    
+h=5    
+coef    
+coef    coef    
+v = x    1] +    col = "grey"    
+v = x    1] +    col = "grey"    
+h = 0    
+a = 0    b = 1    ...    
+v=x    
+v=x    
+linm    
+linm    
+linm    
+reg=lm    
+a = fmla    b = fmla    
+h=summary    
+h=b    ]    col="red"    
+h=b    ]    col="red"    
+linm    
+linm    
+h=2    
+v = estimate    col='red'    
+v=-8000    col="red"    lwd=2    
+h=seq    
+h=seq    col="grey"    
+v = v    lty = "dotted"    col = "lightgray"    lwd = 3    
+v = at    lty = "dotted"    col = "lightgray"    lwd = 3    
+h=0    col="green"    
+h=median    col="green"    
+h=0    col="green"    
+h=0    col="grey"    lty=2    lwd=2    
+a=a    b=-1    lty=3    
+a    b=1    lty=3    
+a=inter    b=rot    lty=3    
+a=inter    b=backrot    lty=3    
+h = 40    col = "grey80"    
+h = 40 + 128    col = "grey80"    
+a = 40    b = 4    col = "grey90"    lwd = 4    
+h = 40 + 160    col = "grey80"    
+h = 40 + 160 + 128    col = "grey80"    
+a = 40 + 160    b = 4    col = "grey90"    lwd = 4    
+v=linePosition    
+h=at    col="gray"    
+h=at    col="gray"    
+a=0.05    b=1    col="red"    lwd=2    
+a=-0.05    b=1    col="red"    lwd=2    
+v=inflections    col="red"    lwd=3    
+v=0    
+out.lm    col="red"    lwd=1    lty=2    
+lm    col="red"    
+h= 0.5    
+h=0    col="green"    
+h=0    col="green"    
+0    1    
+v=obs    col="red"    
+h=c    col="lightblue"    
+v=result    col="red"    
+0    i    
+v= c    col='red'    
+h= 3.84    col='red'    
+h=seq    v=seq    col="gray"    lty=3    
+a=0    b=1    col="red"    lty=2    
+v=myden    
+v = xycoords    col = "grey"    lty = 4    
+lm    
+0    1    col='green'    
+h = hlines[panel.number]    col = "red"    lty = "solid"    lwd = 1.5    
+lm<- lm    
+v = 0.5    h = 1.2    col = "red"    
+h = loc    v = loc    col = "green"    
+h = kg    v= meter    col="darkgrey"    
+
+fit2    col="red"    
+h=seq    col='white'    lwd=2    
+v=seq    col="white"    
+h = as.numeric    col = "gray"    lty = 2    
+model    col="red"    
+model    col="red"    
+v=MaxDate - 5    
+v=MinDate    
+mod <- lm    
+mod    
+lm    col='blue'    
+lm    col='red'    
+m1    ': 1    "'yum": 1    'sudo': 1    'y    ': 1    'Pr    'list    'Use': 1    'own': 1    '0.667': 1    'Bash    ': 1    'file:': 1    'coefficient': 1    'dataset': 1    'determine': 1    'python.assign    'functions    ': 1    'below': 1    '    '0.9694': 1    'on\xc2\xa0Redhat6': 1    'organize': 1    'Usually    ': 1    'distribution': 1    '    'interactive': 1    'Squared': 1    'single': 1    'model.': 1    "u'Sepal.Length'    ": 1    '15    ': 1    'fill': 1    'machine': 1    'functions': 1    'read.csv\xe2\x80\xa6etc.': 1    'output.': 1    'Read': 1    'Max': 1    '3101': 1    "R-devel'": 1    '5': 1    'nonsense\xe2\x80\xa6': 1    'small.': 1    'deviation': 1    "u'Species']": 1    'Streaming.': 1    'Median': 1    'urllib2': 1    'journey': 1    '\xe2\x80\xa6': 1    '-6.8113': 1    'debian': 1    'position.': 1    '\xe2\x80\x94': 1    'vice': 1    '\xe2\x80\x99': 1    '\xe2\x80\x98': 1    '\xe2\x80\x98***\xe2\x80\x99': 1}    
+a=50    b=-1    
+a=0    b=0    
+v=    col="dark red"    
+h=    col="dark red"    
+v=    col="dark red"    
+h=    col="dark red"    
+h=    lty=2    
+v = data[data[    2] == 1    1]    col = 'blue'    
+v = data[data[    2] == -1    1]    col = 'red'    
+v=m[    1]    col=c    
+reg = mod    
+v=152    col="red"    lwd=5    
+v=seq    lty=2    
+h=seq    lty=2    
+0    2    
+myreg    col="blue"    
+modlm    
+lm    col=2    
+h = -10:20    col = grey    lty = 2    
+v = -10:20    col = grey    lty = 2    
+h =-20:20    v = -20:20    
+h=0    v=0    lty=3    -15    15    v=0    lty=3    
+a = 0    b = 1    
+v=PrbGrd    col="grey"    lty=3    
+h=ValGrd    col="grey"    lty=3    
+h=0    v=0    col="gray"    
+0    1    -1    
+h=0.04    col="red"    lower=0.0    upper=0.02    
+x    y    col=z    
+0    1    lwd=3    col=k    
+a=0    b=1    col=4    lwd=3    
+h=0    col="darkgray"    lwd=2    
+v=ln    
+h=fixedLatitude    
+fit    col=2    
+h=0    
+v=0    
+lm    
+h=0    lwd=2    col="#5B7FA3"    
+v=0    
+h=0    labels=rownames    adj=2    
+v=mean    lty=2    
+site.model    lwd=2    col=color[isite]    
+fit.bio[[isp]]    lwd=2    col='red'    
+v=x    h=y    
+0    1    lty=2    col="blue"    
+v = test    

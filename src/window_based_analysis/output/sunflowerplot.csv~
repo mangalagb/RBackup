@@ -1,0 +1,3 @@
+x, y = NULL, number, log = "", digits = 6, xlab = NULL, ylab = NULL, xlim = NULL, ylim = NULL, add = FALSE, rotate = FALSE, pch = 16, cex = 0.8, cex.fact = 1.5, col = par("col"), bg = NA, size = 1/8, seg.col = 2, seg.lwd = 1.5, list(list("sunflowerplot")and list("formula"))
+00000000000000000000
+00000000000000000000

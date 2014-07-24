@@ -1,0 +1,100 @@
+x <- c(1,1,2,1,2,3,3,3,4,4)
+stripchart(x,method="stack",at=0) stripchart
+-------------------------------------------------------------------------------------------------------
+x <- c(2,8,11,19)
+x <- data.frame(x,1) ## 1 is your "height"
+plot(x, type = 'o', pch = '|', ylab = '')
+-------------------------------------------------------------------------------------------------------
+stripchart(casp6~trans.factor,data.frame(casp6,trans.factor),pch=1,vertical=T)
+-------------------------------------------------------------------------------------------------------
+plot(rep(1,3),c(0.2, 0.8, 0.95),ylim=c(0,1),axes=F,xlab="",ylab="",type="o",pch=19)
+axis(side=2)
+text(rep(1,3),c(0.2, 0.8, 0.95),c("apples", "bananas", "tomatoes"),pos=4,xpd=T) stripchart() stripchart(c(0.2, 0.8, 0.95),vertical=T)
+text(rep(1,3),c(0.2, 0.8, 0.95),c("apples", "bananas", "tomatoes"),pos=4)
+-------------------------------------------------------------------------------------------------------
+text y y=1 text(x, y=1.1, ...) x <- c(2, 8, 11, 19)
+stripchart(x)
+text(x, 1.1, labels=x)
+-------------------------------------------------------------------------------------------------------
+#random data corresponding to your 5 columns    
+ x <- data.frame(V = rnorm(100), W = rnorm(100), X = rnorm(100), Y = rnorm(100), 
+     Z = rnorm(100))
+ #remove axis with 'axes=F', define wider x-limits with 'xlim' 
+ stripchart(x[1:5,],vertical=TRUE, pch=19,xlim=c(1,6),axes=F)
+ #add boxplots next to stripchart, decrease width with 'boxwex'
+ boxplot(x[1:5,],add=T,at=1.5:5.5,boxwex=0.25,axes=F)
+ #add custom x axis
+ axis(1,at=1.25:5.25,labels=names(x))
+-------------------------------------------------------------------------------------------------------
+dfrm <- data.frame(method=LETTERS[1:3], lcl=c(-5,-9,-8), 
+                   mean=c(4,2,4), ucl=c(15,13,16), var=c(27,33,36))
+# I use stripchart to avoid axis relabeling and casting of factor to numeric
+# with default plot function
+stripchart(mean ~ seq(1,3), data=dfrm, vertical=TRUE, ylim=c(-10,20),
+           group.names=levels(dfrm$method), pch=19)
+with(dfrm, arrows(1:3, mean-lcl, 1:3, mean+lcl, angle=90, code=3, length=.1))
+abline(h=0, lty=2)
+-------------------------------------------------------------------------------------------------------
+stripchart(x, cex=y) y
+-------------------------------------------------------------------------------------------------------
+df = read.table(header=TRUE, text="type A    B   C   D
+ v1  99    227 295 503      
+ v2  110   440 620 970
+ v3  150   600 934 1330
+ v4  170   650 1012 1390")
+stripchart(df[-1], pch=c(1, 2, 3, 4), vertical=TRUE) df2 = data.frame(t(df[-1]))
+names(df2) = df$type
+df2$group = rownames(df2)
+library(lattice)
+stripplot(v1 + v2 + v3 + v4 ~ group, data=df2, pch=c(1, 2, 3, 4))
+-------------------------------------------------------------------------------------------------------
+stripchart method="stack" stripchart(c(rep(0.3,10),rep(0.5,70)), pch=19, method="stack", ylim=c(0,100)) dots() require(TeachingDemos)
+ dots(x)
+-------------------------------------------------------------------------------------------------------
+stripchart set.seed(1); A <- sample(0:10, 100, replace = TRUE)
+stripchart(A, method = "stack", offset = .5, at = .15, pch = 19, main = "Dotplot of Random Values", xlab = "Random Values") offset pch
+-------------------------------------------------------------------------------------------------------
+A <- sample(0:9, 100, replace = TRUE)
+stripchart(A, method = "stack", offset = .5, at = .15, pch = 19, main = "Dotplot of Random Values", xlab = "Random Values",xaxt="n")
+axis(1, at = 0:9, labels = 0:9)
+-------------------------------------------------------------------------------------------------------
+?data.frame stripchart() X=data.frame(x=1:100)
+Y=data.frame(y=rnorm(100,mean=1:100,sd=5))
+plot(X,Y)
+names(X)
+names(Y)
+plot(X$x, Y$y) X=c(1,2,3,5) X <- unlist(read.xlsx(x,1))
+Y <- unlist(read.xlsx(y,1)) X <- read.xlsx(x,1, as.data.frame=FALSE)
+Y <- read.xlsx(y,1, as.data.frame=FALSE) plot plot(X[,1], Y[,1]) ?as.numeric ?unlist ?names ?class ?mode ?typeof
+-------------------------------------------------------------------------------------------------------
+A<-runif(50)
+B<-runif(50)
+C<-runif(50)
+
+x<-rep(1:3,each=50) #generate x-coordinates
+plot(x,y=c(A,B,C),xaxt="n",xlab="Groups",ylab="Values")
+axis(side=1,at=1:3,labels=c("A","B","C")) stripchart #This needs list or data.frame as an input
+stripchart(data.frame(A,B,C),vertical=TRUE,pch=1,xlab="Groups",ylab="Values")
+-------------------------------------------------------------------------------------------------------
+stripchart(decrease~treatment,main ="stripchart",vertical=TRUE,log = "y", at=seq(1,length.out=length(unique(OrchardSprays $treatment)), by=0.5), data = OrchardSprays)
+?stripchart
+-------------------------------------------------------------------------------------------------------
+par narrow.at <- seq(1,length.out=length(unique(OrchardSprays $treatment)), by=0.5)
+par(oma=c(1,1,1,5))
+stripchart(decrease ~ treatment,main = "stripchart(OrchardSprays)",vertical = TRUE, log = "y", at=narrow.at, data = OrchardSprays,xlim=c(0.5,max(narrow.at)+.5) )
+-------------------------------------------------------------------------------------------------------
+mtext mydata <- data.frame(a=c(1:5),b=c(6:10),c=c(11:15),d=c(16:20))
+plot <- stripchart(mydata, method="jitter", vertical=T,main='plot',pch=19)
+mtext(c('a+b','c+d'),side=1,line=3,at=c(1.5,3.5)) line at mydata <- data.frame(a=c(1:5),b=c(6:10),c=c(11:15),d=c(16:20))
+plot <- stripchart(mydata, method="jitter", vertical=T, main='plot',pch=19, at=c(1,2,4,5),xlim=c(0,6))
+mtext(c('a+b','c+d'),1,line=3,at=c(1.5,4.5)) at stripchart xlim mtext
+-------------------------------------------------------------------------------------------------------
+par(mfrow=c(1, 2))
+boxplot(as.numeric(values) ~ s1,
+        data=subset(data, data$s1=="AA" | data$s1=="AC"))
+stripchart(as.numeric(values) ~ s1,data=data, add=TRUE, vertical=TRUE, pch=1, lwd=1)
+
+boxplot(as.numeric(values) ~ s2,
+        data=subset(data, data$s1=="AA" | data$s1=="AG"))
+stripchart(as.numeric(values) ~ s2,data=data, add=TRUE, vertical=TRUE, pch=1, lwd=1)
+-------------------------------------------------------------------------------------------------------

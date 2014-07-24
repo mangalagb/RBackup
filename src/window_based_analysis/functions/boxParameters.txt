@@ -1,0 +1,22 @@
+lwd=3    
+lwd=3    
+bty="l"    
+col="dodgerblue"    
+bty="l"    
+bty = "l"    
+bty='L'    
+bty="l"    
+lwd=4    bty="u"    font=2    cex.axis=1.1    family="Times"    
+bty="l"    
+lwd=5    
+col = 'lightblue'    
+which = "plot"    bty = "l"    
+which = "plot"    bty = "l"    
+lwd = 2    
+bty = "L"    col = axisCol    
+bty="l"    
+lwd=1    
+lwd=1    width=116    height=27    
+col = "lightgray"    
+col = "lightgray"    
+

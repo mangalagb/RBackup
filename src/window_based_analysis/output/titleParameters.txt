@@ -1,0 +1,115 @@
+
+base, "Spinners"
+bquote
+cnamesi], line = 0.4, cex = 0.9
+i, main=i, "Title 2", "Title 3", "Title 4"
+main="
+main='abc', xlab='xx', ylab='yy'
+main="bar"
+main="Bland-Altman plots of Op1 vs Op2"
+main = bquote
+main = "Bunfight\nBig Mac index", col = "#393E46"
+main=cat, ylab=" "
+main, cex.main = 1.5 * op"cex.main"]]
+main=column
+main="Comparative Density Graph"
+main="Different uses of I
+main = "ed & bla", outer = T
+main="Funzioni", col.main="blue", font.main=4
+main="Graph"
+main="Graph of % Disease Severity vs Temperature"
+main = "imageplot", xlab = "x axis", ylab = "y axis"
+main="loess
+main = main, # <----- change this part!!!  xlab = names
+main=main_title, col.main="red", font.main=4
+main = "Maunga Whau Volcano", font.main = 4
+main = "Maunga Whau Volcano Restricted to elevations above 150", font.main = 4
+main="MPG Distribution by Car Cylinders"
+main=nam
+main=name
+main="new"
+main="Numbers over the years"
+main="old"
+main="Original TA boundaries"
+main='Output of plot
+main=paste
+main=paste, adj=0
+main="posterior distrobution of p"
+main = "Rain
+main="random title", line = -2, outer = TRUE, cex.main=3
+main="Respondent Home ZIP Codes by County"
+main="Runtime", col.main="red", font.main=4
+main='sdf', xlab='sdf', ylab='xcv'
+main = series.title
+main="Simulated Survival Plot Demonstrating Annotation of N-at-risk"
+main=speciesi]
+main="TA boundaries from aggregated\nArea Unit boundaries"
+main="Term Structure of Interest Rates", col.main="red", font.main=4
+main="test dev 1"
+main="test dev 2"
+main="This is \nTitle", main=paste
+main=titlenamesi]
+main = title.str
+main = "", xlab = "", ylab = ""
+names
+nt, title
+outer=outer, adj=adj, main="A", cex.main=cex, col="black", font=2, line=line
+outer=outer, adj=adj, main="B", cex.main=cex, col="black", font=2, line=line
+outer=outer, adj=adj, main="C", cex.main=cex, col="black", font=2, line=line
+paste
+s
+sub = dat
+substitute
+sub = sub.caption, ...
+sub = summStr, line = 5.5
+sub=x, line=1
+tt, "Distribution Builder"
+tt, "Fruits!"
+tt, "Input Numbers"
+tt, "MYTEST"
+win, title
+xlab="Age Group", ylab="Income"
+xlab="Build", col.lab=rgb
+xlab="Build", col.lab=rgb, line = 4.5
+xlab="chrX Position", ylab="Divergence"
+xlab="Data", ylab="Density"
+xlab = "Date", line = 5
+xlab = "dates", line = 5
+xlab=expression, family="script"
+xlab="Form of NP and Native Language", line=4.5
+xlab = "Hour", ylab = "Houston Load"
+xlab="Index", ylab="Value"
+xlab="Month", col.lab=rgb, font.lab=2, cex.lab=0.75
+xlab = "Some Categories", ylab = "Some Values", outer = TRUE, line = 3
+xlab = "Species", line=11
+xlab="TESTE", line=4
+xlab="    \u2113", line=3.2, cex.lab=.7
+xlab="X"
+xlab="x", cex.lab=2
+xlab="xlab", ylab="ylab", main="main"
+xlab=xlab, ylab=ylab, main=main
+xlab="X values", mgp=c
+xlab="x", ylab="f, main="f, n=0:256"
+xlab = 'x', ylab = 'y', line = 2
+xlab="Year"
+xlab="Year", col.lab=rgb
+xlab="Years to Maturity", ylab="Interest Rate", col.lab=rgb
+xlab="Years", ylab="Values"
+xlab="Year", ylab="Value"
+ylab = "Contribution to Expected Return, line = 3, -0.0129
+ylab = "Density", font.lab = 2, ylab = "Density", font.lab = 2
+ylab = "f"
+ylab = "label", line = 5.5
+ylab="Listings", col.lab=rgb, font.lab=2, cex.lab=0.75
+ylab = "Loss of Percent Organic Matter per Year", cex.lab = 1.5, line = 4.5
+ylab="MS", col.lab=rgb
+ylab = "my label", line = 4
+ylab="Number of people"
+ylab="Output", col.lab=rgb
+ylab = "Potrošnja goriva", xlab = "Broj cilindara", main = "Dijagram raspršenja"
+ylab="Relative Frequency", xlab="Your Variable Name"
+ylab="response", xlab="colours"
+ylab = "Value axis", xlab = "Single sample", font.lab = 2
+ylab = "Version", main = "Releases"
+ylab="Y"
+ylab=ylabel, cex.lab=1.4

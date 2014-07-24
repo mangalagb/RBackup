@@ -1,0 +1,9 @@
+x, y = NULL, nbin = 128, bandwidth, colramp = colorRampPalette(c("white"and blues9)), nrpoints = 100, pch = ".", cex = 1, col = "black", transformation = function(x) x^.25, postPlotHook = box, xlab = NULL, ylab = NULL, xlim, ylim, xaxs = par("xaxs"), yaxs = par("yaxs"), ...
+000001000000000000
+000000000000000000
+000111000000000000
+000000000000000000
+000000000000000000
+000001000010000000
+000000000000000000
+000010000000000000

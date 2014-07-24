@@ -1,0 +1,93 @@
+
+1
+1, 1
+1, 1, widths = diff, heights = diff
+1, 2
+1:2
+1:2, heights=c
+1, 3
+1:4
+1, axes = FALSE
+1, method = "number", tl.cex = 4, method = "number", tl.cex = 0.8
+1, newdata = NEW, type = "terms"
+1, range, pdat, type = "terms", se.fit = TRUE, head
+2
+2, 1
+2, 1, heights=unit
+2, 1, widths = diff, heights = diff
+2, 1, widths=unit, heights = unit
+2, 2
+2, 2, widths=c
+2, 2, widths = widths, heights = heights
+3
+3, 2
+4
+4, 2
+c
+c, heights=c
+gl
+gl, vp=viewport
+heights = unit, nrow = 1
+ii.table.row
+laymat
+layMat, widths=c, heights=c
+Layout
+layout.mat, respect=TRUE
+layt
+length
+lmat, widths = lwid, heights = lhei, respect = FALSE
+lo
+m
+mat
+mat = Layout, widths = c, heights = c, respect = TRUE
+mat = lmat, widths = lwid, heights = lhei
+mat = lmat, widths = lwid, heights = lhei, 2:1
+mat=matrix
+mat = matrix, height = c
+mat = m, heights = c
+matrix
+matrix, c, c, TRUE
+matrix, height=c
+matrix, heights=c
+matrix, width=c
+matrix, width=c, height=c
+matrix, width = c, height = c
+matrix, widths=1, heights=c, respect=FALSE
+matrix, widths = 1, heights = c, respect = FALSE
+matrix, widths=c
+matrix, widths = c
+matrix, widths=c, height=6, respect=TRUE
+matrix, widths=c, heights=4
+matrix, widths=c, heights=4, respect=TRUE
+matrix, widths=c, heights=c
+matrix, widths = c, heights = c
+matrix, widths=c, widths=c
+matrix, widths = lcm, heights = lcm, TRUE
+matrix, widths=months
+matrix, widths=widths*2
+mat, widths = c
+m, widths = c, heights = c
+myggplot
+N+1, N+1, widths=unit, heights = unit
+nrow
+n.row
+nrow=1
+nrow=10, ncol=5
+nrow=1, ncol=1, widths=0.8, heights=0.8, default.units="npc"
+nrow=1, ncol=2
+nrow = 2, ncol = 1, heights = unit
+nrow=2, ncol=2, heights=c, widths=c, default.units=c
+nrow=2, ncol=2, widths=c, heights=c, respect=TRUE
+nrow = 2, ncol = 3, widths = unit, heights = unit, width = unit
+nrow = 2, ncol = 3, widths = unit, heights = unit, width = unit, height = unit, name = paste
+nrow = do.call
+nrow=length
+nrow=length, ncol=1
+plotRows
+rbind
+rbind, heights=c
+rbind, heights=c, respect=FALSE
+t
+t, widths=c
+x
+zones, widths=c, heights=c

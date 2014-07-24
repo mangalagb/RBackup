@@ -1,0 +1,266 @@
+X[        k]    col=tim.colors    
+1:dim    1:dim    dst    axes = FALSE    
+z=A    ann=F    axes=F    col=topo.colors    
+file="filename.RData"    Sys.Date    sep=""    
+m1>m2    
+m1    zlim = c    
+m2    zlim = c    
+m1 - m2    zlim = c    
+m1    
+m1    
+list    
+1:ncol    1:nrow    t    col = terrain.colors    axes = FALSE    
+test.image    axes = FALSE    
+1:n    1    as.matrix    col=a    
+x    y    volcano    col = terrain.colors    axes = FALSE    breaks= seq    
+x    y    volcano    col = terrain.colors    axes = FALSE    breaks= seq    
+x = seq    y = seq    z =  seqMyMap    col=attr    add=TRUE    
+file="speedtest.Rdata"    
+1:3    1:30    
+1:3    1:30    
+t    n[1]:1]    col=Gif    axes=F    n[1]:1]    col=Gif    axes=F    
+
+obj    add = TRUE    col = terrain.colors    
+filename    
+cor    x=1:10    y=1:10    zlim=c    
+mat    col = rev    
+m    
+as.matrix    ord]    main = "Original distances"    
+as.matrix    ord]    main = "Cophenetic distances"    
+m    axes = FALSE    col = grey    
+m    axes = FALSE    col = grey    
+x    y    m    col = grey    1    length = nrow    
+x    y    m    col = grey    
+dat    
+dat    
+
+
+dat    
+1L:nc    1L:nr    x    
+df2    col=heat.colors    yaxt="n"    
+vdata    
+vdata    
+vdata    
+df    col=heat.colors    ylim = rev    
+my.zero    
+my.zero    1    2    
+y    col = c    
+x    y    
+1:10    1:10    M    
+t    axes=FALSE    zlim=c    col=rainbow    
+volcano    col = terrain.colors    
+dev.cur    
+z[    ncol    axes=FALSE    
+my.func    col=heat.colors    
+my.func    col=heat.colors    useRaster = TRUE    
+XC    
+z = z <- cos    col=gray    axes = FALSE    
+x    y    
+x    y    
+pred    
+t    
+t    
+1:n.var    breaks    t    xlab='Variable Index'    ylab='Histogram Bin'    
+axis1    axis2    wf    col = col    asp = 1    xlab = "X"    ylab = "Y"    ...    
+x = X    y = Y    
+x=1:35    y=1:35    as.matrix    
+1:nrow    1:ncol    m2    col=c    
+
+correlations    
+x    y    z    col=my.colors    axes=FALSE    xlab=""    ylab=""    
+temp_var    axes=FALSE    xlab=""    ylab=""    
+temp_var    axes=FALSE    xlab=""    ylab=""    
+matrix    useRaster = TRUE    
+p    col=c    
+as.matrix    
+x=years    z=db    yaxt="n"    
+x=c    y=1:nr    z=t    axes=FALSE    
+x=c    y=1:nr    z=t    add=TRUE    col=c    
+A    col=grey    
+B    add=TRUE    col=hc    
+s.mat    
+m    col.regions=c    at=1:9    col.regions = c    at=1:9    
+z    
+z2    add=TRUE    col=4    
+z = dat    col = c    
+z = dat    col = c    axes = FALSE    
+z = t    ....    
+z = t    col = c    axes = FALSE    
+x=seq    y=seq    z=COR    xlab="x column"    ylab="y column"    
+sample    col=rainbow    axes=F    
+cor    axes=F    
+x = X    z = Z    axes = FALSE    
+x = X    z = Z    axes = FALSE    
+x = X    z = Z    ...    axes = FALSE    
+xmat.new    col="blue"    
+xmat.new    add=TRUE    
+x = minitics    y = minitics    
+g    col = c    
+Bmat    
+m    1e30    -1    
+x    x    z    las=1    useRaster=TRUE    col=brewer.pal    xlab="x"    ylab="y"    
+x    col = terrain.colors    useRaster = TRUE    
+xygrid    breaks=seq    col=1:10    
+m    useRaster=TRUE    
+tern.grid    breaks=c    col=rev    add=T    
+1:12    1:6    data    
+1:12    1:6    data    
+z = heatmap_matrix    
+d1    
+d1    
+xi    yi    xy    col=tricol    useRaster=TRUE    
+
+lons    lats    glb.data    
+CAex    scales=list    
+x    col=c    ny=100    lty=1    
+relationship    
+seq_len    seq_len    
+seq_len    seq_len    
+Matrix    xlab="Prey"    ylab="Predator"    sub=""    
+land    
+y    
+t    col=jet.colors    
+a    color.palette=heat.colors    
+as.matrix    col=cx    axes=T    
+y[    360:1]    
+rast    
+bigm    
+
+x    y    
+F    
+F    
+v    axes = FALSE    col = grey    axes = FALSE    col = grey    nrow    axes = FALSE    col = grey    
+Z    col=pal.1    
+Z    col=pal.2    
+Z    col=pal.3    
+results    
+Longitude    Latitude    A    
+Longitude    Latitude    A    
+r    
+matrdiff    col=colpalette    breaks=breaks    useRaster=T    
+xhm    yhm    hm    
+1:ncol    1:nrow    t    axes = FALSE    xlab=""    ylab=""    
+1:ncol    1:nrow    t    axes = FALSE    xlab=""    ylab=""    
+1:ncol    1:nrow    t    axes=FALSE    ann=FALSE    ylim=c    
+1:ncol    1:nrow    t    axes=FALSE    ann=FALSE    ylim=c    
+img    
+x=x    y=y    z=z    col=rainbow    
+x=x    y=y    z=z    col=rainbow    
+x2    y2    z2    axes=F    col=rainbow    
+fld    
+dat1    asp=1    
+data    data    
+data    data    
+fld    axes=F    add=T    
+m    col=blues9    
+xc    yc    int    add=TRUE    col=colbar    breaks=colbreaks    
+grib    col=    attr=1    xlim=c    
+grib2    add=TRUE    col=    attr=1    col=    attr=1    xlim=c    
+grib2    add=TRUE    col=    attr=1    
+x=seq    y=seq    z=COR    col=rev    xlab="x column"    ylab="y column"    xaxt='n'    
+1:13    1    as.matrix    col=my.cols    xlab="my palette"    ylab=""    xaxt="n"    yaxt="n"    bty="n"    aes    aes    
+x    y    matrix    
+x    y    matrix    
+exp    col=jet.colors    
+res    
+res>quantile    col=0:1    
+res > quantile    col=0:1    
+mba.int    xaxs="r"    yaxs="r"    
+rbind    col = RowSideColors[rowInd]    axes = FALSE    
+cbind    col = ColSideColors[colInd]    axes = FALSE    
+m    
+m    
+k    col=heat.colors    
+matrix    
+test123    col=colors    breaks=colbreaks    
+m    
+1:nrow    1:ncol    m    col=c    axes=FALSE    xlab=""    ylab=""    main=main    
+1:51    1:3    matrix    las=1    
+1:51    1:3    matrix    las=1    add=TRUE    
+1:51    1:3    matrix    las=1    
+1:51    1:3    matrix    las=1    add=TRUE    
+
+xp    yp    zM    col=c    
+im    
+m    
+temp.matrix    
+im    
+1:N    1:M    t    asp=1    
+x[        1]    
+x[        2]    
+x[        3]    
+x=seq    y=seq    z=t    asp=1    xaxt="n"    yaxt="n"    bty="n"    xlab=""    ylab=""    main="red channel"    col=redPal    
+x=seq    y=seq    z=t    asp=1    xaxt="n"    yaxt="n"    bty="n"    xlab=""    ylab=""    main="green channel"    col=greenPal    
+x=seq    y=seq    z=t    asp=1    xaxt="n"    yaxt="n"    bty="n"    xlab=""    ylab=""    main="blue channel"    col=bluePal    
+x=-90:-75    y = 25:40    
+r    
+lon    lat    sst    zlim=c    col = heat.colors    
+1:9    1:9    res    axes=FALSE    xlab="m1"    ylab="m2"    
+res    breaks = c    
+x=seq    y=seq    datamatrix[        7]    
+r    
+d    col=gray    
+r    col=gray    
+t    ]    
+t    ]    axes=FALSE    
+distObj[order    
+A    
+A[i    i]    
+1:8    1:4    a    col=col    
+seq    tran17    PA17    col=c    
+file = f_Rdata    
+seq    seq    a    
+x=seq    
+x=110:155    y =-40:-10    
+as.matrix    
+x=x    y=y    z=log    col=pal    breaks=log    
+as.ram    
+mat1    Rowv=F    Colv=F    
+d    add = TRUE    col = "blue"    
+b    add = TRUE    col = "green"    
+x2    add = TRUE    col = "red"    
+x.bin    y.bin    freq2D    col=topo.colors    
+t    col=pal    axes=FALSE    ann=FALSE    
+matrix    col=rainbow    
+M2    
+log    
+matrix    col = blue2green2red    axes = FALSE    
+mat    col=c    breaks=c    
+mydata    useRaster=TRUE    col={whatever}    
+1:4    1:3    grid    axes=FALSE    xlab=""    ylab = ""    
+1:4    1:5    grid    axes=FALSE    xlab=""    ylab = ""    
+file='www/foo.rdata'    
+tmp    ...    
+matrix    col=rb    xaxt="n"    yaxt="n"    
+t    col=trans    xaxt="n"    yaxt="n"    
+m    col=colors    ylab=""    axes=FALSE    
+dat    breaks = c    col = c    
+z    col=gray    axes=FALSE    useRaster=TRUE    
+varRaster    useRaster=TRUE    
+x    y    z    xaxt="n"    yaxt="n"    col=pal    asp=1    pty="s"    
+x=cx    z=matrix    xaxt="n"    yaxt="n"    col=pal    
+t    col=c    
+t_mat    col = colorRampPalette    axes = F    
+yellows    col = rgb    add = T    xlab = "x axis"    ylab = "y axis"    
+file="myfile.RData"    file="myfile.RData"    
+file="1.RData"    country    file="1.RData"    
+ncdf    
+t    axes=F    
+akima.li    col = rainbow    
+akima.li    col = rainbow    
+akima.li    col = gray.colors    
+akima.li    col = gray.colors    
+str    
+x=stk    y=stk    z = stk    
+b*1    ylim=c    
+x    y    z    zlim    xlim    ylim    
+
+z    x=xyProj    
+
+a    col=c    xaxt='n'    yaxt='n'    xlab=''    ylab=''    
+cl1    
+lon    lat    temp11    
+x    y    z    yaxt="n"    xaxt="n"    ylab=""    xlab=""    col=heat.colors    
+trans3    
+figData    zlim=zlim    col=col    ...    
+f1    

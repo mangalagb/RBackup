@@ -1,0 +1,4 @@
+x, y = NULL, border = NULL, col = NA, lty = par("lty"), rule = "winding", list()
+0000000
+0000000
+0001010

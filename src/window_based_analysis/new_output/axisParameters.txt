@@ -1,0 +1,911 @@
+1*0*at=1:12*0*labels=month.name
+1*0*at=atn*0*labels=FALSE
+1
+3
+2*0*format
+4
+side=1*0*at=index*0*lab=txt
+side=1*0*at=x[idx]*0*labels=format*0*y*0*type="n"*0*xaxt="n"
+side=1*0*at=x[idx]*0*labels=format
+1*0*lwd.ticks=0*0*at=1:length*0*lab=test
+2*0*lwd=0*0*las=1*0*at=c*0*yaxp=c
+side=1*0*at=x
+4
+4*0*at = axTicks*0*label = axTicks
+1*0*at=c*0*labels=c
+2*0*at=1:3*0*lab=c*0*las=1*0*cex.axis=1.3
+side=1*0*at=c*0*labels=data[*0*"ob_time"]
+side =1*0*at = k.range
+1*0*1:dim*0*nba[1:20*0*1]*0*cex.axis = 0.5
+2*0*1:dim*0*nba[1:20*0*1]*0*cex.axis = 0.5
+1*0*at=as.numeric*0*labels=dataset*0*cex.axis=0.5
+
+1*0*at=xpos*0*labels=sprintf
+3*0*lty=0*0*labels=FALSE
+3*0*cex.axis=0.6*0*labels=format*0*at=a
+1*0*at=tmp*0*labels=0:max
+1*0*bottom*0*right
+1*0*at=1:10*0*labels=levels
+2*0*cex.axis=2*0*data=foo*0*xaxt="n"
+1*0*cex.axis=2
+side = 1*0*at = v1*0*labels = v2*0*3*0*5*0*"group b"*0*"group c"
+side = 1*0*at = c
+side = 2*0*at = c
+1*0*1:ncol*0*colnames
+2*0*1:nrow*0*rownames
+1*0*at=at*0*labels=10^at
+1
+2*0*lty=0*0*labels=FALSE
+2*0*at=yax*0*labels=yax/bs
+3*0*lty = 0
+3*0*axTicks*0*abs*0*lty = 0
+2*0*labels = mac*0*at = w.m*0*lty = 0
+side = side*0*at = at*0*labels = labels*0*...
+side = side*0*at = at*0*labels = labels*0*...
+1*0*at = tickMarks*0*labels = eventTypes*0*las = 2*0*tick = FALSE
+1*0*at = time*0*labels = format*0*cex.axis = 0.7
+1*0*at = seq
+2*0*at = seq
+1*0*at = seq
+2*0*at = seq
+1*0*...
+2*0*at = nrow
+1*0*at = time*0*labels = FALSE
+1*0*at = time*0*labels = FALSE
+1*0*at = ticks*0*labels = FALSE*0*tcl = -0.3
+side = 1*0*at = tt[ix]*0*labels = labs*0*cex.axis = 0.7
+2*0*at=ticksAt*0*labels=as.character
+1
+1*0*at=c*0*labels=c*0*lwd.ticks=0
+1*0*at=seq*0*lwd=0*0*lwd.ticks=1
+1*0*at = 1:3
+1*0*at = 1:3
+1*0*at=brks
+at=brks
+1*0*dm*0*format*0*cex.axis = .7
+1*0*dm*0*format*0*cex.axis = .7*0*dm
+1*0*at=NULL*0*labels=F
+2
+1*0*at=unique*0*labels=data.labels
+1*0*at=axis.pos[axis.ind]*0*labels=axis.txt[axis.ind]*0*"%d %b"
+1*0*at=atx*0*labels=format*0*padj=0.5
+1*0*1:nlevels*0*levels
+2
+1*0*at=1:10*0*labels=letters[1:10]
+at = pretty*0*side = 2
+
+2*0*at=yaxisdat*0*las=2*0*padj=0.5*0*cex.axis=0.8*0*hadj=0.5*0*tcl=-0.3
+2*0*at=yaxisdat*0*las=2*0*padj=0.5*0*cex.axis=0.8*0*hadj=0.5*0*tcl=-0.3
+2*0*at=yaxisdat*0*las=2*0*padj=0.5*0*cex.axis=0.8*0*hadj=0.5*0*tcl=-0.3
+2*0*at=yaxisdat*0*las=2*0*padj=0.5*0*cex.axis=0.8*0*hadj=0.5*0*tcl=-0.3
+1*0*at=xaxisdat*0*padj=-1.4*0*cex.axis=0.9*0*hadj=0.5*0*tcl=-0.3
+1*0*at = 1:4*0*labels = c*0*cex.axis = 1.5
+2*0*cex.axis = 2
+1*0*d[*0*1]*0*labels=d[*0*1]
+1*0*at = c*0*labels = c*0*line = 5*0*col = 4
+side = 1*0*col="blue"*0*col.axis="blue"
+side = 1*0*col="red"*0*col.axis="red"
+1*0*at=seq*0*labels=seq*0*tck=-0.01*0*padj=-1
+2*0*at=seq*0*labels=seq*0*tck=-0.01*0*padj=0.7
+2
+2*0*col="black"
+1*0*1L:nc*0*labels = labCol*0*las = 2*0*line = -0.5*0*tick = 0
+2*0*1L:nr*0*labels = NA*0*las = 2*0*line = -0.5*0*tick = 0
+1
+2*0*las=2
+side = 1
+2
+side = 1*0*at = as.numeric*0*labels = strftime
+3
+3
+1*0*at = xticks*0*labels = xticks*0*y*0*y + delta*0*y - delta*0*type = "b"
+2*0*10^pow
+2*0*ticksat*0*labels=NA*0*tcl=-0.25*0*lwd=0*0*lwd.ticks=1
+2*0*at=c*0*labels=c
+1*0*labels=tcars[[1]]*0*at=1:NROW
+1
+2
+2*0*at=marks*0*labels=marks
+2*0*at=marks*0*labels=format
+2*0*at=aty*0*labels=format*0*hadj=0.9*0*cex.axis=0.8*0*las=2
+1*0*pos = 1
+1
+1*0*at = xycoords*0*labels = FALSE*0*col = "#BBBBBB"
+1*0*at = xycoords*0*labels = names*0*las = 1*0*lwd = 1*0*mgp = c
+2
+1*0*at = time*0*lab = FALSE
+1*0*at = time*0*lab = labs[ix]*0*tcl = -0.5*0*padj=0.6*0*cex.axis = 1
+side = 1*0*at =*0*labels = locs
+side = 2
+side = 1*0*at = locs2*0*labels = NA*0*tcl = -0.2*0*y*0*type="h"*0*log="xy"*0*axes = FALSE
+side = 1*0*at =*0*labels = locs
+side = 1*0*at = locs2*0*labels = NA*0*tcl = -0.3
+side = 2
+side = 1*0*at =*0*labels = locs
+side = 2
+2*0*pos=0
+side = 1*0*at = mids*0*labels = as.character
+side = 1*0*at = mids*0*labels = as.character
+3*0*at=z1Adj
+1*0*at = -xlim[1]:-gap*0*labels = laxlab
+2*0*at=aty*0*labels=labels
+1*0*at=1:nlevels*0*lab=levels
+ax*0*at=major.ticks*0*labels=labels*0*...
+ax*0*at=minor.ticks*0*tcl=par*0*labels=FALSE
+1*0*9*0*mn=0*0*mx=8
+1*0*at = tick_locations*0*labels = tick_labels
+1*0*at = start*0*labels = TRUE
+1*0*at=days*0*labels=strftime*0*tick=FALSE
+1*0*at = c*0*las = 3
+2*0*iy*0*labels = labRow*0*las = 2*0*line = -0.5*0*tick = 0*0*cex.axis = cexRow
+2*0*at=c
+1
+2
+1*0*-zmax:zmax*0*pos = 0
+side=2
+2*0*seq
+2*0*at = seq
+1*0*pos = 2
+1*0*1:5*0*parse
+side=1*0*at=1:5*0*labels=lev.as.expr
+1*0*at =*0*labels = 10:1*0*tick = FALSE*0*at =*0*labels = FALSE*0*tick = TRUE
+2*0*...
+1*0*at=year
+1*0*at=1:9*0*labels=as.character
+1*0*at=mids*0*labels=c*0*las=3
+1*0*xaxis*0*as.POSIXlt
+1*0*at=dm*0*labels=dm*0*col.axis="black"*0*las=2
+2*0*at=seq*0*labels=seq*0*col.axis="black"*0*las=2
+1*0*at = 0:2*3 + 1.5*0*labels = colnames*0*tick = TRUE*0*b
+1*0*pos = 0
+2*0*at=yLabels*0*labels=sprintf*0*las=1
+side=1*0*at=l*0*labels=unique*0*las=2
+1*0*at=1:19*0*lab=FALSE
+2*0*las=1*0*at=500*0:g_range[2]
+1*0*at=1:19*0*lab=FALSE
+2*0*las=1*0*at=500*0:g_range[2]
+1*0*at=1:19*0*lab=FALSE
+2*0*las=1*0*at=500*0:g_range[2]
+1
+2*0*at = ticks*0*labels = ticks
+4
+2*0*at=1:3*0*labels=levels*0*las=1
+2*0**0*1:6*0*col = 'red'
+4*0**0*col = 'blue'
+1*0*at=1:length*0*labels=xnames
+side = 1*0*at = tt*0*labels = ifelse*0*cex.axis = .7
+1*0*at=1:7*0*labels=...
+1*0*as.numeric*0*labels=format
+side=1*0*at=c*0*labels=c
+side=1*0*at=b[c*0*labels=seq*0*xlim=c
+side=1
+side=1*0*at=bp[1+c*0*labels=c
+1*0*at=1:4*0*label=c
+2
+1*0*at=1:3*0*label=c
+1*0*at=1:4*0*label=c
+1
+2*0*test.frame*0*las=1*0*plot
+1
+2*0*seq*0*las=1
+2*0*cex.axis=0.7
+2*0*cex.axis=0.7
+2*0*cex.axis=0.7
+2*0*cex.axis=0.7
+2*0*cex.axis=0.7
+1*0*pos=c
+1
+2
+side = 1*0*at = monthly_average[*0*1]*0*lab = xlabel
+1*0*1:12*0*month.abb
+side = 1*0*at=1:12*0*lab=c*0*las=3
+2*0*seq*0*las=2*0*cex=3*0*cex.lab=2*0*cex.axis=1.5*0*cex.main=2*0*
+2*0*seq*0*las=2*0*cex=3*0*cex.lab=2*0*cex.axis=1.4*0*cex.main=2
+1*0*at=1.25:5.25*0*labels=names
+side=4*0*at=c*0*labels=c
+2*0*0:11*0*las=1
+1*0*0:11*0*line=1*0*col="red"*0*col.ticks="red"*0*col.axis="red"
+1*0*0:11*0*labels=0:11*10*0*line=3*0*col="blue"*0*col.ticks="blue"*0*col.axis="blue"
+1*0*tck=1*0*col.ticks="light gray"
+1*0*tck=-0.015*0*col.ticks="black"
+2*0*tck=1*0*col.ticks="light gray"*0*lwd.ticks="1"
+2*0*tck=-0.015
+side=1*0*at=seq*0*labels=seq
+4
+1*0*at = axt*0*lab = sub
+side=1*0*at=at*0*labels=lab
+4
+1*0*at = 108:172*0*labels = TRUE
+2*0*at = 1:30*0*labels=Y*0*las=2
+1*0*at=1:35*0*labels=labDis*0*cex.axis=0.5*0*tick=F*0*line=-1.4
+1*0*at=seq*0*labels=labChar*0*tick=F
+4*0*at=1:35*0*labels=labDis*0*cex.axis=0.5*0*tick=F*0*line=-1.4
+4*0*at=seq*0*labels=labChar*0*tick=F
+1*0*x-vector*0*label-x-vector
+side=1*0*at=1:27*0*labels=labs[0:27]*0*cex.axis=0.35
+3*0*col = "red"
+4*0*col = "red"
+2*0*labels=c*0*at=-c*0*las=1
+1
+2
+1
+2
+1
+2
+1*0*cex.axis=0.25*0*las=2*0*at=xLabLocs*0*space=0.4*0*labels=colnames
+1*0*cex.axis=0.5*0*las=2*0*at=xright[1:n]-*0*labels=labels
+2*0*cex.axis=0.5*0*pos=-0.5
+2*0*at=axTicks*0*labels=my.axis*0*at=axTicks*0*labels=my.axis*0*las=1
+1
+2*0*at = pts*0*labels = paste
+1
+2*0*at = pts*0*labels = paste*0*las = 1
+2*0*las=1
+1*0*labels=labels*0*at=cumsum
+2*0*las=1
+1*0*time*0*format*0*las=2*0*cex.axis=0.5
+1*0*time*0*format*0*las=2*0*cex.axis=0.6*0*tick=F*0*mgp=c
+2*0*tick=F*0*las=1
+2*0*at = seq*0*labels = paste
+2*0*pretty*0*sprintf
+1*0*at = xycoords*0*labels = FALSE*0*col = "#BBBBBB"
+1*0*at = xycoords*0*labels = names*0*las = 1*0*lwd = 1*0*mgp = c*0*...
+2*0*...
+1*0*labels=Mark*0*at=Post
+3*0*labels=Post*0*at=Post
+side = 1*0*at = x*0*labels = FALSE*0*tck = -0.01
+1*0*at=axTicks*0*xticklabs*0*cex.axis=0.8
+2*0*at=axTicks*0*yticklabs*0*cex.axis=0.8*0*las=1
+4
+1*0*1:nc*0*labels = labCol*0*las = 2*0*line = -0.5*0*tick = 0*0*cex.axis = cexCol
+4*0*iy*0*labels = labRow*0*las = 2*0*line = -0.5*0*tick = 0*0*cex.axis = cexRow
+1*0*theMonths*0*theMonths
+4
+1*0*floor
+1*0*at=c*0*padj=-2*0*lty=0*0*labels=c*0*cex.axis=0.8
+side=1*0*at=seq*0*labels=seq
+2
+2*0*ticks*0*las=1
+1*0*1:3*0*labels = FALSE
+2*0*"2001\n2011\n2021"*0*"2002\n2012\n2022"
+1*0*at=1:26*0*labels=LETTERS
+2
+1*0*at=seq*0*labels=seq
+1*0*pos = -90*0*xpd = TRUE
+side=4*0*col='red'*0*labels=FALSE
+1*0*1:13*0*1:13*0*cex.axis = 0.8
+2*0*1:13*0*1:13*0*las = 1*0*cex.axis = 0.8
+1*0*at=c*0*cex.axis=0.7*0*mgp=c
+2*0*las=1*0*cex.axis=0.7*0*at=c*0*mgp=c
+2*0*pretty
+4*0*pretty*0*ylab='y2'
+1*0*pretty
+2*0*pretty*0*4*0*4*0*2*0*left*0*bottom*0*right
+2*0*pretty
+4*0*pretty*0*ylab='y2'
+1*0*pretty
+2*0*1:k*0*colnames*0*las=1
+2
+4
+2*0*at = myLeftAxisAt*0*labels = myLeftAxisLabs
+4*0*at = myRightAxisAt*0*labels = myRightAxisLabs
+2*0*1:5*0*myLabels
+2*0*1:5*0*sort*0*las = 2*0*cex.axis = 0.75
+side=2*0*at=1:length*0*labels=resources*0*las=1
+2*0*seq
+1*0*c*0*c
+2
+1*0*at=1:10*0*labels=levels*0*at=1:10
+1*0*at= ...*0*labels=...*0*y=-2*0*names*0*cex=0.8*0*srt=45*0*xpd=TRUE
+side="right"*0*at=pretty*0*outside=TRUE
+1*0*at=seq*0*labels=lbls
+2*0*at= c*0*labels=c*0*xpd=TRUE
+2*0*at=seq*0*labels=colnames
+4
+1
+2*0*las = 2
+1*0*at=days*0*labels=strftime
+2*0*at=times*0*labels=strftime*0*las=1
+1*0*at=seq*0*labels=1:20*0*yv*0*pch = "*"*0*col = rep*0*xaxt="n"
+1*0*at=seq*0*labels=1:20*0*cex.axis=0.7*0*las=2
+2
+1
+1*0*at = as.numeric*0*labels = a*0*cex.axis=0.6
+2*0*cex.axis=0.6*0*10
+1*0*at = decimal_date*0*labels = format*0*cex.axis=0.6
+ax*0*at=major.ticks*0*labels=labels*0*...
+ax*0*at=minor.ticks*0*tcl=par*0*labels=FALSE
+2*0*9*0*mn=0*0*mx=10*0*las=1*0*side = 3*0*line = 2*0*min*0*"Example"*0*pos = 1
+side =1*0*at1*0*labels = F*0*xlab = ""*0*ylab = ""*0*yaxt='n'
+side =1*0*at1*0*labels = F
+side = 1
+side = 2*0*labels = colnames*0*at = c*0*las = 1
+side = 2
+side = 1*0*labels = colnames*0*at = c
+1*0*labels=myd*0*at=myd
+3*0*labels=myd*0*at=myd
+1*0*labels=myd1*0*at=myd1
+3*0*labels=myd1*0*at=myd1
+1
+1*0*at = c*0*labels = FALSE*0*tcl = 0.5
+1*0*at=seq*0*labels=1:20*0*cex.axis=0.7
+1
+1*0*at = -3:3*0*labels = c
+1*0*at = -3:3*0*labels = c*0*4*0*length=200
+1*0*at=1*0*labels=1*0*y*0*xlim=c*0*yaxt="n"
+2*0*at=c
+2*0*at=1.77*0*labels=1.77*0*mgp = c
+1*0*lwd=4
+2*0*lwd=4
+4*0*lwd=4
+1*0*col="dodgerblue"*0*col.ticks="green"*0*col.axis="orange"*0*cex.axis=2
+2*0*col="dodgerblue"*0*col.ticks="green"*0*col.axis="orange"*0*cex.axis=0.8
+1*0*seq*0*labels=labelsX
+2*0*seq*0*labels=labelsY
+1*0*at=loc*0*line=-.75
+2
+1*0*at=seq*0*labels=rownames
+side = 2
+side = 2
+side=1*0*lwd=3*0*xpd=TRUE*0*at=0:3
+side=2*0*lwd=3*0*xpd=TRUE*0*at=seq
+side=1*0*at=0:99*0*labels=1*0*100
+1
+2*0*pos = -1.2 * outer.radius*0*at = sort*0*labels = NA
+2*0*pos = -1.2 * outer.radius*0*at = sort
+2*0*at = ticks*0*labels = labels*0*las = 1*0*cex.axis=0.7
+1*0*outer=TRUE
+2*0*outer=TRUE
+1*0*at = at
+1*0*at=seq*0*at=seq*0*label=paste0
+1*0*at=seq*0*label=F*0*tick=T
+2
+side=1*0*at=seq*0*labels=labs[seq*0*cex.axis=0.35
+side=1*0*at=seq*0*labels=labs[seq*0*cex.axis=0.35
+1*0*at=c*0*lab=eval
+3*0*at=c*0*lab = names
+1*0*at=c*0*lab = namesExp
+
+1*0*at = seq*0*labels = TRUE*0*pos = 0
+2*0*pos = -3
+1*0*seq
+2*0*seq
+1*0*at=1:16*0*labels=labs*0*las=2
+2*0*at=*0*labels=rownames*0*tick=FALSE*0*las=2
+3*0*at=*0*labels=colnames*0*tick=FALSE*0*las=2
+2*0*at=pretty*0*lab=pretty*0*las=TRUE
+2*0*at=axTicks*0*labels=sprintf*0*yaxt="n"
+2*0*at=axTicks*0*labels=sprintf*0*las=1
+side=1*0*at=b*0*labels=c
+1*0*xaxp=c*0*las=2*0*y*0*xaxt="n"
+1*0*at = seq*0*las=2
+side = 1*0*at = x*0*labels = T
+side=1*0*at=x
+1*0*c*0*pos = 0*0*cex.axis = 0.8
+2*0*c*0*pos = 0*0*cex.axis = 0.8*0*las = 2
+1*0*font=2*0*cex.axis=1.1*0*family="Times"
+2+2*i%%2
+1
+1*0*x*0*format*0*cex.axis = .7
+1
+2*0*at=hpos*0*labels=labels*0*las=las*0*...
+2*0*hpos*0*labels=F*0*col=2
+1*0*...*0*...*0*parameters=foo
+1*0*...*0*...
+1*0*...*0*...
+1*0*at=log2*0*labels=lab
+1*0*0*0*"VI"*0*0*0*"IX"
+3*0*0*0*"XII"*0*0*0*"III"
+1*0*at=x.label.position*0*labels=x.label*0*las=2
+2*0*at=y.label.position*0*labels=y.label*0*las=2
+1
+side = 2
+side = 1*0*at = seq*0*at = seq
+1*0*at = c*0*labels = expression*0*cex.axis=0.8
+1*0*at = c*0*labels = expression*0*cex.axis=2
+1*0*at = c*0*labels = expression*0*cex.axis=0.5
+side=2
+side=1*0*at=seq
+1*0*pos=1
+2*0*pos=1
+4*0*at = a
+2
+1*0*at = xlocs*0*labels = xlocs - 1
+2
+1*0*at=xx*0*labels=dat*0*tick=FALSE*0*las=2*0*line=-0.5*0*cex.axis=0.5
+1*0*at=seq_along
+1*0*at=seq_along
+1*0*at=seq_along
+1*0*col = 'blue'*0*col.axis = 'purple'*0*col.ticks = 'darkred'*0*cex.axis = 1.5*0*font = 2*0*family = 'serif'
+2*0*col = 'maroon'*0*col.axis = 'pink'*0*col.ticks = 'limegreen'*0*cex.axis = 0.9*0*font =3*0*family = 'mono'
+1*0*labels=as.character*0*at=1:3
+2*0*at = ylabel
+1
+2*0*at = ylabel*0*las = 1
+1*0*at=x*0*labels=x.label
+1*0*at=xticks*0*labels=x.label[xticks]
+1
+2*0*las=1
+1
+2*0*at=pretty
+4*0*at=pretty
+2*0*las=1
+side=1*0*at=at*0*labels=breaks
+1*0*at=1:length*0*labels=1:length
+1*0*at = xv*0*labels = lv
+side = 1*0*at = tt[ix]*0*labels = labs[ix]*0*tcl = -0.7*0*cex.axis = 0.7*0*las = 2
+4*0*at=c*0*labels=c*0*las=1
+1
+4*0*at = seq*0*labels = do.call*0*las = 1
+4*0*at = seq*0*labels = labs*0*las = 1
+1*0*1:nc*0*labels = labCol*0*las = 2*0*line = -0.5*0*tick = 0*0*# original linecol.axis="green"*0*# added argumentcex.axis = cexCol
+4*0*iy*0*labels = labRow*0*las = 2*0*line = -0.5*0*tick = 0*0*# original line col.axis="green"*0*# added argumentcex.axis = cexRow
+1
+side=3*0*line=4*0*font.axis=2*0*font.lab=2*0*cex.lab=1.3*0*cex.axis=1.2
+side=3*0*line=0*0*font.axis=2*0*font.lab=2*0*cex.lab=1.3*0*cex.axis=1.2
+3*0*at=seq_along*0*labels=format
+2
+1*0*at=0:2*0*labels=10^
+1*0*at=c*0*labels=c
+2
+side = 1*0*at=1:nlevels*0*labels = if
+side = 2*0*labels =
+side = 1*0*at=1:nlevels*0*labels = if
+side = 2*0*labels =
+1*0*at=c*0*lwd=2
+2*0*at=c*0*lwd=2
+1*0*at=1:length*0*labels=x
+1
+2
+1*0*cex.axis = 1.2*0*col = axisCol
+2*0*cex.axis = 1.2*0*las = 1*0*line = -.7*0*col = "white"*0*at = c*0*labels = c*0*tck = 0
+1
+4
+1*0*seq*0*xLabels
+side=1*0*1*0*labels=
+4
+side=1*0*1:3*0*labels=c
+side=1*0*1:3*0*labels=c
+2
+side=1*0*1*0*labels=
+4
+side=1*0*at=*0*labels=c
+1
+side=1*0*at=foo*0*labels=seq
+side=1*0*at=seq*0*labels=colnames
+4*0*las=1*0*cex.axis=.75
+1*0*at = 1:3*0*labels = rownames
+1*0*at = 1:nrow*0*labels = rownames
+2*0*at=tmp2*sum*0*labels=tmp2
+1*0*at=1:5*0*labels=xlable
+side=2*0*at=yaxisdat*0*las=2*0*padj=0.5*0*cex.axis=0.8*0*hadj=0.5*0*tcl=-0.3
+side=2*0*at=yaxisdat*0*las=2*0*padj=0.5*0*cex.axis=0.8*0*hadj=0.5*0*tcl=-0.3
+side=1*0*label=format*0*at=xaxisdat*0*padj=0.4*0*cex.axis=0.8*0*hadj=0.5*0*tcl=-0.3
+2*0*at= exp*0*labels=c
+2*0*at= exp*0*labels=c
+1*0*at = Freq_*0*tick = TRUE*0*labels = NA
+1*0*at = Freq_*0*tick = TRUE*0*labels = NA
+2*0*at=1:10*0*labels=df$c1*0*1:nrow*0*data=df
+2*0*at=axTicks*0*labels=format
+1*0*at=seq*0*labels=FALSE
+2*0*at = 0:5*0*labels = 0:5
+side = 2*0*at = myd*0*labels = myd*0*las = 2
+side=2*0*at = myd*0*labels = myd*0*tick = FALSE*0*las = 2*0*col = "green"*0*
+side=2*0*at = myd*0*labels = myd*0*las = 2*0*col = "green"
+3*0*at =1:12*0*labels = 1:12
+2*0*at = 1:8*0*labels = LETTERS[8:1]
+2*0*at=seq_along*0*labels=rev*0*las=2
+3*0*at=seq_along*0*labels=coln
+side=4*0*tick=F
+side=4*0*tick=F
+side = 1*0*at = c
+side = 1*0*at = ticks
+side = 2
+1*0*at=c
+1*0*at=yrs
+2*0*at=yvals
+side = 4
+side = 4
+1*0*at=c*0*lab=c
+side=1*0*at=b*0*label=x
+1*0*txtpos*0*txtlab*0*cex=1.5
+1*0*at=seq
+2*0*las=2
+1*0*at=seq
+4*0*las=2
+1*0*doy*0*at=doy2
+1*0*labels=NA*0*at=c
+2*0*labels=NA*0*at=c
+1*0*labels=NA*0*at=c
+2*0*labels=NA*0*at=c
+4
+2*0*at=c*0*labels=c
+side = side*0*at = at*0*labels = labels*0*...
+side = side*0*at = at*0*labels = labels*0*...
+side = side*0*at = at*0*labels = labels*0*...
+side = side*0*at = at*0*labels = labels*0*...
+1*0*at=1:5
+2*0*at=1:5*0*labels=c
+4
+2*0*seq*0*seq
+1*0*at = xycoords
+1*0*labels=paste*0*at=1:24*0*las=3
+1*0*at=bins*0*labels=bins*0*4*0*length=100*0*dnorm
+4*0*las=1
+1
+1*0*labels=FALSE
+2*0*at=1:5*0*labels=c*0*xaxt="n"
+1*0*pos=0*0*at=-5:5
+2*0*pos=0*0*-5*0*5*0*axes=FALSE
+1*0*pos=0*0*at=axTicks
+2*0*pos=0
+2*0*at=pretty*0*las=2
+3*0*at=seq_len
+1
+1*0*0:6
+1
+2
+4*0*0*0*1*0*1*0*1*0*0*0*1*0*1*0*0*0*1
+4
+1*0*1:10
+2*0*1:10
+1*0*at=1:ncol*0*labels=colnames
+2
+1*0*at=c*0*rep
+side=1*0*at=c*0*labels=c
+side=2*0*at=seq*0*labels=seq
+side=4*0*at = pretty
+1*0*at=at*0*labels=labs
+1*0*1:dim*0*colnames*0*las=2
+2*0*1:dim*0*colnames*0*las=2*0*y=seq*0*z=COR*0*col=rev*0*xlab="x column"*0*ylab="y column"*0*xaxt='n'
+2*0*seq*0*seq
+1*0*1:6*0*paste*0*las=2
+1*0*at=myd*0*labels=myd
+2
+1*0*at=yrs1000*0*labels=c
+1*0*at=seq*0*labels=NA
+4*0*at=seq*0*las=2
+1*0*at=seq
+2*0*at=seq*0*las=2*0*xmax=1300*0*ymin=-Inf*0*ymax=Inf
+1*0*at=3*0:59*0*lab=as.vector
+4
+1*0*at=seq_along*0*labels=names*0*lwd=0*0*lwd.ticks=1
+1*0*lty='dashed'*0*lwd=3
+2*0*lty=3*0*lwd=2
+1*0*1:nrow*0*as.character
+2
+2*0*cex.axis=1.5
+1*0*cex.axis=1.5
+1*0*at=mp[2*0*]*0*labels=df
+4*0*at=seq
+side=1*0*at=c*0*labels=c
+1*0*at = c*0*labels = c
+1*0*at = 0:9*0*labels = 0:9
+1*0*at=1:10*0*col=c
+1*0*at=m*0*labels=1:10*0*col=c
+1*0*at=m[c*0*labels=lab
+4
+2
+2
+side=1
+1*0*at=1:5*0*labels = date1$dateval*0*format = "%d/%m/%Y"
+1*0*at=date1*0*labels = date1
+1*0*at=mp*0*labels=rainbar
+2*0*seq*0*c
+side=1*0*at=x*0*labels=round
+side=1*0*at=1:3*0*labels=c
+1*0*at=1:nrow*0*labels=rownames*0*cex.axis=0.8
+2*0*at=1:ncol*0*labels=colnames*0*cex.axis=0.8
+1*0*1:nc*0*labels = labCol*0*las = 2*0*line = -0.5*0*tick = 0*0*cex.axis = cexCol
+4*0*iy*0*labels = labRow*0*las = 2*0*line = -0.5*0*tick = 0*0*cex.axis = cexRow
+1*0*at=c
+1*0*at=c*0*labels=c
+1*0*at=seq*0*labels=c
+1*0*line=4*0*at=seq*0*labels=c
+2*0*cex.axis=1.2
+side=1*0*at=c*0*d*0*type='b'*0*axes=FALSE
+side=1*0*at=c
+side=2*0*at=seq
+1*0*at=c*0*pos=0
+2*0*at=c*0*pos=0
+side = 4
+1*0*las=2*0*labels=c*0*at=2:3*0*pos=1
+1*0*at=c*0*labels=format
+2*0*at=1:nrow*0*labels=row.names*0*las=2
+1*0*at=c*0*labels=format
+4*0*at=1:nrow*0*labels=row.names*0*las=2
+4
+side=1*0*at=x_at*0*labels=x_labels
+1*0*at=1:2*0*labels=c
+2*0*at=seq*0*labels=c
+1*0*at=seq_along*0*labels=names
+2
+1*0*at=round
+2*0*at=ticks*0*labels=ticks*0*y*0*yaxt="n"*0*ylim=c
+1*0*xaxp=c
+2*0*yaxp=c
+1*0*at=data1[*0*1]*0*labels=data1[*0*1]
+2*0*at=data1[*0*2]*0*labels=data1[*0*2]
+1*0*at=seq*0*pos=16*0*col="green4"*0*lwd=3
+2*0*at=seq*0*pos=1*0*col="green4"*0*lwd=3
+3
+4
+1*0*at=1:2*0*lab=c*0*cex.axis=1.5
+2*0*labels=TRUE
+side=1*0*at=ll*0*labels=labels*0*pos=-2*0*tick=FALSE
+2*0*at=seq
+1*0*1:10*0*tck=-0.05*0*seq*0*labels=rep*0*tck=-0.01
+1*0**0*tick.labels*0*las=2*0*cex.axis=0.8
+2*0**0*express*0*las=1
+1*0**0*tick.labels*0*las=2*0*cex.axis=0.8
+2*0**0*express*0*las=1*0*cex.axis=0.8
+1*0*pos=-1
+2*0*pos=1*0*las=1
+2*0*...
+4*0*...
+side = 1*0*lwd = 2
+side = 2*0*lwd = 2
+2*0*seq*0*seq*0*las=2
+1*0*1:5*0*xlabs
+4*0*1:10/10*0*1:10/10*0*las=2
+1*0*com_30*0*format*0*cex.axis = .7
+1*0*at = xycoords*0*labels = FALSE*0*col = "#BBBBBB"*0*...
+1*0*0:14
+1*0*at = 1:9*0*labels=colnames
+2*0*at = 1:9*0*labels=colnames
+side=1*0*at=1:9*0*label=c*0*padj=0*0*las=1
+side=2*0*m2*0*ui2*0*li2*0*axes=FALSE*0*col="blue"*0*add=TRUE
+side=1*0*at=a*0*at=round
+1
+2
+side = 1*0*at = x*0*labels = FALSE*0*tcl=-0.3
+side = 1*0*at = seq*0*labels = FALSE
+1*0*at=seq*0*labels=format
+1*0*at=seq*0*labels=format*0*cex.axis=0.7
+1*0*at=ts*0*labels=format
+4
+4
+1*0*c*0*label=TRUE*0*tcl=-0.5
+2*0*c*0*label=TRUE*0*tcl=-0.5
+1*0*c*0*label=TRUE*0*tcl=-0.5
+2*0*c*0*label=TRUE*0*tcl=-0.5*0*las=1
+side=3*0*col="black"*0*at=cobs10*0*labels=cobs10$gdd
+side=3*0*at=at[-5]*0*labels=lbl*0*as.is=TRUE
+side=1*0*outer=TRUE*0*at=ticks*0*labels=lbl
+side=1*0*outer=TRUE*0*at=ticks*0*labels=lbl
+side=3*0*outer=TRUE*0*at=ticks*0*labels=lbl
+side=1
+1*0*at=c*0*labels=c
+4*0*at=c*0*labels=c*0*pos=2.2
+1*0*1:3*0*d
+4*0*seq*0*seq*0*las=1
+1*0*at=1:3*0*labels=d1
+4*0*at=atics+d1[d1=="A"*0*"mean"]*0*labels=atics*0*pos=3.5
+1*0*at = c*0*labels = c*0*4
+1*0*at = c*0*labels = c
+1*0*at=seq*0*labels= seq
+2*0*at=seq*0*labels= rev
+2*0*at=5:12*0*labels=-12:-5
+3
+side=1*0*at=c*0*labels=rep*0*cex=0.7
+4*0*col.ticks ='red'
+
+
+2*0*tick=T*0*at=seq*0*label= seq
+1*0*tick=T*0*at=seq*0*label=seq
+3*0*xlim=c*0*tick=TRUE*0*at= seq*0*label=seq*0*col.axis="violetred4"*0*col="violetred4"
+4*0*tick=TRUE*0*at= label1*0*label=label1*0*col.axis="violetred4"*0*col="violetred4"
+2*0*tick=T*0*at=seq*0*label= seq
+1*0*tick=T*0*at=seq*0*label=seq
+3*0*xlim=c*0*tick=TRUE*0*at= seq*0*label=seq*0*col.axis="violetred4"*0*col="violetred4"
+4*0*tick=TRUE*0*at= label1*0*label=label1*0*col.axis="violetred4"*0*col="violetred4"
+1
+2
+3*0*lwd=3*0*at=seq*0*cex.axis=0.8*0*lwd.ticks=1
+3*0*lwd=3*0*at=seq*0*cex.axis=0.8*0*lwd.ticks=1
+1*0*at=0:13*0*labels=c*0*cex.axis=0.8
+1*0*at = ix*0*labels = labs[ix]*0*tcl = -0.7*0*cex.axis = 0.7*0*las = 2
+side = 2*0*at = seq*0*labels = as.character
+1*0*pos=0*0*las=1
+2*0*pos=0*0*las=1
+2
+1*0*at=1:3*0*labels=names
+1*0*at = 1:n.sect*0*labels = sect.name*0*tick = TRUE
+2
+4*0*at=seq*0*labels=seq
+4
+2
+1*0*at=seq_along*0*labels=as.character*0*las=2
+1*0*at=1:12*0*labels=month.name*0*x*0*max
+1*0*at=1:12*0*labels=month.name
+side = 1*0*at = SubDateTime*0*labels = format
+side = 1*0*at = dtime.lt[at]*0*labels = format
+side=2*0*at=y*0*labels=round
+1*0*at=xcenters*0*labels=names
+3*0*at=c*0*labels=lab
+side=1*0*at= seq*0*labels=seq
+1
+1*0*grid[c*0*grid[c*0*cex.axis=.5*0*line=-1*0*tick=FALSE
+1*0*at = my.at*0*labels = my.at
+1*0*cex.axis=2
+2*0*cex.axis=2
+1*0*ylab="Density"
+1
+1*0*1:dim*0*colnames*0*las=2
+2*0*1:dim*0*colnames*0*las=2
+1*0*at = seq*0*labels = format*0*pcp = rnorm
+4*0*at=log*0*labels=labs
+2
+1*0*at = at*0*label = label
+2
+1*0*at = at*0*label = label*0*las=2
+1*0*breaks*0*as.character*0*axes=F
+1*0*breaks*0*as.character
+2
+1
+1*0*at=1:length*0*labels=hist.a
+1
+2
+1*0*1:5*0*labels=gsub
+1*0*at=0:length*0*labels=seq
+1*0*at=seq*0*labels=LETTERS[1:5]
+2*0*cex.axis = 0.5
+1
+1*0*at=-laxis*0*labels=sprintf*0*cex.axis =0.7
+1*0*at=laxis*0*labels=sprintf*0*cex.axis =0.7
+2*0*at=as.numeric*0*labels=a*0*las=1*0*tcl=0*0*lty=0*0*cex.axis =0.5
+side = 2*0*at = 1*0*labels = label*0*las = 2*0*tck = 0*0*lty = 0
+side = 2*0*at = 1*0*labels = label*0*las = 2*0*tck = 0*0*lty = 0
+1*0*at=c*0*labels=histo
+side=1*0*1:4*0*labels=rownames
+side=2*0*60:95*0*labels=60:95
+side=1*0*at=seq*0*labels=c
+1*0*at = x*0*labels = x
+2*0*at = c
+1
+1*0*pretty*0*line=-4
+2
+side=1*0*labels=ngenes*0*at=1:10
+1*0*0:2*0*c
+2
+1*0*at=tapply*0*labels=unique
+1*0*at=c*0*labels=FALSE
+1*0*at=tapply*0*labels=unique*0*lwd=NA
+2*0*at=1:length*0*labels=rownames*0*lwd=0*0*lwd.ticks=1*0*las=1
+1*0*at=1:length*0*labels=colnames*0*lwd=0*0*lwd.ticks=1
+1*0*at = seq*0*labels = xlab.pos*0*tck = -0.015
+side = 4*0*tck = .05*0***lwd=0*0*lwd.ticks=1***0*line = 0*0*labels = NA*0*col= cols_border[1]*0*col.axis = cols_black
+side = 4*0*lwd = 0*0*line = -4.5*0*las = 1*0*cex.axis=axis_fontsize*0*col= cols_border[1]*0*col.axis = cols_black
+4*0*las=1
+
+3
+2
+1*0*labels = FALSE
+1*0*at = seq_along*0*labels = format*0*cex.axis=0.6*0*las=2
+1*0*at = as.numeric*0*labels = format*0*cex.axis=0.6*0*las=2
+2*0*at=seq
+1*0*at=xpts*0*labels=rownames
+1*0*labels=FALSE
+1*0*at=bp*0*labels=rep*0*cex.axis=0.7
+1*0*at=avgpts*0*labels=grps*0*cex.axis=0.7*0*line=1.5*0*lwd=0
+side=1*0*cex.axis=0.8*0*cex.lab=0.9
+side=2*0*cex.axis=0.8*0*cex.lab=0.9*0*las=1
+2*0*at=x*0*col.axis=y*0*labels=z*0*lwd=0*0*las=1
+2*0*at=1:3*0*labels=FALSE
+2*0*at=1:length*0*labels=FALSE
+side=4*0*{other setup arguments}*0*...
+side=4*0*at=seq*0*labels=round*0*col="green"
+1*0*1:5*0*subjects*0*cex.axis = 0.85*0*tcl = -0.1
+1*0*xpos*0*subjects*0*cex.axis = 0.85*0*tcl = -0.1
+1*0*pos=0
+2*0*pos=0*0*at=0:8*0*labels=c
+axis=1*0*breakpos=3
+2*0*at = seq*0*labels = WebPages
+1*0*seq
+2*0*seq
+side = 1*0*at = at
+side = 1*0*at = at*0*las = 2*0*hadj = 0.9
+4*0*iy*0*labels = labRow*0*las = 2*0*line = -0.5*0*tick = 0*0*cex.axis = cexRow
+1*0*at = axt
+1*0*at = axt*0*labels = names*0*las = 2*0*lwd.ticks = 1*0*mgp = c*0*tcl = -0.4
+1*0*at = xycoords*0*labels = FALSE*0*col = "#BBBBBB"
+1*0*at = xycoords*0*labels = names*0*las = 1*0*lwd = 1*0*mgp = c*0*...
+2*0*...
+1*0*at = xycoords*0*labels = FALSE*0*col = "#BBBBBB"*0*...
+1*0*at = xycoords*0*labels = FALSE*0*col = "#BBBBBB"*0*
+1*0*at = xycoords*0*labels = FALSE*0*...
+1*0*at=as.numeric*0*labels=strftime
+1*0*at=1:7*0*labels=c
+2*0*at=1:5
+1*0*at*0*lab
+side=3
+side = 2*0*tick = FALSE*0*las = 1
+1*0*at=1:4*0*labels=temp$place*0*names.arg=rownames
+side=1*0*at=c
+1*0*at=seq*0*labels=seq
+1*0*at=seq*0*labels=seq
+1*0*at=seq*0*labels=seq
+side=2*0*labels=round*0*at=seq*0*yaxt="n"*0*log="y"
+side=2*0*labels=seq*0*at=seq*0*labels=round*0*at=exp
+side=2
+1*0*x*0*letters[1:5]
+2*0*y*0*letters[6:10]
+1*0*cx*0*cz
+side=1*0*at=1:3*0*labels=c
+side=2*0*at=-2:4*0*labels=10^
+1
+1*0***cex.axis = x_axislab.cex**
+1*0*at = xtickpos*0*labels = xticklab*0***cex.axis = x_axislab.cex**
+1*0*at = 1:5*0*labels=x.labels
+1*0*at = x.ticks + 1*0*labels=paste
+1*0*at = seq*0*labels = seq
+1*0*at = seq*0*labels = seq
+2*0*at = seq*0*labels = seq
+1*0*at=c*0*pos=424
+1*0*at=xat*0*labels=xlab
+2
+side=1
+side=2
+side = 2*0*pos = -0.2
+side = 1*0*at = at_tick - 1*0*labels = FALSE
+side = 1*0*at = seq_along*0*tick = FALSE*0*labels = xval
+4
+side= 2*0*tick = FALSE*0*at=D[*0*unique*0*labels=D[*0*paste0*0*las=2
+side = 1*0*tick= FALSE*0*at=c*0*labels = strftime
+1*0*at=MonthTicks*0*labels=NA
+2
+side=2
+side=1*0*at=brkvec2*0*labels=brkvec
+1*0*at=yourbreaks*0*labels=yourbreaks/1000*0*las=2
+2*0*at=x*0*labels=x*0*las=1
+1
+2
+1
+2
+1*0*at=x*0*labels=names
+1*0*at=1:*0*labels=names
+side=1*0*at=p*0*labels=Occs*0*las=3*0*cex.axis=1
+side = 1*0*at = seq_along*0*labels = df*0*tick = FALSE
+1*0*V1*0*V1
+side = 2*0*at = seq_along*0*labels = vol*0*las = 2
+1*0*at=at*0*labels=round
+1*0*at=1:22*0*labels=c
+2*0*at=1:7*0*labels=c*0*cex.axis=0.7
+2*0*at=1:length*0*labels=unique*0*cex.axis=0.5*0*las=2*0*solar*0*xlim=c*0*yaxt="n"*0*xaxt="n"
+2*0*at=1:length*0*labels=unique*0*cex.axis=0.5*0*las=2
+1*0*at=1990:2025*0*labels=1990:2025*0*cex.axis=0.7*0*las=2
+1*0*at=1:22*0*labels=c
+2*0*at=1:7*0*labels=rev*0*cex.axis=0.7
+4
+1*0*seq*0*cex.axis=.5
+1*0*at=data*0*labels=as.character
+2*0*at=seq*0*labels=nrow
+3*0*at=seq*0*labels=1:ncol
+1*0*at=c*0*labels=c
+1*0*at=bp*0*labels= parse
+1*0*at=bp*0*labels= labs*0*italic*0*x*0*x
+side = 2
+side = 1*0*at = seq_along*0*labels = x
+side=1*0*at=xFact*0*labels=x
+1*0*at=1:3*0*labels=t1
+1*0*at = xv*0*labels = lv
+2*0*at = pretty*0*pretty
+1*0*at = ticks*0*labels = format
+1*0*at=c*0*labels=c
+1*0*at = c*0*labels = 1:3*0*tick = FALSE*0*las = 2
+1*0*at=time*0*at=...*0*labels=...*0*to=2013.25*0*by=0.25*0*axes=F
+2
+1*0*labels=time*0*at=seq
+1*0*at=seq*0*lab=1:10
+4*0*las=2*0*at=seq*0*labels=seq
+1*0*pos=-0.02
+2*0*pos=1
+2*0*las = 2*0*cex.axis = 0.6*0*at = seq
+2
+4*0*pretty*0*type="l"*0*yaxt = "n"*0*ylab=""*0*xlab=""*0*type="h"*0*lwd=6*0*col="red"
+1*0*at=c*0*font=2*0*cex.axis=3
+2*0*at=c*0*font=2*0*cex.axis=3
+side = 2*0*font = 2
+2*0*at=left.axis.pos*0*labels=formatC*0*las=2
+4*0*at=*0*labels=paste0*0*las=2
+side = side*0*outside = TRUE*0*at = at*0*labels = at*0*rot = 0

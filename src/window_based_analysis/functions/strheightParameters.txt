@@ -1,0 +1,9 @@
+legend    units = "user"    
+s1    
+s2    
+LAB    'inches'    
+txt    font=2    cex=2    
+words[i]    cex=size[i]    ...    
+
+object    cex = cex    
+labels    

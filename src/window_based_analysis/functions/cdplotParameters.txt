@@ -1,0 +1,6 @@
+aspect~change    data = mydata    
+x~mydata    ylab = NA    xlab = NA    yaxlabels = "n"    
+fail ~ temperature    
+fail ~ temperature    cex.axis=2    
+y=fail    x=temperature    cex.x=2    cex.y=3    
+fail ~ temperature    

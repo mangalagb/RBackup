@@ -1,0 +1,272 @@
+2    
+2    1    heights=unit    
+2    1    heights=unit    
+matrix    
+matrix    
+1:2    
+nrow    
+ii.table.row    
+mat    
+
+nrow=length    
+matrix    widths = c    
+2    
+2    
+nrow = do.call    
+1    3    
+matrix    
+1    
+1:2    
+1    
+m    
+matrix    
+matrix    
+matrix    
+matrix    
+1    method = "number"    tl.cex = 4    method = "number"    tl.cex = 0.8    
+matrix    
+1    
+matrix    
+1    
+2    
+2    1    widths=unit    heights = unit    
+matrix    
+1    
+2    
+matrix    
+1    
+mat = Layout    widths = c    heights = c    respect = TRUE    
+nrow    
+4    
+1    2    
+1    1    
+1:4    
+matrix    
+1:2    
+1    
+matrix    widths = 1    heights = c    respect = FALSE    
+matrix    
+1    
+matrix    
+matrix    
+2    
+plotRows    
+matrix    widths = c    
+lmat    widths = lwid    heights = lhei    respect = FALSE    
+
+plotRows    
+2    
+3    2    
+matrix    widths = c    
+matrix    widths = c    heights = c    
+matrix    height=c    
+matrix    
+1    axes = FALSE    
+rbind    heights=c    
+nrow=2    ncol=2    widths=c    heights=c    respect=TRUE    
+matrix    
+2    
+2    
+2    
+matrix    
+matrix    
+layout.mat    respect=TRUE    
+matrix    widths=c    heights=c    
+1    
+matrix    
+1    
+mat = m    heights = c    
+3    2    
+matrix    
+1    
+matrix    
+1    
+matrix    
+1    
+zones    widths=c    heights=c    
+layMat    widths=c    heights=c    
+m    widths = c    heights = c    
+t    
+t    
+t    
+matrix    c    c    TRUE    
+matrix    
+1    
+1    
+t    widths=c    
+nrow = 2    ncol = 3    widths = unit    heights = unit    width = unit    height = unit    name = paste    
+2    1    
+nrow = 2    ncol = 3    widths = unit    heights = unit    width = unit    
+mat    
+matrix    widths=c    
+matrix    
+1    
+zones    widths=c    heights=c    
+matrix    heights=c    
+matrix    
+3    
+matrix    width=c    
+2    2    widths = widths    heights = heights    
+lo    
+2    2    widths = widths    heights = heights    
+lo    
+t    
+
+
+2    
+matrix    
+
+matrix    
+gl    vp=viewport    
+nrow=1    ncol=2    
+gl    
+matrix    
+matrix    
+matrix    
+matrix    
+1    
+matrix    
+1    
+matrix    width = c    height = c    
+matrix    widths=c    
+2    
+matrix    widths=c    
+nrow    
+n.row    
+matrix    width=c    
+matrix    width=c    
+c    heights=c    
+nrow=1    
+nrow=10    ncol=5    
+matrix    widths=c    heights=4    respect=TRUE    
+rbind    
+2    2    
+matrix    widths=c    widths=c    
+matrix    widths=c    height=6    respect=TRUE    
+nrow    
+1    
+matrix    heights=c    
+matrix    
+matrix    
+matrix    
+myggplot    
+2    2    
+1    
+matrix    
+1    
+matrix    heights=c    
+matrix    
+mat    widths = c    
+matrix    width=c    
+matrix    
+matrix    
+matrix    widths=months    
+matrix    widths=widths*2    
+
+matrix    
+matrix    
+matrix    heights=c    
+2    
+1    1    widths = diff    heights = diff    
+2    1    widths = diff    heights = diff    
+x    
+mat = lmat    widths = lwid    heights = lhei    2:1    
+matrix    width=c    
+matrix    
+matrix    
+1    
+4    2    
+matrix    
+laymat    
+rbind    heights=c    respect=FALSE    
+1    
+matrix    
+nrow=1    ncol=2    
+gl    
+matrix    
+
+1    newdata = NEW    type = "terms"    
+nrow = 2    ncol = 1    heights = unit    
+Layout    
+nrow = 2    ncol = 1    heights = unit    
+Layout    
+matrix    
+1    range    pdat    type = "terms"    se.fit = TRUE    head    
+matrix    
+1    
+matrix    
+1    
+nrow=2    ncol=2    heights=c    widths=c    default.units=c    
+layt    
+matrix    width=c    height=c    
+mat = matrix    height = c    
+c    
+matrix    
+nrow=length    ncol=1    
+heights = unit    nrow = 1    
+matrix    
+matrix    widths=c    
+mat = lmat    widths = lwid    heights = lhei    
+matrix    widths = c    
+matrix    widths = c    
+matrix    
+matrix    
+matrix    
+2    
+1    2    
+1:2    heights=c    
+matrix    
+matrix    widths=c    
+
+matrix    
+matrix    width=c    
+matrix    
+matrix    widths=c    heights=c    
+matrix    
+matrix    widths = lcm    heights = lcm    TRUE    
+N+1    N+1    widths=unit    heights = unit    
+matrix    
+matrix    
+nrow    
+matrix    
+matrix    
+matrix    
+matrix    
+3    
+length    
+2    2    widths=c    
+3    
+nrow=1    ncol=1    widths=0.8    heights=0.8    default.units="npc"    
+mat=matrix    
+matrix    
+matrix    heights=c    
+matrix    
+matrix    heights=c    
+matrix    widths=1    heights=c    respect=FALSE    
+matrix    
+
+matrix    c    c    TRUE    
+matrix    
+1    
+matrix    width=c    
+matrix    widths=c    heights=4    
+matrix    
+matrix    
+matrix    
+matrix    
+matrix    widths = c    
+matrix    c    c    TRUE    
+1    
+matrix    
+
+matrix    widths = c    heights = c    
+matrix    
+matrix    widths=c    
+2    1    
+m    
+matrix    
+matrix    
+matrix    
+m    
+1    
+t    

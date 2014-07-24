@@ -1,0 +1,670 @@
+1:n    1:n    
+dimnames    
+dimnames    
+x[    1]    x[    2]    
+1:10    1:10    
+1:nrow    1:nrow    
+1:10    letters    
+x=x    
+x=1:3    y=1:3    
+x=1:3    y=1:3    
+
+nx = NA    ny = 5    col = "lightgray"    
+alpha    beta    
+x=1:10    y=1:6    
+X=1:3    Y=1:2    
+ff * 1L:ncol    ff * nrow:1    
+5    5    c    
+1:6    1:6    1:6    
+1:6    1:6    1:6    1:6    
+1:6    1:6    1:6    1:6    
+goodPos    -badPos    
+goodWords    badWords    
+col = 'gray'    
+h=FALSE    v=-1    
+ran1    ran2    ran3    ran4    ran5    
+x=0:9    g=reg    
+x=seq    g=levels    
+facet=LETTERS[1:4]    group=letters[1:5]    subject=factor    
+seq_along    seq_along    
+X = X    Y = Y    
+c    c    c    c    c    
+
+1:3    1:3    
+X = 1:500    H = seq    
+A    B    C    y = B    z = C    
+x=A    y=B    z=C    
+state=gl    gender=gl    
+gamma=gamma    beta=beta    
+x=1:3    y=1:2    
+True    
+a    b    c    dimension = 1    
+nx= NULL    ny = NULL    lty = 1    lwd = 1    col="gray60"    equilogs = TRUE    
+p    10    
+p    10    
+rnm    cnm    
+x=letters[1:2]    
+x    
+c    c    c    c    
+relGPA    avgGPA    
+x = 1:ncol    y = 1:ncol    
+unique    unique    
+unique    unique    
+1:10    1:10    
+a=1:10    b=1:10    p=1:10    q=1:10    
+A=LETTERS[1:5]    B=LETTERS[1:5]    
+fac1    fac2    
+dfx    dfx    wrk[[1]]    "42"    "44"    "45"    "97"    "99"    "100"    "101"    "102"    "103"    "105"    "123"    "124"    "126"    "127"    "130"    "132"    "135"    "136"    "137"    "138"    "139"    "140"    "141"    "158"    "159"    "160"    "161"    "162"    "163"    "221"    "223"    "224"    
+dfx    dfx    wrk[[1]]    
+x=1:4    
+0:1    0:1    0:1    
+A    
+counties    states    years    
+x=x    y=y    
+x=x    y=x    
+x=x    y=y    
+col1=col1    
+col1=letters    col2=letters    stringsAsFactors=FALSE    
+x=1:nrow    y=1:ncol    
+prefix    roots    suffix    
+prefix    roots    
+X = xholes    Y = yholes    
+letters[1:4]    letters[5:8]    
+
+observer=LETTERS[1:3]    
+powers    
+colnames    colnames    1L    function    x["Var1"]] + df2[    x["Var2"]]    1L    function    
+A1=    A2=1:3    A3=c    
+
+dat    dat    
+seqs    seqs    stringsAsFactors=FALSE    
+foo    
+x=x    y=y    
+x=1:2    y=1:3    
+a=1:2    b=1:2    
+1:6    1:6    
+1:6    1:6    1:4    
+Study = 1:4    Experiment = 1:3    Response = LETTERS[1:4]    
+x = x    y = x    
+x = unique    y = unique    
+ksym=symbol[1:k]    jdates=dates[1:j]    
+nx = NA    
+
+station = rep    member = rep    
+x=x    y=y    
+x = colnames    l = c    
+x=x    y=y    
+mech=1:mechrow    pro=1:prorow    
+x=x    y=y    
+c    1:    
+seq    seq    
+
+
+DischargeMonth=1:12    DischargeYear=2010:2011    
+trial=1:10    stim1=1:5    stim2=1:3    
+y    x    
+length    length    
+list    
+colors    days    
+time=1:100    Location=factor    
+a = 1:3    b = 1:3    cbind    
+1:nx    1:ny    
+
+l    
+nx = NA    ny = NULL    
+x = 1:4    y = 1:4    -10    
+1:30    11    1900:2011    
+day = 1:30    month = 11    year = 1900:2011    
+
+
+10    10    
+neg=1:nrow    pos=1:nrow    
+0:1    
+
+
+nx=64    ny=46    lty="solid"    col="gold"    
+nx=32    ny=23    lty="solid"    col="gray65"    
+foo.x=unique    
+nx=NA    ny=NULL    
+a    
+a=1:4    b=1:4    
+a    a    
+NA    NULL    
+nx=NA    ny=NULL    
+nx=NA    ny=NULL    
+1:nrow    IndependentVariable1    IndependentVariable2    
+1:360    1:180    
+d=1:10    j=1:3    i=1:10    
+
+h = -1    v = 0    col = "gray"    
+seq    seq    
+nodes    nodes    
+colnames    rownames    
+1:2    1:2    1:2    1:2    1:2    1:2    1:2    1:2    1:2    1:2    
+rep    
+lty = 1    col = 'white'    
+experiment = factor    status = factor    reps = seq_len    
+
+rows    cols    stringsAsFactors=FALSE    
+market = LETTERS[1:5]    date = Sys.Date    sitename = letters[1:2]    
+Hostname = letters[1:2]    Date = Sys.Date    MetricType = LETTERS[3:4]    
+x1  = c    
+1:3    1:3    1:3    1:3    
+paste    paste    
+id = 1:35000    stratum = letters[1:10]    
+x = 1:ncol    y = 1:ncol    
+i=71:80    j=63:78    
+
+
+
+x=x    y=y    
+1:5    
+newdat.list    
+x=x    y=y    
+0:3    0:3    
+rep    
+Perot96=perot    
+1:n    1:m    
+s1    
+x = factor    y = factor    KEEP.OUT.ATTRS = FALSE    
+x = factor    y = factor    KEEP.OUT.ATTRS = FALSE    
+x=x    y=y    
+
+
+site=1:2    run=1:2    id=1:2    
+1:10    1:10    
+1:length    1:length    
+1:3    1:3    
+b    
+b    
+1:length    1:length    
+1:length    1:length    
+1:3    1:3    
+b    
+b    
+x1=1:2    x2=1:2    y1=1:2    y2=1:2    
+x1=1:2    x2=1:2    y1=1:2    
+seq    seq    
+formats    KEEP.OUT.ATTRS = FALSE    stringsAsFactors = FALSE    
+x=seq    y=seq    
+names    names    
+X1=t.    X2=t.    
+X1=t.    X2=t.    
+x=t.    y=t.    
+v1    v2    
+df1    df2    
+seq    seq    
+x = 1:10    
+x    y    y    FUN=function    
+f1 = levels    
+
+c    d    
+lapply    
+lapply    
+lapply    
+lapply    
+seq_len    seq_len    seq_len    
+a=levels    
+c    c    
+c    c    
+c    c    
+c    
+1:dim    1:dim    
+1:length    1:length    
+i=1:n    j=1:n    nrow=n    
+i=1:n    j=1:n    
+
+
+cat1=levels    
+school=LETTERS[1:nschool]    rep=seq    
+rownames=rownames    colnames=colnames    
+
+x = seq    y = seq    KEEP.OUT.ATTRS = FALSE    
+Temp = rnorm    Age = runif    
+
+mpg    
+
+a    b    
+a=a    
+
+1:3*2    seq    
+m    nx=18    ny=18    col=8    
+nx=18    ny=18    col=8    
+x = rownames    y = colnames    
+x = 1:ncol    y = 1:ncol    
+
+a=seq    
+dimnames    second    rownames    second    1]    second[    
+n=1:3    
+ID=182    year=2002:2004    month=1:2    day=1:3    KEEP.OUT.ATTRS=FALSE    
+year = 2012:2020    geography = paste0    
+1:3    
+xs    ys    
+x=x    y=x    
+
+data.frame    
+x = d2    y = d2    
+
+blue=seq    red=seq    
+x=seq    y=seq    
+x=seq    y=seq    
+
+x    
+X = factor    Y = rnorm    
+tags    times    timesteps    
+tags    times    timesteps    
+row = 1:nrow    col = 1:12    
+2001:2012    
+x=x    y=y    
+x=xstar    y=ystar    
+nx=100    ny=100    lty=1    
+names    names    
+list    
+names    names    
+ForSortSNP=unique    
+xs    ys    
+xs = rnorm    ys = rnorm    
+grain    colnames    'months'] == x[1]    c    
+grain    
+kwd1=df    
+
+
+r1 = 1:3    r2 = 1:3    
+rownames    rownames    
+rownames    rownames    
+x1=1:5    x2=2:6    
+colnames    x[    1]    
+A=A    B=B    
+months = months    years = years    
+month = month.abb    building = c    hc = c    
+
+i = 1:10    j = 1:2    k = seq    
+i = 1:10    j = 1:2    k = seq    function    
+1:n    1:n    
+llply    
+
+x    
+x = 1:10    y = 1:10    
+1:1000    1:10000    
+6    15:30    
+list.1    list.b    list.b    
+nx=NA    ny=NULL    
+Period = .period    Size = .size    Number = .number    stringsAsFactors = F    
+W = W    X = X    Y = Y    Z = Z    
+x=1:2    y=1:2    f=letters[1:2]    
+1:m    1:n    
+x    y    2] -    
+sub=1:4    
+lbox[1    ]    lbox[2    ]    3    4    2    
+rbox[1    ]    rbox[2    ]    3    4    2    
+x    
+x    x    
+ny=NA    
+ny=NA    
+nx=NA    ny=NULL    
+row = seq    col = seq    
+sapply    
+prey=1:2    predator=1:5    
+nx = NA    
+rep    
+1:m    1:n    Var2    
+
+
+a=df    c=c    
+1:14    
+year = 1990:2001    month = 1:12    
+rev    
+G;1:3    P=2:5    
+nC    nC    
+A    B    C    D    
+A    B    C    D    
+X=x    Y=y    
+x=x    y=x    
+f1=levels    
+letters[24:25]    
+list    
+list    
+var1=1:10    var2=1:10    
+i=1:51    k=1:6    
+var1=1:4    var2=1:4    
+x = u    y = u    
+x = u[-1]    y = u[-length    
+rep    
+cat=factor    lab=factor    
+
+lwd = 1.5    
+1:    1:    
+x=x    y=x    
+a    b    
+Loss_Yr=unique    
+x=x    y=y    
+x=-1    y=-1    
+False    
+False    
+g    
+a    
+x    
+list1    list2    
+A    
+
+yoda    
+
+x=1:10    y=1:10    
+x=1:10    
+1:3    1:3    
+lon    lat    
+1:12    c    
+1:12    c    
+rep    
+rep    
+rep    
+rep    
+unique    unique    
+x    
+states    states    
+
+sort    
+1:nn    1:nn    
+Date=unique    Company=unique    Region=unique    
+paste0    paste0    
+rep    
+x    y    
+x    y    
+x=seq    y=seq    
+x1=unique    x2=unique    
+dat    
+
+dx    dx$y    
+list    
+cohort=levels    sex=levels    
+
+
+mapply    
+var1=1:4    var2=1:4    
+target = c    cond = as.factor    patient = LETTERS[1:20]    
+allweeks    allprobes    
+allweeks    allprobes    
+x    
+a    a    
+letters    
+a    
+LETTERS    LETTERS    LETTERS    
+letters    letters    letters    
+LETTERS    LETTERS[10:15]    LETTERS[1:20]    LETTERS[1:5]    
+X=X    Y=Y    
+x=1:ncol    y=1:nrow    
+x    y    
+1:3    1:3    1:3    1:3    1:3    1:3    1:3    
+1:3    1:3    1:3    1:3    1:3    1:3    1:3    
+1:3    1:3    1:3    1:3    1:3    1:3    1:3    
+Dates_List    ISIN_Table    
+y=0:3    x=0:3    a2    
+n    
+n    n    
+rs    ks    
+seq    seq    
+x=x    y=y    
+data.frame    
+unique    unique    unique    unique    
+x    y    
+c    c    
+b    
+b    
+data[    "A"]    data[    
+1:3    1:2    1    
+lapply    
+unique    unique    
+c    c    
+1:3    1:3    
+
+c    function    function    
+list    stringsAsFactors= FALSE    
+pos.row.idx    neg.row.idx    
+rownames    
+r    s    stringsAsFactors=FALSE    
+rownames    colnames    
+x=1:100    y=1:100    
+x=x    y=y    
+S0    E0    B0    tau    
+g    h    i    
+
+levels    levels    
+True    
+True    
+True    
+r    
+r    s    
+r    s    
+w    x    y    
+var1    var2    
+1:nrow    1:nrow    
+seq_along    seq_along    
+x = 1:3    
+vars    
+x    x    
+x    
+
+d    
+d    
+names    names    
+lapply    
+names    names    
+x1=1:nrow    x2=1:nrow    
+file_list1    file_list2    as.vector    as.vector    
+apply    apply    
+vals    unique    
+Date = unique    Group = unique    
+i=seq    j=seq    
+p    d    q    
+col="white"    
+col="white"    lty=1    
+NA    NULL    
+a    b    d    b    
+
+r=r    theta=theta    
+xVariables    yVariables    
+x.variable    y.variable    my.factor    
+
+1:length    1:length    
+unique    unique    
+unique    unique    unique    
+seq_along    seq_along    
+d = d    z = z    stringsAsFactors = FALSE    
+
+initial_consonants    vowels    final_consonants    x[2]    
+initial_consonants    vowels    
+colnames    rownames    
+levels    levels    
+x    y    x[2]    
+grid.size=3    elength=2    
+b=b    s=s    
+x    
+x    y    
+1:500    x1=0:1    x2=0:1    x3=0:1    x4=0:1    x5=0:1    
+topstate=unique    state=unique    
+gene=letters[1:2]    SNP=LETTERS[1:3]    
+variable=c    var2=c    
+w    w    
+x    
+CO    CS    CD    CSD    
+b=fivenum    
+f=values    s=values    
+1:nrow    1:nrow    
+c    c    
+
+fruits    ingredients    
+back=seq_len    
+
+x1=seq    x2=seq    
+sigma = sigma    r = r    
+
+time = paste    group = paste    
+lev1=seq    lev2=seq    lev3=seq    lev4=seq    lev5=seq    lev6=seq    
+1:500    
+obj    zcol = names    ...    names.attr    
+
+
+
+1:length    1:length    
+3    ni=ni    2    
+x=seq    y=seq    
+h=-1    v = 0    
+siteID=unique    
+x=x    y=y    
+1:3    
+1:d    
+c    col=2    nx=7    ny=5    pretty=FALSE    label=TRUE    lty=2    
+col = "black"    
+args[[x[1]]]    
+x    i    
+ii=seq_len    jj=seq_len    
+aql = c    
+col = 'darkgray'    
+col = 'lightgray'    
+NA    25    lwd = 2    
+x=1:5    
+
+df[1    1]    halfway[[1]]    
+df[i    1]    
+Source = src_national    County = counties    
+1:2    1:2    
+x = x    y = y    
+p1 = letters[1:3]    p2 = letters[1:3]    p3 = letters[1:3]    stringsAsFactors = FALSE    
+1:100    1:100    
+opt1=0:1    opt2=0:1    
+rownames    colnames    
+h = 16    v = 0    
+NA    NULL    lwd=3    
+NA    NULL    lwd=3    
+x = 1:15    y = 1:14    
+A=letters[1:3]    B=letters[4:6]    C=letters[7:9]    
+unique    unique    unique    
+rep    
+vals    
+data    2*data    
+17    17    lty = 1    
+m1=1:1440    variable=factor    
+treatment = "sucrose"    Time = seq    
+TMT1=c    TMT2=c    
+row2 = seq_len    
+row2 = seq_len    
+B    t    
+N    H2    
+expl1 = plotexpl    expl2 = c    
+1:1000    
+i=1:n    j=1:n    k=1:n    
+x    x    
+seq_len    seq_len    seq_len    
+c    c    c    
+0:1    0:1    0:1    
+l    
+rep    
+
+x1=12:n1    x2=0:n2    y2=0:n2    
+A[A<20]    B[B<15]    ...    
+X=rr    
+nx = NA    
+nx = NA    
+
+with    c    
+c    c    c    
+x=1:10    
+1:length    1:nrow    
+
+x=pts.grid    y=pts.grid    
+
+
+1    c    c    c    c    
+NA    NULL    
+Order=seq_len    date=seq_len    
+long=seq    lat=seq    
+nx = NA    ny = NULL    col = "white"    lty = "solid"    
+
+replicate    reps    
+replicate    
+c    4    
+letters[1:2]    4    
+xvals    yvals    
+p1 = 1:5    p2 = 1:5    p3 = 1:5    p4 = 1:5    
+1:4    1:4    
+rep    
+rep    
+rep    
+
+True    
+a=c    b=20:50    
+lon=xvals    lat=yvals    
+lon=xvals    lat=yvals    
+col=rgb    labels=F    
+1:nrow    1:nrow    
+c    c    
+y=z[    1]    x=idx    
+
+code1    code2    code3    
+seq_len    seq_len    
+
+1:10    1:10    6    
+x=x    y=y    
+x=x    y=y    
+lwd = 0.3    lty = 7    
+g    
+c    
+long    lat    
+m    nx=4    ny=6    col="black"    
+
+dim3 = 1:n[3]    
+c    1985:2013    0    
+f1    e1    
+n    lims    
+start = 1L:n    len = 2L:    
+a=a    
+a=a    
+i=id    j=id    k=id    
+i=id    j=id    k=id    
+a1    
+unique    min    
+monCode    yearRange    
+x    y    
+ID=1:nrow    HR=1:6    
+
+outcome    pollut1    
+unique    unique    
+x=2:4    y=2:4    z=0    
+from = 1:4    to = 1:4    
+vars    
+i=1:3    
+1:4    1:4    
+1:5    1:5    
+x    y    z    highlight.3d=TRUE    col.axis="blue"    
+x=1:4    
+NA    NULL    
+service=service    
+service=x[1]    metric=x[2]    
+1:num.Patches    1:num.alleles    
+X=points    Y=-points    
+Var1=rows    
+RANK=df    
+age=ag    vehicle=veh    position=0.7    
+replicate    
+x=x    y=-y    
+days    slots    
+age=age    hrs=hrs    
+sweep1=sweep1    sweep2=sweep2    
+level=levels    var=names    
+
+2:3    4:5    
+
+x    y    
+id=id    year=unique    
+year = seq    id = unique    
+year = seq    id = unique    
+w=1:width    
+ch1 = letters[1:3]    ch2 = letters[1:3]    ch3 = letters[1:3]    stringsAsFactors = FALSE    
+ncomp = seq    mtry = 1:len    
+experiment = factor    status = factor    reps = seq_len    
+ncomp = seq    
+n    n    
+n    n    
+interaction.depth = 1    n.trees = 100:101    shrinkage = 0.1    
+c    c    0    
+letters[1:5]    LETTERS[1:5]    

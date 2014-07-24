@@ -1,0 +1,183 @@
+5    5    "Foo"    1:10    LETTERS[1:10]    
+x    y    round    cex=0.45    
+x    y    round    cex=0.8    
+x    y    paste    cex=0.8    y    
+x=c    y=c    c    cex=2    
+xloc    yloc - y.off    labels    cex = cex    adj = c    
+label.x[k]    label.y[k]    labels = key.labels[k]    cex = cex    adj = text.adj    
+i    j    txt    cex=0.5    
+x    y    label = paste    cex = 0.6    
+thisx    y    txt[txtstr]    col=col[txtstr]    adj=0    
+0    0.5    ctext    col=c    
+1.5    1.5    parse    col=cols[i]    
+2    12    expression    adj=1    
+2    12    paste    adj=0    
+x    y    m[y    x]    
+112        mac    cex = 0.8    col = "#393E46"    
+5        "nil"    font = 3    
+8    w.r[NN] + 2.3    "+"    
+115        mac    cex = 0.8    col = "#393E46"    
+92    4    substitute    adj=0    cex=0.85    
+x = dm    par    labels = paste    srt = 45    pos = 1    xpd = TRUE    cex=.7    
+x    y    ...    
+1:n.indiv    0    obs.labels    pos = 4    col = col.down[groups.o]    
+1:n.indiv    0    obs.labels    pos = 4    cex=0.5    col = col.down[groups.o]    
+x    y    label = labels    col = col    ...    
+x=c    y=rep    labels=tbl[x    ]    
+coord.xy    coord.xy    c    adj=c    
+load[    ind[1    i]]    load[    ind[2    i]]    labels = nms    
+10    10    "observed corelation = "    
+0    1    i    adj=c    
+1    1    'Top Right'    adj=c    
+0    0    'Bottom Left'    adj=c    
+xvar    yvar    labels=namelab    pos=3    
+x=1+0.2*cos    y=1+0.2*sin    expression    
+1:19    labels=y    par    srt=45    adj=1.2    xpd=T    cex=0.3    
+j    -k-0.5    labels = matrix    j]    
+x1    y1    words[i]    cex=size[i]    offset=0    srt=rotWord*90    col=cc    ...    
+i    0.5    lab=as.character    cex=2^    
+i    0.5    lab=as.character    cex=2^    
+rep    as.vector    labels=as.vector    pos=3    
+var1    var2    var3    
+x    y    letters[1:8]    pos=3    
+rep    1:8-.2        pos=2    cex=.8    
+rep    1:8-.2        pos=4    cex=.8    
+obs    UP+1    Name    srt=90    adj=0    
+obs    UP-1    Name    srt=90    adj=1    
+a    a    c    pos=2    
+xmin    ticks    ticks    xpd=TRUE    pos=2    
+x    y    rownames    cex=0.8    
+xcoord    ycoord    teamid    col='green'    
+x    y    txt    cex = cex    font = font    
+6    4    "Gamma"    
+6    5    "Exponential"    
+6    6    "Normal"    
+6    7    "LogNormal"    
+0.5    0.5    paste    cex=1.4    
+0.5    0.5    "side"    cex=1.4    
+0.5    0.5    "top"    cex=1.4    
+x=midpts    y=-2    names    cex=0.8    srt=45    xpd=TRUE    
+1    1    "Hi"    col=2    means    LETTERS[length    col=2    means    LETTERS[length    col=2    
+j    i    round    col="white"    cex=0.6    
+txtX    txtY    fullLabel    cex=fontsize    pos=4    srt=90    offset=0.1    
+30    usd3    "12s violation"    
+30    usd3    "12s violation"    
+mapdata1    -.7    mapdata1    srt = 90    cex.lab = chr.lab    
+mapdata1    .7    mapdata1    cex.lab = chr.lab    
+0    labels = paste    
+outliers[    2]    outliers[    3]    labels=outliers[    1]    cex=0.50    col=c    
+endpoints[1]    endpoints[2]    lab1    xpd = TRUE    
+endpoints[3]    endpoints[4]    lab2    xpd = TRUE    
+1.3 * outer.radius    ylevs    round    pos = 4    xpd = TRUE    
+endpoints[1]    endpoints[2]    lab1    xpd = TRUE    
+endpoints[3]    endpoints[4]    lab2    xpd = TRUE    
+0.5    c    txt    
+0    .8    paste    offset=.3    cex=1.5    adj=c    
+5    5    labels="MyText"    
+x    y    labels="MyText"    
+x    y    name    cex=1.5    font=4    -2    
+x    y    name    cex=1.5    font=4    
+my    x0    et    
+x0    my    et    
+0.5    0.6    txta    cex = 1.5    
+0.5    0.4    txtb    cex = 1.5    
+0    3    "Freq"    
+c    1:2    range    col=c    
+class    drv    freq    
+score    rownames    col=color[sz]    
+0    1    "init.angle = 90"    col= "red"    
+xx[1:n]    yy[1:n]    df[1    1:n]    col = axislabcol    
+xx * 1.2    yy * 1.2    colnames    
+par    y.label.position    y.label    xpd=TRUE    adj=1    
+y=par    x=x.label.position    x.label    xpd=TRUE    adj=1    srt=90    
+0.5    0.5    txt    cex = cex.cor * r    
+x=assets    y=sales    labels=substr    
+
+1:18    par    srt=90    adj=1    labels=labels    xpd=TRUE    cex=0.6    
+1:18    par    srt=90    adj=1    labels=labels    xpd=TRUE    cex=0.6    
+r*cos    r*sin    labels=ticks    
+x=    y=-0.5    labels=paste0    
+rep    
+abs_losses        labels=namebank    cex= 0.7        labels=namebank    cex= 0.7    pos=3    
+abs_losses    percent_losses    labels=namebank    cex= 0.7    pos=pos_vector    
+5    5    expression    cex = 1.2    
+0    1.45    "35%"    
+1.1    1.45    "40%"    
+x    myears    event    pos = 4    
+i    d    i]    labels = d    i]    cex = 0.75    adj = c    
+i    d    i]+1    labels = paste0    cex = 0.75    
+i-0.25    d    i]    labels = d    adj = 1    cex = 0.75    
+x=x    y=seq_along    label=x    pos=4    
+txtpos    txtpos    txtlab    cex=1.5    
+par    par    labels=paste    pos=4    
+tpos    y+2*dy    names    srt=90    adj=0    
+coordinates    label =     as.data.frame    "soilType"]    
+rep    1:nrow    Rowp    pos=4    
+1:ncol    rep    Colp    srt=90    pos=2    
+x=as.numeric    y=value    
+0.5    0.25    paste    
+sd.f * R    sd.f * sin    labels=text    pos=3    
+sd.f * R    
+x = seq_along    y = -0.2    srt = 45    labels = labs    xpd = TRUE    
+
+x=0    y=0    labels=paste    cex=2    
+x=1    y=.5    labels=expr    pos=1    cex=4    
+x=1    y=.8    labels=expr2    pos=1    cex=4    
+1.1    1.2    
+1.1    0.8    
+x=-0.02    y=radii*ymult    labels=paste    pos=2    cex=cex.lab    
+0    0    "GLOBAL"    cex=1.5    col="grey"    
+x[1    i]    y[1    i]    
+row    col    labels=matrix    
+
+10    max    paste0    
+0.5    0.6    txt    
+0.5    0.4    txt2    
+x    y    format    cex=text_cex    col=col    
+x[h!=0]    y[h!=0]    format    cex=text_cex    col=col    
+x=seq    
+myscale * heads[    choices]    
+mean    0.5    i    
+0.25    2    "Some text"    pos=3    
+x0    y0    labels=labels    
+GIC.Zoop    GIC.Fish+.05    labels=Dive.Number    
+V1    V2    
+x=data    y=data    labels=data    pos=posn[i]    cex=cex1    offset=offset1    col=col1    
+xstart    ystart    letters[[1]][i]    cex=8    
+coordinates    label=cc    
+labels=labs    col=axiscolor    x=rep    y=1:length    srt = 0    pos = 2    xpd = TRUE    
+0.5    0.5    stars    cex = cex.cor    
+0.5    0.5    r    cex = cex.cor    
+0.5    0.4    paste0    cex = cex.cor    
+0.5    0.5    r    cex = cex.cor    font=fonts    
+x    y    labels    cex = 0.8    col = 'gray20'    
+x = mehrviel.coords[i]    y = artmehr.coords[    i]    labels = ifelse    cex = 2    
+x=b    y=c    label = c    xpd=TRUE    col='blue'    ...    label=TRUE    
+x = b    y = c    label = c    xpd = TRUE    col = 'blue'    
+xval    yval    
+xvalue + offset    yvalue    cex=0.5    
+x = x + 0.2    y = y    
+x    y    Label1    col=rainbow    
+xRecips    yRecips    sPDFdonor    col=rgb    cex=0.6    pos=4    2=l    3=ab    
+x=.5    y=.5    labels="\u0260"    family="Times New Roman"    
+x=.5    y=.5    labels="\u0260"    
+pcdata[    axis1]    pcdata[    axis2]    
+pcdata[    axis1]    pcdata[    axis2]    labels    adj = c    
+pcdata[    axis1]    pcdata[    axis2]    labels    adj = c    shape.min    20    shape.max    20    label = TRUE    labels = Myname    
+x=500    y=800    mod    
+x    y    labels=seq_along    ...    
+cex=1    x=x-.25    y=-1.25    labs    xpd=TRUE    srt=45    x=x-.25    y=-1.25    labs    xpd=TRUE    srt=45    
+A_coords[1]    A_coords[2]    "A"    col = "red"    
+B_coords[1]    B_coords[2]    "B"    col = "blue"    
+A_coords[1]    A_coords[2]    "A"    col = "white"    
+B_coords[1]    B_coords[2]    "B"    col = "white"    
+A_coords[1]    A_coords[2]    "A"    col = "red"    
+B_coords[1]    B_coords[2]    "B"    col = "blue"    
+bx1    bx1    rownames    pos=4    
+rep    1:nrow    row.tip    pos=4    cex=cexCol    
+1:ncol    rep    col.tip    srt=90    adj=c    cex=cexRow    
+i/4    .5    paste    
+i/4        rev    
+pca    rownames    cex=0.8    col=mycolors[sort    1:5]    col = mycolors    
+x    y    
+xyCoords    labels = value    

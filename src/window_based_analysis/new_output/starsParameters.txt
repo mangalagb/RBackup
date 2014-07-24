@@ -1,0 +1,1 @@
+mtcars[1:3*0*1:8]*0*draw.segments = T*0*main = "Motor Trend Cars : stars*0*full = T*0*col.segments = 1:2

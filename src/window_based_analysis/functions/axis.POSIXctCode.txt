@@ -1,0 +1,259 @@
+# create some data
+tmp <- seq(as.POSIXct("1890-03-01", tz="GMT"),
+           as.POSIXct("1920-03-01", tz="GMT"),
+           by="month")
+df <- data.frame(date=tmp,
+                 val=rnorm(length(tmp)))
+
+# plot data
+plot(df$date, df$val, xaxt="n")
+tickpos <- seq(as.POSIXct("1890-01-01", tz="GMT"),
+               as.POSIXct("1920-01-01", tz="GMT"),
+               by="5 years")
+axis.POSIXct(side=1, at=tickpos)
+-------------------------------------------------------------------------------------------------------
+"date","sunrise"
+2009-01-01,05:31
+2009-01-02,05:31
+2009-01-03,05:33
+2009-01-05,05:34
+2009-01-06,05:35
+2009-01-07,05:36
+2009-01-08,05:37
+2009-01-09,05:38
+2009-01-10,05:39
+2009-01-11,05:40
+2009-01-12,05:40
+2009-01-13,05:41 read.csv() colClasses dat <- read.csv("foo.txt", colClasses = "character")
+## Now convert the imported data to appropriate types
+dat <- within(dat, {
+date <- as.Date(date) ## no need for 'format' argument as data in correct format
+sunrise <- as.POSIXct(sunrise, format = "%H:%M")
+})
+str(dat) plot(sunrise ~ date, data = dat)
+## or
+with(dat, plot(date, sunrise)) axis.FOO FOO Date POSIXct plot(sunrise ~ date, data = dat, axes = FALSE)
+with(dat, axis.POSIXct(x = sunrise, side = 2, format = "%H:%M"))
+with(dat, axis.Date(x = date, side = 1))
+box() ## complete the plot frame
+-------------------------------------------------------------------------------------------------------
+hist(dat, breaks="hours", freq=TRUE, col = "red", axes = FALSE)
+axis.POSIXct(side = 1, dat)
+axis(2)
+-------------------------------------------------------------------------------------------------------
+tms<-strptime(c("10:00AM","12:00PM","10:00PM"),format="%I:%M%p")
+vals<-c(1,5,3)
+radii <-c(2,4,6)
+symbols(tms,vals,radii,xaxt='n')
+axis.POSIXct(1, at=tms, format="%I:%M%p")
+-------------------------------------------------------------------------------------------------------
+plot(df$timestamp,df$pages,xaxt="n")
+axis.POSIXct(1, at=df$timestamp, labels=format(df$timestamp, "%m/%d")) axis.POSIXct POSIXct at par(las=2)
+-------------------------------------------------------------------------------------------------------
+abline x=strptime(20010101:20010110,format="%Y%m%d")
+y=1:10
+
+plot(x,y)
+grid(nx=NA, ny=NULL)
+abline(v=axis.POSIXct(1, x=pretty(x)),col = "lightgray", lty = "dotted", lwd = par("lwd")) my.grid <-function(){
+grid(nx=NA, ny=NULL)
+abline(v=axis.POSIXct(1, x=pretty(x)),col = "lightgray", lty = "dotted", lwd =
+par("lwd"))
+}
+
+plot(x,y)
+my.grid()
+-------------------------------------------------------------------------------------------------------
+plot(df$Date,df$CPU, xaxt="n")
+axis.POSIXct(side=1, at=df$Date, format="%Y-%m-%d %H:%M:%S")
+-------------------------------------------------------------------------------------------------------
+image() axes = FALSE set.seed(42)
+X <- as.POSIXct(1:100, origin = "1970-1-1")
+Z <- matrix(rnorm(100*100), 100)
+image(x = X, z = Z, axes = FALSE)
+axis(side = 2)
+axis.POSIXct(side = 1, x = X)
+box() Axis() image(x = X, z = Z, axes = FALSE)
+axis(side = 2)
+Axis(x = X, side = 1)
+box() Image <- function(x = seq(0, 1, length.out = nrow(z)),
+                  y = seq(0, 1, length.out = ncol(z)),
+                  z, ...) {
+    image(x = X, z = Z, ..., axes = FALSE)
+    Axis(x = y, side = 2, ...)
+    Axis(x = X, side = 1, ...)
+    box()
+} Axis() x y image() Image() image() x image.default() x image.default() ?Startup
+-------------------------------------------------------------------------------------------------------
+axis.POSIXct cut.POSIXt time x plot(time,x,xaxt="n")
+axis.POSIXct(side=1,at=seq(min(time),max(time),by="week"),format="%d-%m") 
+axis.POSIXct(side=1,at=cut(time, breaks="week"),format="%d-%m")
+-------------------------------------------------------------------------------------------------------
+set.seed(1)
+x <- as.POSIXct(sort(sample(100000, 100)), origin="1960-01-01")
+y <- rpois(100, 5)
+plot(x, y, type = "l", xlab = "Time") axis.POSIXct() Axis() plot(x, y, type = "l", xlab = "Time", xaxt = "n") ceiling() by = "1 hour" at axis.POSIXct() ?axis.POSIXct ?par ## add axis tick at each hour:
+axis.POSIXct(side = 1, x = x,at = seq(from = round(x[1], "hours"),to = x[1] ,las = 2) 
+labels tcl seq() by ## add minor ticks at 30 min intervals to above plot
+axis.POSIXct(side = 1, x = x, at = seq(from = round(x[1], "hours"),to = x[1] ,las = 2, tcl = -0.2, labels = FALSE) 
+ seq() format() plot(x, y, type = "l", xlab = "Time", xaxt = "n")
+tseq <- seq(from = round(x[1], "hours"),
+            to = x[1] + ceiling(difftime(tail(x, 1), head(x, 1), 
+                                         units = "hours")),
+            by = "1 hour")
+axis.POSIXct(side = 1, x = x, at = tseq, labels = format(tseq ) )
+format() paste() ?strftime
+-------------------------------------------------------------------------------------------------------
+axis.POSIXct() pretty() pretty() n min.n axis.POSIXct() n min.n pretty() pretty() fixInNamespace(axis.POSIXct)
+-------------------------------------------------------------------------------------------------------
+data <- structure(list(time = structure(c(1338361200, 1338390000, 1338445800, 1338476400, 1338532200, 1338562800, 1338618600, 1338647400, 1338791400, 1338822000), class = c("POSIXct", "POSIXt"), tzone = ""), variable = c(168L, 193L, 193L, 201L, 206L, 200L, 218L, 205L, 211L, 230L)), .Names = c("time", "variable"), row.names = c(NA, -10L), class = "data.frame")
+data
+              time variable
+1  2012-05-30 09:00:00      168
+2  2012-05-30 17:00:00      193
+3  2012-05-31 08:30:00      193
+4  2012-05-31 17:00:00      201
+5  2012-06-01 08:30:00      206
+6  2012-06-01 17:00:00      200
+7  2012-06-02 08:30:00      218
+8  2012-06-02 16:30:00      205
+9  2012-06-04 08:30:00      211
+10 2012-06-04 17:00:00      230 axis.POSIXct plot(data, xaxt="n")
+axis.POSIXct(side=1, at=cut(data$time, "days"), format="%m/%d") at axis format dateTime1 <- strptime("00:00 05/31/2012", format="%H:%M %m/%d/%Y")
+dateTime2 <- strptime("3 Jun 2012 05-30", format="%d %b %Y %H-%M")
+data[data$time < dateTime2 & data$time > dateTime1, ]
+                 time variable
+3 2012-05-31 08:30:00      193
+4 2012-05-31 17:00:00      201
+5 2012-06-01 08:30:00      206
+6 2012-06-01 17:00:00      200
+7 2012-06-02 08:30:00      218
+8 2012-06-02 16:30:00      205
+-------------------------------------------------------------------------------------------------------
+axis.POSIXct data <- c(298, 507, 1008, 346)
+data2 <- as.POSIXct(data, origin=cut(Sys.time(), "hours"))
+boxplot(data2, pars=list(yaxt="n"))
+axis.POSIXct(2, at=pretty(data2), format="%M:%S", las=2)
+-------------------------------------------------------------------------------------------------------
+axis() axis.Date() axis.POSIXct() ## example with axis.Date
+layout(matrix(c(1,2),nrow=2,byrow=TRUE))
+random.dates <- as.Date("2001/1/1") + 70*sort(stats::runif(100))
+plot(random.dates, 1:100, xaxt="n",main='pretty axes dates')
+axis.Date(1, at=seq(as.Date("2001/1/1"), max(random.dates)+6, "weeks"))
+### example with axis.POSIXct
+with(beaver1, {
+  time <- strptime(paste(1990, day, time %/% 100, time %% 100),
+                   "%Y %j %H %M")
+  # now label every hour on the time axis
+  plot(time, temp, type="l", xaxt="n",main='pretty axes times')
+  r <- as.POSIXct(round(range(time), "hours"))
+  axis.POSIXct(1, at=seq(r[1], r[2], by="hour"), format="%H:%M")
+})
+-------------------------------------------------------------------------------------------------------
+axis.POSIXct plot(time,data$value,xaxt="n") #Skip the x-axis here
+axis.POSIXct(1, at=pretty(time), format="%B %Y") ?strptime at axis.POSIXct(1, at=seq(time[1],time[length(time)],"3 months"), 
+             format="%B %Y")
+-------------------------------------------------------------------------------------------------------
+as.POSIXct df <- structure(list(day = structure(list(sec = c(0, 0, 0, 0, 0, 0, 
+0, 0, 0, 0, 0, 0), min = c(30L, 30L, 30L, 30L, 30L, 30L, 30L, 
+30L, 30L, 30L, 30L, 30L), hour = c(13L, 20L, 13L, 20L, 13L, 20L, 
+13L, 20L, 13L, 20L, 13L, 20L), mday = c(2L, 10L, 15L, 25L, 2L, 
+10L, 15L, 25L, 2L, 10L, 15L, 25L), mon = c(0L, 0L, 0L, 0L, 1L, 
+1L, 1L, 1L, 2L, 2L, 2L, 2L), year = c(112L, 112L, 112L, 112L, 
+112L, 112L, 112L, 112L, 112L, 112L, 112L, 112L), wday = c(1L, 
+2L, 0L, 3L, 4L, 5L, 3L, 6L, 5L, 6L, 4L, 0L), yday = c(1L, 9L, 
+14L, 24L, 32L, 40L, 45L, 55L, 61L, 69L, 74L, 84L), isdst = c(0L, 
+0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L)), .Names = c("sec", 
+"min", "hour", "mday", "mon", "year", "wday", "yday", "isdst"
+), class = c("POSIXlt", "POSIXt")), temperature = c(10L, 8L, 
+12L, 6L, 5L, 3L, 6L, -1L, 4L, -2L, 7L, 1L)), .Names = c("day", 
+"temperature"), row.names = c(NA, -12L), class = "data.frame")
+
+df
+df$day <- as.POSIXct(df$day, format="%d/%m/%Y %H:%M:%S") xaxt="n" axis.POSIXct plot(df$day, df$temperature, t="l", ylab="Temperature", xlab="Date", xaxt="n")
+SEQ <- seq(min(df$day), max(df$day), by="months")
+axis.POSIXct(SEQ, at=SEQ, side=1, format="%b %Y") SEQ axis.POSIXct plot(df$day, df$temperature, t="l", ylab="Temperature", xlab="Date", xaxt="n")
+SEQ <- seq(min(df$day), max(df$day), by="days")
+axis.POSIXct(SEQ, at=SEQ, side=1, format="%b %d")
+-------------------------------------------------------------------------------------------------------
+zoo xts forecast ## read the zoo object
+## I add a virtual colname aaa here 
+## for some reason index=0:1 don't work
+library(zoo)
+stock <- read.zoo(text='aaa day value
+2000-12-01 00:00:00 11.809242 
+2000-12-01 06:00:00 10.919792 
+2000-12-01 12:00:00 13.265208 
+2000-12-01 18:00:00 13.005139 
+2000-12-02 00:00:00 10.592222  
+2000-12-02 06:00:00 8.873160 
+2000-12-02 12:00:00 12.292847 
+2000-12-02 18:00:00 12.609722 
+2000-12-03 00:00:00 11.378299 
+2000-12-03 06:00:00 10.510972  
+2000-12-03 12:00:00 8.297222  
+2000-12-03 18:00:00 8.110486  
+2000-12-04 00:00:00 8.066154',header=TRUE,
+                tz='',
+                index=1:2)
+
+##  arima works well with zoo objects
+fit <- Arima(stock,c(3,1,2))
+fcast <- forecast(fit, h = 20)
+plot(fcast, xaxt="n") axis.POSIXct axis.Date axis forecast a <- c(as.POSIXct(index(stock)),
+         as.POSIXct(index(fcast$mean),origin='1970-01-01 00:00.00 UTC')) ## Note the use of las to rotate the axis 
+## you can play with format here
+axis.POSIXct(1,at=a,format="%a %H",las=2,cex=0.5)
+-------------------------------------------------------------------------------------------------------
+axis.POSIXct plot(x=data$date_time, y=data$V4, type='l', ylab = '??',xaxt="n") ## note here 
+axis.POSIXct(1, at=data$date_time,format='%b %Y') structure(list(date_time = structure(c(1350142800, 1350144000, 
+1350145200, 1350146400, 1350147600, 1350148800), class = c("POSIXct", 
+"POSIXt"), tzone = ""), V1 = structure(c(1L, 1L, 1L, 1L, 1L, 
+1L), .Names = c("13", "14", "15", "16", "17", "18"), .Label = "10/13/2012", class = "factor"), 
+    V2 = structure(1:6, .Names = c("13", "14", "15", "16", "17", 
+    "18"), .Label = c("17:40:00", "18:00:00", "18:20:00", "18:40:00", 
+    "19:00:00", "19:20:00"), class = "factor"), V3 = structure(c(1L, 
+    1L, 1L, 1L, 1L, 1L), .Names = c("13", "14", "15", "16", "17", 
+    "18"), .Label = "0", class = "factor"), V4 = structure(c(2L, 
+    1L, 3L, 4L, 5L, 6L), .Names = c("13", "14", "15", "16", "17", 
+    "18"), .Label = c("15.8508", "15.8604", "15.8615", "15.8637", 
+    "15.8680", "15.8701"), class = "factor"), V5 = structure(c(3L, 
+    2L, 2L, 1L, 1L, 1L), .Names = c("13", "14", "15", "16", "17", 
+    "18"), .Label = c("25.686", "25.688", "25.706"), class = "factor")), .Names = c("date_time", 
+"V1", "V2", "V3", "V4", "V5"), row.names = c("13", "14", "15", 
+"16", "17", "18"), class = "data.frame")
+-------------------------------------------------------------------------------------------------------
+as.POSIXct as.POSIXlt data.frame dat <- read.csv(text="Date_Time,A1,B2,C1,E2
+24/06/2012 12:20:00,NA,5.515,20,NA
+24/06/2012 13:20:00,41,NA,NA,3.519
+25/06/2012 14:00:00,NA,NA,NA,NA
+25/07/2012 14:20:00,30,NA,30,NA
+27/08/2012 15:20:00,NA,71,NA,NA
+28/09/2012 18:00:00,11,NA,55,11")
+
+dat$Date_Time <- as.POSIXct(dat$Date_Time,format="%d/%m/%Y %H:%M:%S")
+
+matplot(
+  dat[,1],
+  dat[2:5],
+  type="o",
+  pch=19,
+  col=c("green","red","blue","black"),
+  xaxt="n",
+  xlab="Year-Month",
+  ylab="Value"
+) POSIXct axis.POSIXct(side=1,x=dat$Date_Time,format="%Y-%m")
+-------------------------------------------------------------------------------------------------------
+>YearMonth = c(200506,200509) 
+
+>dt = as.POSIXct(strptime(paste0(YearMonth, 15), "%Y%m%d"))
+>z = rep(0, length(dt))
+>y = rep(c(-1,1), out=length(dt))
+>plot(dt,y, axes=FALSE, ylab="", xlim=c(min(dt)-10e6, max(dt)+10e6), ylim=c(-2,2), pch=15, col="darkblue", xlab="Date")
+>arrows(x0=dt,y0= z, x1=dt, y1=y, length=0, angle=30, col="blue")
+>arrows(min(dt), 0, max(dt), length=0, col="blue")
+>text(dt, y*1.5, c("Ben Franklin arose\nfrom the dead", "Atlantis found"), adj=1)
+>axis.POSIXct(1, dt, format="%y/%m")
+>dt
+[1] "2005-06-15 EDT" "2005-09-15 EDT"
+-------------------------------------------------------------------------------------------------------

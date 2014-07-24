@@ -1,0 +1,890 @@
+rollmean    col = 2    lwd = 2    
+xw    col = 4    
+density    xlim = xr    ylim = yr    col = i    
+density    
+density    lty="dotted"    
+zoo    col="red"    
+bp    
+x    y    
+Z[subset]    col='red'    
+data    data    col='red'    
+rep    type="l"    col="lightgray"    lwd=1    
+test    type="b"    col="#304E67"    lwd=3    
+test    type="b"    col="#974449"    lwd=3    
+hx    type="h"    lwd=linewidth-2    col=fillcol    
+x = bar2[30:    y = predict    
+bp    fit    
+bp[idx]    predict    
+c    c    
+c    c    
+c    c    
+cumfreq2    col="red"    
+
+x    y2    col="green"    
+xv    uyv    lty=2    col=3    
+xv    lyv    lty=2    col=3    
+severity.lm    conf= .95    interval = "confidence"    
+severity.lm    conf= .85    interval = "prediction"    
+p    sgam    lty = 1    
+p    sgam    lty = 2    
+p    sgam    lty = 2    
+loess.smooth    
+c    c    
+c    c    
+c    c    
+x    f    lwd = 2    
+xx    f    col = 'blue'    lwd = 1.2    
+l.fit1    col = 2    lwd = 2    
+x    predict    col = 3    lwd = 2    
+density    
+predict    col='red'    lwd=2    
+smoothingSpline    
+xl    predict    col='red'    lwd=2    
+12 + seq    daily.avg    
+t    fB    lty = 2    
+t    fC    lty = 3    
+x    y    col="red"    
+x    predict    col="red"    
+scatterangle[id]    signal2[id]    col='blue'    lwd=2    
+scatterangle[id]    predict    col='red'    lwd=2    
+x    y    col = "grey80"    y = 1:5    
+xx    predict    col='blue'    
+xx    predict    col='green'    
+xx    predict    col='red'    
+xx    predict    col='purple'    
+xx    predict    col='orange'    
+xx    predict    col='grey'    
+xx    predict    col='black'    
+1:3    rnorm    pch = 2    lty = 2    type="o"    
+x    y    
+x    y2    col = "red"    
+density    
+
+predict    col = "red"    lwd = 2    
+predict    col = "blue"    lwd = 2    
+x    y2    col = "red"    
+x    y    col="purple"    
+x    y2    col = "red"    
+loess    lowess    
+x    y    col="orange"    
+foo    foo    col="red"    foo    FUN=length    freq=F    
+density    col="red"    
+sort    BAR    
+sort    dnorm    col="red"    dnorm    
+Y ~ X    data = pDF    col = "red"    lwd = 2    
+z    
+x_grid    predict    col = "red"    lwd = 3    
+fit ~ w_sp    data = x_grid    col = "red"    lwd = 3    
+upr ~ w_sp    data = x_grid    col = "red"    lwd = 2    lty = "dashed"    
+lwr ~ w_sp    data = x_grid    col = "red"    lwd = 2    lty = "dashed"    
+x_grid    
+X[hpts    ]    
+fit    col=2    
+density    col="red"    
+density    col="red"    
+1:10    rep    lty=i    
+DD2 ~ Timestamp    data = out    type = "l"    col = "red"    
+x=1:length    y=panel    col="red"    
+fit ~ spd    data = x_grid    col = "red"    lwd = thickLineWidth    
+plotroc    plotroc    
+plotroc        col="red"    
+1 - plotroc    plotroc    lwd = 2    lty = 5    
+res    col = "blue"    
+x    y[[1]]    
+x    y[[i]]    col = colors[i - 1]    
+x    y1    col="red"    
+x    y2    col="blue"    
+x    y3    col="green"    
+x    y4    col="darkgray"    
+x[    i]    col=lcol[i]    
+t    x2    lwd=1    col="red"    
+roc2    col="red"    
+mean.yaxis ~ seq    
+mean.mag~class.mids    
+redata[1    ]    type="l"    pch=NA    lwd=1    col="grey"    
+c    type="l"    pch=NA    lwd=1    col="grey"    
+c    type="l"    pch=NA    lwd=1    col="grey"    
+c    type="l"    pch=NA    lwd=1    col="grey"    
+c    type="l"    pch=NA    lwd=1    col="grey"    
+c    type="l"    pch=NA    lwd=1    col="grey"    
+c    type="l"    pch=NA    lwd=1    col="grey"    
+c    type="l"    pch=NA    lwd=1    col="grey"    
+c    type="l"    pch=NA    lwd=1    col="grey"    
+c    type="l"    pch=NA    lwd=1    col="grey"    
+c    type="l"    pch=NA    lwd=1    col="grey"    
+c    type="l"    pch=NA    lwd=1    col="grey"    
+rep    type="l"    pch=NA    lwd=1    col="black"    
+c    type="l"    pch=NA    lwd=1    col="black"    
+c    type="l"    pch=NA    lwd=1    col="black"    
+c    type="l"    pch=NA    lwd=1    col="black"    
+c    type="l"    pch=NA    lwd=1    col="black"    
+c    type="l"    pch=NA    lwd=1    col="black"    
+c    type="l"    pch=NA    lwd=1    col="black"    
+c    type="l"    pch=NA    lwd=1    col="black"    
+c    type="l"    pch=NA    lwd=1    col="black"    
+c    type="l"    pch=NA    lwd=1    col="black"    
+c    type="l"    pch=NA    lwd=1    col="black"    
+c    type="l"    pch=NA    lwd=1    col="black"    
+mysurvfit    col="blue"    lty=1    
+mysurvfit    col="blue"    lty=2    
+mysurvfit    col="blue"    lty=2    
+c    c    
+c    c    
+
+
+x = 1:nrow    y = Toyota    
+x = 1:nrow    y = Mazda    
+x = 1:nrow    y = Renault    
+c    c    
+tail    head    type="o"    cex=0.5    
+tail    1-head    
+x    col = col    bg = bg    pch = pch    type = type    ...    
+x    col = col    bg = bg    pch = pch    type = type    ...    
+x    y    col="blue"    
+x[10:20]    y[10:20]    type="b"    
+tex2    col="red"    
+tex3    col="blue"    
+xcumsor[    perlin*numtri]    type="l"    lwd=2    col=rgb    
+xcumsor[    0.5*numtri]    type="l"    lwd=3    col=rgb    
+xcumsor[        type="l"    lwd=2    col=rgb    
+xcum[    rantri]    type="l"    lwd=1    col=rgb    
+betseq    lowlim    
+stax:endx    qnorm    
+stax:endx    qnorm    
+1:7    exp    
+8:15    exp    data    
+yhat ~ x    data = pred    col = "red"    lwd = 2    
+yhat ~ x    data = pred    
+yhat ~ x    data = pred    subset = x >= xr[1] & x <= xr[2]    lwd = 2    col = "red"    
+week1    type="o"    col="red"    
+week1    type="o"    col="blue"    
+week1    type="o"    col="green"    
+week1    type="o"    col="purple"    
+x[p]    y[p]    col="red"    type="b    
+newx    newy    col="red"    lwd="3"    
+dfr[    1]    dfr[    3]    col="red"    
+c    
+density    
+c    c    col = "steelblue"    lwd = 3    lty = 22    
+x    y1    
+x    y2    
+p    predict    lty=3    lwd=2    
+x    -y    
+1:100    with    
+N0    Ne    
+fitted    col="blue"    
+med~t    data=res.df    col="steelblue"    
+uq~t    data=res.df    col="springgreen"    
+c    c    ...    
+density    col="red"    1000    replace=TRUE    
+h    dens1    col="red"    
+x    dens2    col="darkgreen"    
+unit    unit    gp=gpar    
+cps71    fitted    lty=1    col="blue"    
+cps71    fitted    lty=2    col="red"    
+cps71    coef    lty=2    col="red"    
+cps71    fitted    lty=2    col="red"    
+cps71    fitted    lty=2    col="red"    
+cps71    gradients    lty=2    col="red"    
+cps71    gradients    lty=2    col="red"    
+c    c    
+c    c    
+density    lty=3    col="red"    
+xvec    predict    TRUE    FALSE    FALSE    FALSE    
+questionnumbers    result1    col = 'blue'    type = 'b'    
+x    y    
+P2    P2    col="green"    
+xy    col="red"    lwd=5    
+xy    xy    type="o"    cex=0.5    
+xy    1-xy    type="o"    cex=0.5    
+c    c    
+6:36    6/    type="o"    
+x    sin    col='yellow'    type='l'    
+smoo    smoo    
+density    col = "red"    
+
+x    c    type="S"    
+density    
+density    
+density    type = "n"    
+seq    100*dpois    
+prediction    col=lcol    
+loess.smooth    col = "green"    
+dat    rollapply    
+ps    col=2    
+dy    col = "blue"    
+1:3    rnorm    pch = 2    lty = 2    type="o"    
+data    data    col = "steelblue"    
+data    data    col = "pink"    
+xs    predict    col="gray"    
+xs    qM    
+b[    'dn']    col='red'    
+b[    'mavg']    col='blue'    
+b[    'up']    col='red'    
+xl    predict    y    
+predict    
+xl    predict    
+predict    col="red"    
+1:10    Pf[    i]    type = "l"    col="red"    lwd=5    ylim=c    
+x1    y1    col = 'blue'    
+simulate    col="red"    
+SwStr    P    
+h    c    type='s'    
+h    c    type='h'    
+h    c    type='h'    
+h    rep    type='S'    
+smooth.spline    
+d    fitted    
+xvec    predict    
+xvec    predict    
+mp    data.30.c    col=34    
+points    col='red'    
+c    c    
+c    c    col = "red"    
+newx    predict    col='blue'    lwd=2    
+x    predict    col = "red"    lwd = 2    
+c    c    col = "red"    
+c    c    col = "green"    
+c    c    col = "blue"    
+c    c    col = col    
+ev1dens    ev1dens    lty=3    lwd=2.5    col="red"    
+predict    
+predict    
+xs    ys    
+res[    1]    res[    3]    col='red'    
+tt    
+tt    
+indiv    indiv    col = "blue"    
+indiv    indiv    col = "yellow"    
+indiv    indiv    col = "green"    
+b[[2]]    
+
+offer[i]    predict    
+offer    
+offer    
+a.hole    col='red'    
+x[g=="model"]    y[g=="model"]    col = "black"    
+
+m ~ unique    
+i+        col=max    pch=i    lty=i    type="b"    
+i+        col=max    pch=i    lty=i    type="b"    
+b    lty=2    
+c    lty=3    col='blue'    
+y~x    
+barp    1000*dnorm    
+1:10    1:10    type="l"    lty=2    
+2:4    10:8    col=2    type="l"    
+6:9    c    col=3    type="l"    
+0:60    
+survfit    col='green'    
+survfit    col='green'    
+predict    seq    col="red"    
+predict    seq    col="red"    
+x    pnorm    lwd=2    
+index    coredata    lwd=3    
+v    
+dens    dens    
+a_sequence    b_sequence    
+b_sequence    a_sequence    
+c    c    type = "o"    pch = 25    
+c    c    type = "o"    pch = 25    
+D2    D2    lty=2    col="blue"    
+D3    D3    lty=3    col="green"    
+1:10    runif    col=2    lty=2    
+1:10    runif    col=3    lty=2    
+c    c    
+smooth.spline    col = "red"    
+c    1- rep    
+scp    col="white"    
+ts    
+c    
+dataPlot1[1]    lty=1    col="blue"    
+dataPlot1[2]    lty=2    col="red"    
+dataPlot1[3]    lty=2    col="forestgreen"    
+rbind    col = "green"    lwd = 2    
+1:length    conv.series    ...    
+beta    quadratic    lty=2    col=3    
+DNase1    predict    
+xNew    yNew    
+x = c    y = Y    gp = gpar    
+x = c    y = Y    gp = gpar    
+x    smooth    
+density    col = 'red'    
+bf.red    lo.pred    
+x=X    y=Y    
+new    predict    
+temp1    col="red"    
+y~x    temp2    ...    
+obrv[1:20]    value[1:20]    col="red"    
+density    lty = d    
+dd    dd    col=2    type="b"    
+dd    dd    col=3    type="b"    
+sm    col = "red"    
+density ~ V1    data = dat    col = "red"    data = dat    type = "n"    ylim = c    
+density ~ V1    data = dat    col = "red"    
+yearvec    predict    
+yearvec    predict    
+as.POSIXlt    MAX    lty=2    
+as.POSIXlt    MIN    lty=2    
+x1    predict    col="red"    
+pframe    predict    
+x=c    y = c    default.units='native'    
+x=c    y = c    default.units='native'    
+x=c    y = c    default.units='native'    
+x=c    y = c    default.units='native'    
+x=c    y = c    default.units='native'    
+x=c    y = c    default.units='native'    
+x=c    y = c    default.units='native'    
+x=c    y = c    default.units='native'    
+x=c    y = c    default.units='native'    
+x=c    y = c    default.units='native'    
+t    dat[    i]    
+emp_dens    lty=1    
+dat_dens    lty=1    col="red"    
+c    c    
+F    T    
+dat    dat    col=x[2]    
+tr_error    type='l'    col='red'    
+xy    xy    col = gray    lwd = .5    
+circle    col = "#66666650"    
+circle    col = "#66666650"    
+tr    col = "black"    
+X    
+X    
+cos    sin    
+a    a    type="b"    col="red"    pch=19    
+b    b    type="b"    col="blue"    pch=19    
+simulate    col="blue"    
+x    y    c    0    c    colvar=xydist    lwd=2    
+pred    col=2    
+pred.prime    col=2    
+x[    1]    x[    3]    col = col[1]    lwd=2    
+x.xfit/x.xscalefactor    x.yfit    col="red"    
+y.yfit    y.xfit/y.xscalefactor    col="red"    
+seq    xy    col=dcol    
+yy    seq    col=dcol    
+c    
+Rvalues    predict    
+x[    line]    y[    line]    cols[    'red']    cols[    'green']    cols[    'blue']    lwd=lwd    lty=lty    
+xv    yv    
+predict    
+seq    predProbs    col=2    lwd=2    
+deseason    2]    col="red"    
+myd[x    ]    myd[x    
+lake    type="b"    col="darkgreen"    lwd=3    
+xvec    logpred    
+x    predict    col='red'    
+log    log    col="red"    
+pdays    lo    
+x.pos    Closes    col=x@colors    type=x@line.type    
+gi    gi    
+xdens    xdens    col='blue'    
+ydens    ydens    col='blue'    
+density    col=2    
+density    col="blue"    
+a    z.pre    col="red"    
+tri[1    c    tri[2    c    type="l"    
+x    y    col="black"    lty="dotted"    y    main="X vs Y"    xlab="X"    ylab="Y"    
+x    y    col=col    
+xt    yt    ...    
+1:10    1:10    type = "l"    xlim = c    
+c    Placement    col=cols[i]    lwd=2    
+xfit    yfit    col="blue"    lwd=2    
+1:10    y    
+lower    col="gold"    
+upper    col="gold"    
+x    y    gp = gpar    default.units = "native"    
+yz    col = "red"    
+density    ylim=c    
+density    col="red"    ylim=c    
+dens2    col = "red"    
+den1 <-density    col="blue"    polygon    
+density    col="green"    
+density    col="blue"    
+est    
+estDecon    lty=2    
+cos    sin    
+cos    sin    col=l    lwd=3    
+cos    
+x    y[    2]    col=mean.col    lwd=mean.lwd    
+x    y[    3]    col="blue"    
+x    y[    6]    col="red"    
+x    y[    3]    col="blue"    
+x    y[    6]    col="red"    
+x_mod    y_mod    col='white'    lwd=10    
+x_mod    y_mod    col=color    lwd=5    
+y    type="l"    col="green"    
+resid    type="l"    col="blue"    
+fitted    col="green"    lwd=2    
+Dataset_2    Dataset_2    
+density    col=2    freq=FALSE    
+density    col=2    
+x1    smooth    col='blue'    lwd=2    
+x1    ksmooth    col='red'    lwd=2    
+x1    ksmooth    col='green'    lwd=2    
+x1    ksmooth    col='orange'    lwd=2    
+seq    predict    
+c    c    type="b"    lwd=5    col="white"    
+x0    predict    col = "blue"    
+x0    predict    col = "red"    
+density    
+x=c    y=predict    col="red"    type="b"    
+x=c    y=predict    col="red"    type="b"    
+ssizevec    powvec2    col="red"    
+x    y    type = type    ...    
+x    IntVector    col = "green"    
+myd    myd    pch=19    cex=.75    col="blue"    type="o"    
+step~events    data=df[df    ]    type="s"    col=2    
+step~events    data=df[df    ]    type="s"    col=3    
+xi    yi    type='s'    
+range    c    
+xi    yi    type='h'    
+predict    ...    
+
+den[[i]]    col=i    
+df2    
+d    predict    lty=    
+d    predict    lty=    
+dat    dat    col="red"    
+dat    dat    
+mfit.htx    col=2    fun=function    
+mfit.htx    col=2    fun=function    lty = "dashed"    conf.int = "only"    
+1:9    1:9 * fit1    col="red"    
+9:17    1:9 * fit2    col="blue"    
+x1.eval    y.eval    
+x1.eval    y.lower.ci    lty=3    
+x1.eval    y.upper.ci    lty=3    
+p1 ~ x    data = r1    col = "red"    
+p2 ~ x    data = r2    col = "blue"    
+split_dat[[i]]    
+upper95.CI ~ p.move    option    
+lower95.CI ~ p.move    option    
+3+aa*cos    foo    3]+bb*sin    
+low    type="l"    
+c    matrix[    j]    col=j    
+x=c    y=c    gp=gpar    
+x=c    y=c    gp=gpar    
+x    y    gp=gpar    default.units = "npc"    
+x    y    gp=gpar    default.units='naif'    
+predict    col="red"    
+predict    col="purple"    
+x=xval    y=ab    col="red"    
+x=xval    y=ab    col="blue"    
+z    
+xvals    predict    
+SL    
+rollmedianR    lwd=2    col="Red"    
+trans3d    col="Red"    cex=2    
+
+chx    
+xcoord[hpts]    ycoord[hpts]    col = lcolor    
+x    predict    
+x    
+unit    
+df    fit_line    col="red"    
+df    log10    col="blue"    
+df    10^fit_line    col="red"    
+df    fit_power    col="blue"    
+x = d    y = d    lwd = 2    
+x = d    y = cumsum    lwd = 2    
+lowess    type = "p"    col = "red"    pch = 1    
+lowess    type = "p"    col = "blue"    pch = 1    
+newx    preds[    3]    lty = 'dashed'    col = 'red'    
+newx    preds[    2]    lty = 'dashed'    col = 'red'    
+df    df    lwd = 2    
+df    df    col="red"    lty=2    
+df    df    col="red"    lty=2    
+perf2@x.values[[1]]    perf2@y.values[[1]]    col = 2    
+x    y[    i]    col=Col.rar1[i]    
+T[-c    ps    col=3    
+newx    prd[    2]    col="red"    lty=2    
+newx    prd[    3]    col="red"    lty=2    
+ctlns[[x]][[2]]    ctlns[[x]][[3]]    
+c    
+lowess    lwd=2    col="darkblue"    
+ctlns[[1]]    ctlns[[1]]    lwd=4    col="darkblue"    
+low    low    
+low    low    
+low    low    
+c    c    
+c    c    
+c    c    
+c    c    
+c    c    
+c    c    
+c    c    
+c    c    
+c    c    
+c    c    
+c    c    
+c    c    
+x = pred    y = pred    col = col.line    lty = lty    lwd = lwd    ...    
+dd    dd    
+x0    predict    
+x    est    col="white"    
+lowess    
+xvec    pq    col=2    
+predict    
+13:24    predict    
+x    dnorm    
+m    col=2    
+h1    h1    t="S"    
+x    x_total    col=4    lty=2    
+c    c    gp=gpar    default.units="native"    y=0    width=0.5    height=1    just=c    y=0    width=0.5    height=1    just=c    
+1:10    predict    
+seq_along    x[[i]]    
+2+c    3+c    
+X2[ox2]    fitted    
+x.t    y.c    col='red'    
+x    
+x    y    
+data1    col="blue"    lwd=1    
+m    col=2    
+x    dcauchy    col="red"    
+x    y    
+pct_used    
+
+state.map.IOAPI.shp    lwd=0.8    
+predict    
+s2    
+bacteria    bacteria.glm    col="red"    173.44    30    
+y/40~x    
+power~time    B    
+
+
+seq    
+seq    
+d    col="red"    1    1    
+x[-1]    mod    col = 'red'    
+x[-1]    mod2    col = 'green'    
+x[-1]    mod3    col = 'green'    
+fitted    lty = 1    
+fitted    lty = 2    
+dat    
+m    col=2    lwd=2    
+m    col=3    lwd=2    
+m1    col=2    
+m2    col=4    
+dbh    h    
+fitted    df    
+yfit_healthy        col="blue"    lwd=2    
+yfit_diseased        col="red"    lwd=2    
+Res[    1]    col="red"    
+Res[    2]    col="red"    type=o    
+Res[    3]    col="blue"    
+Res[    4]    col="blue"    
+Res[    5]    
+Res[    6]    
+c    c    col="red"    
+c    c    col="blue"    
+c    c    
+unique    fit    
+xval    
+xval    
+x=0    y=c    default.units="npc"    
+x=c    y=0    default.units="npc"    
+x=0    y=c    default.units="npc"    
+x=c    y=0    default.units="npc"    
+x=c    y=0    default.units="npc"    
+x=plot_Loc    y=plot_Loc    default.units="native"    
+x=median    y=plot_Loc    default.units="native"    
+x=median    y=c    default.units="native"    
+x=plot_Loc    y=median    default.units="native"    
+x=plot_Loc    3]]    y=c    default.units="native"    
+x=plot_Loc    4]]    y=c    default.units="native"    
+m    predict    col='red'    
+xl    a    col="blue"    
+c    c    col=i    
+x[1:1000]    fitted.values[1:1000]    col="red"    lwd=2    
+x[1:1000]    pred.lower[1:1000]    lwd=2    col="blue"    
+x[1:1000]    pred.upper[1:1000]    lwd=2    col="blue"    
+x=0    y=c    default.units="npc"    
+x=c    y=0    default.units="npc"    
+r    tN    type='h'    col='red'    lwd=2    
+c    c    
+
+mp[2    ]    df    col="blue"    
+mp[2    ]    df    col="green"    
+data    lw1    col="red"    lwd=3    
+rep    
+dnorm    col="blue"    lty="dotted"    from=ToBeFilled    to=ToBeFilled    col="blue"    lty="dotted"    mean = mean    
+xt    yt    ...    
+spline    col = 2    
+year    ger.90.10.ratio    
+year    ger.90.10.ratio    
+def='native'    x=c    y=0    arrow=arrow    
+def='native'    y=c    x=0    arrow=arrow    
+data    
+na.omit    col=2    aes    
+x.cord[    x]    y.cord[    
+1:10    sample    pch=1    type="o"    
+1:2    c    alpha=0.5    ...    
+x    y    
+x=unit    y=0    default.units="native"    
+x=0    y=c    default.units="native"    
+predict    
+SESSION    MEANOVERLAP    type='b'    col='blue'    
+SESSION    MEANWIDEANGLE    type='b'    col='green'    
+x ~ y    data = pred    type = "l"    col = "red"    lwd = 1    
+x=x[    i]    y=y[    i]    col=col[i]    lwd=10    lend=1    
+newdata    predict    col="red"    
+rvec    pred    col=2    lwd=2    
+rvec    true    col=4    lwd=2    
+data[    4]    data[    3]    type='l'    col='green'    
+data[    4]    data[    2]    type='l'    col='red'    
+yhat ~ x    data = pdat    lwd = 2    col = "red"    
+upper ~ a    data = pdat    subset = want    lty = "dashed"    
+lower ~ a    data = pdat    subset = want    lty = "dashed"    
+upper ~ b    data = pdat    subset = want    lty = "dashed"    
+lower ~ b    data = pdat    subset = want    lty = "dashed"    
+upper ~ a    data = pdat    subset = want    lty = "dashed"    
+lower ~ a    data = pdat    subset = want    lty = "dashed"    
+upper ~ b    data = pdat    subset = want    lty = "dashed"    
+lower ~ b    data = pdat    subset = want    lty = "dashed"    
+data    p[3]*dnorm    
+data    p[6]*dnorm    col=2    data    6    .6    .02    8.3    0.10    .002    control=list    method="L-BFGS-B"    lower=c    
+yhat ~ x1    data = pdatx1    col = "red"    lwd = 2    
+yhat ~ x2    data = pdatx2    col = "red"    lwd = 2    
+data    data    type='l'    col="blue"    
+c    c    type="l"    lty=2    lwd=0.5    col="black"    
+my.comb[[i]]    col="red"    
+beforendafterdata[    x]    ...    
+
+loess.fit    loess.fit    ...    
+dens    col="red"    lwd=2    
+density    col='red'    
+tmp    tmp    col='green'    
+file2    file2    col="blue"    
+density    col = "red"    
+density    col = "green"    
+density    col = "blue"    
+density    col = "yellow"    
+z[    2]    col='red'    
+t    predict    
+t    predict    col="red"    lwd=3    
+x    hx    
+density    
+density    
+x    y    col="blue"    lwd=2    
+s    dnorm    col="red"    
+c    
+x<-c    a+b*x^k    col='red'    
+x    y    ...    
+
+
+
+
+data.frame    lty="twodash"    col="deepskyblue4"    lwd=4    
+data.frame    lty="twodash"    col="deepskyblue4"    lwd=4    
+data.frame    lty="twodash"    col="deepskyblue4"    lwd=4    
+DF    predict    
+d[    1]    d[    2]    lty=ltys[i]    col=cols[i]    lwd=4    
+xx    yy    col="purple"    
+Freq ~ x    xtds    type="h"    col="red"    
+x    y    
+d[ind    ]    lwd = 2    
+greatCircle    col = "firebrick"    
+date    valueymod    type = "l"    col = "red"    
+a    col=cl    5.0    100    "red"    1    
+c    c    
+c    c    
+c    c    
+c    c    lty="dotted"    
+c    d[1    3:4]    
+c    d[2    3:4]    
+c    d[3    3:4]    
+c    d[1    3:4]    
+c    d[2    3:4]    
+c    d[3    3:4]    
+xts    col = 2    
+xts    col = 2    
+my.vwap    
+x[sel]    fitted    col="blue"    lwd=3    
+x[!sel]    exp    col="navy"    lwd=3    
+x    fitted    col="orange"    lwd=3    lty=2    
+fit[1]    lwd=2    col="black"    xscale=365.24    
+predict    
+xx    pred    
+dat    dat    
+data    data    
+x    y    'l'    lwd=.00000000001    col="black"    
+index    lo    col='purple'    
+x2    y2    
+x + x.offset    y + y.offset    lend=2    ljoin=2    lwd=lwd    col=2    
+x - x.offset    y - y.offset    lend=2    ljoin=2    lwd=lwd    col=4    
+boundaries    
+dat[    c    type="l"    col="red"    
+i + my.list[[i]]/scale.fact    
+male    pch=16    col = "red"    
+female    pch=16    col = "green"    
+linexy    col=linecol    y=36.851    ratio=F    metric = T    relwidth=0.2    col ="white"    linecol="white"    
+x    Change*1000    type="b"    
+data[    i]    
+x    Change    type="b"    
+MonthNum    
+yd    yd    col="red"    
+yd    xd    col="green"    
+c    c    
+c    
+lowess    lowess    
+lowess    lowess    col="red"    
+density    
+
+ecdf    col="red"    col.01line="white"    
+ecdf    col="green"    col.01line="white"    
+pts    f2    col="red"    type="b"    pch=16    
+pts    f3    col="green"    type="b"    pch=16    
+ecdf    col="red"    
+ecdf    col="green"    
+x    z    lwd=2    col="red"    
+time2    lfun[[ii]]    
+xv    yv    
+density    lty = 2    lwd = 2    
+my.datamat[i    ]    
+datt    col = "dark grey"    
+x    y    lwd=1    
+x    y    lwd=1    
+ifelse    x[    
+x = time    y = ratio.e    col = cc[src]    
+MeanRewards[    "epsi1"]    col = 'orange'    lwd = 2    
+MeanRewards[    "epsi2"]    col = 'navy'    lwd = 2    
+x[    i]    col = colors[i]    ...    
+dat[    1]    dat[    2]    col=color    
+fitted    data=df    
+PTARcCIage4[[j]]    PTARcCIage4[[j]]    ...    
+
+out    
+1:length    x    
+b.pred    col="green"    lty="dashed"    
+x    y    
+x    y    
+rbind    
+exy[dist2center == max    ]    
+newdf    exp    
+0:2    allPAL.DE[i    ]    col=i    lwd=2    
+x    predict    
+year.day[[year.index]]    # x coordsusage.per.day.grouped.by.year[[year.index]]    # y coordscol=colors[year.index]    
+fitted ~ Time    data = sucrose.line    xlab ="Time of the presentation of the danger cue"    ylab="Proportion of wasps leaving the patch"    
+sizes    type = "s"    
+msizes    type = "s"    
+x=xd    y=yd+    ylim=c    col="grey50"    type="l"    lwd=2    
+plotexpl    predresp^    
+predict    
+predict    col="red"    
+dpois    
+time    surv    
+1:24    bpt    ]    
+v2    lwd=1    col="red"    
+x    myf    col="red"    
+data3    ...    
+x    y1    pch=18    cex=.5    col="red"    type="b"    
+x    y2new    pch=24    cex=.5    col="green"    type="b"    
+x    fy    col="blue"    lwd=2    
+1:n    bVals    col = point_colors[2]    
+xpos    bVals    col = point_colors[2]    
+data    data[    i + 1]    type="l"    col=colors[i]    
+obs_v_exp    col="red"    
+obs_v_exp    col="red"    
+x    y    
+rep    c    col=i+1    type="l"    
+c    rep    col=i+1    type="l"    
+xycoords    xycoords    ...    
+xycoords    xycoords    lcol    ...    
+yy    
+freq1    type="l"    col=    
+x    ...    
+seq    pnorm    col=2    
+xvals    pllogis    col=2    
+r.sims[    i]    type="l"    col="#ff000010"    
+r.sims[    i]    type="l"    col=color[i]    
+x=1:60    y=predict    
+which    na.omit    col=i    
+smoothCounts    
+deathrow    deathrow    col="red"    
+deathrow    deathrow    col="green"    
+xseq    sapply    
+smoothingSpline    col = "darkolivegreen3"    lwd = 2    
+c    c    type="l"    col="blue"    
+c    
+log    exp    col="red"    exp    col="red"    
+predict    lwd=4    col='black'    
+seq    Tb    type="b"    lwd=2    
+c    c    lwd = 2 * s[row.o    row.d] / mean    
+k    y2    type='l'    col="green"    ylim=range    
+k    y3    
+p    y2    type='l'    col="green"    ylim=range    
+p    y3    col="blue"    
+rollmean    "SPY.Open"]    col="red"    
+rollmean    "AAPL.Open"]    col="red"    "SPY.Open"]    
+x=c    y=c    col=col    lty="dotted"    lwd=0.5    
+gC    col=col    lwd=0.5    
+1:366    Quantiles["90%"    ]    col = gray    lty=4    
+1:366    Quantiles["10%"    ]    col = gray    
+1:366    Quantiles["100%"    ]    col = gray    
+1:366    Quantiles["0%"    ]    col = gray    lty=4    
+1:366    Mean    lwd=3    
+x0[i    ]    ...    
+seq    qs[2    ]    lty=1    lwd=2    
+seq    qs[3    ]    lty=2    col=2    
+x=c    y=50-1*c    
+c    c    
+c    c    
+
+x    y2high    col='red'    
+x    y2low    col='green'    
+spline    col = 4    
+d    col = "darkgrey"    
+x[    i]    y[    i]    type = type[i]    lty = lty[[i]]    lwd = lwd[i]    lend = lend[i]    pch = pch[i]    col = col[i]    cex = cex[i]    bg = bg[i]    
+front.lim    front.lim    col="red"    lwd=2    c    type="n"    xlab=""    ylab=""    
+xfit    yfit    col="black"    lwd=2    
+mydensity    
+mydensity    
+myx    normal * multiplier[1]    col = "blue"    lwd = 2    
+fit    col="red"    
+Time    pred    col="blue"    
+xnew    exp    
+0.5:12.5    c.out    col="red"    lwd=3    
+spa    col="light blue"    
+c    c    col = "red"    
+c    c    col = "blue"    
+x=c    y=c    
+density    col='red'    lwd=3    xlim=c    
+dfP    dfP    lwd=2    col="blue"    
+x    y    col = "red"    lwd = 2    
+x    y    col = "red"    lwd = 2    
+x    y    col = "red"    lwd = 2    
+
+
+
+x    y2    col="blue"    
+x    z    col="red"    
+density    
+cumsum    
+cumsum    
+x    y    
+x.sub    col = 'red'    lwd = 2    xlim = c    
+x    y2    type="l"    lwd=2    col="blue"    
+xx    
+hx    
+x2    type='l'    col='red'    
+x    y    ...    
+as.numeric    df    type="b"    col="blue"    
+c    c    
+c    c    
+c    c    
+x=x[c    y=y[c    col=col[n]    
+unrate.df    
+unrate.df    
+zz    zz    type="h"    lwd=50    lend="butt"    y=c    type="n"    
+zz    zz    type="h"    lwd=50    lend="butt"    
+zz    zz    type="h"    lwd=48    lend="butt"    col="white"    
+h    
+xfit    yfit    col="green"    lwd=2    
+dens    
+density    col="red"    
+b    Data    col=vencido.col    lwd=2    
+b    Data    col=castigos.col    lwd=2    
+1:140    value.pred12    col = "red"    period    
+DF[    2:3]    
+path.1[1:i    ]    
+path.2[1:i    ]    col="red"    l2    

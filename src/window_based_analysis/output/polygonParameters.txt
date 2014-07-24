@@ -1,0 +1,150 @@
+
+1:9
+blue, col="blue", border=NULL
+bnd
+bz, bz, col=rgb, border=NA
+c
+cbind, col = "blue"
+c, c
+c, c, border=border, col=coli]
+c, c, border=NA, col=gray
+c, c, border=NA, col=rgb
+c, c, border="red", col="black", lwd=4, c, c, c
+c, c, col=1
+c, c, col="antiquewhite1"
+c, c, col = as.character, border = NA
+c, c, col="blue1"
+c, c, col="blue4"
+c, c, col = col, border=NA
+c, c, col=colcatNumber], border=NA
+c, c, col="cornflowerblue", border=NA
+c, c, col="darkblue"
+c, c, col="gray"
+c, c, col='gray', border=NA
+c, c, col="green1"
+c, c, col="green4"
+c, c, col="grey"
+c, c, col="grey70"
+c, c, col = "grey75"
+c, c, col = "grey75", border = FALSE
+c, c, col="grey80"
+c, c, col = 'grey80', border = NA
+c, c, col = "grey", border = NA
+c, c, col=k
+c, c, col='pink'
+c, c, col="purple"
+c, c, col="purple1"
+c, c, col="purple4"
+c, c, col='red'
+c, c, col="red", density=10
+c, c, col="tan"
+c, c, col="white"
+c, c, lty=1
+ch.f, lwd=3, col=rgb, "darkred", "darkblue"
+ch.g, col=rgb, lty=3, lwd=3
+chuld, lty=2, border="gray"
+coords, 180, by=1, 90
+coords, col='red', border=F
+cord.x, cord.y, col='skyblue'
+d1, d1, col=rgb, lty=0
+d2, d2, col=rgb
+data, data, col='violetred4', border=NA
+dat, dat, col='violetred4', border=NA
+datt.neg, col = "red", border = NA
+datt.pos, col = "blue", border = NA
+densCarrot, density = -1, col = carrotCol
+densCuke, density = -1, col = cukeCol
+extpoly, border=NA, col="white"
+fun1, pmin, col="gray"
+green, col="green", border=NULL
+index, c, col="red"
+k, col = "light grey", border = NA, density = 20
+mapproject, col=COLi], border=COLi], lwd=0.3
+max, max
+my.shape
+outerbox.x, outerbox.y, col="white", border="white"
+p
+p11, ], p12, ], ell, 1], ell, 2]
+p1, p1, border=2
+p2, p2
+p3, p3, col=rgb
+poly, lwd=3
+polysi]], border=borderi], col=coli], lwd=lwdi]
+polysi]], density=10, angle=-45, border=NA
+polysi]], density=10, angle=45, border=NA
+prep.x, prep.y, col=coli], border = NA
+purple, col="purple", border=NULL
+rate1, rate2, ell, 1], ell, 2]
+red, col="red", border=NULL
+s1]], s1]], col="#eeeeee"
+spline.poly, border="red", lwd=2
+s.xi, ], s.yi, ], lwd = lwd, lty = lty, col = col.starsi], ], s.yi, ], lwd = lwd, lty = lty, border = col.linesi], col = col.starsi], 1:7], locations = c, radius = FALSE
+tmp, tmp, col = "blue"
+x
+x1, y1
+x2, y2
+x2, y2, col = 'green', border = NA
+x3, y3, border=NA, col="grey"
+x3, y3, col=rgb, border=NA
+x=a, y=a, border="grey75", col="black"
+x=.box_X, y=.box_Y, default.units="native", gp=gpar
+x = c
+xcoords, ycoords, ...
+xcoords, ycoords, col = cell.cols, border = NA
+x=cuts, y=cuts, col=cols
+x=c, y= c
+x=c, y=c, col=adjustcolor, border=NA
+x.c, y.c, col=col, border=border
+x=c, y = c, col = "green4"
+x=c, y=c, col="grey"
+x=c, y=c, col="pink"
+x= c, y=c, col=rgb
+x = c, y = c, col=rgb, border='white'
+x = c, y = c, col=rgb, border="white"
+x=c, y=c, default.units="native", gp=gpar
+x = c, y = c, density=10, angle=30, border=NULL
+x=c, y=c, density=10, angle=45
+x = c, y = c, density=10, angle=60, border=NULL
+x=c, y=c, density=3, col="red"
+xd, yd+, col="black", border=NA
+xi], yi]
+xi, yi, border=border, lwd=lwd, col=coli]
+x, pmin, col="gray", y2, type="l", lwd=2, col="red"
+x, pmin, density = 10, angle = -45
+x.pol, y.pol, col=col.poly1, lty=0
+x.pol, y.pol, col=col.poly2, lty=0
+x.pol, y.pol, col=poly.col, lty=poly.lty
+x=poly.x, y=poly.y, col=col
+xp, yp, col="#ffeecc", border=NA
+xS, yS, border=NA, col=rgb
+X.Vec, Y.Vec, col = "grey", border = NA
+x=v.x, y=v.y
+xv, yv, border = border, col = colcircle], lty = lty, lwd = lwd
+x, x
+xx1, yy1, lwd=3, col="wheat"
+x = xA, y = yA, gp =gpar
+x = xB, y = yB, gp =gpar
+xx, c
+x = xD, y = yD, gp =gpar
+xx.poly, col=alpha
+x = xs, y = ys
+xxs, yys, lty = pltysi - 2], lwd = plwdsi - 2], border = pcolsi - 2]
+xx, yy, ...
+x=x, y=y1, col='green'
+xx, yy, col="#A9A9A930", border = NA
+xx, yy, col="gray"
+x=x, y=y, col='red'
+xx, yy, col=rgb, border = NA
+xx *, yy *, lty = cglty, lwd = cglwd, border = cglcol
+x, y, col=col, border=NA
+x, y, col = 'green', border = NA
+x, y, col = 'green', border = NA, from=0, to =1, col="darkblue"
+x, y, col="grey"
+x, y, col="hotpink", -10, -15, 15, -10, 10
+x, y, col="red", border=NA
+x, y, col='violetred4', border=NA, alpha=0.3
+x, y, density = 20
+x, y, gp = gpar
+xy.mat, 1], xy.mat, 2], col = c, border = c
+xy.poly, col=alpha
+yellow, col="yellow", border=NULL

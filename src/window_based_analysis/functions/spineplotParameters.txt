@@ -1,0 +1,4 @@
+improved ~ treatment    yaxlabels=abbreviate    5    
+fail~temperature    yaxlabels=NA    
+fail~temperature    
+improved    treatment    

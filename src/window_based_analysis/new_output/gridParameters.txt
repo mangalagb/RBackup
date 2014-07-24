@@ -1,0 +1,665 @@
+1:n*0*1:n
+dimnames
+dimnames
+x[*0*1]*0*x[*0*2]
+1:10*0*1:10
+1:nrow*0*1:nrow
+1:10*0*letters
+x=x
+x=1:3*0*y=1:3
+x=1:3*0*y=1:3
+
+nx = NA*0*ny = 5*0*col = "lightgray"
+alpha*0*beta
+x=1:10*0*y=1:6
+X=1:3*0*Y=1:2
+ff * 1L:ncol*0*ff * nrow:1
+5*0*5*0*c
+1:6*0*1:6*0*1:6
+1:6*0*1:6*0*1:6*0*1:6
+1:6*0*1:6*0*1:6*0*1:6
+goodPos*0*-badPos
+goodWords*0*badWords
+col = 'gray'
+h=FALSE*0*v=-1
+ran1*0*ran2*0*ran3*0*ran4*0*ran5
+x=0:9*0*g=reg
+x=seq*0*g=levels
+facet=LETTERS[1:4]*0*group=letters[1:5]*0*subject=factor
+seq_along*0*seq_along
+X = X*0*Y = Y
+c*0*c*0*c*0*c*0*c
+
+1:3*0*1:3
+X = 1:500*0*H = seq
+A*0*B*0*C*0*y = B*0*z = C
+x=A*0*y=B*0*z=C
+state=gl*0*gender=gl
+gamma=gamma*0*beta=beta
+x=1:3*0*y=1:2
+True
+a*0*b*0*c*0*dimension = 1
+nx= NULL*0*ny = NULL*0*lty = 1*0*lwd = 1*0*col="gray60"*0*equilogs = TRUE
+p*0*10
+p*0*10
+rnm*0*cnm
+x=letters[1:2]
+x
+c*0*c*0*c*0*c
+relGPA*0*avgGPA
+x = 1:ncol*0*y = 1:ncol
+unique*0*unique
+unique*0*unique
+1:10*0*1:10
+a=1:10*0*b=1:10*0*p=1:10*0*q=1:10
+A=LETTERS[1:5]*0*B=LETTERS[1:5]
+fac1*0*fac2
+dfx*0*dfx*0*wrk[[1]]
+x=1:4
+0:1*0*0:1*0*0:1
+A
+counties*0*states*0*years
+x=x*0*y=y
+x=x*0*y=x
+x=x*0*y=y
+col1=col1
+col1=letters*0*col2=letters*0*stringsAsFactors=FALSE
+x=1:nrow*0*y=1:ncol
+prefix*0*roots*0*suffix
+prefix*0*roots
+X = xholes*0*Y = yholes
+letters[1:4]*0*letters[5:8]
+
+observer=LETTERS[1:3]
+powers
+colnames*0*colnames*0*1L*0*function*0*x["Var1"]] + df2[*0*x["Var2"]]*0*1L*0*function
+A1=*0*A2=1:3*0*A3=c
+
+dat*0*dat
+seqs*0*seqs*0*stringsAsFactors=FALSE
+foo
+x=x*0*y=y
+x=1:2*0*y=1:3
+a=1:2*0*b=1:2
+1:6*0*1:6
+1:6*0*1:6*0*1:4
+Study = 1:4*0*Experiment = 1:3*0*Response = LETTERS[1:4]
+x = x*0*y = x
+x = unique*0*y = unique
+ksym=symbol[1:k]*0*jdates=dates[1:j]
+nx = NA
+
+station = rep*0*member = rep
+x=x*0*y=y
+x = colnames*0*l = c
+x=x*0*y=y
+mech=1:mechrow*0*pro=1:prorow
+x=x*0*y=y
+c*0*1:
+seq*0*seq
+
+
+DischargeMonth=1:12*0*DischargeYear=2010:2011
+trial=1:10*0*stim1=1:5*0*stim2=1:3
+y*0*x
+length*0*length
+list
+colors*0*days
+time=1:100*0*Location=factor
+a = 1:3*0*b = 1:3*0*cbind
+1:nx*0*1:ny
+
+l
+nx = NA*0*ny = NULL
+x = 1:4*0*y = 1:4*0*-10
+1:30*0*11*0*1900:2011
+day = 1:30*0*month = 11*0*year = 1900:2011
+
+
+10*0*10
+neg=1:nrow*0*pos=1:nrow
+0:1
+
+
+nx=64*0*ny=46*0*lty="solid"*0*col="gold"
+nx=32*0*ny=23*0*lty="solid"*0*col="gray65"
+foo.x=unique
+nx=NA*0*ny=NULL
+a
+a=1:4*0*b=1:4
+a*0*a
+NA*0*NULL
+nx=NA*0*ny=NULL
+nx=NA*0*ny=NULL
+1:nrow*0*IndependentVariable1*0*IndependentVariable2
+1:360*0*1:180
+d=1:10*0*j=1:3*0*i=1:10
+
+h = -1*0*v = 0*0*col = "gray"
+seq*0*seq
+nodes*0*nodes
+colnames*0*rownames
+rep
+lty = 1*0*col = 'white'
+experiment = factor*0*status = factor*0*reps = seq_len
+
+rows*0*cols*0*stringsAsFactors=FALSE
+market = LETTERS[1:5]*0*date = Sys.Date*0*sitename = letters[1:2]
+Hostname = letters[1:2]*0*Date = Sys.Date*0*MetricType = LETTERS[3:4]
+x1  = c
+1:3*0*1:3*0*1:3*0*1:3
+paste*0*paste
+id = 1:35000*0*stratum = letters[1:10]
+x = 1:ncol*0*y = 1:ncol
+i=71:80*0*j=63:78
+
+
+
+x=x*0*y=y
+1:5
+newdat.list
+x=x*0*y=y
+0:3*0*0:3
+rep
+Perot96=perot
+1:n*0*1:m
+s1
+x = factor*0*y = factor*0*KEEP.OUT.ATTRS = FALSE
+x = factor*0*y = factor*0*KEEP.OUT.ATTRS = FALSE
+x=x*0*y=y
+
+
+site=1:2*0*run=1:2*0*id=1:2
+1:10*0*1:10
+1:length*0*1:length
+1:3*0*1:3
+b
+b
+1:length*0*1:length
+1:length*0*1:length
+1:3*0*1:3
+b
+b
+x1=1:2*0*x2=1:2*0*y1=1:2*0*y2=1:2
+x1=1:2*0*x2=1:2*0*y1=1:2
+seq*0*seq
+formats*0*KEEP.OUT.ATTRS = FALSE*0*stringsAsFactors = FALSE
+x=seq*0*y=seq
+names*0*names
+X1=t.*0*X2=t.
+X1=t.*0*X2=t.
+x=t.*0*y=t.
+v1*0*v2
+df1*0*df2
+seq*0*seq
+x = 1:10
+x*0*y*0*y*0*FUN=function
+f1 = levels
+
+c*0*d
+lapply
+lapply
+lapply
+lapply
+seq_len*0*seq_len*0*seq_len
+a=levels
+c*0*c
+c*0*c
+c*0*c
+c
+1:dim*0*1:dim
+1:length*0*1:length
+i=1:n*0*j=1:n*0*nrow=n
+i=1:n*0*j=1:n
+
+
+cat1=levels
+school=LETTERS[1:nschool]*0*rep=seq
+rownames=rownames*0*colnames=colnames
+
+x = seq*0*y = seq*0*KEEP.OUT.ATTRS = FALSE
+Temp = rnorm*0*Age = runif
+
+mpg
+
+a*0*b
+a=a
+
+1:3*2*0*seq
+m*0*nx=18*0*ny=18*0*col=8
+nx=18*0*ny=18*0*col=8
+x = rownames*0*y = colnames
+x = 1:ncol*0*y = 1:ncol
+
+a=seq
+dimnames*0*second*0*rownames*0*second*0*1]*0*second[
+n=1:3
+ID=182*0*year=2002:2004*0*month=1:2*0*day=1:3*0*KEEP.OUT.ATTRS=FALSE
+year = 2012:2020*0*geography = paste0
+1:3
+xs*0*ys
+x=x*0*y=x
+
+data.frame
+x = d2*0*y = d2
+
+blue=seq*0*red=seq
+x=seq*0*y=seq
+x=seq*0*y=seq
+
+x
+X = factor*0*Y = rnorm
+tags*0*times*0*timesteps
+tags*0*times*0*timesteps
+row = 1:nrow*0*col = 1:12
+2001:2012
+x=x*0*y=y
+x=xstar*0*y=ystar
+nx=100*0*ny=100*0*lty=1
+names*0*names
+list
+names*0*names
+ForSortSNP=unique
+xs*0*ys
+xs = rnorm*0*ys = rnorm
+grain*0*colnames*0*'months'] == x[1]*0*c
+grain
+kwd1=df
+
+
+r1 = 1:3*0*r2 = 1:3
+rownames*0*rownames
+rownames*0*rownames
+x1=1:5*0*x2=2:6
+colnames*0*x[*0*1]
+A=A*0*B=B
+months = months*0*years = years
+month = month.abb*0*building = c*0*hc = c
+
+i = 1:10*0*j = 1:2*0*k = seq
+i = 1:10*0*j = 1:2*0*k = seq*0*function
+1:n*0*1:n
+llply
+
+x
+x = 1:10*0*y = 1:10
+1:1000*0*1:10000
+6*0*15:30
+list.1*0*list.b*0*list.b
+nx=NA*0*ny=NULL
+Period = .period*0*Size = .size*0*Number = .number*0*stringsAsFactors = F
+W = W*0*X = X*0*Y = Y*0*Z = Z
+x=1:2*0*y=1:2*0*f=letters[1:2]
+1:m*0*1:n
+x*0*y*0*2] -
+sub=1:4
+lbox[1*0*]*0*lbox[2*0*]*0*3*0*4*0*2
+rbox[1*0*]*0*rbox[2*0*]*0*3*0*4*0*2
+x
+x*0*x
+ny=NA
+ny=NA
+nx=NA*0*ny=NULL
+row = seq*0*col = seq
+sapply
+prey=1:2*0*predator=1:5
+nx = NA
+rep
+1:m*0*1:n*0*Var2
+
+
+a=df*0*c=c
+1:14
+year = 1990:2001*0*month = 1:12
+rev
+G;1:3*0*P=2:5
+nC*0*nC
+A*0*B*0*C*0*D
+A*0*B*0*C*0*D
+X=x*0*Y=y
+x=x*0*y=x
+f1=levels
+letters[24:25]
+list
+list
+var1=1:10*0*var2=1:10
+i=1:51*0*k=1:6
+var1=1:4*0*var2=1:4
+x = u*0*y = u
+x = u[-1]*0*y = u[-length
+rep
+cat=factor*0*lab=factor
+
+lwd = 1.5
+1:*0*1:
+x=x*0*y=x
+a*0*b
+Loss_Yr=unique
+x=x*0*y=y
+x=-1*0*y=-1
+False
+False
+g
+a
+x
+list1*0*list2
+A
+
+yoda
+
+x=1:10*0*y=1:10
+x=1:10
+1:3*0*1:3
+lon*0*lat
+1:12*0*c
+1:12*0*c
+rep
+rep
+rep
+rep
+unique*0*unique
+x
+states*0*states
+
+sort
+1:nn*0*1:nn
+Date=unique*0*Company=unique*0*Region=unique
+paste0*0*paste0
+rep
+x*0*y
+x*0*y
+x=seq*0*y=seq
+x1=unique*0*x2=unique
+dat
+
+dx*0*dx$y
+list
+cohort=levels*0*sex=levels
+
+
+mapply
+var1=1:4*0*var2=1:4
+target = c*0*cond = as.factor*0*patient = LETTERS[1:20]
+allweeks*0*allprobes
+allweeks*0*allprobes
+x
+a*0*a
+letters
+a
+LETTERS*0*LETTERS*0*LETTERS
+letters*0*letters*0*letters
+LETTERS*0*LETTERS[10:15]*0*LETTERS[1:20]*0*LETTERS[1:5]
+X=X*0*Y=Y
+x=1:ncol*0*y=1:nrow
+x*0*y
+Dates_List*0*ISIN_Table
+y=0:3*0*x=0:3*0*a2
+n
+n*0*n
+rs*0*ks
+seq*0*seq
+x=x*0*y=y
+data.frame
+unique*0*unique*0*unique*0*unique
+x*0*y
+c*0*c
+b
+b
+data[*0*"A"]*0*data[
+1:3*0*1:2*0*1
+lapply
+unique*0*unique
+c*0*c
+1:3*0*1:3
+
+c*0*function*0*function
+list*0*stringsAsFactors= FALSE
+pos.row.idx*0*neg.row.idx
+rownames
+r*0*s*0*stringsAsFactors=FALSE
+rownames*0*colnames
+x=1:100*0*y=1:100
+x=x*0*y=y
+S0*0*E0*0*B0*0*tau
+g*0*h*0*i
+
+levels*0*levels
+True
+True
+True
+r
+r*0*s
+r*0*s
+w*0*x*0*y
+var1*0*var2
+1:nrow*0*1:nrow
+seq_along*0*seq_along
+x = 1:3
+vars
+x*0*x
+x
+
+d
+d
+names*0*names
+lapply
+names*0*names
+x1=1:nrow*0*x2=1:nrow
+file_list1*0*file_list2*0*as.vector*0*as.vector
+apply*0*apply
+vals*0*unique
+Date = unique*0*Group = unique
+i=seq*0*j=seq
+p*0*d*0*q
+col="white"
+col="white"*0*lty=1
+NA*0*NULL
+a*0*b*0*d*0*b
+
+r=r*0*theta=theta
+xVariables*0*yVariables
+x.variable*0*y.variable*0*my.factor
+
+1:length*0*1:length
+unique*0*unique
+unique*0*unique*0*unique
+seq_along*0*seq_along
+d = d*0*z = z*0*stringsAsFactors = FALSE
+
+initial_consonants*0*vowels*0*final_consonants*0*x[2]
+initial_consonants*0*vowels
+colnames*0*rownames
+levels*0*levels
+x*0*y*0*x[2]
+grid.size=3*0*elength=2
+b=b*0*s=s
+x
+x*0*y
+1:500*0*x1=0:1*0*x2=0:1*0*x3=0:1*0*x4=0:1*0*x5=0:1
+topstate=unique*0*state=unique
+gene=letters[1:2]*0*SNP=LETTERS[1:3]
+variable=c*0*var2=c
+w*0*w
+x
+CO*0*CS*0*CD*0*CSD
+b=fivenum
+f=values*0*s=values
+1:nrow*0*1:nrow
+c*0*c
+
+fruits*0*ingredients
+back=seq_len
+
+x1=seq*0*x2=seq
+sigma = sigma*0*r = r
+
+time = paste*0*group = paste
+lev1=seq*0*lev2=seq*0*lev3=seq*0*lev4=seq*0*lev5=seq*0*lev6=seq
+1:500
+obj*0*zcol = names*0*...*0*names.attr
+
+
+
+1:length*0*1:length
+3*0*ni=ni*0*2
+x=seq*0*y=seq
+h=-1*0*v = 0
+siteID=unique
+x=x*0*y=y
+1:3
+1:d
+c*0*col=2*0*nx=7*0*ny=5*0*pretty=FALSE*0*label=TRUE*0*lty=2
+col = "black"
+args[[x[1]]]
+x*0*i
+ii=seq_len*0*jj=seq_len
+aql = c
+col = 'darkgray'
+col = 'lightgray'
+NA*0*25*0*lwd = 2
+x=1:5
+
+df[1*0*1]*0*halfway[[1]]
+df[i*0*1]
+Source = src_national*0*County = counties
+1:2*0*1:2
+x = x*0*y = y
+p1 = letters[1:3]*0*p2 = letters[1:3]*0*p3 = letters[1:3]*0*stringsAsFactors = FALSE
+1:100*0*1:100
+opt1=0:1*0*opt2=0:1
+rownames*0*colnames
+h = 16*0*v = 0
+NA*0*NULL*0*lwd=3
+NA*0*NULL*0*lwd=3
+x = 1:15*0*y = 1:14
+A=letters[1:3]*0*B=letters[4:6]*0*C=letters[7:9]
+unique*0*unique*0*unique
+rep
+vals
+data*0*2*data
+17*0*17*0*lty = 1
+m1=1:1440*0*variable=factor
+treatment = "sucrose"*0*Time = seq
+TMT1=c*0*TMT2=c
+row2 = seq_len
+row2 = seq_len
+B*0*t
+N*0*H2
+expl1 = plotexpl*0*expl2 = c
+1:1000
+i=1:n*0*j=1:n*0*k=1:n
+x*0*x
+seq_len*0*seq_len*0*seq_len
+c*0*c*0*c
+0:1*0*0:1*0*0:1
+l
+rep
+
+x1=12:n1*0*x2=0:n2*0*y2=0:n2
+A[A<20]*0*B[B<15]*0*...
+X=rr
+nx = NA
+nx = NA
+
+with*0*c
+c*0*c*0*c
+x=1:10
+1:length*0*1:nrow
+
+x=pts.grid*0*y=pts.grid
+
+
+1*0*c*0*c*0*c*0*c
+NA*0*NULL
+Order=seq_len*0*date=seq_len
+long=seq*0*lat=seq
+nx = NA*0*ny = NULL*0*col = "white"*0*lty = "solid"
+
+replicate*0*reps
+replicate
+c*0*4
+letters[1:2]*0*4
+xvals*0*yvals
+p1 = 1:5*0*p2 = 1:5*0*p3 = 1:5*0*p4 = 1:5
+1:4*0*1:4
+rep
+rep
+rep
+
+True
+a=c*0*b=20:50
+lon=xvals*0*lat=yvals
+lon=xvals*0*lat=yvals
+col=rgb*0*labels=F
+1:nrow*0*1:nrow
+c*0*c
+y=z[*0*1]*0*x=idx
+
+code1*0*code2*0*code3
+seq_len*0*seq_len
+
+1:10*0*1:10*0*6
+x=x*0*y=y
+x=x*0*y=y
+lwd = 0.3*0*lty = 7
+g
+c
+long*0*lat
+m*0*nx=4*0*ny=6*0*col="black"
+
+dim3 = 1:n[3]
+c*0*1985:2013*0*0
+f1*0*e1
+n*0*lims
+start = 1L:n*0*len = 2L:
+a=a
+a=a
+i=id*0*j=id*0*k=id
+i=id*0*j=id*0*k=id
+a1
+unique*0*min
+monCode*0*yearRange
+x*0*y
+ID=1:nrow*0*HR=1:6
+
+outcome*0*pollut1
+unique*0*unique
+x=2:4*0*y=2:4*0*z=0
+from = 1:4*0*to = 1:4
+vars
+i=1:3
+1:4*0*1:4
+1:5*0*1:5
+x*0*y*0*z*0*highlight.3d=TRUE*0*col.axis="blue"
+x=1:4
+NA*0*NULL
+service=service
+service=x[1]*0*metric=x[2]
+1:num.Patches*0*1:num.alleles
+X=points*0*Y=-points
+Var1=rows
+RANK=df
+age=ag*0*vehicle=veh*0*position=0.7
+replicate
+x=x*0*y=-y
+days*0*slots
+age=age*0*hrs=hrs
+sweep1=sweep1*0*sweep2=sweep2
+level=levels*0*var=names
+
+2:3*0*4:5
+
+x*0*y
+id=id*0*year=unique
+year = seq*0*id = unique
+year = seq*0*id = unique
+w=1:width
+ch1 = letters[1:3]*0*ch2 = letters[1:3]*0*ch3 = letters[1:3]*0*stringsAsFactors = FALSE
+ncomp = seq*0*mtry = 1:len
+experiment = factor*0*status = factor*0*reps = seq_len
+ncomp = seq
+n*0*n
+n*0*n
+interaction.depth = 1*0*n.trees = 100:101*0*shrinkage = 0.1
+c*0*c*0*0
+letters[1:5]*0*LETTERS[1:5]

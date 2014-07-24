@@ -1,0 +1,4 @@
+N    nsplits    overlap / nr    
+x    n    0        
+vec    9    0.5    
+vec    9    

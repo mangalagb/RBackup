@@ -1,0 +1,208 @@
+
+
+xleft=head
+min*0*min*0*max*0*max
+0*0*0*0*2/max*0*max*0*col="gray"*0*density=30
+left*0*bottom*0*right
+hs[*0*1]*0*hs[*0*3]*0*hs[*0*2]*0*hs[*0*4]
+hs[*0*1]*0*hs[*0*3]*0*hs[*0*2]*0*hs[*0*4]
+105
+0*0*w.l*0*height*0*w.r*0*col = "#01516c"*0*border = "#7199a8"*0*lwd = 1
+105*0*w.l*0*125*0*w.r*0*col = "white"*0*border = "#7199a8"*0*lwd = 1
+gp=gpar*0*vp=viewport
+gp=gpar*0*vp=viewport
+gp=gpar*0*vp=viewport
+gp=gpar*0*vp=viewport
+gp=gpar*0*pos.row
+gp=gpar*0*vp=viewport
+gp=gpar*0*vp=viewport
+gp=gpar*0*vp=viewport
+gp=gpar*0*vp=viewport
+gp=gpar*0*vp=viewport
+gp=gpar*0*vp=viewport
+gp=gpar
+m[which[n]] + 0.66*0*par*0*m[which[n] + 1] + 0.33*0*mean*0*border = border[n]*0*col = border[n]*0*density = density*0*...
+left*0*top*0*r*0*b*0*angle = angle*0*density = density*0*...
+gp=gpar
+seq*0*rep*0*seq*0*rep*0*col = colorlut*0*border = NA
+par*0*par*0*par*0*par*0*col = "gray"
+x[-1]*0*0*0*x[-length*0*p*0*col="lightblue"*0*p*0*type="n"*0*lty=1*0*width=diff*0*space=0
+tx-0.5*rwidth*0*ty-0.5*rheight*0*tx+0.5*rwidth*0*ty+0.5*rheight
+gp=gpar
+gp=gpar
+gp=gpar
+xl*0*yb*0*xr*0*yt*0*border=border*0*lwd=3
+0*0*levels[-length*0*1*0*levels[-1L]*0*col = col*0*levels[-length*0*1*0*levels[-1L]*0*col = col*0*border = NA
+0*0*levels[-length*0*1*0*levels[-1]*0*col = col*0*density = NA
+xl*0*yb*0*xr*0*yt*0*...
+0*0*0*0*1*0*1*0*col = bgColors[which.panel]*0*border = 1
+j-0.4*0*-k-1*0*j+0.4*0*-k*0*col = which*0*border = rgb
+j-0.4*0*-6*0*j+0.4*0*-1
+xleft=0:*0*xright=1:n*0*ybottom=0*0*ytop=1*0*col=pal
+0*0*levels[-length*0*1*0*levels[-1L]
+1*0*0*0*5*0*0*0*angle=90*0*0*0*10*0*0*0*angle=90*0*0*0*15*0*0*0*angle=90
+16*0*0*0*20*0*0*0*angle=90*0*0*0*25*0*0*0*angle=90*0*0*0*30*0*0*0*angle=90
+31*0*0*0*35*0*0*0*angle=90
+36*0*1*0*36*0*5*0*angle=90*0*6*0*36*0*10*0*angle=90*0*11*0*36*0*15*0*angle=90
+36*0*16*0*36*0*20*0*angle=90*0*21*0*36*0*25*0*angle=90*0*26*0*36*0*30*0*angle=90
+36*0*31*0*36*0*35*0*angle=90
+2*0*lim[3]-1*0*4*0*lim[4]+1*0*border = "red"*0*col = "red"
+X[1]*0*Y[1]*0*X[2]*0*Y[2]*0*border = "red"*0*col = "red"
+botleft[1]*0*botleft[2]*0*topright[1]*0*topright[2]*0*border = "red"*0*col = "red"
+xright-wid*0*ybottom[1:*0*xright
+as.yearmon*0*u[3]
+0*0*y*0*10*0*y+1/scale*0*col=lut[i]*0*border=NA
+0*0*0*0*1*0*1*0*col = custBgCol[which.panel]*0*border = 1
+r[1]*0*r[3]*0*r[2]*0*r[4]
+gp=gpar
+0*0*0*0*1*0*1*0*col = bgColors[which.panel]*0*border = 1
+0*0*-1*0*length*0*1*0*col = gray*0*border = NA
+start*0*yBottom*0*end*0*yTop*0*col=color
+x=0.5*0*y=0.5*0*width=0.01*0*height=0*0*gp=gpar
+z-segwidth/2*0*x*0*z+segwidth/2*0*y*0*col="black"
+ll[1]*0*ll[3]*0*ll[2]*0*ll[4]
+ll[1]*0*ll[3]*0*ll[2]*0*ll[4]
+ll[1]*0*ll[3]*0*ll[2]*0*ll[4]
+width=width*0*height=height*0*gp=gpar
+width=width*0*height=height*0*gp=gpar
+df*0*df*0*df*0*df*0*col="black"
+
+x[1]*0*x[3]*0*x[2]*0*x[4]*0*col = "grey"
+br[w]*0*sy-my*0*br[w+1]*0*sy*0*border=TRUE*0*col='grey'
+br[-length*0*0*0*br[-1]*0*tmp
+1.2 * outer.radius*0*ylevs[1:*0*1.3 * outer.radius*0*ylevs[2:length*0*col = col*0*border = NA*0*xpd = TRUE
+1.2 * outer.radius*0*min*0*1.3 * outer.radius*0*max*0*border = "#66666650"*0*xpd = TRUE
+A*0*0*0*A*0*A$counts*0*type = "n"*0*xlim = c*0*ylim = c
+0*0*A*0*A*0*A
+gp=gpar
+gp=gpar
+
+2*0*-4*0*4*0*4*0*col = rgb
+x=0*0*y=start*0*width=1*0*height=DF[i*0*2]*0*default.units="native"*0*just=c*0*gp=gpar
+x=0.05*0*y=ypos*0*width=0.1*0*height=0.05*0*just=c*0*gp=gpar
+gp = gpar
+xleft=*0*xright=*0*ybottom=*0*ytop=*0*col="gray91"*0*border=NA
+0*0*8*0*3*0*11*0*lwd=2
+4*0*4*0*7*0*7*0*lwd=2
+8*0*1*0*10*0*3*0*lwd=2
+gp = gpar
+x = xcenter[i]*0*y = 0*0*height = pred[i]*0*width = widths[i]*0*just = c*0*default.units = "native"*0*gp = gpar
+y = ycenter[i]*0*x = 0*0*width = pred[i]*0*height = widths[i]*0*just = c*0*default.units = "native"*0*gp = gpar
+gp = gpar
+gp = gpar
+gp = gpar
+0*0*black.d*0*black.d*0*black.d*0*col="black"
+0*0*red.d*0*red.d*0*red.d*0*col="red"
+xleft*0*ybottom*0*xright*0*ytop*0*col=c
+xleft*0*ybottom*0*xright*0*ytop*0*col=c
+breaks[-nB]*0*0*0*breaks[-1]*0*y*0*col="cyan"*0*...
+xleft*0*ybottom*0*xright*0*ytop*0*col=c
+0*0*.7*0*.7*0*0*0*border = "blue"*0*lwd = 2
+xleft = ll*0*ybottom = -0.02*maxct*0*xright = ul*0*ytop = 1.02*maxct*0*border = "red"*0*lwd = 2
+7*0*-50*0*10*0*100*0*border="red"
+xleft = x.l*0*ybottom = y.b*0*xright = x.r*0*ytop = y.t*0*col = fillCol*0*border = lineCol
+xl*0*head*0*xr*0*tail*0*col=colfunc
+rxlim[1] - rxext*0*rylim[1] - ryext*0*rxlim[2] + rxext*0*rylim[2] + ryext
+y = 1*0*height = 1*0*just = c*0*gp=gpar
+xleft=par*0*ybottom=par*0*xright=par*0*ytop=par*0*lwd=5*0*border="orange"*0*xpd=TRUE
+0.5*0*-3*0*1.5*0*3*0*col="grey75"*0*lty=0
+2.5*0*-3*0*3.5*0*3*0*col="grey75"*0*lty=0
+min*0*1.5*0*quantile*0*1.4*0*col="red"
+quantile*0*1.5*0*quantile*0*1.4*0*col="green"
+quantile*0*1.4*0*max*0*1.5*0*col="yellow"
+gp=
+130*0*40*0*180*0*70
+gp=gpar
+gp = gpar
+gp=gpar
+0.7*0*4.5*0*1.3*0*8.2*0*col= rgb
+default.units='native'*0*width= 1*0*height=8.2-4.5*0*gp=gpar*0*y = 3
+unit*0*unit*0*unit*0*unit*0*gp=gpar*0*hjust=0*0*vjust=0
+gp=gpar*0*width = unit*0*just='right'
+gp=gpar*0*width = unit*0*just=c
+col*0*row*0*col*0*row*0*col = hcl
+x=x_Position*0*y=y_Position*0*width=width_Value*0*height=height_Value*0*gp=gpar*0*just=c*0*default.units="native"*0*x_Value*0*y_Value*0*gp=gpar*0*just=c*0*rot=rot_Degrees*0*default.units="native"*0*c*0*gp=gpar*0*default.units="native"*0*y=0*0*width=0.5*0*height=1*0*just=c*0*y=0*0*width=0.5*0*height=1*0*just=c
+gp = gpar
+1*0*y*0*l*0*y*0*col="grey80"*0*border=NA
+1*0*y*0*l*0*y*0*col="grey60"*0*border=NA
+1*0*y*0*l*0*y*0*col="grey40"*0*border=NA
+df*0*df*0*df*0*df*0*col=df
+x=
+u[1]*0*d[*0*'Buttom']*0*u[2]*0*d[*0*'Top']*0*col=rgb*0*border=0
+1100*0*-15000*0*1300*0*15000*0*col="red"*0*border="red"
+1800*0*-15000*0*1850*0*15000*0*col="red"*0*border="red"
+1100*0*-15000*0*1300*0*15000*0*col="red"*0*border="red"
+1800*0*-15000*0*1850*0*15000*0*col="red"*0*border="red"
+df*0*df[*0*2]*0*df*0*df[*0*3]*0*col="beige"*0*border=FALSE
+df*0*df[*0*4]*0*df*0*df[*0*5]*0*col="gray"*0*border=FALSE
+df*0*df[*0*6]*0*df*0*df[*0*7]*0*col="darkred"*0*border=FALSE
+x=x*0*y=y
+x=x*0*y=y
+x=0*0*y=0*0*width=unit*0*height=1*0*default.units="npc"*0*just=c*0*gp=gpar
+x=0*0*y=1*0*width=1*0*height=unit*0*default.units="npc"*0*just=c*0*gp=gpar
+gp=gpar
+x=0*0*y=0*0*width=unit*0*height=1*0*default.units="npc"*0*just=c*0*gp=gpar
+x=0*0*y=1*0*width=1*0*height=unit*0*default.units="npc"*0*just=c*0*gp=gpar
+gp=gpar
+x=hist_Data[[i]]*0*y=0*0*width=diff*0*height=hist_Data[[i]]*0*default.units="native"*0*just=c*0*gp=gpar
+x=0*0*y=1*0*width=1*0*height=unit*0*default.units="npc"*0*just=c*0*gp=gpar
+gp=gpar
+gp=gpar
+x=0*0*y=0*0*width=unit*0*height=1*0*default.units="npc"*0*just=c*0*gp=gpar
+x=0*0*y=1*0*width=1*0*height=unit*0*default.units="npc"*0*just=c*0*gp=gpar
+gp=gpar
+breaks[-nB]*0*0*0*breaks[-1]*0*y*0*col="cyan"*0*...
+gp=gpar
+
+
+xleft = l1
+xrange[1]*0*yrange[1]*0*xrange[2]*0*yrange[2]*0*col="cadetblue"
+xrange[1]*0*yrange[1]*0*xrange[2]*0*yrange[2]*0*col="cadetblue"
+head*0*center - halfrelfs*0*tail*0*center + halfrelfs*0*...
+center - halfrelfs*0*head*0*center + halfrelfs*0*tail*0*...
+0*0*brY[-length*0*1*0*brY[-1]*0*col=colorRampPalette
+brX[-length*0*0*0*brX[-1]*0*1*0*col=colorRampPalette
+xleft = 1.6*0*xright = 2*0*ybottom = 870*0*ytop = 930*0*col = 3
+xleft = 1.6*0*xright = 2*0*ybottom = 970*0*ytop = 1030*0*col = 8
+xleft = 1*0*xright = 1.3333*0*ybottom = xx*0*ytop = 2.5/1.206 * xx
+rangex[1]*0*rangey[1]*0*rangex[2]*0*rangey[2]*0*col=background_col*0*border=NA
+x-dx*0*y-dy*0*x+dx*0*y+dy*0*col=col*0*border=NA
+x[sel]-wx[sel]/2*0*y[sel]-wy[sel]/2*0*x[sel]+wx[sel]/2*0*y[sel]+wy[sel]/2*0*col=col[sel]*0*border=NA
+rep*0*b[-length*0*rep*0*b[-1]*0*col=col*0*border=NA
+0*0*levels[-length*0*1*0*levels[-1L]*0*col = col
+width=unit*0*gp=gpar
+height=leg
+height=leg*0*gp=gpar
+par*0*par*0*par*0*par*0*col = "blue"
+grconvertX
+0*0*0*0*1*0*1*0*col='grey'
+gp = gpar
+gp = gpar
+gp = gpar
+gp=gpar
+
+0*0*0*0*3*0*3*0*col=rgb*0*border=NA
+0*0*stripHt[which.panel]*0*1*0*1*0*col = bgColors[which.panel]*0*border = 1
+gp = gpar
+vp=vp
+xleft=45*0*xright=65*0*ybottom=-3*0*ytop=3*0*col="grey"
+x =.55*0**0*y=.5*0*w = .2*0*height=6*0*gp = gpar
+width=grobWidth*0*height=grobHeight*0*gp=gpar
+x1*0*y*0*x2
+usr[1]*0*usr[3]*0*usr[2]*0*usr[4]*0*col = pal[col.ind]*0*border = NA
+usr[1]*0*usr[3]*0*usr[2]*0*usr[4]*0*col = pal[col.ind]*0*border = NA
+par*0*par*0*par*0*par*0*col ="white"
+u[1]*0*u[3]*0*u[2]*0*u[4]*0*col="white"*0*border=NA
+x1*0*y*0*x2
+20*0*20*0*width*0*height
+xleft = x - 0.2*0*ybottom = y[1] - 0.5*0*xright = x + 0.4
+0*0*levels[-length*0*1*0*levels[-1]*0*col = color
+xleft = xl*0*ybottom = yb*0*xright = xr*0*ytop = yt*0*col = col.
+width=unit*0*height=unit
+0*0*levels[-length*0*1*0*levels[-1L]*0*col=col*0*border=col
+
+gp=gpar
+0*0*i-1*0*1*0*i*0*col=heat.colors*0*border=NA
+recessions.trim[i*0*1]*0*lim[3]*0*recessions.trim[i*0*2]*0*lim[4]*0*border = "pink"*0*col = "pink"
+x[*0*1]*0*par*0*x[*0*2]*0*par*0*col=col*0*border=border*0*...
+h*0*0*0*h*0*h

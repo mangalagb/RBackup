@@ -1,0 +1,7 @@
+x, main = deparse(substitute(x)), sub = NULL, xlab = NULL, ylab = NULL, sort = NULL, off = NULL, dir = NULL, color = NULL, shade = FALSE, margin = NULL, cex.axis = 0.66, las = par("las"), border = NULL, type = c("pearson"and "deviance"and "FT"), list(list("mosaicplot") and list("formula"))
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

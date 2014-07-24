@@ -1,0 +1,2 @@
+lat ~ long | depth    data = quakes    data = quakes    xlab = c    ylab = "Latitude"    
+var1 ~ var2 | var3    data=dtb    number=num    overlap=.1    col=rainbow    type="o"    cex=2    pch=as.character    rows=1    

@@ -1,0 +1,661 @@
+
+1
+1, ...
+1, ..., ...
+1, 0:11, labels=0:11*10, line=3, col="blue", col.ticks="blue", col.axis="blue"
+1, 0:11, line=1, col="red", col.ticks="red", col.axis="red"
+1, 0:14
+1, 0:2, c
+1, 0:6
+1, 0, "VI", 0, "IX"
+1, 1:10
+1, 1:10, tck=-0.05, seq, labels=rep, tck=-0.01
+1, 1:12, month.abb
+1, 1:13, 1:13, cex.axis = 0.8
+1, 1:3, d
+1, 1:3, labels = FALSE
+1, 1:5, labels=gsub
+1, 1:5, parse
+1, 1:5, subjects, cex.axis = 0.85, tcl = -0.1
+1, 1:5, xlabs
+1, 1:6, paste, las=2
+1, 1:dim, colnames, las=2
+1, 1:dim, nba1:20, 1], cex.axis = 0.5
+1, 1L:nc, labels = labCol, las = 2, line = -0.5, tick = 0
+1, 1:nc, labels = labCol, las = 2, line = -0.5, tick = 0, cex.axis = cexCol
+1, 1:nc, labels = labCol, las = 2, line = -0.5, tick = 0, # original linecol.axis="green", # added argumentcex.axis = cexCol
+1, 1:ncol, colnames
+1, 1:nlevels, levels
+1, 1:nrow, as.character
+1, 9, mn=0, mx=8
+1, as.numeric, labels=format
+1, at=0:13, labels=c, cex.axis=0.8
+1, at = 0:2*3 + 1.5, labels = colnames, tick = TRUE, b
+1, at=0:2, labels=10^
+1, at = 0:9, labels = 0:9
+1, at=0:length, labels=seq
+1, at = 108:172, labels = TRUE
+1, at=1:10, col=c
+1, at=1:10, labels=letters1:10]
+1, at=1:10, labels=levels
+1, at=1:10, labels=levels, at=1:10
+1, at=1:12, labels=month.name
+1, at=1:12, labels=month.name, x, max
+1, at=1:16, labels=labs, las=2
+1, at=1:19, lab=FALSE
+1, at=1:22, labels=c
+1, at=1.25:5.25, labels=names
+1, at=1:26, labels=LETTERS
+1, at=1:2, lab=c, cex.axis=1.5
+1, at=1:2, labels=c
+1, at = 1:3
+1, at=1:35, labels=labDis, cex.axis=0.5, tick=F, line=-1.4
+1, at=1:3, label=c
+1, at=1:3, labels=d1
+1, at=1:3, labels=names
+1, at = 1:3, labels = rownames
+1, at=1:3, labels=t1
+1, at=1:4, label=c
+1, at = 1:4, labels = c, cex.axis = 1.5
+1, at=1:4, labels=temp$place, names.arg=rownames
+1, at=1:5
+1, at=1:5, labels = date1$dateval, format = "%d/%m/%Y"
+1, at = 1:5, labels=x.labels
+1, at=1:5, labels=xlable
+1, at=1:7, labels=...
+1, at=1:7, labels=c
+1, at=1990:2025, labels=1990:2025, cex.axis=0.7, las=2
+1, at=1:9, labels=as.character
+1, at = 1:9, labels=colnames
+1, at=1, labels=1, y, xlim=c, yaxt="n"
+1, at=1:, labels=names
+1, at=1:length, labels=1:length
+1, at=1:length, labels=colnames, lwd=0, lwd.ticks=1
+1, at=1:length, labels=hist.a
+1, at=1:length, labels=x
+1, at=1:length, labels=xnames
+1, at=1:ncol, labels=colnames
+1, at=1:nlevels, lab=levels
+1, at = 1:nrow, labels = rownames
+1, at=1:nrow, labels=rownames, cex.axis=0.8
+1, at = 1:n.sect, labels = sect.name, tick = TRUE
+1, at=3*0:59, lab=as.vector
+1, at = -3:3, labels = c
+1, at = -3:3, labels = c, 4, length=200
+1, at = as.numeric, labels = a, cex.axis=0.6
+1, at=as.numeric, labels=dataset, cex.axis=0.5
+1, at = as.numeric, labels = format, cex.axis=0.6, las=2
+1, at=as.numeric, labels=strftime
+1, at = at
+1, at = at, label = label
+1, at = at, label = label, las=2
+1, at=at, labels=10^at
+1, at=at, labels=labs
+1, at=at, labels=round
+1, at=atn, labels=FALSE
+1, at=atx, labels=format, padj=0.5
+1, at=avgpts, labels=grps, cex.axis=0.7, line=1.5, lwd=0
+1, at=axis.posaxis.ind], labels=axis.txtaxis.ind], "%d %b"
+1, at = axt
+1, at=axTicks, xticklabs, cex.axis=0.8
+1, at = axt, labels = names, las = 2, lwd.ticks = 1, mgp = c, tcl = -0.4
+1, at = axt, lab = sub
+1, at=bins, labels=bins, 4, length=100, dnorm
+1, at=bp, labels= labs, italic, x, x
+1, at=bp, labels= parse
+1, at=bp, labels=rep, cex.axis=0.7
+1, at=brks
+1, at=c
+1, at=c, cex.axis=0.7, mgp=c
+1, at=c, font=2, cex.axis=3
+1, at=c, lab=c
+1, at = c, labels = 1:3, tick = FALSE, las = 2
+1, at=c, labels=c
+1, at = c, labels = c
+1, at = c, labels = c, 4
+1, at = c, labels = c, line = 5, col = 4
+1, at=c, labels=c, lwd.ticks=0
+1, at = c, labels = expression, cex.axis=0.5
+1, at = c, labels = expression, cex.axis=0.8
+1, at = c, labels = expression, cex.axis=2
+1, at=c, labels=FALSE
+1, at = c, labels = FALSE, tcl = 0.5
+1, at=c, labels=format
+1, at=c, labels=histo
+1, at=c, lab=eval
+1, at=c, lab = namesExp
+1, at = c, las = 3
+1, at=c, lwd=2
+1, at=c, padj=-2, lty=0, labels=c, cex.axis=0.8
+1, at=c, pos=0
+1, at=c, pos=424
+1, at=c, rep
+1, at=data1, 1], labels=data1, 1]
+1, at=data, labels=as.character
+1, at=date1, labels = date1
+1, at=days, labels=strftime
+1, at=days, labels=strftime, tick=FALSE
+1, at = decimal_date, labels = format, cex.axis=0.6
+1, at=dm, labels=dm, col.axis="black", las=2
+1, at = Freq_, tick = TRUE, labels = NA
+1, at = ix, labels = labsix], tcl = -0.7, cex.axis = 0.7, las = 2
+1, at, lab
+1, at =, labels = 10:1, tick = FALSE, at =, labels = FALSE, tick = TRUE
+1, at= ..., labels=..., y=-2, names, cex=0.8, srt=45, xpd=TRUE
+1, at=-laxis, labels=sprintf, cex.axis =0.7
+1, at=laxis, labels=sprintf, cex.axis =0.7
+1, at=loc, line=-.75
+1, at=log2, labels=lab
+1, at=mc, labels=lab
+1, at=mids, labels=c, las=3
+1, at=m, labels=1:10, col=c
+1, at=MonthTicks, labels=NA
+1, at=mp2, ], labels=df
+1, at=mp, labels=rainbar
+1, at = my.at, labels = my.at
+1, at=myd, labels=myd
+1, at=NULL, labels=F
+1, at=round
+1, at=seq
+1, at = seq
+1, at=seq_along
+1, at=seq_along, labels=as.character, las=2
+1, at = seq_along, labels = format, cex.axis=0.6, las=2
+1, at=seq_along, labels=names
+1, at=seq_along, labels=names, lwd=0, lwd.ticks=1
+1, at=seq, at=seq, label=paste0
+1, at=seq, lab=1:10
+1, at=seq, label=F, tick=T
+1, at=seq, labels=1:20, cex.axis=0.7
+1, at=seq, labels=1:20, cex.axis=0.7, las=2
+1, at=seq, labels=1:20, yv, pch = "*", col = rep, xaxt="n"
+1, at=seq, labels=c
+1, at=seq, labels=FALSE
+1, at=seq, labels=format
+1, at=seq, labels=format, cex.axis=0.7
+1, at = seq, labels = format, pcp = rnorm
+1, at=seq, labels=labChar, tick=F
+1, at=seq, labels=lbls
+1, at=seq, labels=LETTERS1:5]
+1, at=seq, labels=NA
+1, at=seq, labels=rownames
+1, at=seq, labels=seq
+1, at=seq, labels= seq
+1, at = seq, labels = seq
+1, at=seq, labels=seq, tck=-0.01, padj=-1
+1, at = seq, labels = TRUE, pos = 0
+1, at = seq, labels = xlab.pos, tck = -0.015
+1, at = seq, las=2
+1, at=seq, lwd=0, lwd.ticks=1
+1, at=seq, pos=16, col="green4", lwd=3
+1, at = start, labels = TRUE
+1, at=tapply, labels=unique
+1, at=tapply, labels=unique, lwd=NA
+1, at = tick_locations, labels = tick_labels
+1, at = tickMarks, labels = eventTypes, las = 2, tick = FALSE
+1, at = ticks, labels = FALSE, tcl = -0.3
+1, at = ticks, labels = format
+1, at=time, at=..., labels=..., to=2013.25, by=0.25, axes=F
+1, at = time, labels = FALSE
+1, at = time, labels = format, cex.axis = 0.7
+1, at = time, lab = FALSE
+1, at = time, lab = labsix], tcl = -0.5, padj=0.6, cex.axis = 1
+1, at=tmp, labels=0:max
+1, at=ts, labels=format
+1, at=unique, labels=data.labels
+1, at=xat, labels=xlab
+1, at=xaxisdat, padj=-1.4, cex.axis=0.9, hadj=0.5, tcl=-0.3
+1, at=xcenters, labels=names
+1, at=x.label.position, labels=x.label, las=2
+1, at=x, labels=names
+1, at = x, labels = x
+1, at=x, labels=x.label
+1, at = -xlim1]:-gap, labels = laxlab
+1, at = xlocs, labels = xlocs - 1
+1, at=xpos, labels=sprintf
+1, at=xpts, labels=rownames
+1, at = xtickpos, labels = xticklab, **cex.axis = x_axislab.cex**
+1, at = x.ticks + 1, labels=paste
+1, at=xticks, labels=x.labelxticks]
+1, at = xticks, labels = xticks, y, y + delta, y - delta, type = "b"
+1, at = xv, labels = lv
+1, at=xx, labels=dat, tick=FALSE, las=2, line=-0.5, cex.axis=0.5
+1, at = xycoords
+1, at = xycoords, labels = FALSE, ...
+1, at = xycoords, labels = FALSE, col = "#BBBBBB"
+1, at = xycoords, labels = FALSE, col = "#BBBBBB", 
+1, at = xycoords, labels = FALSE, col = "#BBBBBB", ...
+1, at = xycoords, labels = names, las = 1, lwd = 1, mgp = c
+1, at = xycoords, labels = names, las = 1, lwd = 1, mgp = c, ...
+1, at=year
+1, at=yourbreaks, labels=yourbreaks/1000, las=2
+1, at=yrs
+1, at=yrs1000, labels=c
+1, bottom, right
+1, breaks, as.character
+1, breaks, as.character, axes=F
+1, c, c
+1, cex.axis=0.25, las=2, at=xLabLocs, space=0.4, labels=colnames
+1, cex.axis=0.5, las=2, at=xright1:n]-, labels=labels
+1, cex.axis = 1.2, col = axisCol
+1, cex.axis=1.5
+1, cex.axis=2
+1, **cex.axis = x_axislab.cex**
+1, c, label=TRUE, tcl=-0.5
+1, col = 'blue', col.axis = 'purple', col.ticks = 'darkred', cex.axis = 1.5, font = 2, family = 'serif'
+1, col="dodgerblue", col.ticks="green", col.axis="orange", cex.axis=2
+1, com_30, format, cex.axis = .7
+1, c, pos = 0, cex.axis = 0.8
+1, cx, cz
+1, d, 1], labels=d, 1]
+1, dm, format, cex.axis = .7
+1, dm, format, cex.axis = .7, dm
+1, doy, at=doy2
+1, floor
+1, font=2, cex.axis=1.1, family="Times"
+1, gridc, gridc, cex.axis=.5, line=-1, tick=FALSE
+1, labels=as.character, at=1:3
+1, labels=FALSE
+1, labels = FALSE
+1, labels=labels, at=cumsum
+1, labels=Mark, at=Post
+1, labels=myd1, at=myd1
+1, labels=myd, at=myd
+1, labels=NA, at=c
+1, labels=paste, at=1:24, las=3
+1, labels=tcars1]], at=1:NROW
+1, labels=time, at=seq
+1, las=2, labels=c, at=2:3, pos=1
+1, line=4, at=seq, labels=c
+1, lty='dashed', lwd=3
+1, lwd=4
+1, lwd.ticks=0, at=1:length, lab=test
+1, outer=TRUE
+1, ..., ..., parameters=foo
+1, pos=0
+1, pos = 0
+1, pos=-0.02
+1, pos=0, at=-5:5
+1, pos=0, at=axTicks
+1, pos=0, las=1
+1, pos=1
+1, pos=-1
+1, pos = 1
+1, pos = 2
+1, pos = -90, xpd = TRUE
+1, pos=c
+1, pretty
+1, pretty, line=-4
+1, seq
+1, seq, cex.axis=.5
+1, seq, labels=labelsX
+1, seq, xLabels
+1, tck=-0.015, col.ticks="black"
+1, tck=1, col.ticks="light gray"
+1, theMonths, theMonths
+1, , tick.labels, las=2, cex.axis=0.8
+1, tick=T, at=seq, label=seq
+1, time, format, las=2, cex.axis=0.5
+1, time, format, las=2, cex.axis=0.6, tick=F, mgp=c
+1, txtpos, txtlab, cex=1.5
+1, V1, V1
+1, xaxis, as.POSIXlt
+1, xaxp=c
+1, xaxp=c, las=2, y, xaxt="n"
+1, x, format, cex.axis = .7
+1, x, letters1:5]
+1, xpos, subjects, cex.axis = 0.85, tcl = -0.1
+1, x-vector, label-x-vector
+1, ylab="Density"
+1, -zmax:zmax, pos = 0
+2
+2, ...
+2, 0:11, las=1
+2, 10^pow
+2, 1:10
+2, 1:13, 1:13, las = 1, cex.axis = 0.8
+2, 1:5, myLabels
+2, 1:5, sort, las = 2, cex.axis = 0.75
+2, , 1:6, col = 'red'
+2, 1:dim, colnames, las=2
+2, 1:dim, colnames, las=2, y=seq, z=COR, col=rev, xlab="x column", ylab="y column", xaxt='n'
+2, 1:dim, nba1:20, 1], cex.axis = 0.5
+2, 1:k, colnames, las=1
+2, 1L:nr, labels = NA, las = 2, line = -0.5, tick = 0
+2, 1:nrow, rownames
+2, "2001\n2011\n2021", "2002\n2012\n2022"
+2+2*i%%2
+2, 9, mn=0, mx=10, las=1, side = 3, line = 2, min, "Example", pos = 1
+2, at = 0:5, labels = 0:5
+2, at=1:10, labels=df$c1, 1:nrow, data=df
+2, at = 1:30, labels=Y, las=2
+2, at=1:3, lab=c, las=1, cex.axis=1.3
+2, at=1:3, labels=FALSE
+2, at=1:3, labels=levels, las=1
+2, at=1:5
+2, at=1:5, labels=c
+2, at=1:5, labels=c, xaxt="n"
+2, at=1.77, labels=1.77, mgp = c
+2, at=1:7, labels=c, cex.axis=0.7
+2, at=1:7, labels=rev, cex.axis=0.7
+2, at = 1:8, labels = LETTERS8:1]
+2, at = 1:9, labels=colnames
+2, at=1:length, labels=FALSE
+2, at=1:length, labels=rownames, lwd=0, lwd.ticks=1, las=1
+2, at=1:length, labels=unique, cex.axis=0.5, las=2
+2, at=1:length, labels=unique, cex.axis=0.5, las=2, solar, xlim=c, yaxt="n", xaxt="n"
+2, at=1:ncol, labels=colnames, cex.axis=0.8
+2, at=1:nrow, labels=row.names, las=2
+2, at=5:12, labels=-12:-5
+2, at=as.numeric, labels=a, las=1, tcl=0, lty=0, cex.axis =0.5
+2, at=aty, labels=format, hadj=0.9, cex.axis=0.8, las=2
+2, at=aty, labels=labels
+2, at=axTicks, labels=format
+2, at=axTicks, labels=my.axis, at=axTicks, labels=my.axis, las=1
+2, at=axTicks, labels=sprintf, las=1
+2, at=axTicks, labels=sprintf, yaxt="n"
+2, at=axTicks, yticklabs, cex.axis=0.8, las=1
+2, at=c
+2, at = c
+2, at=c, font=2, cex.axis=3
+2, at=c, labels=c
+2, at= c, labels=c, xpd=TRUE
+2, at=c, lwd=2
+2, at=c, pos=0
+2, at=data1, 2], labels=data1, 2]
+2, at= exp, labels=c
+2, at=hpos, labels=labels, las=las, ...
+2, at=, labels=rownames, tick=FALSE, las=2
+2, at=left.axis.pos, labels=formatC, las=2
+2, at=marks, labels=format
+2, at=marks, labels=marks
+2, at = myLeftAxisAt, labels = myLeftAxisLabs
+2, at = nrow
+2, at=pretty
+2, at=pretty, lab=pretty, las=TRUE
+2, at=pretty, las=2
+2, at = pretty, pretty
+2, at = pts, labels = paste
+2, at = pts, labels = paste, las = 1
+2, at=seq
+2, at = seq
+2, at=seq_along, labels=rev, las=2
+2, at=seq, labels=c
+2, at=seq, labels=colnames
+2, at=seq, labels=nrow
+2, at = seq, labels = paste
+2, at=seq, labels= rev
+2, at = seq, labels = seq
+2, at=seq, labels=seq, col.axis="black", las=2
+2, at=seq, labels=seq, tck=-0.01, padj=0.7
+2, at = seq, labels = WebPages
+2, at=seq, las=2, xmax=1300, ymin=-Inf, ymax=Inf
+2, at=seq, pos=1, col="green4", lwd=3
+2, at=ticksAt, labels=as.character
+2, at = ticks, labels = labels, las = 1, cex.axis=0.7
+2, at = ticks, labels = ticks
+2, at=ticks, labels=ticks, y, yaxt="n", ylim=c
+2, at=times, labels=strftime, las=1
+2, at=tmp2*sum, labels=tmp2
+2, at=x, col.axis=y, labels=z, lwd=0, las=1
+2, at=x, labels=x, las=1
+2, at=yaxisdat, las=2, padj=0.5, cex.axis=0.8, hadj=0.5, tcl=-0.3
+2, at=yax, labels=yax/bs
+2, at = ylabel
+2, at = ylabel, las = 1
+2, at=y.label.position, labels=y.label, las=2
+2, at=yLabels, labels=sprintf, las=1
+2, at=yvals
+2, cex.axis = 0.5
+2, cex.axis=0.5, pos=-0.5
+2, cex.axis=0.6, 10
+2, cex.axis=0.7
+2, cex.axis=1.2
+2, cex.axis = 1.2, las = 1, line = -.7, col = "white", at = c, labels = c, tck = 0
+2, cex.axis=1.5
+2, cex.axis=2
+2, cex.axis = 2
+2, cex.axis=2, data=foo, xaxt="n"
+2, c, label=TRUE, tcl=-0.5
+2, c, label=TRUE, tcl=-0.5, las=1
+2, col="black"
+2, col="dodgerblue", col.ticks="green", col.axis="orange", cex.axis=0.8
+2, col = 'maroon', col.axis = 'pink', col.ticks = 'limegreen', cex.axis = 0.9, font =3, family = 'mono'
+2, c, pos = 0, cex.axis = 0.8, las = 2
+2, , express, las=1
+2, , express, las=1, cex.axis=0.8
+2, format
+2, hpos, labels=F, col=2
+2, iy, labels = labRow, las = 2, line = -0.5, tick = 0, cex.axis = cexRow
+2, labels=c, at=-c, las=1
+2, labels = mac, at = w.m, lty = 0
+2, labels=NA, at=c
+2, labels=TRUE
+2, las=1
+2, las=1, at=500*0:g_range2]
+2, las=1, cex.axis=0.7, at=c, mgp=c
+2, las=2
+2, las = 2
+2, las = 2, cex.axis = 0.6, at = seq
+2, lty=0, labels=FALSE
+2, lty=3, lwd=2
+2, lwd=0, las=1, at=c, yaxp=c
+2, lwd=4
+2, outer=TRUE
+2, pos=0
+2, pos=0, -5, 5, axes=FALSE
+2, pos=0, at=0:8, labels=c
+2, pos=0, las=1
+2, pos=1
+2, pos = -1.2 * outer.radius, at = sort
+2, pos = -1.2 * outer.radius, at = sort, labels = NA
+2, pos=1, las=1
+2, pos = -3
+2, pretty
+2, pretty, 4, 4, 2, left, bottom, right
+2, pretty, sprintf
+2, seq
+2, seq, c
+2, seq, labels=labelsY
+2, seq, las=1
+2, seq, las=2, cex=3, cex.lab=2, cex.axis=1.4, cex.main=2
+2, seq, las=2, cex=3, cex.lab=2, cex.axis=1.5, cex.main=2, 
+2, seq, seq
+2, seq, seq, las=2
+2, tck=-0.015
+2, tck=1, col.ticks="light gray", lwd.ticks="1"
+2, test.frame, las=1, plot
+2, tick=F, las=1
+2, ticksat, labels=NA, tcl=-0.25, lwd=0, lwd.ticks=1
+2, ticks, las=1
+2, tick=T, at=seq, label= seq
+2, yaxp=c
+2, y, letters6:10]
+3
+3, 0, "XII", 0, "III"
+3, at =1:12, labels = 1:12
+3, at=c, labels=lab
+3, at=c, lab = names
+3, at=, labels=colnames, tick=FALSE, las=2
+3, at=seq_along, labels=coln
+3, at=seq_along, labels=format
+3, at=seq, labels=1:ncol
+3, at=seq_len
+3, at=z1Adj
+3, axTicks, abs, lty = 0
+3, cex.axis=0.6, labels=format, at=a
+3, col = "red"
+3, labels=myd1, at=myd1
+3, labels=myd, at=myd
+3, labels=Post, at=Post
+3, lty = 0
+3, lty=0, labels=FALSE
+3, lwd=3, at=seq, cex.axis=0.8, lwd.ticks=1
+3, xlim=c, tick=TRUE, at= seq, label=seq, col.axis="violetred4", col="violetred4"
+4
+4, ...
+4, 0, 1, 1, 1, 0, 1, 1, 0, 1
+4, 1:10/10, 1:10/10, las=2
+4, at=1:35, labels=labDis, cex.axis=0.5, tick=F, line=-1.4
+4, at=1:nrow, labels=row.names, las=2
+4, at = a
+4, at=atics+d1d1=="A", "mean"], labels=atics, pos=3.5
+4, at = axTicks, label = axTicks
+4, at=c, labels=c, las=1
+4, at=c, labels=c, pos=2.2
+4, at=, labels=paste0, las=2
+4, at=log, labels=labs
+4, at = myRightAxisAt, labels = myRightAxisLabs
+4, at=pretty
+4, at=seq
+4, at = seq, labels = do.call, las = 1
+4, at=seq, labels=labChar, tick=F
+4, at = seq, labels = labs, las = 1
+4, at=seq, labels=seq
+4, at=seq, las=2
+4, , col = 'blue'
+4, col = "red"
+4, col.ticks ='red'
+4, iy, labels = labRow, las = 2, line = -0.5, tick = 0, cex.axis = cexRow
+4, iy, labels = labRow, las = 2, line = -0.5, tick = 0, # original line col.axis="green", # added argumentcex.axis = cexRow
+4, las=1
+4, las=1, cex.axis=.75
+4, las=2
+4, las=2, at=seq, labels=seq
+4, lwd=4
+4, pretty, type="l", yaxt = "n", ylab="", xlab="", type="h", lwd=6, col="red"
+4, pretty, ylab='y2'
+4, seq, seq, las=1
+4, tick=TRUE, at= label1, label=label1, col.axis="violetred4", col="violetred4"
+at=brks
+at = pretty, side = 2
+ax, at=major.ticks, labels=labels, ...
+ax, at=minor.ticks, tcl=par, labels=FALSE
+axis=1, breakpos=3
+side=1
+side = 1
+side=1, 1:3, labels=c
+side=1, 1:4, labels=rownames
+side=1, 1, labels=
+side=1, at=0:99, labels=1, 100
+side = 1, at=1:12, lab=c, las=3
+side=1, at=1:27, labels=labs0:27], cex.axis=0.35
+side=1, at=1:3, labels=c
+side=1, at=1:5, labels=lev.as.expr
+side=1, at=1:9, label=c, padj=0, las=1
+side =1, at1, labels = F
+side =1, at1, labels = F, xlab = "", ylab = "", yaxt='n'
+side = 1, at=1:nlevels, labels = if
+side=1, at=a, at=round
+side = 1, at = as.numeric, labels = strftime
+side = 1, at = at
+side=1, at=at, labels=breaks
+side=1, at=at, labels=lab
+side = 1, at = at, las = 2, hadj = 0.9
+side = 1, at = at_tick - 1, labels = FALSE
+side=1, at=bc, labels=seq, xlim=c
+side=1, at=b, labels=c
+side=1, at=b, label=x
+side=1, at=bp1+c, labels=c
+side=1, at=brkvec2, labels=brkvec
+side=1, at=c
+side = 1, at = c
+side=1, at=c, d, type='b', axes=FALSE
+side=1, at=c, labels=c
+side=1, at=c, labels=data, "ob_time"]
+side=1, at=c, labels=rep, cex=0.7
+side = 1, at = dtime.ltat], labels = format
+side=1, at=foo, labels=seq
+side=1, at=index, lab=txt
+side =1, at = k.range
+side=1, at=, labels=c
+side = 1, at =, labels = locs
+side=1, at=l, labels=unique, las=2
+side=1, at=ll, labels=labels, pos=-2, tick=FALSE
+side = 1, at = locs2, labels = NA, tcl = -0.2, y, type="h", log="xy", axes = FALSE
+side = 1, at = locs2, labels = NA, tcl = -0.3
+side = 1, at = mids, labels = as.character
+side = 1, at = monthly_average, 1], lab = xlabel
+side=1, at=p, labels=Occs, las=3, cex.axis=1
+side=1, at=seq
+side = 1, at = seq_along, labels = df, tick = FALSE
+side = 1, at = seq_along, labels = x
+side = 1, at = seq_along, tick = FALSE, labels = xval
+side = 1, at = seq, at = seq
+side=1, at=seq, labels=c
+side=1, at=seq, labels=colnames
+side = 1, at = seq, labels = FALSE
+side=1, at=seq, labels=labsseq, cex.axis=0.35
+side=1, at= seq, labels=seq
+side=1, at=seq, labels=seq
+side = 1, at = SubDateTime, labels = format
+side = 1, at = ticks
+side = 1, at = ttix], labels = labs, cex.axis = 0.7
+side = 1, at = ttix], labels = labsix], tcl = -0.7, cex.axis = 0.7, las = 2
+side = 1, at = tt, labels = ifelse, cex.axis = .7
+side = 1, at = v1, labels = v2, 3, 5, "group b", "group c"
+side=1, at=x
+side=1, at=x_at, labels=x_labels
+side=1, at=xFact, labels=x
+side=1, at=xidx], labels=format
+side=1, at=xidx], labels=format, y, type="n", xaxt="n"
+side = 1, at = x, labels = FALSE, tck = -0.01
+side = 1, at = x, labels = FALSE, tcl=-0.3
+side=1, at=x, labels=round
+side = 1, at = x, labels = T
+side=1, cex.axis=0.8, cex.lab=0.9
+side = 1, col="blue", col.axis="blue"
+side = 1, col="red", col.axis="red"
+side=1, label=format, at=xaxisdat, padj=0.4, cex.axis=0.8, hadj=0.5, tcl=-0.3
+side = 1, labels = colnames, at = c
+side=1, labels=ngenes, at=1:10
+side = 1, lwd = 2
+side=1, lwd=3, xpd=TRUE, at=0:3
+side=1, outer=TRUE, at=ticks, labels=lbl
+side = 1, tick= FALSE, at=c, labels = strftime
+side=2
+side = 2
+side=2, 60:95, labels=60:95
+side = 2, at = 1, labels = label, las = 2, tck = 0, lty = 0
+side=2, at=1:length, labels=resources, las=1
+side=2, at=-2:4, labels=10^
+side = 2, at = c
+side = 2, at = myd, labels = myd, las = 2
+side=2, at = myd, labels = myd, las = 2, col = "green"
+side=2, at = myd, labels = myd, tick = FALSE, las = 2, col = "green", 
+side=2, at=seq
+side = 2, at = seq_along, labels = vol, las = 2
+side = 2, at = seq, labels = as.character
+side=2, at=seq, labels=seq
+side=2, at=yaxisdat, las=2, padj=0.5, cex.axis=0.8, hadj=0.5, tcl=-0.3
+side=2, at=y, labels=round
+side=2, cex.axis=0.8, cex.lab=0.9, las=1
+side = 2, font = 2
+side = 2, labels =
+side = 2, labels = colnames, at = c, las = 1
+side=2, labels=round, at=seq, yaxt="n", log="y"
+side=2, labels=seq, at=seq, labels=round, at=exp
+side = 2, lwd = 2
+side=2, lwd=3, xpd=TRUE, at=seq
+side=2, m2, ui2, li2, axes=FALSE, col="blue", add=TRUE
+side = 2, pos = -0.2
+side= 2, tick = FALSE, at=D, unique, labels=D, paste0, las=2
+side = 2, tick = FALSE, las = 1
+side=3
+side=3, at=at-5], labels=lbl, as.is=TRUE
+side=3, col="black", at=cobs10, labels=cobs10$gdd
+side=3, line=0, font.axis=2, font.lab=2, cex.lab=1.3, cex.axis=1.2
+side=3, line=4, font.axis=2, font.lab=2, cex.lab=1.3, cex.axis=1.2
+side=3, outer=TRUE, at=ticks, labels=lbl
+side = 4
+side=4, at=c, labels=c
+side=4, at = pretty
+side=4, at=seq, labels=round, col="green"
+side=4, col='red', labels=FALSE
+side = 4, lwd = 0, line = -4.5, las = 1, cex.axis=axis_fontsize, col= cols_border1], col.axis = cols_black
+side=4, {other setup arguments}, ...
+side = 4, tck = .05, **lwd=0, lwd.ticks=1**, line = 0, labels = NA, col= cols_border1], col.axis = cols_black
+side=4, tick=F
+side="right", at=pretty, outside=TRUE
+side = side, at = at, labels = labels, ...
+side = side, outside = TRUE, at = at, labels = at, rot = 0

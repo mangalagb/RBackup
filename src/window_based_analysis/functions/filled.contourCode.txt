@@ -1,0 +1,424 @@
+filled.contour plot.axes filled.contour(x = seq(from=-1.5,to=1.5,length=20),
+      y = seq(from=1,to=3.75,length=25), z = mypredict,
+      col = hsv(h=seq(from=2/3,to=0,length=20),s=1,v=1),
+      plot.axes = {axis(1); axis(2); rect(left, bottom, right, top);}) lines rect
+-------------------------------------------------------------------------------------------------------
+kde2d MASS filled.contour d <- structure(list(X = c(-60L, 60L, 7L, -22L, 59L, 29L, -58L, 60L, 
+7L, -21L, 61L, 29L, -57L, -22L, 59L, 29L, -56L, 61L, 8L, -20L, 
+62L, 30L), Y = c(-18L, -62L, 14L, -60L, 58L, 22L, -18L, -61L, 
+14L, -59L, 59L, 22L, -18L, -59L, 60L, 24L, -17L, -60L, 16L, -58L, 
+60L, 23L)), .Names = c("X", "Y"), class = "data.frame", row.names = c(NA, 
+-22L))
+require(MASS)
+dens <- kde2d(d$X, d$Y, h=75, n=50)  #overrode default bandwidth
+filled.contour(dens)
+-------------------------------------------------------------------------------------------------------
+kde2d MASS df <- data.frame(x=rnorm(10000),y=rnorm(10000)) MASS k <- with(df,MASS:::kde2d(x,y))
+filled.contour(k) ggplot geom_density2d() kde2d() library(ggplot2)
+ggplot(df,aes(x=x,y=y))+geom_density2d() filled.contour layout ggplot(df,aes(x=x,y=y))+
+  stat_density2d(aes(alpha=..level..), geom="polygon") +
+  scale_alpha_continuous(limits=c(0,0.2),breaks=seq(0,0.2,by=0.025))+
+  geom_point(colour="red",alpha=0.02)+
+  theme_bw()
+-------------------------------------------------------------------------------------------------------
+n <- 25; x <- y <- seq(n); z <- outer(x,y,function(x,y) (x-15)^2*(y-10)^3)
+filled.contour(x,y,z,col=rainbow(256),nlevels=256)
+filled.contour(x,y,log(z),col=rainbow(256),nlevels=256)  ## warning: NaNs produced
+filled.contour(x,y,log(pmax(z,0.001)),col=rainbow(256),nlevels=256) pmax Inf x <- 1:5
+y <- 1:5
+z <- matrix(outer(x,y,"+"),nrow=5)
+
+filled.contour(x,y,z)
+filled.contour(x,y,z,color.palette=rainbow)
+z2 <- z
+
+z2[5,5] <- Inf
+
+filled.contour(x,y,z2,color.palette=rainbow)
+filled.contour(x,y,z2,col=rainbow(100),nlevels=100)
+-------------------------------------------------------------------------------------------------------
+time2 <- as.POSIXct(time) > time2
+## [1] "2011-01-01 01:00:00 EST" "2011-01-01 02:00:00 EST"
+## [3] "2011-01-01 03:00:00 EST" "2011-01-01 04:00:00 EST" filled.contour(time2,depth,t(temp))
+-------------------------------------------------------------------------------------------------------
+nlevels = 5 require(grDevices) # for colours
+filled.contour(volcano, color = terrain.colors, asp = 1, nlevels=5)
+-------------------------------------------------------------------------------------------------------
+require(reshape) 
+require(mapdata)
+require(mapproj)
+df <- read.table('year.dat',head=F)
+names(df) <- c("value", "x", "y", "t")
+dfc <- cast(df[ ,-4], x ~ y)
+mm<-as.matrix(dfc,ncol=480,nrow=241)
+#pdf('mappamondo.pdf')
+ filled.contour(x=seq(0,360,length.out=480),y=seq(-90,90,length.out=241),mm,color.palette = colorRampPalette(c("lightblue", "blue","violet", "black")),
+xlab = "Longitude (°)", ylab = "Latitude (°)",
+plot.axes = {axis(1); axis(2);          
+map('world2Hires',
+xlim = c(0, 360), 
+ylim = c(-90, 90), illed.contou
+add = T, col = "black")}
+)
+
+#dev.off()
+-------------------------------------------------------------------------------------------------------
+
+interp akima require(akima)
+data <- data.frame(x=c(1,1,2,2,3,4,5,6,7,7,8,9),
+                   y=c(2,4,5,1,3,8,4,8,1,1,6,9),
+                   distance=c(66,84,93,76,104,29,70,19,60,50,46,36))
+resolution <- 0.1 # you can increase the resolution by decreasing this number (warning: the resulting dataframe size increase very quickly)
+a <- interp(x=data$x, y=data$y, z=data$distance, 
+            xo=seq(min(data$x),max(data$x),by=resolution), 
+            yo=seq(min(data$y),max(data$y),by=resolution), duplicate="mean")
+image(a) #you can of course modify the color palette and the color categories. See ?image for more explanation filled.contour filled.contour(a, color.palette=heat.colors)
+-------------------------------------------------------------------------------------------------------
+value df$trimval <- pmin(df$value, 2)  
+ # the range in the example below is roughly -4.5 to 4.5 contour.plot require(reshape)
+  require(mapdata)
+  require(mapproj)
+  df <- data.frame(value=rnorm( 480*241), x=seq(0,360,length.out=480),y=seq(-90,90,length.out=241) )
+df$trimval <- pmin(df$value, 2)
+
+  dfc <- cast(df[-1], x ~ y)
+  mm<-as.matrix(dfc,ncol=480,nrow=241)
+  filled.contour(x=seq(0,2),y=seq(2,4),mm,color.palette = colorRampPalette(c()),xlab = "Longitude (°)", ylab = "Latitude (°)",plot.axes = {} )
+-------------------------------------------------------------------------------------------------------
+black getcolor <- function(z, n) {
+  is.wholenumber <-
+    function(x, tol = .Machine$double.eps^0.5)  abs(x - round(x)) < tol
+  pp <- pretty(range(z, finite=TRUE), n)
+  ifelse(is.wholenumber(pp), 'black', rainbow(n))
+}
+
+filled.contour(x,y,z2,col=getcolor(z2, 200),nlevels=200)
+-------------------------------------------------------------------------------------------------------
+txtlab <- c("2", "4", "6", "8", "Inf")
+txtpos <- c(1.25, 2, 3, 4, 4.75)
+ctlns <- contourLines(x, y, z2, levels=c(3, 5, 7, 9))
+filled.contour(x,y,z2,col=rainbow(200),nlevels=200, plot.axes={axis(1); axis(2); text(txtpos, txtpos, txtlab, cex=1.5);
+     sapply(1:4, function(x) lines(ctlns[[x]][[2]], ctlns[[x]][[3]], lwd=2))
+})
+-------------------------------------------------------------------------------------------------------
+interp akima age2100 <- read.table("temp.csv",header=TRUE,sep=",")
+
+x <- age2100$x
+y <- age2100$y
+z <- age2100$z
+
+require(akima)
+
+fld <- interp(x,y,z)
+
+par(mar=c(5,5,1,1))
+filled.contour(fld) image image.scale source("image.scale.R") # http://menugget.blogspot.de/2011/08/adding-scale-to-image-plot.html
+
+x11(width=5, height=6)
+layout(matrix(c(1,2), nrow=1, ncol=2), widths=c(4,1), height=6, respect=TRUE)
+layout.show(2)
+
+par(mar=c(4,4,1,1))
+image(fld)
+contour(fld, add=TRUE)
+points(age2100$x,age2100$y, pch=".", cex=2)
+
+par(mar=c(4,0,1,4))
+image.scale(fld$z, xlab="", ylab="", xaxt="n", yaxt="n", horiz=FALSE)
+box()
+axis(4)
+mtext("text", side=4, line=2.5)
+-------------------------------------------------------------------------------------------------------
+## An example matrix
+(m <- matrix(1:9, ncol=3))
+#      [,1] [,2] [,3]
+# [1,]    1    4    7
+# [2,]    2    5    8
+# [3,]    3    6    9
+
+## The same matrix rotated 90 degrees clockwise
+t(m)[,nrow(m):1]
+#      [,1] [,2] [,3]
+# [1,]    3    2    1
+# [2,]    6    5    4
+# [3,]    9    8    7 image() m <- matrix(1:9, ncol=3)
+
+
+## ------- These plotting functions DO rotate a matrix --------
+
+## image()
+image(m, col=blues9)
+
+## levelplot() -- a lattice equivalent of image()
+library(lattice)    
+levelplot(m, at=(1:10)-0.5, col.regions=blues9)
+
+## Others
+contour(m)
+filled.contour(m, color=colorRampPalette(blues9))
+persp(m) 
+lattice::contourplot(m)
+lattice::wireframe(m)  ## Nicely illustrates the logic of the indexing it uses
+
+
+## ------- These plotting functions DO NOT --------
+
+## imageRaster() -- a graphical primitive used by image(), among other functions 
+plot(0:1, 0:1, type="n", xlab="", ylab="")
+rasterImage(matrix(blues9, ncol=3), 0,0,1,1, interpolate=FALSE)
+
+## grid.raster() -- imageRaster()'s counterpart in the grid graphical system
+library(grid)
+grid.raster(matrix(blues9, ncol=3), interpolate=FALSE)
+
+## plot(raster()) in raster package
+library(raster)
+plot(raster(m), col=blues9)
+-------------------------------------------------------------------------------------------------------
+edat <- read.table(file=file.choose())
+ with(edat, plot(V1,V2), cex=0.2) with(edat, plot(V1,V2, cex=0.2, col=V5)) with(edat, arrows(V1,V2, V1-20*V6*V7, V2-20*V6*V8, length=0.04, col="orange") ) with(edat, plot(V1,V2, cex=0.3, col=V5, xlim=c(0, 10000), ylim=c(-8000, -2000) ))
+with(edat, arrows(V1,V2, V1-20*V6*V7, V2-20*V6*V8, length=0.04, col="orange") ) require(akima)
+intflow<- with(edat, interp(x=x, y=y, z=Temps, xo=seq(min(x), max(x), length = 410), 
+              yo=seq(min(y), max(y), length = 410), duplicate="mean", linear=FALSE) )
+
+require(lattice)
+contourplot(intflow$z)
+filled.contour(intflow)
+with( intflow, contour(x=x, y=y, z=z) ) points plot
+-------------------------------------------------------------------------------------------------------
+filled.contour library(maps)
+ee<-array(rnorm(89*180),dim=c(89,180))
+lati <- seq(-90,90,length=89) #Latitudes goes from -90 to 90 as far as I know :)
+long <- seq(-180,180,length=180)
+draw.map <- function() {maps::map(database="world", fill=TRUE, col="light blue", add=TRUE)}
+filled.contour(long,lati,t(ee), color.palette=terrain.colors, plot.axes=draw.map())
+-------------------------------------------------------------------------------------------------------
+filled.contour filled.contour my.filled.contour <-
+function (x = seq(0, 1, length.out = nrow(z)), y = seq(0, 1,
+    length.out = ncol(z)), z, xlim = range(x, finite = TRUE),
+    ylim = range(y, finite = TRUE), zlim = range(z, finite = TRUE),
+    levels = pretty(zlim, nlevels), nlevels = 20, color.palette = cm.colors,
+    col = color.palette(length(levels) - 1), plot.title, plot.axes,
+    key.title, key.axes, asp = NA, xaxs = "i", yaxs = "i", las = 1,
+    axes = TRUE, frame.plot = axes, ...)
+{
+    if (missing(z)) {
+        if (!missing(x)) {
+            if (is.list(x)) {
+                z <- x$z
+                y <- x$y
+                x <- x$x
+            }
+            else {
+                z <- x
+                x <- seq.int(0, 1, length.out = nrow(z))
+            }
+        }
+        else stop("no 'z' matrix specified")
+    }
+    else if (is.list(x)) {
+        y <- x$y
+        x <- x$x
+    }
+    if (any(diff(x) <= 0) || any(diff(y) <= 0))
+        stop("increasing 'x' and 'y' values expected")
+    mar.orig <- (par.orig <- par(c("mar", "las", "mfrow")))$mar
+    on.exit(par(par.orig))
+    w <- (3 + mar.orig[2L]) * par("csi") * 2.54
+    layout(matrix(c(2, 1), ncol = 2L), widths = c(1, lcm(w)))
+    par(las = las)
+    mar <- mar.orig
+    mar[4L] <- mar[2L]
+    mar[2L] <- 1
+    par(mar = mar)
+    plot.new()
+    plot.window(xlim = c(0, 1), ylim = range(levels), xaxs = "i",
+        yaxs = "i")
+#    rect(0, levels[-length(levels)], 1, levels[-1L], col = col)
+#    if (missing(key.axes)) {
+#        if (axes)
+#            axis(4)
+#    }
+#    else key.axes
+#    box()
+    if (!missing(key.title))
+        key.title
+    mar <- mar.orig
+    mar[4L] <- 1
+    par(mar = mar)
+    plot.new()
+    plot.window(xlim, ylim, "", xaxs = xaxs, yaxs = yaxs, asp = asp)
+    if (!is.matrix(z) || nrow(z) <= 1L || ncol(z) <= 1L)
+        stop("no proper 'z' matrix specified")
+    if (!is.double(z))
+        storage.mode(z) <- "double"
+    .Internal(filledcontour(as.double(x), as.double(y), z, as.double(levels),
+        col = col))
+    if (missing(plot.axes)) {
+        if (axes) {
+            title(main = "", xlab = "", ylab = "")
+            Axis(x, side = 1)
+            Axis(y, side = 2)
+        }
+    }
+    else plot.axes
+    if (frame.plot)
+        box()
+    if (missing(plot.title))
+        title(...)
+    else plot.title
+    invisible()
+} my.
+filled.contour(x=x, y=y, z=z,levels=levels,col=colorpanel(),xlim=rev(),ylim=rev(),plot.axes={},xlab="x", frame=FALSE)
+-------------------------------------------------------------------------------------------------------
+.filled.contour plot(NA,xlim=rev(range(x)),ylim=rev(range(y)),xlab="x",ylab="y",frame=FALSE,axes=F,xaxs="i",yaxs="i")
+
+.filled.contour(x=x, y=y, z=z,levels=levels,col=colorpanel(length(levels) + 1, "white", "grey10"))
+draw.contour()
+axis(1, c(0.18, 0.01), label=TRUE, tcl=-0.5)
+axis(2, c(0.18, 0.01), label=TRUE, tcl=-0.5, las=1)
+-------------------------------------------------------------------------------------------------------
+.Internal(filledcontour(as.double(x), as.double(y), z, as.double(levels), 
+                                                        col = col)) .filled.contour(as.double(x), as.double(y), z, as.double(levels), 
+                            col = col)
+-------------------------------------------------------------------------------------------------------
+clims z = matrix(rnorm(10*10, sd=3), 10)
+
+z2 <- z
+z2[z2 > 3] <- 3
+z2[z2 < -5] <- -5
+
+# or simply
+z2 = scales::squish(z, c(-5, 3))
+
+filled.contour(z) filled.contour(z2)
+-------------------------------------------------------------------------------------------------------
+filled.contour(z=dat1,col=Contourcolors,plot.axes=points( x=seq(0, 1, length.out = nrow(dat1)),y=rep(.5,20), col=PointColors,cex=5,pch=19))
+-------------------------------------------------------------------------------------------------------
+y filled.contour filled.contour(z=z1,y=c(0,.33,1),col=col1,cex.lab=2,cex.main=1.1,nlevels=20,main=('Heat map with custom y placement'))
+-------------------------------------------------------------------------------------------------------
+plot.title plot.axes key.title key.axes ?filled.contour ...: additional graphical parameters, currently only passed to
+      ‘title()’. x=1:10
+y=1:10
+z=array(rnorm(100),dim=c(10,10))
+
+filled.contour(x,y,z,las=0,plot.axes={},plot.title={})
+-------------------------------------------------------------------------------------------------------
+x <- 10*1:nrow(volcano)
+  y <- 10*1:ncol(volcano)
+  filled.contour(x, y, volcano,asp=1, frame.plot=F,plot.axes = {})
+-------------------------------------------------------------------------------------------------------
+?colorRampPalette ## 'jet.colors' is "as in Matlab"
+## (and hurting the eyes by over-saturation)
+jet.colors <-
+  colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan",
+                     "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000")) filled.contour(volcano, color = jet.colors, asp = 1, nlevels=100)
+-------------------------------------------------------------------------------------------------------
+my.heat.colors <- function(x) { rev(heat.colors(x, alpha=1)) }
+ my.matrix  <- interp(X,Y,Z)
+ ind.mat.na <- which(is.na(c(my.matrix$z)))
+ my.matrix$z[ind.mat.na] <- 0
+ filled.contour(my.matrix, nlevels=10, color=my.heat.colors)
+-------------------------------------------------------------------------------------------------------
+library(akima)
+
+# interpolation
+fld <- with(df, interp(x = Lon, y = Lat, z = Rain))
+
+filled.contour(x = fld,y= fld,z = fld,color.palette =colorRampPalette(),xlab = "Longitude",ylab = "Latitude",main = "Rwandan",key.title = title())
+ library(ggplot)
+library(reshape2)
+
+# prepare data in long format
+df <- melt(fld$z, na.rm = TRUE)
+names(df) <- c("x", "y", "Rain")
+df$Lon <- fld$x[df$x]
+df$Lat <- fld$y[df$y]
+
+ggplot(data = df, aes(x = Lon, y = Lat, z = Rain)) +
+  geom_tile(aes(fill = Rain)) +
+  stat_contour() +
+  ggtitle("Rwandan rainfall") +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  scale_fill_continuous(name = "Rain (mm)",
+                        low = "white", high = "blue") +
+  theme(plot.title = element_text(size = 25, face = "bold"),
+        legend.title = element_text(size = 15),
+        axis.text = element_text(size = 15),
+        axis.title.x = element_text(size = 20, vjust = -0.5),
+        axis.title.y = element_text(size = 20, vjust = 0.2),
+        legend.text = element_text(size = 10)) ggmap # grab a map. get_map creates a raster object
+library(ggmap)
+rwanda1 <- get_map(location = c(lon = 29.75, lat = -2),
+                  zoom = 9,
+                  maptype = "toner",
+                  source = "stamen")
+# alternative map
+# rwanda2 <- get_map(location = c(lon = 29.75, lat = -2),
+#                   zoom = 9,
+#                   maptype = "terrain")
+
+# plot the raster map
+g1 <- ggmap(rwanda1)
+g1
+
+# plot map and rain data
+# use coord_map with default mercator projection
+g1 + 
+  geom_tile(data = df, aes(x = Lon, y = Lat, z = Rain, fill = Rain), alpha = 0.8) +
+  stat_contour(data = df, aes(x = Lon, y = Lat, z = Rain)) +
+  ggtitle("Rwandan rainfall") +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  scale_fill_continuous(name = "Rain (mm)",
+                        low = "white", high = "blue") +
+  theme(plot.title = element_text(size = 25, face = "bold"),
+        legend.title = element_text(size = 15),
+        axis.text = element_text(size = 15),
+        axis.title.x = element_text(size = 20, vjust = -0.5),
+        axis.title.y = element_text(size = 20, vjust = 0.2),
+        legend.text = element_text(size = 10)) +
+  coord_map() # Since I don't have your map object, I do like this instead:
+# get map data from
+# http://biogeo.ucdavis.edu/data/diva/adm/RWA_adm.zip
+# unzip files to folder named "rwanda"
+
+# read shapefile with rgdal::readOGR
+# just try the first out of three shapefiles, which seemed to work.
+# 'dsn' (data source name) is the folder where the shapefile is located
+# 'layer' is the name of the shapefile without the .shp extension.
+
+library(rgdal)
+rwa <- readOGR(dsn = "rwanda", layer = "RWA_adm0")
+class(rwa)
+# [1] "SpatialPolygonsDataFrame"
+
+# convert SpatialPolygonsDataFrame object to data.frame
+rwa2 <- fortify(rwa)
+class(rwa2)
+# [1] "data.frame"
+
+# plot map and raindata  
+ggplot() + 
+  geom_polygon(data = rwa2, aes(x = long, y = lat, group = group),
+               colour = "black", size = 0.5, fill = "white") +
+  geom_tile(data = df, aes(x = Lon, y = Lat, z = Rain, fill = Rain), alpha = 0.8) +
+  stat_contour(data = df, aes(x = Lon, y = Lat, z = Rain)) +
+  ggtitle("Rwandan rainfall") +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  scale_fill_continuous(name = "Rain (mm)",
+                        low = "white", high = "blue") +
+  theme_bw() +
+  theme(plot.title = element_text(size = 25, face = "bold"),
+        legend.title = element_text(size = 15),
+        axis.text = element_text(size = 15),
+        axis.title.x = element_text(size = 20, vjust = -0.5),
+        axis.title.y = element_text(size = 20, vjust = 0.2),
+        legend.text = element_text(size = 10)) +
+  coord_map()
+-------------------------------------------------------------------------------------------------------
+filled.contour points plot.axes filled.contour(x,y,z, col=rev(heat.colors(n=20, alpha=0.7)), nlevels=15,
+               plot.axes={points(0,0)})
+-------------------------------------------------------------------------------------------------------

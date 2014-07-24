@@ -1,0 +1,691 @@
+
+0:2, allPAL.DEi, ], col=i, lwd=2
+0.5:12.5, c.out, col="red", lwd=3
+0:60
+1:100, with
+1:10, 1:10, type="l", lty=2
+1:10, 1:10, type = "l", xlim = c
+1:10, Pf, i], type = "l", col="red", lwd=5, ylim=c
+1:10, predict
+1:10, rep, lty=i
+1:10, runif, col=2, lty=2
+1:10, runif, col=3, lty=2
+1:10, sample, pch=1, type="o"
+1:10, y
+1:140, value.pred12, col = "red", period
+1:24, bpt, ]
+1:2, c, alpha=0.5, ...
+12 + seq, daily.avg
+13:24, predict
+1:366, Mean, lwd=3
+1:366, Quantiles"0%", ], col = gray, lty=4
+1:366, Quantiles"100%", ], col = gray
+1:366, Quantiles"10%", ], col = gray
+1:366, Quantiles"90%", ], col = gray, lty=4
+1:3, rnorm, pch = 2, lty = 2, type="o"
+1:7, exp
+1:9, 1:9 * fit1, col="red"
+1:length, conv.series, ...
+1:length, x
+1:n, bVals, col = point_colors2]
+1 - plotroc, plotroc, lwd = 2, lty = 5
+2:4, 10:8, col=2, type="l"
+2+c, 3+c
+3+aa*cos, foo, 3]+bb*sin
+6:36, 6/, type="o"
+6:9, c, col=3, type="l"
+8:15, exp, data
+9:17, 1:9 * fit2, col="blue"
+a, a, type="b", col="red", pch=19
+a, col=cl, 5.0, 100, "red", 1
+a.hole, col='red'
+a_sequence, b_sequence
+as.numeric, df, type="b", col="blue"
+as.POSIXlt, MAX, lty=2
+as.POSIXlt, MIN, lty=2
+a, z.pre, col="red"
+b2]]
+bacteria, bacteria.glm, col="red", 173.44, 30
+barp, 1000*dnorm
+b, b, type="b", col="blue", pch=19
+b, Data, col=castigos.col, lwd=2
+b, Data, col=vencido.col, lwd=2
+b, 'dn'], col='red'
+beforendafterdata, x], ...
+beta, quadratic, lty=2, col=3
+betseq, lowlim
+bf.red, lo.pred
+b, lty=2
+b, 'mavg'], col='blue'
+boundaries
+bp
+bp, fit
+bpidx], predict
+b.pred, col="green", lty="dashed"
+b_sequence, a_sequence
+b, 'up'], col='red'
+c
+c, 1- rep
+c, c
+c, c, ...
+c, c, col="blue"
+c, c, col = "blue"
+c, c, col = col
+c, c, col = "green"
+c, c, col=i
+c, c, col="red"
+c, c, col = "red"
+c, c, col = "steelblue", lwd = 3, lty = 22
+c, c, gp=gpar, default.units="native", y=0, width=0.5, height=1, just=c, y=0, width=0.5, height=1, just=c
+c, c, lty="dotted"
+c, c, lwd = 2 * srow.o, row.d] / mean
+c, c, type="b", lwd=5, col="white"
+c, c, type="l", col="blue"
+c, c, type="l", lty=2, lwd=0.5, col="black"
+c, c, type = "o", pch = 25
+c, d1, 3:4]
+c, d2, 3:4]
+c, d3, 3:4]
+chx
+circle, col = "#66666650"
+c, lty=3, col='blue'
+c, matrix, j], col=j
+cos
+cos, sin
+cos, sin, col=l, lwd=3
+c, Placement, col=colsi], lwd=2
+cps71, coef, lty=2, col="red"
+cps71, fitted, lty=1, col="blue"
+cps71, fitted, lty=2, col="red"
+cps71, gradients, lty=2, col="red"
+c, rep, col=i+1, type="l"
+ctlns1]], ctlns1]], lwd=4, col="darkblue"
+ctlnsx]]2]], ctlnsx]]3]]
+c, type="l", pch=NA, lwd=1, col="black"
+c, type="l", pch=NA, lwd=1, col="grey"
+cumfreq2, col="red"
+cumsum
+d, 1], d, 2], lty=ltysi], col=colsi], lwd=4
+D2, D2, lty=2, col="blue"
+D3, D3, lty=3, col="green"
+dat
+dat, 1], dat, 2], col=color
+data
+data1, col="blue", lwd=1
+data3, ...
+data, 4], data, 2], type='l', col='red'
+data, 4], data, 3], type='l', col='green'
+data, data
+data, data, col = "pink"
+data, data, col='red'
+data, data, col = "steelblue"
+data, data, i + 1], type="l", col=colorsi]
+data, data, type='l', col="blue"
+data.frame, lty="twodash", col="deepskyblue4", lwd=4
+data, i]
+data, lw1, col="red", lwd=3
+data, p3]*dnorm
+data, p6]*dnorm, col=2, data, 6, .6, .02, 8.3, 0.10, .002, control=list, method="L-BFGS-B", lower=c
+dataPlot11], lty=1, col="blue"
+dataPlot12], lty=2, col="red"
+dataPlot13], lty=2, col="forestgreen"
+Dataset_2, Dataset_2
+dat, c, type="l", col="red"
+dat, dat
+dat, dat, col="red"
+dat, dat, col=x2]
+dat_dens, lty=1, col="red"
+date, valueymod, type = "l", col = "red"
+dat, rollapply
+datt, col = "dark grey"
+dbh, h
+d, col = "darkgrey"
+d, col="red", 1, 1
+DD2 ~ Timestamp, data = out, type = "l", col = "red"
+dd, dd
+dd, dd, col=2, type="b"
+dd, dd, col=3, type="b"
+deathrow, deathrow, col="green"
+deathrow, deathrow, col="red"
+def='native', x=c, y=0, arrow=arrow
+def='native', y=c, x=0, arrow=arrow
+den1 <-density, col="blue", polygon
+deni]], col=i
+dens
+dens2, col = "red"
+dens, col="red", lwd=2
+dens, dens
+density
+density, col=2
+density, col=2, freq=FALSE
+density, col="blue"
+density, col = "blue"
+density, col="green"
+density, col = "green"
+density, col='red'
+density, col="red"
+density, col = 'red'
+density, col = "red"
+density, col="red", 1000, replace=TRUE
+density, col='red', lwd=3, xlim=c
+density, col="red", ylim=c
+density, col = "yellow"
+density, lty = 2, lwd = 2
+density, lty=3, col="red"
+density, lty = d
+density, lty="dotted"
+density, type = "n"
+density ~ V1, data = dat, col = "red"
+density ~ V1, data = dat, col = "red", data = dat, type = "n", ylim = c
+density, xlim = xr, ylim = yr, col = i
+density, ylim=c
+deseason, 2], col="red"
+df, 10^fit_line, col="red"
+df2
+DF, 2:3]
+df, df, col="red", lty=2
+df, df, lwd = 2
+df, fit_line, col="red"
+df, fit_power, col="blue"
+d, fitted
+df, log10, col="blue"
+dfP, dfP, lwd=2, col="blue"
+DF, predict
+dfr, 1], dfr, 3], col="red"
+dind, ], lwd = 2
+DNase1, predict
+dnorm, col="blue", lty="dotted", from=ToBeFilled, to=ToBeFilled, col="blue", lty="dotted", mean = mean
+dpois
+d, predict, lty=
+dy, col = "blue"
+ecdf, col="green"
+ecdf, col="green", col.01line="white"
+ecdf, col="red"
+ecdf, col="red", col.01line="white"
+emp_dens, lty=1
+est
+estDecon, lty=2
+ev1dens, ev1dens, lty=3, lwd=2.5, col="red"
+exydist2center == max, ]
+female, pch=16, col = "green"
+file2, file2, col="blue"
+fit1], lwd=2, col="black", xscale=365.24
+fit, col=2
+fit, col="red"
+fit ~ spd, data = x_grid, col = "red", lwd = thickLineWidth
+fitted, col="blue"
+fitted, col="green", lwd=2
+fitted, data=df
+fitted, df
+fitted, lty = 1
+fitted, lty = 2
+fitted ~ Time, data = sucrose.line, xlab ="Time of the presentation of the danger cue", ylab="Proportion of wasps leaving the patch"
+fit ~ w_sp, data = x_grid, col = "red", lwd = 3
+foo, foo, col="red", foo, FUN=length, freq=F
+freq1, type="l", col=
+Freq ~ x, xtds, type="h", col="red"
+front.lim, front.lim, col="red", lwd=2, c, type="n", xlab="", ylab=""
+F, T
+gC, col=col, lwd=0.5
+gi, gi
+greatCircle, col = "firebrick"
+h
+h1, h1, t="S"
+h, c, type='h'
+h, c, type='s'
+h, dens1, col="red"
+h, rep, type='S'
+hx
+hx, type="h", lwd=linewidth-2, col=fillcol
+i+, , col=max, pch=i, lty=i, type="b"
+ifelse, x
+i + my.listi]]/scale.fact
+index, coredata, lwd=3
+index, lo, col='purple'
+indiv, indiv, col = "blue"
+indiv, indiv, col = "green"
+indiv, indiv, col = "yellow"
+k, y2, type='l', col="green", ylim=range
+k, y3
+lake, type="b", col="darkgreen", lwd=3
+l.fit1, col = 2, lwd = 2
+linexy, col=linecol, y=36.851, ratio=F, metric = T, relwidth=0.2, col ="white", linecol="white"
+loess.fit, loess.fit, ...
+loess, lowess
+loess.smooth
+loess.smooth, col = "green"
+log, exp, col="red", exp, col="red"
+log, log, col="red"
+lower95.CI ~ p.move, option
+lower ~ a, data = pdat, subset = want, lty = "dashed"
+lower ~ b, data = pdat, subset = want, lty = "dashed"
+lower, col="gold"
+lowess
+lowess, lowess
+lowess, lowess, col="red"
+lowess, lwd=2, col="darkblue"
+lowess, type = "p", col = "blue", pch = 1
+lowess, type = "p", col = "red", pch = 1
+low, low
+low, type="l"
+lwr ~ w_sp, data = x_grid, col = "red", lwd = 2, lty = "dashed"
+m1, col=2
+m2, col=4
+male, pch=16, col = "red"
+m, col=2
+m, col=2, lwd=2
+m, col=3, lwd=2
+mean.mag~class.mids
+MeanRewards, "epsi1"], col = 'orange', lwd = 2
+MeanRewards, "epsi2"], col = 'navy', lwd = 2
+mean.yaxis ~ seq
+med~t, data=res.df, col="steelblue"
+mfit.htx, col=2, fun=function
+mfit.htx, col=2, fun=function, lty = "dashed", conf.int = "only"
+MonthNum
+mp2, ], df, col="blue"
+mp2, ], df, col="green"
+mp, data.30.c, col=34
+m, predict, col='red'
+msizes, type = "s"
+m ~ unique
+my.combi]], col="red"
+my.datamati, ]
+mydensity
+myd, myd, pch=19, cex=.75, col="blue", type="o"
+mydx, ], mydx
+mysurvfit, col="blue", lty=1
+mysurvfit, col="blue", lty=2
+my.vwap
+myx, normal * multiplier1], col = "blue", lwd = 2
+N0, Ne
+na.omit, col=2, aes
+newdata, predict, col="red"
+newdf, exp
+new, predict
+newx, newy, col="red", lwd="3"
+newx, prd, 2], col="red", lty=2
+newx, prd, 3], col="red", lty=2
+newx, predict, col='blue', lwd=2
+newx, preds, 2], lty = 'dashed', col = 'red'
+newx, preds, 3], lty = 'dashed', col = 'red'
+obrv1:20], value1:20], col="red"
+obs_v_exp, col="red"
+offer
+offeri], predict
+out
+p1 ~ x, data = r1, col = "red"
+P2, P2, col="green"
+p2 ~ x, data = r2, col = "blue"
+path.11:i, ]
+path.21:i, ], col="red", l2
+pct_used
+pdays, lo
+perf2@x.values1]], perf2@y.values1]], col = 2
+pframe, predict
+plotexpl, predresp^
+plotroc, , col="red"
+plotroc, plotroc
+points, col='red'
+power~time, B
+p, predict, lty=3, lwd=2
+pred, col=2
+predict
+predict, ...
+predict, col = "blue", lwd = 2
+predict, col="purple"
+predict, col="red"
+predict, col='red', lwd=2
+predict, col = "red", lwd = 2
+prediction, col=lcol
+predict, lwd=4, col='black'
+predict, seq, col="red"
+pred.prime, col=2
+ps, col=2
+p, sgam, lty = 1
+p, sgam, lty = 2
+PTARcCIage4j]], PTARcCIage4j]], ...
+pts, f2, col="red", type="b", pch=16
+pts, f3, col="green", type="b", pch=16
+p, y2, type='l', col="green", ylim=range
+p, y3, col="blue"
+questionnumbers, result1, col = 'blue', type = 'b'
+range, c
+rbind
+rbind, col = "green", lwd = 2
+redata1, ], type="l", pch=NA, lwd=1, col="grey"
+rep
+rep, c, col=i+1, type="l"
+rep, type="l", col="lightgray", lwd=1
+rep, type="l", pch=NA, lwd=1, col="black"
+Res, 1], col="red"
+res, 1], res, 3], col='red'
+Res, 2], col="red", type=o
+Res, 3], col="blue"
+Res, 4], col="blue"
+Res, 5]
+Res, 6]
+res, col = "blue"
+resid, type="l", col="blue"
+roc2, col="red"
+rollmean, "AAPL.Open"], col="red", "SPY.Open"]
+rollmean, col = 2, lwd = 2
+rollmean, "SPY.Open"], col="red"
+rollmedianR, lwd=2, col="Red"
+r.sims, i], type="l", col=colori]
+r.sims, i], type="l", col="#ff000010"
+r, tN, type='h', col='red', lwd=2
+Rvalues, predict
+rvec, pred, col=2, lwd=2
+rvec, true, col=4, lwd=2
+s2
+scatterangleid], predict, col='red', lwd=2
+scatterangleid], signal2id], col='blue', lwd=2
+scp, col="white"
+s, dnorm, col="red"
+seq
+seq, 100*dpois
+seq_along, xi]]
+seq, pnorm, col=2
+seq, predict
+seq, predProbs, col=2, lwd=2
+seq, qs2, ], lty=1, lwd=2
+seq, qs3, ], lty=2, col=2
+seq, Tb, type="b", lwd=2
+seq, xy, col=dcol
+SESSION, MEANOVERLAP, type='b', col='blue'
+SESSION, MEANWIDEANGLE, type='b', col='green'
+severity.lm, conf= .85, interval = "prediction"
+severity.lm, conf= .95, interval = "confidence"
+simulate, col="blue"
+simulate, col="red"
+sizes, type = "s"
+SL
+sm, col = "red"
+smoo, smoo
+smoothCounts
+smoothingSpline
+smoothingSpline, col = "darkolivegreen3", lwd = 2
+smooth.spline
+smooth.spline, col = "red"
+sort, BAR
+sort, dnorm, col="red", dnorm
+spa, col="light blue"
+spline, col = 2
+spline, col = 4
+split_dati]]
+ssizevec, powvec2, col="red"
+state.map.IOAPI.shp, lwd=0.8
+stax:endx, qnorm
+step~events, data=dfdf, ], type="s", col=2
+step~events, data=dfdf, ], type="s", col=3
+survfit, col='green'
+SwStr, P
+tail, 1-head
+tail, head, type="o", cex=0.5
+T-c, ps, col=3
+t, dat, i]
+temp1, col="red"
+test, type="b", col="#304E67", lwd=3
+test, type="b", col="#974449", lwd=3
+tex2, col="red"
+tex3, col="blue"
+t, fB, lty = 2
+t, fC, lty = 3
+time2, lfunii]]
+Time, pred, col="blue"
+time, surv
+tmp, tmp, col='green'
+t, predict
+t, predict, col="red", lwd=3
+trans3d, col="Red", cex=2
+tr, col = "black"
+tr_error, type='l', col='red'
+tri1, c, tri2, c, type="l"
+ts
+tt
+t, x2, lwd=1, col="red"
+unique, fit
+unit
+unit, unit, gp=gpar
+unrate.df
+upper95.CI ~ p.move, option
+upper ~ a, data = pdat, subset = want, lty = "dashed"
+upper ~ b, data = pdat, subset = want, lty = "dashed"
+upper, col="gold"
+upr ~ w_sp, data = x_grid, col = "red", lwd = 2, lty = "dashed"
+uq~t, data=res.df, col="springgreen"
+v
+v2, lwd=1, col="red"
+week1, type="o", col="blue"
+week1, type="o", col="green"
+week1, type="o", col="purple"
+week1, type="o", col="red"
+which, na.omit, col=i
+X
+x
+x, ...
+x0i, ], ...
+x0, predict
+x0, predict, col = "blue"
+x0, predict, col = "red"
+x=0, y=c, default.units="native"
+x=0, y=c, default.units="npc"
+x10:20], y10:20], type="b"
+x1:1000], fitted.values1:1000], col="red", lwd=2
+x1:1000], pred.lower1:1000], lwd=2, col="blue"
+x1:1000], pred.upper1:1000], lwd=2, col="blue"
+x=1:60, y=predict
+x1.eval, y.eval
+x1.eval, y.lower.ci, lty=3
+x1.eval, y.upper.ci, lty=3
+x1, ksmooth, col='green', lwd=2
+x1, ksmooth, col='orange', lwd=2
+x1, ksmooth, col='red', lwd=2
+x=1:length, y=panel, col="red"
+x-1], mod2, col = 'green'
+x-1], mod3, col = 'green'
+x-1], mod, col = 'red'
+x = 1:nrow, y = Mazda
+x = 1:nrow, y = Renault
+x = 1:nrow, y = Toyota
+x1, predict, col="red"
+x1, smooth, col='blue', lwd=2
+x, 1], x, 3], col = col1], lwd=2
+x1, y1, col = 'blue'
+X2ox2], fitted
+x2, type='l', col='red'
+x2, y2
+x = bar230:, y = predict
+x<-c, a+b*x^k, col='red'
+x, Change*1000, type="b"
+x, Change, type="b"
+x, col = col, bg = bg, pch = pch, type = type, ...
+xcoordhpts], ycoordhpts], col = lcolor
+x.cord, x], y.cord
+x, c, type="S"
+xcum, rantri], type="l", lwd=1, col=rgb
+xcumsor, 0.5*numtri], type="l", lwd=3, col=rgb
+xcumsor, perlin*numtri], type="l", lwd=2, col=rgb
+xcumsor, , type="l", lwd=2, col=rgb
+x=c, y=0, default.units="npc"
+x=c, y=50-1*c
+x=c, y=c
+x=c, y=c, col=col, lty="dotted", lwd=0.5
+x=c, y = c, default.units='native'
+x=c, y=c, gp=gpar
+x=c, y=predict, col="red", type="b"
+x = c, y = Y, gp = gpar
+x, dcauchy, col="red"
+x, dens2, col="darkgreen"
+xdens, xdens, col='blue'
+x, dnorm
+x = d, y = cumsum, lwd = 2
+x = d, y = d, lwd = 2
+x, est, col="white"
+x, fitted, col="orange", lwd=3, lty=2
+xfit, yfit, col="black", lwd=2
+xfit, yfit, col="blue", lwd=2
+xfit, yfit, col="green", lwd=2
+x, f, lwd = 2
+x, fy, col="blue", lwd=2
+xg=="model"], yg=="model"], col = "black"
+x_grid
+x_grid, predict, col = "red", lwd = 3
+Xhpts, ]
+x, hx
+x, i], col = colorsi], ...
+x, i], col=lcoli]
+x, IntVector, col = "green"
+xi, yi, type='h'
+xi, yi, type='s'
+x, i], y, i], type = typei], lty = ltyi]], lwd = lwdi], lend = lendi], pch = pchi], col = coli], cex = cexi], bg = bgi]
+xl, a, col="blue"
+x, line], y, line], cols, 'red'], cols, 'green'], cols, 'blue'], lwd=lwd, lty=lty
+xl, predict
+xl, predict, col='red', lwd=2
+xl, predict, y
+x=median, y=c, default.units="native"
+x=median, y=plot_Loc, default.units="native"
+x_mod, y_mod, col=color, lwd=5
+x_mod, y_mod, col='white', lwd=10
+x, myf, col="red"
+xnew, exp
+xNew, yNew
+x=plot_Loc, 3]], y=c, default.units="native"
+x=plot_Loc, 4]], y=c, default.units="native"
+x=plot_Loc, y=median, default.units="native"
+x=plot_Loc, y=plot_Loc, default.units="native"
+x, pnorm, lwd=2
+xpos, bVals, col = point_colors2]
+x.pos, Closes, col=x@colors, type=x@line.type
+x, predict
+x, predict, col = 3, lwd = 2
+x, predict, col='red'
+x, predict, col="red"
+x, predict, col = "red", lwd = 2
+x = pred, y = pred, col = col.line, lty = lty, lwd = lwd, ...
+xp], yp], col="red", type="b
+x!sel], exp, col="navy", lwd=3
+xsel], fitted, col="blue", lwd=3
+xseq, sapply
+x, sin, col='yellow', type='l'
+x, smooth
+xs, predict, col="gray"
+xs, qM
+x.sub, col = 'red', lwd = 2, xlim = c
+xs, ys
+x = time, y = ratio.e, col = ccsrc]
+xts, col = 2
+x.t, y.c, col='red'
+xt, yt, ...
+x=unit, y=0, default.units="native"
+xval
+xvals, pllogis, col=2
+xvals, predict
+xvec, logpred
+xvec, pq, col=2
+xvec, predict
+xvec, predict, TRUE, FALSE, FALSE, FALSE
+xv, lyv, lty=2, col=3
+xv, uyv, lty=2, col=3
+xv, yv
+xw, col = 4
+xx
+x=xc, y=yc, col=coln]
+x=xd, y=yd+, ylim=c, col="grey50", type="l", lwd=2
+xx, f, col = 'blue', lwd = 1.2
+x.xfit/x.xscalefactor, x.yfit, col="red"
+x=x, i], y=y, i], col=coli], lwd=10, lend=1
+x + x.offset, y + y.offset, lend=2, ljoin=2, lwd=lwd, col=2
+x - x.offset, y - y.offset, lend=2, ljoin=2, lwd=lwd, col=4
+xx, pred
+xx, predict, col='black'
+xx, predict, col='blue'
+xx, predict, col='green'
+xx, predict, col='grey'
+xx, predict, col='orange'
+xx, predict, col='purple'
+xx, predict, col='red'
+x, x_total, col=4, lty=2
+x=xval, y=ab, col="blue"
+x=xval, y=ab, col="red"
+x=X, y=Y
+xx, yy, col="purple"
+x, y
+x, -y
+x, y, ...
+x, y1
+x, y1]]
+x, y1, col="red"
+x, y1, pch=18, cex=.5, col="red", type="b"
+xy, 1-xy, type="o", cex=0.5
+x, y2
+x, y2, col="blue"
+x, y2, col="green"
+x, y, 2], col=mean.col, lwd=mean.lwd
+x, y2, col = "red"
+x, y2high, col='red'
+x, y2low, col='green'
+x, y2new, pch=24, cex=.5, col="green", type="b"
+x, y2, type="l", lwd=2, col="blue"
+x, y, 3], col="blue"
+x, y3, col="green"
+x, y4, col="darkgray"
+x, y, 6], col="red"
+x, y, c, 0, c, colvar=xydist, lwd=2
+x, y, col="black", lty="dotted", y, main="X vs Y", xlab="X", ylab="Y"
+x, y, col="blue"
+x, y, col="blue", lwd=2
+x, y, col=col
+x, y, col = "grey80", y = 1:5
+x, y, col="orange"
+x, y, col="purple"
+x, y, col="red"
+x, y, col = "red", lwd = 2
+xy, col="red", lwd=5
+xycoords, xycoords, ...
+xycoords, xycoords, lcol, ...
+x ~ y, data = pred, type = "l", col = "red", lwd = 1
+x, y, gp=gpar, default.units='naif'
+x, y, gp = gpar, default.units = "native"
+x, y, gp=gpar, default.units = "npc"
+x, yi]], col = colorsi - 1]
+x, y, i], col=Col.rar1i]
+x, y, 'l', lwd=.00000000001, col="black"
+x, y, lwd=1
+x, y, type = type, ...
+xy, xy, col = gray, lwd = .5
+xy, xy, type="o", cex=0.5
+x, z, col="red"
+x, z, lwd=2, col="red"
+y/40~x
+ydens, ydens, col='blue'
+yd, xd, col="green"
+yd, yd, col="red"
+year.dayyear.index]], # x coordsusage.per.day.grouped.by.yearyear.index]], # y coordscol=colorsyear.index]
+year, ger.90.10.ratio
+yearvec, predict
+yfit_diseased, , col="red", lwd=2
+yfit_healthy, , col="blue", lwd=2
+yhat ~ x1, data = pdatx1, col = "red", lwd = 2
+yhat ~ x2, data = pdatx2, col = "red", lwd = 2
+yhat ~ x, data = pdat, lwd = 2, col = "red"
+yhat ~ x, data = pred
+yhat ~ x, data = pred, col = "red", lwd = 2
+yhat ~ x, data = pred, subset = x >= xr1] & x <= xr2], lwd = 2, col = "red"
+y, type="l", col="green"
+y~x
+Y ~ X, data = pDF, col = "red", lwd = 2
+y~x, temp2, ...
+yy
+y.yfit, y.xfit/y.xscalefactor, col="red"
+yy, seq, col=dcol
+yz, col = "red"
+z
+z, 2], col='red'
+zoo, col="red"
+Zsubset], col='red'
+zz, zz, type="h", lwd=48, lend="butt", col="white"
+zz, zz, type="h", lwd=50, lend="butt"
+zz, zz, type="h", lwd=50, lend="butt", y=c, type="n"

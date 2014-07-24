@@ -1,0 +1,6 @@
+aspect~change*0*data = mydata
+x~mydata*0*ylab = NA*0*xlab = NA*0*yaxlabels = "n"
+fail ~ temperature
+fail ~ temperature*0*cex.axis=2
+y=fail*0*x=temperature*0*cex.x=2*0*cex.y=3
+fail ~ temperature

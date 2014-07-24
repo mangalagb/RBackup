@@ -1,0 +1,530 @@
+x    dat2    col="red"    
+x.axis    cumsum    col='red'    
+data    data    col='red'    
+data    data    col='green'    
+data    data    col='blue'    
+runif    runif    
+mean    data = InsectSprays    col = "lightgray"    
+means    col="red"    pch=18    na.rm=T    
+x[!insideCI]    y[!insideCI]    pch = 16    col = 'red'    
+df2[df2[    1] < min    1] > max    c    pch = 16    col = 'red'    
+the.centers ~ rep    pch = 19    col = "red"    cex = 1.5    
+y~x    pch = 19    col = "red"    
+x    y    pch = 19    cex = 0.65    
+for_x_axis    for_y_axis    pch = pts    
+1    1    col='red'    
+x2    y2    col='blue'    
+x3    y3    col='red'    
+x    cos    "l"    col="red"    
+longitute    latitude    
+d2    t="l"    col="red"    lwd=2    
+slot    slot    col="red"    cex=0.5    
+casp6 ~ trans.factor    
+x=rep    y=1:9/10    pch=1:10    default.units="npc"    
+x    y    col = "black"    
+x    y    y    geom="point"    
+x    dnorm    
+dat[-want    ]    col = "black"    pch = 21    bg = "black"    cex = 0.8    
+dat[want    ]    col = "red"    pch = 21    bg = "red"    cex = 0.8    
+dat[-abswant    ]    col = "black"    pch = 21    bg = "black"    cex = 0.8    
+dat[abswant    ]    col = "red"    pch = 21    bg = "red"    cex = 0.8    
+seq    y_mean    col=3    pch=16    power    w_sp    bin_incr    
+myzoo.orig    
+my.x    my.y    col="red"    
+
+
+xs    
+x[foo<0.7]    y[foo<0.7]    col="black"    ...    
+x[foo>0.7]    y[foo>0.7]    col="red"    ...    
+spacedScores    pch='x'    col="red"    
+scores    pch='o'    col="green"    
+1    5    col='red'    
+gr    pch=as.numeric    
+1    1    
+0    0    
+x    y    ...    
+pitchNumber    
+shrunk.coords    pch = "."    classes = "RasterLayer"    includeDefs = TRUE    col = rev    maxpixels = 5e+05    
+shrunk.coords    pch = "."    
+y2    c    type="s"    col="red"    "red"    
+hs[[i]]    c    type="s"    col=col[i]    
+Time    Value    
+Time    Value    
+10:1    col="red"    
+missing    imputed    col="red"    
+y ~ x    data = daten[3:5    ]    col="red"    
+y ~ x    data = daten[3:5    ]    col="red"    
+approx    col = 2    pch = 3     pch = 3    col = 3     pch = 3    col = 4     
+approx    col = 2    pch = 3    
+approx    col = 3    pch = 3    
+cf        pch = pch    col = col    xlim=c    
+p    g    
+dfr    rep.int    col = "blue"    
+aim    newY    col = "red"    newY    
+x    y2    
+xx    yy    col="grey"    cex=0.5    
+xend    yend    col="white"    pch=19    
+x1    y1    type='l'    col=col    lwd=lwd    
+ordered    Italy    cex=.2    col="red"    
+Query    Query    cex=0.3    col="red"    
+df2    
+y ~ x    
+x = x0    y = y0    col = "green"    pch = 16    cex = 10    
+df    
+x    y    col = 'red'    type = 'o'    lwd = 3    pch = 15    
+x    y    col = 'red'    type = 'o'    lwd = 3    pch = 15    
+x    y    pch=21    bg="white"    
+foo[i]    
+daysSinceHigh    col="red"    
+rep    dat    
+jitter    t1_g2    col=2    
+jitter    t2    
+jitter    t2_g2    col=2    
+dat    dat    pch = 20    
+x    y    pch = 3    mean_y    sd_x    sd_y    colidx    
+x    y    pch = 3    
+density    type="l"    lwd=2    
+coords.proj    pch=16    col='red'    
+tmp.x    tmp.y    
+jitter    df2[[2]]    cex=0.3    col="blue"    
+jitter    df1[[2]]    cex=0.3    col="red"    
+ri    p_val    pch=19    col=colvec[2]    xlim=c    ylim=c    
+somo    p_val    pch=19    col=colvec[3]    xlim=c    ylim=c    
+c    c    pch=169    font=5    
+x+0.2*size    y-0.2*size    size=size    gp=gpar    pch=20    
+x    y    size=size    default.units=default.units    ...    
+x=rnorm    
+x+0.2*size    y-0.2*size    size=size    gp=gpar    pch=20    
+x    y    size=size    default.units=default.units    ...    
+x1    y1    type="o"    col="blue"    
+data[1:2]    pch=c    cex=c    
+x    col="red"    
+idist    _    
+x    y    
+ident    pch = 16    
+rnorm    rnorm    pch=16    col="blue"    
+x    y    default.units = "npc"    name = "points"    
+x    y    col = col    ...    
+x[pnt]    y[pnt]    col = "red"    
+x[g=="original"]    y[g=="original"]    pch = 21    fill = my.fill    col = "black"    
+values~from    data=mydata    
+values~to    data=mydata    
+b    type="l"    
+cmd[factor    ]    col = cols[i]    pch = 16    
+res    col="blue"    
+res    col="red"    
+result    cex=3    pch=15    
+x    y    pch=16    
+SP    
+XY    col="red"    pch=16    cex=2    
+x    y    
+x = 10^    y = alpha    pch = 16    cex=1.3    col = "red"    las = 1    xpd = TRUE    
+d    d    default.units="native"    vp=v    gp=gpar    pch=8    
+Up~Name    mydf    col='green'    
+Down~Name    mydf    col='red'    
+pts    ...    
+approx    type="h"    col=cols    
+counts[i    ]    type="l"    col=colors[i]    
+SP    
+SP    
+out[1    1]    out[1    2]    col = "red"    
+stackOne[    3:2]    pch=20    
+out    col="black"    pch=20    
+out[1    1]    out[1    2]    col = "red"    pch=20    
+0.85    1    col = 'red'    cex = 2    
+exp    control    ...    
+x1    y    vp=v    default="native"    pch="."    
+x2    z    vp=v    default="native"    pch="."    
+xy    pch = "X"    
+1:length    conv.series    ...    
+r    pch=16    
+x    
+x    y1    pch=18    
+x    y2    pch=18    
+x=c    y=c    pch="+"    gp=gpar    def="npc"    
+zx_means [ order    pch = 22    col = "darkgrey"    lwd = 7    
+zx_means[order    
+zx_means    order    pch = 22    col = "darkgrey"    lwd = 7    
+myLegend    myLegend    pch = c    cex = 1.5    
+y    bg='tomato2'    pch=21    cex=3    lwd=3    lwd=6    type='l'    
+y    bg=rainbow    pch=21    
+data1    col='red'    
+zx_means    pch = 22    col = "darkgrey"    lwd = 7    
+1:10    1:10    
+x    y    r=1    
+x <- runif    y <- runif    vp=dataViewport    
+a    b    pch=c    col=c    cex=0.6    
+obrv[i]    value[i]    col="black"    
+obrv[i]    value[i]    col="blue"    
+obrv[i]    value[i]    col="blue"    
+obrv[i]    value[i]    col="red"    
+my.points    5    
+my.points    
+20    20    pch = 3    cex = 3    col = "red"    
+y ~ x    B    pch=3    
+bodysize    fitted    pch=20    
+x    y    col="red"    cex=2    pch=19    
+x    z    col="blue"    cex=2    pch=19    
+x    z    type="l"    lwd=4    
+growth    growth    t="l"    lwd=2    
+a    pch=19    
+
+pt[1]    pt[2]    pch = "+"    cex = 2    
+ztest[ztest    ]    ztest[ztest    ]    col=ztest    
+b1    jitter    col="blue"    pch=22    
+Var    Var    col="grey25"    
+11    7    pch = 8    
+x    y    
+info    info    cex=0.1    
+x    x*10    pch=2    
+x    x*10    pch=c    
+data.df    data.df    pch=c    col = colors[data.df    
+tern    pch=19    
+df.tern    pch="*"    cex=3    
+grd    pch=19    cex=0.5    
+pts    pts    cex = 0.7    
+x    y    def='npc'    pch=21    
+x    y-0.2    def='npc'    pch=21    
+x    y    col=rgb    pch=19    
+x    y    col=rgb    pch=19    
+1:5    df    pch=19    col="red"    
+sin    sin    pch=19    cex=2    
+x    y    
+xx * scale    yy * scale    pch = ptys[i - 2]    col = pcols[i - 2]    
+xnew    ynew    col=2    
+xpred[    1]    ynew    col="red"    
+known.pair    
+p1[1]    p1[2]    col="blue"    pch=16    
+p2[1]    p2[2]    col="green"    pch=16    
+AB.bisect    pch="c"    cex=0.5    
+center1[1]    center1[2]    col="blue"    cex=0.8    pch="d"    
+center2[1]    center2[2]    col="blue"    cex=0.8    pch="e"    
+x    y    
+ord    col = col[grp]    bg = col[grp]    pch = 21    
+x.plot    y.plot    pch=19    cex=0.5    
+x    y    
+x    y    
+x    y    ...    
+rep    unlist    col=1:length    pch=19    
+x2    y    y    xlim = range    
+x2    y    col = "red"    pch = 2    
+a    pch=2    
+x    y    
+x    y    
+x2    y2    col='blue'    
+x    y    ...    
+myd    myd    pch=19    cex=.75    col="blue"    
+myd    myd    col="gray"    pch=19    cex=.5    
+myd    myd    col="gray"    pch=19    
+myd    myd    col="gray"    pch=19    cex=.5    
+myd    myd    col="gray"    pch=19    cex=.5    
+myd    myd    col="gray"    pch=19    cex=.5    
+myd    myd    col="gray"    pch=19    cex=.5    
+smyd    smyd    col="red"    pch=19    cex=1.5    
+smyd1    smyd1    col="green4"    pch=19    cex=1.5    
+x    y    y    z    linear=FALSE    extrap=TRUE    
+x    y    
+10-i    i    
+NewDF    NewDF    col="red"    
+coordinates    col = factor    
+g.delta ~ x    data = df    pch = 20    col = "red"    
+f.delta~x    data = df    pch=20    col="blue"    
+g.delta~x    data = df    pch=20    col="red"    
+x    y    col="red"    
+dat    dat    col="red"    
+newCoord[1]    newCoord[2]    
+y~x    dat=z    
+1:nr    or    pch = 19    cex = 0.6    
+1:10    col=colfunc    pch=19    cex=1.5    
+xx    yy    
+x    rnorm    col="red"    
+runif    runif    
+x    y    freq = FALSE    
+x=c    y=c    pch="+"    
+seq    foo[ii    ]    pch=21    col=ii    bg=ii    
+x    w*dnorm    "l"    col="red"    lwd=2    
+1:3    mat1[    2]    
+1:3    mat1[    1]    pch = "x"    
+testpts    pch=19    
+testpts    pch=19    
+nmds    col = cols[dune.env    pch = 16    
+x[ans]    y[ans]    pch = 19    
+z    
+Y~X    data = d    
+Y~X    data = d    
+res[order    ]    type='l'    col="grey40"    lty=1    
+mappts    col=mappts    pch=19    
+trans3d    pch=20    col="Red"    
+x2y2.data    col="red"    
+x    y[    i]    
+
+x = rep    
+foo    1]    c    pch=21    bg="red"    
+rnorm    rnorm    col="darkred"    pch=16    
+c    c    pch=3    cex=3    c    shape = -1    draw=FALSE    
+3    ff    pch=21    bg="black"    
+age2100    age2100    pch="."    cex=2    
+xvals    yvals    
+x=var    y=y    
+z[i]    0    pch="X"    col=2    
+seq_along    zlow    bg=low.col    pch=21    cex=2    
+seq_along    zhigh    bg=high.col    pch=21    cex=2    
+raw    raw    col='black'    pch=21    bg="red"    cex=0.85    
+data    fitted    pch=19    
+c    c    
+
+x    pch=13    
+x    y    pch=19    col="red"    cex=0.8    
+x    y    pch=19    col="blue"    cex=0.8    
+state.mean.interest    state.mean.interest    pch = 19    col = "blue"    cex = 2* state.mean.interest    
+x=points[    'p.x']    y=points[    'p.y']    pch='*'    
+x=x    y=x    pch=19    gp=gpar    
+x2    y2    pch="*"    col= 'red'    
+y[!i    ]    pch="."    
+y[i    ]    pch="+"    
+xx[which.max    yy[which.max    col = "red"    pch = 17    cex = 2    
+density    col="green"    col="red"    
+Bacteria_count~Time    data=bac_predict    col="red"    pch=16    
+C2    col="blue"    
+pts2    pts2    col=3    
+x    y    type='b'    col='blue'    
+x    fix[    type='b'    col='black'    
+x    fixran[    type='b'    col='red'    
+X    Y    pch=PCH    
+X    Y    
+x=.df[    1]    y=.df[    i]    pch=19    size=unit    default.units="native"    gp=gpar    
+x[ is.inside]    y[ is.inside]    pch = '.'    col = "blue"    
+x[!is.inside]    y[!is.inside]    pch = '.'    col = "red"    
+freq1    gain    col=1:length    pch=19    
+freq2    gain    col=1:length    pch=19    
+x    y    pch = pch    col = col    bg = bg    cex = cex    
+i    yaxis[i]    col="red"    pch=19    
+sd.f * R    
+ref[[name]]    ref    col = 'green'    
+ref[[name]]    result2    col = 'blue'    
+ref[[column]]    ref[[column]]    col = 'green'    
+ref[[column]]    result2    col = 'blue'    
+mod    display = "bp"    
+ord    display = "sites"    
+ord    display = "bp"    
+dfMoll    cex=dfMoll    pch=20    col="red"    
+a[i]    b[i]    pch="."    col=col    
+
+M2.1    col="blue"    
+M2.2    col="green"    
+M2.3    col="red"    
+pw_loc    pch=pch_pw    col=col_pw    
+ow_loc    pch=pch_ow    col=col_ow    
+x    y    cex = 0.5    col = "blue"    
+rep    c    pch=19    
+dd    col='red'    
+x    y    ...    
+x[ind.upper]    y[ind.upper]    col = col.upper    ...    
+x[ind.lower]    y[ind.lower]    col = col.lower    ...    
+x[dat    y[dat    col = 'red'    ...    
+x[dat    y[dat    col = 'blue'    ...    
+i    result[i]    
+1    means    pch = 21    cex =1.5    bg = "blue"    
+x    y    cex=3    
+
+tmp    pch = 20    ...    
+y    rep    
+x=rnorm    y=rnorm    
+x    y    z    ...    cex=5    
+x    y    z    ...    cex=5    
+xx1    yy1    x    type="l"    
+x_new    pred    
+datax[    1]    datax[    2]    pch = datay+1    
+datax[    1]    datax[    2]    pch = datay+1    yp    zM    col=c    
+datax[    1]    datax[    2]    pch = datay+1    
+xrange    sour1[[column]]    col = 'green'    
+xrange    sour2[[column]]    col = 'blue'    
+x=c    y=c    
+x=c    y=c    
+myd    myd    pch=21    
+sam    
+msample[i]    
+matrix    pch=19    col='red'    
+x    y    col="red"    0    5    
+x    y    
+B    pch=14    
+y    display = "sites"    col = colvec[data    
+d    
+Sunspot_Ext    col="blue"    pch=20    
+df    df    pch = 21    cex = df    bg = "darkgray"    col = "black"    lwd = 1    
+sol    display = "sites"    pch = pchs[grps]    
+mod    display = "sites"    col = col[Management]    
+0    0    pch=16    cex=1e6    col="grey90"    
+0    0    pch=16    cex=1e6    col="grey90"    
+date    death    pch="."    ylab= expression    main = "Daily Mortality in warm season"    
+ll[[i]]    ll[[i]]    
+mydf[mydf    ]    col="red"    
+d    pch = 16    cex = 0.5    
+d[ind    ]    pch = 16    
+x    y    type='b'    col='blue'    
+x    fix[    type='b'    col='black'    
+x    fitted    type='b'    col='red'    
+rep    d[1    2:4]    pch=4    
+rep    d[2    2:4]    pch=4    
+rep    d[3    2:4]    pch=4    
+d    pch=19    
+3    d    pch=17    cex=1.5    
+3    d1[d1    "mean"]    pch=15    
+mapproject    col="red"    
+fit[1]    lwd=2    col="red"    xscale=365.24    
+1:10    1:10    
+10:1    1:10    
+x    y    cex=1.6    
+d0_inset    col=2    pch="."    
+x[358]    y[358]    lwd = 1.5    cex = .1    col = "lightblue"    
+female    pch=16    col = "green"    
+x    y    pch= 1    bg= "white"    
+inter    pch='.'    
+anscombe    anscombe    
+anscombe    anscombe    
+anscombe    anscombe    
+anscombe    anscombe    
+xcenter    bstats    
+x    p0.at.x    col="blue"    ylab='p'    ylim=range    
+speed    speed    col="red"    pch=21    
+speed    speed    col="blue"    pch=18    
+speed    speed    col="yellow"    pch=19    
+speed    speed    col="green"    pch=20    
+x=fit[fit    2]    y=fit[fit    3]    col="red"    
+cl    col = 1:5    pch = 8    cex = 2    
+jitter    jitter    
+cl    ]    cl    ]    col = 1:5    pch = 8    cex = 2    
+x    log10    pch=16    col="blue"    
+x    log10    pch=20    col="red"    
+default.units="npc"    
+se    pch = 21    col = "white"    bg = "black"    
+x    y    ...    
+y2 ~ x    data=dat    pch="3"    
+y3 ~ x    data=dat    pch="6"    y=rnorm    depth=rep    
+x    y    
+x    y    
+x    y    
+autos_data[    2]    autos_data[    1]    
+xs    resultdist1n3    col=2    type="l"    
+xs    resultdist2n2    col=3    type="l"    
+xs    resultdist2n3    col=4    type="l"    
+xs    res1[[i]]    col=rainbow    type="l"    
+vare.dca    display = "sites"    col = "red"    
+bst.means[2    1    ]    bst.means[2    2    ]    col=2    
+bst.means[3    1    ]    bst.means[3    2    ]    col=3    
+x=c    y=c    pch="+"    
+x.new    
+dat    dat    cex=0.3    col="red"    
+d    col='blue'    
+me    col='red'    
+NORM[NORM^2 -1> TEE]    TEE[ TEE + 1< NORM^2]    col = "blue"    
+NORM[NORM^2 -1> TEE]    TEE[ TEE + 1< NORM^2]    col = "blue"    2    
+NORM[NORM^2 - 1 > TEE]    TEE[TEE + 1 < NORM^2]    col = "blue"    1    
+i%%16    i%/%16    pch = sign*i    font = font    
+i    j    col=mycolors[dmat[i    j]]    
+y[i]~I    pch = 14    
+p1[1    which    p1[2    which    col="green"    
+p1[1    which    p1[2    which    col="green"    
+Val_B    Val_B    col='red'    
+Val_C    Val_C    col='green'    
+bp    c    
+xy[    1]    xy[    2]    col = c    
+result    pch=19    col="red"    
+0    0    pch=1    lwd=2    cex=cex    ...    
+0    0    pch=16    cex=cex    ...    
+0    0    pch=1    lwd=5    cex=cex    ...    
+0    0    pch=1    lwd=2    cex=cex    ...    
+0    0    pch='|'    lwd=2    cex=cex/2    ...    
+0    0    pch=1    lwd=2    cex=cex    ...    
+0    0    pch=16    cex=cex/3    ...    
+rep    d    
+INI_New_Day3    
+r1    r2    cex=15    pch=19    
+elevation_points    
+top10    top10y    col="red"    
+1:15    dnbinom    col=2    
+a2    col=2    
+a3    col=3    a1    
+1:length    a2    col=2    
+1:length    a3    col=3    xlim=c    
+matrices[[i]]    col=i    
+A[Ci]    B[Ci]    cex=0.5    col="blue"    
+A[Di]    B[Di]    cex=0.5    col="blue"    
+A[Ei]    B[Ei]    cex=0.5    col="red"    
+x[t <= Ti]    y[t <= Ti]    
+Two    col = 'green'    
+Three    col = 'red'    
+cl    col = 1:2    pch = 8    cex = 2    
+x    
+0    
+smoothCounts    smoothCounts    cex=3    c=2    
+pMoYr    pMoYr    col = "red"    cex = 3    
+meter    kg    col="red"    cex=2    pch=16    bg="red"    
+1:10    1:10    default.units='native'    
+ord    display = "sites"    col = colvec[status]    pch =    
+ord    display = "species"    pch = "+"    
+rep    1:4    pch=15    
+1:3    m_heights    col=2    pch="X"    
+20    q[21]    
+1:10    rep    pch=3    lwd=5    
+i    i    
+dnorminv    y    pch=3    
+j    i    
+j    i    
+x = 1 + 1*cos    y = 1 + 1*sin    z = rep    type = "l"    
+x = 1 + 1*cos    y = -1 + 1*sin    z = rep    type = "l"    
+xval    yval    pch = 19    col = rgb    cex = 1.5    
+xval    yval    pch = 19    col = 'red'    cex = 1.5    
+xgap    z    col='red'    pch=17    
+date    id    pch =4    
+date    id    
+c    out[ind]    col='red'    pch=16    
+df    df    col=group    
+Days    Count    
+Days    Count    
+y    lty=3    col="green"    
+i    count.sp    pch=19    cex=0.5    
+sum    count.sp    pch=19    cex=0.5    
+x[3]    y[3]    col="blue"    pch=3    cex=2    
+2.9    1    col='blue'    pch=20    cex=2    
+x    y    col = colz    xaxt='n'    yaxt='n'    xlab=""    ylab=""    bty="n"    ...    
+x    y    ...    
+spa    col = "brown"    cex = spe    
+spa    col = "green"    cex = spe    
+c    c    pch = 21    cex = 2    bg = c    
+pca    display='sites'    col = cols[iris    pch = 16    
+dfP    dfP    lwd=2    pch=23    col="red"    bg="red"    
+sort    sort    col = "red"    
+1:10    min    type='b'    col=2    
+1:10    w    type='b'    col=1    
+lexp    lobs    pch=23    cex=.4    bg="black"    
+df    df    pch=23    cex=.4    bg="black"    
+ans.kmeans    pch=19    cex=2    col=1:4    
+x.vals[crossings]    values[crossings]    col="red"    pch="X"    
+intersections    rep    pch=20    col="red"    cex=0.7    
+x.points    y.points    col='blue'    
+x    y    pch=21    bg=bg    
+cl    idx[i    'x']]    cl    idx[i    'y']]    cex=4    pch=10    col='blue'    
+x    y    pch=21    col=groups    
+cl    j]    cl    i]    pch=10    col='blue'    
+x=hxb@xcm    y=hxb@ycm    pch=hxb@count    
+t    mod[    i]    
+dat[dat[["train"]]==TRUE    1:2]    col=pred_train    pch=19    cex=0.3    
+dat[dat[["train"]]==FALSE    1:2]    col=pred_test    pch=22    bg="orange"    data=x    
+mds    col = cols[dune.env    pch = shps[dune.env    
+y.net    
+y.net    
+fit    col = 'red'    
+df    y=ypts    pch="-"    cex=1.5    col="#5B7FA3"    
+M[neighbors    ]    col="red"    
+points    col="blue"    pch="+"    
+temp.a~Response    data=sst.seychelles.bleach    pch=16    col="blue"    
+temp.a~Response    data=sst.indo.bleach    pch=17    col="orange"    
+x[seq    y[seq    pch=20    col='red'    
+x    ii[    2]    col="red"    
+b    Data    col=vencido.col    bg='white'    pch=21    
+b    Data    col=castigos.col    bg='white'    pch=21    
+
+
+path.1[1    1]    path.1[1    2]    pch=16    col="red"    cex=1.5    
+path.2[1    1]    path.2[1    2]    pch=16    col="green"    cex=1.5    

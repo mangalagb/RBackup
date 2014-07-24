@@ -1,0 +1,51 @@
+x=dfx    y=dfx    circles=dfx    inches=1/3    ann=F    bg="steelblue2"    fg=NULL    
+0    0    circles=1    bg=2    fg=NA    inches=FALSE    bty="n"    xlim=c    ylim=c    
+X    Y    
+X    Y    circles = a    
+1    1    ms.polygon    n=360    add=FALSE    
+1    1    cbind    add=TRUE    
+Height    Volume    circles = Girth/24    inches = FALSE    main = "Trees' Girth"    
+tms    vals    radii    xaxt='n'    
+data[3]    data[3]    symb=bwDiamond    symb.plots=TRUE    inches=0.22    
+x    y    circles = z    
+year    logtrans    circles=size    inches=0.05    bg=intel2$HexLogClock    
+year    logtrans    circles=size    inches=0.05    bg=as.character    
+year    logtrans    circles=logtrans    inches=0.25    bg=intel2$HexLogClock    logtrans    color=intel2    
+DF    DF    circles=DF    inches=0.25    bg=DF$color    
+temp    m    add=TRUE    circles=p    inches=1/15    ann=F    bg="steelblue2"    fg=NULL    m    xlab="Time"    ylab="Depth"    type='l'    main=Name[k]    lwd=5    col="steelblue2"    
+agData    agData    radii    inches=size.range[2]/cm    bg="black"    
+c    1:2    size.range    xlim=c    ylim=c    inches=1/cm    bg="black"    axes=FALSE    xlab=""    ylab=""    
+class    drv    sqrt    inches=size.range[2]/cm    
+1:5    rep    circles=rep    add=TRUE    inches=.2    bg=rep    xpd=TRUE    
+1:5    rep    squares=rep    add=TRUE    inches=.4    bg=rep    xpd=TRUE    
+crime    crime    circles=radius[1:15]    inches=0.5    bg=gray    xlab="Murder Rate"    ylab="Burglary Rate"    
+0    0    circle = 0.2    inches = FALSE    add = TRUE    fg = 'red'    
+c    c    ms.polygon    xsize=c    lwd=c    n=360    
+platelay    factor    circles=rep    add=TRUE    inches=FALSE    bg=collist[colgrp]    
+x    circles=size    xlim=c    cex.lab=3    cex.axis=3    
+myd    myd    ms.arrows    angle=hourAngle    add=T    col="blue"    symb.plots=TRUE    adj=0    
+myd    myd    ms.arrows    angle=minuteAngle    add=T    col="red"    symb.plots=TRUE    adj=0    
+myd    myd    ms.polygon    n=250    add=T    r=1.1    col="gray"    
+x=1:10    y=d    ms.arrows    angle=pi/2    add=T    symb.plots=TRUE    adj=1.5    
+ggs    ggs    radius    inches=0.30    xlab="Research type"    ylab="Research area"    xaxt="n"    
+x=1e-2    y=1e2    circles=1e1    xlim=c    ylim=c    xaxt='n'    yaxt='n'    ann=F    log="xy"    
+x    y    circles=r    fg="white"    bg="red"    
+data1[    1]    data1[    2]    circles=data1[    3]    inches=0.55    bg="lightblue"    xaxt="n"    yaxt="n"    ylab=""    
+centrex    centrey    circles=radius    bg=shades[i]    fg=NA    add=TRUE    inches=FALSE    
+wt    mpg    ms.Cleveland    num.pt=sz    add=FALSE    
+mydata    mydata    circles=mydata    bg="blue"    
+mydata    mydata    circles=mydata    bg="red"    add=TRUE    
+mydata    mydata    circles=mydata    bg="#FF0000"    
+mydata    mydata    circles=mydata    bg="#0000FF50"    
+x=longitude    y=latitude    symb= ms.arrows    length=windspeed/10    
+x    y    symb = ms.flags    ind=1:50    symb.plots=TRUE    add=FALSE    xlim=c    ylim=c    inches=0.75    
+x    y    circles=area    inches=F    ylim=c    
+pctable    pctable    circles=bubble.size    inches=.2    fg="black"    bg="blue"    yaxt="n"    xaxt="n"    xlab="Day"    ylab="Weekday"    
+squares=...    inches=FALSE    add=TRUE    
+DF    DF    circles = V3    inches = 0.35    fg = "darkblue"    bg = "red"    
+quakes    quakes    circles=quakes    
+quakes    quakes    circles=radius    
+quakes    quakes    circles=radius    inches=0.35    fg="white"    bg="red"    xlab="Murder Rate"    ylab="Burglary Rate"    
+x    y    R[1    ]    
+1:10    1:10    circles = rep    lty = 2    inches = FALSE    add = TRUE    
+1:10    1:10    circles = rep    lty = 2    inches = FALSE    

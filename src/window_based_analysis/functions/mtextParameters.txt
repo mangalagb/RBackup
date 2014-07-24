@@ -1,0 +1,148 @@
+text=y[1]    side=2    at=offset    las=2    cex=0.7    col=col.value    
+text=y[length    side=4    line=-1    at=offset    las=2    cex=0.7    col=col.value    
+text=category    side=4    line=2    at=offset    las=2    cex=0.7    col=col.category    
+text= c    side = 1    line = 2    outer = FALSE    at = c    
+
+side=2    "Top Plot"    line=5.3    cex=0.8    
+side=2    "    line=4    cex=0.8    
+side=3    "2 Plots Crammed Together"    line=1.5    cex=1.2    
+side=1    "First X-Axis"    line=2.5    cex=0.8    col="blue"    
+side=1    "Second X-Axis"    line=2.5    cex=0.8    col="red"    
+side = 1    text = "Page 1"    outer = TRUE    
+side = 1    text = "Page 1"    
+side = 1    text = "Page 1"    
+side = 1    text = "Page 1"    
+text = xticks    side = 3    line = 2    at = xticks    
+monthnames[1]    side=1    cex=0.7    at=6.5    
+monthnames[2]    side=1    cex=0.7    at=6.5*3    
+monthnames[3]    side=1    cex=0.7    at=6.5*5    
+monthnames[4]    side=1    cex=0.7    at=6.5*7    
+monthnames[5]    side=1    cex=0.7    at=6.5*9    
+monthnames[6]    side=1    cex=0.7    at=6.5*11    
+monthnames[7]    side=1    cex=0.7    at=6.5*13    
+monthnames[8]    side=1    cex=0.7    at=6.5*15    
+monthnames[9]    side=1    cex=0.7    at=6.5*17    
+monthnames[10]    side=1    cex=0.7    at=6.5*19    
+monthnames[11]    side=1    cex=0.7    at=6.5*21    
+monthnames[12]    side=1    cex=0.7    at=6.5*23    
+side=3    text="Test Plot"    line=1.2    cex=1.5    
+side=1    text="x"    line=2.5    
+side=2    text="y"    line=4.5    
+labels[[1]]    side=3    line=-1    at=seq    cex=.8    
+labels[[2]]    side=2    line=-1    at=seq    cex=.8    padj=1    
+text=myLab    las=1    side=2    outer = FALSE    at=c    
+month.name[month]    line=2.5    at=0.5    cex=1.75    outer=TRUE    
+text="eps"    side=2    line=4    las=1    
+text="eps"    side=3    at=usrcoord.x.left-0.075*diff    side=3    at=usrcoord.x.left-0.1*diff    
+side = 2    text = "Y Axis"    line = 3    
+side = 2    text = "and something extra"    line = 2    
+text    3    padj=-4.5    col="red"    
+xlab    side = 1    line = margins[1] - 1.25    
+ylab    side = 4    line = margins[2] - 1.25    
+substitute    
+c    side = 1    line = 1    at = 1:3    col = "red"    
+c    side = 1    line = 2    at = 1:3    col = "blue"    
+c    side = 1    line = 3    at = 1:3    col = "red"    
+c    side = 1    line = 4    at = 1:3    col = "blue"    
+side = 4    text = at    at = at    col = "red"    line = 1    
+text='Descending values'    side=4    line=2    col='red'    
+text='Ascending values'    side=2    line=2    
+side = 1    text =expression    line = 1    font=15    
+side = 2    text = expression    line = 1.5    font=15    
+main    3    3    TRUE    0.5    cex = cex.main    font = font.main    
+1:4    side = 1    at = out    cex = 0.5    
+c    side=c    y=ylim[1]    labels=vert    adj=c    col='blue'    
+text=c    side=2    line=0.3    at=seq    las=1    cex=0.8    
+text=c    side=1    line=0.3    at=seq    las=2    cex=0.8    
+side=3    i    
+format    line = -x    outer = TRUE    adj = 0    col = "white"    
+
+side = 4    text = "Moon phase    line = 2    cex = .9    
+xlab    side=1    line=1    outer=TRUE    adj=0    at=.8 *    
+ylab    side=2    line=1    outer=TRUE    adj=0    at=.8 *    
+text=expression    side=1    font=2    line=3    side=1    font=2    line=3    
+paste    1    0    
+side = 1    "Value"    line = 2    
+side = 1    "Row Z-Score"    line = 2    
+side = 1    "Column Z-Score"    line = 2    
+side = 1    "Value"    line = 2    
+x    1    .1    at=x    cex=.5    
+rev    2    .2    at=y    las=1    cex=.5    
+xlab    side = 1    line = margins[1] - 1.25    
+format    side=3    line=3    at=seq    
+side = 1    outer = F    line = 3    
+side = 2    outer = F    line = 3.5    "Date tagged"    cex = 1.2    
+1:10    side=2    at=tail    las=2    cex=0.7    
+text="ab"    side=3    font=2    line=0.5    cex=1.5    
+text="ab    side=2    line=2.3    
+text="ab    side=2    line=2.3    
+text="Date"    side=1    line=2.5    
+
+
+bquote    side=3    line=0    
+do.call    side=3    line=0:1    
+paste    line=0.5    
+names    side=4    srt=270    line=1    
+side=1    line=2    'Observed values'    
+side=2    line=2    'Estimated probability mass'    
+side=3    "Title1"    line=2    cex=2    
+side=3    "subtitle"    line=1    cex=1.5    
+side=1    "overlapping text1"    line=6    
+side=1    "overlapping text2"    line=7    
+getCaption    3    0.25    cex = cex.caption    
+do.call    side=1    line=3    xlab=''    
+Lines    side=1    line=3    
+text='TEST'    side=1    line=1    
+text='dsads'    side=2    line=1    
+text='TEST'    side=1    line=1    
+text='dsads'    side=2    line=1    
+labs    side = 2    line = loffset    at = y    **adj = 0**    col = color    las = 2    cex = cex    ...    
+labs    side = 2    line = loffset    at = y    adj = adjust_ylab    col = color    as = 2    cex = cex    ...    data = mydata    importance = TRUE    
+do.call    side=3    line=1:0    
+side = 1    text = labCol    at = 1:nc    las = 2    line = 0.5    col = ClabColor    cex = cexCol    
+side = 4    text = labRow    at = iy    las = 2    line = 0.5    col = RlabColor    cex = cexCol    
+result    2    
+label.y    2    
+label.x    3    
+side = 2    "Response"    line = 2.3    cex=1.5    
+Type    side=1    outer=F    line=-10    adj=0.8    
+xlabs[i]    side=3    line=1    
+ylabs[i]    side=2    line=3    
+expression    adj=0    padj=-1    outer=FALSE    
+paste    side=3    
+expression    
+expression    side=2    line = 4    padj=1    at=30    cex=1.2    
+labels    at=labelx    side=1    line=4    
+do.call    side=3    line = c    cex = 2     
+paste    
+text=labs    side=2    at=1:length    col=axiscolor    adj=.5    
+text = "Time"    side = 1    line = 4    
+text = "text1\n\text2\ntext3"    side = 1    line = 9    cex = 0.75    font = 3    col = "red"    
+text= "text1\ntext2\ntext3"    side=1    cex = 0.75    font = 3    col = "red"    line=7    
+paste    
+
+expression    side=2    line=2.5    
+
+do.call    side=3    line=0.5:-0.5    
+axat    
+paste    
+paste    
+paste    
+text_note    cex=0.4    col="grey"    side = 1    line = 4    outer = FALSE    padj=0    adj=1    
+paste    cex = 1.8    line=-0.8    
+text = "Price"    side = 2    line = 4    
+side = 2    "Count"    line = 2    
+do.call    side=3    line=1:0    
+main=bquote    
+c    side=1    line=3    at=c    b=c    c=c    d=c    
+c    1    line=3    at=c    
+sp.label    3    line=-2.5    adj=0.05    font=3    cex=0.75    
+sp.r.squared    3    line=-2.5    adj=0.95    cex=0.75    
+rownames    1    at=bp    
+rownames    1    at=bp    line=0.6    
+colnames    1    at=colMeans    line=2    
+paste    
+paste    
+expression    line=3    
+expression    line=1.9    
+expression    line=1    

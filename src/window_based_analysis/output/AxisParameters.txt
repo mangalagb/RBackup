@@ -1,0 +1,22 @@
+at = h, labels = 10^h, side = 1
+Data, col="black", side=1
+Date
+dates.vec, ....
+side=1
+side = 1
+side=1, labels=FALSE
+side=2
+side = 2
+side=2, at=ticksAt, labels=as.character, line=0.5
+side=2, labels=FALSE
+side=2, x=range, format ="%H:%M:%S", aes
+side=4, at=ticksAt, labels=as.character, line=0.5
+x = c, at = c, side = 4
+xorig, side = 1, cex.axis=cex.x
+x, side = 1
+x, side = side, xpd = NA, ...
+x = X, side = 1
+x = X, side = 1, ...
+x = y, side = 2, ...
+y, side = 2
+y, side = side, xpd = NA, ...

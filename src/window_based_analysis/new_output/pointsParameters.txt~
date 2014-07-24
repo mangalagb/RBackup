@@ -1,0 +1,517 @@
+x*0*dat2*0*col="red"
+x.axis*0*cumsum*0*col='red'
+data*0*data*0*col='red'
+data*0*data*0*col='green'
+data*0*data*0*col='blue'
+runif*0*runif
+mean*0*data = InsectSprays*0*col = "lightgray"
+means*0*col="red"*0*pch=18*0*na.rm=T
+x[!insideCI]*0*y[!insideCI]*0*pch = 16*0*col = 'red'
+df2[df2[*0*1] < min*0*1] > max*0*c*0*pch = 16*0*col = 'red'
+the.centers ~ rep*0*pch = 19*0*col = "red"*0*cex = 1.5
+y~x*0*pch = 19*0*col = "red"
+x*0*y*0*pch = 19*0*cex = 0.65
+for_x_axis*0*for_y_axis*0*pch = pts
+1*0*1*0*col='red'
+x2*0*y2*0*col='blue'
+x3*0*y3*0*col='red'
+x*0*cos*0*"l"*0*col="red"
+longitute*0*latitude
+d2*0*t="l"*0*col="red"*0*lwd=2
+slot*0*slot*0*col="red"*0*cex=0.5
+casp6 ~ trans.factor
+x=rep*0*y=1:9/10*0*pch=1:10*0*default.units="npc"
+x*0*y*0*col = "black"
+x*0*y*0*y*0*geom="point"
+x*0*dnorm
+dat[-want*0*]*0*col = "black"*0*pch = 21*0*bg = "black"*0*cex = 0.8
+dat[want*0*]*0*col = "red"*0*pch = 21*0*bg = "red"*0*cex = 0.8
+dat[-abswant*0*]*0*col = "black"*0*pch = 21*0*bg = "black"*0*cex = 0.8
+dat[abswant*0*]*0*col = "red"*0*pch = 21*0*bg = "red"*0*cex = 0.8
+myzoo.orig
+my.x*0*my.y*0*col="red"
+
+
+xs
+x[foo<0.7]*0*y[foo<0.7]*0*col="black"*0*...
+x[foo>0.7]*0*y[foo>0.7]*0*col="red"*0*...
+spacedScores*0*pch='x'*0*col="red"
+scores*0*pch='o'*0*col="green"
+1*0*5*0*col='red'
+gr*0*pch=as.numeric
+1*0*1
+0*0*0
+x*0*y*0*...
+pitchNumber
+shrunk.coords*0*pch = "."*0*classes = "RasterLayer"*0*includeDefs = TRUE*0*col = rev*0*maxpixels = 5e+05
+shrunk.coords*0*pch = "."
+hs[[i]]*0*c*0*type="s"*0*col=col[i]
+Time*0*Value
+Time*0*Value
+10:1*0*col="red"
+missing*0*imputed*0*col="red"
+y ~ x*0*data = daten[3:5*0*]*0*col="red"
+y ~ x*0*data = daten[3:5*0*]*0*col="red"
+approx*0*col = 2*0*pch = 3 *0*pch = 3*0*col = 3 *0*pch = 3*0*col = 4 
+approx*0*col = 2*0*pch = 3
+approx*0*col = 3*0*pch = 3
+cf*0**0*pch = pch*0*col = col*0*xlim=c
+p*0*g
+dfr*0*rep.int*0*col = "blue"
+aim*0*newY*0*col = "red"*0*newY
+x*0*y2
+xx*0*yy*0*col="grey"*0*cex=0.5
+xend*0*yend*0*col="white"*0*pch=19
+x1*0*y1*0*type='l'*0*col=col*0*lwd=lwd
+ordered*0*Italy*0*cex=.2*0*col="red"
+Query*0*Query*0*cex=0.3*0*col="red"
+df2
+y ~ x
+x = x0*0*y = y0*0*col = "green"*0*pch = 16*0*cex = 10
+df
+x*0*y*0*col = 'red'*0*type = 'o'*0*lwd = 3*0*pch = 15
+x*0*y*0*col = 'red'*0*type = 'o'*0*lwd = 3*0*pch = 15
+x*0*y*0*pch=21*0*bg="white"
+foo[i]
+daysSinceHigh*0*col="red"
+rep*0*dat
+jitter*0*t1_g2*0*col=2
+jitter*0*t2
+jitter*0*t2_g2*0*col=2
+dat*0*dat*0*pch = 20
+x*0*y*0*pch = 3
+density*0*type="l"*0*lwd=2
+coords.proj*0*pch=16*0*col='red'
+tmp.x*0*tmp.y
+jitter*0*df2[[2]]*0*cex=0.3*0*col="blue"
+jitter*0*df1[[2]]*0*cex=0.3*0*col="red"
+ri*0*p_val*0*pch=19*0*col=colvec[2]*0*xlim=c*0*ylim=c
+somo*0*p_val*0*pch=19*0*col=colvec[3]*0*xlim=c*0*ylim=c
+c*0*c*0*pch=169*0*font=5
+x+0.2*size*0*y-0.2*size*0*size=size*0*gp=gpar*0*pch=20
+x*0*y*0*size=size*0*default.units=default.units*0*...
+x=rnorm
+x+0.2*size*0*y-0.2*size*0*size=size*0*gp=gpar*0*pch=20
+x*0*y*0*size=size*0*default.units=default.units*0*...
+x1*0*y1*0*type="o"*0*col="blue"
+data[1:2]*0*pch=c*0*cex=c
+x*0*col="red"
+idist*0*_
+x*0*y
+ident*0*pch = 16
+rnorm*0*rnorm*0*pch=16*0*col="blue"
+x*0*y*0*default.units = "npc"*0*name = "points"
+x*0*y*0*col = col*0*...
+x[pnt]*0*y[pnt]*0*col = "red"
+x[g=="original"]*0*y[g=="original"]*0*pch = 21*0*fill = my.fill*0*col = "black"
+values~from*0*data=mydata
+values~to*0*data=mydata
+b*0*type="l"
+cmd[factor*0*]*0*col = cols[i]*0*pch = 16
+res*0*col="blue"
+res*0*col="red"
+result*0*cex=3*0*pch=15
+x*0*y*0*pch=16
+SP
+XY*0*col="red"*0*pch=16*0*cex=2
+x*0*y
+x = 10^*0*y = alpha*0*pch = 16*0*cex=1.3*0*col = "red"*0*las = 1*0*xpd = TRUE
+d*0*d*0*default.units="native"*0*vp=v*0*gp=gpar*0*pch=8
+Up~Name*0*mydf*0*col='green'
+Down~Name*0*mydf*0*col='red'
+pts*0*...
+approx*0*type="h"*0*col=cols
+counts[i*0*]*0*type="l"*0*col=colors[i]
+SP
+SP
+out[1*0*1]*0*out[1*0*2]*0*col = "red"
+stackOne[*0*3:2]*0*pch=20
+out*0*col="black"*0*pch=20
+out[1*0*1]*0*out[1*0*2]*0*col = "red"*0*pch=20
+0.85*0*1*0*col = 'red'*0*cex = 2
+exp*0*control*0*...
+x1*0*y*0*vp=v*0*default="native"*0*pch="."
+x2*0*z*0*vp=v*0*default="native"*0*pch="."
+xy*0*pch = "X"
+1:length*0*conv.series*0*...
+r*0*pch=16
+x
+x*0*y1*0*pch=18
+x*0*y2*0*pch=18
+x=c*0*y=c*0*pch="+"*0*gp=gpar*0*def="npc"
+zx_means [ order*0*pch = 22*0*col = "darkgrey"*0*lwd = 7
+zx_means[order
+zx_means*0*order*0*pch = 22*0*col = "darkgrey"*0*lwd = 7
+myLegend*0*myLegend*0*pch = c*0*cex = 1.5
+y*0*bg='tomato2'*0*pch=21*0*cex=3*0*lwd=3*0*lwd=6*0*type='l'
+y*0*bg=rainbow*0*pch=21
+data1*0*col='red'
+zx_means*0*pch = 22*0*col = "darkgrey"*0*lwd = 7
+1:10*0*1:10
+x*0*y*0*r=1
+x <- runif*0*y <- runif*0*vp=dataViewport
+a*0*b*0*pch=c*0*col=c*0*cex=0.6
+obrv[i]*0*value[i]*0*col="black"
+obrv[i]*0*value[i]*0*col="blue"
+obrv[i]*0*value[i]*0*col="blue"
+obrv[i]*0*value[i]*0*col="red"
+my.points*0*5
+my.points
+20*0*20*0*pch = 3*0*cex = 3*0*col = "red"
+y ~ x*0*B*0*pch=3
+bodysize*0*fitted*0*pch=20
+x*0*y*0*col="red"*0*cex=2*0*pch=19
+x*0*z*0*col="blue"*0*cex=2*0*pch=19
+x*0*z*0*type="l"*0*lwd=4
+growth*0*growth*0*t="l"*0*lwd=2
+a*0*pch=19
+
+pt[1]*0*pt[2]*0*pch = "+"*0*cex = 2
+ztest[ztest*0*]*0*ztest[ztest*0*]*0*col=ztest
+b1*0*jitter*0*col="blue"*0*pch=22
+Var*0*Var*0*col="grey25"
+11*0*7*0*pch = 8
+x*0*y
+info*0*info*0*cex=0.1
+x*0*x*10*0*pch=2
+x*0*x*10*0*pch=c
+data.df*0*data.df*0*pch=c*0*col = colors[data.df
+tern*0*pch=19
+df.tern*0*pch="*"*0*cex=3
+grd*0*pch=19*0*cex=0.5
+pts*0*pts*0*cex = 0.7
+x*0*y*0*def='npc'*0*pch=21
+x*0*y-0.2*0*def='npc'*0*pch=21
+x*0*y*0*col=rgb*0*pch=19
+x*0*y*0*col=rgb*0*pch=19
+1:5*0*df*0*pch=19*0*col="red"
+sin*0*sin*0*pch=19*0*cex=2
+x*0*y
+xx * scale*0*yy * scale*0*pch = ptys[i - 2]*0*col = pcols[i - 2]
+xnew*0*ynew*0*col=2
+xpred[*0*1]*0*ynew*0*col="red"
+known.pair
+p1[1]*0*p1[2]*0*col="blue"*0*pch=16
+p2[1]*0*p2[2]*0*col="green"*0*pch=16
+AB.bisect*0*pch="c"*0*cex=0.5
+center1[1]*0*center1[2]*0*col="blue"*0*cex=0.8*0*pch="d"
+center2[1]*0*center2[2]*0*col="blue"*0*cex=0.8*0*pch="e"
+x*0*y
+ord*0*col = col[grp]*0*bg = col[grp]*0*pch = 21
+x.plot*0*y.plot*0*pch=19*0*cex=0.5
+x*0*y
+x*0*y
+x*0*y*0*...
+rep*0*unlist*0*col=1:length*0*pch=19
+x2*0*y*0*y*0*xlim = range
+x2*0*y*0*col = "red"*0*pch = 2
+a*0*pch=2
+x*0*y
+x*0*y
+x2*0*y2*0*col='blue'
+x*0*y*0*...
+myd*0*myd*0*pch=19*0*cex=.75*0*col="blue"
+myd*0*myd*0*col="gray"*0*pch=19*0*cex=.5
+myd*0*myd*0*col="gray"*0*pch=19
+myd*0*myd*0*col="gray"*0*pch=19*0*cex=.5
+myd*0*myd*0*col="gray"*0*pch=19*0*cex=.5
+myd*0*myd*0*col="gray"*0*pch=19*0*cex=.5
+myd*0*myd*0*col="gray"*0*pch=19*0*cex=.5
+smyd*0*smyd*0*col="red"*0*pch=19*0*cex=1.5
+smyd1*0*smyd1*0*col="green4"*0*pch=19*0*cex=1.5
+x*0*y
+10-i*0*i
+NewDF*0*NewDF*0*col="red"
+coordinates*0*col = factor
+g.delta ~ x*0*data = df*0*pch = 20*0*col = "red"
+f.delta~x*0*data = df*0*pch=20*0*col="blue"
+g.delta~x*0*data = df*0*pch=20*0*col="red"
+x*0*y*0*col="red"
+dat*0*dat*0*col="red"
+newCoord[1]*0*newCoord[2]
+y~x*0*dat=z
+1:nr*0*or*0*pch = 19*0*cex = 0.6
+1:10*0*col=colfunc*0*pch=19*0*cex=1.5
+xx*0*yy
+x*0*rnorm*0*col="red"
+runif*0*runif
+x*0*y*0*freq = FALSE
+x=c*0*y=c*0*pch="+"
+seq*0*foo[ii*0*]*0*pch=21*0*col=ii*0*bg=ii
+x*0*w*dnorm*0*"l"*0*col="red"*0*lwd=2
+1:3*0*mat1[*0*2]
+1:3*0*mat1[*0*1]*0*pch = "x"
+testpts*0*pch=19
+testpts*0*pch=19
+nmds*0*col = cols[dune.env*0*pch = 16
+x[ans]*0*y[ans]*0*pch = 19
+z
+Y~X*0*data = d
+Y~X*0*data = d
+res[order*0*]*0*type='l'*0*col="grey40"*0*lty=1
+mappts*0*col=mappts*0*pch=19
+trans3d*0*pch=20*0*col="Red"
+x2y2.data*0*col="red"
+x*0*y[*0*i]
+
+x = rep
+foo*0*1]*0*c*0*pch=21*0*bg="red"
+rnorm*0*rnorm*0*col="darkred"*0*pch=16
+c*0*c*0*pch=3*0*cex=3*0*c*0*shape = -1*0*draw=FALSE
+3*0*ff*0*pch=21*0*bg="black"
+age2100*0*age2100*0*pch="."*0*cex=2
+xvals*0*yvals
+x=var*0*y=y
+z[i]*0*0*0*pch="X"*0*col=2
+seq_along*0*zlow*0*bg=low.col*0*pch=21*0*cex=2
+seq_along*0*zhigh*0*bg=high.col*0*pch=21*0*cex=2
+raw*0*raw*0*col='black'*0*pch=21*0*bg="red"*0*cex=0.85
+data*0*fitted*0*pch=19
+c*0*c
+
+x*0*pch=13
+x*0*y*0*pch=19*0*col="red"*0*cex=0.8
+x*0*y*0*pch=19*0*col="blue"*0*cex=0.8
+state.mean.interest*0*state.mean.interest*0*pch = 19*0*col = "blue"*0*cex = 2* state.mean.interest
+x=points[*0*'p.x']*0*y=points[*0*'p.y']*0*pch='*'
+x=x*0*y=x*0*pch=19*0*gp=gpar
+x2*0*y2*0*pch="*"*0*col= 'red'
+y[!i*0*]*0*pch="."
+y[i*0*]*0*pch="+"
+xx[which.max*0*yy[which.max*0*col = "red"*0*pch = 17*0*cex = 2
+density*0*col="green"*0*col="red"
+Bacteria_count~Time*0*data=bac_predict*0*col="red"*0*pch=16
+C2*0*col="blue"
+pts2*0*pts2*0*col=3
+x*0*y*0*type='b'*0*col='blue'
+x*0*fix[*0*type='b'*0*col='black'
+x*0*fixran[*0*type='b'*0*col='red'
+X*0*Y*0*pch=PCH
+X*0*Y
+x=.df[*0*1]*0*y=.df[*0*i]*0*pch=19*0*size=unit*0*default.units="native"*0*gp=gpar
+x[ is.inside]*0*y[ is.inside]*0*pch = '.'*0*col = "blue"
+x[!is.inside]*0*y[!is.inside]*0*pch = '.'*0*col = "red"
+freq1*0*gain*0*col=1:length*0*pch=19
+freq2*0*gain*0*col=1:length*0*pch=19
+x*0*y*0*pch = pch*0*col = col*0*bg = bg*0*cex = cex
+i*0*yaxis[i]*0*col="red"*0*pch=19
+sd.f * R
+ref[[name]]*0*ref*0*col = 'green'
+ref[[name]]*0*result2*0*col = 'blue'
+ref[[column]]*0*ref[[column]]*0*col = 'green'
+ref[[column]]*0*result2*0*col = 'blue'
+mod*0*display = "bp"
+ord*0*display = "sites"
+ord*0*display = "bp"
+dfMoll*0*cex=dfMoll*0*pch=20*0*col="red"
+a[i]*0*b[i]*0*pch="."*0*col=col
+
+M2.1*0*col="blue"
+M2.2*0*col="green"
+M2.3*0*col="red"
+pw_loc*0*pch=pch_pw*0*col=col_pw
+ow_loc*0*pch=pch_ow*0*col=col_ow
+x*0*y*0*cex = 0.5*0*col = "blue"
+rep*0*c*0*pch=19
+dd*0*col='red'
+x*0*y*0*...
+x[ind.upper]*0*y[ind.upper]*0*col = col.upper*0*...
+x[ind.lower]*0*y[ind.lower]*0*col = col.lower*0*...
+x[dat*0*y[dat*0*col = 'red'*0*...
+x[dat*0*y[dat*0*col = 'blue'*0*...
+i*0*result[i]
+1*0*means*0*pch = 21*0*cex =1.5*0*bg = "blue"
+x*0*y*0*cex=3
+
+tmp*0*pch = 20*0*...
+y*0*rep
+x=rnorm*0*y=rnorm
+x_new*0*pred
+datax[*0*1]*0*datax[*0*2]*0*pch = datay+1
+datax[*0*1]*0*datax[*0*2]*0*pch = datay+1
+xrange*0*sour1[[column]]*0*col = 'green'
+xrange*0*sour2[[column]]*0*col = 'blue'
+x=c*0*y=c
+x=c*0*y=c
+myd*0*myd*0*pch=21
+sam
+msample[i]
+matrix*0*pch=19*0*col='red'
+x*0*y
+B*0*pch=14
+y*0*display = "sites"*0*col = colvec[data
+d
+Sunspot_Ext*0*col="blue"*0*pch=20
+df*0*df*0*pch = 21*0*cex = df*0*bg = "darkgray"*0*col = "black"*0*lwd = 1
+sol*0*display = "sites"*0*pch = pchs[grps]
+mod*0*display = "sites"*0*col = col[Management]
+0*0*0*0*pch=16*0*cex=1e6*0*col="grey90"
+0*0*0*0*pch=16*0*cex=1e6*0*col="grey90"
+date*0*death*0*pch="."*0*ylab= expression*0*main = "Daily Mortality in warm season"
+ll[[i]]*0*ll[[i]]
+mydf[mydf*0*]*0*col="red"
+d*0*pch = 16*0*cex = 0.5
+d[ind*0*]*0*pch = 16
+x*0*y*0*type='b'*0*col='blue'
+x*0*fix[*0*type='b'*0*col='black'
+x*0*fitted*0*type='b'*0*col='red'
+rep*0*d[1*0*2:4]*0*pch=4
+rep*0*d[2*0*2:4]*0*pch=4
+rep*0*d[3*0*2:4]*0*pch=4
+d*0*pch=19
+3*0*d*0*pch=17*0*cex=1.5
+3*0*d1[d1*0*"mean"]*0*pch=15
+mapproject*0*col="red"
+fit[1]*0*lwd=2*0*col="red"*0*xscale=365.24
+1:10*0*1:10
+10:1*0*1:10
+x*0*y*0*cex=1.6
+d0_inset*0*col=2*0*pch="."
+x[358]*0*y[358]*0*lwd = 1.5*0*cex = .1*0*col = "lightblue"
+female*0*pch=16*0*col = "green"
+x*0*y*0*pch= 1*0*bg= "white"
+inter*0*pch='.'
+anscombe*0*anscombe
+anscombe*0*anscombe
+anscombe*0*anscombe
+anscombe*0*anscombe
+xcenter*0*bstats
+x*0*p0.at.x*0*col="blue"*0*ylab='p'*0*ylim=range
+speed*0*speed*0*col="red"*0*pch=21
+speed*0*speed*0*col="blue"*0*pch=18
+speed*0*speed*0*col="yellow"*0*pch=19
+speed*0*speed*0*col="green"*0*pch=20
+x=fit[fit*0*2]*0*y=fit[fit*0*3]*0*col="red"
+cl*0*col = 1:5*0*pch = 8*0*cex = 2
+jitter*0*jitter
+cl*0*]*0*cl*0*]*0*col = 1:5*0*pch = 8*0*cex = 2
+x*0*log10*0*pch=16*0*col="blue"
+x*0*log10*0*pch=20*0*col="red"
+default.units="npc"
+se*0*pch = 21*0*col = "white"*0*bg = "black"
+x*0*y*0*...
+y2 ~ x*0*data=dat*0*pch="3"
+y3 ~ x*0*data=dat*0*pch="6"*0*y=rnorm*0*depth=rep
+x*0*y
+x*0*y
+x*0*y
+autos_data[*0*2]*0*autos_data[*0*1]
+xs*0*resultdist1n3*0*col=2*0*type="l"
+xs*0*resultdist2n2*0*col=3*0*type="l"
+xs*0*resultdist2n3*0*col=4*0*type="l"
+xs*0*res1[[i]]*0*col=rainbow*0*type="l"
+vare.dca*0*display = "sites"*0*col = "red"
+x=c*0*y=c*0*pch="+"
+x.new
+dat*0*dat*0*cex=0.3*0*col="red"
+d*0*col='blue'
+me*0*col='red'
+NORM[NORM^2 -1> TEE]*0*TEE[ TEE + 1< NORM^2]*0*col = "blue"
+NORM[NORM^2 -1> TEE]*0*TEE[ TEE + 1< NORM^2]*0*col = "blue"*0*2
+NORM[NORM^2 - 1 > TEE]*0*TEE[TEE + 1 < NORM^2]*0*col = "blue"*0*1
+i%%16*0*i%/%16*0*pch = sign*i*0*font = font
+i*0*j*0*col=mycolors[dmat[i*0*j]]
+y[i]~I*0*pch = 14
+Val_B*0*Val_B*0*col='red'
+Val_C*0*Val_C*0*col='green'
+bp*0*c
+xy[*0*1]*0*xy[*0*2]*0*col = c
+result*0*pch=19*0*col="red"
+0*0*0*0*pch=1*0*lwd=2*0*cex=cex*0*...
+0*0*0*0*pch=16*0*cex=cex*0*...
+0*0*0*0*pch=1*0*lwd=5*0*cex=cex*0*...
+0*0*0*0*pch=1*0*lwd=2*0*cex=cex*0*...
+0*0*0*0*pch='|'*0*lwd=2*0*cex=cex/2*0*...
+0*0*0*0*pch=1*0*lwd=2*0*cex=cex*0*...
+0*0*0*0*pch=16*0*cex=cex/3*0*...
+rep*0*d
+INI_New_Day3
+r1*0*r2*0*cex=15*0*pch=19
+elevation_points
+top10*0*top10y*0*col="red"
+1:15*0*dnbinom*0*col=2
+a2*0*col=2
+a3*0*col=3*0*a1
+1:length*0*a2*0*col=2
+1:length*0*a3*0*col=3*0*xlim=c
+matrices[[i]]*0*col=i
+A[Ci]*0*B[Ci]*0*cex=0.5*0*col="blue"
+A[Di]*0*B[Di]*0*cex=0.5*0*col="blue"
+A[Ei]*0*B[Ei]*0*cex=0.5*0*col="red"
+x[t <= Ti]*0*y[t <= Ti]
+Two*0*col = 'green'
+Three*0*col = 'red'
+cl*0*col = 1:2*0*pch = 8*0*cex = 2
+x
+0
+smoothCounts*0*smoothCounts*0*cex=3*0*c=2
+pMoYr*0*pMoYr*0*col = "red"*0*cex = 3
+meter*0*kg*0*col="red"*0*cex=2*0*pch=16*0*bg="red"
+1:10*0*1:10*0*default.units='native'
+ord*0*display = "sites"*0*col = colvec[status]*0*pch =
+ord*0*display = "species"*0*pch = "+"
+rep*0*1:4*0*pch=15
+1:3*0*m_heights*0*col=2*0*pch="X"
+20*0*q[21]
+1:10*0*rep*0*pch=3*0*lwd=5
+i*0*i
+dnorminv*0*y*0*pch=3
+j*0*i
+j*0*i
+x = 1 + 1*cos*0*y = 1 + 1*sin*0*z = rep*0*type = "l"
+x = 1 + 1*cos*0*y = -1 + 1*sin*0*z = rep*0*type = "l"
+xval*0*yval*0*pch = 19*0*col = rgb*0*cex = 1.5
+xval*0*yval*0*pch = 19*0*col = 'red'*0*cex = 1.5
+xgap*0*z*0*col='red'*0*pch=17
+date*0*id*0*pch =4
+date*0*id
+c*0*out[ind]*0*col='red'*0*pch=16
+df*0*df*0*col=group
+Days*0*Count
+Days*0*Count
+y*0*lty=3*0*col="green"
+i*0*count.sp*0*pch=19*0*cex=0.5
+sum*0*count.sp*0*pch=19*0*cex=0.5
+x[3]*0*y[3]*0*col="blue"*0*pch=3*0*cex=2
+2.9*0*1*0*col='blue'*0*pch=20*0*cex=2
+x*0*y*0*col = colz*0*xaxt='n'*0*yaxt='n'*0*xlab=""*0*ylab=""*0*bty="n"*0*...
+x*0*y*0*...
+spa*0*col = "brown"*0*cex = spe
+spa*0*col = "green"*0*cex = spe
+c*0*c*0*pch = 21*0*cex = 2*0*bg = c
+pca*0*display='sites'*0*col = cols[iris*0*pch = 16
+dfP*0*dfP*0*lwd=2*0*pch=23*0*col="red"*0*bg="red"
+sort*0*sort*0*col = "red"
+1:10*0*min*0*type='b'*0*col=2
+1:10*0*w*0*type='b'*0*col=1
+lexp*0*lobs*0*pch=23*0*cex=.4*0*bg="black"
+df*0*df*0*pch=23*0*cex=.4*0*bg="black"
+ans.kmeans*0*pch=19*0*cex=2*0*col=1:4
+x.vals[crossings]*0*values[crossings]*0*col="red"*0*pch="X"
+intersections*0*rep*0*pch=20*0*col="red"*0*cex=0.7
+x.points*0*y.points*0*col='blue'
+x*0*y*0*pch=21*0*bg=bg
+cl*0*idx[i*0*'x']]*0*cl*0*idx[i*0*'y']]*0*cex=4*0*pch=10*0*col='blue'
+x*0*y*0*pch=21*0*col=groups
+cl*0*j]*0*cl*0*i]*0*pch=10*0*col='blue'
+x=hxb@xcm*0*y=hxb@ycm*0*pch=hxb@count
+t*0*mod[*0*i]
+dat[dat[["train"]]==TRUE*0*1:2]*0*col=pred_train*0*pch=19*0*cex=0.3
+dat[dat[["train"]]==FALSE*0*1:2]*0*col=pred_test*0*pch=22*0*bg="orange"*0*data=x
+mds*0*col = cols[dune.env*0*pch = shps[dune.env
+y.net
+y.net
+fit*0*col = 'red'
+df*0*y=ypts*0*pch="-"*0*cex=1.5*0*col="#5B7FA3"
+M[neighbors*0*]*0*col="red"
+points*0*col="blue"*0*pch="+"
+temp.a~Response*0*data=sst.seychelles.bleach*0*pch=16*0*col="blue"
+temp.a~Response*0*data=sst.indo.bleach*0*pch=17*0*col="orange"
+x[seq*0*y[seq*0*pch=20*0*col='red'
+x*0*ii[*0*2]*0*col="red"
+b*0*Data*0*col=vencido.col*0*bg='white'*0*pch=21
+b*0*Data*0*col=castigos.col*0*bg='white'*0*pch=21
+
+
+path.1[1*0*1]*0*path.1[1*0*2]*0*pch=16*0*col="red"*0*cex=1.5
+path.2[1*0*1]*0*path.2[1*0*2]*0*pch=16*0*col="green"*0*cex=1.5

@@ -1,0 +1,32 @@
+as.raster, xleft=d2, xright=d2+nc, ybottom=-d2, ytop=-d2+nr+1, interpolate=FALSE, angle=45
+bar, 0, 0, 1, 1
+colmat, 0, 1, 10, 11, interpolate=FALSE
+ice2, -100, -40, 100, 40, interpolate=FALSE
+image, 0.2, 0.2, 0.3, 0.3
+image, 100, 300, 150, 350, interpolate=FALSE
+image, 100, 400, 150, 450
+image, 200, 300, 200 + xinch, 300 + yinch, interpolate=FALSE
+image, 200, 400, 250, 450, angle=15, interpolate=FALSE
+image2, 0.6, 0.6, 0.7, 0.7
+image3, 0.6, 0.3, 0.7, 0.4
+image4, 0.3, 0.7, 0.4, 0.8
+imagemat, range, range, range, range, interp=F
+imagesii]], xleft=xii] - 0.5*width, ybottom= yii] - 0.5*height, xright=xii] + 0.5*width, ytop= yii] + 0.5*height, interpolate=FALSE
+image, tmp21], tmp23], tmp22], tmp24]
+ima, lim, lim, lim, lim
+img, 100, 100, 200, 200
+img2, 300, 300, 400, 400
+img, lim, lim, lim, lim
+img, x1]-0.1, x2]-0.1, x1]+0.1
+legend_image, 0, 0, 1, 1
+matrix, 0, 0, 1, 1, interpolate=FALSE
+m, usr1], usr3], usr2], usr4]
+picsblockPici, j]]], seqRowsi], seqColsj], seqRowsi+1], seqColsj+1], interpolate=FALSE
+plotPNG, 0, 0, 1, 1
+pngimg, 4.5, 4.5, 5, 5
+r, -1, -1, 1, 1
+r, 1, 1, 2, 2
+vnorm, xrange1], yrange1], xrange2], yrange2], interpolate=FALSE
+x, 1, 1, 2, 2
+z, -0.03, -0.03, 1.03, 1.03, interpolate=FALSE
+z, -0.04, -0.04, 1.04, 1.04, interpolate=FALSE

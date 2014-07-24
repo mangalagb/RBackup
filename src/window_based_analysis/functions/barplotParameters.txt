@@ -1,0 +1,439 @@
+tN    
+df2    
+cbind    
+valsort [    "Value"]    ylab=""    xlab=""    
+totals    
+tN    col=rainbow    las=1    
+submitted    las=2    cex.axis=0.8    cex=0.8    
+dat    
+submitted    names.arg=x    las=2    cex.axis=0.8    cex=0.8    
+xv    horiz = TRUE    col="cyan"    xlim=c    names=nn    xlab=deparse    
+data    y=data    geom='bar'    y=data    geom='bar'    
+c    horiz=TRUE    border="blue"    axes=FALSE    col="darkblue"    
+data    beside=T    
+apply    
+area    names.arg = name    
+dfr    las=2    names.arg = dfr    cex.names=0.7    
+table    
+mydata    
+tN    col=rainbow    cex.axis=0.5    
+tN    col=rainbow    cex.names=0.5    
+T1    
+T2    
+x    horiz=T    las=1    cex.names=0.5    
+p[    2]*100    names.arg=p[    1]    
+p    
+count    width = size    
+count    width = size    
+sort    horiz=T    legend="Bunfight!! "    args.legend = list    col='darkblue'    
+height    width=.1    space = .4    names.arg = mac    cex.names = .8    col = "#01516c"    border = "#7199a8"    # border = "#577784"    horiz = TRUE    xlim = c    axes = FALSE    
+cbind    beside=TRUE    col=c    
+x[    3]    horiz=TRUE    space = 0.4    ylim = c    yaxp=c    main = "Title"    las=1    cex.names=0.8    ylab="y label"    xpd=F    
+x[1:25    3]    horiz=TRUE    space = 0.4    
+table    las = 2    
+y    horiz=TRUE    beside=FALSE    
+table    
+table    
+xxx    width=diff    xlim=c    space=0    ylim=c    col=NA    
+xxx    width=diff    xlim=range    space=0    ylim=c    col=NA    
+dataset    main="blahh"    xlab="blahh"    
+mat    ylim=c    xlab='depth'    names.arg=levels    ylab='average misclassifications'    beside=TRUE    legend.text=c    
+mydata_hist    log="y"    col="white"    names.arg=buckets    
+table    main = "barplot"    
+bars    
+t    las=2    
+table    
+height=c    names.arg=1:3    space=0    ylab="Count"    
+table    main='Male'    sub='Default'    
+table    main='Female'    sub='Default'    
+table    main='Male'    sub='Drop'    
+table    main='Female'    sub='Drop'    
+countmat    
+countmat2    
+table    
+table    
+tbl    names.arg = substr    
+diff    ylab="Change in value"    main="Growth"    type='b'    ylab="Change in value"    main="Growth"    
+table    
+table    
+table    
+height = dat    add = TRUE    axes = FALSE    
+height = dat    add = TRUE    axes = FALSE    data = dat    origin = 0    horizontal = FALSE    
+c    
+c    border = NA    
+daten*multiplier    ]    
+dat    names.arg=paste    ylab=" "    
+let    
+dat    names.arg=dat    ylim=c    names.arg=dat    ylim=c    ylab="blah"    xlab="lol"    
+v    beside=FALSE    names=levels    legend=TRUE    
+x    
+x    las = 2    
+x    xlab=""    
+x    cex.names=0.7    names.arg=c    
+p    width=diff    space=0    
+Z    col = heat.colors    
+as.matrix    beside=FALSE    
+rbind    beside=T    names.arg=1:10    [    
+counts    main="Car Distribution by Gears and VS"    xlab="Number of Gears"    
+y    col=ggplotColours    
+t    
+x    
+x    
+x    xlim=c    
+x    
+c    horiz=TRUE    las=2    names.arg=c    
+density    names.arg=breaks    names.arg=breaks[-c    
+density[-c    names.arg=str.breaks[-1]    las=2    
+as.matrix    
+test    space=0.4    xaxt='n'    ann=FALSE    
+VADeaths    
+VADeaths    
+VADeaths    
+as.matrix    horiz=TRUE    col=rainbow    xaxt="n"    
+y    main="Main Title"    names=c    xlab=expression    ylab="Text "    
+height = y    log = "y"    ylim=c    
+as.matrix    horiz=T    col=greens    axes=F    xlab="Mark"    
+scrabble    names = scrabble    xlab = "Piece"    ylab = "Frequency"    main = "Letter Frequencies"    
+as.matrix    y=sample    z=1:10    
+table    ylim=c    main="Barplot with y-axis to 4"    
+pmort    
+pmort    
+VADeaths    
+dat    title="Test title"    legend.title="Medical system"    
+VADeaths    beside=TRUE    las=1    
+table    horiz=TRUE    las=1    main=names    
+table    
+c    ylim=c    col="blue"    space=3    density=seq    ylim=c    col=blues9[2:6]    space=3    
+a    
+
+
+vals    axes = FALSE    
+height=dat[    2]    2]    names.arg=dat[    1]    
+x    names.arg = seq_len    cex.names = .6    
+myData2[    2]    names.arg = myData2[    1]    
+y    names.arg=y    
+DD    col=rainbow    names.arg=""    
+VADeaths    border = "dark blue"    
+VADeaths    border = "yellow"    
+VADeaths    border = "green"    
+VADeaths    border = "dark blue"    
+VADeaths    border = "yellow"    
+VADeaths    border = "green"    
+VADeaths    baseViewports    
+VADeaths    
+VADeaths    baseViewports    
+tN    space = 1.5    axisnames=FALSE    
+tNshift    space = 1.5    yaxt="n"    xaxt="n"    ylim=range    
+table    main=files[i]    
+subset    legend = c    names.arg=data    log="y"    
+1:3    axes=FALSE    col=c    
+df2    df2    
+table    xaxt="n"    
+
+
+
+A    col="green4"    
+A    col = "green4"    asp = 1    
+a    a    type = "l"    
+countRT.subset    las=2    cex.names = 0.75    
+test    las=2    beside = TRUE    legend=T    horiz=T    
+twogrp    gap=c    xlab="Index"    
+rbind    xlim=c    ylim=c    space=0.1    lwd=5    xlab="Value of X"    ylab="Densities"    font.main=1    
+rbind    col = c    xlim=c    ylim=c    space=0.1    lwd=5    xlab="X"    ylab="Densities"    font.main=1    legend.text = c    
+height=den    xlim=c    ylim=c        space=0.1    lwd=5    xlab="1 X"    ylab="Densities"    font.main=1    legend.text =ltext    args.legend = list    
+counti    main=paste    
+counti    main=paste    
+test    names.arg=test    
+table    col = c    
+df    gap=c    horiz=T    
+t    beside=TRUE    
+y    names.arg=format    
+freq_tab[freq_tab>=2]    
+b[b>=2]    
+xhist    axes=FALSE    ylim=c    space=0    
+yhist    axes=FALSE    xlim=c    space=0    horiz=TRUE    
+xhist    axes=FALSE    
+yhist    axes=FALSE    
+ratio    
+dat    beside=TRUE    space=c    las=2    
+islands    
+islands    
+
+t    ]    
+tab    beside=TRUE    axisnames=TRUE    main = 'Time Spent'    sub = 'Female'    xlab= 'Days '    ylab ='Time Spent'    col=c    ylim = c    names.arg=bnames    
+tab    beside=TRUE    axisnames=FALSE    main = 'Time Spent Left vs. Right'    sub = 'Female 2c'    xlab= 'Days After Entry'    ylab = 'Proportion of Time Spent'    col=c    ylim = c    
+tab    beside=TRUE    axisnames=FALSE    main = 'Time Spent Left vs. Right'    sub = 'Female 2c'    xlab= 'Days After Entry'    ylab = 'Proportion of Time Spent'    col=c    ylim = c    names.arg = jd2c    
+data[    j]    main=city    xlab="Month"    ylab=paste    
+
+sapply    
+
+t    
+xhist    axes=FALSE    ylim=c    space=0    
+yhist    axes=FALSE    xlim=c    space=0    horiz=TRUE    
+58:1    xaxt="n"    xlab=""    ylab="Frequency"    col=gray    
+a    space=0    horiz=T    ylim=hpos    col=col    border=border    ...    
+counts    main="Car Distribution"    xlab="Gears"    col=c    legend = rownames    beside=TRUE    horiz=TRUE    
+table    beside=TRUE    legend=TRUE    
+allmat    beside=T    axisnames=F    col=c    
+t    width = 0.2    space = 0.7    plot = FALSE    
+t    horiz = TRUE    width = 0.05    space = 1    plot = FALSE    
+t    width = 0.2    space = 0.7    
+t    horiz = TRUE    width = 0.05    space = 1    
+tapply    
+a    ylim = rev    ylim = rev    yaxt = "n"    
+dd    
+dd    log="y"    
+xhist    axes=FALSE    ylim=c    space=0    
+yhist    axes=FALSE    xlim=c    space=0    horiz=TRUE    
+as.matrix    beside=FALSE    
+table    
+table    main="Sample Sizes of Various Fitness Traits"    
+value    
+dat    xaxt = 'n'    xlab = ''    width = 0.85    ylim = ylim    main = "Sample Sizes of Various Fitness Traits"    ylab = "Frequency"    
+table    
+prop.tab    xaxs='i'    ylab="Relative %"    
+weight    
+dat2    beside = TRUE    legend = rownames    
+data    names.arg=row.names    horiz=TRUE    las=1    xlim=c    main="Group 1"    
+data    names.arg=row.names    horiz=TRUE    las=1    axisnames=FALSE    xlim=c    main="Group 2"    
+data    names.arg=row.names    horiz=TRUE    las=1    axisnames=FALSE    xlim=c    main="Group 3"    
+test    col = tpal    
+prop.table    
+h    beside=TRUE    col=col    
+h    beside=TRUE    col=col    xaxt="n"    
+tab    legend=rownames    
+VADeaths    horiz=TRUE    cex.names=0.85    
+table    
+table    
+h    names=h$mids    names=df    
+x    col = cols    
+NAO    col = cols[pos + 1]    border = cols[pos + 1]    
+d    beside = TRUE    ylim=c    legend.text = rownames    args.legend = list    
+tN[1:3]    xlim=c    las=3    axes=TRUE    axisnames=TRUE    ylab="YLAB"    plot=TRUE    main="PLOT1"    width=1    
+rbind    
+t    
+x / rep    
+dat    beside=T    cex.lab=0.9    ylim=c    col="black"    names.arg=c    legend=names    args.legend=list    
+rep    ylim=c    axes=FALSE    
+y    add=T    
+
+df1    
+d    beside=FALSE    col=c    
+as.matrix    beside = TRUE    main = factor    
+heights1    main="Language "    names.arg=c    ylab=" level "    xlab="Language"    cex.names=0.8    col=c    space=c    
+t    beside = TRUE    col = colors    ylim = c    axes = FALSE    xlab = "Language"    main = "Languages "    
+hotdogs    names.arg=hotdogs    col=fill_colors    border=NA    xlab="Year"    ylab="Hot dogs and buns    
+dat[    4]    names.arg = dat[    1]    
+dat[    4]    names.arg = dat[    1]    
+dat[    4]    names.arg = dat[    1]    
+dat[    4]    names.arg = dat[    1]    
+pr.0    ylab="Percentage"    
+val    
+myd1    
+matrix    main="C"    names.arg=c    ylim=c    col=c"gray"    axis.lty=1    xlab="Time"    ylab="CA Activity"    beside=TRUE    
+x    col = cols    horiz=T    
+x    names.arg = x    ylab = "read depth"    col = gray.colors    
+table    
+1:10    xaxs="i"    ylim=c    space=0    
+values    names=1:length    log="y"    
+mymat    beside = TRUE    
+VADeaths[1:2    ]    
+vec    names.arg = paste0    4    4    2    
+vec    names.arg = paste0    las = 2    
+table    beside=TRUE    
+heights    widths    space=0    col = colours    
+prop.table    col = c    2    stack = TRUE    horizontal = FALSE    
+table    c    ylim=c    1    2    3    
+prop.table    beside=T    
+x    
+t    main="Barrier    xlab="Barrier [kcal/mol]"    ylab="Mutant count"    col=c    space=0.1    cex.axis=0.8    las=1    names.arg=c    cex=0.8    
+pcPop    width = seq    space=0    
+plotdata    
+y    col=rainbow    
+table    names.arg=paste0    las=2    col = c    
+bars    beside = TRUE    col = c    beside = TRUE    col = c    
+dat    col=rainbow    beside=F    
+t    col=c    legend=TRUE    border=NA    xlim=c    args.legend=list    ylab="Cumulative percentage"    xlab="Village number"    
+b    type="b"    
+r    log="y"    col="white"    names.arg=r    
+testdata    names.arg=paste    col="light blue"    border="blue"    xlim=c    ylim=c    width=0.5    space=1    
+df    space=c    col=rep    ncol=4    
+df2    beside=TRUE    col=rep    
+limbs    names.arg = result    
+tN    col=rainbow    
+table    
+table    las=2    
+as.matrix    beside=TRUE    xlim=c    ann=FALSE    
+as.matrix    horiz = TRUE    col = c    axes = FALSE    
+t    legend = TRUE    col = c    xlab = "Date"    ylab = "Visits"    
+t    col=c    
+t    col=c    
+t    col=c    
+xtabs    beside = TRUE    col = c    
+table    
+table    
+sumById    
+c    names.arg = c    ylab="Time in seconds"    
+tN    col = 2:3    
+tN    col = 2:3    
+tN    col = 2:3    
+tN    col = 2:3    
+tN    col = 2:3    
+tN    col = 2:3    
+tN    col = 2:3    
+tN    col = 2:3    
+dat    col=c    legend=colnames    cex.main=0.5    cex.axis=0.5    cex.lab=0.5    lwd=0.02    
+rainbar    axes=F    ylim=c    
+m    
+tN    col = rainbow    
+tN    col = rainbow    space=0    
+tN    col = rainbow    space=10    
+tab    
+data    
+t    beside = TRUE    
+prop.table    
+tN    col = rainbow    ylim=c    main='long y-axis'    
+tN    col = rainbow    main='short y axis'    
+tN    col = rainbow    main='short y axis'    ann=FALSE    axes=FALSE    
+sort    horiz=TRUE    
+zz    col=c    
+a    names.arg=a    
+ly    xaxt="n"    yaxt="n"    xlab="xLabel"    ylab="lyLabel"    ylim=c    
+a    
+h    width=w    border=c    space=0    
+ADF    names.arg=ADF    
+t    beside=TRUE    
+VADeaths    
+y.mat    
+dft    col = c    
+tables2    names.arg=tables2    
+t    legend.text=TRUE    beside=TRUE    horiz=TRUE    density=NA    col=c    xlab="crimes"    ylab="districts"    axes=TRUE    names.arg=colnamesbarplot    cex.names=0.5    las=1    
+transComp    
+df    beside=TRUE    ylim=c    ylab="Percentage"    space=.1    main="Some Title"    names.arg=c    las=2    axis.lty=1    
+c - 0.4    names.arg=name    axes = FALSE    
+table    
+apply    
+d    beside=T    
+quantity    
+Sales    ylim=c    
+Sales    ylim=c    
+table    1]    
+xbar    names.arg=group    main=""    xlab="x"    ylab="y"    ylim=c    
+t    beside = TRUE    
+counts    names=uval    
+prop.table    border = FALSE    xlab = ''    ylab = ''    las = 2    
+prop.table    border = FALSE    xlab = ''    ylab = ''    las = 2    
+with    beside=TRUE    xlab="Grade"    ylab="% Feeling Within Grade Group"    col=grey    
+t    beside=T    ylab="number of species"    cex.names=0.8    las=2    ylim=c    col=c    
+t    ]    names.arg=t    ]    space=c    axis.lty=1    
+x    names.arg=0:n    main=sprintf    
+x    names.arg=0:20    space=0    
+dat    beside=TRUE    
+VADeaths    grouped=T    grouped=T    
+graph.frame[1    ]    ylab = "AAA"    col = terrain.colors    ylim="c    xaxt = "n"    
+graph.frame[1    ]    ylim=c    ylab = "AAA"    col = terrain.colors    xaxt = "n"    
+graph.frame[2    ]    ylim=c    main = "Title"    ylab = "BBB"    col = terrain.colors    xaxt = "n"    
+graph.frame[3    ]    ylim=c    ylab = "CCC"    col = terrain.colors    xaxt = "n"    
+x    space=0    col="yellow"    border=NA    
+unlist    
+unlist    
+ff    horiz=T    main="Hommes"    space=0    col="grey"    xlim=c    axes=F    axisnames=F    cex.axis =0.7    xaxt="n"    yaxt="n"    
+table    
+table    beside=TRUE    
+mydat    space=c    
+histo    col="white"    space=0    
+data2    axes=F    horiz=T    axisnames=FALSE    xlim=c    
+data1    horiz=T    axes=T    las=1    
+data    space=c    legend=rownames    col=c    las=2    xaxt="n"    
+data    names.arg=lab    col="darkorange1"    main=""    ylab="    las=2    
+x[!is.na    20    
+freqs    
+colSums    
+t    names.arg=c    
+t    
+t    
+y    
+x    beside=TRUE    ylim=c    xlab="Month"    axes=TRUE    axis.lty=1    ylab="Monthly"    col=c    panel.first= abline    
+y    
+y    
+counts    col=c    legend=rownames    beside=T    
+y    xlim=c    col = 1:nrow    ylab="My Variables"    legend.text = TRUE    args.legend = list    
+y    col = 1:nrow    ylab="My Variables"    legend.text = TRUE    args.legend = list    
+t    beside=F    names.arg=as.Date    beside=T    names.arg=as.Date    
+DF[    2]    names.arg=DF    ylab="mean of Y1"    las=1    
+DF[    3]    names.arg=DF    ylab="mean of Y2"    las=1    
+a    col=c    ylab="Frequency"    xlab=""    main="Frequency"    axisnames=FALSE    
+a    main=main[1]    xlab='RSSI'    xlim=c    ylim=c    
+b    main=main[2]    xlab='RSSI'    xlim=c    ylim=c    
+c    main=main[3]    xlab='RSSI'    xlim=c    ylim=c    
+d    main=main[4]    xlab='RSSI'    xlim=c    ylim=c    
+as.matrix    ylim=c    ylab="% dents removing paint"    las=1    names=c    
+DF    names.arg=DF    
+foo    
+as.matrix    beside = TRUE    
+as.matrix    beside = TRUE    space = c    beside = TRUE    
+as.numeric    
+bpsamplevalues    col = "#87DEE1"    axes = FALSE    las = 2    
+temp    names.arg=rownames    
+cc    ...    
+data    main="Page Views"    horiz=TRUE    names.arg=names    las=1    
+dt    dt    
+m_heights    width=1    space=1    ylim=c    xlim=c    
+h    width=0.2    space=0    add=T    col="white"    border=NULL    dd$heights    m_heights    col=2    pch="X"    
+xtabs    
+LR50    ylim = c    xpd=FALSE    
+tmp    col='black'    las=3    
+count    space = 0    axes = FALSE    
+data    names.arg = paste0    cex.names = 0.7    ylim = c    col = rgb    space = space.    
+data    col = rgb        space = space.    add = T    
+Tc    width=2    space=0    
+tt    
+tt    names=names    
+height=c    ylab=expression    1    xlab=expression    
+result    ...    
+table    xaxt="n"    
+df    gap = c    xlab ="Samples"    ylab =""    main = "C "    las = 2    xlim = c    ytics = c    cex.lab = 1.5    xaxt = "n"    
+hmatrix    beside = TRUE    horiz = TRUE    xlab = "Volume"    ylab = ""    
+c    col=c    
+vec    gap=c    xlab="Index"    ytics=c    ylab=""    main="Barplot with gap"    horiz=TRUE    
+df    
+cbind    beside=TRUE    
+mtcars    
+matrix    col=c    names.arg=c    legend.text=c    
+t    
+mm    
+table    
+1:2    names.arg = wr.lap    horiz = T    las = 2    cex.names = 0.5    
+table    xaxt="n"    
+data    beside=TRUE    col=c    
+tab    
+rbind    main="Playing with R"    xlab="Who"    names.arg=rep    col=c    ylim = c    
+rbind    main="Playing with R"    xlab="Who"    names.arg=rep    col=c    ylim = c    
+as.matrix    
+x    xlim = c    ylim = c    
+sample_var    
+sample_var    col=cols    border=NA    
+sample_var    col=cols[ max.colors - floor    border=NA    
+sample_var    col=cols    border=NA    
+height=t    beside=TRUE    
+y    col=y    
+c    ylim=c    xpd = FALSE    
+mat[    1]    
+scores    main="my plot"    xlab="my 1000 scores"    names.arg=c    
+scores    main="my plot"    xlab="my 1000 scores"    1000    111    1000    111    1000    111    100    10    1000    99.9    100    10    
+vec    log='y'    ylim=c    xpd=FALSE    
+samples    log="y"    
+table    
+table    cex.axis = 0.75    cex.names = 0.2    
+mat    beside=TRUE    legend.text=TRUE    args.legend=list    
+m[2:3    ]    beside=TRUE    names.arg=m[1    ]    col=2:3    las=1    xlab="Year"    
+as.matrix    beside = T    y = c    beside = T    
+df2    beside=TRUE    col=1:6    
+df2    beside=TRUE    col=1:6    axisnames=FALSE    las=1    
+Data    names.arg=Data    col=bar.col    border=FALSE    main='My Plot'    ylim=c    axes=FALSE    
+table    
+table    xaxt="n"    
+t    
+as.matrix    main="r_data"    ylab="Total"    beside=TRUE    
+cbind    main="r_data"    ylab="Total"    beside=TRUE    
+dat    border=FALSE    beside=TRUE    col=rainbow    ylim=c    legend=rownames    main="Plot name"    xlab="State"    ylab="observation"    

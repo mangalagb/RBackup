@@ -1,0 +1,11 @@
+side=1    at=tickpos    
+x = sunrise    side = 2    
+side = 1    dat    
+1    at=tms    format="%I:%M%p"    
+1    at=df    labels=format    
+1    
+1    x=pretty    
+side=1    at=df    format="%Y-%m-%d %H:%M:%S"    
+side = 1    x = X    
+side=1    at=seq    format="%d-%m"    
+side=1    at=cut    format="%d-%m"    

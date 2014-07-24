@@ -1,0 +1,45 @@
+dat    labels=c    
+pc$x    c    
+daq    
+m    col=cols    
+m    panel=panelfun    panel=panelfun    pch=16    
+my_rasters    
+f$loadings    factors=5    
+f    col=1:ncol    upper.panel=NULL    main="Factor loadings"    
+as.data.frame    upper.panel = pnl    diag.panel = pnl    cex.labels = 1    
+ddbind[    grep    
+ddbind[    grep    
+U    panel = mypanel    diag.panel=mydiag.panel    label.pos = 0.5    
+Dat    log="xy"    
+tmp    lower.panel=panel.cor    upper.panel=panel.my.points    labels=c    
+banknote[    
+list    panel = function    
+
+C    col=c    
+iris[1:4]    main = "Anderson's Iris Data -- 3 species"    pch = 21    bg = c    oma=c    
+USJudgeRatings[    
+iris    col=cols    
+dat[    -5]    lower.panel = foo.lower    upper.panel = foo.upper    ind.upper = dat    ind.lower = dat    col.upper = 'blue'    col.lower = 'red'    
+dat[    -5]    lower.panel = foo.lower    upper.panel = foo.upper    data    
+iris[    1:4]    lower.panel=panel.Kendall    upper.panel=panel.points    
+data.matrix    
+iris    upper.panel = panel.cor    
+pc.cr    col=c    
+as.matrix    vars]    lower.panel = panel.low    upper.panel = panel.up    
+as.matrix    lower.panel = panel.low    upper.panel = panel.up    
+k    
+data[i    
+testData    
+iris    
+iris[    2:4]    
+x.mat    col = cl    lower.panel=low.panelfun    upper.panel=up.panelfun    
+rbind    col = cl    lower.panel=low.panelfun    upper.panel=up.panelfun    
+USJudgeRatings    lower.panel = my_line    upper.panel = panel.cor    
+X    xlim=c    ylim=c    
+e1    e2    
+iris[1:4]    main = "Width"    pch = 24    bg = c    upper.panel=NULL    labels=c    font.labels=1    cex.labels=2    
+a[    2:3]    col=a[    1]    
+data    
+data    
+
+pca    1:5]    col = mycolors    

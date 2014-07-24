@@ -1,0 +1,813 @@
+tikzAnnotate tikzAnnotate $\alpha$ tikzLatexPackages require(tikzDevice)  # So that default options are set
+options(tikzLatexPackages = c( 
+  getOption('tikzLatexPackages'),  # The original contents: required stuff
+    # Avert your eyes for a sec, all will be explained below
+    "\\def\\tooltiptarget{\\phantom{\\rule{1mm}{1mm}}}",
+    "\\newbox\\tempboxa\\setbox\\tempboxa=\\hbox{}\\immediate\\pdfxform\\tempboxa \\edef\\emptyicon{\\the\\pdflastxform}",
+    "\\newcommand\\tooltip[1]{\\pdfstartlink user{/Subtype /Text/Contents  (#1)/AP <</N \\emptyicon\\space 0 R >>}\\tooltiptarget\\pdfendlink}"
+)) \def\tooltiptarget{\phantom{\rule{1mm}{1mm}}}
+
+\newbox\tempboxa
+\setbox\tempboxa=\hbox{} 
+\immediate\pdfxform\tempboxa 
+\edef\emptyicon{\the\pdflastxform}
+
+\newcommand\tooltip[1]{%
+  \pdfstartlink user{%
+    /Subtype /Text
+    /Contents  (#1)
+    /AP <<
+      /N \emptyicon\space 0 R
+    >>
+  }%
+  \tooltiptarget%
+  \pdfendlink%
+} tooltiptarget tempboxa tempboxa tempboxa emptyicon #1 % \Type \Annot #1 \AP << >> \N emptyicon 0 R tooltiptarget tikzAnnotate tooltip place_PDF_tooltip <- function(x, y, text){
+
+  # Calculate coordinates
+  tikzX <- round(grconvertX(x, to = "device"), 2)
+  tikzY <- round(grconvertY(y, to = "device"), 2)
+
+  # Insert node
+  tikzAnnotate(paste(
+    "\\node at (", tikzX, ",", tikzY, ") ",
+    "{\\tooltip{", text, "}};",
+    sep = ''
+  ))
+
+  invisible()
+
+} # standAlone creates a complete LaTeX document. Default output makes
+# stripped-down graphs ment for inclusion in other LaTeX documents
+tikz('tooltips_ahoy.tex', standAlone = TRUE)
+plot(1,1)
+place_PDF_tooltip(1,1, 'Hello, World!')
+dev.off()
+
+require(tools)
+texi2dvi('tooltips_ahoy.tex', pdf = TRUE) hbox \usetikzlibrary{shapes.callouts}
+\tikzset{tooltip/.style = {
+  rectangle callout, 
+  draw,
+  callout absolute pointer = {(-2em, 1em)}
+}}
+
+\def\tooltiptarget{\phantom{\rule{1mm}{1mm}}}    
+\newbox\tempboxa
+
+\newcommand\tooltip[1]{%
+  \def\tooltipcallout{\tikz{\node[tooltip]{#1};}}%
+
+  \setbox\tempboxa=\hbox{\phantom{\tooltipcallout}}%
+  \immediate\pdfxform\tempboxa%
+  \edef\emptyicon{\the\pdflastxform}%
+
+  \setbox\tempboxa=\hbox{\tooltipcallout}%
+  \immediate\pdfxform\tempboxa%
+  \edef\tooltipicon{\the\pdflastxform}%
+
+  \pdfstartlink user{%
+    /Subtype /Text
+    /Contents  (#1)
+    /AP <<
+      /N \emptyicon\space 0 R
+      /R \tooltipicon\space 0 R
+    >>
+  }%
+  \tooltiptarget%
+  \pdfendlink%
+} shapes.callouts tooltip draw callout absolute pointer tikz tooltipcallout tooltipcallout tooltipicon emptyicon tooltipcallout phantom /AP /R tooltipicon require(tikzDevice)
+options(tikzLatexPackages = c( 
+  getOption('tikzLatexPackages'),
+  "\\usetikzlibrary{shapes.callouts}",
+  "\\tikzset{tooltip/.style = {rectangle callout,draw,callout absolute pointer = {(-2em, 1em)}}}",
+  "\\def\\tooltiptarget{\\phantom{\\rule{1mm}{1mm}}}",
+  "\\newbox\\tempboxa",
+  "\\newcommand\\tooltip[1]{\\def\\tooltipcallout{\\tikz{\\node[tooltip]{#1};}}\\setbox\\tempboxa=\\hbox{\\phantom{\\tooltipcallout}}\\immediate\\pdfxform\\tempboxa\\edef\\emptyicon{\\the\\pdflastxform}\\setbox\\tempboxa=\\hbox{\\tooltipcallout}\\immediate\\pdfxform\\tempboxa\\edef\\tooltipicon{\\the\\pdflastxform}\\pdfstartlink user{/Subtype /Text/Contents  (#1)/AP <</N \\emptyicon\\space 0 R/R \\tooltipicon\\space 0 R>>}\\tooltiptarget\\pdfendlink}"
+)) tikz('tooltips_with_callouts.tex', standAlone = TRUE)
+
+x <- 1:10
+y <- runif(10, 0, 10)
+plot(x,y)
+place_PDF_tooltip(x,y,x)
+
+dev.off()
+
+require(tools)
+texi2dvi('tooltips_with_callouts.tex', pdf = TRUE) \Contents () _ ^ % \pdfstartlink \immediate
+-------------------------------------------------------------------------------------------------------
+TkBuildDist <- function(  x=seq(min+(max-min)/nbin/2,
+                                max-(max-min)/nbin/2,
+                                length.out=nbin),
+                          min=0, max=10, nbin=10, logspline=TRUE,
+                          intervals=FALSE) {
+
+    if(logspline) logspline <- require(logspline)
+    require(tkrplot)
+
+    xxx <- x
+
+    brks <- seq(min, max, length.out=nbin+1)
+    nx <- seq( min(brks), max(brks), length.out=250 )
+
+    lx <- ux <- 0
+    first <- TRUE
+
+    replot <- if(logspline) {
+        if(intervals) {
+            function() {
+                hist(xxx, breaks=brks, probability=TRUE,xlab='', main='')
+                xx <- cut(xxx, brks, labels=FALSE)
+                fit <- oldlogspline( interval = cbind(brks[xx], brks[xx+1]) )
+                lines( nx, doldlogspline(nx,fit), lwd=3 )
+                if(first) {
+                    first <<- FALSE
+                    lx <<- grconvertX(min, to='ndc')
+                    ux <<- grconvertX(max, to='ndc')
+                }
+            }
+        } else {
+            function() {
+                hist(xxx, breaks=brks, probability=TRUE,xlab='', main='')
+                fit <- logspline( xxx )
+                lines( nx, dlogspline(nx,fit), lwd=3 )
+                if(first) {
+                    first <<- FALSE
+                    lx <<- grconvertX(min, to='ndc')
+                    ux <<- grconvertX(max, to='ndc')
+                }
+            }
+        }
+    } else {
+        function() {
+            hist(xxx, breaks=brks, probability=TRUE,xlab='',main='')
+            if(first) {
+                first <<- FALSE
+                lx <<- grconvertX(min, to='ndc')
+                ux <<- grconvertX(max, to='ndc')
+            }
+        }
+    }
+
+    tt <- tktoplevel()
+    tkwm.title(tt, "Distribution Builder")
+
+    img <- tkrplot(tt, replot, vscale=1.5, hscale=1.5)
+    tkpack(img, side='top')
+
+    tkpack( tkbutton(tt, text='Quit', command=function() tkdestroy(tt)),
+           side='right')
+
+    iw <- as.numeric(tcl('image','width',tkcget(img,'-image')))
+
+    mouse1.down <- function(x,y) {
+        tx <- (as.numeric(x)-1)/iw
+        ux <- (tx-lx)/(ux-lx)*(max-min)+min
+        xxx <<- c(xxx,ux)
+        tkrreplot(img)
+    }
+
+    mouse2.down <- function(x,y) {
+        if(length(xxx)) {
+            tx <- (as.numeric(x)-1)/iw
+            ux <- (tx-lx)/(ux-lx)*(max-min)+min
+            w <- which.min( abs(xxx-ux) )
+            xxx <<- xxx[-w]
+            tkrreplot(img)
+        }
+    }
+
+    tkbind(img, '<ButtonPress-1>', mouse1.down)
+    tkbind(img, '<ButtonPress-2>', mouse2.down)
+    tkbind(img, '<ButtonPress-3>', mouse2.down)
+
+    tkwait.window(tt)
+
+    out <- list(x=xxx)
+    if(logspline) {
+        if( intervals ) {
+            xx <- cut(xxx, brks, labels=FALSE)
+            out$logspline <- oldlogspline( interval = cbind(brks[xx], brks[xx+1]) )
+        } else {
+            out$logspline <- logspline(xxx)
+        }
+    }
+
+    if(intervals) {
+        out$intervals <- table(cut(xxx, brks))
+    }
+
+    out$breaks <- brks
+
+    return(out)
+} TkBuildDist2 <- function( min=0, max=1, nbin=10, logspline=TRUE) {
+    if(logspline) logspline <- require(logspline)
+    require(tkrplot)
+
+    xxx <- rep( 1/nbin, nbin )
+
+    brks <- seq(min, max, length.out=nbin+1)
+    nx <- seq( min, max, length.out=250 )
+
+    lx <- ux <- ly <- uy <- 0
+    first <- TRUE
+
+    replot <- if(logspline) {
+        function() {
+            barplot(xxx, width=diff(brks), xlim=c(min,max), space=0,
+                    ylim=c(0,0.5), col=NA)
+            axis(1,at=brks)
+            xx <- rep( 1:nbin, round(xxx*100) )
+            capture.output(fit <- oldlogspline( interval = cbind(brks[xx], brks[xx+1]) ))
+            lines( nx, doldlogspline(nx,fit)*(max-min)/nbin, lwd=3 )
+
+            if(first) {
+                first <<- FALSE
+                lx <<- grconvertX(min, to='ndc')
+                ly <<- grconvertY(0,   to='ndc')
+                ux <<- grconvertX(max, to='ndc')
+                uy <<- grconvertY(0.5, to='ndc')
+            }
+        }
+    } else {
+        function() {
+            barplot(xxx, width=diff(brks), xlim=range(brks), space=0,
+                    ylim=c(0,0.5), col=NA)
+            axis(at=brks)
+            if(first) {
+                first <<- FALSE
+                lx <<- grconvertX(min, to='ndc')
+                ly <<- grconvertY(0,   to='ndc')
+                ux <<- grconvertX(max, to='ndc')
+                uy <<- grconvertY(0.5, to='ndc')
+            }
+        }
+    }
+
+    tt <- tktoplevel()
+    tkwm.title(tt, "Distribution Builder")
+
+    img <- tkrplot(tt, replot, vscale=1.5, hscale=1.5)
+    tkpack(img, side='top')
+
+    tkpack( tkbutton(tt, text='Quit', command=function() tkdestroy(tt)),
+           side='right')
+
+    iw <- as.numeric(tcl('image','width',tkcget(img,'-image')))
+    ih <- as.numeric(tcl('image','height',tkcget(img,'-image')))
+
+
+
+    md <- FALSE
+
+    mouse.move <- function(x,y) {
+        if(md) {
+            tx <- (as.numeric(x)-1)/iw
+            ty <- 1-(as.numeric(y)-1)/ih
+
+            w <- findInterval(tx, seq(lx,ux, length=nbin+1))
+
+            if( w > 0 && w <= nbin && ty >= ly && ty <= uy ) {
+                 xxx[w] <<- 0.5*(ty-ly)/(uy-ly)
+                xxx[-w] <<- (1-xxx[w])*xxx[-w]/sum(xxx[-w])
+
+                tkrreplot(img)
+            }
+        }
+    }
+
+    mouse.down <- function(x,y) {
+        md <<- TRUE
+        mouse.move(x,y)
+    }
+
+    mouse.up <- function(x,y) {
+        md <<- FALSE
+    }
+
+    tkbind(img, '<Motion>', mouse.move)
+    tkbind(img, '<ButtonPress-1>', mouse.down)
+    tkbind(img, '<ButtonRelease-1>', mouse.up)
+
+    tkwait.window(tt)
+
+    out <- list(breaks=brks, probs=xxx)
+    if(logspline) {
+        xx <- rep( 1:nbin, round(xxx*100) )
+        out$logspline <- oldlogspline( interval = cbind(brks[xx], brks[xx+1]) )
+    }
+
+    return(out)
+}
+-------------------------------------------------------------------------------------------------------
+tikzAnnotate tikzAnnotate grid grid print gridToDevice <- function(x = 0, y = 0, units = 'native') {
+  # Converts a coordinate pair from the current viewport to an "absolute
+  # location" measured in device units from the lower left corner. This is done
+  # by first casting to inches in the current viewport and then using the
+  # current.transform() matrix to obtain inches in the device canvas.
+  x <- convertX(unit(x, units), unitTo = 'inches', valueOnly = TRUE)
+  y <- convertY(unit(y, units), unitTo = 'inches', valueOnly = TRUE)
+
+  transCoords <- c(x,y,1) %*% current.transform()
+  transCoords <- (transCoords / transCoords[3])
+
+  return(
+    # Finally, cast from inches to native device units
+    c(
+      grconvertX(transCoords[1], from = 'inches', to ='device'),
+      grconvertY(transCoords[2], from = 'inches', to ='device')
+    )
+  )
+
+} tikzAnnotate grid lattice require(tikzDevice)
+require(grid)
+options(tikzLatexPackages = c(getOption('tikzLatexPackages'),
+                "\\usetikzlibrary{shapes.arrows}"))
+
+tikz(standAlone=TRUE)
+
+xs <- 15:20
+ys <- 5:10
+
+pushViewport(plotViewport())
+pushViewport(dataViewport(xs,ys))
+
+grobs <- gList(grid.rect(),grid.xaxis(),grid.yaxis(),grid.points(xs, ys))
+
+coords <- gridToDevice(17, 7)
+tikzAnnotate(paste('\\node[single arrow,anchor=tip,draw,fill=green,left=1em]',
+  'at (', coords[1],',',coords[2],') {Look over here!};'))
+
+dev.off() ggplot tikzDevice
+-------------------------------------------------------------------------------------------------------
+par('usr') grconvertX grconvertY plot(1:10)
+par(xpd=NA)
+legend(par('usr')[1], par('usr')[4], yjust=0, legend='anything', pch=1)
+legend( grconvertX(1, from='npc'), grconvertY(1, from='npc'), yjust=0,
+ xjust=1, legend='something', lty=1)
+-------------------------------------------------------------------------------------------------------
+layout(matrix(c(1,2,5,6,3,4,7,8,9,10,13,14,11,12,15,16), 4, 4, byrow=TRUE))
+replicate(16, hist(rnorm(100)))
+par(xpd=NA)
+rect( grconvertX(0.005, from='ndc'), grconvertY(0.505, from='ndc'),
+     grconvertX(0.495, from='ndc'), grconvertY(0.995, from='ndc'))
+rect( grconvertX(0.005, from='ndc'), grconvertY(0.005, from='ndc'),
+     grconvertX(0.495, from='ndc'), grconvertY(0.495, from='ndc'))
+rect( grconvertX(0.505, from='ndc'), grconvertY(0.505, from='ndc'),
+     grconvertX(0.995, from='ndc'), grconvertY(0.995, from='ndc'))
+rect( grconvertX(0.505, from='ndc'), grconvertY(0.005, from='ndc'),
+     grconvertX(0.995, from='ndc'), grconvertY(0.495, from='ndc'))
+-------------------------------------------------------------------------------------------------------
+cal <- function(month, year) {
+
+        if(!require(chron)) stop('Unable to load chron package')
+
+     if(missing(year) && missing(month)) {
+         tmp <- month.day.year(Sys.Date())
+         year <- tmp$year
+         month <- tmp$month
+     }
+
+
+    if(missing(year) || missing(month)){  # year calendar
+        if(missing(year)) year <- month
+        par(mfrow=c(4,3))
+        tmp <- seq.dates( from=julian(1,1,year), to=julian(12,31,year) )
+        tmp2 <- month.day.year(tmp)
+        wd <- do.call(day.of.week, tmp2)
+        par(mar=c(1.5,1.5,2.5,1.5))
+        for(i in 1:12){
+            w <- tmp2$month == i
+            cs <- cumsum(wd[w]==0)
+            if(cs[1] > 0) cs <- cs - 1
+            nr <- max( cs ) + 1
+            plot.new()
+            plot.window( xlim=c(0,6), ylim=c(0,nr+1) )
+            text( wd[w], nr - cs -0.5 , tmp2$day[w] )
+            title( main=month.name[i] )
+            text( 0:6, nr+0.5, c('S','M','T','W','T','F','S') )
+        }
+
+    } else {  # month calendar
+
+        ld <- seq.dates( from=julian(month,1,year), length=2, by='months')[2]-1
+        days <- seq.dates( from=julian(month,1,year), to=ld)
+        tmp <- month.day.year(days)
+        wd <- do.call(day.of.week, tmp)
+        cs <- cumsum(wd == 0)
+        if(cs[1] > 0) cs <- cs - 1
+        nr <- max(cs) + 1
+        par(oma=c(0.1,0.1,4.6,0.1))
+        par(mfrow=c(nr,7))
+        par(mar=c(0,0,0,0))
+        for(i in seq_len(wd[1])){ 
+            plot.new()
+            #box()
+        }
+        day.name <- c('Sun','Mon','Tues','Wed','Thur','Fri','Sat')
+        for(i in tmp$day){
+            plot.new()
+            box()
+            text(0,1, i, adj=c(0,1))
+            if(i < 8) mtext( day.name[wd[i]+1], line=0.5,
+                at=grconvertX(0.5,to='ndc'), outer=TRUE ) 
+        }
+        mtext(month.name[month], line=2.5, at=0.5, cex=1.75, outer=TRUE)
+        #box('inner') #optional 
+    }
+} par(mfg=c(r,c)) updateusr subplot TeachingDemos cal(10,2011)
+par(mfg=c(3,2))  # monday oct 10
+text(.5,.5, 'Some\nText', cex=2)
+
+par(mfg=c(2,3)) #Tues oct 4
+text(1,1, 'Top Right', adj=c(1,1))
+
+par(mfg=c(2,4)) # Wed oct 5
+text(0,0, 'Bottom Left', adj=c(0,0))
+
+par(mfg=c(6,2)) # oct 31
+tmp.x <- runif(25)
+tmp.y <- rnorm(25,tmp.x,.1)
+par(usr=c( range(tmp.x), range(tmp.y) ) )
+points(tmp.x,tmp.y)
+-------------------------------------------------------------------------------------------------------
+grconvertX grconvertY #  left edge of matrix
+l.x <- grconvertX(0, from='nic')
+# right side of matrix (right side of inner minus wspace and wside)
+r.x <- grconvertX(grconvertX(1, from='nic', to='inches') - (wspace+wside)/2.54,
+    from='inches')
+
+# find 2 line heights from top
+t.y <- grconvertY(1, from='ndc') - 2*strheight('Test text')
+# or 2 line heights above inner margin
+t.y <- grconvertY(1, from='nic') + 2*strheight('Test text')
+
+
+par(xpd=NA)
+text( (l.x+r.x)/2, t.y, 'Test text' )
+-------------------------------------------------------------------------------------------------------
+grconvertY() viewport grconvertY() ## Create three example plots
+par(mfrow=c(1,3))
+barplot(VADeaths, border = "dark blue") 
+barplot(VADeaths, border = "yellow") 
+barplot(VADeaths, border = "green") 
+
+## From third plot, get the "normalized device coordinates" of 
+## a point at a height of 50 on the y-axis.
+(Y <- grconvertY(50, "user", "ndc"))
+# [1] 0.314248
+
+## Add the horizontal line using grid
+library(grid)
+pushViewport(viewport())
+grid.lines(x = c(0,1), y = Y, gp = gpar(col = "red"))
+popViewport() library(grid)
+library(gridBase)
+par(mfrow=c(1,3))
+
+# barplot #1
+barplot(VADeaths, border = "dark blue") 
+X1 <- grconvertX(0, "user", "ndc")
+# barplot #2
+barplot(VADeaths, border = "yellow") 
+# barplot #3
+m <- barplot(VADeaths, border = "green") 
+X2 <- grconvertX(tail(m, 1) + 0.5, "user", "ndc") # default width of bars = 1
+Y <- grconvertY(50, "user", "ndc")
+
+## Horizontal line
+pushViewport(viewport())
+grid.lines(x = c(X1, X2), y = Y, gp = gpar(col = "red"))
+popViewport() grid.move.to() grid.line.to() library(grid)
+library(gridBase)
+par(mfrow=c(1,3))
+
+barplot(VADeaths); vps1 <- do.call(vpStack, baseViewports())
+barplot(VADeaths) 
+barplot(VADeaths); vps3 <- do.call(vpStack, baseViewports())
+
+pushViewport(vps1)
+Y <- convertY(unit(50,"native"), "npc")
+popViewport(3)
+
+grid.move.to(x = unit(0, "npc"), y = Y, vp = vps1)
+grid.line.to(x = unit(1, "npc"), y = Y, vp = vps3, 
+             gp = gpar(col = "red"))
+-------------------------------------------------------------------------------------------------------
+text ?par text x.new <- seqs$distance*x[2] + (1-seqs$distance)*x[1]
+y.new <- seqs$distance*y[2] + (1-seqs$distance)*y[1]
+
+tmp.x <- grconvertX(x, to='inches')
+tmp.y <- grconvertY(y, to='inches')
+theta <- atan2(diff(tmp.y),diff(tmp.x))*180/pi
+
+text( x.new, y.new, seqs$name, adj=c(0,0), srt=theta )
+-------------------------------------------------------------------------------------------------------
+par("asp") getCurrentAspect <- function() {
+   uy <- diff(grconvertY(1:2,"user","inches"))
+   ux <- diff(grconvertX(1:2,"user","inches"))
+   uy/ux
+} asp <- getCurrentAspect()
+-------------------------------------------------------------------------------------------------------
+library(ggplot2)
+library(tkrplot)
+TkPlotLocations <- function(FUN) {
+    require(tkrplot)
+
+    cl <- substitute(FUN)
+    replot <- function() eval(cl)
+
+    tt <- tktoplevel()
+    img <- tkrplot(tt, replot, vscale=1.5, hscale=1.5)
+    tkpack(img)
+
+    tkpack(xfr <- tkframe(tt), side='left')
+    tkpack(yfr <- tkframe(tt), side='left')
+
+    xndc <- tclVar()
+    yndc <- tclVar()
+    xin <- tclVar()
+    yin <- tclVar()
+
+    tkgrid(tklabel(xfr, text='x ndc'), tklabel(xfr, textvariable=xndc))
+    tkgrid(tklabel(yfr, text='y ndc'), tklabel(yfr, textvariable=yndc))
+    tkgrid(tklabel(xfr, text='x inch'), tklabel(xfr, textvariable=xin))
+    tkgrid(tklabel(yfr, text='y inch'), tklabel(yfr, textvariable=yin))
+
+    iw <- as.numeric(tcl("image","width", tkcget(img, "-image")))
+    ih <- as.numeric(tcl("image","height",tkcget(img, "-image")))
+
+    cc <- function(x,y) {
+        x <- (as.real(x)-1)/iw
+        y <- 1-(as.real(y)-1)/ih
+        c(x,y)
+    }
+
+    mm <- function(x, y) {
+        xy <- cc(x,y)
+        tclvalue(xndc) <- xy[1]
+        tclvalue(yndc) <- xy[2]
+        tclvalue(xin) <- grconvertX(xy[1], from='ndc', to='inches')
+        tclvalue(yin) <- grconvertY(xy[2], from='ndc', to='inches')
+    }
+
+    tkbind( img, "<Motion>", mm)
+
+    invisible()
+}
+
+
+x <- runif(25)
+y <- rnorm(25, x, 0.25)
+plot(x,y)
+par()$pin
+par()$plt
+TkPlotLocations(plot(x,y))
+qplot(x,y)
+par()$pin
+par()$plt
+TkPlotLocations(print(qplot(x,y)))
+qplot(x,y) + xlab('Multi\nline\nx\nlabel')
+par()$pin
+par()$plt
+TkPlotLocations(print(qplot(x,y) + xlab('Multi\nline\nx\nlabel'))) par()$pin par()$plt
+-------------------------------------------------------------------------------------------------------
+par(fig = ) par("fig") c(xmin, xmax, ymin, ymax) 0 1 grconvertX() grconvertY() "user" "ndc" "user" "ndc" par("fig") grconvert*() ## pdf("fig-in-fig.pdf", width=10, height=10)
+curve(exp(x), from=1, to=5, lwd=5)
+curve(150-exp(x), from=1, to=5, lwd=5, col="darkblue",add=T)
+
+## Here's the bit I added.
+par(fig = c(grconvertX(c(1, 3), from="user", to="ndc"),
+            grconvertY(c(50, 125), from="user", to="ndc")),
+    mar = c(4,6,1,1),
+    new = TRUE)
+
+curve(exp(x), from=1, to=5, lwd=7, xlab="chi", ylab="exp(x)", cex.lab=4,axes=F)
+axis(1, labels=NA,at=c(0,5))
+axis(2, labels=NA,at=c(0,150))
+text(1,120,"Alpha",adj=c(0,0),cex=3)
+text(3.5,10,"Beta",adj=c(0,0),cex=3)
+## dev.off()
+-------------------------------------------------------------------------------------------------------
+mfg par ?par par(mfg=c(1,2)) layout par(xpd=NA)
+rect( grconvertX(0, from='nfc'), grconvertY(0,from='nfc'), 
+grconvertX(1,from='nfc'), grconvertY(1, from='nfc'), 
+col='white',border='white')
+-------------------------------------------------------------------------------------------------------
+map.scale(grconvertX(0.5,"npc"), grconvertY(0.08, "npc"),col="#0000ffff", metric = FALSE, ratio=FALSE, relwidth=0.2)
+-------------------------------------------------------------------------------------------------------
+par(xpd=NA) grconvertX grconvertY layout( matrix( c(1,2,3,2), 2 ) )
+par(xpd=NA)
+with(iris, plot(Sepal.Width, Sepal.Length, col=Species) )
+save1.x <- grconvertX( 0.25, from='npc', to='ndc' )
+save2.x <- grconvertX( iris$Sepal.Width[1], to='ndc' )
+save2.y <- grconvertY( iris$Sepal.Length[1], to='ndc' )
+with(iris, plot(Petal.Width, Petal.Length, col=Species) )
+with(iris, arrows( Petal.Width[1], Petal.Length[1], 
+   grconvertX( save2.x, from='ndc' ), 
+   grconvertY( save2.y, from='ndc' ), col='orange' ) )
+with( iris, plot( Petal.Length, Sepal.Length, col=Species ) )
+segments( grconvertX( 0.75, from='npc' ), grconvertY(0.9, from='npc'),
+   grconvertX( save1.x, from='ndc'), col='purple' )
+-------------------------------------------------------------------------------------------------------
+legX<-grconvertX(0.8,"npc")
+legY1<-grconvertY(0.9,"npc")
+
+# Get the size of the plotting area (measured on the y axis)
+ysize <- par()$usr[4]-par()$usr[3]
+
+# Use that to calculate the new positions
+legY2<-legY1 - (0.1* ysize)
+legY3<-legY1 - (0.2* ysize)
+legY4<-legY1 - (0.3* ysize)
+-------------------------------------------------------------------------------------------------------
+par("usr") grconvert[XY] par(fig=...) plot(d0)
+u <- par("usr")
+v <- c(
+  grconvertX(u[1:2], "user", "ndc"),
+  grconvertY(u[3:4], "user", "ndc")
+)
+v <- c( (v[1]+v[2])/2, v[2], (v[3]+v[4])/2, v[4] )
+par( fig=v, new=TRUE, mar=c(0,0,0,0) )
+plot(d0_inset, axes=FALSE, xlab="", ylab="")
+box()
+-------------------------------------------------------------------------------------------------------
+subplot d0 <- data.frame(x = rnorm(150, sd=5), y = rnorm(150, sd=5))
+d0_inset <- data.frame(x = rnorm(1500, sd=5), y = rnorm(1500, sd=5))
+
+plot(d0)
+subplot( 
+  plot(d0_inset, col=2, pch='.', mgp=c(1,0.4,0),
+    xlab='', ylab='', cex.axis=0.5), 
+  x=grconvertX(c(0.75,1), from='npc'),
+  y=grconvertY(c(0,0.25), from='npc'),
+  type='fig', pars=list( mar=c(1.5,1.5,0,0)+0.1) )
+-------------------------------------------------------------------------------------------------------
+bg par base plot(d0)
+subplot(fun = {plot(d0_inset, mgp = c(1,0.4,0), ann = F, cex.axis=0.5);
+               rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4],col = "blue");
+               points(d0_inset, col=2, pch=".") }, 
+        x = grconvertX(c(0.75,1), from='npc'), 
+        y = grconvertY(c(0,0.25), from='npc'), 
+        pars = list(mar = c(1.5,1.5,0,0) + 0.1), type="fig") plot(d0)
+rect(grconvertX(0.75, from='npc'), grconvertY(0, from='npc'),
+     grconvertX(1, from='npc'), grconvertY(0.25, from='npc'), 
+     col="blue", border=NA)
+subplot(fun = plot(d0_inset, mgp = c(1,0.4,0), ann = F, 
+                    cex.axis=0.5,col=2, pch=".") , 
+        x = grconvertX(c(0.75,1), from='npc'), 
+        y = grconvertY(c(0,0.25), from='npc'), 
+        pars = list(mar = c(1.5,1.5,0,0) + 0.1), type="fig")
+-------------------------------------------------------------------------------------------------------
+library(ape)
+
+heatmap.phylo <- function(x, Rowp, Colp, breaks, col, denscol="cyan", respect=F, ...){
+    # x numeric matrix
+    # Rowp: phylogenetic tree (class phylo) to be used in rows
+    # Colp: phylogenetic tree (class phylo) to be used in columns
+    # ... additional arguments to be passed to image function
+
+    scale01 <- function(x, low = min(x), high = max(x)) {
+        x <- (x - low)/(high - low)
+        x
+    }
+
+    col.tip <- Colp$tip
+    n.col <- 1
+    if (is.null(col.tip)) {
+        n.col <- length(Colp)
+        col.tip <- unlist(lapply(Colp, function(t) t$tip))
+        col.lengths <- unlist(lapply(Colp, function(t) length(t$tip)))
+        col.fraction <- col.lengths / sum(col.lengths)
+        col.heights <- unlist(lapply(Colp, function(t) max(node.depth.edgelength(t))))
+        col.max_height <- max(col.heights)
+    }
+
+    row.tip <- Rowp$tip
+    n.row <- 1
+    if (is.null(row.tip)) {
+        n.row <- length(Rowp)
+        row.tip <- unlist(lapply(Rowp, function(t) t$tip))
+        row.lengths <- unlist(lapply(Rowp, function(t) length(t$tip)))
+        row.fraction <- row.lengths / sum(row.lengths)
+        row.heights <- unlist(lapply(Rowp, function(t) max(node.depth.edgelength(t))))
+        row.max_height <- max(row.heights)
+    }
+
+    cexRow <- min(1, 0.2 + 1/log10(n.row))
+    cexCol <- min(1, 0.2 + 1/log10(n.col))
+
+    x <- x[row.tip, col.tip]
+    xl <- c(0.5, ncol(x)+0.5)
+    yl <- c(0.5, nrow(x)+0.5)
+
+    screen_matrix <- matrix( c(
+        0,1,4,5,
+        1,4,4,5,
+        0,1,1,4,
+        1,4,1,4,
+        1,4,0,1,
+        4,5,1,4
+    ) / 5, byrow=T, ncol=4 )
+
+    if (respect) {
+        r <- grconvertX(1, from = "inches", to = "ndc") / grconvertY(1, from = "inches", to = "ndc")
+        if (r < 1) {
+            screen_matrix <- screen_matrix * matrix( c(r,r,1,1), nrow=6, ncol=4, byrow=T)
+        } else {
+            screen_matrix <- screen_matrix * matrix( c(1,1,1/r,1/r), nrow=6, ncol=4, byrow=T)
+        }
+    }
+
+
+    split.screen( screen_matrix )
+
+    screen(2)
+    par(mar=rep(0,4))
+
+    if (n.col == 1) {
+        plot(Colp, direction="downwards", show.tip.label=FALSE,xaxs="i", x.lim=xl)
+    } else {
+        screens <- split.screen( as.matrix(data.frame( left=cumsum(col.fraction)-col.fraction, right=cumsum(col.fraction), bottom=0, top=1)))
+        for (i in 1:n.col) {
+            screen(screens[i])
+            plot(Colp[[i]], direction="downwards", show.tip.label=FALSE,xaxs="i", x.lim=c(0.5,0.5+col.lengths[i]), y.lim=-col.max_height+col.heights[i]+c(0,col.max_height))
+        }
+    }
+
+    screen(3)
+    par(mar=rep(0,4))
+
+    if (n.col == 1) {
+        plot(Rowp, direction="rightwards", show.tip.label=FALSE,yaxs="i", y.lim=yl)
+    } else {
+        screens <- split.screen( as.matrix(data.frame( left=0, right=1, bottom=cumsum(row.fraction)-row.fraction, top=cumsum(row.fraction))) )
+        for (i in 1:n.col) {
+            screen(screens[i])
+            plot(Rowp[[i]], direction="rightwards", show.tip.label=FALSE,yaxs="i", x.lim=c(0,row.max_height), y.lim=c(0.5,0.5+row.lengths[i]))
+        }
+    }
+
+
+    screen(4)
+    par(mar=rep(0,4), xpd=TRUE)
+    image((1:nrow(x))-0.5, (1:ncol(x))-0.5, x, xaxs="i", yaxs="i", axes=FALSE, xlab="",ylab="", breaks=breaks, col=col, ...)
+
+    screen(6)
+    par(mar=rep(0,4))
+    plot(NA, axes=FALSE, ylab="", xlab="", yaxs="i", xlim=c(0,2), ylim=yl)
+    text(rep(0,nrow(x)),1:nrow(x),row.tip, pos=4, cex=cexCol)
+
+    screen(5)
+    par(mar=rep(0,4))
+    plot(NA, axes=FALSE, ylab="", xlab="", xaxs="i", ylim=c(0,2), xlim=xl)
+    text(1:ncol(x),rep(2,ncol(x)),col.tip, srt=90, adj=c(1,0.5), cex=cexRow)
+
+    screen(1)
+    par(mar = c(2, 2, 1, 1), cex = 0.75)
+
+    symkey <- T
+    tmpbreaks <- breaks
+    if (symkey) {
+        max.raw <- max(abs(c(x, breaks)), na.rm = TRUE)
+        min.raw <- -max.raw
+        tmpbreaks[1] <- -max(abs(x), na.rm = TRUE)
+        tmpbreaks[length(tmpbreaks)] <- max(abs(x), na.rm = TRUE)
+    } else {
+        min.raw <- min(x, na.rm = TRUE)
+        max.raw <- max(x, na.rm = TRUE)
+    }
+    z <- seq(min.raw, max.raw, length = length(col))
+
+    image(z = matrix(z, ncol = 1), col = col, breaks = tmpbreaks, 
+          xaxt = "n", yaxt = "n")
+    par(usr = c(0, 1, 0, 1))
+    lv <- pretty(breaks)
+    xv <- scale01(as.numeric(lv), min.raw, max.raw)
+    axis(1, at = xv, labels = lv)
+
+    h <- hist(x, plot = FALSE, breaks = breaks)
+    hx <- scale01(breaks, min.raw, max.raw)
+    hy <- c(h$counts, h$counts[length(h$counts)])
+    lines(hx, hy/max(hy) * 0.95, lwd = 1, type = "s", 
+          col = denscol)
+    axis(2, at = pretty(hy)/max(hy) * 0.95, pretty(hy))
+    par(cex = 0.5)
+    mtext(side = 2, "Count", line = 2)
+
+    close.screen(all.screens = T)
+
+}
+
+tree <- read.tree(text = "(A:1,B:1);((C:1,D:2):2,E:1);((F:1,G:1,H:2):5,((I:1,J:2):2,K:1):1);", comment.char="")
+N <- sum(unlist(lapply(tree, function(t) length(t$tip))))
+
+set.seed(42)
+m <- cor(matrix(rnorm(N*N), nrow=N))
+rownames(m) <- colnames(m) <- LETTERS[1:N]
+heatmap.phylo(m, tree, tree, col=bluered(10), breaks=seq(-1,1,length.out=11), respect=T)
+-------------------------------------------------------------------------------------------------------
+subplot subplot grconvertX grconvertY library(TeachingDemos)
+plot(1:10)
+subplot(hist(1:10), grconvertX(c(.1, .4), "npc"), grconvertY(c(.7, .9), "npc"))
+-------------------------------------------------------------------------------------------------------

@@ -1,0 +1,151 @@
+main='abc'    xlab='xx'    ylab='yy'    
+main='sdf'    xlab='sdf'    ylab='xcv'    
+xlab="Year"    col.lab=rgb    
+ylab="Output"    col.lab=rgb    
+main="Respondent Home ZIP Codes by County"    
+main="Graph of % Disease Severity vs Temperature"    
+main="Graph of % Disease Severity vs Temperature"    
+xlab = 'x'    ylab = 'y'    line = 2    
+main="bar"    
+ylab = "Potrošnja goriva"    xlab = "Broj cilindara"    main = "Dijagram raspršenja"    
+ylab = "Potrošnja goriva"    xlab = "Broj cilindara"    main = "Dijagram raspršenja"    
+ylab = "Potrošnja goriva"    xlab = "Broj cilindara"    main = "Dijagram raspršenja"    
+ylab = "Potrošnja goriva"    xlab = "Broj cilindara"    main = "Dijagram raspršenja"    
+ylab = "Potrošnja goriva"    xlab = "Broj cilindara"    main = "Dijagram raspršenja"    
+ylab = "Potrošnja goriva"    xlab = "Broj cilindara"    main = "Dijagram raspršenja"    
+ylab = "Potrošnja goriva"    xlab = "Broj cilindara"    main = "Dijagram raspršenja"    
+ylab = "Potrošnja goriva"    xlab = "Broj cilindara"    main = "Dijagram raspršenja"    
+tt    "Fruits!"    
+main="Term Structure of Interest Rates"    col.main="red"    font.main=4    
+xlab="Years to Maturity"    ylab="Interest Rate"    col.lab=rgb    
+main = "Bunfight\nBig Mac index"    col = "#393E46"    
+main = "Maunga Whau Volcano"    font.main = 4    
+main = "Maunga Whau Volcano Restricted to elevations above 150"    font.main = 4    
+
+tt    "Distribution Builder"    
+tt    "Distribution Builder"    
+ylab = "Loss of Percent Organic Matter per Year"    cex.lab = 1.5    line = 4.5    
+ylab = "Loss of Percent Organic Matter per Year"    cex.lab = 1.5    line = 4.5    
+main = title.str    
+ylab = "Version"    main = "Releases"    
+xlab = "Date"    line = 5    
+xlab = "Date"    line = 5    
+xlab="Month"    col.lab=rgb    font.lab=2    cex.lab=0.75    
+ylab="Listings"    col.lab=rgb    font.lab=2    cex.lab=0.75    
+s    
+main="Different uses of I    
+main="test dev 1"    
+main="test dev 2"    
+main="Simulated Survival Plot Demonstrating Annotation of N-at-risk"    
+main='Output of plot    
+sub = summStr    line = 5.5    
+main="MPG Distribution by Car Cylinders"    
+main="Comparative Density Graph"    
+sub = dat    
+main="Runtime"    col.main="red"    font.main=4    
+xlab="Build"    col.lab=rgb    line = 4.5    
+ylab="MS"    col.lab=rgb    
+main="Runtime"    col.main="red"    font.main=4    
+xlab="Build"    col.lab=rgb    line = 4.5    
+ylab="MS"    col.lab=rgb    
+main=main_title    col.main="red"    font.main=4    
+xlab="Build"    col.lab=rgb    
+ylab="MS"    col.lab=rgb    
+main="This is \nTitle"    main=paste    
+main="loess    
+main = ""    xlab = ""    ylab = ""    
+ylab = "label"    line = 5.5    
+ylab = "my label"    line = 4    
+main = series.title    
+main = bquote    
+paste    
+xlab="X values"    mgp=c    
+main=paste    
+main=paste    
+main=paste    
+main = "ed & bla"    outer = T    
+main=nam    
+xlab = "Species"    line=11    
+tt    "MYTEST"    
+win    title    
+ylab = "Value axis"    xlab = "Single sample"    font.lab = 2    
+xlab = "Hour"    ylab = "Houston Load"    
+xlab=xlab    ylab=ylab    main=main    
+xlab="Index"    ylab="Value"    
+main="    
+main="random title"    line = -2    outer = TRUE    cex.main=3    
+xlab = "Some Categories"    ylab = "Some Values"    outer = TRUE    line = 3    
+xlab = "Some Categories"    ylab = "Some Values"    outer = TRUE    line = 3    
+main="Numbers over the years"    
+xlab="Year"    
+ylab="Number of people"    
+main=name    
+sub=x    line=1    
+sub=x    line=1    
+main="MPG Distribution by Car Cylinders"    
+main="Original TA boundaries"    
+main="TA boundaries from aggregated\nArea Unit boundaries"    
+nt    title    
+main=species[i]    
+main="old"    
+main="new"    
+main="old"    
+main="new"    
+xlab="Year"    ylab="Value"    
+sub = sub.caption    ...    
+main=paste    adj=0    
+main=column    
+xlab=expression    family="script"    
+ylab = "f"    
+xlab = "dates"    line = 5    
+ylab = "f"    
+xlab = "dates"    line = 5    
+xlab="    \u2113"    line=3.2    cex.lab=.7    
+xlab="Age Group"    ylab="Income"    
+ylab=ylabel    cex.lab=1.4    
+main = ""    xlab = ""    ylab = ""    
+main = bquote    
+tt    "Input Numbers"    
+cnames[i]    line = 0.4    cex = 0.9    
+
+
+xlab="xlab"    ylab="ylab"    main="main"    
+xlab="x"    cex.lab=2    
+i    main=i    "Title 2"    "Title 3"    "Title 4"    
+xlab="Data"    ylab="Density"    
+names    
+xlab="Years"    ylab="Values"    
+xlab="x"    ylab="f    main="f    n=0:256"    
+main=cat    ylab=" "    
+ylab="Relative Frequency"    xlab="Your Variable Name"    
+base    "Spinners"    
+base    "Spinners"    
+xlab="Form of NP and Native Language"    line=4.5    
+substitute    
+main = series.title    
+main = "Rain    
+xlab="chrX Position"    ylab="Divergence"    
+main = "imageplot"    xlab = "x axis"    ylab = "y axis"    
+outer=outer    adj=adj    main="A"    cex.main=cex    col="black"    font=2    line=line    
+outer=outer    adj=adj    main="B"    cex.main=cex    col="black"    font=2    line=line    
+outer=outer    adj=adj    main="C"    cex.main=cex    col="black"    font=2    line=line    
+xlab="TESTE"    line=4    
+main="Graph"    
+xlab="X"    
+ylab="Y"    
+main="Graph"    
+xlab="X"    
+ylab="Y"    
+main="Bland-Altman plots of Op1 vs Op2"    
+main = main    # <----- change this part!!!  xlab = names    
+main = ""    xlab = ""    ylab = ""    
+ylab="response"    xlab="colours"    
+main=titlenames[i]    
+main="posterior distrobution of p"    
+main    cex.main = 1.5 * op[["cex.main"]]    
+bquote    
+main="Funzioni"    col.main="blue"    font.main=4    
+main="Funzioni"    col.main="blue"    font.main=4    
+ylab = "Contribution to Expected Return    line = 3    -0.0129    
+
+ylab = "Density"    font.lab = 2    ylab = "Density"    font.lab = 2    

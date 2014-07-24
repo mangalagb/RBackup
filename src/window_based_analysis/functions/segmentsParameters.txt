@@ -1,0 +1,199 @@
+factor.to.int    0    
+x0=ss    x1=ss    y0=ss    y1=ss    
+
+
+x[n]    y[n]    x[n]    predict    
+x[n]    y[n]    x[n]    predict    
+x    y    x    fitted    col = "blue"    65    
+x[n]    y[n]    x[n]    fitted    col = "orange"    lwd = 3    
+xi[    "lwr"]    yvals    xi[    "upr"]    yvals    col="black"    ...    
+as.vector    rep.int    
+x    y    x    y+yse    col="blue"    
+x1    y1    x2    y2    ...    
+seq1[s]    values[s]    seq1[s+1]    values[s+1]    col=ifelse    
+x0=x0    y0=sin    x1=x0+0.1    y1=sin    col=colour    
+x0    0    x0    y0    
+zscore    0    zscore    dnorm    zmax    0.01    
+0.75    mean    1.25    mean    
+1.75    mean    2.25    mean    
+2.75    mean    3.25    mean    
+dat    c    dat    dat    
+df    df    df    df    col=df    
+df    df    df    df    col=df    
+df    df    df    df    col=df    
+head    head    x[-1]    y[-1]    rep    head    x[-1]    y[-1]    rep    
+xvar    yvar    xint    
+xvar    yvar    xvar    xvar    
+xvar    yvar    xvar        
+p1    p1    p2    p2    col = 'white'    
+ll[    1]    ll[    1]    ll[    2]    ll[    2]    name="mysegment"    gp=gpar    
+zp    zp    zp    zp    col='skyblue'    lwd=10    lend=1    
+zn    zn    zn    zn    col='salmon'    lwd=10    lend=1    
+9    111.5    12    111.5    y    "message"    
+x    y    x    fitted    col = "pink"    
+mydf    mydf    y1=mydf    
+mydf    mydf    y1=mydf    
+0    -age    size    -age    
+mydata    mydata    mydata    mydata    
+par    .8    perc80    .8    
+perc80    par    perc80    .8    
+0    1:8    599    1:8    gray    
+rep    rep    
+AminoData    AminoData    AminoData    AminoData + .5 * AminoData    lty = AminoData    lwd = AminoData    col = as.character    
+lineat    0    lineat    lineheight    col=col    
+
+x0=start    x1=start+duration    y0=2    
+xmin    ticks    xmin    ticks    xpd = TRUE    
+start    pos    end    pos    
+start    pos + 0.5    end    pos + 0.5    lwd = 2    
+d    d    d    d    lwd=2    
+d    d    d    d    lwd=2    col='red'    
+out[1    1]    out[1    2]    out[    1]    out[    2]    99    1000    
+out[1    1]    out[1    2]    out[    1]    out[    2]    col="#cccccc"    
+x-hw    y    x+hw    y    ...    
+x-hw    y    x    ul    ...    
+x    ul    x+hw    y    ...    
+x-hw    y    x    ll    ...    
+x    ll    x+hw    y    ...    
+as.numeric    x    y1 = y + delta    lwd=10    lend=1    
+start    pNum    end    pNum    lwd = 3    
+as.numeric    y0=y1    y1=y2    
+0.5-epsilon    0.5    0.5+epsilon    0.5    gp=gpar    
+0.5-epsilon    0.5    0.5+epsilon    0.5    gp=gpar    
+0.5-epsilon    0.5    0.5+epsilon    0.5    gp=gpar    
+averages-ranges    1:4    averages+ranges    1:4    
+par    10    30    10    
+0.5*max    0.9*max    0.6*max    0.9*max    
+obrv[i-1]    value[i-1]    obrv[i]    value[i]    col="blue"    
+obrv[i-1]    value[i-1]    obrv[i]    value[i]    col="blue"    
+mapdata1    -.3    mapdata1    .3    
+x0 = dat    y0 = dat    x1 = dat    y1 = dat    col = "blue"    lwd = 6    lend = 2    
+1:3    dt[    3]    1:3    dt[    5]    
+1:3    dt[    3]    1:3    dt[    4]    
+endpoints[1]    endpoints[2]    endpoints[3]    endpoints[4]    col = "#66666650"    
+endpoints[1]    endpoints[2]    endpoints[3]    endpoints[4]    col = "#66666650"    
+0    0.2    1    0.2    lwd=8    
+0    0.4    1    0.4    lwd=8    
+0    0.6    1    0.6    lwd=8    
+
+df    df    K    1]    K    2]    col=COL[i]    
+x0=pos    y0=as.numeric    y1=as.numeric    col= mydf    
+x0=pos    y0=c    y1=c    col= mydf    
+x0 = v_x    x1 = v_x    y0 = 0.3    y1 = 0.7    
+x0 = v_x    x1 = X_x    y0 = 0.29    y1 = 0.09    
+0.365    0.77    0.365    0.83    lwd = 2    
+0    0    0.5    sqrt    
+0.5    sqrt    1    0    
+1    0    0    0    
+0    0    0.5    sqrt    
+0.5    sqrt    1    0    
+1    0    0    0    
+x0=x[1]    y0=x[2]    x1=x[3]    y1=x[4]    lty=2    col="grey80"    90    
+0    0    0.5    sqrt    
+0.5    sqrt    1    0    
+1    0    0    0    
+x    y    x*.9    y*.9    default="native"    
+0    0    .6*cos    
+0    0    .8*cos    
+c    c    c    c    
+0    0    0    1    col= "red"    lwd = 2    
+y0=seg    y1=seg    x0=start    x1=end    col=2:7    
+y0=id    y1=id    x0=Start1    x1=Stop1    col=2:7    
+0.75    median    1.25    
+
+x    lo[subscripts]    x    up[subscripts]    col=col.line    ...    
+c    
+min    
+1:nr    lcl    1:nr    ucl    col = factor    
+0    0    1    0    
+0    0    cos    sin    col = 'red'    
+p2    p2    p3    p3    lwd=2    col=2    y    z    
+x0=0.5    x1=0.47    y0=unit    y1=unit    gp=gpar    
+x0=0.5    x1=0.53    y0=unit    y1=unit    gp=gpar    
+x2y2.data[    1]    x2y2.data[    2]    x1y1.data[sol    1]    x1y1.data[sol    2]    
+x0=0.5    y0=0.5    x1=0.5+x['value']*0.8    y1=0.5    arrow=arrow    gp=gpar    
+x0=0.5    y0=0    x1=0.5    y=1    gp=gpar    
+x0=0    y0=0.5    x1=1    y=0.5    gp=gpar    
+unit    unit    unit    unit    gp=gpgrid    
+unit    unit    unit    unit    gp=gpgrid    
+1:ncol    cis[1    ]    1:ncol    cis[2    ]    
+x.start    y    x.end    y    col="orange"    lwd=2    
+x.end[-length    
+x.start    y    x.end    y    col="orange"    lwd=2    
+x.end[-length    
+x    y    x*.9    y*.9    default="native"    
+x0    y0    x0+.06*cos    y0+.06*sin    default="native"    gp=gpar    
+x0    y0    x0+.08*cos    y0+.08*sin    default="native"    gp=gpar    
+x    y    x.h    y.h    col=col.hour    
+x    y    x.m    y.m    col=col.min    
+A[1]    A[2]    B[1]    B[2]    lwd=3    
+mydf    mydf    y1=mydf    
+mydf    mydf    y1=mydf    
+xdata    y-dy    xdata    y+dy    
+xdata    y+dy    tpos    y+2*dy    
+x0=x['x2']    y0=x['y2']    x1=x['x3']    y1=x['y3']    
+
+x[i]    low    x[i]    up    
+x[i]-epsilon    up    x[i]+epsilon    up    
+x[i]-epsilon    low    x[i]+epsilon    low    
+x    y-sd    x    y+sd    
+x-epsilon    y-sd    x+epsilon    y-sd    
+x-epsilon    y+sd    x+epsilon    y+sd    
+x    y-sd    x    y+sd    
+x-epsilon    y-sd    x+epsilon    y-sd    
+x-epsilon    y+sd    x+epsilon    y+sd    
+x0=z[1:6    2]    y0=z[1:6    1]    x1=z[7:12    2]    y1=z[7:12    1]    
+x    y    x    int    col="red"    
+rep    first    rep    second    col="gray"    
+4    0    4    23    col="red"    lwd=2    
+4    0    4    23    col="red"    lwd=2    
+x0    y0    x1    y1    col="red"    lwd=2    
+x    rep    x    dnorm    col=heat.colors    lwd=2    
+1    d    5    d    lty=2    
+2    d    5    d    lty=2    
+1:2    d    1:2    d    
+3    d    3    d    lwd=2    
+x.3d    x.3d    x.3d.1    x.3d.1    
+y.3d    y.3d    y.3d.1    y.3d.1    
+time    layer_0-layer_0_sd    time    layer_0+layer_0_sd    lwd=2    
+time-epsilon    layer_0-layer_0_sd    time+epsilon    layer_0-layer_0_sd    lwd=2    
+time-epsilon    layer_0+layer_0_sd    time+epsilon    layer_0+layer_0_sd    lwd=2    
+time    layer_"    i    "-layer_"    i    "_sd    time    layer_"    i    "+layer_"    i    "_sd    col="    i+1    "    lwd=2    
+time-epsilon    layer_"    i    "-layer_"    i    "_sd    time+epsilon    layer_"    i    "-layer_"    i    "_sd    col="    i+1    "    lwd=2    
+time-epsilon    layer_"    i    "+layer_"    i    "_sd    time+epsilon    layer_"    i    "+layer_"    i    "_sd    col="    i+1    "    
+bleft    bxmedian    bright    bxmedian    lwd=3    
+bleft    bxmin    bright    bxmin    lwd=1    
+xcenter    bxmin    xcenter    bxq2    lwd=1    
+bleft    bxmax    bright    bxmax    lwd=1    
+xcenter    bxq4    xcenter    bxmax    lwd=1    
+x0 = max    y0 = max    y1 = par    lwd=2    
+rotx0y0[    1]    rotx0y0[    2]    rotx1y1[    1]    rotx1y1[    2]    col="blue"    
+rotx0y0[    1]    rotx0y0[    2]    rotx1y1[    1]    rotx1y1[    2]    col="blue"    
+xpts    dat    xpts    dat    col=1:2    lwd=2    
+xpts-bar    dat    xpts+bar    dat    col=1:2    lwd=2    
+xpts-bar    dat    xpts+bar    dat    col=1:2    lwd=2    
+fit_vals    fit_vals    elevation_points    elevation_points    lty = 3    
+x    y-sd    x    y+sd    
+x-0.02    y+sd    x+0.02    y+sd    
+x-0.02    y-sd    x+0.02    y-sd    
+x0-s    y0-b    x0-l    y0-b+l/d    col=cols[3]    ...    
+x0-s    y0-b    x0-l    y0-b-l/d    col=cols[3]    ...    
+x0-s+w    y0-b    x0-l    y0-b+l/d    col=cols[3]    ...    
+x0-s+w    y0-b    x0-l    y0-b-l/d    col=cols[3]    ...    
+50    0    100    0    
+0    50    50    0    
+50    0    100    0    
+x0 = x    x1 = x    y0 = lx    y1 = ux    col = "red"    ...    
+x0=x.vals    y0=0    x1=x.vals    y1=y.vals    13    
+x0 = sd_x    y0= 0    x1 = sd_x    y1 = sd_y    col = "firebrick4"    lwd = 2    
+1    -1    1    6.25    lty=3    
+mydf    rowseq    mydf    rowseq    
+x[-251]    y[-251]    x[-1]    y[-1]    col=cols    ...    
+i    z.min    i +    yz.f * y.max + z.min    col = col.grid    lty = lty.grid    
+x.min +    i * yz.f + z.min    x.max +    i * yz.f + z.min    col = col.grid    lty = lty.grid    
+i +    yz.f * y.max + z.min    i +    yz.f * y.max + z.max    col = col.grid    lty = lty.grid    
+x.min + temp    temp1 + i    x.max + temp    temp1 + i    col = col.grid    lty = lty.grid    
+x.min +    i * yz.f + z.min    x.min +    i * yz.f + z.max    col = col.grid    lty = lty.grid    
+x.min + temp    temp1 + i    x.min    i    col = col.grid    lty = lty.grid    
+df    0    df    ypts    col="gray80"    
+x[1]    x[3]    x[2]    

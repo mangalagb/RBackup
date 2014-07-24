@@ -1,0 +1,108 @@
+
+0.1, 0.9, legend=c, fill=rainbow, horiz=TRUE
+0, 13, 6.5, 14
+0.5, 0.8, paste, density=c, angle=c
+0.7, 0.3, sprintf, lty=c, lwd=c, col="blue", title = "AUC"
+0.85, 0.7, as.vector, fill=c
+0, 8, c, col=1:2, pch=1
+100, .8
+10, 1, mod
+1, 10, lty=1:3, col=1:3, legend=c, bty="n", trace=TRUE
+1, 1, c, pch = c, lty = c
+1, 1, legend=c, density=c, angle=c, col=c, bty="n", cex=1.5, xpd=TRUE
+15, 1.5, colnames, cex=0.8, col=plotCol, pch=20
+1.5, -42, nameListForLegend, pch = symbolVectorForLegend, cex=3, col="black", border = 0
+1, 5, "This legend text should not be disturbed by the dotted grey lines, \nbut the plotted dots should still be visible", box.lwd = 0, box.col = "white", bg = "white"
+17, 47, legend= legend_map, fill=c, density = c, angle = c, bty="n", cex=0.6
+1, colnames, bg="#ffffff55", fill=rainbow
+1, max, fill=c, legend_expressions
+1, max, fill=c, legend_expressions, "beta", "gamma", "delta"
+1, max, fill=c, legend_expressions, greek, sep="~"
+1, min, bg=8, c, lty=c, lwd=c, col=c, cex=0.8
+1, mymax+8
+2, 10
+2, 10, c, pch=c
+2, 10, expression, pch=c
+2, 1, "My legend"
+2, 1, "My legend", 1, length.out=10
+2, 320, rownames, cex=1, angle = c, fill =rainbow
+2, 4, as.expression
+2, 500, c, cex=1.5, pch=1:3, col=1:3
+2.8, 0, c, pch = c, lty = c
+2.8, -1, c, pch = c, lty = c
+3.2, 1, c, pch = c, lty = c
+3.5, 150
+40, 2, legend=c, fill=c, border=FALSE, bty="n", y.intersp = 0.7, cex=0.7
+450, 0.8, legend= c, lty=c, lwd=2
+4, 9, names, lwd=4, col=c
+5, 10
+5, 5
+5, 70, c, cex=1.5, fill=2:3
+600, 0.6, c, lty=c, lwd=c, col=c
+7, 4.3, unique, col=1:length, pch=1
+7, 4.5, pch=c, legend=c
+8.5, 90, col = jet.colors, legend=z, pch=15, y+2, labels=z
+c, col = 1:2, x = 1, y = .8, lty=1, pt.bg=1:2, pch=21:22
+c, col = 1:2, x = 1, y = .8, lty="99", pch=1:2
+direction="vertical", title.position="top"
+endi], yi], namei], xjust=0, yjust=0.5
+labels
+labels=c, pch=1:2
+legend = c, col = c, x = "topright", lty = 1
+legend = c, col = c, x = "topright", pch = 1
+le, legend=c, col=, lwd=2, lty = 1
+lgd, lgd, legend = c, pch = c, bty="n"
+list, "boom"
+locator
+locator, border=FALSE, fill=FALSE, "try the position"
+locator, legend=c, fill=c, y=0.6
+locator, levels, fill=colfill
+locator, rownames, fill=c
+loc='best'
+pardat, 0, pardat, pardat, paste, palleg, align="rb", gradient="y", cex=0.7
+par, par, yjust=0, legend='anything', pch=1
+rng1], rng2]
+rng1], rng4] + lg
+s3d, pch = 19, yjust=0, legend = levels, col = seq_along
+symbolWidth = 80
+topright, lty=1:2, c
+where, legend = list, ...
+x=0.25, y=0.75, legend=c, fill=c, title="Legend"
+x = 0.25, y = 35, c, bty="n", lty=c, col=c, cex=0.8, inset=0
+x = 0.6, y = 1.15, legend = c, fill = c, xpd = T, ncol = 3, at = seq, labels = seq
+x=0, y=.15, c, cex=1, pt.cex =1.4, col=c, bty="n", fill="green", border="black"
+x=0, y=.15, c, cex=1, pt.cex =1.4, col=c, bty="o", fill="green", pch=c
+x=0, y=.15, "legend1 ", cex=1, pt.cex=1.4, bty="n", pch=22, col="black", pt.bg="green"
+x=0, y=.15, "legend1", cex=1, pt.cex =1.4, bty="n", pch=22, pt.bg = "green"
+x=10, y=10, c, x.intersp=1, y.intersp=1, cex=c, bty="n", fill=c, pch=c, pt.cex = c, lwd=1.5, title='Histo'
+x=10, y=10, c, x.intersp=1, y.intersp=1, cex=c, bty="n", pch=c, pt.cex = c, lwd=1.5, title = 'Histo whithout fill '
+x=165, y=30
+x=-1, c
+x=1e+04, y=0.2, c, col=c, lty=c
+x1, y1, c, bty="n", lty=1, col="red", cex=0.8
+x=1, y=9, legend=c, fill=c
+x=.5, y=.9, c, cex=.8, bty="n", col=c, pch=c
+x=.5, y=.9, c, pch=c, cex=.8, bty="n", col=c
+x=.75, y=.15, "legend 2", cex=1, pt.cex =1.4, bty="n", pch=24, col="red", pt.bg="white"
+x=.75, y=.15, "legend2", cex=1, pt.cex =1.4, bty="n", pch=24, pt.bg = "black"
+x=.75, y=.15, " legend", cex=1, pt.cex =1.4, bty="o", col=c, pch=c, box.col="red"
+x = "bottomleft", legend = "bar", pch = pch, ...
+x='bottomleft', legend = c, fill = my_col
+x="bottomleft", legend=rp
+x="bottomright"
+x='bottomright', legend='Cor = 0.34', legend=paste
+x="center", ncol=3, legend=c, fill=c, title="Fetch"
+x=max, legend="a", pch=1
+x = max, y = 1.15, xpd = T, ncol = 3, legend = c, fill = c
+x=max, y=max, legend="b", pch=2
+x=my.legend.size2, y=my.legend.size, c
+x_position, y_position, legend=c, col=linecols, pch=15, bty="o"
+x = "top", inset = 0, legend = c, col=plot_colors, lwd=5, cex=.5, horiz = TRUE
+x = "topleft", legend = expression
+x="topleft", legend=rev
+x = "topleft", legend = substitute
+x='top', legend =as.character, fill = my_colunique
+x = 'top', legend = unique, fill = my_col
+x = "topright"
+x = "topright", legend = levels, pch = 24, pt.bg = c, inset = 0.1
+x, y, ..., 3, length.out=10

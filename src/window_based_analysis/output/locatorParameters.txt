@@ -1,0 +1,17 @@
+
+1
+1, "label 2", "label 3", 2
+1, "Species B", "Species C"
+1, type, ...
+1, type='p'
+1, y=0.6
+2
+n=1
+n=2
+n=4, type='p', pch=4, col='blue', lwd=2
+type='l'
+type="l"
+type = "l"
+type = "o"
+type='p', pch=1, col='red', lwd=1.2, cex=1.2
+with

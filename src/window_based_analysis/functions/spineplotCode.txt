@@ -1,0 +1,20 @@
+spineplot yaxlabels xaxlabels abbreviate spineplot treatment <- factor(rep(c(1, 2), c(43, 41)), levels = c(1, 2),
+    labels = c("placebo", "treated"))
+improved <- factor(rep(c(1, 2, 3, 1, 2, 3), c(29, 7, 7, 13, 7, 21)),
+    levels = c(1, 2, 3),
+    labels = c("none", "some", "marked"))
+
+spineplot(improved ~ treatment, yaxlabels=abbreviate(levels(improved), 2)) levels levels(treatment) <- abbreviate(levels(treatment), 5)
+plot(improved ~ treatment)
+-------------------------------------------------------------------------------------------------------
+example(spineplot) NA spineplot(fail~temperature,yaxlabels=NA) las=1 spineplot par par(las=1)
+spineplot(fail~temperature)
+-------------------------------------------------------------------------------------------------------
+x y plot spineplot treatment <- factor(rep(c(1, 2), c(43, 41)), levels = c(1, 2),
+    labels = c("placebo", "treated"))
+improved <- factor(rep(c(1, 2, 3, 1, 2, 3), c(29, 7, 7, 13, 7, 21)),
+    levels = c(1, 2, 3),
+    labels = c("none", "some", "marked"))
+
+spineplot(improved, treatment)
+-------------------------------------------------------------------------------------------------------

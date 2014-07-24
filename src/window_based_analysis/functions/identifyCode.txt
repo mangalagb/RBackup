@@ -1,0 +1,8 @@
+# example data
+dat <- data.frame(name = sample(letters[1:4],20, replace=T), x1 = rnorm(20,2), x2 = 42+x1*rnorm(20,0,2))
+# plot the data
+plot(dat$x1,dat$x2)
+# use identify to print name for each 'dot' that you click with left mouse
+identify(dat$x1,dat$x2,labels=name)
+# When done identifying point, click with right mousebutton.
+-------------------------------------------------------------------------------------------------------

@@ -1,0 +1,8 @@
+dat2:3]
+diamonds, diamonds
+x
+x1, x2, colramp=colramp
+x, nrpoints=0
+x, nrpoints = 0, postPlotHook = fudgeit
+x, nrpoints=Inf, colramp=colorRampPalette, bandwidth=40
+x, y

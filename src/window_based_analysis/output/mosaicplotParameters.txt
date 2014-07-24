@@ -1,0 +1,6 @@
+a, dir = "h", off = 0, color = TRUE
+country ~ name, data = df2
+dtab
+Loan.Purpose, Home.Ownership
+with
+x, 2:4], main = 'Proportions'

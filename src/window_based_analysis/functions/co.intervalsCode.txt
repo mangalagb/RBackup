@@ -1,0 +1,86 @@
+lattice overlap = 1 OverlapSplit <- function(x, nsplits = 1, overlap = 0) {
+    stopifnot(require(lattice))
+    N <- seq_len(nr <- nrow(x))
+    interv <- co.intervals(N, nsplits, overlap / nr)
+    out <- vector(mode = "list", length = nrow(interv))
+    for(i in seq_along(out)) {
+        out[[i]] <- x[interv[i,1] < N & N < interv[i,2], , drop = FALSE]
+    }
+    out
+} > OverlapSplit(DF, 2, 2)
+[[1]]
+  x y
+1 1 a
+2 2 b
+3 3 c
+4 4 d
+5 5 e
+6 6 a
+
+[[2]]
+    x y
+5   5 e
+6   6 a
+7   7 b
+8   8 c
+9   9 d
+10 10 e
+
+> OverlapSplit(DF)
+[[1]]
+    x y
+1   1 a
+2   2 b
+3   3 c
+4   4 d
+5   5 e
+6   6 a
+7   7 b
+8   8 c
+9   9 d
+10 10 e
+
+> OverlapSplit(DF, 4, 1)
+[[1]]
+  x y
+1 1 a
+2 2 b
+3 3 c
+
+[[2]]
+  x y
+3 3 c
+4 4 d
+5 5 e
+
+[[3]]
+  x y
+6 6 a
+7 7 b
+8 8 c
+
+[[4]]
+    x y
+8   8 c
+9   9 d
+10 10 e
+-------------------------------------------------------------------------------------------------------
+co.intervals() cutEqual <- function(x, n, include.lowest = TRUE, ...) {
+    stopifnot(require(lattice))
+    cut(x, co.intervals(x, n, 0)[c(1, (n+1):(n*2))], 
+        include.lowest = include.lowest, ...)
+} > set.seed(12345)
+> x <- rnorm(50)
+> table(cutEqual(x, 5))
+
+ [-2.38,-0.885] (-0.885,-0.115]  (-0.115,0.587]   (0.587,0.938]     (0.938,2.2] 
+             10              10              10              10              10
+> y <- rpois(50, 5)
+> table(cutEqual(y, 5))
+
+ [0.5,3.5]  (3.5,5.5]  (5.5,6.5]  (6.5,7.5] (7.5,11.5] 
+        10         13         11          6         10
+-------------------------------------------------------------------------------------------------------
+?graphics::co.intervals co.intervals(vec, 9, 0.5) 
+ # then use split, or shingle ?lattice::shingle shingle(vec, intervals=co.intervals(vec, 9, 0.5))
+-------------------------------------------------------------------------------------------------------

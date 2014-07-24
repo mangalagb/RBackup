@@ -1,0 +1,27 @@
+
+0.005, from='ndc', from='ndc'
+0.495, from='ndc'
+0.5
+0.505, from='ndc', from='ndc'
+0.5, "npc"
+0.75, from='npc', from='npc'
+0.8, "npc"
+0.995, from='ndc'
+0, from='nfc', from='nfc'
+0, from='nic'
+0, "user", "ndc"
+1:2, "user"
+1, from = "inches", to = "ndc", from = "inches", to = "ndc"
+1, from='nfc', from='nfc'
+1, from='npc', from='npc'
+c, from='npc'
+c, from="user", to="ndc"
+c, "npc"
+max, to='ndc'
+min, to='ndc'
+tail, "user", "ndc"
+transCoords1], from = 'inches', to ='device'
+u1:2], "user", "ndc"
+x
+x, to='inches'
+xy1], from='ndc', to='inches'

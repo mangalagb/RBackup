@@ -1,0 +1,4 @@
+N, nsplits, overlap / nr
+vec, 9
+vec, 9, 0.5
+x, n, 0, 

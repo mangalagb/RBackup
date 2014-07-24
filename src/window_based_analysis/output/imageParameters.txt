@@ -1,0 +1,222 @@
+
+1:10, 1:10, M
+1:12, 1:6, data
+1:13, 1, as.matrix, col=my.cols, xlab="my palette", ylab="", xaxt="n", yaxt="n", bty="n", aes, aes
+1:3, 1:30
+1:4, 1:3, grid, axes=FALSE, xlab="", ylab = ""
+1:4, 1:5, grid, axes=FALSE, xlab="", ylab = ""
+1:51, 1:3, matrix, las=1
+1:51, 1:3, matrix, las=1, add=TRUE
+1:8, 1:4, a, col=col
+1:9, 1:9, res, axes=FALSE, xlab="m1", ylab="m2"
+1:dim, 1:dim, dst, axes = FALSE
+1L:nc, 1L:nr, x
+1:n, 1, as.matrix, col=a
+1:N, 1:M, t, asp=1
+1:ncol, 1:nrow, t, axes=FALSE, ann=FALSE, ylim=c
+1:ncol, 1:nrow, t, axes = FALSE, xlab="", ylab=""
+1:ncol, 1:nrow, t, col = terrain.colors, axes = FALSE
+1:nrow, 1:ncol, m2, col=c
+1:nrow, 1:ncol, m, col=c, axes=FALSE, xlab="", ylab="", main=main
+1:n.var, breaks, t, xlab='Variable Index', ylab='Histogram Bin'
+A
+a, col=c, xaxt='n', yaxt='n', xlab='', ylab=''
+A, col=grey
+a, color.palette=heat.colors
+Ai, i]
+akima.li, col = gray.colors
+akima.li, col = rainbow
+as.matrix
+as.matrix, col=cx, axes=T
+as.matrix, ord], main = "Cophenetic distances"
+as.matrix, ord], main = "Original distances"
+as.ram
+axis1, axis2, wf, col = col, asp = 1, xlab = "X", ylab = "Y", ...
+b*1, ylim=c
+b, add = TRUE, col = "green"
+B, add=TRUE, col=hc
+bigm
+Bmat
+CAex, scales=list
+cbind, col = ColSideColorscolInd], axes = FALSE
+cl1
+cor, axes=F
+correlations
+cor, x=1:10, y=1:10, zlim=c
+d1
+d, add = TRUE, col = "blue"
+dat
+dat1, asp=1
+data, data
+dat, breaks = c, col = c
+d, col=gray
+dev.cur
+df2, col=heat.colors, yaxt="n"
+df, col=heat.colors, ylim = rev
+distObjorder
+exp, col=jet.colors
+F
+f1
+figData, zlim=zlim, col=col, ...
+file="1.RData", country, file="1.RData"
+file="filename.RData", Sys.Date, sep=""
+file = f_Rdata
+file="myfile.RData", file="myfile.RData"
+filename
+file="speedtest.Rdata"
+file='www/foo.rdata'
+fld
+fld, axes=F, add=T
+g, col = c
+grib2, add=TRUE, col=, attr=1
+grib2, add=TRUE, col=, attr=1, col=, attr=1, xlim=c
+grib, col=, attr=1, xlim=c
+im
+img
+k, col=heat.colors
+land
+list
+log
+Longitude, Latitude, A
+lon, lat, sst, zlim=c, col = heat.colors
+lon, lat, temp11
+lons, lats, glb.data
+m
+m1
+m, 1e30, -1
+m1>m2
+m1 - m2, zlim = c
+m1, zlim = c
+M2
+m2, zlim = c
+mat1, Rowv=F, Colv=F
+mat, col=c, breaks=c
+mat, col = rev
+matrdiff, col=colpalette, breaks=breaks, useRaster=T
+matrix
+matrix, col = blue2green2red, axes = FALSE
+matrix, col=rainbow
+matrix, col=rb, xaxt="n", yaxt="n"
+matrix, useRaster = TRUE
+Matrix, xlab="Prey", ylab="Predator", sub=""
+m, axes = FALSE, col = grey
+mba.int, xaxs="r", yaxs="r"
+m, col=blues9
+m, col=colors, ylab="", axes=FALSE
+m, col.regions=c, at=1:9, col.regions = c, at=1:9
+m, useRaster=TRUE
+mydata, useRaster=TRUE, col={whatever}
+my.func, col=heat.colors
+my.func, col=heat.colors, useRaster = TRUE
+my.zero
+my.zero, 1, 2
+ncdf
+obj, add = TRUE, col = terrain.colors
+p, col=c
+pred
+r
+rast
+rbind, col = RowSideColorsrowInd], axes = FALSE
+r, col=gray
+relationship
+res
+res, breaks = c
+res>quantile, col=0:1
+res > quantile, col=0:1
+results
+sample, col=rainbow, axes=F
+seq_len, seq_len
+seq, seq, a
+seq, tran17, PA17, col=c
+s.mat
+str
+t
+t, ]
+t, axes=F
+t, ], axes=FALSE
+t, axes=FALSE, zlim=c, col=rainbow
+t, col=c
+t, col=jet.colors
+t, col=pal, axes=FALSE, ann=FALSE
+t, col=trans, xaxt="n", yaxt="n"
+temp.matrix
+temp_var, axes=FALSE, xlab="", ylab=""
+tern.grid, breaks=c, col=rev, add=T
+test123, col=colors, breaks=colbreaks
+test.image, axes = FALSE
+t_mat, col = colorRampPalette, axes = F
+tmp, ...
+t, n1]:1], col=Gif, axes=F, n1]:1], col=Gif, axes=F
+trans3
+varRaster, useRaster=TRUE
+v, axes = FALSE, col = grey, axes = FALSE, col = grey, nrow, axes = FALSE, col = grey
+vdata
+volcano, col = terrain.colors
+x, , 1]
+x=110:155, y =-40:-10
+x=1:35, y=1:35, as.matrix
+x, , 2]
+x2, add = TRUE, col = "red"
+x2, y2, z2, axes=F, col=rainbow
+x, , 3]
+x=-90:-75, y = 25:40
+x.bin, y.bin, freq2D, col=topo.colors
+XC
+x, col=c, ny=100, lty=1
+x, col = terrain.colors, useRaster = TRUE
+x=cx, z=matrix, xaxt="n", yaxt="n", col=pal
+x=c, y=1:nr, z=t, add=TRUE, col=c
+x=c, y=1:nr, z=t, axes=FALSE
+xc, yc, int, add=TRUE, col=colbar, breaks=colbreaks
+xhm, yhm, hm
+xi, yi, xy, col=tricol, useRaster=TRUE
+X, , k], col=tim.colors
+xmat.new, add=TRUE
+xmat.new, col="blue"
+x = minitics, y = minitics
+xp, yp, zM, col=c
+x=seq
+x=seq, y=seq, datamatrix, , 7]
+x=seq, y=seq, z=COR, col=rev, xlab="x column", ylab="y column", xaxt='n'
+x=seq, y=seq, z=COR, xlab="x column", ylab="y column"
+x = seq, y = seq, z =  seqMyMap, col=attr, add=TRUE
+x=seq, y=seq, z=t, asp=1, xaxt="n", yaxt="n", bty="n", xlab="", ylab="", main="blue channel", col=bluePal
+x=seq, y=seq, z=t, asp=1, xaxt="n", yaxt="n", bty="n", xlab="", ylab="", main="green channel", col=greenPal
+x=seq, y=seq, z=t, asp=1, xaxt="n", yaxt="n", bty="n", xlab="", ylab="", main="red channel", col=redPal
+x=stk, y=stk, z = stk
+x = X, y = Y
+x=x, y=y, z=log, col=pal, breaks=log
+x=x, y=y, z=z, col=rainbow
+x, x, z, las=1, useRaster=TRUE, col=brewer.pal, xlab="x", ylab="y"
+x = X, z = Z, ..., axes = FALSE
+x = X, z = Z, axes = FALSE
+x, y
+x=years, z=db, yaxt="n"
+xygrid, breaks=seq, col=1:10
+x, y, matrix
+x, y, m, col = grey
+x, y, m, col = grey, 1, length = nrow
+x, y, volcano, col = terrain.colors, axes = FALSE, breaks= seq
+x, y, z, col=my.colors, axes=FALSE, xlab="", ylab=""
+x, y, z, xaxt="n", yaxt="n", col=pal, asp=1, pty="s"
+x, y, z, yaxt="n", xaxt="n", ylab="", xlab="", col=heat.colors
+x, y, z, zlim, xlim, ylim
+y
+y, 360:1]
+y, col = c
+yellows, col = rgb, add = T, xlab = "x axis", ylab = "y axis"
+z
+z2, add=TRUE, col=4
+z=A, ann=F, axes=F, col=topo.colors
+z, col=gray, axes=FALSE, useRaster=TRUE
+Z, col=pal.1
+Z, col=pal.2
+Z, col=pal.3
+z = dat, col = c
+z = dat, col = c, axes = FALSE
+z = heatmap_matrix
+z, ncol, axes=FALSE
+z = t, ....
+z = t, col = c, axes = FALSE
+z, x=xyProj
+z = z <- cos, col=gray, axes = FALSE

@@ -1,0 +1,36 @@
+img    100    100    200    200    
+img2    300    300    400    400    
+image    100    300    150    350    interpolate=FALSE    
+image    100    400    150    450    
+image    200    300    200 + xinch    300 + yinch    interpolate=FALSE    
+image    200    400    250    450    angle=15    interpolate=FALSE    
+img    x[1]-0.1    x[2]-0.1    x[1]+0.1    
+img    x[1]-0.1    x[2]-0.1    x[1]+0.1    
+img    x[1]-0.1    x[2]-0.1    x[1]+0.1    
+img    x[1]-0.1    x[2]-0.1    x[1]+0.1    
+r    1    1    2    2    
+img    lim    lim    lim    lim    
+vnorm    xrange[1]    yrange[1]    xrange[2]    yrange[2]    interpolate=FALSE    
+plotPNG    0    0    1    1    
+imagemat    range    range    range    range    interp=F    
+ice2    -100    -40    100    40    interpolate=FALSE    
+colmat    0    1    10    11    interpolate=FALSE    
+pics[[blockPic[i    j]]]    seqRows[i]    seqCols[j]    seqRows[i+1]    seqCols[j+1]    interpolate=FALSE    
+ima    lim    lim    lim    lim    
+legend_image    0    0    1    1    
+image    tmp2[1]    tmp2[3]    tmp2[2]    tmp2[4]    
+pngimg    4.5    4.5    5    5    
+r    -1    -1    1    1    
+matrix    0    0    1    1    interpolate=FALSE    
+z    -0.03    -0.03    1.03    1.03    interpolate=FALSE    
+z    -0.04    -0.04    1.04    1.04    interpolate=FALSE    
+ima    lim    lim    lim    lim    
+x    1    1    2    2    
+m    usr[1]    usr[3]    usr[2]    usr[4]    
+image    0.2    0.2    0.3    0.3    
+image2    0.6    0.6    0.7    0.7    
+image3    0.6    0.3    0.7    0.4    
+image4    0.3    0.7    0.4    0.8    
+as.raster    xleft=d2    xright=d2+nc    ybottom=-d2    ytop=-d2+nr+1    interpolate=FALSE    angle=45    
+images[[ii]]    xleft=x[ii] - 0.5*width    ybottom= y[ii] - 0.5*height    xright=x[ii] + 0.5*width    ytop= y[ii] + 0.5*height    interpolate=FALSE    
+bar    0    0    1    1    

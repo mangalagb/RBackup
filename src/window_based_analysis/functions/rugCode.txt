@@ -1,0 +1,401 @@
+require(gplots) 
+
+# example data, bivariate normal, no correlation
+x <- rnorm(2000, sd=4) 
+y <- rnorm(2000, sd=1) 
+
+# separate scales for each axis, this looks circular
+hist2d(x,y, nbins=50, col = c("white",heat.colors(16))) 
+rug(x,side=1) 
+rug(y,side=2) 
+box() library("geneplotter")  ## from BioConductor
+require("RColorBrewer") ## from CRAN
+
+x1  <- matrix(rnorm(1e4), ncol=2)
+x2  <- matrix(rnorm(1e4, mean=3, sd=1.5), ncol=2)
+x   <- rbind(x1,x2)
+
+layout(matrix(1:4, ncol=2, byrow=TRUE))
+op <- par(mar=rep(2,4))
+smoothScatter(x, nrpoints=0)
+smoothScatter(x)
+smoothScatter(x, nrpoints=Inf,
+              colramp=colorRampPalette(brewer.pal(9,"YlOrRd")),
+              bandwidth=40)
+colors  <- densCols(x)
+plot(x, col=colors, pch=20)
+
+par(op)
+-------------------------------------------------------------------------------------------------------
+x <- c(2,8,11,19)
+x <- data.frame(x,1) ## 1 is your "height"
+plot(x, type = 'o', pch = '|', ylab = '')
+-------------------------------------------------------------------------------------------------------
+qplot(x,y) + 
+    geom_segment(data = data.frame(x), aes(x = x, y = max(x) - .05, xend = x, yend = max(x))) +         #x-rug
+    geom_segment(data = data.frame(x), aes(x = min(x), y = max(x), xend = max(x), yend = max(x))) +     #x-rug
+    geom_segment(data = data.frame(y), aes(x = max(x) + .05, y = y, xend = max(x), yend = y)) +         #y-rug
+    geom_segment(data = data.frame(y), aes(x = max(x) + .05, y = min(y), xend = max(x) + .05, yend = max(y) )) + #y-rug
+    scale_x_continuous(breaks = NA) +   
+    scale_y_continuous(breaks = NA) +
+    xlab(NULL) +
+    ylab(NULL) +
+    geom_text(aes(label = round(mean(x),2), x = mean(x), y = min(y) - .2), size = 4) +
+    geom_text(aes(label = round(mean(y),2), x = min(x) - .2, y = mean(y)), size = 4) + 
+    geom_text(aes(label = round(max(x),2), x = max(x) + .2, y = max(y) + .2), size = 4)
+    #...add other text labels to your heart's desire. geom_rug() df <- data.frame(x,y)
+qplot(x,y, data = df, geom = c("point", "rug")) # + ...any additional geom's here
+-------------------------------------------------------------------------------------------------------
+xxx <- function(x, y) {
+
+ p <- qplot(x,y) + 
+    geom_segment(data     = data.frame(x), 
+                 aes(x    = x, 
+                     y    = max(y) + .05, 
+                     xend = x, 
+                     yend = max(y) + .1  )) +     #top-ticks
+
+    geom_segment(data     = data.frame(x), 
+                 aes(x    = min(x), 
+                     y    = max(y) + .1, 
+                     xend = max(x), 
+                     yend = max(y) + .1  )) +     #top-axis
+
+    geom_segment(data     = data.frame(y), 
+                 aes(x    = max(x) + .1, 
+                     y    = y, 
+                     xend = max(x) + .05, 
+                     yend = y)) +                #right-ticks
+
+    geom_segment(data     = data.frame(y), 
+                 aes(x    = max(x) + .1, 
+                     y    = min(y), 
+                     xend = max(x) + .1, 
+                     yend = max(y)     )) +      #right-axis
+
+    scale_x_continuous(breaks = NA) +   
+    scale_y_continuous(breaks = NA) +
+    xlab(NULL) +
+    ylab(NULL) +
+    geom_text(aes(label = round(mean(x), 2), 
+                  x     = mean(x), 
+                  y     = min(y) - .2), 
+              size = 4) +
+
+    geom_text(aes(label = round(mean(y), 2), 
+                  x     = min(x) - .2, 
+                  y     = mean(y)), 
+              size = 4) + 
+
+    geom_text(aes(label = round(max(y), 2), 
+                  x     = max(x) + .5, 
+                  y     = max(y) + .0),        
+              size = 4) +                   #right-max
+
+    geom_text(aes(label = round(min(y), 2), 
+                  x     = max(x) + .5, 
+                  y     = min(y) - .0),         
+              size = 4) +                    #right-min
+
+    geom_text(aes(label = round(max(x), 2), 
+                  x     = max(x) + .0, 
+                  y     = max(y) + .2),        
+              size = 4) +                   #top-max
+
+    geom_text(aes(label = round(min(x), 2), 
+                  x     = min(x) + .0, 
+                  y     = max(y) + .2),         
+              size = 4)                     #top-min
+
+}
+
+x <- rnorm(20)
+y <- rnorm(20)
+
+(xxx(x, y)) y0 = unit(0, "npc"), y1 = unit(0.03, "npc"), y0 = unit(1.02, "npc"), y1 = unit(1.05, "npc"), x0 = unit(0, "npc"), x1 = unit(0.03, "npc"), x0 = unit(1.02, "npc"), x1 = unit(1.05, "npc"), library(ggplot2)
+
+ GeomRugAlt <- proto(Geom, {
+   draw <- function(., data, scales, coordinates, ...) {  
+     rugs <- list()
+     data <- coordinates$transform(data, scales)    
+     if (!is.null(data$x)) {
+       rugs$x <- with(data, segmentsGrob(
+         x0 = unit(x, "native"), x1 = unit(x, "native"), 
+         y0 = unit(1.02, "npc"), y1 = unit(1.05, "npc"),
+         gp = gpar(col = alpha(colour, alpha), lty = linetype, lwd = size * .pt)
+       ))
+     }  
+
+     if (!is.null(data$y)) {
+       rugs$y <- with(data, segmentsGrob(
+         y0 = unit(y, "native"), y1 = unit(y, "native"), 
+         x0 = unit(1.02, "npc"), x1 = unit(1.05), "npc"),
+         gp = gpar(col = alpha(colour, alpha), lty = linetype, lwd = size * .pt)
+       ))
+     }  
+
+     gTree(children = do.call("gList", rugs))
+   }
+
+   objname <- "rug_alt"
+
+   desc <- "Marginal rug plots"
+
+   default_stat <- function(.) StatIdentity
+   default_aes <- function(.) aes(colour="black", size=0.5, linetype=1, alpha = 1)
+   guide_geom <- function(.) "path"
+
+   examples <- function(.) {
+     p <- ggplot(mtcars, aes(x=wt, y=mpg))
+     p + geom_point()
+     p + geom_point() + geom_rug_alt()
+     p + geom_point() + geom_rug_alt(position='jitter')
+   }
+
+
+ })
+
+ geom_rug_alt <- GeomRugAlt$build_accessor()
+
+ x <- rnorm(20)
+ y <- rnorm(20)
+
+ p <- qplot(x,y)
+ p
+ p + geom_rug() + geom_rug_alt()
+-------------------------------------------------------------------------------------------------------
+daten_fit <- lm(formula = y~x, data = daten[3:5, ])
+
+plot(y ~ x, data = daten)
+points(y ~ x, data = daten[3:5, ], col="red")
+abline(reg=daten_fit, col="red") rug range #points(y ~ x, data = daten[3:5, ], col="red")
+abline(reg=daten_fit, col="red")
+rug(range(daten[3:5, 1]), lwd=3, col="red")
+-------------------------------------------------------------------------------------------------------
+scatter <- qplot(x,y, data=xy)  + 
+         scale_x_continuous(limits=c(min(x),max(x))) + 
+         scale_y_continuous(limits=c(min(y),max(y))) + 
+         geom_rug(col=rgb(.5,0,0,alpha=.2))
+scatter
+-------------------------------------------------------------------------------------------------------
+rnorm x <- seq(-5,5,length=100)
+plot(x, pnorm(1 - 0.5*x), ty='n', lwd=2, bty='n', xlab='x', ylab="Pr(y=1)", 
+     xaxs = 'i', ylim=c(0, 1))
+
+params <- processres(npb.par)
+sims <- 100000
+sim.mat <- matrix(NA, ncol=length(x), nrow=sims)
+for (i in 1:sims) {
+  alpha <- rnorm(1, params[1, 1], params[1, 3])
+  beta <- rnorm(1, params[2, 1], params[2, 3])
+  sim.mat[i, ] <- pnorm(alpha - beta*x)
+}
+
+CI <- apply(sim.mat, 2, function(x) quantile(x, c(0.05, 0.95)))
+polygon(c(x, rev(x)), c(CI[1, ], rev(CI[2, ])), col='gray', border=NA)
+lines(x, pnorm(params[1, 1] - params[2, 1]*x), lwd=2)
+rug(dat100$x)
+box()
+-------------------------------------------------------------------------------------------------------
+x <- seq(0.3,0.6,by =0.001)
+plot(x, dnorm(x, 0.433697, 0.018629), type = 'l') rug(b1) set.seed(0)
+b <- rnorm(15)
+b1 <- ((b - mean(b))/sd(b)  * 0.018629) + 0.433697
+rug(b1) lines(density(b1), col = 'red')
+-------------------------------------------------------------------------------------------------------
+geom_rug geom_text ruglabels <- unique(myd[, 1:2])
+
+require(ggplot2)
+ggplot(myd, aes(x=X2, y=Y)) + 
+  geom_point (aes(col = X3, pch = X3, col=X3)) + 
+  geom_line (aes(col = X3, col=X3)) +
+  geom_rug(sides="b") +
+  geom_text(data=ruglabels, aes(x=X2, label=X1, y=2))
+-------------------------------------------------------------------------------------------------------
+quantile() rug() set.seed(1)
+X <- rnorm(200)
+boxplot(X, yaxt = "n")
+
+## compute the required quantiles
+qntl <- quantile(X, probs = c(0.85, 0.90))
+
+## add them as a rgu plot to the left hand side
+rug(qntl, side = 2, col = "blue", lwd = 2)
+
+## add the box and axes
+axis(2)
+box() str() set.seed(1) ## make reproducible
+HWD <- data.frame(Hour = rep(0:23, 10),
+                  Houston_Load = rnorm(24*10)) Hour Hour quantile() quants <- sapply(split(HWD$Houston_Load, list(HWD$Hour)),
+                 quantile, probs = c(0.85, 0.9)) R> quants <- sapply(split(HWD$Houston_Load, list(HWD$Hour)),
++                  quantile, probs = c(0.85, 0.9))
+R> quants
+            0         1        2         3         4         5        6
+85% 0.3576510 0.8633506 1.581443 0.2264709 0.4164411 0.2864026 1.053742
+90% 0.6116363 0.9273008 2.109248 0.4218297 0.5554147 0.4474140 1.366114
+            7         8        9       10        11        12       13       14
+85% 0.5352211 0.5175485 1.790593 1.394988 0.7280584 0.8578999 1.437778 1.087101
+90% 0.8625322 0.5969672 1.830352 1.519262 0.9399476 1.1401877 1.763725 1.102516
+           15        16        17        18       19        20       21
+85% 0.6855288 0.4874499 0.5493679 0.9754414 1.095362 0.7936225 1.824002
+90% 0.8737872 0.6121487 0.6078405 1.0990935 1.233637 0.9431199 2.175961
+          22        23
+85% 1.058648 0.6950166
+90% 1.145783 0.8436541 boxplot(Houston_Load ~ Hour, data = HWD, axes = FALSE)
+xlocs <- 1:24 ## where to draw marks
+tickl <- 0.15 ## length of marks used
+for(i in seq_len(ncol(quants))) {
+    segments(x0 = rep(xlocs[i] - 0.15, 2), y0 = quants[, i],
+             x1 = rep(xlocs[i] + 0.15, 2), y1 = quants[, i],
+             col = c("red", "blue"), lwd = 2)
+}
+title(xlab = "Hour", ylab = "Houston Load")
+axis(1, at = xlocs, labels = xlocs - 1)
+axis(2)
+box()
+legend("bottomleft", legend = paste(c("0.85", "0.90"), "quantile"),
+       bty = "n", lty = "solid", lwd = 2, col = c("red", "blue"))
+-------------------------------------------------------------------------------------------------------
+## transform data
+ require(reshape2)
+ h <- do.call(cbind, phat)
+ h.melt <- melt(h)
+
+ ## rename variables so they look nicer on plots
+ names(h.melt) <- c("test","N","value")     
+
+ ## stripchart (not shown)
+ qplot(data = h.melt, x = value,y = Var2,color=Var2)+geom_point()
+
+ ## histogram (not shown)    
+ ggplot(h.melt,aes(x=value,fill=N))+geom_histogram()+facet_grid(N~.)
+
+ ## dotplot with rug (not shown)
+ ggplot(h.melt,aes(x=value,fill=N))+geom_dotplot()+facet_grid(N~.)+geom_rug()  
+
+ ##density plot with rug (shown below)
+ ggplot(h.melt,aes(x=value,fill=N))+geom_density()+facet_grid(N~.)+geom_rug()
+-------------------------------------------------------------------------------------------------------
+data(sunspots)
+sunspots = as.numeric(sunspots)
+smoothover = 21 # Try smaller values here to see the failure
+y = filter(sunspots,rep(1/smoothover,smoothover),circular=TRUE)
+plot(y)
+thresh =30
+abline(h=thresh)
+cross = which(diff(sign(y-thresh))!=0)-1
+rug(cross)
+-------------------------------------------------------------------------------------------------------
+##The data frame df is now inherited by
+##the other geom's
+ggplot(data=df,aes(x=played,y=position)) + 
+  geom_line() +
+  scale_y_reverse() +
+  geom_rug(sides="b", aes(colour=result)) geom_rug scale_colour_* + scale_colour_manual(values=c("blue","red", "green"))
+-------------------------------------------------------------------------------------------------------
+# data
+require(vegan)
+data(dune)
+data(dune.env)
+
+# RDA
+RDA <- rda(dune ~ A1, data = dune.env)
+
+# extract species scores
+df1 <- data.frame(RDA.scores = scores(RDA)$sites[ , 1], Management = dune.env$Management)
+df2 <- data.frame(spec_scores = scores(RDA)$species[ , 1], taxa = rownames(scores(RDA)$species))
+df2 <- df2[abs(df2$spec_scores) > 0.05, ]
+df2 <- cbind(df2, x = rep(1:4, 6))
+
+# plot
+P <- ggplot(data = df1, aes( x = Management, y = RDA.scores) ) + geom_boxplot() + theme_bw()  +geom_hline(y=0, lty=2) + geom_rug(data= df2, mapping=aes(x = x , y = spec_scores), sides="r") + geom_text(data= df2, mapping=aes(x=5, y=spec_scores, label=taxa), size=2) + xlim(c("BF", "HF", "NM", "SF", ""))
+P
+-------------------------------------------------------------------------------------------------------
+geom_point() geom_rug() sided="b" ggplot(diamonds, aes(y=carat, x=price, color=cut)) + 
+  geom_point() + geom_smooth(se=F, method='lm') + geom_rug() coord_cartesian() ylim= ggplot(diamonds, aes(y=carat, x=price, color=cut)) + 
+  geom_smooth(se=F, method='lm') + geom_rug(sides='b')+
+   coord_cartesian(ylim=c(0,3))
+-------------------------------------------------------------------------------------------------------
+xaxp (1-7)/(-6) = 1 axTicks axes axTicks n op <- par(mfrow = c(4, 1))
+for(x in 9999 * c(1/99999,1, 2, 8)) {
+  plot(x, 9, log = "x")
+  cat(formatC(par("xaxp"), width = 5),";", T <- axTicks(1),"\n")
+  rug(T, col =  adjustcolor("red", 0.5), lwd = 4)
+}
+par(op)
+
+ ## n negative (your case): linear case 
+ 0.05  0.25    -4 ; 0.05 0.1 0.15 0.2 0.25 
+ ## n =3 :     k 10^j with k in {1,2,5} & j in par("usr")[1:2]
+ 1000 1e+05     3 ; 200 500 1000 2000 5000 10000 20000 50000 1e+05 2e+05 5e+05 
+ ## n =2     k 10^j with k in {1,5} & j in par("usr")[1:2]
+ 1000 1e+06     2 ; 500 1000 5000 10000 50000 1e+05 5e+05 1e+06 
+ ## n =1 :  10^j with j in par("usr")[1:2]
+ 1000 1e+07     1 ; 1000 10000 1e+05 1e+06 1e+07
+-------------------------------------------------------------------------------------------------------
+geom_rug() b a geom_rug() sides="t" ggplot(d, aes(x=x, colour=l)) + geom_density() + 
+  geom_rug(data=subset(d,l=="b"),aes(x=x)) +
+  geom_rug(data=subset(d,l=="a"),aes(x=x),sides="t")
+-------------------------------------------------------------------------------------------------------
+## Some prices
+set.seed(321)
+prices    <- cumprod(1 + rnorm(300, 0.005, 0.05))
+
+## Detection of "bear" periods
+threshold <- 0.2
+lookback  <- 60  # Set to length(prices) for no lookback restriction
+is.bear   <- sapply(1:length(prices),
+                    function(i, prices, threshold = 0.2, lookback = length(prices)){
+                        (prices[i] / max(tail(prices[1:i], lookback))) < (1 - threshold)
+                    },
+                    prices = prices, threshold = threshold, lookback = lookback)
+## Result
+plot(prices, type = "l")
+rug(which(is.bear), col = "red", lwd = 2)
+-------------------------------------------------------------------------------------------------------
+coord_flip grid.arrange() plot1 + geom_rug(sides='r')
+-------------------------------------------------------------------------------------------------------
+x<-rnorm(300)
+y<-rt(300,df=10)
+xy<-data.frame(x,y)
+
+require(ggplot2); require(grid)
+# make the basic plot object
+ggplot(xy, aes(x, y)) +        
+  # set the locations of the x-axis labels as Tukey's five numbers   
+  scale_x_continuous(limit=c(min(x), max(x)), 
+                     breaks=round(fivenum(x),1)) +     
+  # ditto for y-axis labels 
+  scale_y_continuous(limit=c(min(y), max(y)),
+                     breaks=round(fivenum(y),1)) +     
+  # specify points
+  geom_point() +
+  # specify that we want the rug plot
+  geom_rug(size=0.1) +   
+  # improve the data/ink ratio
+  theme_set(theme_minimal(base_size = 18))
+-------------------------------------------------------------------------------------------------------
+baseSum=0.0
+Visits = NULL
+while(baseSum < 100)
+{
+  Screen=(rpois (1, lambda=3)) 
+  y=runif(Screen,0,1) 
+  Base = length(which(y<=0.5))
+  baseSum = baseSum + Base
+  SF = Screen - Base
+  Visits=rbind(Visits,c("Screen"=Screen,"BaseCount"=Base,"SFCount"=SF))    
+}
+plot(cumsum(Visits[,"BaseCount"]),type="b");grid()
+sum(Visits[,"BaseCount"]) tooManyRuns = t(sapply(rpois (110, lambda=3) , function(X) { y=runif(X,0,1); Base = length(which(y<=0.5)); SF = X-Base; return(c("Screen"=X,"BaseCount"=Base,"SFCount"=SF)) } ))
+Visits =tooManyRuns[1:min(which(cumsum(tooManyRuns[,"BaseCount"])>=100.0)),]
+plot(cumsum(Visits[,"BaseCount"]),type="b");grid()
+sum(Visits[,"BaseCount"]) numRunsNeeded = sapply(1:1000,
+       function(...)
+       {
+        tooManyRuns = t(sapply(rpois (110, lambda=3) , function(X) { y=runif(X,0,1); Base = length(which(y<=0.5)); SF = X-Base; return(c("Screen"=X,"BaseCount"=Base,"SFCount"=SF)) } ))
+        return(min(which(cumsum(tooManyRuns[,"BaseCount"])>=100.0)))
+       } )   
+
+plot(density(numRunsNeeded));rug(numRunsNeeded);abline(v=mean(numRunsNeeded));abline(v=median(numRunsNeeded),lty=2)
+-------------------------------------------------------------------------------------------------------

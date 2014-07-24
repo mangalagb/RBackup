@@ -1,0 +1,4 @@
+co.intervals(N, nsplits, overlap / nr)
+co.intervals(x, n, 0, )
+co.intervals(vec, 9, 0.5)
+co.intervals(vec, 9)

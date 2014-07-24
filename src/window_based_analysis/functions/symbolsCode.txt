@@ -1,0 +1,455 @@
+dfx = data.frame(ev1=1:10, ev2=sample(10:99, 10), ev3=10:1)
+
+symbols(x=dfx$ev1, y=dfx$ev2, circles=dfx$ev3, inches=1/3, ann=F, bg="steelblue2", fg=NULL)
+-------------------------------------------------------------------------------------------------------
+symbols( x, y, circles = circle_radii, inches=1/3, bg="blue", fg=NULL)
+-------------------------------------------------------------------------------------------------------
+par(xaxs="i", yaxs="i")  # 'internal' axis style - no extending
+par(xaxt="n", yaxt="n")  # remove axes
+par(mgp=c(0,0,0))        # remove room for title and axis labels
+par(mar=c(0,0,0,0))      # remove margins
+symbols(0,0, circles=1, bg=2, fg=NA, inches=FALSE, bty="n", xlim=c(-1,1), ylim=c(-1,1)) #ensure limits match the size of the circle fg=NA
+-------------------------------------------------------------------------------------------------------
+cex symbols() cex symbols() ## dummy data first
+set.seed(123)
+dat <- data.frame(X = rnorm(10), Y = rnorm(10,2,2), a = runif(10), b = runif(10))
+
+## plot using cex
+plot(Y ~ X, data = dat, cex = 10 * a)
+
+## plot using symbols()
+with(dat, symbols(X, Y, circles = a)) col cex fg b ## Eg using heat.colors(5)
+cut.pts <- seq(0, 1, by = 0.1)
+cuts <- with(dat, cut(b, cut.pts))
+with(dat, symbols(X, Y, circles = a, bg = heat.colors(5)[cuts])) ggplot2 ## Eg using ggplot
+require(ggplot2)
+p <- ggplot(dat, aes(X, Y, colour = b, size = a))
+p + geom_point()
+-------------------------------------------------------------------------------------------------------
+library(TeachingDemos)
+my.symbols(1,1,ms.polygon, n=360, add=FALSE)
+my.symbols(1,1, cbind( c(-1,-1,1,1,-1), c(-1,1,1,-1,-1) ), add=TRUE)
+-------------------------------------------------------------------------------------------------------
+symbols() ## from ?symbols
+N <- nrow(trees)
+with(trees, {
+## Girth is diameter in inches
+symbols(Height, Volume, circles = Girth/24, inches = FALSE,main = "Trees' Girth") # xlab and ylab automatically
+})
+-------------------------------------------------------------------------------------------------------
+tms<-strptime(c("10:00AM","12:00PM","10:00PM"),format="%I:%M%p")
+vals<-c(1,5,3)
+radii <-c(2,4,6)
+symbols(tms,vals,radii,xaxt='n')
+axis.POSIXct(1, at=tms, format="%I:%M%p")
+-------------------------------------------------------------------------------------------------------
+pch my.symbols() require(TeachingDemos)
+
+bwDiamond <- function() {
+    plot.new()
+    polygon(c(0, 0.5, 1, 0.5, 0), c(0.5, 0, 0.5, 1, 0.5), lty=1)
+    polygon(c(0.25, 0.5, 1, 0.75, 0.25), c(0.25, 0, 0.5, 0.75, 0.25), col=1)
+}
+
+data <- c(1,2,3)
+
+dev.new(width=4, height=4)
+plot(data, type='n')
+points(data[1:2], pch=c(23,18), cex=c(2.5,3))
+my.symbols(data[3], data[3], symb=bwDiamond, symb.plots=TRUE, inches=0.22)
+-------------------------------------------------------------------------------------------------------
+set sets set1 <- data.frame(x = 4:6, y = 6:4, z = c(1, 3, 5))
+
+plot(1:10, type="n")
+XX <- "set1"
+with(eval(as.symbol(XX)), symbols(x, y, circles = z, add=TRUE)) for() with(dat, symbols(sq, cu, circles = num,
+                  bg = c("red", "blue")[(num>5) + 1])) c(TRUE, FALSE) + 1
+# [1] 2 1
+c("red", "blue")[c(F, F, T, T) + 1]
+# [1] "red"  "red"  "blue" "blue"
+-------------------------------------------------------------------------------------------------------
+foo //lib.h
+extern "C" {
+    void foo();
+    void bar();
+};
+
+//lib.cpp
+#include <iostream>
+#include "lib.h"
+
+void foo() {
+    std::cout << "From lib\n";
+}
+
+void bar() {
+    std::cout << "Bar, calling foo\n";
+    foo();
+} //test.cpp
+#include <iostream>
+#include "lib.h"
+
+void foo() {
+    std::cout << "From app\n";
+}
+
+int main() {
+    bar();
+} g++ lib.cpp -o libtest.so -Wall -fPIC -shared -Wl,--export-dynamic -Wl,-soname,libtest.so -Wl,-z,defs
+g++ test.cpp -o test -L. -ltest test "." matias@master:/tmp$ LD_LIBRARY_PATH="." ./test
+Bar, calling foo
+From app foo bar Dump of assembler code for function bar@plt:
+   0x0804855c <+0>: jmp    DWORD PTR ds:0x804a004
+   0x08048562 <+6>: push   0x8
+   0x08048567 <+11>:    jmp    0x804853c 0x804a004 Dump of assembler code for function _GLOBAL_OFFSET_TABLE_:
+   0x08049ff4 <+0>: or     BYTE PTR [edi+0x804],bl
+   0x08049ffa <+6>: add    BYTE PTR [eax],al
+   0x08049ffc <+8>: add    BYTE PTR [eax],al
+   0x08049ffe <+10>:    add    BYTE PTR [eax],al
+   ..... foo test.cpp double unif_rand(void) unif_rand
+-------------------------------------------------------------------------------------------------------
+year <- 1:5
+logtrans <- log(year)
+size <- rep(15,5)
+intel2 <- data.frame(HexLogClock=c("#330000", "#FFFFCC", "#660000", "#FF0000", "#00FF00"),stringsAsFactors=FALSE)
+symbols(year, logtrans, circles=size, inches=0.05, bg=intel2$HexLogClock) stringsAsFactors=FALSE read.csv intel2$HexLogClock <- as.character(intel2$HexLogClock)
+-------------------------------------------------------------------------------------------------------
+intel2$HexLogClock factor class(intel2$HexLogClock) HexLogClock intel2$HexLogClock intel2$HexLogClock <- as.character(intel2$HexLogClock) 
+symbols(year, logtrans, circles=size, inches=0.05, bg=as.character(intel2$HexLogClock))
+-------------------------------------------------------------------------------------------------------
+symbols(year, logtrans, circles=logtrans, inches=0.25, bg=intel2$HexLogClock) DF <- data.frame(year, logtrans, color=intel2$HexLogClock) symbols
+ symbols(DF$year, DF$logtrans, circles=DF$logtrans, inches=0.25, bg=DF$color) ggplot2 library(ggplot2)
+ggplot(DF, aes(x=year, y=logtrans, colour=color, size=logtrans)) + geom_point()\\ dat <- structure(list(country = c("argentina", "australia", "canada", "ireland", "italy"), year08 = c(35, 56, 25, 25, 27), year09 = c(60, 89, 65, 65, 75), year10 = c(89, 75, 89, 90, 45), year11 = c(120, 100, 148, 200, 100)), .Names = c("country", "year08", "year09", "year10", "year11"), row.names = c(NA, -5L), class = "data.frame") melt reshape2 library(reshape2)
+dat.melt <- melt(dat, id.var='country') ggplot(dat.melt, aes(x=variable, y=value, colour=country, size=value)) + geom_point() aes
+-------------------------------------------------------------------------------------------------------
+plot(temp,m, xlab="Time", ylab="Depth",type='l', main=Name[k]) 
+symbols(temp,m,add=TRUE,circles=p, inches=1/15, ann=F, bg="steelblue2", fg=NULL) plot(temp,m, xlab="Time", ylab="Depth",type='l', main=Name[k],lwd=5,col="steelblue2")
+-------------------------------------------------------------------------------------------------------
+size.range/2 size.range <- c(.1, 1) # Min and max radius of circles, in cm
+
+# Calculate the relative radius of each circle
+radii <- sqrt(agData$freq)
+radii <- diff(size.range)*(radii - min(radii))/diff(range(radii)) + size.range[1]
+
+# Plot in two panels
+mar0 <- par("mar")
+layout(t(1:2), widths=c(4,1))
+
+# Panel 1: The circles
+par(mar=c(mar0[1:3],.5))
+symbols(agData$class, agData$drv, radii, inches=size.range[2]/cm(1), bg="black")
+
+# Panel 2: The legend
+par(mar=c(mar0[1],.5,mar0[3:4]))
+symbols(c(0,0), 1:2, size.range, xlim=c(-4, 4), ylim=c(-2,4),inches=1/cm(1), bg="black", axes=FALSE, xlab="", ylab="")
+text(0, 3, "Freq")
+text(c(2,0), 1:2, range(agData$freq), col=c("black", "white"))
+
+# Reset par settings
+par(mar=mar0) agData$freq with(agData, 
+symbols(class, drv, sqrt(freq),inches=size.range[2]/cm(1), bg="black"))
+with(agData, text(class, drv, freq, col="white"))
+-------------------------------------------------------------------------------------------------------
+symbols xpd=TRUE plot(hc, hang = -1, xlab="", sub="")
+symbols(1:5, rep(-25, 5), circles=rep(1, 5), add=TRUE, inches=.2,bg=rep(c("grey", "red"), c(3,2)), xpd=TRUE)
+symbols(1:5, rep(-35, 5), squares=rep(1, 5), add=TRUE, inches=.4,bg=rep(c("grey", "red"), c(1,4)), xpd=TRUE) par("usr") y = par("usr")[3] - .04 * diff(par("usr")[3:4]) symbol text
+-------------------------------------------------------------------------------------------------------
+#get some example data
+crime <- read.csv("http://datasets.flowingdata.com/crimeRatesByState2005.tsv", 
+                  header=TRUE, sep="\t")
+#define the radius of circles
+radius <- sqrt( crime$population/ pi )
+#makes your plot, bg defines colour, inches scales circles
+symbols(crime$murder[1:15], crime$burglary[1:15], circles=radius[1:15], inches=0.5, bg=gray(0.9), xlab="Murder Rate", ylab="Burglary Rate")
+#makes your labels, you can offset them by adding values to x and y arguments
+text(crime$murder[1:15], crime$burglary[1:15], crime$state[1:15], cex=0.6)
+-------------------------------------------------------------------------------------------------------
+rose.diag y <- scan() # paste in the values from the question and hit return twice
+y <- circlar(y) # not necessary but prevents a warning
+rose.diag(y, units = 'degrees', zero = pi/2) # units doesn't change the underlying units circular y <- circlar(y, zero = pi/2)
+rose.diag(y, units = 'degrees') # note, no 0 call here > par('usr')
+[1] -1.376553  1.376553 -1.123200  1.123200 
+symbols(0, 0, circle = 0.2, inches = FALSE, add = TRUE, fg = 'red') lines.circular segments arrows m <- mean.circle(y)
+segments(0, 0, cos(m+pi/2), sin(m+pi/2), col = 'red') # note I need to add the new 0 position... there is a lines.circular function but it wasn't obvious to me how to use it. rose.diag circle symbols
+-------------------------------------------------------------------------------------------------------
+my.symbols ms.polygon ms.arrows plot(c(-2,2),c(-2,2), axes=FALSE, xlab='', ylab='', type='n', asp=1)
+abline(v=0, col='lightgrey')
+abline(h=0, col='lightgrey')
+my.symbols(c(0,0),c(0,0),ms.polygon, xsize=c(2,4), lwd=c(1,2), n=360)
+
+theta <- seq(pi/4, 3*pi/4, length=250)
+lines( 2.03*cos(theta), 2.03*sin(theta), lwd=2, lty='dashed' )
+lines( c(0,0), c(0,2), lty='dashed', lwd=2 )
+
+a <- c(300,305,355,0,5,45,65)
+l <- c(1.1, .5, .4,1,.6,.7,1.25)
+
+my.symbols( rep(0,7), rep(0,7), ms.arrows, xsize=2, r=l, adj=0, angle=pi/2 - pi/180*a )
+-------------------------------------------------------------------------------------------------------
+dev.new(width=6,height=4)
+
+rown <- unique(platelay$rown)
+coln <- unique(platelay$coln)
+
+plot(NA,ylim=c(0.5,length(rown)+0.5),xlim=c(0.5,length(coln)+0.5),ann=FALSE,axes=FALSE)
+box()
+
+axis(2,at=seq_along(rown),labels=rev(rown),las=2)
+axis(3,at=seq_along(coln),labels=coln)
+
+colgrp <- findInterval(platelay$colorvar,seq(min(platelay$colorvar),max(platelay$colorvar),length.out=10))
+colfunc <- colorRampPalette(c("green", "blue"))
+collist <- colfunc(length(unique(colgrp))) 
+
+symbols(platelay$coln,factor(platelay$rown, rev(levels(platelay$rown))),circles=rep(0.2,nrow(platelay)),add=TRUE,inches=FALSE,bg=collist[colgrp])
+-------------------------------------------------------------------------------------------------------
+> png(filename="circles.png", width=5000, height=1000)
+> symbols(x, circles=size, xlim=c(0, 200), cex.lab=3, cex.axis=3)
+> dev.off()
+-------------------------------------------------------------------------------------------------------
+my.symbols TeachingDemo myd <- data.frame (X = 1:5, Y = c(0.8, 0.6, 0.7, 0.75,  0.1), 
+                   clockd = c(12.05, 12.25, 12.45, 1.30, 2.1))
+hour <- round(myd$clockd)#takes hours by ignoring decimals
+minute <- 100*(myd$clockd - trunc(myd$clockd,2))#takes decimals
+#for getting the angle I'm subtracting from pi/2
+#thats because pi/2 orients the arrow into 0 degree position, pointing up 
+hourAngle <- pi/2 - (hour/12*2*pi)
+minuteAngle <- pi/2 - (minute/60*2*pi)
+#now all the plotting
+plot(myd$X, myd$Y, type="l", xaxt="n", xlab="", ylab="", 
+     xlim=c(0.5,5.5), ylim=c(0,1), col="gray")#standard plot, no x axis
+axis(1, at=myd$X, labels=myd$X)#custom x-axis
+require(TeachingDemo)
+my.symbols(myd$X, myd$Y, ms.arrows, angle=hourAngle, add=T, col="blue", symb.plots=TRUE, adj=0)
+my.symbols(myd$X, myd$Y, ms.arrows, angle=minuteAngle, add=T,  col="red", symb.plots=TRUE, adj=0)
+my.symbols(myd$X, myd$Y, ms.polygon, n=250, add=T, r=1.1, col="gray")
+-------------------------------------------------------------------------------------------------------
+my.symbols TeachingDemos require(TeachingDemos)
+d <- rnorm(10,0,1)
+plot(d, type="l", ylim=c(min(d)-1, max(d)+1))
+my.symbols(x=1:10, y=d, ms.arrows, angle=pi/2, add=T, symb.plots=TRUE, adj=1.5)
+-------------------------------------------------------------------------------------------------------
+ggs <- subset(gg, count > 0)
+radius <- sqrt( ggs$count / pi )
+
+# ggs$Var1 <- as.character(ggs$Var1)
+
+# set up your tick marks 
+#  (this can all be put into a single line in `axis`, but it's placed separate here to be more readable)
+#--------------
+# at which values to place the x tick marks
+x_at <- seq_along(levels(gg$Var1))
+# the string to place at each tick mark
+x_labels <-   levels(gg$Var1)
+
+
+# use xaxt="n" to supress the standard axis ticks 
+symbols(ggs$Var1, ggs$Var2, radius, inches=0.30, xlab="Research type", ylab="Research area", xaxt="n")
+axis(side=1, at=x_at, labels=x_labels)
+
+text(ggs$Var1, ggs$Var2, ggs$count, cex=0.5) grid gg ggs grid R
+-------------------------------------------------------------------------------------------------------
+log10 plot (log10(x), log10(y), type="o")
+draw.circle(x=log10(1e-2), y=log10(1e2), radius=log10(1e1), col=2) symbols plot (x, y, log="xy", type="o",xlim=c(1e-5,1), ylim=c(1,1e8))
+par(new=T)
+symbols(x=1e-2, y=1e2, circles=1e1, xlim=c(1e-5,1), ylim=c(1,1e8), xaxt='n', yaxt='n', ann=F, log="xy")
+-------------------------------------------------------------------------------------------------------
+?symbols x <- 1:5
+y <- 5:1
+r <- seq(2, 10, 2)
+
+symbols(x, y, circles=r, fg="white", bg="red")
+-------------------------------------------------------------------------------------------------------
+data1 <- read.table(text="
+codeofhammurabi.txt crete.txt      0.570737
+codeofhammurabi.txt iraqi.txt      1.13475
+codeofhammurabi.txt magnacarta.txt 0.945746
+codeofhammurabi.txt us.txt         1.25546
+crete.txt iraqi.txt                0.329545
+crete.txt magnacarta.txt           0.589786
+crete.txt us.txt                   0.491903
+iraqi.txt magnacarta.txt           0.834488
+iraqi.txt us.txt                   1.37718
+magnacarta.txt us.txt              1.09582")
+par(mar=c(3,7,3.5,5), las=1)
+
+symbols(data1[,1],data1[,2], circles=data1[,3], inches=0.55, bg="lightblue", xaxt="n", yaxt="n", ylab="")
+axis(1, at=data1[,1],labels=data1[,1])
+axis(2, at=data1[,2],labels=data1[,2])
+text(data1[,1], data1[,2], round(data1[,3],2), cex=0.9)
+-------------------------------------------------------------------------------------------------------
+clip # set up a blank plot
+par(mar=rep(0, 4))
+par(bg="#cccccc")
+plot(NA,xlim=0:1,ylim=0:1)
+
+# define a function
+grad.circ <- function(centrex,centrey,radius,col,resolution) {
+  colfunc <- colorRampPalette(col)
+  shades <- colfunc(resolution)
+
+  for (i in seq_along(shades) ) {
+   clip(
+      centrex - radius,
+      centrex + radius,
+      (centrey + radius) - ((i-1) * (radius*2)/length(shades)),
+      (centrey + radius) - (i     * (radius*2)/length(shades))
+       )
+   symbols(centrex,centrey,circles=radius,bg=shades[i],fg=NA,add=TRUE,inches=FALSE)
+  }
+}
+
+# call the function
+grad.circ(0.5,0.5,0.5,c("black", "white"),300) FUN <- function(plot = TRUE, cols = c("black", "white")) {
+    plot(NA, xlim=0:1, ylim=0:1, axes=FALSE)
+    if (plot) {
+        grad.circ(0.5, 0.5, 0.5, cols, 300)
+    }
+}
+
+FUN2 <- function(){
+    lapply(1:3, function(i) FUN(,c("white", "black")))
+    FUN(F)
+    lapply(1:3, function(i) FUN())
+}
+
+
+X11(10, 4.5)
+par(mfrow=c(3, 7))
+par(mar=rep(0, 4))
+par(bg="gray70")
+invisible(lapply(1:3, function(i) FUN2()))
+-------------------------------------------------------------------------------------------------------
+my.symbols ms.polygon library(TeachingDemos)
+plot(c(-5,10), c(-5,5),  xlab = expression(Age), ylab = expression(value), 
+    type="n")
+my.symbols( Age, value, ms.polygon, n=4, xsize=2*Age_error, ysize=2*value_error, linesfun=polygon, col='grey' ) linesfun col
+-------------------------------------------------------------------------------------------------------
+my.symbols library(TeachingDemos)
+ms.Cleveland <- function(num.pt = 1, cex=2, ...) {
+    funs <- list(
+        open = function(cex, ...) 
+            points(0,0, pch=1, lwd=2, cex=cex, ...),
+        filled = function(cex, ...)
+            points(0,0, pch=16, cex=cex, ...),
+        half = function(cex, ...)
+            points(0,0, pch=1, lwd=5, cex=cex, ...),
+        vert = function(cex, ...) {
+            points(0,0, pch=1, lwd=2, cex=cex, ...)
+            points(0,0, pch='|', lwd=2, cex=cex/2, ...)
+          },
+        dot = function(....) {
+            points(0,0, pch=1, lwd=2, cex=cex, ...)
+            points(0,0, pch=16, cex=cex/3, ...)
+          }
+    )
+    funs[[num.pt]](cex, ...)
+}
+
+### create size variable for mtcars
+sz <- findInterval( mtcars$wt, quantile( mtcars$wt, c(0.2, 0.4, 0.6, 0.8) ) ) + 1
+
+with(mtcars, my.symbols(wt, mpg, ms.Cleveland, num.pt=sz, add=FALSE, symb.plots=TRUE))
+tmp <- legend('topright', pch=1, col=NA, pt.cex=2,
+    legend=c('Small', 'SMed', 'Medium', 'LMed', 'Large'))
+
+my.symbols( (tmp$rect$left + tmp$text$x)/2, tmp$text$y, ms.Cleveland, num.pt=1:5,symb.plots=TRUE) ms.Cleveland col=NA my.symbols
+-------------------------------------------------------------------------------------------------------
+add=TRUE symbols(mydata$sale, mydata$comm, circles=mydata$maxcomm, bg="blue")
+symbols(mydata$sale, mydata$comm, circles=mydata$savings, bg="red", add=TRUE) rgb() ggplot alpha
+-------------------------------------------------------------------------------------------------------
+par() symbols(mydata$sale, mydata$comm, circles=mydata$savings, bg="#FF0000")
+par(new=TRUE)
+symbols(mydata$sale, mydata$comm, circles=mydata$maxcomm, bg="#0000FF50")
+-------------------------------------------------------------------------------------------------------
+scale_size_area ggplot # you need to keep your data in a data.frame
+df <- data.frame(x = x, y = y, weighting = weighting)
+ggplot(data = df, aes(x = x, y = y, size = weighting)) +
+  geom_point() +
+  scale_size_area() cex cex base symbols inches base scale_size_area() ggplot
+-------------------------------------------------------------------------------------------------------
+require(plotrix)
+ require(maps)
+ map("world",xlim=c(69,85),ylim= c(20,35))
+ with(dat, 
+     vectorField(windspeed, winddirection, longitude, latitude , vecspec="deg") ) require(TeachingDemos)
+ map("world",xlim=c(69,85),ylim= c(20,35))
+ with(dat, my.symbols(x=longitude, y=latitude, symb= ms.arrows, length=windspeed/10, angle=2*pi*winddirection/360))
+-------------------------------------------------------------------------------------------------------
+my.symbols ms.image library(png)
+
+flag.list <- lapply( list.files('flags/',pattern='png$', full=TRUE), 
+    function(x) readPNG(x) )
+
+library(TeachingDemos)
+
+ms.flags <- function(ind,...) {
+
+    tmp <- array(0, dim=c(150,150,4) )
+    tmp[ 26:125, , 1:3] <- flag.list[[ind]]
+    tmp[ 26:125, , 4 ] <- 1
+
+    ms.image(tmp,...)
+}
+
+x <- rnorm(50)
+y <- rnorm(50)
+
+my.symbols(x,y, symb = ms.flags, ind=1:50, symb.plots=TRUE,add=FALSE, xlim=c(-3,3), ylim=c(-3,3), inches=0.75)
+-------------------------------------------------------------------------------------------------------
+set.seed(1986); x <- sample(x=5:100, size=25) # x coordinates
+set.seed(1987); y <- sample(x=5:60, size=25) # y coordinates
+set.seed(1988); area <- runif(n=25, min=.1, max=6) # areas
+symbols(x,y,circles=area, inches=F, ylim=c(0,100)) # map of point-areas set.seed(1985); pointID <- 1:25 # unique point ID
+set.seed(1984); attribute1 <- runif(n=25, min=0, max=100) # random point attribute
+set.seed(1983); attribute2 <- runif(n=25, min=0, max=1) # another random attribute
+data <- data.frame(pointID, x, y, area, attribute1, attribute2) # complete input dataset pixel <- c(rep(1, 5), rep(2,4)) # first two of N pixels, with 5 and 4 points in each
+set.seed(1982); pointID.pix <- c(sample(x=1:25, size=5), sample(x=1:25, size=4)) 
+set.seed(1990); area.pix <- data[pointID.pix, "area"] * runif(n=9, min=.01, max=1) 
+attribute1.pix <- data[pointID.pix, "attribute1"] # anonymous attribute of points
+attribute2.pix <- data[pointID.pix, "attribute2"] # another anonymous attribute
+pixelData <- data.frame(pixel, pointID.pix, area.pix, attribute1.pix, attribute2.pix)
+-------------------------------------------------------------------------------------------------------
+symbols() sqrt((pctable$value / max(pctable$value)) / pi) pctable <- data.frame(expand.grid(weekday=c("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"),
+                              day=1:22), value=abs(rnorm(nrow(pctable), 20, 30)))
+
+par(list(las=1, mar=c(6,6,1,1), mgp=c(4.5,1,0)))
+
+bubble.size <- sqrt((pctable$value / max(pctable$value)) / pi)
+symbols(pctable$day, pctable$weekday, circles=bubble.size,inches=.2, fg="black", bg="blue", yaxt="n", xaxt="n", xlab="Day", ylab="Weekday")
+axis(1, at=1:22, labels=c(1:22)) 
+axis(2, at=1:7,labels=rev(c("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")), cex.axis=0.7)
+-------------------------------------------------------------------------------------------------------
+symbols(squares=..., inches=FALSE, add=TRUE) add=TRUE, rescale=FALSE
+-------------------------------------------------------------------------------------------------------
+symbols(DF$V1,DF$V2, circles = V3, inches = 0.35, fg = "darkblue", bg = "red")
+text(DF$V1, DF$V2 + c( 0, 0, 0, 1, -1,0 ), V4, cex = 0.5)
+
+legend(
+     "topright", 
+     legend=c("15", "20", "25", "30"), 
+     pch = 21,
+     bty = "n",
+     col = "black",
+     pt.bg = "red",         
+     pt.cex = c(0.5,1,1.5,2)
+     )       
+
+# thanks to at @Josh O'Brien for pt.cex
+-------------------------------------------------------------------------------------------------------
+symbols(quakes$X, quakes$Y, circles=quakes$E)
+
+radius <- sqrt( quakes$E/ pi )
+symbols(quakes$X, quakes$Y, circles=radius)
+
+symbols(quakes$X, quakes$Y, circles=radius, inches=0.35, fg="white", bg="red", xlab="Murder Rate", ylab="Burglary Rate")
+-------------------------------------------------------------------------------------------------------
+symbols(x,y,R[1,])
+-------------------------------------------------------------------------------------------------------
+lty plot(1:10, type = "b", lty = 2) type = "b" lty ?plot.default plot(x, y = NULL, type = "p",  xlim = NULL, ylim = NULL,
+      log = "", main = NULL, sub = NULL, xlab = NULL, ylab = NULL,
+      ann = par("ann"), axes = TRUE, frame.plot = axes,
+      panel.first = NULL, panel.last = NULL, asp = NA, ...) type = "p" lty symbols() plot(1:10, type = "n")
+symbols(1:10, 1:10, circles = rep(0.1, 10), lty = 2, inches = FALSE, add = TRUE) plot() add = TRUE symbols() plot()
+ symbols(1:10, 1:10, circles = rep(0.1, 10), lty = 2, inches = FALSE)
+-------------------------------------------------------------------------------------------------------

@@ -1,0 +1,231 @@
+sizes <- 3:10   #your sizes    
+part.type <- sample(sizes, 1000, replace = T)  #your particle sizes  
+
+count <- table(part.type)  
+barplot(count, width = size) part <- rchisq(1000, 10)  
+part.type <- cut(part, 4)  
+
+count <- table(part.type)  
+barplot(count, width = size) part <- rchisq(1000, 10)
+part.type <- cut(part, 20)
+
+count <- table(part.type)
+dotchart(count)
+-------------------------------------------------------------------------------------------------------
+set.seed(123)
+vec <- sample(1:9, 100, replace = TRUE)
+vec <- factor(vec, labels = paste("My long event name", 1:9)) barplot() table() las = 2 ## lots of extra space in the margin for side 1
+op <- par(mar = c(10,4,4,2) + 0.1)
+barplot(table(vec), las = 2)
+par(op) ## reset dotchart() dotchart(table(vec))
+-------------------------------------------------------------------------------------------------------
+# get data
+data <- VADeaths[sample(1:5), ]
+# order data by first row's numeric values
+data <- data[order(data[,1]),]
+dotchart(data)
+-------------------------------------------------------------------------------------------------------
+apply(X, 2, sort)
+        W    X    Y     Z
+[1,] 10.0  3.0  9.0  13.6
+[2,] 11.7  8.7 15.4  19.3
+[3,] 18.1 11.7 20.0  35.1
+[4,] 41.0 20.3 37.0  50.0
+[5,] 66.0 30.9 71.1 100.0
+
+ dotchart(apply(X, 2, sort)) dotchart(apply(X, 2, sort), 
+         labels=apply(X, 2, function(x) names(x)[order(x)] )
+          )
+-------------------------------------------------------------------------------------------------------
+cats <- with(quakes, cut(depth, breaks = seq(40L, max(depth), by = 80), 
+                         include.lowest = TRUE))
+dat <- aggregate(mag ~ cats, data = quakes, FUN = mean)
+with(dat, dotchart(mag, group = cats, xlab = "Mean Magnitude"))
+-------------------------------------------------------------------------------------------------------
+dotchart(VADeaths, main = "Death Rates in Virginia - 1940") dotchart(t(VADeaths), main = "Death Rates in Virginia - 1940")
+-------------------------------------------------------------------------------------------------------
+set.seed(1)
+dat2 <- data.frame(fac = factor(sample(LETTERS, 100, replace = TRUE)))
+hist(table(dat2), xlab = "Frequency of Level Occurrence", main = "") hist() table(dat) table(dat) hist() dat <- data.frame(fac = rep(LETTERS[1:4], times = c(3,3,1,5))) "table" layout(matrix(1:4, ncol = 2))
+plot(table(dat), main = "plot method for class \"table\"")
+barplot(table(dat), main = "barplot")
+tab <- as.numeric(table(dat))
+names(tab) <- names(table(dat))
+dotchart(tab, main = "dotchart or dotplot")
+## or just this
+## dotchart(table(dat))
+## and ignore the warning
+layout(1) factor table(factor) table(dat) table(dat$fac) lattice require(lattice)
+with(dat, dotplot(fac, horizontal = FALSE)) ggplot2 require(ggplot2)
+p <- ggplot(data.frame(Freq = tab, fac = names(tab)), aes(fac, Freq)) + 
+    geom_point()
+p
+-------------------------------------------------------------------------------------------------------
+?dotchart VADeaths VADeaths
+      Rural Male Rural Female Urban Male Urban Female
+50-54       11.7          8.7       15.4          8.4
+55-59       18.1         11.7       24.3         13.6
+60-64       26.9         20.3       37.0         19.3
+65-69       41.0         30.9       54.6         35.1
+70-74       66.0         54.3       71.1         50.0 dotchart(VADeaths) ggplot require(plyr)
+require(ggplot2)
+ggplot(melt(VADeaths),aes(y = Var1,x = value)) + 
+    facet_wrap(~Var2) + 
+    geom_point()
+-------------------------------------------------------------------------------------------------------
+labels <- c('a', 'b', 'c', 'd')
+averages <- c(10, 40, 20, 30)
+ranges <- c(5, 8, 4, 10)
+dotchart(averages, labels=labels, xlab='average',  pch=20, xlim=c(min(averages-ranges), max(averages+ranges)))
+segments(averages-ranges, 1:4, averages+ranges, 1:4)
+-------------------------------------------------------------------------------------------------------
+rr <- readHTMLTable(page,header=FALSE)
+rr2 <- setNames(rr[[1]],
+                c("rank","country","gold","silver","bronze","junk","total"))
+rr3 <- subset(rr2,select=-junk)
+## oops, numbers all got turned into factors ...
+tmpf <- function(x) { as.numeric(as.character(x)) }
+rr3[,-2] <- sapply(rr3[,-2],tmpf)               
+head(rr3)
+##   rank                                country gold silver bronze total
+## 1    1             People's Republic of China    6      4      2    12
+## 2    2               United States of America    3      5      3    11
+## 3    3                                  Italy    2      3      2     7
+## 4    4                      Republic of Korea    2      1      2     5
+## 5    5                                 France    2      1      1     4
+## 6    6 Democratic People's Republic  of Korea    2      0      1     3
+with(rr3,dotchart(total,country))
+-------------------------------------------------------------------------------------------------------
+before <- data.frame(val=c(11330,2721,52438,6124),
+                     lab=c("STAT1","STAT2","STAT3","SUZY"))
+after <- data.frame(val=c(17401,3462,0,72),
+                     lab=c("STAT1","STAT2","STAT3","SUZY")) period combined <- rbind(data.frame(before,period="before"),
+      data.frame(after,period="after")) dotchart library(reshape2)
+m <- acast(combined,lab~period,value.var="val")
+dotchart(m) ggplot library(ggplot2)
+qplot(lab,val,colour=period,data=combined)
+-------------------------------------------------------------------------------------------------------
+par(mfcol=c(2,1)) varImpPlot layout par data(mtcars)
+library(randomForest)
+
+mtcars.rf <- randomForest(mpg ~ ., data=mtcars, ntree=1000, keep.forest=FALSE,
+                          importance=TRUE)
+varImpData <- varImpPlot(mtcars.rf) # calculate this outside the plot
+
+png("rf1.png", width=6, height=6, units="in", res=100)
+layout(matrix(c(1,2,3,3), 2, 2, byrow = TRUE))
+dotchart(varImpData[,c(1)])
+dotchart(varImpData[,c(2)])
+plot(mtcars.rf, log="y")
+dev.off()
+-------------------------------------------------------------------------------------------------------
+ld <- data.frame( x )
+dotchart(b,xlim=c(min(ld),max(ld)))#<-added
+for ( i in seq_len( nrow( ld ) ) ){  
+  lines( ld[ i , 1:2 ] , rep( y[i] , 2 ) )
+}
+-------------------------------------------------------------------------------------------------------
+dotplot library(lattice)
+dotplot(values ~ ind, data = stack(all)) dotchart dotchart data.frame as.matrix dotchart(as.matrix(all), labels = "") NA
+-------------------------------------------------------------------------------------------------------
+x$Amount <- factor(x$Amount) 
+dotchart(x$Amount,labels = row.names(x),cex=.7,groups = factor(x$Amount),gcolor = "black",color = x$color,pch=19,main ="Gas cylinder",xlab = "Miles Per Gallon")
+-------------------------------------------------------------------------------------------------------
+x <- as.vector(top.links.added.overall[order(-avector),])
+row.names(x) <- rev( c("Yahoo" ,"Cnn", "Google") ) rev 
+dotchart(x$Amount,labels = row.names(x),cex=.7,groups = -x$Amount,gcolor = "black",color = x$color,pch=19,main = "Gas",xlab = "Miles Per Gallon")
+-------------------------------------------------------------------------------------------------------
+text x <- mtcars[order(-mtcars$cyl, mtcars$mpg),]
+# sort by category, then by position within category
+
+# As above
+x$cyl <- factor(x$cyl) # it must be a factor
+x$color[x$cyl==4] <- "red"
+x$color[x$cyl==6] <- "blue"
+x$color[x$cyl==8] <- "darkgreen"    
+
+
+# Adding text
+text(x = x$mpg,
+     y = 1:nrow(x) + ifelse(x$cyl == "6", 2, ifelse(x$cyl == "4", 4, 0)),
+     labels= x$mpg,
+     cex = 0.5,
+     pos = 4)
+-------------------------------------------------------------------------------------------------------
+## Read the data
+data <- read.table(text="state indmed
+AL     -4
+AR      0
+AZ      2
+CA      8
+CO      5",header=T)
+data
+
+## Plot the dot chart
+dotchart(data$indmed,data$state,xlab="Indmed",ylab="States")
+-------------------------------------------------------------------------------------------------------
+autos_data = read.table(text="car    1
+car    2 
+car    3 
+car2   1 
+car2   2 
+car2   3", header=F)
+
+aData2 = autos_data[!duplicated(autos_data[,1]),]
+
+dotchart(aData2[,2], labels=aData2[,1], xlim=c(min(autos_data[,2]), max(autos_data[,2])))
+points(autos_data[,2] , autos_data[,1])
+-------------------------------------------------------------------------------------------------------
+# here I'm generating some example data
+set.seed(5)
+topic_list1 <- paste(sample(letters, 20, replace=T), sep=";")
+topic_list2 <- paste(sample(letters, 15, replace=T), sep=";")
+
+# I don't make the tables right away
+tl1      <- unlist(strsplit(topic_list1, split=";"))
+tl2      <- unlist(strsplit(topic_list2, split=";"))
+big_list <- unique(c(tl1, tl2))
+
+# this computes your frequencies
+lbl         <- length(big_list)
+tMat1       <- matrix(rep(tl1, lbl), byrow=T, nrow=lbl)
+tMat2       <- matrix(rep(tl2, lbl), byrow=T, nrow=lbl)
+tMat1       <- cbind(big_list, tMat1)
+tMat2       <- cbind(big_list, tMat2)
+counts1     <- apply(tMat1, 1, function(x){sum(x[1]==x[2:length(x)])})
+counts2     <- apply(tMat2, 1, function(x){sum(x[1]==x[2:length(x)])})
+total_freqs <- rbind(counts1, counts2, counts1-counts2)
+
+# this makes it nice looking & user friendly
+colnames(total_freqs) <- big_list
+rownames(total_freqs) <- c("topics1", "topics2", "difference")
+total_freqs           <- total_freqs[ ,order(total_freqs[3,])]
+total_freqs
+            d  l  a  z  b f s y m r x h n i g k c v o
+topics1     0  0  0  0  0 2 1 1 1 1 2 2 1 1 1 1 2 2 2
+topics2     2  2  2  1  1 2 1 1 1 0 1 1 0 0 0 0 0 0 0
+difference -2 -2 -2 -1 -1 0 0 0 0 1 1 1 1 1 1 1 2 2 2 windows()
+  dotchart(t(total_freqs)[,3], main="Frequencies of topics1 - topics2")
+  abline(v=0)
+-------------------------------------------------------------------------------------------------------
+dotchart(dat$Index, dat$Value) require(lattice)
+ dotplot(Value ~ Index, data= dat) lattice::dotplot dotchart
+-------------------------------------------------------------------------------------------------------
+### Create data frame with mean and std dev
+x <- data.frame(mean=tapply(mtcars$mpg, list(mtcars$cyl), mean), sd=tapply(mtcars$mpg, list(mtcars$cyl), sd) )
+
+###  Add lower and upper levels of confidence intervals
+x$LL <- x$mean-2*x$sd
+x$UL <- x$mean+2*x$sd
+
+### plot dotchart with confidence intervals
+
+title <- "MPG by Num. of Cylinders with 95% Confidence Intervals"
+
+dotchart(x$mean, col="blue", xlim=c(floor(min(x$LL)/10)*10, ceiling(max(x$UL)/10)*10), main=title )
+
+for (i in 1:nrow(x)){
+    lines(x=c(x$LL[i],x$UL[i]), y=c(i,i))
+}
+grid()
+-------------------------------------------------------------------------------------------------------

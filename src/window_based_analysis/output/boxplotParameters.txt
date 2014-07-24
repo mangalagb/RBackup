@@ -1,0 +1,303 @@
+testout    ylab="X1"    
+testout    ylab="X2"    
+testout    ylab="Y"    
+Ozone ~ Month    data = airquality    
+split    
+count ~ spray    data = InsectSprays    col = "lightgray"    
+count ~ spray    data = InsectSprays    col = "lightgray"    
+mpg ~ cyl    data = mtcars    ylab = "Potrošnja goriva"    xlab = "Broj cilindara"    main = "Dijagram raspršenja"    
+mpg ~ cyl    data = mtcars    ylab = "Potrošnja goriva"    xlab = "Broj cilindara"    main = "Dijagram raspršenja"    
+xvar ~ f1    data=frame    plot=0    
+xvar ~ f1    data=frame    xlab="input values"    names=paste    
+y ~ cut    
+Freq ~ Var1    ylim = c    
+percent~value    
+count ~ bymedian    data = InsectSprays    xlab = "Type of spray"    ylab = "Insect count"    main = "InsectSprays data"    varwidth = TRUE    col = "lightgray"    
+cost ~ type    data=DF    
+cost ~ type    data=DF    
+col3 ~ col5 + myfile    data = mydata    
+
+x~g    
+m    outline = FALSE    
+count ~ spray    data = InsectSprays    col = "lightgray"    
+x    
+y    
+count ~ spray    data = InsectSprays    col = "lightgray"    
+count ~ spray    data = InsectSprays    col = "lightgray"    frame=F    
+count ~ spray    data = InsectSprays    col = "lightgray"    
+count ~ spray    data = InsectSprays    col = "lightgray"    frame = FALSE    
+x    range=1.7    main="range=1.7"    
+x    range=1.5    main="range=1.5"    
+x    range=0    main="range=0"    
+df.m    
+unlist    
+c    
+results    
+x2    
+PIM[    x]    MYC [    x]    OBX[    x]    WDR[    x]    EV[    x]    main = colnames    xlab = "PIM    MYC    OBX    WDR    EV"    
+PIM[    x]    MYC [    x]    OBX[    x]    WDR[    x]    EV[    x]    main = colnames    xlab = "PIM    MYC    OBX    WDR    EV"    
+OM ~ Depth    data = dat    axes = FALSE    ann = FALSE    
+matrix    names=c    
+d0    ylim=lmts    
+d1    ylim=lmts    
+forboxplot    
+S1G1 ~ R    data=x1    main="Output result"    las = 2    pch=16    cex = 1    col = "lightblue"    xlab = "R"    ylab = "SNP values"    ylim =c    border ="blue"    boxwex = 0.3    
+value~variable    data = xx1    
+mouse_data_raw    main="Mouse raw data"    
+count ~ spray    data = InsectSprays    col = "lightgray"    main = "plot title"    
+count ~ spray    data = InsectSprays    col = "lightgray"    add = TRUE    
+element~Season    data=Data    subset=sampletype==1    
+ci[1    ]    ci[2    ]    ci[3    ]    ci[4    ]    
+vals~grp    data=newres    
+a    at = 0:2*3 + 1    xlim = c    ylim = range    xaxt = "n"    
+b    at = 0:2*3 + 2    xaxt = "n"    add = TRUE    
+value~newgroup    data=data.2    
+x1    x2    ylim=lmts    names=c    xlab="x"    
+y1    y2    ylim=lmts    names=c    xlab="y"    type=1    
+
+
+as.formula    DF    
+y~x1    
+y~x1    
+Sepal.Length ~ Species    data = iris    notch = TRUE    
+weight~Time    horizontal = F    main = ""    xlab="Time"    ylab="Weight"    pars = list    axes = FALSE    
+weight~Chick    horizontal = F    main = ""    xlab = "Chick"    ylab = ""    pars = list    axes = FALSE    
+weight~Diet    horizontal = F    main = ""    xlab = "Diet"    ylab = ""    pars = list    axes = FALSE    
+x[1:5    ]    add=T    at=1.5:5.5    boxwex=0.25    axes=F    
+t    
+w1    
+w1[    ]    w2[    ]    w3[    ]    outline=FALSE    names=c    
+fourth boxplot    
+c    ylim=c    axes=F    
+count ~ spray    data = InsectSprays    axes=F    ylim=c    
+y ~ x    data=dfrm    ylim=c    
+data=dat    Conductivity ~ Treatment + Time    
+Conductivity ~ Treatment + Time    names=rep    data=dat    
+dd    axes=FALSE    frame.plot=TRUE    ylim=c    
+zx [    order    horizontal = FALSE    outline = FALSE    
+x ~ group    
+zx    horizontal = FALSE    outline = FALSE    
+a    
+b    add=TRUE    col=2    
+x    ylim=c    
+matrix    medcol="red"    
+cars    xlab='dist'    
+dd    col=cols    header=T    
+data    outline=F    
+dd    plot=FALSE    
+x    plot=FALSE    
+y~x    data=dft    yaxt='n'    
+y~x    data=dft    yaxt='n'    
+x = as.list    
+data=meltData    value~variable    
+plotdata[    i]    main=names    type="l"    
+split    
+car ~ paint    data=temp    
+split    ...    
+x[    VarList[i]]    main=paste    
+x[    VarList[i]]~x[    GroupVar]    main=paste    
+x    yaxt="n"    
+x    yaxt="n"    
+variables    ~.    
+count ~ spray    data = InsectSprays    col = "lightgray"    border=c    
+dummydata    
+Data~month    DF    
+series ~ time    data=Data    
+values ~ groups    data = dat    ylab = expression    xlab = expression    
+values ~ groups    data = dat    ylab = expression    xlab = expression    
+values ~ groups    data = dat    
+V1 ~ factor    data=dat[ dat    ]    
+V1~droplevels    subset    ...    ...    
+V1 ~ V3    droplevels    
+X    yaxt = "n"    
+Houston_Load ~ Hour    data = HWD    axes = FALSE    
+rnorm    horizontal = TRUE    notch = TRUE    boxlwd = 4    
+Gene[[i]]    ylim=my.ylim    axes=FALSE    
+value~cond    data=df    plot=FALSE    
+sdiff[    -1]    
+df[    -1]/sqrt    
+Sal ~ interaction    data=test.data    
+sub_dat    add=TRUE    axes=FALSE    at=i    
+col3 ~ person    data=dat    
+Tom[    "col3"]    Bob[    "col3"]    Stu[    "col3"]    
+col3 ~ person    data=dat    main="Boxplot of three samples."    ylab="col3"    
+e    e    
+e[[1]]    e[[2]]    
+e[    1]    e[    2]    
+e    
+x ~ y    data=e    
+las_score ~ leverancier    data=dat    notch=TRUE    
+dat[dat    ]    notch=TRUE    
+base    xlim=c    col="gray"    xaxt="n"    ylab="Base values"    outline=FALSE    
+exps    col="red"    ylim=c    outline=FALSE    axes=FALSE    
+base    col="gray"    xaxt="n"    ylab="Base values"    outline=FALSE    axes=FALSE    
+exps    col="red"    xaxt="n"    ylim=c    outline=FALSE    axes=FALSE    
+df    border=c    lwd=c    
+samp~dist    
+count ~ spray    data = InsectSprays    col = "lightgray"    
+count ~ spray    data = InsectSprays    col = "lightgray"    
+score    besides=T    
+betaplasma~vituse    
+
+count ~ spray    data = InsectSprays    outline = FALSE    boxlty = 0    whisklty = 0    staplelty = 0    
+x    
+c    
+depth~hour    data=x    xlab="Hour of day"    ylab="Depth    
+b~a    
+b~a    add=TRUE    
+x    horizontal=TRUE    axes=FALSE    
+X    horizontal = TRUE    axes = FALSE    staplewex = 1    
+len~supp*dose    data=ToothGrowth    plot = FALSE    
+len~supp*dose    data=ToothGrowth    notch=TRUE    col=    main="Tooth Growth"    xlab="Suppliment and Dose"    axes = FALSE    
+rnorm    
+1:10    
+xm    
+myd    col = "lightgreen"    ylim=c    
+myd    col = "lightgreen"    
+x    horizontal=TRUE    axes=FALSE    outline=FALSE    
+x    horizontal=TRUE    axes=FALSE    range=2    
+x    horizontal=TRUE    axes=FALSE    outline=FALSE    
+y[    x]    main=names    
+y[    x]    main=names    
+y[    x]    main=names    
+res    
+quantity ~ bymedian    
+b ~ a    
+b ~ a_reordered    
+X    
+d    
+d    axes=FALSE    y=1:5    
+d    axes=FALSE    
+d    xaxt="n"    
+test    test    names=c    data=test    names=c    
+x    
+data    pars=list    
+sat.act    sat.act    col ='pink'    
+data2    pars=list    
+sprdiurnal    e..t..c...    
+v    
+v    range=2    coef=2    
+time~month    data=dfrm    
+df    las=2    
+df    las=2    
+count ~ spray    data = InsectSprays    axes=FALSE    
+df    names=2002:2011    
+df    names=2002:2011    boxcol="blue"    medcol="red"    whiskcol="blue"    staplecol="blue"    ylim = c    lty=1    las=1    ylab = "NDVI"    outline = FALSE    boxfill = FALSE    
+am    gap=list    axis.labels=T    
+dset1    plot=FALSE    names="month1"    
+dset2    plot=FALSE    names="month2"    
+dset3    plot=FALSE    names="month3"    result2    result3    
+test    
+vv    
+value~variable    data=new_vv    
+df    names=2002:2011    col=colors    
+count ~ spray    data = InsectSprays    col = "lightgray"    
+count ~ spray    data = InsectSprays    notch = TRUE    add = TRUE    col = "blue"    
+data~reorder    data=df    
+data~reorder    data=df    las=2    names=unique    
+V1~factor    data=datasetcomb    at=c    ylab="Cell"    xlab="Category/Year"    xaxt="n"    col=c    
+d    
+d    
+first    second    boxwex=0.3    
+dd    boxwex = 0.3    
+data    
+Xtab    
+data    
+diving.means    ""    names    
+data    horizontal=TRUE    outline=FALSE    ylim=c    
+df.col1    
+cats[    2:3]    
+count~spray    data=InsectSprays    col=c    
+datablock    
+weight ~ interaction    dat=Daten    
+count~    InsectSprays    
+ExampleData    col="purple"    par    ylab="Dissolved Aluminum"    
+Aluminum_Dissolved ~ Site    data = dat    col="purple"    ylab = "Dissolved Aluminum"    xlab = "Dissolved Aluminum"    las=2    mar=c    
+Aluminum_Dissolved ~ Site    data = dat    col="purple"    ylab = "Dissolved Aluminum"    xlab = "Dissolved Aluminum"    axes = FALSE    
+M    
+x[    i]    main = names    
+x[    i]    main = names    
+values ~ group    data=dat    las=3    
+coredata    
+R    
+v1 ~ v2    
+temp    names = c    
+decrease ~ treatment    data = OrchardSprays    log = "y"    col = "bisque"    
+m1    m2    names=z    
+c    
+dd_tmp    
+x~factor    
+x~factor    main=title    
+x ~ factor    main = var    
+
+measurement ~ measurement_option    mydf    mydf    as.vector    
+values ~ var    
+fitted    names = month.abb    cex.axis = 0.8    
+R    horizontal = TRUE    ..    
+a    at=1    xlim=c    
+b    at=2    add=TRUE    
+
+times3    
+d    whisklty = 0    staplelty = 0    
+test~group1    data=out    
+a    ylim=c    
+eval    
+eval    
+1:10    
+AvgVisits    
+unlist    
+unlist    
+DATA.oner    
+DATA.oner    main = "Box Plots of DATA.oner"    
+DATA.oner    main = "Box Plot of DATA.oner"    
+example    xaxt="n"    ylab="p value"    xlab="number of genes"    
+example    
+dataframe[    i]    
+testdata    plot=F    
+x    horizontal=T    
+V2~grp    data=dafrm    
+count ~ spray    data = InsectSprays    col = "lightgray"    xaxt = "n"    xlab = ""    
+y1    col="grey"    outcol="red"    col="grey"    pars=list    
+d    
+example    
+res    
+X    plot=FALSE    
+mylist[[i]][s]    
+simPF[[2]]~simPF[[1]]    
+fréquence~répétition    simPF    
+TGS    
+d1    
+log10    yaxt="n"    
+x ~ var    yaxt="n"    log="y"    
+visits ~ as.factor    data=myData    
+cars    xlab='dist'    
+aerobic1    at = 1    
+aerobic2    at = 2    add = TRUE    
+aerobic3    at = 3    add = TRUE    
+DAYS.TO.FAILURE~TOTAL.LACE    cex.axis=.8    DAYS.TO.FAILURE    DAYS.TO.FAILURE    
+var1    
+
+response~fact    data=data    notch=TRUE    xlab="treatments"    ylab="response"    
+response~ordered    data=data    notch=TRUE    xlab="treatments"    ylab="response"    
+value~code    data=x    
+x ~ c    data=dfMod    "character"    
+x ~ c    subset=c %in% c    data=df    
+a    
+mtcars    
+yourdata    yourdata    main="ZScores"    xlab="Group"    ylab="ZScorevalue"    names=c    
+pb    las=2    cex.axis=.8    
+data    main = ''    
+HR~Phase    data=df2    main="Heart Rate of Females"    xlab="Phase"    ylab="Heart Rate    ylim=c    par    
+wt    main="Boxplot of wt"    
+wt    main="Boxplot of wt"    
+values~Treatment+ind    v    
+value~Treatment+variable    v    
+Alltubes    
+t    
+df.agg        border="red"    
+mydata_x[    name]    main=b.name    xlab=name    
+1:10    yaxt = "n"    
+param~grp    data=snp    horizontal=TRUE    names=tt[[1]]    
+
+
+Score~Gender    data=df    

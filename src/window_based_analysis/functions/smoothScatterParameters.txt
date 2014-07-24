@@ -1,0 +1,8 @@
+x    nrpoints=0    
+x    
+x    nrpoints=Inf    colramp=colorRampPalette    bandwidth=40    
+diamonds    diamonds    
+x    y    
+x    nrpoints = 0    postPlotHook = fudgeit    
+dat[2:3]    
+x1    x2    colramp=colramp    

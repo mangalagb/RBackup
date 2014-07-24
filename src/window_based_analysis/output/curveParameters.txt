@@ -1,0 +1,153 @@
+
+0.0629*exp
+0.5*x^2+0.2, add = TRUE
+0.5-x^4, add = TRUE
+0.61838+0.08564*log, add=TRUE
+1.0 *, from=80, to=250, ylim=c
+150-exp, from=1, to=5, lwd=5, col="darkblue", add=T
+1-exp, from=0, to=370, axes=FALSE
+1-, from=0, to=12, ylab=expression, col="darkred", xlab="t", lwd=5, ylim=c
+1-post.ecdf, from=r1], to=r2], col="blue", add=TRUE
+1-pre.ecdf, from=r1], to=r2], col="red", xlim=r
+200 -
+215.47*x^0.812
+227.0176*x^0.7828
+2*sqrt, add=TRUE
+2*x^2-0.2, add = TRUE
+3*x+1, from=-5, to=5
+4/5*-sqrt, from=-1, to=1, add=TRUE, col=2
+4/5*sqrt, from=-1, to=1, add=TRUE, col=2
+4*x+2, add=T
+7*x^2-0.5*x, col="grey", add=TRUE
+a, .001, .999
+af, add=TRUE, interval=c
+b, 0.001, .9999
+cos, add=TRUE, col="blue"
+dbeta
+dbeta, add=TRUE
+dbeta, col = "red"
+dbeta, col='red', lwd=1.5
+dbeta, xlim=c
+dbeta, xlim=c, ylim=c, xlab='p', ylab='Posterior Density', lty=2
+dexp, add = TRUE, col = "red", lwd = 2
+dexp, from = 0, to  = 10, add = TRUE
+df1=fstat'numdf'], df2=fstat'dendf'], col='blue'
+df, from = 0, to = 100
+dfun, add=TRUE
+dfun, from=5, to=6
+dgamma, add=TRUE, col='blue'
+dgamma, log
+dnorm, -3, 4
+dnorm, -3, +4
+dnorm, -3.5, 3.5, lwd=2, axes = FALSE, xlab = "", ylab = ""
+dnorm, 50, 150
+dnorm, -5, 5, add=T, col="blue", mean=10, sd=2
+dnorm, add=T, col = "grey", lwd = 2
+dnorm, add=TRUE
+dnorm, add=TRUE, col="blue", lty="dotted"
+dnorm, add = TRUE, col = "red"
+dnorm, col = 2, add = TRUE
+dnorm, from=ToBeFilled, to=ToBeFilled, col="blue", lty="dotted", mean = mean
+dnorm, type="l"
+dnorm, type="l", lwd=2, col="blue", add=TRUE
+dnorm, type="l", lwd=2, col="red"
+dnorm, xlim=bounds
+dnorm, xlim=c
+dnorm, -zmax, zmax, xaxt = 'n', bty = 'n'
+dunif, 0, 20, n=101, xlab='Expected Return', ylab='Density'
+dweibull, lwd=2, from = 0, to = 2
+eq, add=TRUE
+exp, from=1, to=5, lwd=5
+exp, from=1, to=5, lwd=7, xlab="chi", ylab="exp, cex.lab=2, axes=F
+exp, from=1, to=5, lwd=7, xlab="chi", ylab="exp, cex.lab=4, axes=F
+expLine, 0, 7, n=101, add=TRUE
+exp, mean - 2, mean + 2, asp = 1
+expr=ff, from=0, to=2.999, xlim=c, ylim=c, xlab="", ylab="", from=3, to=6, add=TRUE, ff, pch=21, bg="black"
+expr=myfunc, from=0, to=1100, xlim=c, ylim=c, xlab="", ylab="", n=1e3
+f
+f, 0, 0.035, col="red", lower=0.0, upper=0.02
+f, 0, .04
+f, 0, 1, col = "green", lwd = 1.5, add=TRUE
+f, 0, 250, add = TRUE
+f, 0, 500
+f, -1, 1, 100, -1, 1, 100
+f2
+f2, 0, 1, add=TRUE
+f, -2, 2, ylim=c, runif
+f2, -pi, pi, n = 100
+f, add = TRUE, col="green", lwd=2
+f, add = TRUE, col="orange", lwd=2
+f, add = TRUE, col="pink", lwd=2
+f, col="blue", add=T
+f, col="green", add=T
+f, col="orange", add=T
+f, col="red", add=T
+fde, from=0, to=10
+fef, from = 1, to = 10
+f, from=0, to=10
+f, from=1, to=1e5
+f, from=-2, to=2, mf, sf
+func1, ..., n = n, col = col, main = main
+f, xlim=c, las=1
+gv, from=0, to=1
+g, xlim=c
+HillFunction, col="red", add=TRUE
+insert_function_here
+invlogit
+length, from=rx1], to=rx2], col="blue", add=TRUE
+length, from=rx1], to=rx2], col="red", xlim=rx, ylim=c
+lm.f, from=-1., to=-0.59, lwd=5, add=T
+lm.g, from=-1., to=-0.59, lwd=5, add=T, lty=3
+math_fun, -5, 5
+M * g, 0, 500, add = TRUE, lty = "dashed"
+modelf
+m*x+y1-m*x1, from=0, to=x1, add=TRUE
+myfunc, 0, 1100, xlim=c, ylim=c, xlab="", ylab=""
+my.weibull.haz, 1, 100, lwd=2, col='blue', bty='n', shape, scale
+my.weibull.surv, 1, 100, lwd=2, col='red', ylim=c, bty='n'
+parabola, add = TRUE, lty = "dashed"
+plogis
+plogis, add=TRUE
+plogis, min, max, add=TRUE, lwd=2
+pol2, col="red", lwd=2, add=T
+predict, add=TRUE
+quantile
+s
+sapply
+sapply, from=-5, to=5
+sfun, from=0, to=10, 10, length=101
+sin, add=TRUE, col="red"
+splinefun, add=TRUE, col=2, n=1001
+splinefun, add=TRUE, col=3, n=1001
+sqrt, add=TRUE
+tf, col=2, add=TRUE
+tf, col=4, add=TRUE
+tf, from=1, to=1000
+ttt, from=1, to=75, add=TRUE
+x1=.375, y1=.5, x2=.5, y2=1, curvature=.5
+x+1, add=T
+x^2
+x^2-0.25, add = TRUE
+x2=0, y2=0, x1=.125, y1=.5, curvature=.5
+x2=1, y2=0, x1=.875, y1=.5, curvature=-.5
+x^2, -3, 3, col='red', n=600, add=TRUE
+x^2 - 3*x - 10, -15, 15, v=0, lty=3
+x^2, -5, 5, axes=FALSE
+x^2, -5, 5, yaxs = "i"
+x2=.625, y2=.5, x1=.5, y1=1, curvature=.5
+x^2, add=TRUE
+x^2, add = TRUE
+x^2, from=0, to =1, col="darkblue"
+x^2, xaxs="i", yaxs="i"
+x^3, -3, 3, col='green', n=600
+x^3 - 3*x, -2, 2, sub=xlabel, xlab=""
+x^4, from=0, to =1, add=T, col="darkred"
+x^coef, add=TRUE, lwd=2
+x^, from = 0, to = 100, col = 'red', type = 'p', pch = 16, n = 20
+y
+y0 + f, from=x0+a*r, to=x0+a, add=TRUE, n=npoints, col=cols2], ...
+y0 - f, from=x0-a, to=x0+a, add=TRUE, n=npoints, col=cols3], ...
+y0 + f, from=x0-a, to=x0-a*r, add=TRUE, n=npoints, col=cols1], ...
+y2, add=TRUE, col="blue"
+y, xlim = c
+y, xlim=c, n=501, ylim=c

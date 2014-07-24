@@ -1,0 +1,30 @@
+a*0*b*0*3*0*
+2*0*4*0*
+1*0*1*0*
+model*0*data = cars*0*
+z*0*
+coef = coef*0*
+v=x*0*
+linm*0*
+linm*0*
+linm*0*
+reg=lm*0*
+a = fmla*0*b = fmla*0*
+h=summary*0*
+h=b*0*]*0*col="red"*0*
+h=b*0*]*0*col="red"*0*
+linm*0*
+linm*0*
+h=2*0*
+v = estimate*0*col='red'*0*
+v=-8000*0*col="red"*0*lwd=2*0*
+h=seq*0*
+h=seq*0*col="grey"*0*
+v = v*0*lty = "dotted"*0*col = "lightgray"*0*lwd = 3*0*
+v = at*0*lty = "dotted"*0*col = "lightgray"*0*lwd = 3*0*
+h=0*0*col="green"*0*
+h=median*0*col="green"*0*
+h=0*0*col="green"*0*
+h=0*0*col="grey"*0*lty=2*0*lwd=2*0*
+a=a*0*b=-1*0*lty=3*0*
+a*0*

@@ -1,0 +1,9 @@
+
+labels
+LAB, 'inches'
+legend, units = "user"
+object, cex = cex
+s1
+s2
+txt, font=2, cex=2
+wordsi], cex=sizei], ...

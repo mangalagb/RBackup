@@ -1,0 +1,469 @@
+
+0
+0, 0
+0, 0, pch=16, cex=1e6, col="grey90"
+0, 0, pch=16, cex=cex, ...
+0, 0, pch=16, cex=cex/3, ...
+0, 0, pch=1, lwd=2, cex=cex, ...
+0, 0, pch=1, lwd=5, cex=cex, ...
+0, 0, pch='|', lwd=2, cex=cex/2, ...
+0.85, 1, col = 'red', cex = 2
+10:1, 1:10
+10:1, col="red"
+10-i, i
+1, 1
+1:10, 1:10
+1:10, 1:10, default.units='native'
+1:10, col=colfunc, pch=19, cex=1.5
+1:10, min, type='b', col=2
+1:10, rep, pch=3, lwd=5
+1:10, w, type='b', col=1
+1:15, dnbinom, col=2
+11, 7, pch = 8
+1, 1, col='red'
+1:3, mat1, 1], pch = "x"
+1:3, mat1, 2]
+1:3, m_heights, col=2, pch="X"
+1, 5, col='red'
+1:5, df, pch=19, col="red"
+1:length, a2, col=2
+1:length, a3, col=3, xlim=c
+1:length, conv.series, ...
+1, means, pch = 21, cex =1.5, bg = "blue"
+1:nr, or, pch = 19, cex = 0.6
+20, 20, pch = 3, cex = 3, col = "red"
+20, q21]
+2.9, 1, col='blue', pch=20, cex=2
+3, d1d1, "mean"], pch=15
+3, d, pch=17, cex=1.5
+3, ff, pch=21, bg="black"
+a2, col=2
+a3, col=3, a1
+AB.bisect, pch="c", cex=0.5
+a, b, pch=c, col=c, cex=0.6
+ACi], BCi], cex=0.5, col="blue"
+ADi], BDi], cex=0.5, col="blue"
+AEi], BEi], cex=0.5, col="red"
+age2100, age2100, pch=".", cex=2
+ai], bi], pch=".", col=col
+aim, newY, col = "red", newY
+anscombe, anscombe
+ans.kmeans, pch=19, cex=2, col=1:4
+a, pch=19
+a, pch=2
+approx, col = 2, pch = 3
+approx, col = 2, pch = 3 , pch = 3, col = 3 , pch = 3, col = 4 
+approx, col = 3, pch = 3
+approx, type="h", col=cols
+autos_data, 2], autos_data, 1]
+b1, jitter, col="blue", pch=22
+Bacteria_count~Time, data=bac_predict, col="red", pch=16
+b, Data, col=castigos.col, bg='white', pch=21
+b, Data, col=vencido.col, bg='white', pch=21
+bodysize, fitted, pch=20
+bp, c
+B, pch=14
+bst.means2, 1, ], bst.means2, 2, ], col=2
+bst.means3, 1, ], bst.means3, 2, ], col=3
+b, type="l"
+C2, col="blue"
+casp6 ~ trans.factor
+c, c
+c, c, pch=169, font=5
+c, c, pch = 21, cex = 2, bg = c
+c, c, pch=3, cex=3, c, shape = -1, draw=FALSE
+center11], center12], col="blue", cex=0.8, pch="d"
+center21], center22], col="blue", cex=0.8, pch="e"
+cf, , pch = pch, col = col, xlim=c
+cl, ], cl, ], col = 1:5, pch = 8, cex = 2
+cl, col = 1:2, pch = 8, cex = 2
+cl, col = 1:5, pch = 8, cex = 2
+cl, idxi, 'x']], cl, idxi, 'y']], cex=4, pch=10, col='blue'
+cl, j], cl, i], pch=10, col='blue'
+cmdfactor, ], col = colsi], pch = 16
+coordinates, col = factor
+coords.proj, pch=16, col='red'
+countsi, ], type="l", col=colorsi]
+c, outind], col='red', pch=16
+d
+d0_inset, col=2, pch="."
+d2, t="l", col="red", lwd=2
+data1:2], pch=c, cex=c
+data1, col='red'
+dat-abswant, ], col = "black", pch = 21, bg = "black", cex = 0.8
+databswant, ], col = "red", pch = 21, bg = "red", cex = 0.8
+data, data, col='blue'
+data, data, col='green'
+data, data, col='red'
+data.df, data.df, pch=c, col = colorsdata.df
+data, fitted, pch=19
+datax, 1], datax, 2], pch = datay+1
+datax, 1], datax, 2], pch = datay+1, yp, zM, col=c
+dat, dat, cex=0.3, col="red"
+dat, dat, col="red"
+dat, dat, pch = 20
+datdat"train"]]==FALSE, 1:2], col=pred_test, pch=22, bg="orange", data=x
+datdat"train"]]==TRUE, 1:2], col=pred_train, pch=19, cex=0.3
+date, death, pch=".", ylab= expression, main = "Daily Mortality in warm season"
+date, id
+date, id, pch =4
+dat-want, ], col = "black", pch = 21, bg = "black", cex = 0.8
+datwant, ], col = "red", pch = 21, bg = "red", cex = 0.8
+Days, Count
+daysSinceHigh, col="red"
+d, col='blue'
+dd, col='red'
+d, d, default.units="native", vp=v, gp=gpar, pch=8
+default.units="npc"
+density, col="green", col="red"
+density, type="l", lwd=2
+df
+df2
+df2df2, 1] < min, 1] > max, c, pch = 16, col = 'red'
+df, df, col=group
+df, df, pch = 21, cex = df, bg = "darkgray", col = "black", lwd = 1
+df, df, pch=23, cex=.4, bg="black"
+dfMoll, cex=dfMoll, pch=20, col="red"
+dfP, dfP, lwd=2, pch=23, col="red", bg="red"
+dfr, rep.int, col = "blue"
+df.tern, pch="*", cex=3
+df, y=ypts, pch="-", cex=1.5, col="#5B7FA3"
+dind, ], pch = 16
+dnorminv, y, pch=3
+Down~Name, mydf, col='red'
+d, pch = 16, cex = 0.5
+d, pch=19
+elevation_points
+exp, control, ...
+f.delta~x, data = df, pch=20, col="blue"
+female, pch=16, col = "green"
+fit1], lwd=2, col="red", xscale=365.24
+fit, col = 'red'
+foo, 1], c, pch=21, bg="red"
+fooi]
+for_x_axis, for_y_axis, pch = pts
+freq1, gain, col=1:length, pch=19
+freq2, gain, col=1:length, pch=19
+g.delta~x, data = df, pch=20, col="red"
+g.delta ~ x, data = df, pch = 20, col = "red"
+grd, pch=19, cex=0.5
+growth, growth, t="l", lwd=2
+gr, pch=as.numeric
+hsi]], c, type="s", col=coli]
+i%%16, i%/%16, pch = sign*i, font = font
+i, count.sp, pch=19, cex=0.5
+ident, pch = 16
+idist, _
+i, i
+i, j, col=mycolorsdmati, j]]
+info, info, cex=0.1
+INI_New_Day3
+inter, pch='.'
+intersections, rep, pch=20, col="red", cex=0.7
+i, resulti]
+i, yaxisi], col="red", pch=19
+j, i
+jitter, df12]], cex=0.3, col="red"
+jitter, df22]], cex=0.3, col="blue"
+jitter, jitter
+jitter, t1_g2, col=2
+jitter, t2
+jitter, t2_g2, col=2
+known.pair
+lexp, lobs, pch=23, cex=.4, bg="black"
+lli]], lli]]
+longitute, latitude
+M2.1, col="blue"
+M2.2, col="green"
+M2.3, col="red"
+mapproject, col="red"
+mappts, col=mappts, pch=19
+matricesi]], col=i
+matrix, pch=19, col='red'
+mds, col = colsdune.env, pch = shpsdune.env
+mean, data = InsectSprays, col = "lightgray"
+means, col="red", pch=18, na.rm=T
+me, col='red'
+meter, kg, col="red", cex=2, pch=16, bg="red"
+missing, imputed, col="red"
+Mneighbors, ], col="red"
+mod, display = "bp"
+mod, display = "sites", col = colManagement]
+msamplei]
+mydfmydf, ], col="red"
+myd, myd, col="gray", pch=19
+myd, myd, col="gray", pch=19, cex=.5
+myd, myd, pch=19, cex=.75, col="blue"
+myd, myd, pch=21
+myLegend, myLegend, pch = c, cex = 1.5
+my.points
+my.points, 5
+my.x, my.y, col="red"
+myzoo.orig
+newCoord1], newCoord2]
+NewDF, NewDF, col="red"
+nmds, col = colsdune.env, pch = 16
+NORMNORM^2 -1> TEE], TEE TEE + 1< NORM^2], col = "blue"
+NORMNORM^2 - 1 > TEE], TEETEE + 1 < NORM^2], col = "blue", 1
+NORMNORM^2 -1> TEE], TEE TEE + 1< NORM^2], col = "blue", 2
+obrvi], valuei], col="black"
+obrvi], valuei], col="blue"
+obrvi], valuei], col="red"
+ord, col = colgrp], bg = colgrp], pch = 21
+ord, display = "bp"
+ord, display = "sites"
+ord, display = "sites", col = colvecstatus], pch =
+ord, display = "species", pch = "+"
+ordered, Italy, cex=.2, col="red"
+out1, 1], out1, 2], col = "red"
+out1, 1], out1, 2], col = "red", pch=20
+out, col="black", pch=20
+ow_loc, pch=pch_ow, col=col_ow
+p11], p12], col="blue", pch=16
+p11, which, p12, which, col="green"
+p21], p22], col="green", pch=16
+path.11, 1], path.11, 2], pch=16, col="red", cex=1.5
+path.21, 1], path.21, 2], pch=16, col="green", cex=1.5
+pca, display='sites', col = colsiris, pch = 16
+p, g
+pitchNumber
+pMoYr, pMoYr, col = "red", cex = 3
+points, col="blue", pch="+"
+pt1], pt2], pch = "+", cex = 2
+pts, ...
+pts2, pts2, col=3
+pts, pts, cex = 0.7
+pw_loc, pch=pch_pw, col=col_pw
+Query, Query, cex=0.3, col="red"
+r1, r2, cex=15, pch=19
+raw, raw, col='black', pch=21, bg="red", cex=0.85
+refcolumn]], refcolumn]], col = 'green'
+refcolumn]], result2, col = 'blue'
+refname]], ref, col = 'green'
+refname]], result2, col = 'blue'
+rep, 1:4, pch=15
+rep, c, pch=19
+rep, d
+rep, d1, 2:4], pch=4
+rep, d2, 2:4], pch=4
+rep, d3, 2:4], pch=4
+rep, dat
+rep, unlist, col=1:length, pch=19
+res, col="blue"
+res, col="red"
+resorder, ], type='l', col="grey40", lty=1
+result, cex=3, pch=15
+result, pch=19, col="red"
+ri, p_val, pch=19, col=colvec2], xlim=c, ylim=c
+rnorm, rnorm, col="darkred", pch=16
+rnorm, rnorm, pch=16, col="blue"
+r, pch=16
+runif, runif
+sam
+scores, pch='o', col="green"
+sd.f * R
+se, pch = 21, col = "white", bg = "black"
+seq_along, zhigh, bg=high.col, pch=21, cex=2
+seq_along, zlow, bg=low.col, pch=21, cex=2
+seq, fooii, ], pch=21, col=ii, bg=ii
+seq, y_mean, col=3, pch=16, power, w_sp, bin_incr
+shrunk.coords, pch = "."
+shrunk.coords, pch = ".", classes = "RasterLayer", includeDefs = TRUE, col = rev, maxpixels = 5e+05
+sin, sin, pch=19, cex=2
+slot, slot, col="red", cex=0.5
+smoothCounts, smoothCounts, cex=3, c=2
+smyd1, smyd1, col="green4", pch=19, cex=1.5
+smyd, smyd, col="red", pch=19, cex=1.5
+sol, display = "sites", pch = pchsgrps]
+somo, p_val, pch=19, col=colvec3], xlim=c, ylim=c
+sort, sort, col = "red"
+SP
+spacedScores, pch='x', col="red"
+spa, col = "brown", cex = spe
+spa, col = "green", cex = spe
+speed, speed, col="blue", pch=18
+speed, speed, col="green", pch=20
+speed, speed, col="red", pch=21
+speed, speed, col="yellow", pch=19
+stackOne, 3:2], pch=20
+state.mean.interest, state.mean.interest, pch = 19, col = "blue", cex = 2* state.mean.interest
+sum, count.sp, pch=19, cex=0.5
+Sunspot_Ext, col="blue", pch=20
+temp.a~Response, data=sst.indo.bleach, pch=17, col="orange"
+temp.a~Response, data=sst.seychelles.bleach, pch=16, col="blue"
+tern, pch=19
+testpts, pch=19
+the.centers ~ rep, pch = 19, col = "red", cex = 1.5
+Three, col = 'red'
+Time, Value
+t, mod, i]
+tmp, pch = 20, ...
+tmp.x, tmp.y
+top10, top10y, col="red"
+trans3d, pch=20, col="Red"
+Two, col = 'green'
+Up~Name, mydf, col='green'
+Val_B, Val_B, col='red'
+Val_C, Val_C, col='green'
+values~from, data=mydata
+values~to, data=mydata
+vare.dca, display = "sites", col = "red"
+Var, Var, col="grey25"
+x
+x+0.2*size, y-0.2*size, size=size, gp=gpar, pch=20
+x = 10^, y = alpha, pch = 16, cex=1.3, col = "red", las = 1, xpd = TRUE
+x = 1 + 1*cos, y = -1 + 1*sin, z = rep, type = "l"
+x = 1 + 1*cos, y = 1 + 1*sin, z = rep, type = "l"
+x1, y1, type='l', col=col, lwd=lwd
+x1, y1, type="o", col="blue"
+x1, y, vp=v, default="native", pch="."
+x2, y2, col='blue'
+x2y2.data, col="red"
+x2, y2, pch="*", col= 'red'
+x2, y, col = "red", pch = 2
+x2, y, y, xlim = range
+x2, z, vp=v, default="native", pch="."
+x358], y358], lwd = 1.5, cex = .1, col = "lightblue"
+x3], y3], col="blue", pch=3, cex=2
+x3, y3, col='red'
+xans], yans], pch = 19
+x.axis, cumsum, col='red'
+xcenter, bstats
+x, col="red"
+x, cos, "l", col="red"
+x=c, y=c
+x=c, y=c, pch="+"
+x=c, y=c, pch="+", gp=gpar, def="npc"
+x, dat2, col="red"
+xdat, ydat, col = 'blue', ...
+xdat, ydat, col = 'red', ...
+x=.df, 1], y=.df, i], pch=19, size=unit, default.units="native", gp=gpar
+x, dnorm
+xend, yend, col="white", pch=19
+x=fitfit, 2], y=fitfit, 3], col="red"
+x, fitted, type='b', col='red'
+x, fixran, type='b', col='red'
+x, fix, type='b', col='black'
+xfoo<0.7], yfoo<0.7], col="black", ...
+xfoo>0.7], yfoo>0.7], col="red", ...
+xgap, z, col='red', pch=17
+xg=="original"], yg=="original"], pch = 21, fill = my.fill, col = "black"
+x=hxb@xcm, y=hxb@ycm, pch=hxb@count
+x, ii, 2], col="red"
+xind.lower], yind.lower], col = col.lower, ...
+xind.upper], yind.upper], col = col.upper, ...
+x!insideCI], y!insideCI], pch = 16, col = 'red'
+x is.inside], y is.inside], pch = '.', col = "blue"
+x!is.inside], y!is.inside], pch = '.', col = "red"
+x, log10, pch=16, col="blue"
+x, log10, pch=20, col="red"
+x.new
+x_new, pred
+xnew, ynew, col=2
+x, p0.at.x, col="blue", ylab='p', ylim=range
+x, pch=13
+x.plot, y.plot, pch=19, cex=0.5
+xpnt], ypnt], col = "red"
+x=points, 'p.x'], y=points, 'p.y'], pch='*'
+x.points, y.points, col='blue'
+xpred, 1], ynew, col="red"
+xrange, sour1column]], col = 'green'
+xrange, sour2column]], col = 'blue'
+x = rep
+x=rep, y=1:9/10, pch=1:10, default.units="npc"
+x=rnorm
+x, rnorm, col="red"
+x=rnorm, y=rnorm
+x <- runif, y <- runif, vp=dataViewport
+xs
+xseq, yseq, pch=20, col='red'
+xs, res1i]], col=rainbow, type="l"
+xs, resultdist1n3, col=2, type="l"
+xs, resultdist2n2, col=3, type="l"
+xs, resultdist2n3, col=4, type="l"
+xt <= Ti], yt <= Ti]
+x.valscrossings], valuescrossings], col="red", pch="X"
+xvals, yvals
+xval, yval, pch = 19, col = 'red', cex = 1.5
+xval, yval, pch = 19, col = rgb, cex = 1.5
+x=var, y=y
+x, w*dnorm, "l", col="red", lwd=2
+x = x0, y = y0, col = "green", pch = 16, cex = 10
+x, x*10, pch=2
+x, x*10, pch=c
+xx1, yy1, x, type="l"
+xx * scale, yy * scale, pch = ptysi - 2], col = pcolsi - 2]
+xxwhich.max, yywhich.max, col = "red", pch = 17, cex = 2
+x=x, y=x, pch=19, gp=gpar
+xx, yy
+xx, yy, col="grey", cex=0.5
+X, Y
+x, y
+x, y, ...
+x, y-0.2, def='npc', pch=21
+x, y1, pch=18
+xy, 1], xy, 2], col = c
+x, y2
+x, y2, pch=18
+x, y, cex = 0.5, col = "blue"
+x, y, cex=1.6
+x, y, cex=3
+x, y, col = "black"
+x, y, col = col, ...
+x, y, col = colz, xaxt='n', yaxt='n', xlab="", ylab="", bty="n", ...
+x, y, col="red"
+x, y, col="red", 0, 5
+x, y, col="red", cex=2, pch=19
+XY, col="red", pch=16, cex=2
+x, y, col = 'red', type = 'o', lwd = 3, pch = 15
+x, y, col=rgb, pch=19
+x, y, default.units = "npc", name = "points"
+x, y, def='npc', pch=21
+x, y, freq = FALSE
+x, y, i]
+x, y, pch=16
+x, y, pch = 19, cex = 0.65
+x, y, pch=19, col="blue", cex=0.8
+x, y, pch=19, col="red", cex=0.8
+x, y, pch= 1, bg= "white"
+x, y, pch=21, bg=bg
+x, y, pch=21, bg="white"
+x, y, pch=21, col=groups
+x, y, pch = 3
+x, y, pch = 3, mean_y, sd_x, sd_y, colidx
+X, Y, pch=PCH
+x, y, pch = pch, col = col, bg = bg, cex = cex
+xy, pch = "X"
+x, y, r=1
+x, y, size=size, default.units=default.units, ...
+x, y, type='b', col='blue'
+x, y, y, geom="point"
+x, y, y, z, linear=FALSE, extrap=TRUE
+x, y, z, ..., cex=5
+x, z, col="blue", cex=2, pch=19
+x, z, type="l", lwd=4
+y2, c, type="s", col="red", "red"
+y2 ~ x, data=dat, pch="3"
+y3 ~ x, data=dat, pch="6", y=rnorm, depth=rep
+y, bg=rainbow, pch=21
+y, bg='tomato2', pch=21, cex=3, lwd=3, lwd=6, type='l'
+y, display = "sites", col = colvecdata
+yi]~I, pch = 14
+y!i, ], pch="."
+yi, ], pch="+"
+y, lty=3, col="green"
+y.net
+y, rep
+y ~ x
+y ~ x, B, pch=3
+Y~X, data = d
+y ~ x, data = daten3:5, ], col="red"
+y~x, dat=z
+y~x, pch = 19, col = "red"
+z
+zi], 0, pch="X", col=2
+ztestztest, ], ztestztest, ], col=ztest
+zx_meansorder
+zx_means  order, pch = 22, col = "darkgrey", lwd = 7
+zx_means, order, pch = 22, col = "darkgrey", lwd = 7
+zx_means, pch = 22, col = "darkgrey", lwd = 7

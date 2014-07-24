@@ -1,0 +1,4005 @@
+library(maptools)
+##substitute your shapefiles here
+state.map <- readShapeSpatial("maps/st24_d00.shp")
+zip.map <- readShapeSpatial("maps/zt24_d00.shp")
+## this is the variable we will be plotting
+zip.map@data$noise <- rnorm(nrow(zip.map@data))
+## put the lab point x y locations of the zip codes in the data frame for easy retrieval
+labelpos <- data.frame(do.call(rbind, lapply(zip.map@polygons, function(x) x@labpt)))
+names(labelpos) <- c("x","y")                        
+zip.map@data <- data.frame(zip.map@data, labelpos)
+## plot it
+png(file="map.png")
+## plot colors
+plot.heat(zip.map,state.map,z="noise",breaks=c(-Inf,-2,-1,0,1,2,Inf))
+## plot text
+with(zip.map@data[sample(1:nrow(zip.map@data), 10),] 
+dev.off()
+-------------------------------------------------------------------------------------------------------
+text() plot(1:10, 1:10) 
+text(5, 5, "Foo") help(text) text(1:10, 1:10, LETTERS[1:10])
+-------------------------------------------------------------------------------------------------------
+> b0 = 2.5; b1 = 2
+> n = 100
+> x = rnorm(n, 20, 15)
+> y = b0 + b1*x + rnorm(n, 0, 15)
+> plot(x, y)
+> plot(x, y, type='n')
+> text(x, y, round(y, 2), cex=0.45)
+> text(x, y, round(y, 2), cex=0.8)
+> text(x, y, paste(round(x, 2), round(y, 2), sep=", "), cex=0.8) # for (x, y), but this gets cluttered.
+-------------------------------------------------------------------------------------------------------
+vd <- venndia(A=LETTERS[1:15], B=LETTERS[5:20], getdata=TRUE) venndia(A=LETTERS[1:15], B=LETTERS[5:20]) circle <- function(x, y, r, ...) {
+    ang <- seq(0, 2*pi, length = 100)
+    xx <- x + r * cos(ang)
+    yy <- y + r * sin(ang)
+    polygon(xx, yy, ...)
+}
+
+venndia <- function(A, B, C, getdata=FALSE, ...){
+    cMissing <- missing(C)
+    if(cMissing){ C <- c() }
+
+    unionAB <- union(A, B)
+    unionAC <- union(A, C)
+    unionBC <- union(B, C)
+    uniqueA <- setdiff(A, unionBC)
+    uniqueB <- setdiff(B, unionAC)
+    uniqueC <- setdiff(C, unionAB)
+    intersAB <- setdiff(intersect(A, B), C)
+    intersAC <- setdiff(intersect(A, C), B)
+    intersBC <- setdiff(intersect(B, C), A)
+    intersABC <- intersect(intersect(A, B), intersect(B, C))
+
+    nA <- length(uniqueA) 
+    nB <- length(uniqueB)
+    nC <- length(uniqueC)
+
+    nAB <- length(intersAB)
+    nAC <- length(intersAC)
+    nBC <- length(intersBC)
+
+    nABC <- length(intersABC) 
+
+    par(mar=c(2, 2, 0, 0))
+    plot(-10, -10, ylim=c(0, 9), xlim=c(0, 9), axes=FALSE, ...)
+    circle(x=3, y=6, r=3, col=rgb(1,0,0,.5), border=NA)
+    circle(x=6, y=6, r=3, col=rgb(0,.5,.1,.5), border=NA)
+    circle(x=4.5, y=3, r=3, col=rgb(0,0,1,.5), border=NA)
+
+    text( x=c(1.2, 7.7, 4.5), y=c(7.8, 7.8, 0.8), c("A", "B", "C"), cex=3, col="gray90" )
+
+    text(x=c(2, 7, 4.5, 4.5, 3, 6, 4.5), y=c(7, 7, 2  , 7  , 4, 4, 5), c(nA, nB, nC, nAB, nAC, nBC, nABC), cex=2)
+
+    if(getdata){
+     list(A=uniqueA, B=uniqueB, C=uniqueC, 
+      AB=intersAB , AC=intersAC , BC=intersBC , 
+      ABC=intersABC
+     )
+    }
+}
+-------------------------------------------------------------------------------------------------------
+# functions we'll need...
+add.num.before.and.after <- function(vec, num = NULL)
+{
+    # this will add a number before and after every number in a vector.
+    # the deafult adds the number which is one more then the length of the vector 
+        # assuming that later we will add a zero column to a data.frame and will use that column to add the zero columns...
+    if(is.null(num)) num <- rep(length(vec) +1, length(vec))
+    if(length(num)==1) num <- rep(num, length(vec))
+
+    #x <- as.list(vec)
+    list.num.x.num <- sapply(seq_along(vec) , function(i) c(num[i], vec[i], num[i]),  simplify = F)
+    num.x.num <- unlist(list.num.x.num)
+
+    return(num.x.num)
+}
+
+add.0.columns.to.DF <- function(DF, zero.column.name = " ")
+{
+    # this function gets a data frame
+    # and returns a data.frame with extra two columns (of zeros) before and after every column
+
+    zero.column <- rep(0, dim(DF)[1])   # the column of zeros
+    column.seq <- seq_len(dim(DF)[2])   # the column ID for the original data.frame
+
+    DF.new.order <- add.num.before.and.after(column.seq)    # add the last column id before and after every element in the column id vector
+
+    DF.and.zero <- cbind(DF, zero.column)   # making a new data.frame with a zero column at the end
+
+    new.DF <- DF.and.zero[,DF.new.order]    # moving the zero column (and replicating it) before and after every column in the data.frame
+
+    # renaming the zero columns to be " "
+    columns.to.erase.names <- ! (colnames(new.DF) %in% colnames(DF))        
+    colnames(new.DF)[columns.to.erase.names] <- zero.column.name
+
+    return(new.DF)
+}
+
+
+angles.by.weight <-  function(angles,  weights = NULL)
+{
+
+    angles <- angles[-1]    # remove the 0 from "angles"
+    angles <- c(angles, 2*pi) # add last slice angle
+    number.of.slices = length(angles)
+    if(is.null(weights)) weights <- rep(.6, number.of.slices)   # Just for the example
+
+    slice.angle <- diff(angles)[1]
+
+    #new.angles <- rep(0, 3*length(angles))
+    new.angles <- numeric()
+
+    for(i in seq_along(angles))
+    {
+        weighted.slice.angle <- slice.angle*weights[i]
+        half.leftover.weighted.slice.angle <- slice.angle* ((1-weights[i])/2)
+
+        angle1 <- angles[i] - (weighted.slice.angle + half.leftover.weighted.slice.angle)
+        angle2 <- angles[i] - half.leftover.weighted.slice.angle
+        angle3 <- angles[i]
+
+        new.angles <- c(new.angles,
+                        angle1,angle2,angle3)                       
+    }
+
+    new.angles.length <- length(new.angles)
+    new.angles <- c(0, new.angles[-new.angles.length])
+
+    return(new.angles)
+}
+
+# The updated stars function
+stars2 <-
+    function (x, full = TRUE, scale = TRUE, radius = TRUE, labels =
+            dimnames(x)[[1L]], 
+                locations = NULL, nrow = NULL, ncol = NULL, len = 1, key.loc = NULL, 
+                key.labels = dimnames(x)[[2L]], key.xpd = TRUE, xlim = NULL, 
+                ylim = NULL, flip.labels = NULL, draw.segments = FALSE, col.segments = 1L:n.seg, 
+                col.stars = NA, axes = FALSE, frame.plot = axes, main = NULL, 
+                sub = NULL, xlab = "", ylab = "", cex = 0.8, lwd = 0.25, 
+                lty = par("lty"), xpd = FALSE, mar = pmin(par("mar"), 1.1 + 
+                    c(2 * axes + (xlab != ""), 2 * axes + (ylab != ""), 1, 
+            #            0)), add = FALSE, plot = TRUE, ...) 
+                        0)), add = FALSE, plot = TRUE, col.radius = NA, polygon = TRUE, 
+                        key.len = len,
+                        segment.weights = NULL, 
+                        ...)
+{
+    if (is.data.frame(x)) 
+        x <- data.matrix(x)
+    else if (!is.matrix(x)) 
+        stop("'x' must be a matrix or a data frame")
+    if (!is.numeric(x)) 
+        stop("data in 'x' must be numeric")
+
+
+    # this code was moved here so that the angles will be proparly created...
+    n.seg <- ncol(x) # this will be changed to the ncol of the new x - in a few rows...
+    # creates the angles
+    angles <- if (full) 
+        seq.int(0, 2 * pi, length.out = n.seg + 1)[-(n.seg + 1)]
+    else if (draw.segments) 
+        seq.int(0, pi, length.out = n.seg + 1)[-(n.seg + 1)]
+    else seq.int(0, pi, length.out = n.seg)
+    if (length(angles) != n.seg) 
+        stop("length of 'angles' must equal 'ncol(x)'")
+
+    # changing to allow weighted segments
+    angles <- angles.by.weight(angles, segment.weights)
+    #angles <- angles.by.weight.2(angles)   # try2
+    # try3 
+    # weights <- sample(c(.3,.9), length(angles)-1, replace = T)
+    # angles <- weights / sum(weights) * 2 * pi
+    # angles <- c(0,angles )
+
+
+
+
+    # changing to allow weighted segments
+     col.segments <- add.num.before.and.after(col.segments, "white") # for colors
+     x <- add.0.columns.to.DF(x)
+
+
+
+
+
+
+
+    n.loc <- nrow(x)
+    n.seg <- ncol(x)
+    if (is.null(locations)) {
+        if (is.null(nrow)) 
+            nrow <- ceiling(if (!is.numeric(ncol)) sqrt(n.loc) else n.loc/ncol)
+        if (is.null(ncol)) 
+            ncol <- ceiling(n.loc/nrow)
+        if (nrow * ncol < n.loc) 
+            stop("nrow * ncol <  number of observations")
+        ff <- if (!is.null(labels)) 
+            2.3
+        else 2.1
+        locations <- expand.grid(ff * 1L:ncol, ff * nrow:1)[1L:n.loc, 
+            ]
+        if (!is.null(labels) && (missing(flip.labels) ||
+!is.logical(flip.labels))) 
+            flip.labels <- ncol * mean(nchar(labels, type = "c")) > 
+                30
+    }
+    else {
+        if (is.numeric(locations) && length(locations) == 2) {
+            locations <- cbind(rep.int(locations[1L], n.loc), 
+                rep.int(locations[2L], n.loc))
+            if (!missing(labels) && n.loc > 1) 
+                warning("labels do not make sense for a single location")
+            else labels <- NULL
+        }
+        else {
+            if (is.data.frame(locations)) 
+                locations <- data.matrix(locations)
+            if (!is.matrix(locations) || ncol(locations) != 2) 
+                stop("'locations' must be a 2-column matrix.")
+            if (n.loc != nrow(locations)) 
+                stop("number of rows of 'locations' and 'x' must be equal.")
+        }
+        if (missing(flip.labels) || !is.logical(flip.labels)) 
+            flip.labels <- FALSE
+    }
+    xloc <- locations[, 1]
+    yloc <- locations[, 2]
+
+    # Here we created the angles, but I moved it to the beginning of the code
+
+
+    if (scale) {
+        x <- apply(x, 2L, function(x) (x - min(x, na.rm = TRUE))/diff(range(x, 
+            na.rm = TRUE)))
+    }
+    x[is.na(x)] <- 0
+    mx <- max(x <- x * len)
+    if (is.null(xlim)) 
+        xlim <- range(xloc) + c(-mx, mx)
+    if (is.null(ylim)) 
+        ylim <- range(yloc) + c(-mx, mx)
+    deg <- pi/180
+    op <- par(mar = mar, xpd = xpd)
+    on.exit(par(op))
+    if (plot && !add) 
+        plot(0, type = "n", ..., xlim = xlim, ylim = ylim, main = main, 
+            sub = sub, xlab = xlab, ylab = ylab, asp = 1, axes = axes)
+    if (!plot) 
+        return(locations)
+    s.x <- xloc + x * rep.int(cos(angles), rep.int(n.loc, n.seg))
+    s.y <- yloc + x * rep.int(sin(angles), rep.int(n.loc, n.seg))
+    if (draw.segments) {
+        aangl <- c(angles, if (full) 2 * pi else pi)
+        for (i in 1L:n.loc) {
+            px <- py <- numeric()
+            for (j in 1L:n.seg) {
+                k <- seq.int(from = aangl[j], to = aangl[j + 
+                  1], by = 1 * deg)
+                px <- c(px, xloc[i], s.x[i, j], x[i, j] * cos(k) + 
+                  xloc[i], NA)
+                py <- c(py, yloc[i], s.y[i, j], x[i, j] * sin(k) + 
+                  yloc[i], NA)
+            }
+            polygon3(px, py, col = col.segments, lwd = lwd, lty = lty)
+        }
+    }
+    else {
+        for (i in 1L:n.loc) {
+#            polygon3(s.x[i, ], s.y[i, ], lwd = lwd, lty = lty, 
+#                col = col.stars[i])
+            if (polygon)
+                polygon3(s.x[i, ], s.y[i, ], lwd = lwd, lty = lty, 
+                  col = col.stars[i])
+            if (radius) 
+                segments(rep.int(xloc[i], n.seg), rep.int(yloc[i], 
+#                  n.seg), s.x[i, ], s.y[i, ], lwd = lwd, lty = lty)
+                  n.seg), s.x[i, ], s.y[i, ], lwd = lwd, lty = lty, col =
+col.radius)
+        }
+    }
+    if (!is.null(labels)) {
+        y.off <- mx * (if (full) 
+            1
+        else 0.1)
+        if (flip.labels) 
+            y.off <- y.off + cex * par("cxy")[2L] * ((1L:n.loc)%%2 - 
+                if (full) 
+                  0.4
+                else 0)
+        text(xloc, yloc - y.off, labels, cex = cex, adj = c(0.5, 1))
+    }
+    if (!is.null(key.loc)) {
+        par(xpd = key.xpd)
+        key.x <- key.len * cos(angles) + key.loc[1L]
+        key.y <- key.len * sin(angles) + key.loc[2L]
+        if (draw.segments) {
+            px <- py <- numeric()
+            for (j in 1L:n.seg) {
+                k <- seq.int(from = aangl[j], to = aangl[j + 
+                  1], by = 1 * deg)
+                px <- c(px, key.loc[1L], key.x[j], key.len * cos(k) + 
+                  key.loc[1L], NA)
+                py <- c(py, key.loc[2L], key.y[j], key.len * sin(k) + 
+                  key.loc[2L], NA)
+            }
+            polygon3(px, py, col = col.segments, lwd = lwd, lty = lty)
+        }
+        else {
+#            polygon3(key.x, key.y, lwd = lwd, lty = lty)
+            if (polygon)
+                polygon3(key.x, key.y, lwd = lwd, lty = lty)
+            if (radius) 
+                segments(rep.int(key.loc[1L], n.seg), rep.int(key.loc[2L], 
+#                  n.seg), key.x, key.y, lwd = lwd, lty = lty)
+                  n.seg), key.x, key.y, lwd = lwd, lty = lty, col = col.radius)
+        }
+
+
+        lab.angl <- angles + if (draw.segments) 
+            (angles[2L] - angles[1L])/2
+        else 0
+        label.x <- 1.1 * key.len * cos(lab.angl) + key.loc[1L]
+        label.y <- 1.1 * key.len * sin(lab.angl) + key.loc[2L]
+        for (k in 1L:n.seg) {
+            text.adj <- c(if (lab.angl[k] < 90 * deg || lab.angl[k] > 
+                270 * deg) 0 else if (lab.angl[k] > 90 * deg && 
+                lab.angl[k] < 270 * deg) 1 else 0.5, if (lab.angl[k] <= 
+                90 * deg) (1 - lab.angl[k]/(90 * deg))/2 else if (lab.angl[k] <=
+                270 * deg) (lab.angl[k] - 90 * deg)/(180 * deg) else 1 - 
+                (lab.angl[k] - 270 * deg)/(180 * deg))
+            text(label.x[k], label.y[k], labels = key.labels[k], cex = cex, adj = text.adj)
+        }
+    }
+    if (frame.plot) 
+        box(...)
+    invisible(locations)
+} #require(debug)
+# mtrace(stars2)
+stars(mtcars[1:3, 1:8],
+        draw.segments = T,
+        main = "Motor Trend Cars : stars(*, full = F)", full = T, col.segments = 1:2)
+
+stars2(mtcars[1:3, 1:8],
+        draw.segments = T,
+        main = "Motor Trend Cars : stars(*, full = F)", full = T, col.segments = 0:3,
+        segment.weights = c(.2,.2,1,1,.4,.4,.6,.9))
+-------------------------------------------------------------------------------------------------------
+image heatmap nba <- read.csv("http://datasets.flowingdata.com/ppg2008.csv")
+
+dst <- dist(nba[1:20, -1],)
+dst <- data.matrix(dst)
+
+dim <- ncol(dst)
+
+image(1:dim, 1:dim, dst, axes = FALSE)
+
+axis(1, 1:dim, nba[1:20,1], cex.axis = 0.5)
+axis(2, 1:dim, nba[1:20,1], cex.axis = 0.5)
+
+for (i in 1:dim)
+    {
+    for (j in 1:dim)
+        {
+        txt <- sprintf("%0.1f", dst[i,j])
+        text(i, j, txt, cex=0.5)
+        }
+    }
+-------------------------------------------------------------------------------------------------------
+set.seed(10)
+ x = rnorm(10)
+ y = rnorm(10)
+
+plot(y~x, pch = ".", cex = 2)
+text(x, y, label = paste("(", round(x, 1), ", ", round(y, 1), ")", sep = ""), cex = 0.6)
+-------------------------------------------------------------------------------------------------------
+t -> (a(t),b(t)) # I'll steal shamelessly Greg's code
+plot(x, y, pch = "")
+# then do the text() part... ggplot2 ggplot(mtcars, aes(mpg, hp)) + geom_text(aes(label = rownames(mtcars)))
+-------------------------------------------------------------------------------------------------------
+concat.text<-function(x,y,txt,col) {
+    thisx<-x
+    for(txtstr in 1:length(txt)) {
+        text(thisx,y,txt[txtstr],col=col[txtstr],adj=0)
+        thisx<-thisx+strwidth(txt[txtstr])
+    }
+}
+plot(0,xlim=c(0,1),ylim=c(0,1),type="n")
+ctext<-c("Roses are ","red, ","violets are ","purple")
+concat.text(0,0.5,ctext,col=c("black","red","black","purple"))
+-------------------------------------------------------------------------------------------------------
+early <- 30
+ontime <- 70
+late <- 25
+
+txt <- paste(early, ontime, late, sep='/')
+plot(1:2, type='n')
+vars <- list(early=early,ontime=ontime,late=late)
+cols <- c('red', 'green', 'blue')
+for (i in 1:3) {
+    tmpvars <- vars
+    tmpvars[-i] <- paste("phantom(",tmpvars[-i],")",sep="")
+    expr <- paste(tmpvars, collapse="*")
+    text(1.5, 1.5,parse(text=expr),col=cols[i])
+}
+-------------------------------------------------------------------------------------------------------
+adj R> plot(1:10, rep(10,10), ylim=c(0,12))
+R> text(2,12, expression(paste(italic(r[M]))), adj=1)
+R> text(2,12, paste("=", rv), adj=0)
+-------------------------------------------------------------------------------------------------------
+image text image.plot fields image require(fields)
+# Make a 10x10 matrix
+m = matrix(rnorm(100), nrow=10)
+image.plot(m)
+for (x in 1:10)
+    for (y in 1:10)
+        text((x-1)/9, (y-1)/9, sprintf("%0.2f", m[x,y]))
+-------------------------------------------------------------------------------------------------------
+m <- matrix(1:30, ncol=6)
+colnames(m) <- paste("C", 1:6, sep="")
+rownames(m) <- paste("R", 1:5, sep="")
+m
+
+image(1:ncol(m), 1:nrow(m), t(m), col = terrain.colors(60), axes = FALSE)
+axis(1, 1:ncol(m), colnames(m))
+axis(2, 1:nrow(m), rownames(m))
+for (x in 1:ncol(m))
+  for (y in 1:nrow(m))
+    text(x, y, m[y,x])
+-------------------------------------------------------------------------------------------------------
+bigmacprice <- data.frame(
+    country = c("Switzerland", "Brazil", "Euro area",
+        "Canada", "Japan", "United States",
+        "Britain", "Singapore", "South Korea",
+        "South Africa", "Mexico", "Thailand",
+        "Russia", "Malaysia", "China"),
+    price = c(6.78, 5.26, 4.79, 4.18, 3.91, 3.71,
+              3.63, 3.46, 3.03, 2.79, 2.58, 2.44,
+              2.39, 2.25, 2.18)
+)
+
+
+plotbigmac <- function(mac, base = "United States", xlim = c(-40, 100)) {
+    mac <- mac[order(mac$price),]
+    base = which(mac$country == base)
+    height <- (mac$price / mac[base, "price"] - 1) * 100
+    par(bg = "#d0e0e7", col.main = "#262324", col.axis = "#393E46",
+        mar = c(8, 8, 6, 6), las = 1)
+    barplot(height, width = .1, space = .4,
+        names.arg = mac$country, #cex.names = .8,
+        col = "#01516c", border = "#7199a8", # border = "#577784",
+        horiz = TRUE, xlim = c(-40, 100), axes = FALSE)
+    axis(3, lty = 0)
+    title(main = "Bunfight\nBig Mac index", col = "#393E46")
+
+    abline(v = seq(-100, 100, 10), col = "white", lwd = 2)
+    abline(v = 0, col = "#c8454e", lwd = 2)
+    par(xpd = TRUE)
+    for (i in 1:nrow(mac)) {
+        rect(105, (i - 1) / 7, 118, i / 7 - 0.05,
+        col = "white", border = "#7199a8")
+        text(112, (i - 1) / 7 + 0.05, mac$price[i], cex = 0.8, col = "#393E46")
+    }
+    rect(-120, 2.5, -90, 3, col = "#c8454e", border = "#c8454e")
+    text(-68, -.2, "Sources:", col = "#393E46")
+    text(-64, -.3, "McDonald's;", col = "#393E46")
+    text(-60, -.4, "The Economist", col = "#393E46")
+}
+
+plotbigmac(bigmacprice) barplot barplot plotBigMac <- function(mac, base = "United States") {
+    old.par <- par(no.readonly = TRUE)
+    on.exit(par(old.par))
+    # Create data:
+    mac <- mac[order(mac$price),]
+    base = which(mac$country == base)
+    height <- (mac$price / mac[base, "price"] - 1) * 100
+    # Costume 'barplot'
+    NN <- length(height)
+    width <- rep(1, length.out = NN)
+    delta <- width / 2
+    w.r <- cumsum(width + 0.5)
+    w.m <- w.r - delta
+    w.l <- w.m - delta
+    xlim <- c(range(-.01 * height, height)[1], 100)
+    ylim <- c(min(w.l), max(w.r))
+    par(bg = "#d0e0e7", col.main = "#262324", col.axis = "#393E46",
+        mar = c(8, 8, 6, 6), las = 1, cex = 0.9)
+    plot.new()
+    plot.window(xlim, ylim)
+    abline(v = seq(-100, 100, 20), col = "white", lwd = 2)
+    rect(0, w.l, height, w.r, col = "#01516c", border = "#7199a8", lwd = 1)
+
+    # Lines and axis
+    abline(v = 0, col = "#c8454e", lwd = 2)
+    axis(3, axTicks(3), abs(axTicks(3)), lty = 0)
+    axis(2, labels = mac$country, at = w.m, lty = 0)
+
+    # Move outside of plot area
+    par(xpd = TRUE)
+
+    # Text misc.
+    text(5, (w.l[base] + w.r[base]) / 2, "nil", font = 3)
+    text(8, w.r[NN] + 2.3, "+")
+    text(-8, w.r[NN] + 2.3, "-")
+
+    # Create price boxes:
+    rect(105, w.l, 125, w.r,
+        col = "white", border = "#7199a8", lwd = 1)
+    text(115, (w.r + w.l)/2, mac$price, cex = 0.8, col = "#393E46")
+
+}
+-------------------------------------------------------------------------------------------------------
+R2Val<-signif(summary(sMod_pre90)$r.squared[1],2) text(92,4,substitute(R^2~"="~R2Val),adj=0,cex=0.85)
+-------------------------------------------------------------------------------------------------------
+k <- 3 # number of branches to identify
+labels.to.identify <- c('1','2','3')
+required.density <- 10 # the density of shading lines, in lines per inch 
+rect.hclust.nice(tree, k, labels=labels.to.identify, density=density.required) rect.hclust.nice = function (tree, k = NULL, which = NULL, x = NULL, h = NULL, border = 2, 
+    cluster = NULL,  density = NULL,labels = NULL, ...) 
+{
+    if (length(h) > 1 | length(k) > 1) 
+        stop("'k' and 'h' must be a scalar")
+    if (!is.null(h)) {
+        if (!is.null(k)) 
+            stop("specify exactly one of 'k' and 'h'")
+        k <- min(which(rev(tree$height) < h))
+        k <- max(k, 2)
+    }
+    else if (is.null(k)) 
+        stop("specify exactly one of 'k' and 'h'")
+    if (k < 2 | k > length(tree$height)) 
+        stop(gettextf("k must be between 2 and %d", length(tree$height)), 
+            domain = NA)
+    if (is.null(cluster)) 
+        cluster <- cutree(tree, k = k)
+    clustab <- table(cluster)[unique(cluster[tree$order])]
+    m <- c(0, cumsum(clustab))
+    if (!is.null(x)) {
+        if (!is.null(which)) 
+            stop("specify exactly one of 'which' and 'x'")
+        which <- x
+        for (n in 1L:length(x)) which[n] <- max(which(m < x[n]))
+    }
+    else if (is.null(which)) 
+        which <- 1L:k
+    if (any(which > k)) 
+        stop(gettextf("all elements of 'which' must be between 1 and %d", 
+            k), domain = NA)
+    border <- rep(border, length.out = length(which))
+    labels <- rep(labels, length.out = length(which))
+    retval <- list()
+    for (n in 1L:length(which)) {
+        rect(m[which[n]] + 0.66, par("usr")[3L], m[which[n] + 
+            1] + 0.33, mean(rev(tree$height)[(k - 1):k]), border = border[n], col = border[n], density = density, ...)
+        text((m[which[n]] + m[which[n] + 1]+1)/2, grconvertY(grconvertY(par("usr")[3L],"user","ndc")+0.02,"ndc","user"),labels[n])
+        retval[[n]] <- which(cluster == as.integer(names(clustab)[which[n]]))
+    }
+    invisible(retval)
+}
+-------------------------------------------------------------------------------------------------------
+Lines <- "Date            Visits
+11/1/2010   696537
+11/2/2010   718748
+11/3/2010   799355
+11/4/2010   805800
+11/5/2010   701262
+11/6/2010   531579
+11/7/2010   690068
+11/8/2010   756947
+11/9/2010   718757
+11/10/2010  701768
+11/11/2010  820113
+11/12/2010  645259"
+
+dm <- read.table(textConnection(Lines), header = TRUE)
+dm$Date <- as.Date(dm$Date, "%m/%d/%Y")
+plot(Visits ~ Date, dm, xaxt = "n", type = "l")
+axis(1,at=NULL, labels=F)
+text(x = dm$Date, par("usr")[3]*.97, labels = paste(dm$Date,' '), srt = 45, pos = 1, xpd = TRUE,cex=.7)
+-------------------------------------------------------------------------------------------------------
+border legend.v2('bottomright', 
+        c("no box, no point","no box, no point",estNames) , 
+        lty=c(rep('dotted',2),rep('solid',3)), 
+        col=c('black','red',1,2,4),
+        pch=c(-1,-1,rep(16,3)),
+        lwd=1,
+        border = c("white", "white", "black", "black", "black"),
+        trace = TRUE,
+        fill=c( 0, 0,
+                rep( c( rgb(0.5,0.5,0.1,0.25),
+                                rgb(0.5,0.1,0.1,0.25),
+                                rgb(0.1,0.1,0.5,0.25)), 2)),
+        inset=0,bg='white') ?rect xbox if (mfill) legend.v2 <- function (x, y = NULL, legend, fill = NULL, col = par("col"), 
+        border = "black", lty, lwd, pch, angle = 45, density = NULL, 
+        bty = "o", bg = par("bg"), box.lwd = par("lwd"), box.lty = par("lty"), 
+        box.col = par("fg"), pt.bg = NA, cex = 1, pt.cex = cex, pt.lwd = lwd, 
+        xjust = 0, yjust = 1, x.intersp = 1, y.intersp = 1, adj = c(0, 
+                0.5), text.width = NULL, text.col = par("col"), merge = do.lines && 
+                has.pch, trace = FALSE, plot = TRUE, ncol = 1, horiz = FALSE, 
+        title = NULL, inset = 0, xpd, title.col = text.col, title.adj = 0.5, 
+        seg.len = 2) 
+{
+    if (missing(legend) && !missing(y) && (is.character(y) || 
+                is.expression(y))) {
+        legend <- y
+        y <- NULL
+    }
+    mfill <- !missing(fill) || !missing(density)
+    if (!missing(xpd)) {
+        op <- par("xpd")
+        on.exit(par(xpd = op))
+        par(xpd = xpd)
+    }
+    title <- as.graphicsAnnot(title)
+    if (length(title) > 1) 
+        stop("invalid title")
+    legend <- as.graphicsAnnot(legend)
+    n.leg <- if (is.call(legend)) 
+                1
+            else length(legend)
+    if (n.leg == 0) 
+        stop("'legend' is of length 0")
+    auto <- if (is.character(x)) 
+                match.arg(x, c("bottomright", "bottom", "bottomleft", 
+                                "left", "topleft", "top", "topright", "right", "center"))
+            else NA
+    if (is.na(auto)) {
+        xy <- xy.coords(x, y)
+        x <- xy$x
+        y <- xy$y
+        nx <- length(x)
+        if (nx < 1 || nx > 2) 
+            stop("invalid coordinate lengths")
+    }
+    else nx <- 0
+    xlog <- par("xlog")
+    ylog <- par("ylog")
+    rect2 <- function(left, top, dx, dy, density = NULL, angle, 
+            ...) {
+        r <- left + dx
+        if (xlog) {
+            left <- 10^left
+            r <- 10^r
+        }
+        b <- top - dy
+        if (ylog) {
+            top <- 10^top
+            b <- 10^b
+        }
+        rect(left, top, r, b, angle = angle, density = density, 
+                ...)
+    }
+    segments2 <- function(x1, y1, dx, dy, ...) {
+        x2 <- x1 + dx
+        if (xlog) {
+            x1 <- 10^x1
+            x2 <- 10^x2
+        }
+        y2 <- y1 + dy
+        if (ylog) {
+            y1 <- 10^y1
+            y2 <- 10^y2
+        }
+        segments(x1, y1, x2, y2, ...)
+    }
+    points2 <- function(x, y, ...) {
+        if (xlog) 
+            x <- 10^x
+        if (ylog) 
+            y <- 10^y
+        points(x, y, ...)
+    }
+    text2 <- function(x, y, ...) {
+        if (xlog) 
+            x <- 10^x
+        if (ylog) 
+            y <- 10^y
+        text(x, y, ...)
+    }
+    if (trace) 
+        catn <- function(...) do.call("cat", c(lapply(list(...), 
+                                    formatC), list("\n")))
+    cin <- par("cin")
+    Cex <- cex * par("cex")
+    if (is.null(text.width)) 
+        text.width <- max(abs(strwidth(legend, units = "user", 
+                                cex = cex)))
+    else if (!is.numeric(text.width) || text.width < 0) 
+        stop("'text.width' must be numeric, >= 0")
+    xc <- Cex * xinch(cin[1L], warn.log = FALSE)
+    yc <- Cex * yinch(cin[2L], warn.log = FALSE)
+    if (xc < 0) 
+        text.width <- -text.width
+    xchar <- xc
+    xextra <- 0
+    yextra <- yc * (y.intersp - 1)
+    ymax <- yc * max(1, strheight(legend, units = "user", cex = cex)/yc)
+    ychar <- yextra + ymax
+    if (trace) 
+        catn("  xchar=", xchar, "; (yextra,ychar)=", c(yextra, 
+                        ychar))
+    if (mfill) {
+        xbox <- xc * 0.8
+        ybox <- yc * 0.5
+        dx.fill <- xbox
+    }
+    do.lines <- (!missing(lty) && (is.character(lty) || any(lty > 
+                                    0))) || !missing(lwd)
+    n.legpercol <- if (horiz) {
+                if (ncol != 1) 
+                    warning("horizontal specification overrides: Number of columns := ", 
+                            n.leg)
+                ncol <- n.leg
+                1
+            }
+            else ceiling(n.leg/ncol)
+    has.pch <- !missing(pch) && length(pch) > 0
+    if (do.lines) {
+        x.off <- if (merge) 
+                    -0.7
+                else 0
+    }
+    else if (merge) 
+        warning("'merge = TRUE' has no effect when no line segments are drawn")
+    if (has.pch) {
+        if (is.character(pch) && !is.na(pch[1L]) && nchar(pch[1L], 
+                type = "c") > 1) {
+            if (length(pch) > 1) 
+                warning("not using pch[2..] since pch[1L] has multiple chars")
+            np <- nchar(pch[1L], type = "c")
+            pch <- substr(rep.int(pch[1L], np), 1L:np, 1L:np)
+        }
+    }
+    if (is.na(auto)) {
+        if (xlog) 
+            x <- log10(x)
+        if (ylog) 
+            y <- log10(y)
+    }
+    if (nx == 2) {
+        x <- sort(x)
+        y <- sort(y)
+        left <- x[1L]
+        top <- y[2L]
+        w <- diff(x)
+        h <- diff(y)
+        w0 <- w/ncol
+        x <- mean(x)
+        y <- mean(y)
+        if (missing(xjust)) 
+            xjust <- 0.5
+        if (missing(yjust)) 
+            yjust <- 0.5
+    }
+    else {
+        h <- (n.legpercol + (!is.null(title))) * ychar + yc
+        w0 <- text.width + (x.intersp + 1) * xchar
+        if (mfill) 
+            w0 <- w0 + dx.fill
+        if (do.lines) 
+            w0 <- w0 + (seg.len + +x.off) * xchar
+        w <- ncol * w0 + 0.5 * xchar
+        if (!is.null(title) && (abs(tw <- strwidth(title, units = "user", 
+                                    cex = cex) + 0.5 * xchar)) > abs(w)) {
+            xextra <- (tw - w)/2
+            w <- tw
+        }
+        if (is.na(auto)) {
+            left <- x - xjust * w
+            top <- y + (1 - yjust) * h
+        }
+        else {
+            usr <- par("usr")
+            inset <- rep(inset, length.out = 2)
+            insetx <- inset[1L] * (usr[2L] - usr[1L])
+            left <- switch(auto, bottomright = , topright = , 
+                    right = usr[2L] - w - insetx, bottomleft = , 
+                    left = , topleft = usr[1L] + insetx, bottom = , 
+                    top = , center = (usr[1L] + usr[2L] - w)/2)
+            insety <- inset[2L] * (usr[4L] - usr[3L])
+            top <- switch(auto, bottomright = , bottom = , bottomleft = usr[3L] + 
+                            h + insety, topleft = , top = , topright = usr[4L] - 
+                            insety, left = , right = , center = (usr[3L] + 
+                                usr[4L] + h)/2)
+        }
+    }
+    if (plot && bty != "n") {
+        if (trace) 
+            catn("  rect2(", left, ",", top, ", w=", w, ", h=", 
+                    h, ", ...)", sep = "")
+        rect2(left, top, dx = w, dy = h, col = bg, density = NULL, 
+                lwd = box.lwd, lty = box.lty, border = box.col)
+    }
+    xt <- left + xchar + xextra + (w0 * rep.int(0:(ncol - 1), 
+                rep.int(n.legpercol, ncol)))[1L:n.leg]
+    yt <- top - 0.5 * yextra - ymax - (rep.int(1L:n.legpercol, 
+                        ncol)[1L:n.leg] - 1 + (!is.null(title))) * ychar
+    if (mfill) {
+        if (plot) {
+            fill <- rep(fill, length.out = n.leg)
+            rect2(left = xt, top = yt + ybox/2, dx = xbox * 3, dy = ybox, 
+                    col = fill, density = density, angle = angle, 
+                    border = border)
+        }
+        xt <- xt + dx.fill
+    }
+    if (plot && (has.pch || do.lines)) 
+        col <- rep(col, length.out = n.leg)
+    if (missing(lwd)) 
+        lwd <- par("lwd")
+    if (do.lines) {
+        if (missing(lty)) 
+            lty <- 1
+        lty <- rep(lty, length.out = n.leg)
+        lwd <- rep(lwd, length.out = n.leg)
+        ok.l <- !is.na(lty) & (is.character(lty) | lty > 0)
+        if (trace) 
+            catn("  segments2(", xt[ok.l] + x.off * xchar, ",", 
+                    yt[ok.l], ", dx=", seg.len * xchar, ", dy=0, ...)")
+        if (plot) 
+            segments2(xt[ok.l] + x.off * xchar, yt[ok.l], dx = seg.len * 
+                            xchar, dy = 0, lty = lty[ok.l], lwd = lwd[ok.l], 
+                    col = col[ok.l])
+        xt <- xt + (seg.len + x.off) * xchar
+    }
+    if (has.pch) {
+        pch <- rep(pch, length.out = n.leg)
+        pt.bg <- rep(pt.bg, length.out = n.leg)
+        pt.cex <- rep(pt.cex, length.out = n.leg)
+        pt.lwd <- rep(pt.lwd, length.out = n.leg)
+        ok <- !is.na(pch) & (is.character(pch) | pch >= 0)
+        x1 <- (if (merge && do.lines) 
+                xt - (seg.len/2) * xchar
+            else xt)[ok]
+        y1 <- yt[ok]
+        if (trace) 
+            catn("  points2(", x1, ",", y1, ", pch=", pch[ok], 
+                    ", ...)")
+        if (plot) 
+            points2(x1, y1, pch = pch[ok], col = col[ok], cex = pt.cex[ok], 
+                    bg = pt.bg[ok], lwd = pt.lwd[ok])
+    }
+    xt <- xt + x.intersp * xchar
+    if (plot) {
+        if (!is.null(title)) 
+            text2(left + w * title.adj, top - ymax, labels = title, 
+                    adj = c(title.adj, 0), cex = cex, col = title.col)
+        text2(xt, yt, labels = legend, adj = adj, cex = cex, 
+                col = text.col)
+    }
+    invisible(list(rect = list(w = w, h = h, left = left, top = top), 
+                    text = list(x = xt, y = yt)))
+}
+-------------------------------------------------------------------------------------------------------
+if (show.labels) {
+    par(mar = c(0, 0, 0, 4))
+    par(srt = 90)
+    obs.labels <- toupper(substr(x$labels[x$order], 1, 6))
+    if (is.null(members)) {
+        plot(0, type = "n", xlim = c(0.5, n.indiv + 0.5), 
+            ylim = c(0, 1), xaxs = "i", axes = FALSE, xlab = "", 
+            ylab = "")
+        text(1:n.indiv, 0, obs.labels, pos = 4, col = col.down[groups.o])
+    } if (show.labels) {
+    par(mar = c(0, 0, 0, 4))
+    par(srt = 90)
+    obs.labels <- toupper(substr(x$labels[x$order], 1, 12))
+    if (is.null(members)) {
+        plot(0, type = "n", xlim = c(0.5, n.indiv + 0.5), 
+            ylim = c(0, 1), xaxs = "i", axes = FALSE, xlab = "", 
+            ylab = "")
+        text(1:n.indiv, 0, obs.labels, pos = 4, cex=0.5, col = col.down[groups.o])
+    }
+-------------------------------------------------------------------------------------------------------
+plotCI(x=myx+0.2,y=...) plotCI_offset <- function (x, y = NULL, uiw, liw = uiw, ui, li, err = "y", ylim = NULL, 
+xlim = NULL, type = "p", col = par("col"), barcol = col, 
+pt.bg = par("bg"), sfrac = 0.01, gap = 1, lwd = par("lwd"), 
+lty = par("lty"), labels = FALSE, add = FALSE, xlab, ylab, 
+minbar, maxbar,offset=0.2, ...) if (!add) {
+    if (invalid(labels) || labels == FALSE)
+        #Add offset here to ensure plot window is right size
+        plot(x+offset, y, ylim = ylim, xlim = xlim, col = col, xlab = xlab, 
+            ylab = ylab, ...)
+    else {
+        plot(x, y, ylim = ylim, xlim = xlim, col = col, type = "n", 
+            xlab = xlab, ylab = ylab, ...)
+        text(x, y, label = labels, col = col, ...)
+    }
+} if (err == "y") {
+    if (gap != FALSE) 
+        gap <- strheight("O") * gap
+    smidge <- par("fin")[1] * sfrac
+    if (!is.null(li))
+        #Add offset to CIs 
+        myarrows(x+offset, li, x+offset, pmax(y - gap, li), col = barcol, 
+            lwd = lwd, lty = lty, angle = 90, length = smidge, 
+            code = 1)
+    if (!is.null(ui)) 
+        myarrows(x+offset, ui, x+offset, pmin(y + gap, ui), col = barcol, 
+            lwd = lwd, lty = lty, angle = 90, length = smidge, 
+            code = 1)
+}
+-------------------------------------------------------------------------------------------------------
+sprintf tbl tbl <- matrix(data=rep(0:1,25), nrow=5) plot(1, 1, xlim=c(1,dim(tbl)[2]+.5), ylim=c(0.5,dim(tbl)[1]), type="n")
+lapply(1:dim(tbl)[1], function(x) {
+  text(x=c(1:dim(tbl)[2]), y=rep(x,dim(tbl)[2]), labels=tbl[x,])
+}) text args
+-------------------------------------------------------------------------------------------------------
+generate.data <- function(rate=.3, dim=c(25,25)) {
+  tmp <- rep(".", prod(dim))
+  tmp[sample(1:prod(dim), ceiling(prod(dim)*rate))] <- "S"
+  m <- matrix(tmp, nr=dim[1], nc=dim[2])
+  return(m)
+} x <- generate.data()
+rownames(x) <- colnames(x) <- 1:25
+capture.output(as.table(x), file="res.txt") res.txt make.table <- function(x, labels=NULL) {
+  # x = matrix
+  # labels = list of labels for x and y
+  coord.xy <- expand.grid(x=1:nrow(x), y=1:ncol(x))
+  opar <- par(mar=rep(1,4), las=1)
+  plot.new() 
+  plot.window(xlim=c(0, ncol(x)), ylim=c(0, nrow(x)))
+  text(coord.xy$x, coord.xy$y, c(x), adj=c(0,1)) 
+  if (!is.null(labels)) {
+    mtext(labels[[1]], side=3, line=-1, at=seq(1, ncol(x)), cex=.8)
+    mtext(labels[[2]], side=2, line=-1, at=seq(1, nrow(x)), cex=.8, padj=1)
+  }
+  par(opar)
+} make.table(x, list(1:25, 1:25))
+-------------------------------------------------------------------------------------------------------
+pointLabel(x, y, labels = paste("  ", point_names, "  ", sep="")
+-------------------------------------------------------------------------------------------------------
+#Reproducing factor analysis from Venables & Ripley
+#Note I'm only doing three factors, not five
+data(ability.cov)
+ability.FA <- factanal(covmat = ability.cov,factor = 3, rotation = "promax")
+load <- loadings(ability.FA)
+rot <- ability.FA$rot
+
+#Pairs of factor loadings to plot
+ind <- combn(1:3,2)
+par(mfrow = c(2,2))
+nms <- row.names(load)
+#Loop over pairs of factors and draw each plot
+for (i in 1:3){
+    eqscplot(load[,ind[1,i]],load[,ind[2,i]],xlim = c(-1,1),
+        ylim = c(-0.5,1.5),type = "n",
+        xlab = paste("Factor",as.character(ind[1,i])),
+        ylab = paste("Factor",as.character(ind[2,i])))
+    text(load[,ind[1,i]],load[,ind[2,i]],labels = nms)
+
+    arrows(c(0,0),c(0,0),rot[ind[,i],ind[,i]][,1],
+        rot[ind[,i],ind[,i]][,2],length = 0.1)
+}
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+mat2 mat1 statSim statObs statSim list( obs = statObs , sumFit = sum(statSim > statObs)/numR) obs sumFit max(statSim) sumFit max resamplerSimAlt <- function(mat1, mat2, numR, graph = FALSE)
+{
+  statSim <- numeric(numR)
+  mat1vcv <- cov(mat1)
+  mat2vcvT <- cov(mat2)
+  ltM1 <- mat1vcv[col(mat1vcv) <= row(mat1vcv)]
+  ltM2T <- mat2vcvT[col(mat2vcvT) <= row(mat2vcvT)]
+  statObs <- cor(ltM1, ltM2T)                           
+  indice <- c(1:length(mat2))
+  resamplesIndices <- lapply(1:numR, function(i) sample(indice, replace = F))
+  for (i in 1:numR)
+  {
+    ss <- mat2[sample(resamplesIndices[[i]])]
+    ss <- matrix(ss, nrow = dim(mat2)[[1]], ncol = dim(mat2)[[2]])
+    mat2ss <- cov(ss)
+    ltM2ss <- mat2ss[col(mat2ss) <= row(mat2ss)]
+    statSim[i] <- cor(ltM1, ltM2ss)
+  }
+  if (graph == TRUE)
+  {
+    plot(1, main = "resampled data density distribution", xlim = c(0, statObs+0.1), ylim = c(0,14))
+    points(density(statSim), type="l", lwd=2)
+    abline(v = statObs)
+    text(10, 10, "observed corelation = ")
+  }
+  list( obs = statObs , sumFit = sum(statSim > statObs)/numR, max=max(statSim))
+} > mat1 <- matrix(runif(25),5,5)
+> mat2 <- mat1+0.2
+> resamplerSimAlt(mat1, mat2, 10000)
+$obs
+[1] 1
+
+$sumFit
+[1] 0
+
+$max
+[1] 0.94463 mat2 > mat2 <- matrix(runif(25),5,5)
+> resamplerSimAlt(mat1, mat2, 10000)
+$obs
+[1] 0.31144
+
+$sumFit
+[1] 0.9124
+
+$max
+[1] 0.9231
+-------------------------------------------------------------------------------------------------------
+cal <- function(month, year) {
+
+        if(!require(chron)) stop('Unable to load chron package')
+
+     if(missing(year) && missing(month)) {
+         tmp <- month.day.year(Sys.Date())
+         year <- tmp$year
+         month <- tmp$month
+     }
+
+
+    if(missing(year) || missing(month)){  # year calendar
+        if(missing(year)) year <- month
+        par(mfrow=c(4,3))
+        tmp <- seq.dates( from=julian(1,1,year), to=julian(12,31,year) )
+        tmp2 <- month.day.year(tmp)
+        wd <- do.call(day.of.week, tmp2)
+        par(mar=c(1.5,1.5,2.5,1.5))
+        for(i in 1:12){
+            w <- tmp2$month == i
+            cs <- cumsum(wd[w]==0)
+            if(cs[1] > 0) cs <- cs - 1
+            nr <- max( cs ) + 1
+            plot.new()
+            plot.window( xlim=c(0,6), ylim=c(0,nr+1) )
+            text( wd[w], nr - cs -0.5 , tmp2$day[w] )
+            title( main=month.name[i] )
+            text( 0:6, nr+0.5, c('S','M','T','W','T','F','S') )
+        }
+
+    } else {  # month calendar
+
+        ld <- seq.dates( from=julian(month,1,year), length=2, by='months')[2]-1
+        days <- seq.dates( from=julian(month,1,year), to=ld)
+        tmp <- month.day.year(days)
+        wd <- do.call(day.of.week, tmp)
+        cs <- cumsum(wd == 0)
+        if(cs[1] > 0) cs <- cs - 1
+        nr <- max(cs) + 1
+        par(oma=c(0.1,0.1,4.6,0.1))
+        par(mfrow=c(nr,7))
+        par(mar=c(0,0,0,0))
+        for(i in seq_len(wd[1])){ 
+            plot.new()
+            #box()
+        }
+        day.name <- c('Sun','Mon','Tues','Wed','Thur','Fri','Sat')
+        for(i in tmp$day){
+            plot.new()
+            box()
+            text(0,1, i, adj=c(0,1))
+            if(i < 8) mtext( day.name[wd[i]+1], line=0.5,
+                at=grconvertX(0.5,to='ndc'), outer=TRUE ) 
+        }
+        mtext(month.name[month], line=2.5, at=0.5, cex=1.75, outer=TRUE)
+        #box('inner') #optional 
+    }
+} par(mfg=c(r,c)) updateusr subplot TeachingDemos cal(10,2011)
+par(mfg=c(3,2))  # monday oct 10
+text(.5,.5, 'Some\nText', cex=2)
+
+par(mfg=c(2,3)) #Tues oct 4
+text(1,1, 'Top Right', adj=c(1,1))
+
+par(mfg=c(2,4)) # Wed oct 5
+text(0,0, 'Bottom Left', adj=c(0,0))
+
+par(mfg=c(6,2)) # oct 31
+tmp.x <- runif(25)
+tmp.y <- rnorm(25,tmp.x,.1)
+par(usr=c( range(tmp.x), range(tmp.y) ) )
+points(tmp.x,tmp.y)
+-------------------------------------------------------------------------------------------------------
+dev.new(width=4, height=4)
+plot(xvar, yvar, asp=1)
+
+a = 0
+b = 1
+
+abline (a, b, col = "red", lty = 2)
+
+myd$xint = with(myd, (b*yvar + xvar - b*a) / (b^2 + 1))
+myd$yint = with(myd, (b*yvar + b*xvar + a) / (b^2 + 1))
+
+with(myd, segments(xvar, yvar, xint, yint))
+with(myd, text(xvar, yvar, labels=namelab, pos=3, cex=0.5))
+-------------------------------------------------------------------------------------------------------
+dat<- data.frame(t=seq(0, 2*pi, by=0.1) )
+ xhrt <- function(t) 16*sin(t)^3
+ yhrt <- function(t) 13*cos(t)-5*cos(2*t)-2*cos(3*t)-cos(4*t)
+ dat$y=yhrt(dat$t)
+ dat$x=xhrt(dat$t)
+ with(dat, plot(x,y, type="l")) with(dat, polygon(x,y, col="hotpink")) help(points) TestChars points(c(10,-10, -15, 15), c(-10, -10, 10, 10), pch=169, font=5) library(Cairo)
+
+clubs <- expression(symbol('\247'))
+hearts <- expression(symbol('\251'))
+diamonds <- expression(symbol('\250'))
+spades <- expression(symbol('\252'))
+csymbols <- c(clubs, hearts, diamonds, spades)
+
+plot( 0, xlim=c(0,5), ylim=c(0,2), type="n" )
+clr <- c("black", "red", "red", "black") 
+for (i in 1:4) {
+  hline <- function( yloc, ... ) 
+         for (i in 1:length(yloc)) 
+             lines( c(-1,6), c(yloc[i],yloc[i]), col="gray")  
+              hline(0.9); 
+                hline(1.0);
+                hline(1.1);
+                hline(1.2)  
+ text( i, 1, csymbols[i], col=clr[i], cex=5 )  
+ text( i, 0.5, csymbols[i], col=clr[i] ) }
+
+# Also try this
+plot(1,1)
+text(x=1+0.2*cos(seq(0, 2*pi, by=.5)),  y=1+0.2*sin(seq(0, 2*pi, by=.5)), expression(symbol('\251') ) )
+-------------------------------------------------------------------------------------------------------
+as.expression(z) drawGraph <- function(x, y, z) {
+    g_range <- range(0,x)
+    plot(x, type="o", col="blue", ylim=g_range,axes=FALSE, ann=FALSE)
+    box()
+    axis(1, at=1:19, lab=FALSE)
+    text(1:19, labels=y,par("usr")[3] - 2, srt=45, adj=1.2, xpd=T, cex=0.3)
+    axis(2, las=1, at=500*0:g_range[2])
+    main_title<-as.expression(z)
+    title(main=main_title, col.main="red", font.main=4)
+    title(xlab="Build", col.lab=rgb(0,0.5,0))
+    title(ylab="MS", col.lab=rgb(0,0.5,0))
+    legend("topright", g_range[2], c("z"), cex=0.8, col=c("blue"), pch=21, lty=1);
+}
+x <- rpois(19, 4)
+AveElapsedTime=paste("The average time with ranges:", 
+                       round(range(x)[1], 3), 
+                        "to" , round(range(x), 3)[1])
+lab=1:19
+drawGraph(AET, lab, AveElapsedTime)
+-------------------------------------------------------------------------------------------------------
+R-2.12.1 R-2.14.0 R-2.13.0 NEWS * plot(<formula>, data=<matrix>,..) now works in more cases;
+  similarly for points(), lines() and text(). R
+-------------------------------------------------------------------------------------------------------
+rect par(mfrow=c(2, 2))
+
+for(i in unique(ind)) {
+  plot(0, col=0, bty="n", xaxt="n", yaxt="n", xlab = i, ylab = "", xlim=c(0, 5), ylim=c(-6, -1))
+  for(j in 1:4) {
+    for(k in 1:5) {
+      rect(j-0.4, -k-1, j+0.4, -k, col = which(unique(mark)==matrix(mark[ind==i], 5, 4)[k,j])+1, border = rgb(0,0,0,0))
+      text(j, -k-0.5, labels = matrix(mark[ind==i], 5, 4)[k,j])
+    }
+    rect(j-0.4, -6, j+0.4, -1)
+  }
+}
+-------------------------------------------------------------------------------------------------------
+words library(wordcloud)
+
+colored.wordcloud <- function(words,freq,scale=c(4,.5),min.freq=3,max.words=Inf,random.order=TRUE,random.color=FALSE,
+        rot.per=.1,colors="black",ordered.colors=FALSE,use.r.layout=FALSE,...) { 
+    tails <- "g|j|p|q|y"
+    last <- 1
+    nc<- length(colors)
+
+    if (ordered.colors) {
+        if (length(colors) != 1 && length(colors) != length(words)) {
+            stop(paste("Length of colors does not match length of words",
+                       "vector"))
+        }
+    }
+
+    overlap <- function(x1, y1, sw1, sh1) {
+        if(!use.r.layout)
+            return(.overlap(x1,y1,sw1,sh1,boxes))
+        s <- 0
+        if (length(boxes) == 0) 
+            return(FALSE)
+        for (i in c(last,1:length(boxes))) {
+            bnds <- boxes[[i]]
+            x2 <- bnds[1]
+            y2 <- bnds[2]
+            sw2 <- bnds[3]
+            sh2 <- bnds[4]
+            if (x1 < x2) 
+                overlap <- x1 + sw1 > x2-s
+            else 
+                overlap <- x2 + sw2 > x1-s
+
+            if (y1 < y2) 
+                overlap <- overlap && (y1 + sh1 > y2-s)
+            else 
+                overlap <- overlap && (y2 + sh2 > y1-s)
+            if(overlap){
+                last <<- i
+                return(TRUE)
+            }
+        }
+        FALSE
+    }
+
+    ord <- rank(-freq, ties.method = "random")
+    words <- words[ord<=max.words]
+    freq <- freq[ord<=max.words]
+    if (ordered.colors) {
+        colors <- colors[ord<=max.words]
+    }
+
+    if(random.order)
+        ord <- sample.int(length(words))
+    else
+        ord <- order(freq,decreasing=TRUE)
+    words <- words[ord]
+    freq <- freq[ord]
+    words <- words[freq>=min.freq]
+    freq <- freq[freq>=min.freq]
+    if (ordered.colors) {
+        colors <- colors[ord][freq>=min.freq]
+    }
+
+    thetaStep <- .1
+    rStep <- .05
+    plot.new()
+    op <- par("mar")
+    par(mar=c(0,0,0,0))
+    plot.window(c(0,1),c(0,1),asp=1)
+    normedFreq <- freq/max(freq)
+    size <- (scale[1]-scale[2])*normedFreq + scale[2]
+    boxes <- list()
+
+
+
+    for(i in 1:length(words)){
+        rotWord <- runif(1)<rot.per
+        r <-0
+        theta <- runif(1,0,2*pi)
+        x1<-.5
+        y1<-.5
+        wid <- strwidth(words[i],cex=size[i],...)
+        ht <- strheight(words[i],cex=size[i],...)
+        #mind your ps and qs
+        if(grepl(tails,words[i]))
+            ht <- ht + ht*.2
+        if(rotWord){
+            tmp <- ht
+            ht <- wid
+            wid <- tmp  
+        }
+        isOverlaped <- TRUE
+        while(isOverlaped){
+            if(!overlap(x1-.5*wid,y1-.5*ht,wid,ht) &&
+                    x1-.5*wid>0 && y1-.5*ht>0 &&
+                    x1+.5*wid<1 && y1+.5*ht<1){
+        if (!random.color) {
+                if (ordered.colors) {
+                    cc <- colors[i]
+                }
+                else {
+                    cc <- ceiling(nc*normedFreq[i])
+                    cc <- colors[cc]
+                }
+        } else {
+         cc <- colors[sample(1:nc,1)]
+        }
+                text(x1,y1,words[i],cex=size[i],offset=0,srt=rotWord*90,col=cc,...)
+                #rect(x1-.5*wid,y1-.5*ht,x1+.5*wid,y1+.5*ht)
+                boxes[[length(boxes)+1]] <- c(x1-.5*wid,y1-.5*ht,wid,ht)
+                isOverlaped <- FALSE
+            }else{
+                if(r>sqrt(.5)){
+                    warning(paste(words[i],
+                                    "could not be fit on page. It will not be plotted."))
+                    isOverlaped <- FALSE
+                }
+                theta <- theta+thetaStep
+                r <- r + rStep*thetaStep/(2*pi)
+                x1 <- .5+r*cos(theta)
+                y1 <- .5+r*sin(theta)
+            }
+        }
+    }
+    par(mar=op)
+    invisible()
+} colors = c("blue", "red", "orange", "green")
+colored.wordcloud(colors, c(10, 5, 3, 9), colors=colors)
+-------------------------------------------------------------------------------------------------------
+devSVGTips onefile=TRUE onefile=FALSE # Same code as yours, indented, and with 
+# a different title for the second plot to see the difference.
+library(RSVGTipsDevice)
+
+devSVGTips(
+  "svgplot9.svg", toolTipMode=1,
+  onefile=FALSE, # Try with TRUE (overlaid plots) or FALSE (separate plots)
+  title="SVG example plot 9: line and point types"
+)
+plot(
+  c(0,20),c(0,5), type="n", xlab="x", ylab="y",
+  main="Example SVG plot with different line and point types"
+)
+for (i in 0:16) {
+  lines(i+(0:4), (1:5), col=max(i,1), pch=i, lty=i, type="b")
+  text(i, 0.5, lab=as.character(i), cex=2^(abs((i-8)/4)-1))
+}
+
+#devSVGTips(
+#  "svgplot9.svg", toolTipMode=1, onefile=TRUE,
+#  title="SVG example plot 10: line and point types"
+#)
+plot(
+  c(0,20),c(0,5), type="n", xlab="x", ylab="y",
+  main="Example SVG plot with different line and point types (2)"
+)
+for (i in 0:16) {
+  lines(i+(0:4), (1:5), col=max(i,1), pch=i, lty=i, type="b")
+  text(i, 0.5, lab=as.character(i), cex=2^(abs((i-8)/4)-1))
+}
+
+dev.off()
+-------------------------------------------------------------------------------------------------------
+VADeaths library(datasets) bar <- barplot(VADeaths)
+text(rep(bar,each=nrow(VADeaths)), as.vector(apply(VADeaths,2,cumsum)), labels=as.vector(apply(VADeaths,2,cumsum)),pos=3) 
+text(...,cex=2) VADeaths > VADeaths
+      Rural Male Rural Female Urban Male Urban Female
+50-54       11.7          8.7       15.4          8.4
+55-59       18.1         11.7       24.3         13.6
+60-64       26.9         20.3       37.0         19.3
+65-69       41.0         30.9       54.6         35.1
+70-74       66.0         54.3       71.1         50.0 text ?text text ?barplot > bar <- barplot(VADeaths)
+> bar
+[1] 0.7 1.9 3.1 4.3 VADeaths 11.7 11.7 + 18.1 = 29.8 11.7 + 18.1 + 26.9 = 56.7 VADeaths cumsum > cumsum(c(1,2,3,4,5))
+[1]  1  3  6 10 15 VADeaths apply > apply(VADeaths,2,cumsum)
+      Rural Male Rural Female Urban Male Urban Female
+50-54       11.7          8.7       15.4          8.4
+55-59       29.8         20.4       39.7         22.0
+60-64       56.7         40.7       76.7         41.3
+65-69       97.7         71.6      131.3         76.4
+70-74      163.7        125.9      202.4        126.4 apply(VADeaths,2,cumsum) VADeaths cumsum > yvals <- as.vector(apply(VADeaths,2,cumsum)) as.vector bar > xvals <- rep(bar,each=nrow(VADeaths)) x1,x2,x3,x4 x1,x1,x1,x1,x1, x2,x2,x2,x2,x2, ..., x4,x4,x4,x4,x4 xvals yvals text > 
+text( xvals, yvals, labels=yvals, pos=3 ) labels text pos=3 ?text bar <- barplot(VADeaths)
+xvals <- rep(bar,each=nrow(VADeaths))
+yvals <- as.vector(apply(VADeaths,2,cumsum))
+text( xvals, yvals, labels=yvals, pos=3 )
+-------------------------------------------------------------------------------------------------------
+# Simulate data
+data = data.frame(var1=rnorm(100), var2=rnorm(100), var3=c('a', 'b')[sample(2, 100, replace=T)])
+
+# Convert factor variables to numeric 'dummy' variables
+data.num = model.matrix(~ . - 1, data)
+
+# Assign clusters
+data$cl = kmeans(data.num, 2)$cluster
+
+# Plot
+dev.new(width=4, height=4)
+with(data, plot(var1, var2, type='n'))
+with(data, text(var1, var2, var3, col=cl))
+-------------------------------------------------------------------------------------------------------
+trace() myFun plot() myFun <- function() {
+    x <- 
+        8:1
+    y <- 
+        1:8
+    plot(y~x)
+    lines(y~x)
+    text(x,y, letters[1:8], pos=3)
+} trace myFun plot() as.list(body(myFun)) as.list(body(myFun)) 
+# [[1]]
+# `{`
+# 
+# [[2]]
+# x <- 8:1
+# 
+# [[3]]
+# y <- 1:8
+# 
+# [[4]]
+# plot(y ~ x)
+# 
+# ... More ... trace() myFun trace(myFun, browser, 4)
+
+# TRY IT OUT
+# (Once in the browser, type "n" and press Enter to step through the code.)
+myFun() untrace(myFun) findLineNum() setBreakPoint() myFun() "myScript.R" source("myScript.R")            # Must source() once before using findLineNum 
+                                # or setBreakPoint
+findLineNum("myScript.R#10")    # I see that I missed the step by one line
+setBreakpoint("myScript.R#11")  # Insert the breakpoint at the line that calls 
+                                # plot()
+
+myFun()                         # Test that breakpoint was properly inserted
+                                # (Again, use "n" and Enter to step through code)
+-------------------------------------------------------------------------------------------------------
+set.seed(1)
+    # make data.frame just with info for the lines you'll actually draw
+    # your data was mostly zeros, no need for those lines
+    position <- sort(sample(1:4563,45,replace = FALSE))
+    # but the x position needs to be shaved down!
+    # modulars are the real x positions on the plot:
+    xpos <- position%%600
+    # line direction appeared in your example but not in your text
+    posorneg <- sample(c(-1,1),45,replace = TRUE,prob=c(.05,.95))
+    # oxidant concentration for line width- just rescale the oxidant concentration
+    # values you have to fall between say .5 and 3, or whatever is nice and visible
+    oxconc   <- (.5+runif(45))^2
+    # oxidant type determines line type- you mention 2
+    # just assign these types to lines types (integers in R)
+    oxitype  <- sample(c(1,2),45,replace = TRUE) 
+    # let's say there's another dimension you want to map color to
+    # in your example png, but not in your description.
+    color <- sample(c("green","black","blue"),45,replace=TRUE)
+
+    # and finally, which level does each segment need to belong to?
+    # you have 8 line levels in your example png. This works, might take
+    # some staring though:
+    level <- 0
+    for (i in 0:7){
+    level[position %in% ((i*600):(i*600+599))] <- 8-i
+    }
+
+    # now stick into data.drame:
+    AminoData <-data.frame(position = position, xpos = xpos, posorneg = posorneg, 
+         oxconc = oxconc, oxitype = oxitype, level = level, color = color) # now we draw the base plot:
+    par(mar=c(3,3,3,3))
+    plot(NULL, type = "n", axes = FALSE, xlab = "", ylab = "", 
+         ylim =  c(0,9), xlim = c(-10,609))
+    # horizontal segments:
+    segments(0,1:8,599,1:8,gray(.5))
+    # some ticks: (also not pretty)
+    segments(rep(c((0:5)*100,599),8), rep(1:8,each=7)-.05, rep(c((0:5)*100,599),8), 
+       rep(1:8,each=7)+.05, col=gray(.5))
+    # label endpoints:
+    text(rep(10,8)+.2,1:8-.2,(7:0)*600,pos=2,cex=.8)
+    text(rep(589,8)+.2,1:8-.2,(7:0)*600+599,pos=4,cex=.8)
+    # now the amino line segments, remember segments() is vectorized
+    segments(AminoData$xpos, AminoData$level, AminoData$xpos, 
+       AminoData$level + .5 * AminoData$posorneg, lty = AminoData$oxitype, 
+       lwd = AminoData$oxconc, col = as.character(AminoData$color))
+    title("mostly you just need to reshape and prepare\nyour data to do this easily in base")
+-------------------------------------------------------------------------------------------------------
+set.seed(1)
+n <- 100
+nba <- data.frame(
+    obs = 1:n,   
+    Name = paste("label", 1:n, sep="_"), 
+    UP = sample(0:15, n, replace=TRUE), 
+    Downs = sample(-15:0, n, replace=TRUE)
+)
+
+plot(nba$obs, nba$UP, type="b", lwd=1, ylim=c(-22, 22), col="red", 
+    xlab="Name", ylab="Change", main="My plot") text nups <- 10
+ups <- tail(nba[order(nba$UP), ], nups)
+with(ups, text(obs, UP+1, Name, srt=90, adj=0, cex=0.75))
+
+ndowns <- 10
+downs <- head(nba[order(nba$UP), ], nups)
+with(downs, text(obs, UP-1, Name, srt=90, adj=1, cex=0.75))
+-------------------------------------------------------------------------------------------------------
+trace = TRUE text() trace pos = 2 set.seed(1)
+    plot(1:10,runif(min=0,max=10,10),type='l',ylim=c(0,10),xlim=c(0,10),col=1)
+    lines(1:10,runif(min=0,max=10,10),col=2,lty=2)
+    lines(1:10,runif(min=0,max=10,10),col=3,lty=2)
+    a <- legend(1,10,lty=1:3,col=1:3,legend=c("","",""),bty="n",trace=TRUE)
+    text(a$text$x-1,a$text$y,c("line 1","line 2","line 3"),pos=2)
+-------------------------------------------------------------------------------------------------------
+dat <- read.csv2(text="start;duration
+ 1;4
+ 7;3
+ 15;2
+ ")
+ plot(NA, xlim=c(0,20), ylim=c(0,9), ylab="",xlab="X", xaxt="n", yaxt="n")
+ with(dat, segments(x0=start, x1=start+duration, y0=2,y1=2))
+ with(dat, text( start+duration/2, 2.5, labels=duration))
+ axis(1, at=seq(0,20,by=2), labels=seq(0,20,by=2))
+-------------------------------------------------------------------------------------------------------
+fields:::image.plot par("fg" = NA)
+    plot(r, xlim = c(xmin(r), xmax(r)), ylim = c(ymin(r), ymax(r)), axes = FALSE)
+    par(new = TRUE,"fg" = "black")
+    plot(r, xlim = c(xmin(r), xmax(r)), ylim = c(ymin(r), ymax(r)), axes = FALSE, legend.only = TRUE)
+    axis(1, pos = -90, xpd = TRUE)
+    rect(-180,-90,180,90,xpd = TRUE)
+    ticks <- (ymin(r):ymax(r))[(ymin(r):ymax(r)) %% 20 == 0]
+    segments(xmin(r),ticks,xmin(r)-5,ticks, xpd = TRUE)
+    text(xmin(r),ticks,ticks,xpd=TRUE,pos=2)
+        title("sorry, this could probably be done in some more elegant way")
+-------------------------------------------------------------------------------------------------------
+cmdscale stats ?cmdscale > require(graphics)
+> 
+> loc <- cmdscale(eurodist)
+> x <- loc[,1]
+> y <- -loc[,2]
+> plot(x, y, type="n", xlab="", ylab="", main="cmdscale(eurodist)")
+> text(x, y, rownames(loc), cex=0.8) x y igraph
+-------------------------------------------------------------------------------------------------------
+rasterImage updateusr TeachingDemos library(EBImage)
+ice <- readImage('My Pictures/ice.png')
+pos <- structure(list(teamid = c("6", "6", "6", "6", "6", "6", "2",
+  "6", "6", "6", "2", "6", "10", "10", "10", "10", "20", "20",
+  "10", "10", "10", "20", "20", "20", "10", "10"), xcoord = c("79",
+  "81", "33", "34", "75", "52", "-67", "80", "44", "79", "-53",
+  "54", "-55", "-81", "-66", "-66", "45", "81", "-78", "-70", "-59",
+  "50", "53", "63", "-79", "-78"), ycoord = c("0", "0", "-18",
+  "-20", "6", "-11", "-7", "7", "-28", "-10", "35", "22", "25",
+  "-5", "25", "23", "-11", "13", "22", "16", "13", "23", "7", "16",
+  "8", "8")), .Names = c("teamid", "xcoord", "ycoord"),
+ class = "data.frame", row.names = c(74328L,
+  74331L, 74332L, 74334L, 74336L, 74338L, 74340L, 74341L, 74346L,
+  74347L, 74348L, 74349L, 100136L, 100137L, 100138L, 100139L, 100147L,
+  100148L, 100151L, 100154L, 100156L, 100158L, 100159L, 100161L,
+  100163L, 100167L)) 
+pos$xcoord <- as.numeric(pos$xcoord)
+pos$ycoord <- as.numeric(pos$ycoord)
+
+ice2 <- as.raster(ice)
+
+pin <- par('pin')
+plot( c(-100,100), c(-40,40), type='n', xlab='', ylab='', 
+    asp=pin[1]/pin[2], axes=FALSE, xaxs='i', yaxs='i')
+rasterImage(ice2, -100, -40, 100, 40, interpolate=FALSE)
+with(pos, text(xcoord, ycoord, teamid, col='green', cex=1.2) )
+-------------------------------------------------------------------------------------------------------
+tourney_name <- xpathSApply(basicInfo, "//*/div[@class='col-left']/h1/text()", xmlValue)
+tourney_loc <- xpathSApply(basicInfo, "//*/div[@class='col-left']/img/@alt", xmlValue)
+-------------------------------------------------------------------------------------------------------
+pairs2 <- 
+  function (x, labels, panel = points, ..., lower.panel = panel, 
+            upper.panel = panel, diag.panel = NULL, text.panel = textPanel, 
+            label.pos = 0.5 + has.diag/3, cex.labels = NULL, font.labels = 1, 
+            row1attop = TRUE, gap = 1) 
+  {
+    textPanel <- function(x = 0.5, y = 0.5, txt, cex, font) 
+text(x,y, txt, cex = cex, font = font)
+    localAxis <- function(side, x, y, xpd, bg, col = NULL, main, 
+                          oma, ...) {
+      if (side%%2 == 1) 
+        Axis(x, side = side, xpd = NA, ...)
+      else Axis(y, side = side, xpd = NA, ...)
+    }
+    localPlot <- function(..., main, oma, font.main, cex.main) plot(...)
+    localLowerPanel <- function(..., main, oma, font.main, cex.main) lower.panel(...)
+    localUpperPanel <- function(..., main, oma, font.main, cex.main) upper.panel(...)
+    localDiagPanel <- function(..., main, oma, font.main, cex.main) diag.panel(...)
+    dots <- list(...)
+    nmdots <- names(dots)
+    if (!is.matrix(x)) {
+      x <- as.data.frame(x)
+      for (i in seq_along(names(x))) {
+        if (is.factor(x[[i]]) || is.logical(x[[i]])) 
+          x[[i]] <- as.numeric(x[[i]])
+        if (!is.numeric(unclass(x[[i]]))) 
+          stop("non-numeric argument to 'pairs'")
+      }
+    }
+    else if (!is.numeric(x)) 
+      stop("non-numeric argument to 'pairs'")
+    panel <- match.fun(panel)
+    if ((has.lower <- !is.null(lower.panel)) && !missing(lower.panel)) 
+      lower.panel <- match.fun(lower.panel)
+    if ((has.upper <- !is.null(upper.panel)) && !missing(upper.panel)) 
+      upper.panel <- match.fun(upper.panel)
+    if ((has.diag <- !is.null(diag.panel)) && !missing(diag.panel)) 
+      diag.panel <- match.fun(diag.panel)
+    if (row1attop) {
+      tmp <- lower.panel
+      lower.panel <- upper.panel
+      upper.panel <- tmp
+      tmp <- has.lower
+      has.lower <- has.upper
+      has.upper <- tmp
+    }
+    nc <- ncol(x)
+    if (nc < 2) 
+      stop("only one column in the argument to 'pairs'")
+    has.labs <- TRUE
+    if (missing(labels)) {
+      labels <- colnames(x)
+      if (is.null(labels)) 
+        labels <- paste("var", 1L:nc)
+    }
+    else if (is.null(labels)) 
+      has.labs <- FALSE
+    oma <- if ("oma" %in% nmdots) 
+      dots$oma
+    else NULL
+    main <- if ("main" %in% nmdots) 
+      dots$main
+    else NULL
+    if (is.null(oma)) {
+      oma <- c(4, 4, 4, 4)
+      if (!is.null(main)) 
+        oma[3L] <- 6
+    }
+    opar <- par(mfrow = c(nc, nc), mar = rep.int(gap/2, 4), oma = oma)
+    on.exit(par(opar))
+    dev.hold()
+    on.exit(dev.flush(), add = TRUE)
+    for (i in if (row1attop) 
+      1L:nc
+         else nc:1L) for (j in 1L:nc) {
+           localPlot(x[, j], x[, i], xlab = "", ylab = "", axes = FALSE, 
+                     type = "n", ...)
+           if (i == j || (i < j && has.lower) || (i > j && has.upper)) {
+             box()
+             # edited here...
+             #           if (i == 1 && (!(j%%2) || !has.upper || !has.lower)) 
+             #           localAxis(1 + 2 * row1attop, x[, j], x[, i], 
+             #                       ...)
+             # draw x-axis
+             if (i == nc & j != nc) 
+               localAxis(1, x[, j], x[, i], 
+                         ...)
+             # draw y-axis
+             if (j == 1 & i != 1) 
+               localAxis(2, x[, j], x[, i], ...)
+             #           if (j == nc && (i%%2 || !has.upper || !has.lower)) 
+             #             localAxis(4, x[, j], x[, i], ...)
+             mfg <- par("mfg")
+             if (i == j) {
+               if (has.diag) 
+                 localDiagPanel(as.vector(x[, i]), ...)
+               if (has.labs) {
+                 par(usr = c(0, 1, 0, 1))
+                 if (is.null(cex.labels)) {
+                   l.wid <- strwidth(labels, "user")
+                   cex.labels <- max(0.8, min(2, 0.9/max(l.wid)))
+                 }
+                 text.panel(0.5, label.pos, labels[i], cex = cex.labels, 
+                            font = font.labels)
+               }
+             }
+             else if (i < j) 
+               localLowerPanel(as.vector(x[, j]), as.vector(x[, 
+                                                              i]), ...)
+             else localUpperPanel(as.vector(x[, j]), as.vector(x[, 
+                                                                 i]), ...)
+             if (any(par("mfg") != mfg)) 
+               stop("the 'panel' function made a new plot")
+           }
+           else par(new = FALSE)
+         }
+    if (!is.null(main)) {
+      font.main <- if ("font.main" %in% nmdots) 
+        dots$font.main
+      else par("font.main")
+      cex.main <- if ("cex.main" %in% nmdots) 
+        dots$cex.main
+      else par("cex.main")
+      mtext(main, 3, 3, TRUE, 0.5, cex = cex.main, font = font.main)
+    }
+    invisible(NULL)
+  }
+data(iris)
+pairs2(iris[1:4], main = "Anderson's Iris Data -- 3 species",pch = 21, bg = c("red", "green3", "blue")[unclass(iris$Species)])
+-------------------------------------------------------------------------------------------------------
+require(fields)
+plot(1:10, rep(1,10), ylim=c(0,10))
+ colorbar.plot( 2, 4, 800*density(rgamma(100, shape=2))$y)
+ colorbar.plot( 2, 5, 800*density(rexp(100))$y)
+ colorbar.plot( 2, 6, 800*density(rnorm(100))$y)
+ colorbar.plot( 2, 7, 800*density(rlnorm(100))$y)
+ text(6,4, "Gamma")
+ text(6,5, "Exponential")
+ text(6,6, "Normal")
+ text(6,7, "LogNormal")
+-------------------------------------------------------------------------------------------------------
+for if (i == 1 & j == 2){
+   mtext("This title should be centered according to the plot matrix", side=3,
+        line=2, outer=FALSE, adj=0.5, at=0.5)
+} outer = FALSE d <- 4
+d2 <- d*d
+layout.mat <- matrix(1:d2, byrow=TRUE, ncol=d) # plot matrix
+layout.mat <- cbind(layout.mat, rep(0, d)) # space
+layout.mat <- cbind(layout.mat, rep(d2+1, d)) # column on the right side
+layout.mat <- rbind(c(rep(18,d),0,0),layout.mat) #Add row on top
+wspace <- 6*par("csi")*2.54 # width of the space in character height in cm
+wside <- 3*par("csi")*2.54 # width of the right side in character height in cm
+#Note adjustments to heights
+layout(layout.mat, respect=TRUE, widths=c(rep(1, d), lcm(wspace), lcm(wside)),
+       heights = c(0.25,rep(1,nrow(layout.mat)-1)))
+layout.show(d2+1)
+par(mar=rep(0, 4), oma=c(4,4,6,4))
+for(i in 1:d){
+    for(j in 1:d){
+        plot.new()
+        plot.window(xlim=c(0,1), ylim=c(0,1))
+        ll <- par("usr")
+        rect(ll[1], ll[3], ll[2], ll[4])
+        text(0.5, 0.5, paste("i=",i,", j=",j,sep=""), cex=1.4)
+    }
+}
+plot.new()
+plot.window(xlim=c(0,1), ylim=c(0,1))
+ll <- par("usr")
+rect(ll[1], ll[3], ll[2], ll[4])
+text(0.5, 0.5, "side", cex=1.4)
+
+## title
+plot.new()
+plot.window(xlim=c(0,1), ylim=c(0,1))
+ll <- par("usr")
+#rect(ll[1], ll[3], ll[2], ll[4])
+text(0.5, 0.5, "top", cex=1.4)
+-------------------------------------------------------------------------------------------------------
+las=2 plot() xaxt="" axis(1, at= ..., labels=...) text(x=midpts, y=-2, names(DD), cex=0.8, srt=45, xpd=TRUE)
+-------------------------------------------------------------------------------------------------------
+R> x = rnorm(10)
+R> boxplot(x, ylim=c(-3, 3))
+R> text(1, 1, "Hi", col=2) text(1, means, LETTERS[length(means)], col=2) text(1.3, means, LETTERS[length(means)], col=2)
+-------------------------------------------------------------------------------------------------------
+plotcorr ellipse data(mtcars)
+Corrmat  <- cor(mtcars)
+cols <- ifelse(Corrmat>0, rgb(0,0,abs(Corrmat)), rgb(abs(Corrmat),0,0))
+
+library(ellipse)
+plotcorr(Corrmat,col=cols)
+
+n <- nrow(Corrmat)
+for (i in 1:n)
+{
+    for (j in 1:n)
+    {
+        text(j,i,round(Corrmat[n-i+1,j],2),col="white",cex=0.6)     
+    }
+}
+-------------------------------------------------------------------------------------------------------
+#line171 - change oversized font size of input label
+    fontsize = max(0.5,frInputs[j]*1.5)#1.5 instead of 2.5 
+
+    #line223 - srt changes from 35 to 90 to orient labels vertically, 
+    #and offset adjusts them to get better alignment with arrows
+    text(txtX, txtY, fullLabel, cex=fontsize, pos=4, srt=90, offset=0.1)
+-------------------------------------------------------------------------------------------------------
+value<-rnorm(100,1000,200) ##create list of numbers, "scan()" may be used for real observations
+nmbrs<-length(value) ## determine the length of vector
+obrv<-1:length(value) ## create list of observations
+par(xpd=FALSE)
+sd1<-sd(value[1:20])*1 ## 1 standart deviation
+sd2<-sd(value[1:20])*2 ## 2 standart deviations
+sd3<-sd(value[1:20])*3 ## 3 standart deviations
+usd1<-mean(value)+sd1 ## upper limit
+lsd1<-mean(value)-sd1 ## lower limit
+lsd2<-mean(value)-sd2 ## lower limit
+usd2<-mean(value)+sd2 ## upper limit
+usd3<-mean(value)+sd3 ## upper limit
+lsd3<-mean(value)-sd3 ## lower limit
+
+## ploting the grid
+plot(obrv,value,type="n",xlab="Observations",ylab="Value",ylim=c(lsd3-sd1,usd3+sd1))
+abline(h=mean(value),col=2,lty=1)
+abline(h=usd1,col=3,lty=3)
+abline(h=lsd1,col=3,lty=3)
+abline(h=usd2,col=4,lty=2)
+abline(h=lsd2,col=4,lty=2)
+abline(h=usd3,col=6,lty=1)
+abline(h=lsd3,col=6,lty=1)
+
+
+## 20 first values for L-G chart for QC limits
+for (i in 1:20) 
+{
+points(obrv[i],value[i],col="black")
+}
+lines(obrv[1:20],value[1:20],col="red")
+
+
+## if over mean - "red", under mean - "blue"
+for (i in 21:nmbrs) 
+{
+points(obrv[i],value[i],col="blue")
+segments(obrv[i-1],value[i-1],obrv[i],value[i],col="blue")
+}
+
+# 1s points - blue; 2s points - red
+#if (value[i]<usd1 || value[i]>lsd1) points(obrv[i],value[i],col="blue")
+#if (value[i]>usd1 || value[i]<lsd1) points(obrv[i],value[i],col="red")
+
+#12s violation rule
+#if (value[i]>usd1 || value[i]<usd1) text(30, usd3, "12s violation")
+#if (value[i]>usd1 || value[i]<usd1) text(30, usd3, "12s violation")
+#segments(obrv[i-1],value[i-1],obrv[i],value[i],col="blue")
+#if (value[i]>usd1) break
+#}
+
+
+#legend placement - might be omited
+#legend(1,min(value)-sd1*0.2,bg=8,c("mean","sd1","sd2","sd3"),lty=c(1,3,2,1),lwd=c(2.5,2.5,2.5,2.5),col=c(2,3,4,6),cex=0.8)
+-------------------------------------------------------------------------------------------------------
+ggplot plot plot.as.stack= function(mapdata1, mbar.col = "blue"){
+    # mapdata1 <- mapdata[mapdata$chr == chr,]
+    m <- par()$mar
+    m[1] <- m[3] <- 0
+    par(mar=m)
+    # Set the limits of the  plot
+    plot(mapdata1$position,mapdata1$position-mapdata1$position, type="n",
+       axes=FALSE, 
+    xlab="", ylab="Chromsome", yaxt="n" )
+
+    polygon(
+      c(0,max(mapdata1$position + 0.08 * max(mapdata1$position)),max(mapdata1$position)+
+         0.08 * max(mapdata1$position),0),
+      .2*c(-0.3,-0.3,0.3,0.3),
+      col= mbar.col
+    )
+    segments(mapdata1$position, -.3, mapdata1$position, .3 )
+    text(mapdata1$position, -.7, mapdata1$snpname, srt = 90, cex.lab = chr.lab)
+    text(mapdata1$position,  .7, mapdata1$position,cex.lab = chr.lab )
+    text(0, labels = paste("Chr",unique(mapdata1$chr)))
+}
+
+# Example Run.
+par(mfrow=c(length(unique(mapdata$chr)),1))
+x=by(mapdata,factor(mapdata$chr),plot.as.stack) # Assigned to x to prevent output
+par(mfrow=c(1,1)) by chr plot.as.stack = function(chr){
+    mapdata1 <- mapdata[mapdata$chr == chr,]
+    ...
+} par(mfrow=c(5,1))
+sapply(1:5,plot.as.stack)
+par(mfrow=c(1,1))
+-------------------------------------------------------------------------------------------------------
+text(outliers[,2], outliers[,3],labels=outliers[,1],cex=0.50, col=c("blue", "green")[ which(2^(data[,2]-data[,3]) >= 4 ,  2^(data[,2]-data[,3]) <=0.25)] ) which()
+-------------------------------------------------------------------------------------------------------
+PolarImageInterpolate <- function(x, y, z, outer.radius = 1, 
+            breaks, col, nlevels = 20, contours = TRUE, legend = TRUE, 
+            axes = TRUE, circle.rads = pretty(c(0,outer.radius))){
+
+        minitics <- seq(-outer.radius, outer.radius, length.out = 1000)
+        # interpolate the data
+        Interp <- akima:::interp(x = x, y = y, z = z, 
+                extrap = TRUE, 
+                xo = minitics, 
+                yo = minitics, 
+                linear = FALSE)
+        Mat <- Interp[[3]]
+
+        # mark cells outside circle as NA
+        markNA <- matrix(minitics, ncol = 1000, nrow = 1000) 
+        Mat[!sqrt(markNA ^ 2 + t(markNA) ^ 2) < outer.radius] <- NA 
+
+        # sort out colors and breaks:
+        if (!missing(breaks) & !missing(col)){
+            if (length(breaks) - length(col) != 1){
+                stop("breaks must be 1 element longer than cols")
+            }
+        }
+        if (missing(breaks) & !missing(col)){
+            breaks <- seq(min(Mat,na.rm = TRUE), max(Mat, na.rm = TRUE), length = length(col) + 1)
+            nlevels <- length(breaks) - 1
+        }
+        if (missing(col) & !missing(breaks)){
+            col <- rev(heat.colors(length(breaks) - 1))
+            nlevels <- length(breaks) - 1
+        }
+        if (missing(breaks) & missing(col)){
+            breaks <- seq(min(Mat,na.rm = TRUE), max(Mat, na.rm = TRUE), length = nlevels + 1)
+            col <- rev(heat.colors(nlevels))
+        }
+
+        # if legend desired, it goes on the right and some space is needed
+        if (legend) {
+            par(mai = c(1,1,1.5,1.5))
+        }
+
+        # begin plot
+        image(x = minitics, y = minitics, t(Mat), useRaster = TRUE, asp = 1, 
+            axes = FALSE, xlab = "", ylab = "", col = col, breaks = breaks)
+
+        # add contours if desired
+        if (contours){
+            CL <- contourLines(x = minitics, y = minitics, t(Mat), levels = breaks)
+            A <- lapply(CL, function(xy){
+                        lines(xy$x, xy$y, col = gray(.2), lwd = .5)
+                    })
+        }
+
+        # add radial axes if desired
+        if (axes){ 
+            # internals for axis markup
+            RMat <- function(radians){
+                matrix(c(cos(radians), sin(radians), -sin(radians), cos(radians)), ncol = 2)
+            }    
+
+            circle <- function(x, y, rad = 1, nvert = 500){
+                rads <- seq(0,2*pi,length.out = nvert)
+                xcoords <- cos(rads) * rad + x
+                ycoords <- sin(rads) * rad + y
+                cbind(xcoords, ycoords)
+            }
+
+            # draw circles
+            if (missing(circle.rads)){
+                circle.rads <- pretty(c(0,outer.radius))
+            }
+
+            for (i in circle.rads){
+                lines(circle(0, 0, i), col = "#66666650")
+            }
+
+            # put on radial spoke axes:
+            axis.rads <- c(0, pi / 6, pi / 3, pi / 2, 2 * pi / 3, 5 * pi / 6)
+            r.labs <- c(90, 60, 30, 0, 330, 300)
+            l.labs <- c(270, 240, 210, 180, 150, 120)
+
+            for (i in 1:length(axis.rads)){ 
+                endpoints <- zapsmall(c(RMat(axis.rads[i]) %*% matrix(c(1, 0, -1, 0) * outer.radius,ncol = 2)))
+                segments(endpoints[1], endpoints[2], endpoints[3], endpoints[4], col = "#66666650")
+                endpoints <- c(RMat(axis.rads[i]) %*% matrix(c(1.1, 0, -1.1, 0) * outer.radius, ncol = 2))
+                lab1 <- bquote(.(r.labs[i]) * degree)
+                lab2 <- bquote(.(l.labs[i]) * degree)
+                text(endpoints[1], endpoints[2], lab1, xpd = TRUE)
+                text(endpoints[3], endpoints[4], lab2, xpd = TRUE)
+            }
+            axis(2, pos = -1.2 * outer.radius, at = sort(union(circle.rads,-circle.rads)), labels = NA)
+            text( -1.21 * outer.radius, sort(union(circle.rads, -circle.rads)),sort(union(circle.rads, -circle.rads)), xpd = TRUE, pos = 2)
+        }
+
+        # add legend if desired
+        # this could be sloppy if there are lots of breaks, and that's why it's optional.
+        # another option would be to use fields:::image.plot(), using only the legend. 
+        # There's an example for how to do so in its documentation
+        if (legend){
+            ylevs <- seq(-outer.radius, outer.radius, length = nlevels + 1)
+            rect(1.2 * outer.radius, ylevs[1:(length(ylevs) - 1)], 1.3 * outer.radius, ylevs[2:length(ylevs)], col = col, border = NA, xpd = TRUE)
+            rect(1.2 * outer.radius, min(ylevs), 1.3 * outer.radius, max(ylevs), border = "#66666650", xpd = TRUE)
+            text(1.3 * outer.radius, ylevs,round(breaks, 1), pos = 4, xpd = TRUE)
+        }
+    }
+
+    # Example
+    set.seed(10)
+    x <- rnorm(20)
+    y <- rnorm(20)
+    z <- rnorm(20)
+    PolarImageInterpolate(x,y,z, breaks = seq(-2,8,by = 1)) image() # arguments:
+
+    # Mat, a matrix of z values as follows:
+    # leftmost edge of first column = 0 degrees, rightmost edge of last column = 360 degrees
+    # columns are distributed in cells equally over the range 0 to 360 degrees, like a grid prior to transform
+    # first row is innermost circle, last row is outermost circle
+
+    # outer.radius, By default everything scaled to unit circle 
+    # ppa: points per cell per arc. If your matrix is little, make it larger for a nice curve
+    # cols: color vector. default = rev(heat.colors(length(breaks)-1))
+    # breaks: manual breaks for colors. defaults to seq(min(Mat),max(Mat),length=nbreaks)
+    # nbreaks: how many color levels are desired?
+    # axes: should circular and radial axes be drawn? radial axes are drawn at 30 degree intervals only- this could be made more flexible.
+    # circle.rads: at which radii should circles be drawn? defaults to pretty(((0:ncol(Mat)) / ncol(Mat)) * outer.radius)
+
+    # TODO: add color strip legend.
+
+    PolarImagePlot <- function(Mat, outer.radius = 1, ppa = 5, cols, breaks, nbreaks = 51, axes = TRUE, circle.rads){
+
+        # the image prep
+        Mat      <- Mat[, ncol(Mat):1]
+        radii    <- ((0:ncol(Mat)) / ncol(Mat)) * outer.radius
+
+        # 5 points per arc will usually do
+        Npts     <- ppa
+        # all the angles for which a vertex is needed
+        radians  <- 2 * pi * (0:(nrow(Mat) * Npts)) / (nrow(Mat) * Npts) + pi / 2
+        # matrix where each row is the arc corresponding to a cell
+        rad.mat  <- matrix(radians[-length(radians)], ncol = Npts, byrow = TRUE)[1:nrow(Mat), ]
+        rad.mat  <- cbind(rad.mat, rad.mat[c(2:nrow(rad.mat), 1), 1])
+
+        # the x and y coords assuming radius of 1
+        y0 <- sin(rad.mat)
+        x0 <- cos(rad.mat)
+
+        # dimension markers
+        nc <- ncol(x0)
+        nr <- nrow(x0)
+        nl <- length(radii)
+
+        # make a copy for each radii, redimension in sick ways
+        x1 <- aperm( x0 %o% radii, c(1, 3, 2))
+        # the same, but coming back the other direction to close the polygon
+        x2 <- x1[, , nc:1]
+        #now stick together
+        x.array <- abind:::abind(x1[, 1:(nl - 1), ], x2[, 2:nl, ], matrix(NA, ncol = (nl - 1), nrow = nr), along = 3)
+        # final product, xcoords, is a single vector, in order, 
+        # where all the x coordinates for a cell are arranged
+        # clockwise. cells are separated by NAs- allows a single call to polygon()
+        xcoords <- aperm(x.array, c(3, 1, 2))
+        dim(xcoords) <- c(NULL)
+        # repeat for y coordinates
+        y1 <- aperm( y0 %o% radii,c(1, 3, 2))
+        y2 <- y1[, , nc:1]
+        y.array <- abind:::abind(y1[, 1:(length(radii) - 1), ], y2[, 2:length(radii), ], matrix(NA, ncol = (length(radii) - 1), nrow = nr), along = 3)
+        ycoords <- aperm(y.array, c(3, 1, 2))
+        dim(ycoords) <- c(NULL)
+
+        # sort out colors and breaks:
+        if (!missing(breaks) & !missing(cols)){
+            if (length(breaks) - length(cols) != 1){
+                stop("breaks must be 1 element longer than cols")
+            }
+        }
+        if (missing(breaks) & !missing(cols)){
+            breaks <- seq(min(Mat,na.rm = TRUE), max(Mat, na.rm = TRUE), length = length(cols) + 1)
+        }
+        if (missing(cols) & !missing(breaks)){
+            cols <- rev(heat.colors(length(breaks) - 1))
+        }
+        if (missing(breaks) & missing(cols)){
+            breaks <- seq(min(Mat,na.rm = TRUE), max(Mat, na.rm = TRUE), length = nbreaks)
+            cols <- rev(heat.colors(length(breaks) - 1))
+        }
+
+        # get a color for each cell. Ugly, but it gets them in the right order
+        cell.cols <- as.character(cut(as.vector(Mat[nrow(Mat):1,ncol(Mat):1]), breaks = breaks, labels = cols))
+
+        # start empty plot
+        plot(NULL, type = "n", ylim = c(-1, 1) * outer.radius, xlim = c(-1, 1) * outer.radius, asp = 1, axes = FALSE, xlab = "", ylab = "")
+        # draw polygons with no borders:
+        polygon(xcoords, ycoords, col = cell.cols, border = NA)
+
+        if (axes){
+
+            # a couple internals for axis markup.
+
+            RMat <- function(radians){
+                matrix(c(cos(radians), sin(radians), -sin(radians), cos(radians)), ncol = 2)
+            }
+
+            circle <- function(x, y, rad = 1, nvert = 500){
+                rads <- seq(0,2*pi,length.out = nvert)
+                xcoords <- cos(rads) * rad + x
+                ycoords <- sin(rads) * rad + y
+                cbind(xcoords, ycoords)
+            }
+            # draw circles
+            if (missing(circle.rads)){
+                circle.rads <- pretty(radii)
+            }
+            for (i in circle.rads){
+                lines(circle(0, 0, i), col = "#66666650")
+            }
+
+            # put on radial spoke axes:
+            axis.rads <- c(0, pi / 6, pi / 3, pi / 2, 2 * pi / 3, 5 * pi / 6)
+            r.labs <- c(90, 60, 30, 0, 330, 300)
+            l.labs <- c(270, 240, 210, 180, 150, 120)
+
+            for (i in 1:length(axis.rads)){ 
+                endpoints <- zapsmall(c(RMat(axis.rads[i]) %*% matrix(c(1, 0, -1, 0) * outer.radius,ncol = 2)))
+                segments(endpoints[1], endpoints[2], endpoints[3], endpoints[4], col = "#66666650")
+                endpoints <- c(RMat(axis.rads[i]) %*% matrix(c(1.1, 0, -1.1, 0) * outer.radius, ncol = 2))
+                lab1 <- bquote(.(r.labs[i]) * degree)
+                lab2 <- bquote(.(l.labs[i]) * degree)
+                text(endpoints[1], endpoints[2], lab1, xpd = TRUE)
+                text(endpoints[3], endpoints[4], lab2, xpd = TRUE)
+            }
+            axis(2, pos = -1.2 * outer.radius, at = sort(union(circle.rads,-circle.rads)))
+        }
+        invisible(list(breaks = breaks, col = cols))
+    } image() set.seed(1)
+    x <- runif(20, min = 0, max = 360)
+    y <- runif(20, min = 0, max = 40)
+    z <- rnorm(20)
+
+    Interp <- akima:::interp(x = x, y = y, z = z, 
+            extrap = TRUE, 
+            xo = seq(0, 360, length.out = 300), 
+            yo = seq(0, 40, length.out = 100), 
+            linear = FALSE)
+    Mat <- Interp[[3]]
+
+    PolarImagePlot(Mat)
+-------------------------------------------------------------------------------------------------------
+pairs pairs par(usr = c(0, 1, 0, 1)) log = "xy" par(usr = c(0, 1, 0, 1), xlog = FALSE, ylog = FALSE) ## adapted from panel.cor in ?pairs
+panel.cor <- function(x, y, digits=2, cex.cor, quarter, ...)
+{
+  usr <- par("usr"); on.exit(par(usr))
+  par(usr = c(0, 1, 0, 1), xlog = FALSE, ylog = FALSE)
+  r <- rev(tapply(seq_along(quarter), quarter, function(id) cor(x[id], y[id])))
+  txt <- format(c(0.123456789, r), digits=digits)[-1]
+  txt <- paste(names(txt), txt)
+  if(missing(cex.cor)) cex.cor <- 0.8/strwidth(txt)
+  text(0.5, c(0.2, 0.4, 0.6, 0.8), txt)
+}
+
+pairs(fruitsales[,3:5], log = "xy", 
+      diag.panel = function(x, ...) par(xlog = FALSE, ylog = FALSE),
+      label.pos = 0.5,
+      col = unclass(factor(fruitsales[,6])), 
+      pch = unclass(fruitsales[,7]), upper.panel = panel.cor, 
+      quarter = factor(fruitsales[,6]))
+-------------------------------------------------------------------------------------------------------
+text adj (x,y) text FUN <- function(n) {
+    plot.new()   
+    mtext("better?", side = 3, cex=1.5, adj = 0, padj = 1, col = "red") 
+    wrong <- letters[1:n]
+    text(0, .8, paste(wrong, collapse = "\n"), offset=.3, cex=1.5, adj=c(0,1))
+} adj=c(0,1) [0,1] mtext padj=1 adj FUN2 <- function(n) {
+    plot.new()   
+    mtext("better?", side = 3, cex=1.5, adj = 0, padj = 1, col = "red") 
+    wrong <- letters[1:n]
+    mtext(paste(wrong, collapse = "\n"), side = 3, cex=1.5,
+        adj = 0, padj = 1) # adj=1 means text on right side instead of left.
+}
+-------------------------------------------------------------------------------------------------------
+AnalyzeNumericData <- function(x,GroupVar=NA) {
+    VarList <- names(x)
+    NumVars <- length(VarList)
+
+    for (i in 1) {
+        if (is.numeric(x[,VarList[i]])) {
+            par(mfrow=c(2,2))
+            hist(x[,VarList[i]],main=paste("Histogram of ",VarList[i]),xlab=NA)
+            boxplot(x[,VarList[i]],main=paste("Boxplot of ",VarList[i]))
+            if (!is.na(GroupVar)) {
+                boxplot(x[,VarList[i]]~x[,GroupVar],main=paste("Boxplot of ",VarList[i]," by ", GroupVar))
+            }
+            plot(NA,NA,axes=F,xlim=c(0,10),ylim=c(0,10),xlab="",ylab="")
+            text(5,5,labels="MyText")
+        }
+    }
+}
+
+AnalyzeNumericData(mtcars,"cyl") x y text(x,y,labels="MyText") xlim ylim
+-------------------------------------------------------------------------------------------------------
+#First your data:
+y<-c(123,92,104,23,17,89,13)
+x<-c(11,45,24,50,18,7,2)
+size<-c(1236,1067,1176,610,539,864,1026)
+radius<-sqrt(size/pi)
+col<-c(2,2,3,4,5,5,6)
+name<-c("Acura", "Alfa Romeo","AM General","Aston Martin Lagonda","Audi","BMW","Bugatti")
+
+#Then a simple function to draw a circle based on its center and its radius:
+circle <- function (r, x0, y0, col){
+    t <- seq(0, 2 * pi, by = 0.01)
+    x <- r * cos(t) + x0
+    y <- r * sin(t) + y0
+    lines(x, y, col=col)
+    }
+
+#This is a smoothing factor:
+sm <- 500
+
+#The asp parameter is important here since we are actually drawing the circles and not plotting some circle symbols: if asp is not equal to 1 they will appear as ellipse.
+plot(x,y,type="n",asp=1)
+
+#This can probably be vectorized but I'm not a good vectorizer so if anyone wants to  give it a try:
+for(j in 1:length(x)){
+    radius[j]*sm:1/sm -> radiuses
+    colorRampPalette(c(palette()[col[j]], "white"))->col_grad
+    col_grad(length(radiuses))->colx
+    for(i in 1:length(radiuses)){circle(radiuses[i], x[j], y[j], col=colx[i])}
+    }
+
+text(x, y, name, cex=1.5,font=4) ?colorRampPalette offset<-c(2,-2) #Offset of the shadow circles
+ library(scales) #For function alpha
+
+ plot(x,y,type="n",asp=1)
+
+ for(j in 1:length(x)){
+     radius[j]*sm:1/sm -> radiuses
+     colorRampPalette(c(palette()[col[j]], "white"))->col_grad
+     col_grad(length(radiuses))->colx
+     for(i in 1:length(radiuses)){circle(radiuses[i], x[j]+offset[1], y[j]+offset[2], col=alpha("grey90",0.1))} #the alpha, the nuance of grey can be tweaked with obviously for the desired effect
+     for(i in 1:length(radiuses)){circle(radiuses[i], x[j], y[j], col=colx[i])}
+     }
+
+ text(x, y, name, cex=1.5,font=4)
+-------------------------------------------------------------------------------------------------------
+legend() cols <- c("orange","forestgreen")
+legend("topright", legend = c("North","South"),
+       fill = cols, border = cols, bty = "n") stats:::plot.dendrogram() text() stats:::plot.dendrogram() if (!is.null(et <- attr(x, "edgetext"))) {
+    my <- mean(hgt, yTop)
+    if (horiz) 
+        text(my, x0, et)
+    else text(x0, my, et)
+} ns::: ns
+-------------------------------------------------------------------------------------------------------
+txta txtb text set.seed(1)
+tmp <- matrix(replicate(4, rnorm(50)), ncol=4)
+panel.cor <- function(x, y, digits=2, prefix="", cex.cor, ...)
+{
+  usr <- par("usr"); on.exit(par(usr))
+  par(usr = c(0, 1, 0, 1))
+  rp <- cor(x, y, method="pearson", use="pairwise.complete.obs")
+  rs <- cor(x, y, method="spearman", use="pairwise.complete.obs")
+  rp <- format(rp, digits=digits)
+  rs <- format(rs, digits=digits)
+  txt <- substitute(list(R[p] == rp, R[s] == rs), list(rp=rp, rs=rs))
+  txta <- substitute(R[p] == rp, list(rp=rp))
+  txtb <- substitute(R[s] == rs, list(rs=rs))
+  if(missing(cex.cor)) cex.cor <- 0.8/strwidth(txt)
+  text(0.5, 0.6, txta, cex = 1.5)
+  text(0.5, 0.4, txtb, cex = 1.5)
+}
+panel.my.points <- function(x, y) {
+  points(x, y)
+  abline(0, 1)
+}
+pairs(tmp, 
+      lower.panel=panel.cor, 
+      upper.panel=panel.my.points, 
+      labels=c("model 1\nD1", "model 2\nD1", "model 1\nD2", "model 2\nD2"))
+-------------------------------------------------------------------------------------------------------
+size.range/2 size.range <- c(.1, 1) # Min and max radius of circles, in cm
+
+# Calculate the relative radius of each circle
+radii <- sqrt(agData$freq)
+radii <- diff(size.range)*(radii - min(radii))/diff(range(radii)) + size.range[1]
+
+# Plot in two panels
+mar0 <- par("mar")
+layout(t(1:2), widths=c(4,1))
+
+# Panel 1: The circles
+par(mar=c(mar0[1:3],.5))
+symbols(agData$class, agData$drv, radii, inches=size.range[2]/cm(1), bg="black")
+
+# Panel 2: The legend
+par(mar=c(mar0[1],.5,mar0[3:4]))
+symbols(c(0,0), 1:2, size.range, xlim=c(-4, 4), ylim=c(-2,4),
+        inches=1/cm(1), bg="black", axes=FALSE, xlab="", ylab="")
+text(0, 3, "Freq")
+text(c(2,0), 1:2, range(agData$freq), col=c("black", "white"))
+
+# Reset par settings
+par(mar=mar0) agData$freq with(agData, symbols(class, drv, sqrt(freq),
+     inches=size.range[2]/cm(1), bg="black"))
+with(agData, text(class, drv, freq, col="white"))
+-------------------------------------------------------------------------------------------------------
+score <- scores(pc)[, 1:2]
+fig<-ordiplot(score, type="n", main="PCoA")
+color <- c("red", "blue")
+sz <- as.numeric(df$type[as.numeric(rownames(score))])
+text(score, rownames(score), col=color[sz])
+-------------------------------------------------------------------------------------------------------
+R ?pie $ cat t.r 
+require(grDevices)
+
+pie.sales <- c(0.12, 0.3, 0.26, 0.16, 0.04, 0.12)
+png('t1.png')
+ pie(pie.sales, clockwise=TRUE, main="pie(*, clockwise=TRUE)", 
+     labels=c('a','b','c','d','e','f'))
+ segments(0,0, 0,1, col= "red", lwd = 2)
+ text(0,1, "init.angle = 90", col= "red")
+-------------------------------------------------------------------------------------------------------
+radarchart require(fmsb)
+x = c(rep(4.5,7),rep(0,7), 
+      3.34, 3.28, 1.37, 1.12, 3.52, 4.07, 3.66)
+a = as.data.frame(matrix(x,nrow=3, ncol=7,byrow=T))
+radarchart(a, axistype = 4, seg = 3, cglty = 3, 
+           pty = 32, cglcol = 1, plwd = 3, pcol = 1, axislabcol = 1,
+           labels = seq(from = min(x), to = max(x), length = 4)) radarchart = function (df, axistype = 0, seg = 4, pty = 16, pcol = 1:8, plty = 1:6, 
+          plwd = 1, cglty = 3, cglwd = 1, cglcol = "navy", axislabcol = "blue", 
+          title = "", maxmin = TRUE, na.itp = TRUE, labels = NULL, ...) 
+{
+  if (!is.data.frame(df)) {
+    cat("The data must be given as dataframe.\n")
+    return()
+  }
+  if ((n <- length(df)) < 3) 
+    return()
+  if (maxmin == FALSE) {
+    dfmax <- apply(df, 2, max)
+    dfmin <- apply(df, 2, min)
+    df <- rbind(dfmax, dfmin, df)
+  }
+  plot(c(-1.2, 1.2), c(-1.2, 1.2), type = "n", frame.plot = FALSE, 
+       axes = FALSE, xlab = "", ylab = "", main = title, asp = 1, 
+       ...)
+  theta <- seq(90, 450, length = n + 1) * pi/180
+  theta <- theta[1:n]
+  xx <- cos(theta)
+  yy <- sin(theta)
+  for (i in 0:seg) {
+    polygon(xx * (i + 1)/(seg + 1), yy * (i + 1)/(seg + 1), 
+            lty = cglty, lwd = cglwd, border = cglcol)
+    if (axistype == 1 | axistype == 3) 
+     ## Changes by me  
+     if(is.null(labels)) labels = paste(i/seg * 100, 
+                                         "(%)")
+      text(-0.05, (i + 1)/(seg + 1), labels[i+1], col = axislabcol)
+    if (axistype == 4 | axistype == 5) 
+      ## Changes by me
+      if(is.null(labels)) labels = sprintf("%3.2f", i/seg)
+      text(-0.05, (i + 1)/(seg + 1), labels[i+1], 
+           col = axislabcol)
+  }
+  arrows(xx/(seg + 1), yy/(seg + 1), xx * 1, yy * 1, lwd = cglwd, 
+         lty = cglty, length = 0, col = cglcol)
+  if (axistype == 2 | axistype == 3 | axistype == 5) {
+    text(xx[1:n], yy[1:n], df[1, 1:n], col = axislabcol)
+  }
+  text(xx * 1.2, yy * 1.2, colnames(df))
+  series <- length(df[[1]])
+  if (length(pty) < (series - 2)) {
+    ptys <- rep(pty, series - 2)
+    pcols <- rep(pcol, series - 2)
+    pltys <- rep(plty, series - 2)
+    plwds <- rep(plwd, series - 2)
+  }
+  else {
+    ptys <- pty
+    pcols <- pcol
+    pltys <- plty
+    plwds <- plwd
+  }
+  for (i in 3:series) {
+    xxs <- xx
+    yys <- yy
+    scale <- 1/(seg + 1) + (df[i, ] - df[2, ])/(df[1, ] - 
+      df[2, ]) * seg/(seg + 1)
+    if (sum(!is.na(df[i, ])) < 3) {
+      cat(sprintf("[DATA NOT ENOUGH] at %d\n%g\n", i, df[i, 
+                                                         ]))
+    }
+    else {
+      for (j in 1:n) {
+        if (is.na(df[i, j])) {
+          if (na.itp) {
+            left <- ifelse(j > 1, j - 1, n)
+            while (is.na(df[i, left])) {
+              left <- ifelse(left > 1, left - 1, n)
+            }
+            right <- ifelse(j < n, j + 1, 1)
+            while (is.na(df[i, right])) {
+              right <- ifelse(right < n, right + 1, 1)
+            }
+            xxleft <- xx[left] * (1/(seg + 1) + (df[i, 
+                                                    left] - df[2, left])/(df[1, left] - df[2, 
+                                                                                           left]) * seg/(seg + 1))
+            yyleft <- yy[left] * (1/(seg + 1) + (df[i, 
+                                                    left] - df[2, left])/(df[1, left] - df[2, 
+                                                                                           left]) * seg/(seg + 1))
+            xxright <- xx[right] * (1/(seg + 1) + (df[i, 
+                                                      right] - df[2, right])/(df[1, right] - 
+                                                        df[2, right]) * seg/(seg + 1))
+            yyright <- yy[right] * (1/(seg + 1) + (df[i, 
+                                                      right] - df[2, right])/(df[1, right] - 
+                                                        df[2, right]) * seg/(seg + 1))
+            if (xxleft > xxright) {
+              xxtmp <- xxleft
+              yytmp <- yyleft
+              xxleft <- xxright
+              yyleft <- yyright
+              xxright <- xxtmp
+              yyright <- yytmp
+            }
+            xxs[j] <- xx[j] * (yyleft * xxright - yyright * 
+              xxleft)/(yy[j] * (xxright - xxleft) - xx[j] * 
+              (yyright - yyleft))
+            yys[j] <- (yy[j]/xx[j]) * xxs[j]
+          }
+          else {
+            xxs[j] <- 0
+            yys[j] <- 0
+          }
+        }
+        else {
+          xxs[j] <- xx[j] * (1/(seg + 1) + (df[i, j] - 
+            df[2, j])/(df[1, j] - df[2, j]) * seg/(seg + 
+            1))
+          yys[j] <- yy[j] * (1/(seg + 1) + (df[i, j] - 
+            df[2, j])/(df[1, j] - df[2, j]) * seg/(seg + 
+            1))
+        }
+      }
+      polygon(xxs, yys, lty = pltys[i - 2], lwd = plwds[i - 
+        2], border = pcols[i - 2])
+      points(xx * scale, yy * scale, pch = ptys[i - 2], 
+             col = pcols[i - 2])
+    }
+  }
+}
+-------------------------------------------------------------------------------------------------------
+mx=12
+ my=12
+ par(mar = c(mx,my, 4, 2) + 0.1)
+ plot(c(1,4),c(1,4),type="n",main="title",xlab="site.x",ylab="ylab")
+ rect(xleft,ybottom,xright,ytop,col=c("blue","red","green"))
+ text(par()$usr[1]-0.5,y.label.position,y.label,xpd=TRUE,adj=1)
+ text(y=par()$usr[3]-0.5,x=x.label.position,x.label,xpd=TRUE,adj=1,srt=90) mx my xpd=TRUE par(xpd=TRUE)
+ legend(locator(1),legend=c("Species A","Species B","Species C"),
+                             fill=c("blue", "red", "green")) locator(1) list(x=-0.7,y=0.6) ggplot
+-------------------------------------------------------------------------------------------------------
+```{r example_pairs, include = F, fig.keep = 'none'}
+example(pairs)
+```
+
+```{r test}
+exists('panel.cor')
+``` ## [1] TRUE panel.cor give.lines .ex <- example(pairs, give.lines = T)
+# find the code in question (look for assignment / scope delimiters)
+which(grepl(.ex, pattern = "(panel.hist <-)|(panel.cor <-)|[{}]"))
+##[1] 18 19 26 33 34 42
+
+cat(.ex[c(18:26, 33:42)], sep = "\n")
+panel.hist <- function(x, ...)
+{
+    usr <- par("usr"); on.exit(par(usr))
+    par(usr = c(usr[1:2], 0, 1.5) )
+    h <- hist(x, plot = FALSE)
+    breaks <- h$breaks; nB <- length(breaks)
+    y <- h$counts; y <- y/max(y)
+    rect(breaks[-nB], 0, breaks[-1], y, col="cyan", ...)
+}
+panel.cor <- function(x, y, digits=2, prefix="", cex.cor, ...)
+{
+    usr <- par("usr"); on.exit(par(usr))
+    par(usr = c(0, 1, 0, 1))
+    r <- abs(cor(x, y))
+    txt <- format(c(r, 0.123456789), digits=digits)[1]
+    txt <- paste(prefix, txt, sep="")
+    if(missing(cex.cor)) cex.cor <- 0.8/strwidth(txt)
+    text(0.5, 0.5, txt, cex = cex.cor * r)
+}
+-------------------------------------------------------------------------------------------------------
+with(Forbes2000top50ccompanies, 
+         text(x=assets, y=sales,  labels=substr(Forbes2000top50ccompanies$country, 1, 4), cex=0.6) )
+-------------------------------------------------------------------------------------------------------
+library(sqldf)
+
+# create new empty database called mydb
+sqldf("attach 'mydb' as new") 
+
+ sqldf("create table catalog (id integer not null, pid integer,name text(10) ）", dbname = "mydb")
+
+#close 
+sqldf()
+-------------------------------------------------------------------------------------------------------
+barplot( t, main="Sample Sizes of Various Fitness Traits", 
+            xaxt='n', xlab='', width=0.85, ylab="Frequency")
+labels<-unlist(data[1,,drop=FALSE])
+text(1:18, par("usr")[3] -0.25, srt=90, adj=1,labels=labels,xpd=TRUE, cex=0.6)
+ table rep(as.character(dat[, 1]), dat[, 2])) dat barplot( as.numeric( as.character(dat$freqs)) , 
+    main="Sample Sizes of Various Fitness Traits", 
+    xaxt='n', xlab='', width=0.85, ylab="Frequency")
+ labels<-unlist(data[1,,drop=FALSE])
+ text(1:18, par("usr")[3] -0.25, srt=90, adj=1,labels=labels,xpd=TRUE, cex=0.6)
+-------------------------------------------------------------------------------------------------------
+dashboard <- function(dial=list(
+                        list(color="red",
+                             range=c(10, 40)),
+                        list(color="yellow",
+                             range=c(40, 60)),
+                        list(color="green",
+                             range=c(70, 100))
+                        ),
+                      value=from) {
+
+
+  from <- min(unlist(lapply(dial, "[[", i="range")))
+  to <-  max(unlist(lapply(dial, "[[", i="range")))
+
+  theta <- seq(-pi/3, pi + pi/3, length=100)
+  r <- 1
+
+  scale <- function(x) {
+    m <- (pi + pi/3 - (-pi/3))/(from - to)
+    (pi + pi/3) + m*(x - from)
+  }
+
+  plot.new()
+  plot.window(xlim=c(-1, 1), ylim=c(sin(-pi/3), 1))
+
+  lines(cos(theta), sin(theta))
+  sapply(dial, function(l) {
+    d <- scale(l$range)
+    x <- seq(d[1], d[2], length=100)
+    lines(cos(x), sin(x), col=l$color, lwd=3)
+  })
+
+  ticks <- pretty(c(from, to), n=5)
+  ticks_th <- scale(ticks)
+  r <- 1 - .15
+  text(r*cos(ticks_th), r*sin(ticks_th), labels=ticks)
+
+  sapply(ticks_th, function(th) {
+    lines(cos(th)*c(1,.95), sin(th)*c(1, .95))
+  })
+
+  r <- 1 - .25
+  th <- scale(value)
+  arrows(0, 0, cos(th), sin(th))
+
+
+}
+
+dashboard( value=60)
+-------------------------------------------------------------------------------------------------------
+text(x=(1:3)+.2, y=-0.5, labels=paste0( "prob=\n", round( sapply(list(state1, state2, state3), mean)/length(c(state1, state2, state3)) ,2) ) )
+-------------------------------------------------------------------------------------------------------
+d1 d28 # Get the submatrices
+I <- unlist(lapply(0:6, function(a) a:6))
+J <- rep(0:6, 7:1)
+d2 <- mapply(function(i,j) d[1:6+6*i, 1:6+6*j], I, J, SIMPLIFY=FALSE)
+
+# Setup the layout and add an outer margin for the title and axis labels
+layout(matrix(c(1:28, 0, 0), 5, 6))
+par(oma=c(3,3,3,1), mar=c(2,2,1,1))
+
+# Plot all the matrices oriented the same way they appear in text
+# i.e. the first (vertical) dimension is plotted along the Y-axis
+for(k in 1:length(d2)){
+    x <- 1:6+6*J[k]
+    y <- 1:6+6*I[k]
+
+    # Heatmap & grid
+    image(x, y, t(d2[[k]][nrow(d2[[k]]):1,]), las=1, axes=FALSE,
+          breaks=c(-1e10, -5.45, -4.65, 4.65, 5.45, 1e10),
+          col=c("red","orange","white","orange","red"))
+    xg <- apply(!is.na(d2[[k]]), 2, sum)
+    yg <- rev(apply(!is.na(d2[[k]]), 1, sum))
+    segments(c(x[1]-1, x)+.5, min(y)-.5,
+             c(x[1]-1, x)+.5, min(y)+c(6, yg)-.5, xpd=TRUE)
+    segments(min(x)-.5,         c(y[1]-1, y)+.5,
+             min(x)+c(6,xg)-.5, c(y[1]-1, y)+.5, xpd=TRUE)
+
+    # X & Y-axis values
+    mtext(x, 1, .1, at=x, cex=.5)
+    mtext(rev(y), 2, .2, at=y, las=1, cex=.5)
+
+    # Values of each cell
+    text(rep(x, each=6), rep(rev(y), 6),
+     sub("NA", "", sprintf("%.2f", d2[[k]])), cex=.3)
+}
+
+# Add title and axis labels
+title("All 28 submatrices", outer=TRUE)
+mtext("Columns", outer=TRUE, 1, 1)
+mtext("Rows", outer=TRUE, 2, 1) xpd segments
+-------------------------------------------------------------------------------------------------------
+text() plot(abs_losses, pers, main= "Absolute)",xlab= "Loss",ylab= "Losses relative (in % of January´2007 value)",col= "blue", pch = 19, cex = 1, lty = "solid", lwd = 2)
+
+text(abs_losses, , labels=namebank, cex= 0.7) pos= text(abs_losses, , labels=namebank, cex= 0.7, pos=3) 
+pos pos_vector <- rep(3, length(namebank))
+pos_vector[namebank %in% c("Goldman_Sachs", "Societé_Generale", "UBS")] <- 4
+ text(abs_losses, percent_losses, labels=namebank, cex= 0.7, pos=pos_vector)
+-------------------------------------------------------------------------------------------------------
+{ } R> plot(1:10, type = "n")
+R> text(5, 5, expression(P(a <= {X <= b})), cex = 1.2) plotmath
+-------------------------------------------------------------------------------------------------------
+ps 12 pointsize 10 par(ps=10); text(...) cex cex ps
+-------------------------------------------------------------------------------------------------------
+boxplot() rect() rect() text() set.seed(123)
+  x<-rnorm(100)
+  boxplot(x,horizontal=TRUE,axes=FALSE)
+  rect(min(x),1.5,quantile(x,0.25),1.4,col="red")
+  rect(quantile(x,0.25),1.5,quantile(x,0.60),1.4,col="green")
+  rect(quantile(x,0.60),1.4,max(x),1.5,col="yellow")
+  text(-1.5,1.45,"25%")
+  text(0,1.45,"35%")
+  text(1.1,1.45,"40%")
+-------------------------------------------------------------------------------------------------------
+myd <- data.frame(period = c("", "Triassic", "Jurasic", 
+                             "Cretaceous", "Cenzoic", ""), 
+                  myears = c(260, 245, 208, 145, 65, -5), 
+                  label = c(260, 226, 176,105, 32, -5))
+myd2 <- data.frame(event = c("Dinosaurs_strt", "Birds", 
+                             "Dinosaurs_ext", "Human"), 
+                   myears = c(235, 200, 60, 0.5))
+myd2$x <- 1
+with(myd2, plot(x, myears, ylim = c(-5, 250), xlim = c(0, 10), 
+                axes = FALSE, xlab = "", ylab = "", type = "n"))
+with(myd2, text(x, myears, event, pos = 4, xpd = TRUE))
+axis(side = 2, at = myd$label, labels = myd$period, las = 2)
+X0 <- rep(myd2$x, 4)
+Y0 <- myd2$myears
+X1 <- rep(-.25, 4)
+Y1 <- Y0
+arrows(X0, Y0, X1, Y1) pch arrows
+-------------------------------------------------------------------------------------------------------
+boxplot plot = FALSE text d <- boxplot(len~supp*dose, data=ToothGrowth,plot = FALSE)
+
+ boxplot(len~supp*dose, data=ToothGrowth, notch=TRUE,
+  col=(c("gold","darkgreen")),
+   main="Tooth Growth", xlab="Suppliment and Dose",axes = FALSE )
+
+for (i in 1:ncol(d$stats)){
+    text(i,d$stats[,i],labels = d$stats[,i],cex = 0.75,adj = c(0.5,0))
+    text(i,d$stats[5,i]+1,labels = paste0("n=",d$n[i]),cex = 0.75)
+    text(i-0.25,d$stats[3,i],labels = d$names[i],adj = 1,cex = 0.75)
+}
+-------------------------------------------------------------------------------------------------------
+my1 <- data.frame (company = rep(c("A", "B", "C"), each = 7), skillsDg = rep(c("Basic", "HighSc", "Undgd", "MAST", "PHD", "EXPD", "EXECT"), 3), number = c(200, 100, 40, 30, 10, 0, 0, 220, 110, 35, 10, 0, 4, 1, 140, 80, 120, 50, 52, 52, 3) )
+
+my2 <- split(my1,my1$company) #split your dataframe into a list where each element is a company
+# The next line create the layout
+layout(matrix(1:(length(my2)+1), nrow=1), width=c(1,rep(4,length(my2))))
+# Then we draw the x-axis:
+par(mar=c(3,0,3,0))
+plot(NA,axes=F, xlim=c(0,1),ylim=c(1,nlevels(my1$skillsDg)))
+axis(side=4,tick=F,labels=unique(my1$skillsDg),
+     at=seq_along(unique(my1$skillsDg)), las=2, line=-4)
+# Then we apply a graphing function to each company:
+lapply(my2,function(x){
+    par(mar=c(3,0,3,0))
+    plot(NA, xlim=c(-max(my1$number),max(my1$number)), 
+             ylim=c(1,nlevels(my1$skillsDg)),axes=F)
+    title(sub=x$company[1],line=1)
+    abline(h=seq_along(x$skillsDg), col="grey80")
+    polygon(x=c(x$number,rev(-1*x$number)), 
+            y=c(seq_along(x$skillsDg),rev(seq_along(x$skillsDg))), 
+            col=as.numeric(x$company))
+    }) lapply layout(matrix(1:(length(my2)+1), nrow=1), width=c(1,rep(4,length(my2))))
+par(mar=c(3,0,3,0))
+plot(NA,axes=F, xlim=c(0,1),ylim=c(1,nlevels(my1$skillsDg)))
+axis(side=4,tick=F,labels=unique(my1$skillsDg),
+    at=seq_along(unique(my1$skillsDg)), las=2, line=-4)
+lapply(my2,function(x){
+    par(mar=c(3,0,3,0))
+    plot(NA, xlim=c(-max(my1$number)-50,max(my1$number)+50), 
+        ylim=c(1,nlevels(my1$skillsDg)),axes=F)
+    title(sub=x$company[1],line=1)
+    abline(h=seq_along(x$skillsDg), col="grey80")
+    text(x=x$number+5, y=seq_along(x$skillsDg)+.1, label=x$number, pos=4)
+    polygon(x=c(x$number,rev(-1*x$number)), 
+        y=c(seq_along(x$skillsDg),rev(seq_along(x$skillsDg))), 
+        col=as.numeric(x$company))
+    })
+-------------------------------------------------------------------------------------------------------
+txtlab <- c("2", "4", "6", "8", "Inf")
+txtpos <- c(1.25, 2, 3, 4, 4.75)
+ctlns <- contourLines(x, y, z2, levels=c(3, 5, 7, 9))
+filled.contour(x,y,z2,col=rainbow(200),nlevels=200, 
+     plot.axes={axis(1); axis(2); text(txtpos, txtpos, txtlab, cex=1.5);
+     sapply(1:4, function(x) lines(ctlns[[x]][[2]], ctlns[[x]][[3]], lwd=2))
+})
+-------------------------------------------------------------------------------------------------------
+hist freq=FALSE breaks set.seed(1)
+f1 <- rnorm(100, mean=0, sd=1)
+f2 <- rnorm(100, mean=3, sd=3)
+f3 <- rnorm(100, mean=4, sd=1)
+f4 <- rnorm(100, mean=7, sd=3)
+
+breaks <- pretty(c(f1, f2, f3, f4), n=20)
+x11(width=4, height=8)
+op <- par(mfcol=c(4,1))
+hist(f1, freq=FALSE, breaks=breaks)
+hist(f2, freq=FALSE, breaks=breaks)
+hist(f3, freq=FALSE, breaks=breaks)
+hist(f4, freq=FALSE, breaks=breaks)
+par(op) t set.seed(1)
+
+N <- 100
+M <- 7
+MEAN <- c(1:M)
+SD <- MEAN*0.2+1
+RES <- list()
+
+for(i in seq(M)){
+    RES[[i]] <- rnorm(N, mean=MEAN[[i]], sd=SD[[i]])
+}
+
+
+breaks <- pretty(unlist(RES), n=20)
+x11(width=4, height=10)
+op <- par(mfcol=c(M,1), mar=c(1,3,0,0), oma=c(3,2,1,1))
+for(i in seq(M)){
+    h1 <- hist(RES[[i]], breaks=breaks, plot=FALSE)
+    plot(h1$mids, h1$densit, t="n", xlab="", ylab="", xaxt="n")
+    grid()
+    lines(h1$mids, h1$densit, t="S")
+    text(par()$usr[1], par()$usr[3]+(par()$usr[4]-par()$usr[3])*0.9, labels=paste("t", i), pos=4)
+    if(i == M){
+        axis(1)
+    } else {
+        axis(1, labels=FALSE)
+    }
+}
+mtext("Density", outer=TRUE, side=2, line=0)
+par(op)
+-------------------------------------------------------------------------------------------------------
+clpl <- function(xdata, names, y=1, dy=0.25, add=FALSE){
+  o = order(xdata)
+  xdata=xdata[o]
+  names=names[o]
+  if(!add)plot(0,type="n",ylim=c(y-1,y+2),xlim=range(xdata),axes=F,ylab="",xlab="")
+  abline(h=1,lwd=4)
+  dy=0.25
+  segments(xdata,y-dy,xdata,y+dy)
+  tpos = seq(min(xdata),max(xdata),len=length(xdata))
+  text(tpos,y+2*dy,names,srt=90,adj=0)
+  segments(xdata,y+dy,tpos,y+2*dy)
+} clpl(mydf$position[lg1:lg2],mydf$mylab[lg1:lg2])
+-------------------------------------------------------------------------------------------------------
+intersects <- list()
+
+## find all intersections (NULLs do nothing to the result)
+for (i in 1:nrow(Soils)) {
+  for (j in 1:nrow(Parcels)) {
+    intersects[[sprintf("%sx%s", i, j)]] <- gIntersection(Soils[i,],
+                                                          Parcels[j,]) 
+  }
+}
+
+result <- list()
+## let's try Parcels, transfer data attributes to new pieces
+for (i in 1:nrow(Parcels)) {
+  for (j in seq_along(intersects))
+   if(gContains(Parcels[i,], intersects[[j]])) {
+     result <- c(result, SpatialPolygonsDataFrame(intersects[[j]],     as.data.frame(Parcels[i,]), match.ID = FALSE))
+
+   }
+}
+
+
+## plot
+plot(Parcels, xlim = range(c(bbox(Parcels)[1,], bbox(Soils[1,]))),
+     ylim = range(c(bbox(Parcels)[2,], bbox(Soils[2,]))))
+plot(Soils, add = TRUE)
+
+cols <- colorRampPalette(c("lightblue", "darkblue"))(length(result))
+for (i in 1:length(result)) plot(result[[i]], col = cols[i], add = TRUE)
+for (i in 1:length(result)) text(coordinates(result[[i]]), label =     as.data.frame(result[[i]])[,"soilType"])
+-------------------------------------------------------------------------------------------------------
+ape phylo library(ape)
+dat <- read.tree(file="your/newick/file")
+#or
+dat <- read.tree(text="((A:4.2,B:4.2):3.1,C:7.3);") dendrogram data(bird.orders) #This is already a phylo object
+hc <- as.hclust(bird.orders) #Compulsory step as as.dendrogram doesn't have a method for phylo objects.
+dend <- as.dendrogram(hc)
+plot(dend, horiz=TRUE) mat <- matrix(rnorm(23*23),nrow=23, dimnames=list(sample(bird.orders$tip, 23), sample(bird.orders$tip, 23))) #Some random data to plot ord.mat <- mat[bird.orders$tip,bird.orders$tip] heatmap heatmap(ord.mat, Rowv=dend, Colv=dend) heatmap.phylo <- function(x, Rowp, Colp, ...){
+    # x numeric matrix
+    # Rowp: phylogenetic tree (class phylo) to be used in rows
+    # Colp: phylogenetic tree (class phylo) to be used in columns
+    # ... additional arguments to be passed to image function
+    x <- x[Rowp$tip, Colp$tip]
+    xl <- c(0.5, ncol(x)+0.5)
+    yl <- c(0.5, nrow(x)+0.5)
+    layout(matrix(c(0,1,0,2,3,4,0,5,0),nrow=3, byrow=TRUE),
+                  width=c(1,3,1), height=c(1,3,1))
+    par(mar=rep(0,4))
+    plot(Colp, direction="downwards", show.tip.label=FALSE,
+               xlab="",ylab="", xaxs="i", x.lim=xl)
+    par(mar=rep(0,4))
+    plot(Rowp, direction="rightwards", show.tip.label=FALSE, 
+               xlab="",ylab="", yaxs="i", y.lim=yl)
+    par(mar=rep(0,4), xpd=TRUE)
+    image((1:nrow(x))-0.5, (1:ncol(x))-0.5, x, 
+           xaxs="i", yaxs="i", axes=FALSE, xlab="",ylab="", ...)
+    par(mar=rep(0,4))
+    plot(NA, axes=FALSE, ylab="", xlab="", yaxs="i", xlim=c(0,2), ylim=yl)
+    text(rep(0,nrow(x)),1:nrow(x),Rowp$tip, pos=4)
+    par(mar=rep(0,4))
+    plot(NA, axes=FALSE, ylab="", xlab="", xaxs="i", ylim=c(0,2), xlim=xl)
+    text(1:ncol(x),rep(2,ncol(x)),Colp$tip, srt=90, pos=2)
+    } heatmap.phylo(mat, bird.orders, bird.orders) cat("owls(((Strix_aluco:4.2,Asio_otus:4.2):3.1,Athene_noctua:7.3):6.3,Tyto_alba:13.5);",
+    file = "ex.tre", sep = "\n")
+tree.owls <- read.tree("ex.tre")
+mat2 <- matrix(rnorm(4*4),nrow=4, 
+             dimnames=list(sample(tree.owls$tip,4),sample(tree.owls$tip,4)))
+is.ultrametric(tree.owls)
+[1] FALSE
+heatmap.phylo(mat2,tree.owls,tree.owls)
+-------------------------------------------------------------------------------------------------------
+#Create data
+set.seed(1)
+basenums <- c(1,2,3,4,8,15,30)
+vv=matrix(c(basenums, sample(basenums), 1-basenums, 
+          c(0, 29, 30, 31, 32, 33, 60)),nrow=7,ncol=4,byrow=F)
+dimnames(vv)=list(c("one","two","three","four","five","six","seven"), 1:4) #Reshape data
+vv_dat <- as.data.frame(vv)
+vv_dat$row <- row.names(vv_dat)
+library(reshape2)
+new_vv <- melt(vv_dat, id.vars="row")
+
+#Get boxplot data
+bxpdat <- as.data.frame(boxplot(value~variable, data=new_vv)[c("out", "group")])
+
+#Get matches with boxplot data
+text_guide <- do.call(rbind, apply(bxpdat, 1, 
+    function(x) new_vv[new_vv$value==x[1]&new_vv$variable==x[2], ]))
+
+#Add labels
+with(text_guide, text(x=as.numeric(variable)+0.2, y=value, labels=row))
+-------------------------------------------------------------------------------------------------------
+pairs() panel.cor() panel.cor <- function(x, y, digits=2, cex.cor)
+{
+  usr <- par("usr"); on.exit(par(usr))
+  par(usr = c(0, 1, 0, 1))
+  r <- abs(cor(x, y))
+  txt <- format(c(r, 0.123456789), digits=digits)[1]
+  test <- cor.test(x,y)
+  Signif <- ifelse(round(test$p.value,3)<0.001,"p<0.001",paste("p=",round(test$p.value,3)))  
+  text(0.5, 0.25, paste("r=",txt))
+  text(.5, .75, Signif)
+} panel.smooth() cex= col= pch= panel.smooth<-function (x, y, col = "blue", bg = NA, pch = 18, 
+                        cex = 0.8, col.smooth = "red", span = 2/3, iter = 3, ...) 
+{
+  points(x, y, pch = pch, col = col, bg = bg, cex = cex)
+  ok <- is.finite(x) & is.finite(y)
+  if (any(ok)) 
+    lines(stats::lowess(x[ok], y[ok], f = span, iter = iter), 
+          col = col.smooth, ...)
+} panel.hist() pairs() panel.hist <- function(x, ...)
+{
+  usr <- par("usr"); on.exit(par(usr))
+  par(usr = c(usr[1:2], 0, 1.5) )
+  h <- hist(x, plot = FALSE)
+  breaks <- h$breaks; nB <- length(breaks)
+  y <- h$counts; y <- y/max(y)
+  rect(breaks[-nB], 0, breaks[-1], y, col="cyan", ...)
+} pairs(USJudgeRatings[,c(2:3,6,1,7)],
+          lower.panel=panel.smooth, upper.panel=panel.cor,diag.panel=panel.hist)
+-------------------------------------------------------------------------------------------------------
+taylor.diagram text points text(sd.f * R, sd.f * sin(acos(R)), labels=text, pos=3) taylor.diagram.modified <- function (ref, model, add = FALSE, col = "red", 
+                                    pch = 19, pos.cor = TRUE, xlab = "", ylab = "", 
+                                    main = "Taylor Diagram", show.gamma = TRUE, 
+                                    ngamma = 3, gamma.col = 8, sd.arcs = 0, ref.sd = FALSE, 
+                                    grad.corr.lines = c(0.2, 0.4, 0.6, 0.8, 0.9), pcex = 1, 
+                                    cex.axis = 1, normalize = FALSE, mar = c(5, 4, 6, 6),
+                                    text, ...) #the added parameter
+{
+    grad.corr.full <- c(0, 0.2, 0.4, 0.6, 0.8, 0.9, 0.95, 0.99,1)
+    R <- cor(ref, model, use = "pairwise")
+    sd.r <- sd(ref)
+    sd.f <- sd(model)
+    if (normalize) {
+
+    ... #I didn't copy here the full function because it's quite long: to obtain it
+    ... #simply call `taylor.diagram` in the console or `edit(taylor.diagram)`.
+
+            }
+            S <- (2 * (1 + R))/(sd.f + (1/sd.f))^2
+        }
+    }
+    points(sd.f * R, sd.f * sin(acos(R)), pch = pch, col = col, 
+           cex = pcex)
+    text(sd.f * R, sd.f * sin(acos(R)),  #the line to add
+         labels=text, cex = pcex, pos=3) #You can change the pos argument to your liking
+    invisible(oldpar)
+} text require(plotrix)
+set.seed(10)
+data  <- sort(runif(100, 8,12))
+model <- sort(rnorm(100, 10, 4))
+taylor.diagram.modified(data, model, text="Model 1")
+model2 <- sort(rnorm(100, 10,2))
+taylor.diagram.modified(data, model2, add = TRUE, text="Model 2")
+-------------------------------------------------------------------------------------------------------
+heatmap image heatmap add.expr image ?heatmap x  <- as.matrix(mtcars)
+ rc <- rainbow(nrow(x), start = 0, end = .3)
+ cc <- rainbow(ncol(x), start = 0, end = .3)
+ hv <- heatmap(x, col = cm.colors(256), scale = "column",
+               RowSideColors = rc, ColSideColors = cc, margins = c(5,10),
+               xlab = "specification variables", ylab =  "Car Models",
+               main = "heatmap(<Mtcars data>, ..., scale = \"column\")") hv colnames mtcars $colInd > hv$colInd
+ [1]  2  9  8 11  6  5 10  7  1  4  3 order > colnames(mtcars)[hv$colInd]
+ [1] "cyl"  "am"   "vs"   "carb" "wt"   "drat" "gear" "qsec" "mpg"  "hp"  
+[11] "disp" labs <- colnames(mtcars)[hv$colInd] heatmap labCol = "" text text text(x = seq_along(labs), y = -0.2, srt = 45, labels = labs, xpd = TRUE) y image labels = labs text add.expr hv <- heatmap(x, col = cm.colors(256), scale = "column",
+               RowSideColors = rc, ColSideColors = cc, margins = c(5,10),
+               xlab = "specification variables", ylab =  "Car Models",
+               labCol = "",
+               main = "heatmap(<Mtcars data>, ..., scale = \"column\")",
+               add.expr = text(x = seq_along(labs), y = -0.2, srt = 45,
+                               labels = labs, xpd = TRUE))
+-------------------------------------------------------------------------------------------------------
+cors<-round(cor(samples),2) #correlations
+
+# make layout for plot layout
+laymat<-diag(1:5) #histograms
+laymat[upper.tri(laymat)]<-6:15 #correlations
+laymat[lower.tri(laymat)]<-16:25 #heatmaps
+
+layout(laymat) #define layout using laymat
+
+par(mar=c(2,2,2,2)) #define marginals etc.
+
+# Draw histograms, tweak arguments of hist to make nicer figures
+for(i in 1:5) 
+  hist(samples[,i],main=names(samples)[i])
+
+# Write correlations to upper diagonal part of the graph
+# Again, tweak accordingly
+for(i in 1:4)
+  for(j in (i+1):5){
+    plot(-1:1,-1:1, type = "n",xlab="",ylab="",xaxt="n",yaxt="n")
+    text(x=0,y=0,labels=paste(cors[i,j]),cex=2)
+    }
+
+# Plot heatmaps, here I use kde2d function for density estimation
+# image function for generating heatmaps
+library(MASS)
+for(i in 2:5)
+  for(j in 1:(i-1)){
+     k <- kde2d(samples[,i],samples[,j])
+     image(k,col=heat.colors(1000))
+    }
+-------------------------------------------------------------------------------------------------------
+plot(x=c(.5),ylim=c(0,1),xlim=c(0,2))
+expr = expression("E" * (X ~ "|" ~ Y))
+text(x=1,y=.5,labels=expr,pos=1,cex=4) expr1 = expression(E(X*"|"*Y))
+ text(x=1,y=.8,labels=expr2,pos=1,cex=4)
+-------------------------------------------------------------------------------------------------------
+?plotmath
+plot(1,1)
+text(1.1, 1.2, labels=expression(R[2]*( delta[JS]*(phantom(0)*","*W)*","* theta)- 
+                                  R[2]*(phantom(0)*","*W)*R[2]*( delta[JS]*(phantom(0)*
+                                   ","*W)*","* theta)[2](phantom(0)*","*W)) ) text(1.1, 0.8, labels=expression( italic( R[2]*( delta[JS]*(phantom(0)*","*W)*","* theta)- 
+                                  R[2]*(phantom(0)*","*W)*R[2]*( delta[JS]*(phantom(0)*
+                                   ","*W)*","* theta)[2](phantom(0)*","*W)) ) ) ,family="serif"
+-------------------------------------------------------------------------------------------------------
+plotrix draw.circle() draw.arc() circBarPlot <- function(x, labels, colors=rainbow(length(x)), cex.lab=1) {
+  require(plotrix)
+  plot(0,xlim=c(-1.1,1.1),ylim=c(-1.1,1.1),type="n",axes=F, xlab=NA, ylab=NA)
+  radii <- seq(1, 0.3, length.out=length(x))
+  draw.circle(0,0,radii,border="lightgrey")
+  angles <- (1/4 - x)*2*pi
+  draw.arc(0, 0, radii, angles, pi/2, col=colors, lwd=130/length(x), lend=2, n=100)
+  ymult <- (par("usr")[4]-par("usr")[3])/(par("usr")[2]-par("usr")[1])*par("pin")[1]/par("pin")[2]
+  text(x=-0.02, y=radii*ymult, labels=paste(labels," - ", x*100, "%", sep=""), pos=2, cex=cex.lab)
+}
+
+circBarPlot(Percent/100, Category)
+text(0,0,"GLOBAL",cex=1.5,col="grey")
+-------------------------------------------------------------------------------------------------------
+base plotrix circular.barplot<-function(values, labels, col, cex){
+    df<-data.frame(values=sort(values), labels=labels[order(values)])
+    col<-col[order(values)]
+    plot(NA,xlim=c(-1.3,1.3),ylim=c(-1.3,1.3),axes=F, xlab=NA, ylab=NA, asp=1)
+    t<-sapply(df$values,function(x).5*pi-seq(0, 2*pi*x/100,length=1000))
+    x<-sapply(1:nrow(df),function(x)(.3+x/nrow(df))*cos(t[,x]))
+    y<-sapply(1:nrow(df),function(x)(.3+x/nrow(df))*sin(t[,x]))
+    for(i in 1:nrow(df)){
+        lines(x=x[,i],y=y[,i],col=col[i],lwd=10,lend=1)
+        text(x[1,i],y[1,i],paste(df$labels[i]," - ",df$values[i],"%",sep=""),
+             pos=2,cex=cex)
+        }
+    }
+-------------------------------------------------------------------------------------------------------
+base image tableplot <- function(ret, nrow, ncol, main){
+    m <- matrix(as.integer(ret$y),nrow,ncol)
+    image(1:nrow,1:ncol,m,col=c("red","green"),axes=FALSE, xlab="",ylab="",main=main)
+    text(row(m),col(m),labels=matrix(ret$x,nrow,ncol))
+    } ret <- data.frame("x" = c("test1","test2","test3","test4"), "y" = c("success","success","failure","success"))
+tableplot(ret, 2, 2, "My tests")
+-------------------------------------------------------------------------------------------------------
+data1 data1_matrix heatmap(data_matrix, Rowv=NA, Colv=NA, col=heat.colors(64), scale='column', margins=c(5,10),
+   labCol="", add.expr = text(x = seq_along(colnames(data1)), y=-0.2, srt=45, 
+   labels=colnames(data1), xpd=TRUE)) add.expr
+-------------------------------------------------------------------------------------------------------
+... central.simul <- function(N, ns,type = c("runif", "rnorm", "rbinom"),...){
+        type <- match.arg(type)
+        msample <- rep(NA,N)  ## EDIT here: intialisation
+        for(i in 1:N){
+          sam <- switch(type,
+                        runif = runif(ns)*10,
+                        rnorm = rnorm(ns)*10,
+                        rbinom = rbinom(ns,...))
+          msample[i] <- mean(sam) # save mean of sample
+          add.hist <- i > 1
+          h <- hist(msample, breaks=seq(0,10, len=50), # histogram of all means
+                    xlim=c(0,10), col=grey(.9),
+                    xlab="", main="Central Limit Theorem", border="blue", las=1,add=add.hist)
+          points(sam, rep(max(h$count), length(sam)),
+                 pch=16, col=grey(.2)) # add sampled values
+          points(msample[i], max(h$count), # add sample mean value
+                 col="red", pch=15)
+          text(10, max(h$count), paste0("sample no ", i))
+          hist(msample[i], breaks=seq(0,10, len=50), # ovelay sample mean 
+               xlim=c(0,10), col="red", add=T, # in histogram
+               xlab="", border="white", las=1)
+          Sys.sleep(.1)
+        }
+    } central.simul(10,3,'runif')
+central.simul(10,3,'rbinom',size=2,prob=0.5)
+-------------------------------------------------------------------------------------------------------
+panel.cor <- function(x, y, digits = 2, cex.cor, ...)
+{
+  usr <- par("usr"); on.exit(par(usr))
+  par(usr = c(0, 1, 0, 1))
+  # correlation coefficient
+  r <- cor(x, y)
+  txt <- format(c(r, 0.123456789), digits = digits)[1]
+  txt <- paste("r= ", txt, sep = "")
+  text(0.5, 0.6, txt)
+
+  # p-value calculation
+  p <- cor.test(x, y)$p.value
+  txt2 <- format(c(p, 0.123456789), digits = digits)[1]
+  txt2 <- paste("p= ", txt2, sep = "")
+  if(p<0.01) txt2 <- paste("p= ", "<0.01", sep = "")
+  text(0.5, 0.4, txt2)
+}
+
+pairs(iris, upper.panel = panel.cor)
+-------------------------------------------------------------------------------------------------------
+#' Plot two dimensional histogram
+#'
+#' @param hist matrix or two dimensional array containing the number of counts
+#' in each of the bins.
+#' @param borders_x the x-borders of the bins in the histogram. Should be a
+#' numeric vector with lenght one longer than the number of columns of
+#' \code{hist}
+#' @param borders_y the y-borders of the bins in the histogram. Should be a
+#' numeric vector with lenght one longer than the number of rows of
+#' \code{hist}
+#' @param type a character specifying the type of plot. Valid values are "text",
+#' "area" and "color". See details for more information.
+#' @param add add the plot to an existing one or create a new plot.
+#' @param add_lines logical specifying whether or not lines should be drawn
+#' between the bins.
+#' @param draw_empty if \code{FALSE} empty bins (numer of counts equal to zero)
+#' are not drawn. They are shown using the background color.
+#' @param col for types "area" and "text" the color of the boxes and text.
+#' @param line_col the color of the lines between the bins.
+#' @param background_col the background color of the bins.
+#' @param lty the line type of the lines between the bins.
+#' @param text_cex the text size used for type "text". See \code{\link{par}} for
+#' more information.
+#' @param col_range the color scale used for type "color". Should be a function
+#' which accepts as first argument the number of colors that should be
+#' generated. The first color generated is used for the zero counts; the
+#' last color for the highest number of counts in the histogram.
+#' @param ... additional arguments are passed on to \code{\link{plot}}.
+#'
+#' @details
+#' There are three plot types: "area", "text", and "color". In case of "area"
+#' rectangles are drawn inside the bins with area proportional to the number of
+#' counts in the bins. In case of text the number of counts is shown as text in
+#' the bins. In case of color a color scale is used (by default heat.colors) to
+#' show the number of counts.
+#'
+#' @seealso \code{\link{image}} which can be used to create plots similar to
+#' type "color". \code{\link{contour}} may also be of interest.
+#'
+#' @examples
+#' histplot2(volcano - min(volcano), type="color")
+#' histplot2(volcano - min(volcano), add_lines=FALSE, type="area")
+#' histplot2(volcano - min(volcano), type="text", text_cex=0.5)
+#'
+#' @export
+histplot2 <- function(hist, borders_x=seq(0, ncol(hist)),
+        borders_y=seq(0, nrow(hist)), type="area", add=FALSE, add_lines=TRUE,
+        draw_empty=FALSE, col="black", line_col="#00000030",
+        background_col="white", lty=1, text_cex=0.6, col_range=heat.colors, ...) {
+    # create new plot
+    rangex <- c(min(borders_x), max(borders_x))
+    rangey <- c(min(borders_y), max(borders_y))
+    if (add == FALSE) {
+        plot(rangex, rangey, type='n', xaxs='i', yaxs='i', ...)
+        rect(rangex[1], rangey[1], rangex[2], rangey[2], col=background_col,
+            border=NA)
+    }
+    # prepare data
+    nx <- length(borders_x)-1
+    ny <- length(borders_y)-1
+    wx <- rep(diff(borders_x), each=ny)
+    wy <- rep(diff(borders_y), times=nx)
+    sx <- 0.95*min(wx)/sqrt(max(hist))
+    sy <- 0.95*min(wy)/sqrt(max(hist))
+    x <- rep((borders_x[-length(borders_x)] + borders_x[-1])/2, each=ny)
+    y <- rep((borders_y[-length(borders_y)] + borders_y[-1])/2, times=nx)
+    h <- as.numeric(hist)
+    # plot type "area"
+    if (type == "area") {
+        dx <- sqrt(h)*sx*0.5
+        dy <- sqrt(h)*sy*0.5
+        rect(x-dx, y-dy, x+dx, y+dy, col=col, border=NA)
+    # plot type "text"
+    } else if (type == "text") {
+        if (draw_empty) {
+            text(x, y, format(h), cex=text_cex, col=col)
+        } else {
+            text(x[h!=0], y[h!=0], format(h[h!=0]), cex=text_cex, col=col)
+        }
+    # plot type "color"
+    } else if (type == "color" | type == "colour") {
+        #h <- h/(wx*wy)
+        col <- col_range(200)
+        col <- col[floor(h/max(h)*200*(1-.Machine$double.eps))+1]
+        sel <- rep(TRUE, length(x))
+        if (!draw_empty) sel <- h > 0
+        rect(x[sel]-wx[sel]/2, y[sel]-wy[sel]/2, x[sel]+wx[sel]/2,
+            y[sel]+wy[sel]/2, col=col[sel], border=NA)
+    } else {
+        stop("Unknown plot type: options are 'area', 'text' and 'color'.")
+    }
+    # add_lines
+    if (add_lines) {
+        lines(rbind(borders_x, borders_x, NA),
+            rbind(rep(rangey[1], nx+1), rep(rangey[2], nx+1), NA),
+            col=line_col, lty=lty)
+        lines(rbind(rep(rangex[1], ny+1), rep(rangex[2], ny+1), NA),
+            rbind(borders_y, borders_y, NA), col=line_col, lty=lty)
+    }
+    # add border
+    if (add == FALSE) box()
+} X <- matrix(nrow=3, ncol=3)
+X[1,] <- c(0.3, 0.4, 0.45)
+X[2,] <- c(0.3, 0.7, 0.65)
+X[3,] <- c(0.3, 0.4, 0.45)
+centers <- c(1.5, 3, 4)
+
+centers_to_borders <- function(centers) {
+    nc <- length(centers)
+    d0 <- centers[2]-centers[1]
+    d1 <- centers[nc]-centers[nc-1]
+    c(centers[1]-d0/2, 
+      (centers[2:nc] + centers[1:(nc-1)])/2, centers[nc]+d1/2)
+}
+
+histplot2(X, centers_to_borders(centers), 
+    centers_to_borders(centers), type="color") plot_range <- function(hist, col_range = heat.colors) {
+    r <- range(c(0, X))
+    par(cex=0.7, mar=c(8, 1, 8, 2.5))
+    plot(0, 0, type='n', xlim=c(0,1), ylim=r, xaxs='i',
+        yaxs='i', bty='n', xaxt='n', yaxt='n', xlab='', ylab='')
+    axis(4)
+    y <- seq(r[1], r[2], length.out=200)
+    yc <- floor(y/max(y)*5*(1-.Machine$double.eps))+1
+    col <- col_range(5)[yc]
+    b <- centers_to_borders(y)
+    rect(rep(0, length(y)), b[-length(b)], rep(1, length(y)), 
+        b[-1], col=col, border=NA)
+} layout layout(matrix(c(1,2), nrow = 1), widths = c(0.9, 0.1))
+par(mar = c(5, 4, 4, 2) + 0.1)
+histplot2(X, centers_to_borders(centers), 
+    centers_to_borders(centers), type="color")
+plot_range(X) histplot2 h <- h/(wx*wy)
+-------------------------------------------------------------------------------------------------------
+heatmap.2 pos2 <- locator() #will return plotting coordinates after doing this:
+  # Shift focus to the graphics window by clicking on an edge 
+  # Left-Click once where you want the first label to be centered
+  # Left-click again on the point where you want the last label centered
+  # Right-Click, then return focus to the console session window
+
+ pos2 <- structure(list(x = c(0.27149971320082, 0.858971646016485), 
+                        y = c(0.861365598392473, 0.857450478257082)),
+                       .Names = c("x", "y"))
+
+  text(x=seq(pos2$x[1], pos2$x[2], len=5), y=rep(pos2$y[1],5)  ,
+       srt=50, xpd=TRUE, adj = 0,
+       labels=c("Sept 2008","March 2010","Sept 2010",
+                "March 2011","Sept 2011") ) xpd heatmap.2
+-------------------------------------------------------------------------------------------------------
+lda.arrows <- function(x, myscale = 1, tex = 0.75, choices = c(1,2), ...){
+  ## adds `biplot` arrows to an lda using the discriminant function values
+  heads <- coef(x)
+  arrows(x0 = 0, y0 = 0, 
+         x1 = myscale * heads[,choices[1]], 
+         y1 = myscale * heads[,choices[2]], ...)
+  text(myscale * heads[,choices], labels = row.names(heads), 
+    cex = tex)
+} dis2 <- lda(as.matrix(iris[, 1:4]), iris$Species)
+plot(dis2, asp = 1)
+lda.arrows(dis2, col = 2, myscale = 2) myscale choices
+-------------------------------------------------------------------------------------------------------
+plot(c(1,20), c(0,3), type="n")
+xx <- c(0,1,1,0)
+thelabels <- paste(1:20, " ", LETTERS[1:20], LETTERS[1:20], sep="")
+for (i in 1:20){
+  polygon(xx, c(0,0,1,1))
+  text(mean(xx), 0.5, i)
+  xx <- xx + 1
+}
+legend("topleft", "groups", 
+       legend = thelabels, pch="",
+       ncol=4)
+-------------------------------------------------------------------------------------------------------
+?text ?arrows x <- seq(0, 2, by=0.1)
+y <- x*x
+plot(x, y, type="l")
+
+text(0.25, 2, "Some text", pos=3)
+arrows(0.25, 2, 1, 1) text lines arrows x <- seq(0, 2, by=0.1)
+y <- x*x
+plot(x, y, type="l")
+
+# x0, y0: coordinates of text; see ?text
+# x1, y1: coordinates to which the arrows are drawn; see ?arrows
+# labels: text
+# vOffset/hOffset: vertical/horizontal offset
+callout <- function(x0, y0, x1, y1, labels, vOffset=0.25, hOffset=0.25) {
+  ## fetch labels width/height
+  w <- strwidth(labels)
+  w2 <- w/2
+  h <- strheight(labels)
+  h2 <- h/2
+
+  ## draw text
+  text(x0, y0, labels=labels)
+
+  ## calulate arrow starting point/line end point
+  x01 <- x0+w2*(1+hOffset)
+  y01 <- y0-h2*(1+vOffset)
+
+  ## draw horizontal lines
+  for (i in seq(along=x0)) {
+    lines(c(x0[i]-w2[i], x01[i]), c(y01[i], y01[i]))
+  }
+
+  ## draw arrows
+  arrows(x0=x01, y0=y01, x1=x1, y1=y1)
+}
+
+callout(c(0.25, 0.25), c(2, 3), c(1, 1.5), c(1, 2.25),
+        c("Some text", "Some other text"))
+-------------------------------------------------------------------------------------------------------
+plot(GIC.Fish ~ GIC.Zoop, data=dat, ylim=c(0,1.1) )
+ with(dat,  lines(GIC.Fish ~ GIC.Zoop) )
+ with(dat, 
+text(GIC.Zoop, GIC.Fish+.05, labels=Dive.Number , col= colorRampPalette( c("#FFFFD4", "#FED98E", "#FE9929",  "#D95F0E", "#993404"), space = "Lab")(36)[Dive.Number]) ) c("#00FFD4", "#00D98E", "#880088", "#D900ff", "#993404")
+-------------------------------------------------------------------------------------------------------
+xx <- rnorm(30, mean=5, sd=4) # some random numbers
+yy <- xx + rnorm(30, mean=2, sd=3.5) # add noise to those random numbers
+png("plot.png") # open a png device
+plot(xx, yy) 
+xy.cor <- cor.test(xx, yy) # run the correlation test
+# print the test results to the plot margins
+mtext(paste("R squared =", xy.cor$cor, "p value =", xy.cor$p.value), side=3)
+dev.off() # close the png device
+-------------------------------------------------------------------------------------------------------
+letters[i] set.seed(19)
+fitj <- transform(fit, V1 = jitter(V1, 10), V2 = jitter(V2), 10)
+with(fit, sunflowerplot(V1, V2))
+with(fitj, text(V1, V2, letters[1:10]))
+-------------------------------------------------------------------------------------------------------
+pos=pos1[i] port.label( pos1= 1 ) i=2 pos1[i] NA pos1 port.label <- function (pos1, cex1 = 0.6, offset1 = 0.2, col1 = "deeppink") {
+  port.file<-read.csv("V:/Science/Finalised Map Files/Ports.csv")
+  Lon <- port.file$Lon
+  Lat <- port.file$Lat
+  Lab <- paste(port.file$Lab) 
+  a <- locator()
+  ay <- unlist(a[2])
+  aylab <- sapply (ay, function (x) which.min (abs (x - Lat)))
+  text( x= Lon[aylab], y= Lat[aylab], labels= Lab[aylab], pos= pos1, cex= cex1, offset= offset1, col= col1 )
+}
+-------------------------------------------------------------------------------------------------------
+dput mydat <- structure(list(Lab = c("Halifax, NS", "St. John's, NL", "Saint John, NB", 
+    "Portland, ME", "Woods Hole, MA", "Nuuk, Greenland", "Boston, MA"), 
+    Lon = c(-63.59341, -52.73304, -66.05236, -70.24435, -70.68068, -51.75049, -71.08727), 
+    Lat = c(44.68068, 47.59341, 45.27925, 43.68068, 41.62832, 64.17453, 42.36652)), 
+    .Names = c("Labels", "Lon", "Lat"), class = "data.frame", row.names = c(NA, -7L)) identify() port.label <- function (data, posn, cex1=0.6, offset1=0.2, col1="deeppink") {
+    j <- identify(mydat$Lon, mydat$Lat, mydat$Lab, plot=FALSE)
+    for(i in 1:length(j)) {
+        text(x=data$Lon[j[i]], y=data$Lat[j[i]], labels=data$Lab[j[i]], pos=posn[i], cex=cex1, offset=offset1, col=col1)
+        }
+    }
+
+plot(mydat$Lon, mydat$Lat)
+port.label(mydat, posn=c(1, 2, 3, 4))
+-------------------------------------------------------------------------------------------------------
+cdf.int <- function(n) {
+  plot(rnorm(10), main = paste0(letters[n], ")"), xlim = c(-3.0, 3.0))
+  text(-4, 1.2, "a)", xpd = TRUE)
+}
+
+pdf("test.pdf", height = 11, width = 8)
+par(las = 1, omi = c(0.5, 1.0, 1.5, 1.0), mfrow = c(5, 2), ps = 10, family = "sans", mar = c(3.0, 3.0, 3.0, 3.0))
+
+lapply(1:6, cdf.int) 
+dev.off() mapply ll <- list(a=rnorm(10),
+           b=rnorm(10))
+
+cdf.int <- function(data, name) {
+  plot(data, main = name, xlim = c(-3.0, 3.0))
+  text(-4, 1.2, "a)", xpd = TRUE)
+}
+
+pdf("test.pdf", height = 11, width = 8)
+par(las = 1, omi = c(0.5, 1.0, 1.5, 1.0), mfrow = c(2, 1), ps = 10, family = "sans", mar = c(3.0, 3.0, 3.0, 3.0))
+
+mapply(cdf.int, ll, names(ll)) 
+dev.off()
+-------------------------------------------------------------------------------------------------------
+par(mar=rep(0,4))
+plot.new()
+
+word = "text"
+letters = strsplit(word,"")
+
+xstart = .4
+ystart = .8
+space = .075
+
+for(i in 1:length(letters[[1]])){
+
+    text(xstart,ystart,letters[[1]][i], cex=8)
+    xstart = xstart + space
+
+} par(mar=rep(0,4))
+plot.new()
+
+text(.5,.8,"t", cex=8)
+text(.57,.8,"e", cex=8)
+text(.645,.8,"x", cex=8)
+text(.7,.8,"t", cex=8)
+-------------------------------------------------------------------------------------------------------
+squishtext <- function(x,y, text, squish=1) {
+        text <- strsplit(text, '')[[1]]
+        w <- strwidth(text)
+        ww <- cumsum(c(0,head(w,-1)) * squish)
+        text( x + ww, y, text, adj=c(0,0) )
+    } plot(1:10, type='n')
+    text( 5, 3, "test", adj=c(0,0) )
+    squishtext( 5, 4, "test", squish=1 )
+    squishtext( 5, 5, "test", squish=0.8 )
+    squishtext( 5, 6, "test", squish=0.5 )
+    squishtext( 5, 7, "test", squish=1.2 )
+    squishtext( 5, 8, "test", squish=2 ) adj cex
+-------------------------------------------------------------------------------------------------------
+> pts=read.table("points.csv",head=TRUE,sep=",")
+> pts=subset(pts,!is.na(lon)) # just take the good ones to save NA faffing
+> coordinates(pts)=~lon+lat
+> first = pts[1:100,]         # take first 100 for starters
+> cc = coords2country(first)
+> plot(first,pch=".")
+> text(coordinates(first),label=cc)
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+text() xpd = TRUE mtext() grid = structure(c(1:20),.Dim = c(4,5))
+labs = c("A","B","C","D","E")
+redlabs = c("B","D")
+colorlist = c("black","red")
+# one of many ways to generate the color labels
+axiscolor = colorlist[labs %in% redlabs +1 ]
+
+image(1:4,1:5,grid,axes=FALSE, xlab="", ylab = "")
+axis(2,at=1:length(labs),labels=FALSE)
+
+# This would work for sideways labels
+# mtext(text=labs, side=2,at=1:length(labs),col=axiscolor,adj=.5)
+text(labels=labs, col=axiscolor, x=rep(.45,length(labs)),y=1:length(labs), srt = 0, pos = 2, xpd = TRUE)
+-------------------------------------------------------------------------------------------------------
+corrgram set.seed(42)
+library(corrgram)
+
+# This panel adds significance starts, or NS for not significant
+panel.signif <-  function (x, y, corr = NULL, col.regions, digits = 2, cex.cor, 
+                           ...) {
+  usr <- par("usr")
+  on.exit(par(usr))
+  par(usr = c(0, 1, 0, 1))
+  results <- cor.test(x, y, alternative = "two.sided")
+  est <- results$p.value
+  stars <- ifelse(est < 5e-4, "***", 
+                  ifelse(est < 5e-3, "**", 
+                         ifelse(est < 5e-2, "*", "NS")))
+  cex.cor <- 0.4/strwidth(stars)
+  text(0.5, 0.5, stars, cex = cex.cor)
+}
+
+# This panel combines edits the "shade" panel from the package
+# to overlay the correlation value as requested
+panel.shadeNtext <- function (x, y, corr = NULL, col.regions, ...) 
+{
+  if (is.null(corr)) 
+    corr <- cor(x, y, use = "pair")
+  ncol <- 14
+  pal <- col.regions(ncol)
+  col.ind <- as.numeric(cut(corr, breaks = seq(from = -1, to = 1, 
+                                               length = ncol + 1), include.lowest = TRUE))
+  usr <- par("usr")
+  rect(usr[1], usr[3], usr[2], usr[4], col = pal[col.ind], 
+       border = NA)
+  box(col = "lightgray")
+  on.exit(par(usr))
+  par(usr = c(0, 1, 0, 1))
+  r <- formatC(corr, digits = 2, format = "f")
+  cex.cor <- .8/strwidth("-X.xx")
+  text(0.5, 0.5, r, cex = cex.cor)
+}
+
+# Generate some sample data
+sample.data <- matrix(rnorm(100), ncol=10)
+
+# Call the corrgram function with the new panel functions
+# NB: call on the data, not the correlation matrix
+corrgram(sample.data, type="data", lower.panel=panel.shadeNtext, 
+         upper.panel=panel.signif) corrplot panel.shadeNtext <- function (x, y, corr = NULL, col.regions, ...) 
+{
+  corr <- cor(x, y, use = "pair")
+  results <- cor.test(x, y, alternative = "two.sided")
+  est <- results$p.value
+  stars <- ifelse(est < 5e-4, "***", 
+                  ifelse(est < 5e-3, "**", 
+                         ifelse(est < 5e-2, "*", "")))
+  ncol <- 14
+  pal <- col.regions(ncol)
+  col.ind <- as.numeric(cut(corr, breaks = seq(from = -1, to = 1, 
+                                               length = ncol + 1), include.lowest = TRUE))
+  usr <- par("usr")
+  rect(usr[1], usr[3], usr[2], usr[4], col = pal[col.ind], 
+       border = NA)
+  box(col = "lightgray")
+  on.exit(par(usr))
+  par(usr = c(0, 1, 0, 1))
+  r <- formatC(corr, digits = 2, format = "f")
+  cex.cor <- .8/strwidth("-X.xx")
+  fonts <- ifelse(stars != "", 2,1)
+  # option 1: stars:
+  text(0.5, 0.4, paste0(r,"\n", stars), cex = cex.cor)
+  # option 2: bolding:
+  #text(0.5, 0.5, r, cex = cex.cor, font=fonts)
+}
+
+# Generate some sample data
+sample.data <- matrix(rnorm(100), ncol=10)
+
+# Call the corrgram function with the new panel functions
+# NB: call on the data, not the correlation matrix
+corrgram(sample.data, type="data", lower.panel=panel.shadeNtext, 
+         upper.panel=NULL)
+-------------------------------------------------------------------------------------------------------
+gaoptim eurodistmat = as.matrix(eurodist)
+
+ # Fitness function (we'll perform a maximization, so invert it)
+ distance = function(sq)
+ {
+   sq = c(sq, sq[1])
+   sq2 <- embed(sq, 2)
+   1/sum(eurodistmat[cbind(sq2[,2], sq2[,1])])
+ }
+
+ loc = -cmdscale(eurodist, add = TRUE)$points
+ x = loc[, 1]
+ y = loc[, 2]
+ n = nrow(eurodistmat)
+
+ set.seed(1)
+
+ # solving code
+ require(gaoptim)
+ ga2 = GAPerm(distance, n, popSize = 100, mutRate = 0.3)
+ ga2$evolve(200)
+ best = ga2$bestIndividual()
+ # solving code
+
+ # just transform and plot the results
+ best = c(best, best[1])
+ best.dist = 1/max(ga2$bestFit())
+ res = loc[best, ]
+ i = 1:n
+
+ plot(x, y, type = 'n', axes = FALSE, ylab = '', xlab = '')
+ title ('Euro tour: TSP with 21 cities')
+ mtext(paste('Best distance found:', best.dist))
+ arrows(res[i, 1], res[i, 2], res[i + 1, 1], res[i + 1, 2], col = 'red', angle = 10)
+ text(x, y, labels(eurodist), cex = 0.8, col = 'gray20')
+-------------------------------------------------------------------------------------------------------
+warning labels par table text table plot plot.factor #random data.  DF = datProjektMehr, artmehr = ArtMehrspr, mehrviel = Mehrspr_Vielf 
+    DF <- data.frame(artmehr = sample(letters[1:4], 20, T), mehrviel = as.factor(sample(1:5, 20, T)))
+
+    #your code of plotting
+    par(mar = c(4.5,4.5,9.5,4), xpd = TRUE)
+    plot(factor(artmehr) ~ mehrviel, data = DF, col = terrain.colors(4),
+         bty = 'L', main = "Vielfalt nutzen")
+    legend("topright", inset=c(0,-.225), title="Art der Mehrsprachigkeit",    levels(factor(DF$artmehr)),
+           fill=terrain.colors(4), horiz=TRUE)
+
+    #no need to "table()" many times
+    tab = table(DF$artmehr, DF$mehrviel)
+
+    #maximum value of x axis (at least in my machine)
+    #I found -through trial and error- that for a factor of n levels, x.max = 1 + (n-1)*0.02
+    x.max = 1 + (length(levels(DF$mehrviel)) - 1) * 0.02
+
+    #coordinates of "mehrviel" (as I named it)
+    mehrviel.coords = ((cumsum(apply(tab, 2, sum)) / sum(tab)) * x.max) - ((apply(tab, 2, sum) / sum(tab)) / 2)
+
+    #coordinates of "artmehr" (as I named it)
+    artmehr.coords <- apply(tab, 2, function(x) { cumsum(x / sum(x)) })
+    artmehr.coords <- apply(artmehr.coords, 2, function(x) { x - c(x[1]/2, diff(x)/2) })
+
+    #"text" the values in your table
+    #don't plot "0"s
+    for(i in 1:ncol(artmehr.coords))
+     {
+      text(x = mehrviel.coords[i], y = artmehr.coords[,i], labels = ifelse(tab[,i] != 0, tab[,i], ""), cex = 2)
+     } table tab
+       1 2 3 4 5
+     a 1 1 0 1 0
+     b 0 0 2 1 2
+     c 1 1 2 1 0
+     d 2 0 0 3 2 level text
+-------------------------------------------------------------------------------------------------------
+# your variable
+ fact <- as.factor(c('a','a','b'))
+ # 
+ b <- plot(fact)
+ text(x=b,y=c(table(fact)), label = c(table(fact)),xpd=TRUE,col='blue') plot.factor plot.factor <- function(x ,..., label=TRUE) { 
+
+  cc <- table(x)
+  b <- barplot(cc,...)
+  if (label){
+    text(x = b, y = c(cc), label = c(cc), xpd = TRUE, col = 'blue')
+  } 
+return(invisible(b))
+}
+
+
+# Then
+
+plot(fact) 
+# would produce the same result
+-------------------------------------------------------------------------------------------------------
+text with(df, plot(xval, yval, col=c("red", "blue", "green")[class],
+ main="Title here",
+ xlab="Ox title",
+ ylab="Oy title"))
+
+with(df, text(xval, yval, sprintf("(%s, %s)", xlab, ylab))) paste paste0
+-------------------------------------------------------------------------------------------------------
+library(plyr)
+df <- arrange(df, xvalue, yvalue)
+offset <- rep(c(-300, 300), length.out = nrow(df))
+
+with(df, plot(xvalue, yvalue,       #as before
+    pch=c(16,17)[class],
+    col=c("red", "blue", "green")[class],
+    main="Tittle",
+))
+
+with(df, text(xvalue + offset, yvalue, cex=0.5, sprintf("(%s, %s)", xlabel, ylabel))) directlabels direct.label
+-------------------------------------------------------------------------------------------------------
+# bind data together to simplify plot code
+df <- rbind(d1, d2)
+
+# plot
+with(df,
+     errbar(x = x + c(rep(0.05, nrow(d1)), rep(-0.05, nrow(d2)), # dodge points to avoid overplotting
+            y = meanY,
+            yplus = meanY + sdY,
+            yminus = meanY - sdY,
+            pch = 1, cex = 0.5, cap = .0025,
+            errbar.col = rep(c("red", "green"), times = c(nrow(d1), nrow(d2))),
+            xlab = "X values", ylab = "Y values",
+            xlim = c(1, 5), ylim = c(0, 7)))
+
+
+# create data for legend
+df_legend <- data.frame(x <- c(4.5, 4.5),
+                        y <- c(1, 2),
+                        sdy <- c(0.3, 0.3))
+
+# add symbols to legend
+with(df_legend,
+  errbar(x = x,
+         y = y,
+         yplus = y + sdy,
+         yminus = y - sdy,
+         pch = 1, cex =.5, cap = .0025,
+         errbar.col = c("red", "green"),
+         add = TRUE))
+
+# add text to legend
+with(df_legend,
+     text(x = x + 0.2, y = y,labels = c("d2", "d1")))
+
+# add box
+with(df_legend,
+     rect(xleft = x - 0.2,
+          ybottom = y[1] - 0.5,
+          xright = x + 0.4,
+          ytop = y[2] + 0.5))
+-------------------------------------------------------------------------------------------------------
+textplot Label1 = c("adelaide","allah","ampamp","anak","anwar","audit","australia","bajet","baru","bersama","blog","dato","doakan","dsai","eid","festival" )
+
+# set up the empty frame
+plot(c(0,100),c(0,100),xaxt='n',yaxt='n',type='n',xlab="",ylab="",
+ main = "Image Title")
+
+# set up the positions:
+x = rep(seq(20,80,20),4)
+y = c(20,20,20,20,40,40,40,40,60,60,60,60,80,80,80,80)
+
+# plot the words using text()
+text(x,y,Label1,col=rainbow(12)) library(wordcloud)
+require(RColorBrewer)
+wordcloud(Label1, colors=(rep(brewer.pal(8,"Spectral"),2)), ordered.colors=TRUE)
+-------------------------------------------------------------------------------------------------------
+library(rworldmap)
+library(WDI) # WORLD BANK INDICATORS
+
+## lines of either type may obscure more than they add
+##**choose line option here
+addLines <- 'gc' #'none''straight' 'gc'
+if ( addLines == 'gc' ) library(geosphere)
+
+# setting background colours
+oceanCol = rgb(7,0,30,maxColorValue=255) 
+landCol = oceanCol 
+
+#produces a list of indicator IDs and names as a matrix
+indicatorList <- WDIsearch('aid flows')
+
+#setting up a world map shaped plot window
+#*beware this is windows specific
+mapDevice('windows',width=10,height=4.5)
+
+
+year <- 2000
+#for(indNum in 1:2)
+for(indNum in 1:nrow(indicatorList))
+{
+  indID <- indicatorList[indNum][1]
+  donorISO3 <- substr(indID,start=8,stop=10)
+
+  dFdonor <- WDI(indicator=indID,start=year,end=year)
+  #divide by 10^6 for million dollars
+  dFdonor[indID] <- dFdonor[indID] * 1/10^6
+
+  sPDFdonor <- joinCountryData2Map(dFdonor,nameJoinColumn='country',joinCode='NAME')
+  #take out Antarctica
+  sPDFdonor <- sPDFdonor[-which(row.names(sPDFdonor)=='Antarctica'),]
+
+  legendTitle=paste("aid flow from",donorISO3,year,"(millions US$)") 
+  mapBubbles(sPDFdonor, nameZSize=indID, plotZeroVals=FALSE, legendHoriz=TRUE, legendPos="bottom", fill=FALSE, legendTitle=legendTitle, oceanCol=oceanCol, landCol=landCol,borderCol=rgb(50,50,50,maxColorValue=255),lwd=0.5,lwdSymbols=1)
+  #removed because not working , main=paste('donor', donorISO3,year)
+
+  #now can I plot lines from the centroid of the donor to the centroids of the recipients
+  xDonor <- sPDFdonor$LON[ which(sPDFdonor$ISO3==donorISO3) ]
+  yDonor <- sPDFdonor$LAT[ which(sPDFdonor$ISO3==donorISO3) ] 
+  xRecips <- sPDFdonor$LON[ which(sPDFdonor[[indID]] > 0) ]
+  yRecips <- sPDFdonor$LAT[ which(sPDFdonor[[indID]] > 0) ]
+  amountRecips <- sPDFdonor[[indID]][ which(sPDFdonor[[indID]] > 0) ]
+
+
+  ## straight lines
+  if ( addLines == 'straight' )
+  {
+    for(line in 1:length(xRecips))
+    {  
+       #col <- 'blue'
+       #i could modify the colour of the lines by the size of the donation
+       #col=rgb(1,1,1,alpha=amountRecips[line]/max(amountRecips))
+       #moving up lower values
+       col=rgb(1,1,0,alpha=sqrt(amountRecips[line])/sqrt(max(amountRecips)))
+       lines(x=c(xDonor,xRecips[line]),y=c(yDonor,yRecips[line]),col=col, lty="dotted", lwd=0.5)   #lty = "dashed", "dotted", "dotdash", "longdash", lwd some devices support <1
+    }
+  }
+
+  ## great circle lines
+  ## don't work well when donor not centred in the map
+  ## also the loop fails at CEC & TOT because not ISO3 codes
+  if ( addLines == 'gc' & donorISO3 != "CEC" & donorISO3 != "TOT" )
+  {  
+    for(line in 1:length(xRecips))
+    {
+      #gC <- gcIntermediate(c(xDonor,yDonor),c(xRecips[line],yRecips[line]), n=50, breakAtDateLine=TRUE)
+      #30/10/13 lines command failed with Error in xy.coords(x, y) : 
+      #'x' is a list, but does not have components 'x' and 'y'
+      #adding sp=TRUE solved
+      gC <- gcIntermediate(c(xDonor,yDonor),c(xRecips[line],yRecips[line]), n=50, breakAtDateLine=TRUE, sp=TRUE)
+
+      #i could modify the colour of the lines by the size of the donation
+      #col=rgb(1,1,1,alpha=amountRecips[line]/max(amountRecips))
+      #moving up lower values
+      col=rgb(1,1,0,alpha=sqrt(amountRecips[line])/sqrt(max(amountRecips)))
+
+      lines(gC,col=col,lwd=0.5)
+    }
+  }  
+
+  #adding coasts in blue looks nice but may distract
+  data(coastsCoarse)
+  plot(coastsCoarse,add=TRUE,col='blue')
+
+  #repeating mapBubbles with add=T to go on top of the lines
+  mapBubbles(sPDFdonor, nameZSize=indID, plotZeroVals=FALSE, fill=FALSE, addLegend=FALSE, add=TRUE, ,lwd=2)
+  #removed because not working : , main=paste('donor', donorISO3,year)
+
+  #looking at adding country labels
+  text(xRecips,yRecips,sPDFdonor$NAME[ which(sPDFdonor[[indID]] > 0) ],col=rgb(1,1,1,alpha=0.3),cex=0.6,pos=4) #pos=4 right (1=b,2=l,3=ab)
+
+  #add a title 
+  nameDonor <- sPDFdonor$NAME[ which(sPDFdonor$ISO3==donorISO3) ]
+  mtext(paste("Aid flow from",nameDonor,year), cex = 1.8, line=-0.8)
+
+  #savePlot(paste("C:\\rProjects\\aidVisCompetition2012\\Rplots\\greatCircles\\wdiAidFlowLinesDonor",donorISO3,year,sep=''),type='png')
+  #savePlot(paste("C:\\rProjects\\aidVisCompetition2012\\Rplots\\greatCircles\\wdiAidFlowLinesDonor",donorISO3,year,sep=''),type='pdf')
+
+} #end of indNum loop
+-------------------------------------------------------------------------------------------------------
+> CairoPDF("test.pdf")
+> plot.new()
+> text(x=.5,y=.5,labels="\u0260",family="Times New Roman")
+> dev.off()
+quartz 
+     2 > CairoFonts(  # slight mod to example in ?CairoFonts page
++   regular="TimesNewRoman:style=Regular",
++   bold="FreeSans:style=Bold",
++   italic="FreeSans:style=Oblique",
++   bolditalic="FreeSans:style=BoldOblique"
++ )
+> 
+
+
+> CairoPDF("test.pdf")
+> plot.new()
+> text(x=.5,y=.5, labels="\u0260" )
+> dev.off()
+quartz 
+     2
+-------------------------------------------------------------------------------------------------------
+plotTangentSpace function (A, axis1 = 1, axis2 = 2, warpgrids = TRUE, label = FALSE) label = TRUE FALSE seq(1, n) if (label == T) {
+        text(pcdata[, axis1], pcdata[, axis2], seq(1, n), 
+            adj = c(-0.7, -0.7)) pcdata axis1 n labels arglist function (A, axis1 = 1, axis2 = 2, warpgrids = TRUE, label = FALSE, labels = NULL) text 
+text(pcdata[, axis1], pcdata[, axis2], labels, adj = c(-0.7, -0.7)) 
+tps geomorph geomorph::: tps geomorph:::tps(ref, shape.min, 20)
+  geomorph:::tps(ref, shape.max, 20) plotTangentSpace2 <- function (A, axis1 = 1, axis2 = 2, warpgrids = TRUE, label = FALSE, labels = NULL){ lots-of-stuff 
+text(pcdata[, axis1], pcdata[, axis2], labels, adj = c(-0.7, -0.7)) # in both places more-stuff geomorph:::tps(ref, shape.min, 20) geomorph:::tps(ref, shape.max, 20) } plotTangentSpace2(Y.gpa$coords, label = TRUE, labels = Myname)
+-------------------------------------------------------------------------------------------------------
+plot_one plot_one <- function(d){
+  with(d, plot(Days, Count, t="n", tck=1, main=unique(d$ID), cex.main = 0.8, ylab = "", yaxt = 'n', xlab = "", xaxt="n",  xlim=c(0,1000), ylim=c(0,1200))) # set limits
+  grid(lwd = 0.3, lty = 7)
+  with(d[d$Treat == 0,], points(Days, Count, col = 1)) 
+  with(d[d$Treat == 1,], points(Days, Count, col = 2))
+  mod = lm(Count ~ Days, data = d[d$Treat == 0,])
+  abline(reg = mod)
+  text(x=500, y=800, mod$coefficients[2])
+}
+-------------------------------------------------------------------------------------------------------
+text library(MASS)
+ldaobject <- lda(Species~., data=iris)
+plot(ldaobject, 
+     panel = function(x, y, ...) {
+       points(x, y, ...)
+       text(x,y,labels=seq_along(x),...) ## You change labels here 
+      }
+      ,
+     col = as.integer(iris$Species), pch = 20)
+-------------------------------------------------------------------------------------------------------
+x <- barplot(table(mtcars$cyl), xaxt="n")
+labs <- paste(names(table(mtcars$cyl)), "cylinders")
+text(cex=1, x=x-.25, y=-1.25, labs, xpd=TRUE, srt=45) text(cex=.6, x=x-.25, y=-1.25, labs, xpd=TRUE, srt=45)
+-------------------------------------------------------------------------------------------------------
+#basic plot
+plot(NULL, ann = F, xlim = c(-10,20), ylim = c(-10,20))
+abline(h = -10:20, col = grey(0.75), lty = 2)
+abline(v = -10:20, col = grey(0.75), lty = 2)
+
+#starting coordinates
+A_coords = c(0,0)
+B_coords = c(10,0)
+text(A_coords[1], A_coords[2], "A", col = "red")
+text(B_coords[1], B_coords[2], "B", col = "blue")
+
+for(i in 1:15000)
+ {
+  Sys.sleep(1)
+
+  text(A_coords[1], A_coords[2], "A", col = "white")
+  text(B_coords[1], B_coords[2], "B", col = "white")
+                                                       #used jonas's idea
+  A <- A_coords + unlist(sample(list(c(0, 1), c(1, 0), c(-1, 0), c(0, -1)), 1)) 
+  B <- B_coords + unlist(sample(list(c(0, 1), c(1, 0), c(-1, 0), c(0, -1)), 1))
+
+  lines(c(A_coords[1], A[1]), c(A_coords[2], A[2]), col = "red")
+  lines(c(B_coords[1], B[1]), c(B_coords[2], B[2]), col = "blue")
+
+  A_coords <- A
+  B_coords <- B
+
+  text(A_coords[1], A_coords[2], "A", col = "red")
+  text(B_coords[1], B_coords[2], "B", col = "blue")
+
+  if(all(abs(A_coords - B_coords) <= 1)) break
+ }
+
+list(steps = i, A_coordinates = A_coords, B_coordinates = B_coords)
+-------------------------------------------------------------------------------------------------------
+bx1<-boxplot(pb,las=2,cex.axis=.8)
+if(length(bx1$out)!=0){
+  ## get the row of each outlier
+  out.rows<-sapply(1:length(bx1$out),function(i) which(vv[,bx1$group[i]]==bx1$out[i]))
+  text(bx1$group,bx1$out,rownames(vv)[out.rows],pos=4)
+}
+-------------------------------------------------------------------------------------------------------
+library(ape)
+
+heatmap.phylo <- function(x, Rowp, Colp, breaks, col, denscol="cyan", respect=F, ...){
+    # x numeric matrix
+    # Rowp: phylogenetic tree (class phylo) to be used in rows
+    # Colp: phylogenetic tree (class phylo) to be used in columns
+    # ... additional arguments to be passed to image function
+
+    scale01 <- function(x, low = min(x), high = max(x)) {
+        x <- (x - low)/(high - low)
+        x
+    }
+
+    col.tip <- Colp$tip
+    n.col <- 1
+    if (is.null(col.tip)) {
+        n.col <- length(Colp)
+        col.tip <- unlist(lapply(Colp, function(t) t$tip))
+        col.lengths <- unlist(lapply(Colp, function(t) length(t$tip)))
+        col.fraction <- col.lengths / sum(col.lengths)
+        col.heights <- unlist(lapply(Colp, function(t) max(node.depth.edgelength(t))))
+        col.max_height <- max(col.heights)
+    }
+
+    row.tip <- Rowp$tip
+    n.row <- 1
+    if (is.null(row.tip)) {
+        n.row <- length(Rowp)
+        row.tip <- unlist(lapply(Rowp, function(t) t$tip))
+        row.lengths <- unlist(lapply(Rowp, function(t) length(t$tip)))
+        row.fraction <- row.lengths / sum(row.lengths)
+        row.heights <- unlist(lapply(Rowp, function(t) max(node.depth.edgelength(t))))
+        row.max_height <- max(row.heights)
+    }
+
+    cexRow <- min(1, 0.2 + 1/log10(n.row))
+    cexCol <- min(1, 0.2 + 1/log10(n.col))
+
+    x <- x[row.tip, col.tip]
+    xl <- c(0.5, ncol(x)+0.5)
+    yl <- c(0.5, nrow(x)+0.5)
+
+    screen_matrix <- matrix( c(
+        0,1,4,5,
+        1,4,4,5,
+        0,1,1,4,
+        1,4,1,4,
+        1,4,0,1,
+        4,5,1,4
+    ) / 5, byrow=T, ncol=4 )
+
+    if (respect) {
+        r <- grconvertX(1, from = "inches", to = "ndc") / grconvertY(1, from = "inches", to = "ndc")
+        if (r < 1) {
+            screen_matrix <- screen_matrix * matrix( c(r,r,1,1), nrow=6, ncol=4, byrow=T)
+        } else {
+            screen_matrix <- screen_matrix * matrix( c(1,1,1/r,1/r), nrow=6, ncol=4, byrow=T)
+        }
+    }
+
+
+    split.screen( screen_matrix )
+
+    screen(2)
+    par(mar=rep(0,4))
+
+    if (n.col == 1) {
+        plot(Colp, direction="downwards", show.tip.label=FALSE,xaxs="i", x.lim=xl)
+    } else {
+        screens <- split.screen( as.matrix(data.frame( left=cumsum(col.fraction)-col.fraction, right=cumsum(col.fraction), bottom=0, top=1)))
+        for (i in 1:n.col) {
+            screen(screens[i])
+            plot(Colp[[i]], direction="downwards", show.tip.label=FALSE,xaxs="i", x.lim=c(0.5,0.5+col.lengths[i]), y.lim=-col.max_height+col.heights[i]+c(0,col.max_height))
+        }
+    }
+
+    screen(3)
+    par(mar=rep(0,4))
+
+    if (n.col == 1) {
+        plot(Rowp, direction="rightwards", show.tip.label=FALSE,yaxs="i", y.lim=yl)
+    } else {
+        screens <- split.screen( as.matrix(data.frame( left=0, right=1, bottom=cumsum(row.fraction)-row.fraction, top=cumsum(row.fraction))) )
+        for (i in 1:n.col) {
+            screen(screens[i])
+            plot(Rowp[[i]], direction="rightwards", show.tip.label=FALSE,yaxs="i", x.lim=c(0,row.max_height), y.lim=c(0.5,0.5+row.lengths[i]))
+        }
+    }
+
+
+    screen(4)
+    par(mar=rep(0,4), xpd=TRUE)
+    image((1:nrow(x))-0.5, (1:ncol(x))-0.5, x, xaxs="i", yaxs="i", axes=FALSE, xlab="",ylab="", breaks=breaks, col=col, ...)
+
+    screen(6)
+    par(mar=rep(0,4))
+    plot(NA, axes=FALSE, ylab="", xlab="", yaxs="i", xlim=c(0,2), ylim=yl)
+    text(rep(0,nrow(x)),1:nrow(x),row.tip, pos=4, cex=cexCol)
+
+    screen(5)
+    par(mar=rep(0,4))
+    plot(NA, axes=FALSE, ylab="", xlab="", xaxs="i", ylim=c(0,2), xlim=xl)
+    text(1:ncol(x),rep(2,ncol(x)),col.tip, srt=90, adj=c(1,0.5), cex=cexRow)
+
+    screen(1)
+    par(mar = c(2, 2, 1, 1), cex = 0.75)
+
+    symkey <- T
+    tmpbreaks <- breaks
+    if (symkey) {
+        max.raw <- max(abs(c(x, breaks)), na.rm = TRUE)
+        min.raw <- -max.raw
+        tmpbreaks[1] <- -max(abs(x), na.rm = TRUE)
+        tmpbreaks[length(tmpbreaks)] <- max(abs(x), na.rm = TRUE)
+    } else {
+        min.raw <- min(x, na.rm = TRUE)
+        max.raw <- max(x, na.rm = TRUE)
+    }
+    z <- seq(min.raw, max.raw, length = length(col))
+
+    image(z = matrix(z, ncol = 1), col = col, breaks = tmpbreaks, 
+          xaxt = "n", yaxt = "n")
+    par(usr = c(0, 1, 0, 1))
+    lv <- pretty(breaks)
+    xv <- scale01(as.numeric(lv), min.raw, max.raw)
+    axis(1, at = xv, labels = lv)
+
+    h <- hist(x, plot = FALSE, breaks = breaks)
+    hx <- scale01(breaks, min.raw, max.raw)
+    hy <- c(h$counts, h$counts[length(h$counts)])
+    lines(hx, hy/max(hy) * 0.95, lwd = 1, type = "s", 
+          col = denscol)
+    axis(2, at = pretty(hy)/max(hy) * 0.95, pretty(hy))
+    par(cex = 0.5)
+    mtext(side = 2, "Count", line = 2)
+
+    close.screen(all.screens = T)
+
+}
+
+tree <- read.tree(text = "(A:1,B:1);((C:1,D:2):2,E:1);((F:1,G:1,H:2):5,((I:1,J:2):2,K:1):1);", comment.char="")
+N <- sum(unlist(lapply(tree, function(t) length(t$tip))))
+
+set.seed(42)
+m <- cor(matrix(rnorm(N*N), nrow=N))
+rownames(m) <- colnames(m) <- LETTERS[1:N]
+heatmap.phylo(m, tree, tree, col=bluered(10), breaks=seq(-1,1,length.out=11), respect=T)
+-------------------------------------------------------------------------------------------------------
+text pos attach(mtcars)
+par(mfrow=c(2,2))
+plot(wt,mpg, main="Scatterplot of wt vs. mpg")
+plot(wt,disp, main="Scatterplot of wt vs disp")
+boxplot(wt, main="Boxplot of wt")
+txt <- structure(c("am", "carb", "cyl", "disp", "drat", "gear", "hp", 
+                   "mpg", "qsec", "vs", "wt", "this"), .Dim = 3:4)
+
+plot.new()
+sapply(1:4, function(i) text(i/4, .5, paste(txt[,i],collapse='\n'), pos=4)) attach(mtcars)
+par(mfrow=c(2,2))
+plot(wt,mpg, main="Scatterplot of wt vs. mpg")
+plot(wt,disp, main="Scatterplot of wt vs disp")
+boxplot(wt, main="Boxplot of wt")
+txt <- structure(c("am", "carb", "cyl", "disp", "drat", "gear", "hp", 
+                   "mpg", "qsec", "vs", "wt", "this"), .Dim = 3:4)
+
+plot.new()
+sapply(1:4, function(i) text(i/4, (1:3)/3, rev(txt[,i]), pos=4))
+-------------------------------------------------------------------------------------------------------
+z1 <- rnorm(10000, mean=1, sd=1); z2 <- rnorm(10000, mean=3, sd=3); z3 <- rnorm(10000, mean=5, sd=5); z4 <- rnorm(10000, mean=7, sd=7); z5 <- rnorm(10000, mean=9, sd=9); mydata <- matrix(c(z1, z2, z3, z4, z5), 2500, 20, byrow=T, dimnames=list(paste("R", 1:2500, sep=""), paste("C", 1:20, sep=""))) 
+
+summary(pca) 
+summary(pca)$importance[, 1:6] 
+
+x11(height=6, width=12, pointsize=12); par(mfrow=c(1,2)) 
+
+mycolors <- c("red", "green", "blue", "magenta", "black") # Define plotting colors. plot(pca$x, pch=20, col=mycolors[sort(rep(1:5, 500))]) 
+
+plot(pca$x, type="n"); text(pca$x, rownames(pca$x), cex=0.8, col=mycolors[sort(rep(1:5, 500))]) pairs(pca$x[,1:5], col = mycolors) library(scatterplot3d) 
+scatterplot3d(pca$x[,1:3], pch=20, color=mycolors[sort(rep(1:5, 500))]) library(rgl); rgl.open(); offset <- 50; par3d(windowRect=c(offset, offset, 640+offset, 640+offset)); rm(offset); rgl.clear(); rgl.viewpoint(theta=45, phi=30, fov=60, zoom=1); spheres3d(pca$x[,1], pca$x[,2], pca$x[,3], radius=0.3, color=mycolors, alpha=1, shininess=20); aspect3d(1, 1, 1); axes3d(col='black'); title3d("", "", "PC1", "PC2", "PC3", col='black'); bg3d(" require(GGally)
+ggpairs(pca$x[,1:5])
+-------------------------------------------------------------------------------------------------------
+x <- seq(0,10,by=2)
+y <- seq(0, 30, by=10)
+grid <- expand.grid(x, y)
+N <- 100
+points <- cbind(runif(N, 0, 10), runif(N, 0, 30))
+
+plot(grid, t="n", xaxs="i", yaxs="i")
+points(points, col="blue", pch="+") 
+abline(v=x, h=y)
+
+binxy <- data.frame(x=findInterval(points[,1], x),
+                    y=findInterval(points[,2], y))
+
+(results <- table(binxy))
+d <- as.data.frame.table(results)
+xx <- x[-length(x)] + 0.5*diff(x)
+d$x <- xx[d$x]
+yy <- y[-length(y)] + 0.5*diff(y)
+d$y <- yy[d$y]
+with(d, text(x, y, label=Freq))
+-------------------------------------------------------------------------------------------------------
+getMethod("click", signature="Raster") myClick <- function(x, n = Inf, id = FALSE, xy = FALSE, cell = FALSE, 
+                    type = "n", show = TRUE, ...) {
+    i <- 0
+    n <- max(n, 1)
+    while (i < n) {
+        i <- i + 1
+        loc <- locator(1, type, ...)
+        xyCoords <- cbind(x = loc$x, y = loc$y)
+        cells <- na.omit(cellFromXY(x, xyCoords))
+        if (length(cells) == 0)
+              break
+        value <- extract(x, cells)
+        text(xyCoords, labels = value)
+    }
+}
+
+## Try it out
+myClick(r, n=4)
+-------------------------------------------------------------------------------------------------------

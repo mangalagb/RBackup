@@ -1,0 +1,129 @@
+
+1:10, side=2, at=tail, las=2, cex=0.7
+1:4, side = 1, at = out, cex = 0.5
+axat
+bquote, side=3, line=0
+c, 1, line=3, at=c
+colnames, 1, at=colMeans, line=2
+c, side = 1, line = 1, at = 1:3, col = "red"
+c, side = 1, line = 2, at = 1:3, col = "blue"
+c, side = 1, line = 3, at = 1:3, col = "red"
+c, side=1, line=3, at=c, b=c, c=c, d=c
+c, side = 1, line = 4, at = 1:3, col = "blue"
+c, side=c, y=ylim1], labels=vert, adj=c, col='blue'
+do.call, side=1, line=3, xlab=''
+do.call, side=3, line=0:1
+do.call, side=3, line=0.5:-0.5
+do.call, side=3, line=1:0
+do.call, side=3, line = c, cex = 2 
+expression
+expression, adj=0, padj=-1, outer=FALSE
+expression, line=1
+expression, line=1.9
+expression, line=3
+expression, side=2, line=2.5
+expression, side=2, line = 4, padj=1, at=30, cex=1.2
+format, line = -x, outer = TRUE, adj = 0, col = "white"
+format, side=3, line=3, at=seq
+getCaption, 3, 0.25, cex = cex.caption
+labels1]], side=3, line=-1, at=seq, cex=.8
+labels2]], side=2, line=-1, at=seq, cex=.8, padj=1
+labels, at=labelx, side=1, line=4
+label.x, 3
+label.y, 2
+labs, side = 2, line = loffset, at = y, **adj = 0**, col = color, las = 2, cex = cex, ...
+labs, side = 2, line = loffset, at = y, adj = adjust_ylab, col = color, as = 2, cex = cex, ..., data = mydata, importance = TRUE
+Lines, side=1, line=3
+main, 3, 3, TRUE, 0.5, cex = cex.main, font = font.main
+main=bquote
+month.namemonth], line=2.5, at=0.5, cex=1.75, outer=TRUE
+monthnames10], side=1, cex=0.7, at=6.5*19
+monthnames11], side=1, cex=0.7, at=6.5*21
+monthnames12], side=1, cex=0.7, at=6.5*23
+monthnames1], side=1, cex=0.7, at=6.5
+monthnames2], side=1, cex=0.7, at=6.5*3
+monthnames3], side=1, cex=0.7, at=6.5*5
+monthnames4], side=1, cex=0.7, at=6.5*7
+monthnames5], side=1, cex=0.7, at=6.5*9
+monthnames6], side=1, cex=0.7, at=6.5*11
+monthnames7], side=1, cex=0.7, at=6.5*13
+monthnames8], side=1, cex=0.7, at=6.5*15
+monthnames9], side=1, cex=0.7, at=6.5*17
+names, side=4, srt=270, line=1
+paste
+paste, 1, 0
+paste, cex = 1.8, line=-0.8
+paste, line=0.5
+paste, side=3
+result, 2
+rev, 2, .2, at=y, las=1, cex=.5
+rownames, 1, at=bp
+rownames, 1, at=bp, line=0.6
+side = 1, "Column Z-Score", line = 2
+side=1, "First X-Axis", line=2.5, cex=0.8, col="blue"
+side=1, line=2, 'Observed values'
+side = 1, outer = F, line = 3
+side=1, "overlapping text1", line=6
+side=1, "overlapping text2", line=7
+side = 1, "Row Z-Score", line = 2
+side=1, "Second X-Axis", line=2.5, cex=0.8, col="red"
+side = 1, text =expression, line = 1, font=15
+side = 1, text = labCol, at = 1:nc, las = 2, line = 0.5, col = ClabColor, cex = cexCol
+side = 1, text = "Page 1"
+side = 1, text = "Page 1", outer = TRUE
+side=1, text="x", line=2.5
+side = 1, "Value", line = 2
+side = 2, "Count", line = 2
+side=2, line=2, 'Estimated probability mass'
+side=2, ", line=4, cex=0.8
+side = 2, outer = F, line = 3.5, "Date tagged", cex = 1.2
+side = 2, "Response", line = 2.3, cex=1.5
+side = 2, text = "and something extra", line = 2
+side = 2, text = expression, line = 1.5, font=15
+side = 2, text = "Y Axis", line = 3
+side=2, text="y", line=4.5
+side=2, "Top Plot", line=5.3, cex=0.8
+side=3, "2 Plots Crammed Together", line=1.5, cex=1.2
+side=3, i
+side=3, "subtitle", line=1, cex=1.5
+side=3, text="Test Plot", line=1.2, cex=1.5
+side=3, "Title1", line=2, cex=2
+side = 4, text = at, at = at, col = "red", line = 1
+side = 4, text = labRow, at = iy, las = 2, line = 0.5, col = RlabColor, cex = cexCol
+side = 4, text = "Moon phase, line = 2, cex = .9
+sp.label, 3, line=-2.5, adj=0.05, font=3, cex=0.75
+sp.r.squared, 3, line=-2.5, adj=0.95, cex=0.75
+substitute
+text, 3, padj=-4.5, col="red"
+text="ab, side=2, line=2.3
+text="ab", side=3, font=2, line=0.5, cex=1.5
+text='Ascending values', side=2, line=2
+text=category, side=4, line=2, at=offset, las=2, cex=0.7, col=col.category
+text=c, side=1, line=0.3, at=seq, las=2, cex=0.8
+text= c, side = 1, line = 2, outer = FALSE, at = c
+text=c, side=2, line=0.3, at=seq, las=1, cex=0.8
+text="Date", side=1, line=2.5
+text='Descending values', side=4, line=2, col='red'
+text='dsads', side=2, line=1
+text="eps", side=2, line=4, las=1
+text="eps", side=3, at=usrcoord.x.left-0.075*diff, side=3, at=usrcoord.x.left-0.1*diff
+text=expression, side=1, font=2, line=3, side=1, font=2, line=3
+text=labs, side=2, at=1:length, col=axiscolor, adj=.5
+text=myLab, las=1, side=2, outer = FALSE, at=c
+text_note, cex=0.4, col="grey", side = 1, line = 4, outer = FALSE, padj=0, adj=1
+text = "Price", side = 2, line = 4
+text='TEST', side=1, line=1
+text= "text1\ntext2\ntext3", side=1, cex = 0.75, font = 3, col = "red", line=7
+text = "text1\n\text2\ntext3", side = 1, line = 9, cex = 0.75, font = 3, col = "red"
+text = "Time", side = 1, line = 4
+text = xticks, side = 3, line = 2, at = xticks
+text=y1], side=2, at=offset, las=2, cex=0.7, col=col.value
+text=ylength, side=4, line=-1, at=offset, las=2, cex=0.7, col=col.value
+Type, side=1, outer=F, line=-10, adj=0.8
+x, 1, .1, at=x, cex=.5
+xlab, side=1, line=1, outer=TRUE, adj=0, at=.8 *
+xlab, side = 1, line = margins1] - 1.25
+xlabsi], side=3, line=1
+ylab, side=2, line=1, outer=TRUE, adj=0, at=.8 *
+ylab, side = 4, line = margins2] - 1.25
+ylabsi], side=2, line=3

@@ -1,0 +1,433 @@
+
+0:1
+0:1, 0:1, 0:1
+0:3, 0:3
+10, 10
+1:, 1:
+1:1000
+1:1000, 1:10000
+1:100, 1:100
+1:10, 1:10
+1:10, 1:10, 6
+1:10, letters
+1:12, c
+1:14
+1:2, 1:2
+1:2, 1:2, 1:2, 1:2, 1:2, 1:2, 1:2, 1:2, 1:2, 1:2
+1:3
+1:30, 11, 1900:2011
+1:3, 1:2, 1
+1:3, 1:3
+1:3, 1:3, 1:3, 1:3
+1:3, 1:3, 1:3, 1:3, 1:3, 1:3, 1:3
+1:3*2, seq
+1:360, 1:180
+1:4, 1:4
+1:5
+1:500
+1:500, x1=0:1, x2=0:1, x3=0:1, x4=0:1, x5=0:1
+1:5, 1:5
+1:6, 1:6
+1:6, 1:6, 1:4
+1:6, 1:6, 1:6
+1:6, 1:6, 1:6, 1:6
+17, 17, lty = 1
+1, c, c, c, c
+1:d
+1:dim, 1:dim
+1:length, 1:length
+1:length, 1:nrow
+1:m, 1:n
+1:m, 1:n, Var2
+1:n, 1:m
+1:n, 1:n
+1:nn, 1:nn
+1:nrow, 1:nrow
+1:nrow, IndependentVariable1, IndependentVariable2
+1:num.Patches, 1:num.alleles
+1:nx, 1:ny
+2001:2012
+2:3, 4:5
+3, ni=ni, 2
+5, 5, c
+6, 15:30
+A
+a
+a1
+a=1:10, b=1:10, p=1:10, q=1:10
+a=1:2, b=1:2
+a = 1:3, b = 1:3, cbind
+a=1:4, b=1:4
+A1=, A2=1:3, A3=c
+a=a
+a, a
+AA<20], BB<15], ...
+A=A, B=B
+a, b
+A, B, C, D
+a, b, c, dimension = 1
+A, B, C, y = B, z = C
+a, b, d, b
+a=c, b=20:50
+a=df, c=c
+age=age, hrs=hrs
+age=ag, vehicle=veh, position=0.7
+A=letters1:3], B=letters4:6], C=letters7:9]
+A=LETTERS1:5], B=LETTERS1:5]
+a=levels
+allweeks, allprobes
+alpha, beta
+apply, apply
+aql = c
+argsx1]]]
+a=seq
+b
+back=seq_len
+b=b, s=s
+b=fivenum
+blue=seq, red=seq
+B, t
+c
+c, 1:
+c, 1985:2013, 0
+c, 4
+cat1=levels
+cat=factor, lab=factor
+c, c
+c, c, 0
+c, c, c
+c, c, c, c
+c, c, c, c, c
+c, col=2, nx=7, ny=5, pretty=FALSE, label=TRUE, lty=2
+c, d
+c, function, function
+ch1 = letters1:3], ch2 = letters1:3], ch3 = letters1:3], stringsAsFactors = FALSE
+CO, CS, CD, CSD
+code1, code2, code3
+cohort=levels, sex=levels
+col1=col1
+col1=letters, col2=letters, stringsAsFactors=FALSE
+col = "black"
+col = 'darkgray'
+col = 'gray'
+col = 'lightgray'
+colnames, colnames, 1L, function, x"Var1"]] + df2, x"Var2"]], 1L, function
+colnames, rownames
+colnames, x, 1]
+colors, days
+col=rgb, labels=F
+col="white"
+col="white", lty=1
+counties, states, years
+d
+d=1:10, j=1:3, i=1:10
+dat
+data, 2*data
+data, "A"], data
+data.frame
+dat, dat
+Dates_List, ISIN_Table
+Date=unique, Company=unique, Region=unique
+Date = unique, Group = unique
+day = 1:30, month = 11, year = 1900:2011
+days, slots
+d = d, z = z, stringsAsFactors = FALSE
+df1, 1], halfway1]]
+df1, df2
+dfi, 1]
+dfx, dfx, wrk1]]
+dfx, dfx, wrk1]], "42", "44", "45", "97", "99", "100", "101", "102", "103", "105", "123", "124", "126", "127", "130", "132", "135", "136", "137", "138", "139", "140", "141", "158", "159", "160", "161", "162", "163", "221", "223", "224"
+dim3 = 1:n3]
+dimnames
+dimnames, second, rownames, second, 1], second
+DischargeMonth=1:12, DischargeYear=2010:2011
+dx, dx$y
+experiment = factor, status = factor, reps = seq_len
+expl1 = plotexpl, expl2 = c
+f1, e1
+f1=levels
+f1 = levels
+fac1, fac2
+facet=LETTERS1:4], group=letters1:5], subject=factor
+False
+ff * 1L:ncol, ff * nrow:1
+file_list1, file_list2, as.vector, as.vector
+foo
+foo.x=unique
+formats, KEEP.OUT.ATTRS = FALSE, stringsAsFactors = FALSE
+ForSortSNP=unique
+from = 1:4, to = 1:4
+fruits, ingredients
+f=values, s=values
+g
+G;1:3, P=2:5
+gamma=gamma, beta=beta
+gene=letters1:2], SNP=LETTERS1:3]
+g, h, i
+goodPos, -badPos
+goodWords, badWords
+grain
+grain, colnames, 'months'] == x1], c
+grid.size=3, elength=2
+h = 16, v = 0
+h=-1, v = 0
+h = -1, v = 0, col = "gray"
+h=FALSE, v=-1
+Hostname = letters1:2], Date = Sys.Date, MetricType = LETTERS3:4]
+i = 1:10, j = 1:2, k = seq
+i = 1:10, j = 1:2, k = seq, function
+i=1:3
+i=1:51, k=1:6
+i=1:n, j=1:n
+i=1:n, j=1:n, k=1:n
+i=1:n, j=1:n, nrow=n
+i=71:80, j=63:78
+id = 1:35000, stratum = letters1:10]
+ID=182, year=2002:2004, month=1:2, day=1:3, KEEP.OUT.ATTRS=FALSE
+ID=1:nrow, HR=1:6
+id=id, year=unique
+i=id, j=id, k=id
+ii=seq_len, jj=seq_len
+initial_consonants, vowels
+initial_consonants, vowels, final_consonants, x2]
+interaction.depth = 1, n.trees = 100:101, shrinkage = 0.1
+i=seq, j=seq
+ksym=symbol1:k], jdates=dates1:j]
+kwd1=df
+l
+lapply
+lbox1, ], lbox2, ], 3, 4, 2
+length, length
+letters
+letters1:2], 4
+letters1:4], letters5:8]
+letters1:5], LETTERS1:5]
+letters24:25]
+LETTERS, LETTERS10:15], LETTERS1:20], LETTERS1:5]
+LETTERS, LETTERS, LETTERS
+letters, letters, letters
+lev1=seq, lev2=seq, lev3=seq, lev4=seq, lev5=seq, lev6=seq
+level=levels, var=names
+levels, levels
+list
+list1, list2
+list.1, list.b, list.b
+list, stringsAsFactors= FALSE
+llply
+long, lat
+long=seq, lat=seq
+lon, lat
+lon=xvals, lat=yvals
+Loss_Yr=unique
+lty = 1, col = 'white'
+lwd = 0.3, lty = 7
+lwd = 1.5
+m1=1:1440, variable=factor
+mapply
+market = LETTERS1:5], date = Sys.Date, sitename = letters1:2]
+mech=1:mechrow, pro=1:prorow
+m, nx=18, ny=18, col=8
+m, nx=4, ny=6, col="black"
+monCode, yearRange
+month = month.abb, building = c, hc = c
+months = months, years = years
+mpg
+n
+n=1:3
+NA, 25, lwd = 2
+names, names
+NA, NULL
+NA, NULL, lwd=3
+nC, nC
+ncomp = seq
+ncomp = seq, mtry = 1:len
+neg=1:nrow, pos=1:nrow
+newdat.list
+N, H2
+n, lims
+n, n
+nodes, nodes
+nx=100, ny=100, lty=1
+nx=18, ny=18, col=8
+nx=32, ny=23, lty="solid", col="gray65"
+nx=64, ny=46, lty="solid", col="gold"
+nx = NA
+nx = NA, ny = 5, col = "lightgray"
+nx=NA, ny=NULL
+nx = NA, ny = NULL
+nx = NA, ny = NULL, col = "white", lty = "solid"
+nx= NULL, ny = NULL, lty = 1, lwd = 1, col="gray60", equilogs = TRUE
+ny=NA
+obj, zcol = names, ..., names.attr
+observer=LETTERS1:3]
+opt1=0:1, opt2=0:1
+Order=seq_len, date=seq_len
+outcome, pollut1
+p, 10
+p1 = 1:5, p2 = 1:5, p3 = 1:5, p4 = 1:5
+p1 = letters1:3], p2 = letters1:3], p3 = letters1:3], stringsAsFactors = FALSE
+paste0, paste0
+paste, paste
+p, d, q
+Period = .period, Size = .size, Number = .number, stringsAsFactors = F
+Perot96=perot
+pos.row.idx, neg.row.idx
+powers
+prefix, roots
+prefix, roots, suffix
+prey=1:2, predator=1:5
+r
+r1 = 1:3, r2 = 1:3
+ran1, ran2, ran3, ran4, ran5
+RANK=df
+rbox1, ], rbox2, ], 3, 4, 2
+relGPA, avgGPA
+rep
+replicate
+replicate, reps
+rev
+rnm, cnm
+row = 1:nrow, col = 1:12
+row2 = seq_len
+rownames
+rownames, colnames
+rownames, rownames
+rownames=rownames, colnames=colnames
+rows, cols, stringsAsFactors=FALSE
+row = seq, col = seq
+r=r, theta=theta
+r, s
+rs, ks
+r, s, stringsAsFactors=FALSE
+S0, E0, B0, tau
+s1
+sapply
+school=LETTERS1:nschool], rep=seq
+seq_along, seq_along
+seq_len, seq_len
+seq_len, seq_len, seq_len
+seq, seq
+seqs, seqs, stringsAsFactors=FALSE
+service=service
+service=x1], metric=x2]
+sigma = sigma, r = r
+site=1:2, run=1:2, id=1:2
+siteID=unique
+sort
+Source = src_national, County = counties
+start = 1L:n, len = 2L:
+state=gl, gender=gl
+states, states
+station = rep, member = rep
+Study = 1:4, Experiment = 1:3, Response = LETTERS1:4]
+sub=1:4
+sweep1=sweep1, sweep2=sweep2
+tags, times, timesteps
+target = c, cond = as.factor, patient = LETTERS1:20]
+Temp = rnorm, Age = runif
+time=1:100, Location=factor
+time = paste, group = paste
+TMT1=c, TMT2=c
+topstate=unique, state=unique
+treatment = "sucrose", Time = seq
+trial=1:10, stim1=1:5, stim2=1:3
+True
+unique, min
+unique, unique
+unique, unique, unique
+unique, unique, unique, unique
+v1, v2
+vals
+vals, unique
+var1=1:10, var2=1:10
+var1=1:4, var2=1:4
+Var1=rows
+var1, var2
+variable=c, var2=c
+vars
+w=1:width
+with, c
+w, w
+W = W, X = X, Y = Y, Z = Z
+w, x, y
+x
+x=0:9, g=reg
+x=1:10
+x = 1:10
+x=1:100, y=1:100
+x=1:10, y=1:10
+x = 1:10, y = 1:10
+x=1:10, y=1:6
+x1=12:n1, x2=0:n2, y2=0:n2
+x1=1:2, x2=1:2, y1=1:2
+x1=1:2, x2=1:2, y1=1:2, y2=1:2
+x1=1:5, x2=2:6
+x = 1:15, y = 1:14
+x1=1:nrow, x2=1:nrow
+x=1:2, y=1:2, f=letters1:2]
+x=1:2, y=1:3
+x = 1:3
+X=1:3, Y=1:2
+x=1:3, y=1:2
+x=1:3, y=1:3
+x=1:4
+x = 1:4, y = 1:4, -10
+x=1:5
+X = 1:500, H = seq
+x1  = c
+x = 1:ncol, y = 1:ncol
+x=1:ncol, y=1:nrow
+x=1:nrow, y=1:ncol
+x1=seq, x2=seq
+X1=t., X2=t.
+x1=unique, x2=unique
+x, 1], x, 2]
+x=-1, y=-1
+x=2:4, y=2:4, z=0
+x=A, y=B, z=C
+x = colnames, l = c
+x = d2, y = d2
+x = factor, y = factor, KEEP.OUT.ATTRS = FALSE
+X = factor, Y = rnorm
+x, i
+x=letters1:2]
+X=points, Y=-points
+x=pts.grid, y=pts.grid
+x = rownames, y = colnames
+X=rr
+x=seq, g=levels
+x=seq, y=seq
+x = seq, y = seq, KEEP.OUT.ATTRS = FALSE
+xs = rnorm, ys = rnorm
+xs, ys
+x=t., y=t.
+x = u-1], y = u-length
+x = unique, y = unique
+x = u, y = u
+xvals, yvals
+xVariables, yVariables
+x.variable, y.variable, my.factor
+x=x
+x, x
+X = xholes, Y = yholes
+x=xstar, y=ystar
+x=x, y=x
+x = x, y = x
+X=X, Y=Y
+X = X, Y = Y
+X=x, Y=y
+x=x, y=y
+x=x, y=-y
+x = x, y = y
+x, y
+x, y, 2] -
+x, y, x2]
+x, y, y, FUN=function
+x, y, z, highlight.3d=TRUE, col.axis="blue"
+y=0:3, x=0:3, a2
+year = 1990:2001, month = 1:12
+year = 2012:2020, geography = paste0
+year = seq, id = unique
+yoda
+y, x
+y=z, 1], x=idx
