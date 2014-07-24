@@ -1,0 +1,153 @@
+0.0629*exp
+f*0*col="orange"*0*add=T
+exp*0*from=1*0*to=5*0*lwd=7*0*xlab="chi"*0*ylab="exp*0*cex.lab=4*0*axes=F
+x^2*0*-5*0*5*0*axes=FALSE
+f*0*0*0*500
+x^2*0*-5*0*5*0*yaxs = "i"
+f*0*from=1*0*to=1e5
+M * g*0*0*0*500*0*add = TRUE*0*lty = "dashed"
+dnorm*0*-3*0*4
+quantile
+sfun*0*from=0*0*to=10*0*10*0*length=101
+f2*0*0*0*1*0*add=TRUE
+exp*0*from=1*0*to=5*0*lwd=5
+f*0*from=-2*0*to=2*0*mf*0*sf
+dbeta*0*add=TRUE
+x2=1*0*y2=0*0*x1=.875*0*y1=.5*0*curvature=-.5
+sapply*0*from=-5*0*to=5
+ttt*0*from=1*0*to=75*0*add=TRUE
+predict*0*add=TRUE
+f*0*col="red"*0*add=T
+lm.f*0*from=-1.*0*to=-0.59*0*lwd=5*0*add=T
+dweibull*0*lwd=2*0*from = 0*0*to = 2
+sapply
+dnorm*0*from=ToBeFilled*0*to=ToBeFilled*0*col="blue"*0*lty="dotted"*0*mean = mean
+expr=myfunc*0*from=0*0*to=1100*0*xlim=c*0*ylim=c*0*xlab=""*0*ylab=""*0*n=1e3
+plogis*0*min*0*max*0*add=TRUE*0*lwd=2
+modelf
+af*0*add=TRUE*0*interval=c
+gv*0*from=0*0*to=1
+1.0 **0*from=80*0*to=250*0*ylim=c
+227.0176*x^0.7828
+0.5-x^4*0*add = TRUE
+dnorm*0*-zmax*0*zmax*0*xaxt = 'n'*0*bty = 'n'
+1-post.ecdf*0*from=r[1]*0*to=r[2]*0*col="blue"*0*add=TRUE
+y*0*xlim=c*0*n=501*0*ylim=c
+y0 - f*0*from=x0-a*0*to=x0+a*0*add=TRUE*0*n=npoints*0*col=cols[3]*0*...
+m*x+y1-m*x1*0*from=0*0*to=x1*0*add=TRUE
+dnorm*0*add=T*0*col = "grey"*0*lwd = 2
+sin*0*add=TRUE*0*col="red"
+1-exp*0*from=0*0*to=370*0*axes=FALSE
+dbeta*0*xlim=c*0*ylim=c*0*xlab='p'*0*ylab='Posterior Density'*0*lty=2
+my.weibull.surv*0*1*0*100*0*lwd=2*0*col='red'*0*ylim=c*0*bty='n'
+f2
+y0 + f*0*from=x0-a*0*to=x0-a*r*0*add=TRUE*0*n=npoints*0*col=cols[1]*0*...
+df*0*from = 0*0*to = 100
+dnorm*0*add = TRUE*0*col = "red"
+dnorm*0*xlim=bounds
+invlogit
+df1=fstat['numdf']*0*df2=fstat['dendf']*0*col='blue'
+dnorm*0*add=TRUE*0*col="blue"*0*lty="dotted"
+f2*0*-pi*0*pi*0*n = 100
+f*0*0*0*250*0*add = TRUE
+dbeta*0*xlim=c
+dnorm*0*-3.5*0*3.5*0*lwd=2*0*axes = FALSE*0*xlab = ""*0*ylab = ""
+parabola*0*add = TRUE*0*lty = "dashed"
+fef*0*from = 1*0*to = 10
+y0 + f*0*from=x0+a*r*0*to=x0+a*0*add=TRUE*0*n=npoints*0*col=cols[2]*0*...
+x^2*0*xaxs="i"*0*yaxs="i"
+dbeta
+my.weibull.haz*0*1*0*100*0*lwd=2*0*col='blue'*0*bty='n'*0*shape*0*scale
+eq*0*add=TRUE
+y2*0*add=TRUE*0*col="blue"
+x^2*0*from=0*0*to =1*0*col="darkblue"
+dfun*0*from=5*0*to=6
+dbeta*0*col='red'*0*lwd=1.5
+x^2*0*add=TRUE
+0.61838+0.08564*log*0*add=TRUE
+x^*0*from = 0*0*to = 100*0*col = 'red'*0*type = 'p'*0*pch = 16*0*n = 20
+HillFunction*0*col="red"*0*add=TRUE
+expr=ff*0*from=0*0*to=2.999*0*xlim=c*0*ylim=c*0*xlab=""*0*ylab=""*0*from=3*0*to=6*0*add=TRUE*0*ff*0*pch=21*0*bg="black"
+tf*0*col=2*0*add=TRUE
+dnorm*0*type="l"*0*lwd=2*0*col="red"
+f*0*col="green"*0*add=T
+dexp*0*from = 0*0*to  = 10*0*add = TRUE
+4/5*sqrt*0*from=-1*0*to=1*0*add=TRUE*0*col=2
+pol2*0*col="red"*0*lwd=2*0*add=T
+plogis
+f*0*0*0*1*0*col = "green"*0*lwd = 1.5*0*add=TRUE
+x^2 - 3*x - 10*0*-15*0*15*0*v=0*0*lty=3
+exp*0*from=1*0*to=5*0*lwd=7*0*xlab="chi"*0*ylab="exp*0*cex.lab=2*0*axes=F
+
+dnorm*0*xlim=c
+200 -
+f*0*0*0*.04
+x^3*0*-3*0*3*0*col='green'*0*n=600
+dnorm*0*add=TRUE
+x^2-0.25*0*add = TRUE
+lm.g*0*from=-1.*0*to=-0.59*0*lwd=5*0*add=T*0*lty=3
+dfun*0*add=TRUE
+215.47*x^0.812
+3*x+1*0*from=-5*0*to=5
+b*0*0.001*0*.9999
+1-*0*from=0*0*to=12*0*ylab=expression*0*col="darkred"*0*xlab="t"*0*lwd=5*0*ylim=c
+dbeta*0*col = "red"
+dunif*0*0*0*20*0*n=101*0*xlab='Expected Return'*0*ylab='Density'
+x^2
+x^2*0*add = TRUE
+dnorm*0*col = 2*0*add = TRUE
+4*x+2*0*add=T
+x1=.375*0*y1=.5*0*x2=.5*0*y2=1*0*curvature=.5
+a*0*.001*0*.999
+exp*0*mean - 2*0*mean + 2*0*asp = 1
+func1*0*...*0*n = n*0*col = col*0*main = main
+insert_function_here
+f
+dgamma*0*add=TRUE*0*col='blue'
+dexp*0*add = TRUE*0*col = "red"*0*lwd = 2
+plogis*0*add=TRUE
+expLine*0*0*0*7*0*n=101*0*add=TRUE
+f*0*0*0*0.035*0*col="red"*0*lower=0.0*0*upper=0.02
+x^coef*0*add=TRUE*0*lwd=2
+fde*0*from=0*0*to=10
+tf*0*from=1*0*to=1000
+x^2*0*-3*0*3*0*col='red'*0*n=600*0*add=TRUE
+2*sqrt*0*add=TRUE
+f*0*add = TRUE*0*col="pink"*0*lwd=2
+length*0*from=rx[1]*0*to=rx[2]*0*col="red"*0*xlim=rx*0*ylim=c
+dnorm*0*-3*0*+4
+dnorm*0*type="l"*0*lwd=2*0*col="blue"*0*add=TRUE
+y*0*xlim = c
+2*x^2-0.2*0*add = TRUE
+f*0*from=0*0*to=10
+dnorm*0*type="l"
+s
+splinefun*0*add=TRUE*0*col=2*0*n=1001
+tf*0*col=4*0*add=TRUE
+length*0*from=rx[1]*0*to=rx[2]*0*col="blue"*0*add=TRUE
+myfunc*0*0*0*1100*0*xlim=c*0*ylim=c*0*xlab=""*0*ylab=""
+dgamma*0*log
+y
+x+1*0*add=T
+cos*0*add=TRUE*0*col="blue"
+0.5*x^2+0.2*0*add = TRUE
+x2=0*0*y2=0*0*x1=.125*0*y1=.5*0*curvature=.5
+1-pre.ecdf*0*from=r[1]*0*to=r[2]*0*col="red"*0*xlim=r
+f*0*-2*0*2*0*ylim=c*0*runif
+f*0*xlim=c*0*las=1
+150-exp*0*from=1*0*to=5*0*lwd=5*0*col="darkblue"*0*add=T
+g*0*xlim=c
+dnorm*0*50*0*150
+x^3 - 3*x*0*-2*0*2*0*sub=xlabel*0*xlab=""
+f*0*col="blue"*0*add=T
+splinefun*0*add=TRUE*0*col=3*0*n=1001
+dnorm*0*-5*0*5*0*add=T*0*col="blue"*0*mean=10*0*sd=2
+f*0*-1*0*1*0*100*0*-1*0*1*0*100
+math_fun*0*-5*0*5
+f*0*add = TRUE*0*col="orange"*0*lwd=2
+4/5*-sqrt*0*from=-1*0*to=1*0*add=TRUE*0*col=2
+x2=.625*0*y2=.5*0*x1=.5*0*y1=1*0*curvature=.5
+7*x^2-0.5*x*0*col="grey"*0*add=TRUE
+x^4*0*from=0*0*to =1*0*add=T*0*col="darkred"
+sqrt*0*add=TRUE
+f*0*add = TRUE*0*col="green"*0*lwd=2

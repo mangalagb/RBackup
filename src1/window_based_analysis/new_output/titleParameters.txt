@@ -1,0 +1,115 @@
+outer=outer*0*adj=adj*0*main="C"*0*cex.main=cex*0*col="black"*0*font=2*0*line=line
+main='Output of plot
+main="This is \nTitle"*0*main=paste
+sub = dat
+main="TA boundaries from aggregated\nArea Unit boundaries"
+base*0*"Spinners"
+xlab="X values"*0*mgp=c
+main="MPG Distribution by Car Cylinders"
+ylab="Listings"*0*col.lab=rgb*0*font.lab=2*0*cex.lab=0.75
+main=main_title*0*col.main="red"*0*font.main=4
+main="bar"
+main="Numbers over the years"
+main*0*cex.main = 1.5 * op[["cex.main"]]
+xlab="Form of NP and Native Language"*0*line=4.5
+substitute
+xlab = 'x'*0*ylab = 'y'*0*line = 2
+xlab="    \u2113"*0*line=3.2*0*cex.lab=.7
+main=titlenames[i]
+ylab="MS"*0*col.lab=rgb
+xlab = "Species"*0*line=11
+sub = sub.caption*0*...
+xlab="Years"*0*ylab="Values"
+xlab="X"
+main = "ed & bla"*0*outer = T
+ylab="Y"
+ylab="Number of people"
+main=paste
+xlab=expression*0*family="script"
+ylab = "Potrošnja goriva"*0*xlab = "Broj cilindara"*0*main = "Dijagram raspršenja"
+main = "imageplot"*0*xlab = "x axis"*0*ylab = "y axis"
+tt*0*"Fruits!"
+main="Bland-Altman plots of Op1 vs Op2"
+xlab="Year"*0*ylab="Value"
+xlab = "Hour"*0*ylab = "Houston Load"
+nt*0*title
+main = "Maunga Whau Volcano"*0*font.main = 4
+ylab = "my label"*0*line = 4
+main = main*0*# <----- change this part!!!  xlab = names
+ylab = "Loss of Percent Organic Matter per Year"*0*cex.lab = 1.5*0*line = 4.5
+xlab="Year"*0*col.lab=rgb
+main=cat*0*ylab=" "
+xlab="xlab"*0*ylab="ylab"*0*main="main"
+xlab="chrX Position"*0*ylab="Divergence"
+sub = summStr*0*line = 5.5
+paste
+main = bquote
+xlab="Data"*0*ylab="Density"
+bquote
+xlab="TESTE"*0*line=4
+xlab="Index"*0*ylab="Value"
+main=paste*0*adj=0
+main = "Bunfight\nBig Mac index"*0*col = "#393E46"
+sub=x*0*line=1
+main="Comparative Density Graph"
+main="posterior distrobution of p"
+main="Funzioni"*0*col.main="blue"*0*font.main=4
+main="random title"*0*line = -2*0*outer = TRUE*0*cex.main=3
+xlab = "dates"*0*line = 5
+main="Term Structure of Interest Rates"*0*col.main="red"*0*font.main=4
+win*0*title
+
+ylab = "Contribution to Expected Return*0*line = 3*0*-0.0129
+tt*0*"Distribution Builder"
+main=name
+i*0*main=i*0*"Title 2"*0*"Title 3"*0*"Title 4"
+outer=outer*0*adj=adj*0*main="B"*0*cex.main=cex*0*col="black"*0*font=2*0*line=line
+main="
+xlab="Age Group"*0*ylab="Income"
+main=nam
+ylab = "Value axis"*0*xlab = "Single sample"*0*font.lab = 2
+ylab="Output"*0*col.lab=rgb
+main = ""*0*xlab = ""*0*ylab = ""
+main="loess
+main = "Rain
+main = "Maunga Whau Volcano Restricted to elevations above 150"*0*font.main = 4
+xlab = "Some Categories"*0*ylab = "Some Values"*0*outer = TRUE*0*line = 3
+main = title.str
+ylab=ylabel*0*cex.lab=1.4
+outer=outer*0*adj=adj*0*main="A"*0*cex.main=cex*0*col="black"*0*font=2*0*line=line
+xlab="Month"*0*col.lab=rgb*0*font.lab=2*0*cex.lab=0.75
+xlab="Years to Maturity"*0*ylab="Interest Rate"*0*col.lab=rgb
+main="test dev 1"
+ylab="response"*0*xlab="colours"
+names
+ylab = "Version"*0*main = "Releases"
+main="new"
+main="Simulated Survival Plot Demonstrating Annotation of N-at-risk"
+ylab = "f"
+cnames[i]*0*line = 0.4*0*cex = 0.9
+main=column
+s
+ylab = "Density"*0*font.lab = 2*0*ylab = "Density"*0*font.lab = 2
+main="Graph"
+xlab="Year"
+xlab="Build"*0*col.lab=rgb
+xlab = "Date"*0*line = 5
+xlab="x"*0*ylab="f*0*main="f*0*n=0:256"
+main=species[i]
+main="old"
+main='abc'*0*xlab='xx'*0*ylab='yy'
+main="Graph of % Disease Severity vs Temperature"
+xlab="Build"*0*col.lab=rgb*0*line = 4.5
+ylab = "label"*0*line = 5.5
+main="Different uses of I
+main='sdf'*0*xlab='sdf'*0*ylab='xcv'
+ylab="Relative Frequency"*0*xlab="Your Variable Name"
+main="Runtime"*0*col.main="red"*0*font.main=4
+main = series.title
+tt*0*"MYTEST"
+main="Original TA boundaries"
+main="test dev 2"
+main="Respondent Home ZIP Codes by County"
+xlab="x"*0*cex.lab=2
+tt*0*"Input Numbers"
+xlab=xlab*0*ylab=ylab*0*main=main

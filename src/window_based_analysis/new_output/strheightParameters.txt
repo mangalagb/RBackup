@@ -1,9 +1,0 @@
-legend*0*units = "user"
-s1
-s2
-LAB*0*'inches'
-txt*0*font=2*0*cex=2
-words[i]*0*cex=size[i]*0*...
-
-object*0*cex = cex
-labels

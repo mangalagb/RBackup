@@ -1,0 +1,51 @@
+1*0*1*0*ms.polygon*0*n=360*0*add=FALSE
+1:10*0*1:10*0*circles = rep*0*lty = 2*0*inches = FALSE*0*add = TRUE
+x*0*y*0*R[1*0*]
+mydata*0*mydata*0*circles=mydata*0*bg="blue"
+quakes*0*quakes*0*circles=radius*0*inches=0.35*0*fg="white"*0*bg="red"*0*xlab="Murder Rate"*0*ylab="Burglary Rate"
+class*0*drv*0*sqrt*0*inches=size.range[2]/cm
+crime*0*crime*0*circles=radius[1:15]*0*inches=0.5*0*bg=gray*0*xlab="Murder Rate"*0*ylab="Burglary Rate"
+Height*0*Volume*0*circles = Girth/24*0*inches = FALSE*0*main = "Trees' Girth"
+c*0*1:2*0*size.range*0*xlim=c*0*ylim=c*0*inches=1/cm*0*bg="black"*0*axes=FALSE*0*xlab=""*0*ylab=""
+myd*0*myd*0*ms.arrows*0*angle=minuteAngle*0*add=T*0*col="red"*0*symb.plots=TRUE*0*adj=0
+myd*0*myd*0*ms.arrows*0*angle=hourAngle*0*add=T*0*col="blue"*0*symb.plots=TRUE*0*adj=0
+year*0*logtrans*0*circles=size*0*inches=0.05*0*bg=intel2$HexLogClock
+x*0*y*0*symb = ms.flags*0*ind=1:50*0*symb.plots=TRUE*0*add=FALSE*0*xlim=c*0*ylim=c*0*inches=0.75
+ggs*0*ggs*0*radius*0*inches=0.30*0*xlab="Research type"*0*ylab="Research area"*0*xaxt="n"
+x=longitude*0*y=latitude*0*symb= ms.arrows*0*length=windspeed/10
+0*0*0*0*circles=1*0*bg=2*0*fg=NA*0*inches=FALSE*0*bty="n"*0*xlim=c*0*ylim=c
+pctable*0*pctable*0*circles=bubble.size*0*inches=.2*0*fg="black"*0*bg="blue"*0*yaxt="n"*0*xaxt="n"*0*xlab="Day"*0*ylab="Weekday"
+quakes*0*quakes*0*circles=quakes
+x*0*circles=size*0*xlim=c*0*cex.lab=3*0*cex.axis=3
+X*0*Y
+squares=...*0*inches=FALSE*0*add=TRUE
+data1[*0*1]*0*data1[*0*2]*0*circles=data1[*0*3]*0*inches=0.55*0*bg="lightblue"*0*xaxt="n"*0*yaxt="n"*0*ylab=""
+mydata*0*mydata*0*circles=mydata*0*bg="#0000FF50"
+DF*0*DF*0*circles = V3*0*inches = 0.35*0*fg = "darkblue"*0*bg = "red"
+1:5*0*rep*0*squares=rep*0*add=TRUE*0*inches=.4*0*bg=rep*0*xpd=TRUE
+temp*0*m*0*add=TRUE*0*circles=p*0*inches=1/15*0*ann=F*0*bg="steelblue2"*0*fg=NULL*0*m*0*xlab="Time"*0*ylab="Depth"*0*type='l'*0*main=Name[k]*0*lwd=5*0*col="steelblue2"
+year*0*logtrans*0*circles=size*0*inches=0.05*0*bg=as.character
+x*0*y*0*circles = z
+tms*0*vals*0*radii*0*xaxt='n'
+X*0*Y*0*circles = a
+mydata*0*mydata*0*circles=mydata*0*bg="#FF0000"
+x=1:10*0*y=d*0*ms.arrows*0*angle=pi/2*0*add=T*0*symb.plots=TRUE*0*adj=1.5
+DF*0*DF*0*circles=DF*0*inches=0.25*0*bg=DF$color
+year*0*logtrans*0*circles=logtrans*0*inches=0.25*0*bg=intel2$HexLogClock*0*logtrans*0*color=intel2
+1*0*1*0*cbind*0*add=TRUE
+quakes*0*quakes*0*circles=radius
+centrex*0*centrey*0*circles=radius*0*bg=shades[i]*0*fg=NA*0*add=TRUE*0*inches=FALSE
+mydata*0*mydata*0*circles=mydata*0*bg="red"*0*add=TRUE
+agData*0*agData*0*radii*0*inches=size.range[2]/cm*0*bg="black"
+0*0*0*0*circle = 0.2*0*inches = FALSE*0*add = TRUE*0*fg = 'red'
+data[3]*0*data[3]*0*symb=bwDiamond*0*symb.plots=TRUE*0*inches=0.22
+1:10*0*1:10*0*circles = rep*0*lty = 2*0*inches = FALSE
+x=1e-2*0*y=1e2*0*circles=1e1*0*xlim=c*0*ylim=c*0*xaxt='n'*0*yaxt='n'*0*ann=F*0*log="xy"
+x*0*y*0*circles=area*0*inches=F*0*ylim=c
+1:5*0*rep*0*circles=rep*0*add=TRUE*0*inches=.2*0*bg=rep*0*xpd=TRUE
+x*0*y*0*circles=r*0*fg="white"*0*bg="red"
+wt*0*mpg*0*ms.Cleveland*0*num.pt=sz*0*add=FALSE
+x=dfx*0*y=dfx*0*circles=dfx*0*inches=1/3*0*ann=F*0*bg="steelblue2"*0*fg=NULL
+platelay*0*factor*0*circles=rep*0*add=TRUE*0*inches=FALSE*0*bg=collist[colgrp]
+c*0*c*0*ms.polygon*0*xsize=c*0*lwd=c*0*n=360
+myd*0*myd*0*ms.polygon*0*n=250*0*add=T*0*r=1.1*0*col="gray"

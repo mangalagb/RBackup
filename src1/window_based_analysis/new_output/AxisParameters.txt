@@ -1,0 +1,22 @@
+x*0*side = side*0*xpd = NA*0*...
+side=1*0*labels=FALSE
+x = X*0*side = 1*0*...
+side = 2
+side=1
+dates.vec*0*....
+xorig*0*side = 1*0*cex.axis=cex.x
+side=2*0*labels=FALSE
+side=4*0*at=ticksAt*0*labels=as.character*0*line=0.5
+side=2
+y*0*side = 2
+y*0*side = side*0*xpd = NA*0*...
+x*0*side = 1
+Date
+side=2*0*at=ticksAt*0*labels=as.character*0*line=0.5
+side = 1
+side=2*0*x=range*0*format ="%H:%M:%S"*0*aes
+Data*0*col="black"*0*side=1
+x = y*0*side = 2*0*...
+x = X*0*side = 1
+x = c*0*at = c*0*side = 4
+at = h*0*labels = 10^h*0*side = 1

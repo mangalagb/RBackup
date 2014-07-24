@@ -1,0 +1,351 @@
+pmort
+table*0*main='Male'*0*sub='Drop'
+unlist
+myd1
+as.matrix*0*beside = TRUE
+a*0*a*0*type = "l"
+y*0*xlim=c*0*col = 1:nrow*0*ylab="My Variables"*0*legend.text = TRUE*0*args.legend = list
+t*0*legend = TRUE*0*col = c*0*xlab = "Date"*0*ylab = "Visits"
+x*0*xlim = c*0*ylim = c
+c - 0.4*0*names.arg=name*0*axes = FALSE
+totals
+valsort [*0*"Value"]*0*ylab=""*0*xlab=""
+data1*0*horiz=T*0*axes=T*0*las=1
+submitted*0*names.arg=x*0*las=2*0*cex.axis=0.8*0*cex=0.8
+limbs*0*names.arg = result
+tN*0*col=rainbow*0*cex.names=0.5
+t
+df*0*gap=c*0*horiz=T
+table*0*main="Sample Sizes of Various Fitness Traits"
+DF[*0*3]*0*names.arg=DF*0*ylab="mean of Y2"*0*las=1
+dataset*0*main="blahh"*0*xlab="blahh"
+p[*0*2]*100*0*names.arg=p[*0*1]
+table*0*1]
+height=c*0*ylab=expression*0*1*0*xlab=expression
+table*0*las=2
+sort*0*horiz=T*0*legend="Bunfight!! "*0*args.legend = list*0*col='darkblue'
+val
+test*0*col = tpal
+t*0*beside=TRUE
+h*0*beside=TRUE*0*col=col*0*xaxt="n"
+cc*0*...
+tN
+m_heights*0*width=1*0*space=1*0*ylim=c*0*xlim=c
+VADeaths*0*beside=TRUE*0*las=1
+LR50*0*ylim = c*0*xpd=FALSE
+DF*0*names.arg=DF
+data2*0*axes=F*0*horiz=T*0*axisnames=FALSE*0*xlim=c
+t*0*beside = TRUE*0*col = colors*0*ylim = c*0*axes = FALSE*0*xlab = "Language"*0*main = "Languages "
+as.matrix*0*beside=FALSE
+quantity
+tN*0*col = rainbow
+VADeaths*0*border = "yellow"
+xtabs
+as.matrix*0*beside = TRUE*0*main = factor
+1:10*0*xaxs="i"*0*ylim=c*0*space=0
+dat*0*beside=TRUE
+tN*0*col = rainbow*0*space=0
+m
+as.matrix*0*beside = TRUE*0*space = c*0*beside = TRUE
+r*0*log="y"*0*col="white"*0*names.arg=r
+x*0*xlim=c
+c*0*main=main[3]*0*xlab='RSSI'*0*xlim=c*0*ylim=c
+xxx*0*width=diff*0*xlim=range*0*space=0*0*ylim=c*0*col=NA
+ff*0*horiz=T*0*main="Hommes"*0*space=0*0*col="grey"*0*xlim=c*0*axes=F*0*axisnames=F*0*cex.axis =0.7*0*xaxt="n"*0*yaxt="n"
+x*0*beside=TRUE*0*ylim=c*0*xlab="Month"*0*axes=TRUE*0*axis.lty=1*0*ylab="Monthly"*0*col=c*0*panel.first= abline
+ADF*0*names.arg=ADF
+sort*0*horiz=TRUE
+x*0*las = 2
+data*0*col = rgb*0**0*space = space.*0*add = T
+t*0*beside=T*0*ylab="number of species"*0*cex.names=0.8*0*las=2*0*ylim=c*0*col=c
+d*0*main=main[4]*0*xlab='RSSI'*0*xlim=c*0*ylim=c
+mydat*0*space=c
+Data*0*names.arg=Data*0*col=bar.col*0*border=FALSE*0*main='My Plot'*0*ylim=c*0*axes=FALSE
+matrix*0*main="C"*0*names.arg=c*0*ylim=c*0*col=c"gray"*0*axis.lty=1*0*xlab="Time"*0*ylab="CA Activity"*0*beside=TRUE
+countRT.subset*0*las=2*0*cex.names = 0.75
+counti*0*main=paste
+dat*0*beside=TRUE*0*space=c*0*las=2
+prop.tab*0*xaxs='i'*0*ylab="Relative %"
+prop.table*0*col = c*0*2*0*stack = TRUE*0*horizontal = FALSE
+freqs
+table*0*ylim=c*0*main="Barplot with y-axis to 4"
+data*0*beside=TRUE*0*col=c
+pr.0*0*ylab="Percentage"
+t*0*]
+a*0*names.arg=a
+cbind
+mat*0*ylim=c*0*xlab='depth'*0*names.arg=levels*0*ylab='average misclassifications'*0*beside=TRUE*0*legend.text=c
+as.matrix
+table*0*main='Male'*0*sub='Default'
+dat
+tN*0*col=rainbow
+graph.frame[1*0*]*0*ylab = "AAA"*0*col = terrain.colors*0*ylim="c*0*xaxt = "n"
+c*0*col=c
+p*0*width=diff*0*space=0
+tNshift*0*space = 1.5*0*yaxt="n"*0*xaxt="n"*0*ylim=range
+VADeaths
+a*0*col=c*0*ylab="Frequency"*0*xlab=""*0*main="Frequency"*0*axisnames=FALSE
+x*0*cex.names=0.7*0*names.arg=c
+vec*0*names.arg = paste0*0*4*0*4*0*2
+height*0*width=.1*0*space = .4*0*names.arg = mac*0*cex.names = .8*0*col = "#01516c"*0*border = "#7199a8"*0*# border = "#577784"*0*horiz = TRUE*0*xlim = c*0*axes = FALSE
+sapply
+scores*0*main="my plot"*0*xlab="my 1000 scores"*0*1000*0*111*0*1000*0*111*0*1000*0*111*0*100*0*10*0*1000*0*99.9*0*100*0*10
+transComp
+dat*0*col=rainbow*0*beside=F
+cbind*0*beside=TRUE*0*col=c
+as.matrix*0*beside = T*0*y = c*0*beside = T
+sumById
+table*0*main=files[i]
+m[2:3*0*]*0*beside=TRUE*0*names.arg=m[1*0*]*0*col=2:3*0*las=1*0*xlab="Year"
+table*0*horiz=TRUE*0*las=1*0*main=names
+t*0*legend.text=TRUE*0*beside=TRUE*0*horiz=TRUE*0*density=NA*0*col=c*0*xlab="crimes"*0*ylab="districts"*0*axes=TRUE*0*names.arg=colnamesbarplot*0*cex.names=0.5*0*las=1
+y
+y*0*names.arg=format
+foo
+data*0*names.arg=row.names*0*horiz=TRUE*0*las=1*0*xlim=c*0*main="Group 1"
+x[1:25*0*3]*0*horiz=TRUE*0*space = 0.4
+df2*0*df2
+h*0*names=h$mids*0*names=df
+dt*0*dt
+df2*0*beside=TRUE*0*col=1:6
+apply
+heights1*0*main="Language "*0*names.arg=c*0*ylab=" level "*0*xlab="Language"*0*cex.names=0.8*0*col=c*0*space=c
+xxx*0*width=diff*0*xlim=c*0*space=0*0*ylim=c*0*col=NA
+tt
+bpsamplevalues*0*col = "#87DEE1"*0*axes = FALSE*0*las = 2
+prop.table*0*border = FALSE*0*xlab = ''*0*ylab = ''*0*las = 2
+counts*0*main="Car Distribution"*0*xlab="Gears"*0*col=c*0*legend = rownames*0*beside=TRUE*0*horiz=TRUE
+prop.table*0*beside=T
+height=dat[*0*2]*0*2]*0*names.arg=dat[*0*1]
+t*0*col=c*0*legend=TRUE*0*border=NA*0*xlim=c*0*args.legend=list*0*ylab="Cumulative percentage"*0*xlab="Village number"
+graph.frame[1*0*]*0*ylim=c*0*ylab = "AAA"*0*col = terrain.colors*0*xaxt = "n"
+x*0*col = cols*0*horiz=T
+density*0*names.arg=breaks*0*names.arg=breaks[-c
+rep*0*ylim=c*0*axes=FALSE
+58:1*0*xaxt="n"*0*xlab=""*0*ylab="Frequency"*0*col=gray
+b*0*main=main[2]*0*xlab='RSSI'*0*xlim=c*0*ylim=c
+DF[*0*2]*0*names.arg=DF*0*ylab="mean of Y1"*0*las=1
+zz*0*col=c
+mat*0*beside=TRUE*0*legend.text=TRUE*0*args.legend=list
+samples*0*log="y"
+mm
+values*0*names=1:length*0*log="y"
+d*0*beside=FALSE*0*col=c
+x*0*names.arg = x*0*ylab = "read depth"*0*col = gray.colors
+islands
+x*0*horiz=T*0*las=1*0*cex.names=0.5
+df*0*gap = c*0*xlab ="Samples"*0*ylab =""*0*main = "C "*0*las = 2*0*xlim = c*0*ytics = c*0*cex.lab = 1.5*0*xaxt = "n"
+vec*0*names.arg = paste0*0*las = 2
+data*0*main="Page Views"*0*horiz=TRUE*0*names.arg=names*0*las=1
+density[-c*0*names.arg=str.breaks[-1]*0*las=2
+t*0*horiz = TRUE*0*width = 0.05*0*space = 1*0*plot = FALSE
+myData2[*0*2]*0*names.arg = myData2[*0*1]
+table*0*cex.axis = 0.75*0*cex.names = 0.2
+VADeaths*0*horiz=TRUE*0*cex.names=0.85
+as.matrix*0*horiz=TRUE*0*col=rainbow*0*xaxt="n"
+t*0*names.arg=c
+bars
+counts*0*names=uval
+height = y*0*log = "y"*0*ylim=c
+rainbar*0*axes=F*0*ylim=c
+test*0*las=2*0*beside = TRUE*0*legend=T*0*horiz=T
+sample_var*0*col=cols[ max.colors - floor*0*border=NA
+b[b>=2]
+t*0*horiz = TRUE*0*width = 0.05*0*space = 1
+h*0*width=0.2*0*space=0*0*add=T*0*col="white"*0*border=NULL*0*dd$heights*0*m_heights*0*col=2*0*pch="X"
+df
+dat*0*names.arg=paste*0*ylab=" "
+diff*0*ylab="Change in value"*0*main="Growth"*0*type='b'*0*ylab="Change in value"*0*main="Growth"
+tN*0*col = rainbow*0*ylim=c*0*main='long y-axis'
+sample_var*0*col=cols*0*border=NA
+height = dat*0*add = TRUE*0*axes = FALSE*0*data = dat*0*origin = 0*0*horizontal = FALSE
+test*0*names.arg=test
+table*0*beside=TRUE
+hmatrix*0*beside = TRUE*0*horiz = TRUE*0*xlab = "Volume"*0*ylab = ""
+t*0*beside=F*0*names.arg=as.Date*0*beside=T*0*names.arg=as.Date
+y*0*main="Main Title"*0*names=c*0*xlab=expression*0*ylab="Text "
+as.numeric
+dat*0*xaxt = 'n'*0*xlab = ''*0*width = 0.85*0*ylim = ylim*0*main = "Sample Sizes of Various Fitness Traits"*0*ylab = "Frequency"
+data
+counts*0*col=c*0*legend=rownames*0*beside=T
+DD*0*col=rainbow*0*names.arg=""
+tbl*0*names.arg = substr
+test*0*space=0.4*0*xaxt='n'*0*ann=FALSE
+dat*0*beside=T*0*cex.lab=0.9*0*ylim=c*0*col="black"*0*names.arg=c*0*legend=names*0*args.legend=list
+t*0*width = 0.2*0*space = 0.7*0*plot = FALSE
+tN*0*col=rainbow*0*cex.axis=0.5
+counts*0*main="Car Distribution by Gears and VS"*0*xlab="Number of Gears"
+table*0*main='Female'*0*sub='Default'
+heights*0*widths*0*space=0*0*col = colours
+t*0*beside = TRUE
+rbind*0*main="Playing with R"*0*xlab="Who"*0*names.arg=rep*0*col=c*0*ylim = c
+testdata*0*names.arg=paste*0*col="light blue"*0*border="blue"*0*xlim=c*0*ylim=c*0*width=0.5*0*space=1
+table*0*col = c
+yhist*0*axes=FALSE*0*xlim=c*0*space=0*0*horiz=TRUE
+graph.frame[2*0*]*0*ylim=c*0*main = "Title"*0*ylab = "BBB"*0*col = terrain.colors*0*xaxt = "n"
+scrabble*0*names = scrabble*0*xlab = "Piece"*0*ylab = "Frequency"*0*main = "Letter Frequencies"
+as.matrix*0*y=sample*0*z=1:10
+with*0*beside=TRUE*0*xlab="Grade"*0*ylab="% Feeling Within Grade Group"*0*col=grey
+tab
+cbind*0*main="r_data"*0*ylab="Total"*0*beside=TRUE
+as.matrix*0*horiz=T*0*col=greens*0*axes=F*0*xlab="Mark"
+df1
+df2*0*beside=TRUE*0*col=1:6*0*axisnames=FALSE*0*las=1
+mydata
+b*0*type="b"
+x*0*names.arg=0:20*0*space=0
+tN*0*col = rainbow*0*main='short y axis'
+a*0*space=0*0*horiz=T*0*ylim=hpos*0*col=col*0*border=border*0*...
+1:3*0*axes=FALSE*0*col=c
+c*0*ylim=c*0*xpd = FALSE
+vec*0*gap=c*0*xlab="Index"*0*ytics=c*0*ylab=""*0*main="Barplot with gap"*0*horiz=TRUE
+dat*0*col=c*0*legend=colnames*0*cex.main=0.5*0*cex.axis=0.5*0*cex.lab=0.5*0*lwd=0.02
+x
+table*0*main='Female'*0*sub='Drop'
+dat[*0*4]*0*names.arg = dat[*0*1]
+y*0*col=ggplotColours
+height = dat*0*add = TRUE*0*axes = FALSE
+y*0*col = 1:nrow*0*ylab="My Variables"*0*legend.text = TRUE*0*args.legend = list
+cbind*0*beside=TRUE
+freq_tab[freq_tab>=2]
+y*0*col=rainbow
+tables2*0*names.arg=tables2
+count*0*width = size
+countmat2
+t*0*]*0*names.arg=t*0*]*0*space=c*0*axis.lty=1
+data*0*names.arg=row.names*0*horiz=TRUE*0*las=1*0*axisnames=FALSE*0*xlim=c*0*main="Group 3"
+temp*0*names.arg=rownames
+vec*0*log='y'*0*ylim=c*0*xpd=FALSE
+T1
+y.mat
+y*0*horiz=TRUE*0*beside=FALSE
+1:2*0*names.arg = wr.lap*0*horiz = T*0*las = 2*0*cex.names = 0.5
+c*0*ylim=c*0*col="blue"*0*space=3*0*density=seq*0*ylim=c*0*col=blues9[2:6]*0*space=3
+table*0*las = 2
+VADeaths*0*border = "green"
+data*0*beside=T
+allmat*0*beside=T*0*axisnames=F*0*col=c
+area*0*names.arg = name
+c*0*horiz=TRUE*0*las=2*0*names.arg=c
+h*0*width=w*0*border=c*0*space=0
+submitted*0*las=2*0*cex.axis=0.8*0*cex=0.8
+xhist*0*axes=FALSE*0*ylim=c*0*space=0
+t*0*main="Barrier*0*xlab="Barrier [kcal/mol]"*0*ylab="Mutant count"*0*col=c*0*space=0.1*0*cex.axis=0.8*0*las=1*0*names.arg=c*0*cex=0.8
+dft*0*col = c
+mydata_hist*0*log="y"*0*col="white"*0*names.arg=buckets
+x[*0*3]*0*horiz=TRUE*0*space = 0.4*0*ylim = c*0*yaxp=c*0*main = "Title"*0*las=1*0*cex.names=0.8*0*ylab="y label"*0*xpd=F
+table*0*c*0*ylim=c*0*1*0*2*0*3
+c*0*horiz=TRUE*0*border="blue"*0*axes=FALSE*0*col="darkblue"
+height=den*0*xlim=c*0*ylim=c*0**0*space=0.1*0*lwd=5*0*xlab="1 X"*0*ylab="Densities"*0*font.main=1*0*legend.text =ltext*0*args.legend = list
+df2
+VADeaths*0*baseViewports
+p
+d*0*beside = TRUE*0*ylim=c*0*legend.text = rownames*0*args.legend = list
+sample_var
+twogrp*0*gap=c*0*xlab="Index"
+c
+table*0*beside=TRUE*0*legend=TRUE
+v*0*beside=FALSE*0*names=levels*0*legend=TRUE
+rbind*0*col = c*0*xlim=c*0*ylim=c*0*space=0.1*0*lwd=5*0*xlab="X"*0*ylab="Densities"*0*font.main=1*0*legend.text = c
+tmp*0*col='black'*0*las=3
+a*0*main=main[1]*0*xlab='RSSI'*0*xlim=c*0*ylim=c
+table*0*main = "barplot"
+data*0*y=data*0*geom='bar'*0*y=data*0*geom='bar'
+x[!is.na*0*20
+VADeaths*0*border = "dark blue"
+y*0*add=T
+tN*0*col=rainbow*0*las=1
+h*0*beside=TRUE*0*col=col
+mtcars
+x / rep
+table*0*xaxt="n"
+c*0*names.arg = c*0*ylab="Time in seconds"
+rbind*0*beside=T*0*names.arg=1:10*0*[
+result*0*...
+data*0*names.arg=lab*0*col="darkorange1"*0*main=""*0*ylab="*0*las=2
+x*0*names.arg=0:n*0*main=sprintf
+subset*0*legend = c*0*names.arg=data*0*log="y"
+x*0*xlab=""
+y*0*names.arg=y
+count*0*space = 0*0*axes = FALSE
+tN*0*space = 1.5*0*axisnames=FALSE
+x*0*col = cols
+hotdogs*0*names.arg=hotdogs*0*col=fill_colors*0*border=NA*0*xlab="Year"*0*ylab="Hot dogs and buns
+A*0*col = "green4"*0*asp = 1
+a*0*ylim = rev*0*ylim = rev*0*yaxt = "n"
+xtabs*0*beside = TRUE*0*col = c
+let
+value
+data*0*names.arg = paste0*0*cex.names = 0.7*0*ylim = c*0*col = rgb*0*space = space.
+table
+ly*0*xaxt="n"*0*yaxt="n"*0*xlab="xLabel"*0*ylab="lyLabel"*0*ylim=c
+mat[*0*1]
+graph.frame[3*0*]*0*ylim=c*0*ylab = "CCC"*0*col = terrain.colors*0*xaxt = "n"
+matrix*0*col=c*0*names.arg=c*0*legend.text=c
+dat*0*title="Test title"*0*legend.title="Medical system"
+Sales*0*ylim=c
+dat*0*names.arg=dat*0*ylim=c*0*names.arg=dat*0*ylim=c*0*ylab="blah"*0*xlab="lol"
+daten*multiplier*0*]
+data*0*names.arg=row.names*0*horiz=TRUE*0*las=1*0*axisnames=FALSE*0*xlim=c*0*main="Group 2"
+tN*0*col = rainbow*0*main='short y axis'*0*ann=FALSE*0*axes=FALSE
+ratio
+plotdata
+rbind*0*xlim=c*0*ylim=c*0*space=0.1*0*lwd=5*0*xlab="Value of X"*0*ylab="Densities"*0*font.main=1
+NAO*0*col = cols[pos + 1]*0*border = cols[pos + 1]
+height=c*0*names.arg=1:3*0*space=0*0*ylab="Count"
+A*0*col="green4"
+data*0*space=c*0*legend=rownames*0*col=c*0*las=2*0*xaxt="n"
+yhist*0*axes=FALSE
+dd
+T2
+table*0*names.arg=paste0*0*las=2*0*col = c
+dfr*0*las=2*0*names.arg = dfr*0*cex.names=0.7
+dat2*0*beside = TRUE*0*legend = rownames
+y*0*col=y
+tN[1:3]*0*xlim=c*0*las=3*0*axes=TRUE*0*axisnames=TRUE*0*ylab="YLAB"*0*plot=TRUE*0*main="PLOT1"*0*width=1
+prop.table
+
+scores*0*main="my plot"*0*xlab="my 1000 scores"*0*names.arg=c
+xbar*0*names.arg=group*0*main=""*0*xlab="x"*0*ylab="y"*0*ylim=c
+as.matrix*0*beside=TRUE*0*xlim=c*0*ann=FALSE
+t*0*width = 0.2*0*space = 0.7
+data[*0*j]*0*main=city*0*xlab="Month"*0*ylab=paste
+rbind
+histo*0*col="white"*0*space=0
+bars*0*beside = TRUE*0*col = c*0*beside = TRUE*0*col = c
+dd*0*log="y"
+tt*0*names=names
+countmat
+dat*0*border=FALSE*0*beside=TRUE*0*col=rainbow*0*ylim=c*0*legend=rownames*0*main="Plot name"*0*xlab="State"*0*ylab="observation"
+mymat*0*beside = TRUE
+df2*0*beside=TRUE*0*col=rep
+tab*0*beside=TRUE*0*axisnames=FALSE*0*main = 'Time Spent Left vs. Right'*0*sub = 'Female 2c'*0*xlab= 'Days After Entry'*0*ylab = 'Proportion of Time Spent'*0*col=c*0*ylim = c*0*names.arg = jd2c
+tapply
+xhist*0*axes=FALSE
+as.matrix*0*main="r_data"*0*ylab="Total"*0*beside=TRUE
+t*0*col=c
+t*0*las=2
+vals*0*axes = FALSE
+x*0*space=0*0*col="yellow"*0*border=NA
+a
+tab*0*beside=TRUE*0*axisnames=TRUE*0*main = 'Time Spent'*0*sub = 'Female'*0*xlab= 'Days '*0*ylab ='Time Spent'*0*col=c*0*ylim = c*0*names.arg=bnames
+weight
+x*0*names.arg = seq_len*0*cex.names = .6
+tN*0*col = rainbow*0*space=10
+as.matrix*0*ylim=c*0*ylab="% dents removing paint"*0*las=1*0*names=c
+VADeaths[1:2*0*]
+d*0*beside=T
+Z*0*col = heat.colors
+xv*0*horiz = TRUE*0*col="cyan"*0*xlim=c*0*names=nn*0*xlab=deparse
+Tc*0*width=2*0*space=0
+df*0*space=c*0*col=rep*0*ncol=4
+c*0*border = NA
+VADeaths*0*grouped=T*0*grouped=T
+height=t*0*beside=TRUE
+df*0*beside=TRUE*0*ylim=c*0*ylab="Percentage"*0*space=.1*0*main="Some Title"*0*names.arg=c*0*las=2*0*axis.lty=1
+tab*0*legend=rownames
+colSums
+pcPop*0*width = seq*0*space=0
+tN*0*col = 2:3
+as.matrix*0*horiz = TRUE*0*col = c*0*axes = FALSE
+tab*0*beside=TRUE*0*axisnames=FALSE*0*main = 'Time Spent Left vs. Right'*0*sub = 'Female 2c'*0*xlab= 'Days After Entry'*0*ylab = 'Proportion of Time Spent'*0*col=c*0*ylim = c

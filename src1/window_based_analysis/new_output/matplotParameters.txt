@@ -1,0 +1,90 @@
+mat*0*type="l"*0*col="black"*0*lty=1
+x*0*y*0*...*0*x[*0*2]*0*2]
+L1[*0*1]*0*L1[*0*-1]*0*type="l"*0*lty=1*0*bty="l"*0*las=1
+temp*0*type = "o"*0*pch = 1
+HDL.mon.mat[*0*1]*0*HDL.mon.mat*0*type="pl"
+rbind*0*rbind*0*type='l'*0*lty=1
+y = mat1
+x*0*y*0*type="p"
+X*0*t*0*pch=1
+1:nrow*0*df*0*type="l"
+x=data[[1]]*0*y=data[-1]*0*type="l"*0*xaxt="n"
+test_transposed*0*type = "b"*0*ylab="y"*0*col=colors*0*main="MATPLOT with groups"*0*pch = 1:2
+rnorm*0*col="red"*0*axes=F*0*type="l"*0*lwd=10*0*xlab=""*0*ylab=""
+x[*0*1]*0*x[*0*-1]*0*type="l"*0*lty = 1
+counts*0*type="l"*0*lty=1*0*col=colors
+x=1:4*0*dl*0*type="b"*0*ylim=c*0*col=c
+obs_v_exp*0*type='l'
+mat*0*type="l"*0*ylim=c*0*ylab="y TBA"*0*main="TBA"*0*xlab="x TBA"*0*axes=FALSE*0*frame.plot=FALSE*0*col=coll*0*lty=rep
+x = myDat[*0*1]*0*y = myDat[*0*-1]*0*type = "p"*0*pch = 21
+as.numeric*0*t*0*type="o"*0*pch=19*0*lty=1*0*ann=FALSE
+foo[*0*1]*0*foo[*0*c*0*t='l'*0*'col2'
+x*0*cbind*0*type="l"*0*col=c
+rownames*0*Alltubes*0*xlab="Measurement locations"*0*ylab="standard deviation"*0*type="b"*0*lty=1*0*pch=19
+seq*0*mat*0*type="n"*0*ylim=c
+x*0*cellcolors=palmat*0*main=paste*0*show.values=2*0*vcol=rgb*0*axes=FALSE*0*vcex=0.7
+df*0*df[
+cbind*0*type="l"*0*col=1*0*lty = 1
+testdf*0*show.values = TRUE*0*axes = FALSE*0*xlab = ""*0*ylab = ""*0*vcex = 2*0*vcol = "black"*0*extremes = c
+data1[*0*1:2]*0*xlim = c*0*ylim = c
+t*0*show.legend = TRUE*0*extremes = c
+d.cum*0*type="l"
+xl*0*pvals*0*type="l"*0*col=cvec*0*lty=lvec*0*xlab='X label'*0*ylab='Y label'
+com_30*0*DCCrho*0*xaxt = "n"*0*type='l'
+t*0*type='l'*0*lty=1
+Data[id]*0*type='l'
+dat*0*col=c*0*pch=20
+t*0*show.legend = TRUE*0*axes = TRUE*0*xlab = ""*0*ylab = ""*0*extremes = c
+d[*0*1]*0*d[*0*-1]*0*type="b"*0*pch=1*0*xaxt="n"
+x=No.*0*y=cbind*0*type="l"
+t*0*type="b"*0*pch=20*0*col=cl
+colnames*0*t*0*xlab="Tube numbers"*0*ylab="standard deviation"*0*type="b"*0*lty=1*0*pch=19
+x*0*cbind
+t*0*]*0*t="l"*0*lty=1*0*las=1*0*ylab="Score"*0*xlab="Test"*0*xaxt="n"
+df*0*type="b"*0*lty=1*0*pch=1*0*col=c
+x = df[*0*1]*0*y = df[*0*-1]*0*type = "l"
+
+d*0*type="l"*0*lty=1*0*lwd=3*0*las=1
+dVals*0*powsT*0*type="l"*0*lty=1*0*lwd=2*0*xlab="effect size d"*0*ylab="Power"*0*main="Power one-sample t-Test"*0*xaxs="i"*0*xlim=c*0*col=c
+1:23*0*t*0*type="l"*0*col=colors*0*lty=1*0*pch=markers*0*bty="n"*0*las=1*0*main="Categorical Percent over Time"
+1:10*0*log10*0*type="l"*0*xlab="log2*0*ylab="log10*0*lty=1
+d.que*0*type="l"*0*measure=c
+dataPlot1*0*axes=T*0*frame=T*0*type="l"*0*xlab="time*0*ylab="temperature*0*main=names
+p*0*t*0*type='l'*0*xlab='prob'*0*ylab='count'
+data.matrix*0*type="b"*0*xaxt="n"
+mmean*0*type="l"*0*lwd=3*0*lty=1
+1:10*0*data.frame*0*type="l"*0*lty=1*0*lwd=1*0*col=c*0*type="l"*0*lty=1*0*lwd=1*0*col=c
+data[*0*namesOfThreeLargest]*0*type="l"
+dat[*0*1]*0*dat[2:5]*0*type="o"*0*pch=19*0*col=c*0*xaxt="n"*0*xlab="Year-Month"*0*ylab="Value"*0*x=dat*0*format="%Y-%m"
+dat*0*type = c*0*pch=1*0*col = 1:4
+1:n*0*m
+lambda*0*b
+t*0*type = "l"
+data2[*0*1:2]*0*add=TRUE
+mat*0*cellcolors = color.scale
+x=1:12*0*log10*0*type="l"*0*ylab="log10*0*xlab="log2*0*col=1:3*0*lty=1
+df[*0*1]*0*df[*0*-1]*0*type="l"
+data
+x*0*cbind*0*pch=1
+x=Mvalues*0*show.values=2*0*cellcolors=Mcolors*0*xlab="x"*0*ylab="y"*0*axes=FALSE*0*vcex=0.4
+replicate*0*type="l"
+mydata[*0*1]*0*mydata[*0*-1]*0*type="l"
+cbind*0*type="l"*0*col=1*0*lty=1
+cbind
+fVals*0*powsF*0*type="l"*0*lty=1*0*lwd=2*0*xlab="effect size f"*0*ylab="Power"*0*main="Power one-way ANOVA"*0*xaxs="i"*0*xlim=c*0*col=c
+dat[1]*0*dat[-1]
+SBP.qtr.mat[*0*1]*0*SBP.qtr.mat*0*type="pl"*0*ISOdate*0*"10 years"
+t*0*type="l"
+cbind*0*type='l'
+head*0*n = 6L*0*...
+DF[*0*-1]*0*col=1:ncol*0*type='l'*0*lty=1*0*ylim=range*0*axes=FALSE
+test["time"]*0*test[c*0*type="l"
+df*0*df[*0*2:3]*0*type = "b"*0*pch=19*0*col = 1:2
+x = df[*0*1]*0*y = df[*0*-1]*0*type = "l"*0*lty = 1*0*col = cols
+temp1*0*cbind*0*t="l"*0*lty=1*0*col=c
+M*0*cbind*0*type="b"*0*xlab= "Minutes"*0*ylab=expression*0*xlim=range*0*ylim=range
+rnorm*0*col="blue"*0*axes=F*0*type="l"*0*lwd=10*0*xlab=""*0*ylab=""
+df1_xts_merge*0*type="l"*0*screens=1*0*auto.legend=TRUE
+xcum*0*type="l"*0*xlab="Number of Bets"*0*ylab="Cumulative Sum"*0*main="Cumulative Results"*0*col=rgb
+X*0*Y*0*type="l"*0*lty=1
+df[*0*1]*0*df_approx

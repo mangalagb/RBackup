@@ -1,0 +1,30 @@
+m2_sums*0*main="m2 - colSums"
+c*0*labels=labels[1:2]*0*main = "Global"
+table*0*names
+
+data2*0*data2
+data3*0*data3
+pie.sales*0*clockwise=TRUE
+m1_sums*0*main="m1 - colSums"
+x1*0*labels=lbls1
+opt.weights*0*names
+3*0*3*0*c*0*col=main_col*0*radius=1
+c*0*density=c
+counts[counts>1]
+numb*0*col=colors*0*labels=numb_labels*0*clockwise=TRUE
+object.sizes*0*main="Memory usage by object"
+x[1]*0*x[2]*0*x[3]
+1.7*0*2*0*c*0*col=small_col*0*radius=0.2
+c*0*col=c
+3.8*0*4.5*0*c*0*col=small_col*0*radius=0.2
+rep*0*col = col*0*radius = radius*0*...
+values*0*labels = as.expression
+sex*0*labels = c
+x=c*0*labels = NA
+4.3*0*2*0*c*0*col=small_col*0*radius=0.2
+rep*0*col=c25
+data*0*paste
+d2*0*labels=d2
+islands
+c*0*init.angle=90
+c*0*labels=c*0*length

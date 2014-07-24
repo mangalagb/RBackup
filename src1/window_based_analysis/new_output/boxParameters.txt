@@ -1,0 +1,15 @@
+col = "lightgray"
+col = 'lightblue'
+lwd=4*0*bty="u"*0*font=2*0*cex.axis=1.1*0*family="Times"
+lwd=1*0*width=116*0*height=27
+bty="l"
+lwd=1
+
+lwd=3
+lwd=5
+which = "plot"*0*bty = "l"
+bty='L'
+bty = "l"
+lwd = 2
+bty = "L"*0*col = axisCol
+col="dodgerblue"

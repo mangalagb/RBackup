@@ -1,2 +1,0 @@
-sunflowerplot(V1)
-sunflowerplot(xy, 1], xy, 2])

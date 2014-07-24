@@ -1,0 +1,129 @@
+names*0*side=4*0*srt=270*0*line=1
+ylabs[i]*0*side=2*0*line=3
+Lines*0*side=1*0*line=3
+do.call*0*side=3*0*line=0:1
+side=1*0*text="x"*0*line=2.5
+sp.label*0*3*0*line=-2.5*0*adj=0.05*0*font=3*0*cex=0.75
+bquote*0*side=3*0*line=0
+expression*0*side=2*0*line=2.5
+do.call*0*side=1*0*line=3*0*xlab=''
+side = 2*0*text = "Y Axis"*0*line = 3
+monthnames[10]*0*side=1*0*cex=0.7*0*at=6.5*19
+monthnames[8]*0*side=1*0*cex=0.7*0*at=6.5*15
+text="eps"*0*side=3*0*at=usrcoord.x.left-0.075*diff*0*side=3*0*at=usrcoord.x.left-0.1*diff
+side=2*0*line=2*0*'Estimated probability mass'
+text="Date"*0*side=1*0*line=2.5
+side=3*0*"subtitle"*0*line=1*0*cex=1.5
+side = 1*0*"Column Z-Score"*0*line = 2
+1:4*0*side = 1*0*at = out*0*cex = 0.5
+expression
+labels[[2]]*0*side=2*0*line=-1*0*at=seq*0*cex=.8*0*padj=1
+expression*0*line=1
+c*0*1*0*line=3*0*at=c
+monthnames[4]*0*side=1*0*cex=0.7*0*at=6.5*7
+c*0*side = 1*0*line = 2*0*at = 1:3*0*col = "blue"
+ylab*0*side=2*0*line=1*0*outer=TRUE*0*adj=0*0*at=.8 *
+label.x*0*3
+side=3*0*"Title1"*0*line=2*0*cex=2
+xlab*0*side=1*0*line=1*0*outer=TRUE*0*adj=0*0*at=.8 *
+text = "Price"*0*side = 2*0*line = 4
+monthnames[11]*0*side=1*0*cex=0.7*0*at=6.5*21
+c*0*side=c*0*y=ylim[1]*0*labels=vert*0*adj=c*0*col='blue'
+sp.r.squared*0*3*0*line=-2.5*0*adj=0.95*0*cex=0.75
+expression*0*side=2*0*line = 4*0*padj=1*0*at=30*0*cex=1.2
+side = 4*0*text = "Moon phase*0*line = 2*0*cex = .9
+text='dsads'*0*side=2*0*line=1
+text_note*0*cex=0.4*0*col="grey"*0*side = 1*0*line = 4*0*outer = FALSE*0*padj=0*0*adj=1
+side=1*0*"Second X-Axis"*0*line=2.5*0*cex=0.8*0*col="red"
+xlabs[i]*0*side=3*0*line=1
+text="ab*0*side=2*0*line=2.3
+paste*0*side=3
+side = 2*0*text = expression*0*line = 1.5*0*font=15
+c*0*side = 1*0*line = 3*0*at = 1:3*0*col = "red"
+labs*0*side = 2*0*line = loffset*0*at = y*0***adj = 0***0*col = color*0*las = 2*0*cex = cex*0*...
+rownames*0*1*0*at=bp*0*line=0.6
+label.y*0*2
+monthnames[2]*0*side=1*0*cex=0.7*0*at=6.5*3
+text= "text1\ntext2\ntext3"*0*side=1*0*cex = 0.75*0*font = 3*0*col = "red"*0*line=7
+x*0*1*0*.1*0*at=x*0*cex=.5
+substitute
+c*0*side=1*0*line=3*0*at=c*0*b=c*0*c=c*0*d=c
+colnames*0*1*0*at=colMeans*0*line=2
+Type*0*side=1*0*outer=F*0*line=-10*0*adj=0.8
+paste
+text="eps"*0*side=2*0*line=4*0*las=1
+side = 4*0*text = labRow*0*at = iy*0*las = 2*0*line = 0.5*0*col = RlabColor*0*cex = cexCol
+monthnames[7]*0*side=1*0*cex=0.7*0*at=6.5*13
+text=c*0*side=2*0*line=0.3*0*at=seq*0*las=1*0*cex=0.8
+text = "text1\n\text2\ntext3"*0*side = 1*0*line = 9*0*cex = 0.75*0*font = 3*0*col = "red"
+side = 1*0*text =expression*0*line = 1*0*font=15
+side=2*0*text="y"*0*line=4.5
+side=3*0*"2 Plots Crammed Together"*0*line=1.5*0*cex=1.2
+do.call*0*side=3*0*line = c*0*cex = 2 
+text*0*3*0*padj=-4.5*0*col="red"
+expression*0*adj=0*0*padj=-1*0*outer=FALSE
+text= c*0*side = 1*0*line = 2*0*outer = FALSE*0*at = c
+side = 1*0*outer = F*0*line = 3
+side=1*0*"First X-Axis"*0*line=2.5*0*cex=0.8*0*col="blue"
+text = xticks*0*side = 3*0*line = 2*0*at = xticks
+rev*0*2*0*.2*0*at=y*0*las=1*0*cex=.5
+
+side=3*0*text="Test Plot"*0*line=1.2*0*cex=1.5
+paste*0*line=0.5
+text=myLab*0*las=1*0*side=2*0*outer = FALSE*0*at=c
+text='Ascending values'*0*side=2*0*line=2
+main*0*3*0*3*0*TRUE*0*0.5*0*cex = cex.main*0*font = font.main
+side = 1*0*text = "Page 1"
+side = 2*0*"Count"*0*line = 2
+do.call*0*side=3*0*line=0.5:-0.5
+monthnames[12]*0*side=1*0*cex=0.7*0*at=6.5*23
+format*0*line = -x*0*outer = TRUE*0*adj = 0*0*col = "white"
+side = 4*0*text = at*0*at = at*0*col = "red"*0*line = 1
+text=expression*0*side=1*0*font=2*0*line=3*0*side=1*0*font=2*0*line=3
+monthnames[6]*0*side=1*0*cex=0.7*0*at=6.5*11
+labs*0*side = 2*0*line = loffset*0*at = y*0*adj = adjust_ylab*0*col = color*0*as = 2*0*cex = cex*0*...*0*data = mydata*0*importance = TRUE
+ylab*0*side = 4*0*line = margins[2] - 1.25
+side=2*0*"*0*line=4*0*cex=0.8
+rownames*0*1*0*at=bp
+text=category*0*side=4*0*line=2*0*at=offset*0*las=2*0*cex=0.7*0*col=col.category
+text=labs*0*side=2*0*at=1:length*0*col=axiscolor*0*adj=.5
+labels[[1]]*0*side=3*0*line=-1*0*at=seq*0*cex=.8
+getCaption*0*3*0*0.25*0*cex = cex.caption
+side = 1*0*text = labCol*0*at = 1:nc*0*las = 2*0*line = 0.5*0*col = ClabColor*0*cex = cexCol
+text=y[1]*0*side=2*0*at=offset*0*las=2*0*cex=0.7*0*col=col.value
+c*0*side = 1*0*line = 4*0*at = 1:3*0*col = "blue"
+main=bquote
+paste*0*1*0*0
+1:10*0*side=2*0*at=tail*0*las=2*0*cex=0.7
+side = 1*0*"Value"*0*line = 2
+side = 2*0*"Response"*0*line = 2.3*0*cex=1.5
+labels*0*at=labelx*0*side=1*0*line=4
+do.call*0*side=3*0*line=1:0
+monthnames[9]*0*side=1*0*cex=0.7*0*at=6.5*17
+side=3*0*i
+text="ab"*0*side=3*0*font=2*0*line=0.5*0*cex=1.5
+side=1*0*line=2*0*'Observed values'
+format*0*side=3*0*line=3*0*at=seq
+result*0*2
+side=1*0*"overlapping text2"*0*line=7
+monthnames[5]*0*side=1*0*cex=0.7*0*at=6.5*9
+text='TEST'*0*side=1*0*line=1
+text=c*0*side=1*0*line=0.3*0*at=seq*0*las=2*0*cex=0.8
+expression*0*line=1.9
+text = "Time"*0*side = 1*0*line = 4
+side=1*0*"overlapping text1"*0*line=6
+side = 1*0*text = "Page 1"*0*outer = TRUE
+month.name[month]*0*line=2.5*0*at=0.5*0*cex=1.75*0*outer=TRUE
+xlab*0*side = 1*0*line = margins[1] - 1.25
+side = 2*0*outer = F*0*line = 3.5*0*"Date tagged"*0*cex = 1.2
+side=2*0*"Top Plot"*0*line=5.3*0*cex=0.8
+monthnames[1]*0*side=1*0*cex=0.7*0*at=6.5
+side = 1*0*"Row Z-Score"*0*line = 2
+text=y[length*0*side=4*0*line=-1*0*at=offset*0*las=2*0*cex=0.7*0*col=col.value
+monthnames[3]*0*side=1*0*cex=0.7*0*at=6.5*5
+c*0*side = 1*0*line = 1*0*at = 1:3*0*col = "red"
+side = 2*0*text = "and something extra"*0*line = 2
+text='Descending values'*0*side=4*0*line=2*0*col='red'
+axat
+expression*0*line=3
+paste*0*cex = 1.8*0*line=-0.8

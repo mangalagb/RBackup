@@ -1,0 +1,11 @@
+range*0*lwd=3*0*col="red"
+numRunsNeeded*0*lty=2
+b1*0*col = 'red'
+b1
+x*0*side=1
+T*0*col =  adjustcolor*0*lwd = 4
+which*0*col = "red"*0*lwd = 2
+cross
+dat100
+y*0*side=2
+qntl*0*side = 2*0*col = "blue"*0*lwd = 2

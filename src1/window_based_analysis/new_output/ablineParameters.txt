@@ -1,0 +1,371 @@
+reg=daten_fit*0*col="red"
+v=min*0*col=4*0*lty=3
+lm*0*col="black"
+h=mean*0*lty='dashed'
+v=linePosition
+h=trans.lats*0*v=trans.longs
+predict*0*coef*0*col='red'
+v=x*0*h=y
+h=b*0*]*0*col="red"
+v=152*0*col="red"*0*lwd=5
+h=y.0
+v=385*0*lty="dashed"
+h = -10:20*0*col = grey*0*lty = 2
+0*0*1*0*-1
+v=c*0*col="grey40"
+v=seq*0*lty=2
+h = loc*0*v = loc*0*col = "green"
+h=usd1*0*col=3*0*lty=3
+1*0*1
+h=yaxisdat*0*col="lightgray"
+fit1
+reg*0*col="red"
+lm*0*col.line=col.symbol*0*lty=lty
+v=1:51*0*1:50
+h = grid/100*0*v = grid/100*0*col = gray
+v=seq*0*lty=6*0*col = "cornsilk2"
+v = xycoords*0*col = "grey"*0*lty = 4
+h=ValGrd*0*col="grey"*0*lty=3
+model*0*col="red"
+g
+v=time*0*col="lightgray"*0*lty=3
+v=185*0*lty="dashed"
+0*0*0*0*lty=2
+h=0*0*col="darkgray"*0*lwd=2
+lm*0*col='red'*0*main='Check the axis labels'
+h=usd2*0*col=4*0*lty=2
+h=lsd1*0*col=3*0*lty=3
+v = down
+c[1]*0*c[2]/2*0*col="red"
+v=x
+h=summary
+h=y[which.min*0*col=col.line*0*lty=2
+coef1+best_Cx*coef2*0*-coef2
+a=-1.331*0*b=2.522
+h = 1.0
+v=585*0*lty="dashed"
+v=axis.POSIXct*0*col = "lightgray"*0*lty = "dotted"*0*lwd = par
+LM.Log*0*col="red"
+z
+reg = coef*0*lwd = 2
+a = 40*0*b = 4*0*col = "grey90"*0*lwd = 4
+h=37.6*0*v=0*0*col="gray10"*0*lty=20
+coef = coef
+v=seq*0*col='grey'*0*lty='dotted'
+h = 40*0*col = "grey80"
+h=c*0*col="grey10"*0*lty="dotted"
+h=0*0*v=0*0*col="gray"
+lm.pos1
+m
+v=myden
+v = data[data[*0*2] == 1*0*1]*0*col = 'blue'
+h=0*0*col="black"*0*...
+reg=lm
+severity.lm*0*col="blue"
+v=c
+v=*0*col="lightgray"*0*lty="dotted"
+v = x*0*col = "gray"
+v=1
+h=1*0*lty=3*0*col="lightgrey"
+LMO
+v=quantile*0*lty=2*0*col="red"
+lm*0*col.line=col.symbol
+h=0*0*v=0*0*lty=3*0*-15*0*15*0*v=0*0*lty=3
+coef*0*coef
+a = 0*0*b = 1*0*...
+h=thresh
+model*0*data = cars
+h=1*0*lwd=4
+fit.bio[[isp]]*0*lwd=2*0*col='red'
+line2*0*col="cyan"
+v=qts[2]*0*col="red"
+a*0*b*0*3
+mod*0*data = pred*0*col = "red"*0*lwd = 2
+c[1]*0*c[2]*2*0*col="red"
+fit
+h=horiz*0*v=vert*0*side=c*0*y=ylim[1]*0*labels=vert*0*adj=c*0*col='blue'
+325*0*0
+h=*0*lty=2
+v=log
+h=lsd2*0*col=4*0*lty=2
+coef1[pos]-best_Cx*coef3[pos]*0*coef3[pos]
+h=seq*0*col='white'*0*lwd=2
+v = decimal_date*0*col='grey'*0*lwd=0.5
+h=0*0*col=2*0*eps=1e-6*0*c
+lm*0*lty = 2*0*col = "red"
+fit*0*col = "red"
+0*0*2
+site.model*0*lwd=2*0*col=color[isite]
+v = data[data[*0*2] == -1*0*1]*0*col = 'red'
+h=*0*col="lightgray"*0*lty="dotted"
+0*0*1*0*col='green'
+lm*0*col = 'blue'*0*lwd = 3
+v = seq*0*col = "white"*0*lwd = 2
+5*0*0
+mod
+a=0*0*b=0
+v=0*0*lwd=3
+fit*0*col="blue"*0*lwd=2
+h=seq*0*col="red"
+v=c*0*col = "lightgray"*0*lty = "dotted"*0*lwd = par
+mylm
+modlm
+coef*0*col="blue"
+v=x*0*lty=3
+v=1:51
+graphic*0*...*0*.215*0*.224*0*.223*0*.262*0*.233
+reg=daten_fit*0*col="red"*0*data = daten[3:5*0*]*0*col="red"
+h=0:100*0*col="white"
+v=dmode
+v = time
+lm<- lm
+lm*0*Type=="Quebec"
+a*0*b*0*col = "blue"
+x*0*y
+lm
+a = fmla*0*b = fmla
+h=2
+fit*0*lwd=2*0*col='red'
+h=0:50*0*v=c*0*lty=3*0*col="lightgrey"
+v=p
+a=0*0*b=1*0*col="red"*0*lty=2
+h=seq*0*lty=3*0*col="grey"
+v = 1:13*0*col = 'white'
+h=seq*0*v=time*0*col=gray
+h=pretty*0*col="lightgrey"
+v = seq*0*col = 'lightgray'*0*lty = 3
+lm_xy*0*col='blue'
+a=inter*0*b=backrot*0*lty=3
+h = 40 + 128*0*col = "grey80"
+h=c*0*v=c
+h=0*0*col="green"
+0.2*0*0*0*lty='83282823'
+v=326
+fit.int*0*col="blue"
+v=c*0*lwd=3*0*lty=3
+v=0*0*col='lightgrey'
+h=seq*0*lty=6*0*col = "cornsilk2"
+h=.8*0*v=perc80
+a=coef*0*b=coef*0*data=stackloss*0*family="symmetric"
+v = statObs
+v=click.loc
+h = seq*0*v = ticks*0*col = "lightgray"*0*lty = 3
+fit2*0*col="red"
+0.1*0*0*0*lty='28282383'
+h=*0*col="dark red"
+h=linloc*0*col="red"
+a=-0.05*0*b=1*0*col="red"*0*lwd=2
+lm*0*col = 'forestgreen'*0*lwd = 3
+lm*0*col = "red"*0*lwd=1.5
+fit*0*fit
+h=vmed*0*col="lightblue"
+v=*0*col=6*0*lty="dotted"
+0.7*0*0*0*col="green"
+h=quantile*0*lty=2*0*col="gray"
+h=0*0*v=0*0*col="grey90"
+h=w*0*col="red"*0*lwd=4
+h=0*0*lwd=2*0*col="#5B7FA3"
+h=y*0*col="white"*0*lwd=2
+h=34*0*v=0*0*col="gray10"*0*lty=20
+v=0
+v=xaxisdat*0*col="lightgray"
+v=1-*0*col="red"
+v=vpos
+v=MaxDate - 5
+3.84*0*0*0*lty=3
+h=0*0*col='lightgrey'
+v=qnorm*0*col="blue"*0*lty=2
+v= c*0*col='red'
+v = 0.5*0*h = 1.2*0*col = "red"
+v=parameters[i]
+v=PrbGrd*0*col="grey"*0*lty=3
+a = 40 + 160*0*b = 4*0*col = "grey90"*0*lwd = 4
+a = a*0*b = b
+v=0.25
+a=0*0*b=1*0*col=4*0*lwd=3
+h=hpos*0*col=2
+h=mean
+v = 0*0*col = "#c8454e"*0*lwd = 2
+rlm*0*...
+h=5
+a=inter*0*b=rot*0*lty=3
+h=0*0*v=0
+a=a*0*b=-1*0*lty=3
+h=0*0*col="grey"*0*lty=2*0*lwd=2
+coef1-best_Cx*coef3*0*coef3
+0.4*0*0*0*lty='23832828'
+h = 40 + 160 + 128*0*col = "grey80"
+fit*0*col=2
+mylm*0*col="red"
+v=obs*0*col="red"
+v = 2.5
+h=*0*col=6*0*lty="dotted"
+h =-20:20*0*v = -20:20
+lin2*0*col="green"*0*untf=TRUE
+h=v*0*col="blue"*0*lwd=4
+h = .*0*v = .*0*y
+v = x*0*1] +*0*col = "grey"
+0.22483*0*-0.07115
+lin*0*col="blue"*0*untf=TRUE
+v=inflections*0*col="red"*0*lwd=3
+rq*0*col = "blue"
+v=m[*0*1]*0*col=c
+2*0*4
+a*0*b=1*0*lty=3
+h=c*0*col= "blue"*0*lty= 2
+v = mx*0*col = "blue"*0*lwd = 2*0*mean = 10
+h=seq*0*lty=2
+a=0*0*b=1*0*lty=2*0*col="grey59"*0*lwd=1.5
+v=ln
+v = test
+0*0*1*0*col="red"
+fit <- lm*0*col='red'
+v = 0*0*lty = 2*0*lwd = 1*0*...
+mod*0*col = "blue"*0*lwd = 2*0*]
+v = k.range*0*col = "grey"
+h=fixedLatitude
+v=result*0*col="red"
+h=seq*0*col="white"
+v=*0*col="dark red"
+h=0*0*col=1*0*lty=2
+v = 1:4*0*lty = 2
+lm*0*col="red"
+h=linloc*0*col="blue"
+h=d[1*0*2]
+lm*0*col=2
+h= 3.84*0*col='red'
+0*0*i
+h=pretty*0*v=pretty*0*col="grey95"
+a=0.05*0*b=1*0*col="red"*0*lwd=2
+h=1
+h=50*0*lty=3
+lm*0*col = "red"
+h=at*0*col="gray"
+h=seq*0*v=seq*0*col="gray"*0*lty=3
+v=seq*0*lty=1*0*col="grey"
+v = estimate*0*col='red'
+m1
+0*0*0
+v=-0.25
+v=crit*0*col='red'
+v=567*0*col="red"
+h=1:4*0*col=1:2
+1*0*coef
+h=quantile*0*col="blue"*0*lty=2
+linm
+coefs*0*lwd=2*0*col='red'
+h=v99*0*col="grey"
+v=mg*0*col="red"
+v = v*0*lty = "dotted"*0*col = "lightgray"*0*lwd = 3
+fit*0*col="red"
+h = 0*0*color = 'red'*0*interval = c
+h=seq*0*col="grey"
+line*0*col="blue"*0*untf=TRUE
+v=485*0*lty="dashed"
+h=0.04*0*col="red"*0*lower=0.0*0*upper=0.02
+v=10*0*lwd=5
+h = 0
+h=0*0*lty=2
+v = -10:20*0*col = grey*0*lty = 2
+h=yvals*0*v=yrs*0*col="gray"*0*lty=3
+h=x*0*v=y*0*lty=2
+h=mean*0*col=2*0*lty=1
+h=seq
+h = 40 + 160*0*col = "grey80"
+v=log10*0*col="lightgrey"*0*lty=2
+0.3*0*0*0*lty='28238328'
+out.lm*0*col="red"*0*lwd=1*0*lty=2
+h = c*0*v = c
+v=-8000*0*col="red"*0*lwd=2
+0*0*1*0*col = gray
+v
+intercept*0*coef
+a=fit*0*b=fit
+h = 2.5
+x.lm*0*col="red"
+line1*0*col="cyan"
+regone
+lm1
+h=1:3
+v=max*0*col=gray
+model
+h = c*0*col = "gray80"
+0*0*2/24
+h=0*0*adjust=1*0*bw=1
+0*0*1*0*lwd=3*0*col=k
+h = 1:13*0*col = 'white'
+mod*0*col = "blue"*0*lwd = 2
+a = 0*0*b = 1
+myreg*0*col="blue"
+v=seq_along
+a=4*0*b=-2
+res
+h= 0.5
+v=median.values*0*col.line="red"
+v=seq*0*col = "lightgray"*0*lty = "dotted"*0*lwd = par
+h = 1:25*0*lty=1.5*0*lwd=0.5*0*col=336
+a=8*0*b=-1
+lm*0*col="green"
+1.2*0*0*0*col="red"
+h=seq_along*0*col="grey80"
+v=seq*0*col="white"
+lm*0*col='red'
+h = 0*0*v = 0*0*lty = "dotted"*0*col = "light grey"
+v = at*0*lty = "dotted"*0*col = "lightgray"*0*lwd = 3
+h = yvals*0*lty = 1*0*lwd = 1*0*col = "lightgray"
+v=mean.values*0*col.line="red"*0*lty = 2
+h=1:10*0*v=1:10*0*col="gray"*0*lty=3
+m2*0*col = 'red'
+h = seq*0*col = 'lightgray'*0*lty = 3
+x*0*y*0*col=z
+v=35*0*lty="dashed"
+0*0*1*0*col = "red"
+v=qnorm*0*col="red"*0*lty=2
+v=qts[1]*0*col="red"
+coef1[pos]+best_Cx*coef2[pos]*0*-coef2[pos]
+coef = coef*0*...
+lm*0*col='red'*0*main='Check the axis labels'*0*y
+lm*0*col='blue'
+coef
+lmx
+
+mod <- lm
+h=quantile*0*col="red"*0*lty=2
+h=median*0*col="green"
+h=c*0*col="lightblue"
+h=c*0*col= rep*0*lty=1:2*0*lwd=3
+v = x[idx095]
+h=lsd3*0*col=6*0*lty=1
+h=0
+a=1*0*b=1*0*v=1*0*lty=3
+h=0:15*0*col="white"*0*lty=3
+v=mean*0*col='white'*0*lwd=2
+v=10+*0*col="red"
+reg = mod
+a=1*0*b=0*0*v=1*0*min*0*"number"*0*pos=2*0*b=0*0*v=1
+0*0*1*0*lty=2*0*col="blue"
+h=click.loc
+v=log10*0*col="lightgrey"
+v=as.Date
+0*0*1
+h=0*0*labels=rownames*0*adj=2
+v=MinDate
+h=105
+h=median*0*col="lightblue"
+h=c*0*col= palvec[ c*0*lwd=40*0*colors*0*ignore.case=TRUE*0*value=TRUE
+h=mean*0*data = InsectSprays*0*col = "lightgray"
+v=*0*col="gray"
+v=mean*0*lty=2
+h = kg*0*v= meter*0*col="darkgrey"
+v=mean
+v=240*0*col="green"*0*lwd=3
+h = 1:4*0*lty = 2*0*col = 'grey'
+rq
+0*0*1*0*col='grey'
+a=1*0*b=0*0*v=1
+h = as.numeric*0*col = "gray"*0*lty = 2
+h=usd3*0*col=6*0*lty=1
+v=mean*0*col="blue"
+a=0
+v=axis.Date*0*col="grey80"
+h = hlines[panel.number]*0*col = "red"*0*lty = "solid"*0*lwd = 1.5

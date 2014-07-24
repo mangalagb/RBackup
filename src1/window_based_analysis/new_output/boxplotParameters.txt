@@ -1,0 +1,257 @@
+df.agg*0**0*border="red"
+unlist
+las_score ~ leverancier*0*data=dat*0*notch=TRUE
+dset1*0*plot=FALSE*0*names="month1"
+test~group1*0*data=out
+testdata*0*plot=F
+Gene[[i]]*0*ylim=my.ylim*0*axes=FALSE
+e[*0*1]*0*e[*0*2]
+a*0*at=1*0*xlim=c
+count~spray*0*data=InsectSprays*0*col=c
+weight~Time*0*horizontal = F*0*main = ""*0*xlab="Time"*0*ylab="Weight"*0*pars = list*0*axes = FALSE
+v1 ~ v2
+y ~ x*0*data=dfrm*0*ylim=c
+x ~ c*0*subset=c %in% c*0*data=df
+X*0*plot=FALSE
+sat.act*0*sat.act*0*col ='pink'
+cars*0*xlab='dist'
+x = as.list
+d
+x*0*horizontal=TRUE*0*axes=FALSE*0*outline=FALSE
+count ~ spray*0*data = InsectSprays*0*col = "lightgray"
+value~newgroup*0*data=data.2
+data*0*pars=list
+x ~ factor*0*main = var
+dd*0*plot=FALSE
+aerobic2*0*at = 2*0*add = TRUE
+b ~ a_reordered
+data=meltData*0*value~variable
+Sal ~ interaction*0*data=test.data
+datablock
+PIM[*0*x]*0*MYC [*0*x]*0*OBX[*0*x]*0*WDR[*0*x]*0*EV[*0*x]*0*main = colnames*0*xlab = "PIM*0*MYC*0*OBX*0*WDR*0*EV"
+test
+count ~ bymedian*0*data = InsectSprays*0*xlab = "Type of spray"*0*ylab = "Insect count"*0*main = "InsectSprays data"*0*varwidth = TRUE*0*col = "lightgray"
+Alltubes
+cats[*0*2:3]
+data*0*horizontal=TRUE*0*outline=FALSE*0*ylim=c
+x
+count ~ spray*0*data = InsectSprays*0*col = "lightgray"*0*add = TRUE
+dd_tmp
+col3 ~ person*0*data=dat*0*main="Boxplot of three samples."*0*ylab="col3"
+xm
+Score~Gender*0*data=df
+cost ~ type*0*data=DF
+diving.means*0*""*0*names
+aerobic1*0*at = 1
+decrease ~ treatment*0*data = OrchardSprays*0*log = "y"*0*col = "bisque"
+car ~ paint*0*data=temp
+t
+b*0*add=TRUE*0*col=2
+m*0*outline = FALSE
+visits ~ as.factor*0*data=myData
+count ~ spray*0*data = InsectSprays*0*col = "lightgray"*0*border=c
+y ~ cut
+Sepal.Length ~ Species*0*data = iris*0*notch = TRUE
+data=dat*0*Conductivity ~ Treatment + Time
+df*0*border=c*0*lwd=c
+fitted*0*names = month.abb*0*cex.axis = 0.8
+exps*0*col="red"*0*ylim=c*0*outline=FALSE*0*axes=FALSE
+m1*0*m2*0*names=z
+Houston_Load ~ Hour*0*data = HWD*0*axes = FALSE
+base*0*col="gray"*0*xaxt="n"*0*ylab="Base values"*0*outline=FALSE*0*axes=FALSE
+x*0*ylim=c
+Aluminum_Dissolved ~ Site*0*data = dat*0*col="purple"*0*ylab = "Dissolved Aluminum"*0*xlab = "Dissolved Aluminum"*0*axes = FALSE
+e*0*e
+res
+x[*0*VarList[i]]*0*main=paste
+values~Treatment+ind*0*v
+as.formula*0*DF
+test*0*test*0*names=c*0*data=test*0*names=c
+DAYS.TO.FAILURE~TOTAL.LACE*0*cex.axis=.8*0*DAYS.TO.FAILURE*0*DAYS.TO.FAILURE
+v*0*range=2*0*coef=2
+R
+AvgVisits
+x*0*plot=FALSE
+x[*0*VarList[i]]~x[*0*GroupVar]*0*main=paste
+V1 ~ V3*0*droplevels
+count ~ spray*0*data = InsectSprays*0*axes=F*0*ylim=c
+x2
+x1*0*x2*0*ylim=lmts*0*names=c*0*xlab="x"
+x*0*horizontal=TRUE*0*axes=FALSE
+values ~ var
+myd*0*col = "lightgreen"*0*ylim=c
+dataframe[*0*i]
+forboxplot
+a*0*at = 0:2*3 + 1*0*xlim = c*0*ylim = range*0*xaxt = "n"
+c*0*ylim=c*0*axes=F
+col3 ~ person*0*data=dat
+coredata
+data~reorder*0*data=df*0*las=2*0*names=unique
+count ~ spray*0*data = InsectSprays*0*col = "lightgray"*0*main = "plot title"
+weight ~ interaction*0*dat=Daten
+results
+d0*0*ylim=lmts
+y1*0*y2*0*ylim=lmts*0*names=c*0*xlab="y"*0*type=1
+DATA.oner*0*main = "Box Plot of DATA.oner"
+y[*0*x]*0*main=names
+fréquence~répétition*0*simPF
+HR~Phase*0*data=df2*0*main="Heart Rate of Females"*0*xlab="Phase"*0*ylab="Heart Rate*0*ylim=c*0*par
+mtcars
+M
+weight~Diet*0*horizontal = F*0*main = ""*0*xlab = "Diet"*0*ylab = ""*0*pars = list*0*axes = FALSE
+values ~ group*0*data=dat*0*las=3
+x*0*range=0*0*main="range=0"
+w1
+count~*0*InsectSprays
+quantity ~ bymedian
+temp*0*names = c
+X*0*horizontal = TRUE*0*axes = FALSE*0*staplewex = 1
+count ~ spray*0*data = InsectSprays*0*col = "lightgray"*0*frame = FALSE
+response~ordered*0*data=data*0*notch=TRUE*0*xlab="treatments"*0*ylab="response"
+value~cond*0*data=df*0*plot=FALSE
+data*0*outline=F
+x~g
+dset3*0*plot=FALSE*0*names="month3"*0*result2*0*result3
+var1
+exps*0*col="red"*0*xaxt="n"*0*ylim=c*0*outline=FALSE*0*axes=FALSE
+len~supp*dose*0*data=ToothGrowth*0*notch=TRUE*0*col=*0*main="Tooth Growth"*0*xlab="Suppliment and Dose"*0*axes = FALSE
+y
+values ~ groups*0*data = dat
+Conductivity ~ Treatment + Time*0*names=rep*0*data=dat
+x*0*yaxt="n"
+count ~ spray*0*data = InsectSprays*0*axes=FALSE
+Ozone ~ Month*0*data = airquality
+y~x1
+e
+x ~ group
+value~code*0*data=x
+example
+matrix*0*names=c
+Freq ~ Var1*0*ylim = c
+response~fact*0*data=data*0*notch=TRUE*0*xlab="treatments"*0*ylab="response"
+myd*0*col = "lightgreen"
+dummydata
+b~a
+data~reorder*0*data=df
+element~Season*0*data=Data*0*subset=sampletype==1
+dd*0*boxwex = 0.3
+ci[1*0*]*0*ci[2*0*]*0*ci[3*0*]*0*ci[4*0*]
+simPF[[2]]~simPF[[1]]
+values ~ groups*0*data = dat*0*ylab = expression*0*xlab = expression
+X
+count ~ spray*0*data = InsectSprays*0*notch = TRUE*0*add = TRUE*0*col = "blue"
+yourdata*0*yourdata*0*main="ZScores"*0*xlab="Group"*0*ylab="ZScorevalue"*0*names=c
+param~grp*0*data=snp*0*horizontal=TRUE*0*names=tt[[1]]
+S1G1 ~ R*0*data=x1*0*main="Output result"*0*las = 2*0*pch=16*0*cex = 1*0*col = "lightblue"*0*xlab = "R"*0*ylab = "SNP values"*0*ylim =c*0*border ="blue"*0*boxwex = 0.3
+count ~ spray*0*data = InsectSprays*0*col = "lightgray"*0*xaxt = "n"*0*xlab = ""
+dat[dat*0*]*0*notch=TRUE
+
+a*0*ylim=c
+x*0*range=1.7*0*main="range=1.7"
+x ~ var*0*yaxt="n"*0*log="y"
+V1~factor*0*data=datasetcomb*0*at=c*0*ylab="Cell"*0*xlab="Category/Year"*0*xaxt="n"*0*col=c
+split
+x*0*range=1.5*0*main="range=1.5"
+y~x*0*data=dft*0*yaxt='n'
+X*0*yaxt = "n"
+e[[1]]*0*e[[2]]
+testout*0*ylab="X1"
+sub_dat*0*add=TRUE*0*axes=FALSE*0*at=i
+b ~ a
+x[*0*i]*0*main = names
+data*0*main = ''
+b*0*at=2*0*add=TRUE
+xvar ~ f1*0*data=frame*0*plot=0
+mouse_data_raw*0*main="Mouse raw data"
+x~factor
+fourth boxplot
+time~month*0*data=dfrm
+DATA.oner*0*main = "Box Plots of DATA.oner"
+dd*0*axes=FALSE*0*frame.plot=TRUE*0*ylim=c
+zx [*0*order*0*horizontal = FALSE*0*outline = FALSE
+betaplasma~vituse
+times3
+df.col1
+mydata_x[*0*name]*0*main=b.name*0*xlab=name
+x*0*horizontal=TRUE*0*axes=FALSE*0*range=2
+value~variable*0*data=new_vv
+mpg ~ cyl*0*data = mtcars*0*ylab = "Potrošnja goriva"*0*xlab = "Broj cilindara"*0*main = "Dijagram raspršenja"
+mylist[[i]][s]
+data2*0*pars=list
+value~variable*0*data = xx1
+rnorm*0*horizontal = TRUE*0*notch = TRUE*0*boxlwd = 4
+OM ~ Depth*0*data = dat*0*axes = FALSE*0*ann = FALSE
+c
+matrix*0*medcol="red"
+df*0*names=2002:2011*0*boxcol="blue"*0*medcol="red"*0*whiskcol="blue"*0*staplecol="blue"*0*ylim = c*0*lty=1*0*las=1*0*ylab = "NDVI"*0*outline = FALSE*0*boxfill = FALSE
+Tom[*0*"col3"]*0*Bob[*0*"col3"]*0*Stu[*0*"col3"]
+TGS
+dd*0*col=cols*0*header=T
+b*0*at = 0:2*3 + 2*0*xaxt = "n"*0*add = TRUE
+variables*0*~.
+d*0*xaxt="n"
+depth~hour*0*data=x*0*xlab="Hour of day"*0*ylab="Depth
+value~Treatment+variable*0*v
+Data~month*0*DF
+score*0*besides=T
+wt*0*main="Boxplot of wt"
+DATA.oner
+V1 ~ factor*0*data=dat[ dat*0*]
+d*0*axes=FALSE
+d1*0*ylim=lmts
+x ~ c*0*data=dfMod*0*"character"
+x~factor*0*main=title
+aerobic3*0*at = 3*0*add = TRUE
+V2~grp*0*data=dafrm
+d*0*axes=FALSE*0*y=1:5
+Xtab
+rnorm
+df*0*names=2002:2011
+first*0*second*0*boxwex=0.3
+d1
+series ~ time*0*data=Data
+split*0*...
+testout*0*ylab="Y"
+percent~value
+x*0*horizontal=T
+V1~droplevels*0*subset*0*...*0*...
+testout*0*ylab="X2"
+xvar ~ f1*0*data=frame*0*xlab="input values"*0*names=paste
+vv
+df*0*names=2002:2011*0*col=colors
+count ~ spray*0*data = InsectSprays*0*outline = FALSE*0*boxlty = 0*0*whisklty = 0*0*staplelty = 0
+weight~Chick*0*horizontal = F*0*main = ""*0*xlab = "Chick"*0*ylab = ""*0*pars = list*0*axes = FALSE
+count ~ spray*0*data = InsectSprays*0*col = "lightgray"*0*frame=F
+measurement ~ measurement_option*0*mydf*0*mydf*0*as.vector
+R*0*horizontal = TRUE*0*..
+vals~grp*0*data=newres
+dset2*0*plot=FALSE*0*names="month2"
+am*0*gap=list*0*axis.labels=T
+example*0*xaxt="n"*0*ylab="p value"*0*xlab="number of genes"
+Aluminum_Dissolved ~ Site*0*data = dat*0*col="purple"*0*ylab = "Dissolved Aluminum"*0*xlab = "Dissolved Aluminum"*0*las=2*0*mar=c
+1:10
+plotdata[*0*i]*0*main=names*0*type="l"
+log10*0*yaxt="n"
+base*0*xlim=c*0*col="gray"*0*xaxt="n"*0*ylab="Base values"*0*outline=FALSE
+b~a*0*add=TRUE
+x ~ y*0*data=e
+eval
+zx*0*horizontal = FALSE*0*outline = FALSE
+col3 ~ col5 + myfile*0*data = mydata
+x[1:5*0*]*0*add=T*0*at=1.5:5.5*0*boxwex=0.25*0*axes=F
+d*0*whisklty = 0*0*staplelty = 0
+samp~dist
+len~supp*dose*0*data=ToothGrowth*0*plot = FALSE
+sprdiurnal*0*e..t..c...
+y1*0*col="grey"*0*outcol="red"*0*col="grey"*0*pars=list
+ExampleData*0*col="purple"*0*par*0*ylab="Dissolved Aluminum"
+w1[*0*]*0*w2[*0*]*0*w3[*0*]*0*outline=FALSE*0*names=c
+1:10*0*yaxt = "n"
+v
+a
+sdiff[*0*-1]
+pb*0*las=2*0*cex.axis=.8
+data
+df.m
+df[*0*-1]/sqrt
+df*0*las=2

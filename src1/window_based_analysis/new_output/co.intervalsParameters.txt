@@ -1,0 +1,4 @@
+N*0*nsplits*0*overlap / nr
+vec*0*9*0*0.5
+x*0*n*0*0
+vec*0*9

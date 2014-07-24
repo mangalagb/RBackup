@@ -1,0 +1,150 @@
+c*0*c*0*col="purple1"
+c*0*c*0*col="purple"
+s.x[i*0*]*0*s.y[i*0*]*0*lwd = lwd*0*lty = lty*0*col = col.stars[i]*0*]*0*s.y[i*0*]*0*lwd = lwd*0*lty = lty*0*border = col.lines[i]*0*col = col.stars[i]*0*1:7]*0*locations = c*0*radius = FALSE
+c*0*c*0*col=col[catNumber]*0*border=NA
+x = xs*0*y = ys
+densCuke*0*density = -1*0*col = cukeCol
+prep.x*0*prep.y*0*col=col[i]*0*border = NA
+xx*0*yy*0*col="#A9A9A930"*0*border = NA
+purple*0*col="purple"*0*border=NULL
+c*0*c*0*col="green4"
+x.c*0*y.c*0*col=col*0*border=border
+x = c*0*y = c*0*col=rgb*0*border='white'
+cbind*0*col = "blue"
+x=cuts*0*y=cuts*0*col=cols
+polys[[i]]*0*density=10*0*angle=-45*0*border=NA
+c*0*c*0*border=NA*0*col=rgb
+x3*0*y3*0*col=rgb*0*border=NA
+c*0*c*0*border=border*0*col=col[i]
+x*0*pmin*0*density = 10*0*angle = -45
+x = xD*0*y = yD*0*gp =gpar
+c*0*c*0*lty=1
+xp*0*yp*0*col="#ffeecc"*0*border=NA
+c*0*c*0*col = 'grey80'*0*border = NA
+poly*0*lwd=3
+x = c*0*y = c*0*density=10*0*angle=60*0*border=NULL
+x=x*0*y=y*0*col='red'
+x*0*y*0*col="hotpink"*0*-10*0*-15*0*15*0*-10*0*10
+outerbox.x*0*outerbox.y*0*col="white"*0*border="white"
+c*0*c*0*col="grey80"
+x = c
+x3*0*y3*0*border=NA*0*col="grey"
+x*0*x
+datt.neg*0*col = "red"*0*border = NA
+c*0*c*0*col="blue1"
+densCarrot*0*density = -1*0*col = carrotCol
+x2*0*y2
+x = c*0*y = c*0*density=10*0*angle=30*0*border=NULL
+tmp*0*tmp*0*col = "blue"
+c*0*c*0*col="darkblue"
+x=v.x*0*y=v.y
+x=poly.x*0*y=poly.y*0*col=col
+x=c*0*y=c*0*default.units="native"*0*gp=gpar
+max*0*max
+x = xB*0*y = yB*0*gp =gpar
+c*0*c*0*col="purple4"
+xxs*0*yys*0*lty = pltys[i - 2]*0*lwd = plwds[i - 2]*0*border = pcols[i - 2]
+blue*0*col="blue"*0*border=NULL
+green*0*col="green"*0*border=NULL
+c*0*c*0*border=NA*0*col=gray
+x*0*pmin*0*col="gray"*0*y2*0*type="l"*0*lwd=2*0*col="red"
+x=c*0*y=c*0*col="grey"
+c*0*c*0*col="grey70"
+xx*0*yy*0*...
+xx*0*yy*0*col="gray"
+c*0*c*0*col="green1"
+x=c*0*y=c*0*col="pink"
+x*0*y*0*col = 'green'*0*border = NA
+c*0*c*0*col="tan"
+x*0*y*0*col="grey"
+xi*0*yi*0*border=border*0*lwd=lwd*0*col=col[i]
+x2*0*y2*0*col = 'green'*0*border = NA
+s[[1]]*0*s[[1]]*0*col="#eeeeee"
+x.pol*0*y.pol*0*col=poly.col*0*lty=poly.lty
+c*0*c*0*col = col*0*border=NA
+c*0*c*0*col='pink'
+index*0*c*0*col="red"
+c*0*c*0*border="red"*0*col="black"*0*lwd=4*0*c*0*c*0*c
+xS*0*yS*0*border=NA*0*col=rgb
+xx*0*yy*0*col=rgb*0*border = NA
+x*0*y*0*col='violetred4'*0*border=NA*0*alpha=0.3
+x1*0*y1
+xx*0*c
+x*0*y*0*col=col*0*border=NA
+c*0*c*0*col="cornflowerblue"*0*border=NA
+c*0*c*0*col="red"*0*density=10
+polys[[i]]*0*border=border[i]*0*col=col[i]*0*lwd=lwd[i]
+x*0*y*0*density = 20
+fun1*0*pmin*0*col="gray"
+c*0*c*0*col="grey"
+p3*0*p3*0*col=rgb
+c*0*c
+
+xy.mat[*0*1]*0*xy.mat[*0*2]*0*col = c*0*border = c
+c*0*c*0*col="antiquewhite1"
+x*0*y*0*col = 'green'*0*border = NA*0*from=0*0*to =1*0*col="darkblue"
+xx.poly*0*col=alpha
+x=c*0*y=c*0*density=10*0*angle=45
+ch.g*0*col=rgb*0*lty=3*0*lwd=3
+x = xA*0*y = yA*0*gp =gpar
+x=c*0*y=c*0*col=adjustcolor*0*border=NA
+polys[[i]]*0*density=10*0*angle=45*0*border=NA
+x=a*0*y=a*0*border="grey75"*0*col="black"
+ch.f*0*lwd=3*0*col=rgb*0*"darkred"*0*"darkblue"
+datt.pos*0*col = "blue"*0*border = NA
+xx1*0*yy1*0*lwd=3*0*col="wheat"
+c*0*c*0*col=k[
+cord.x*0*cord.y*0*col='skyblue'
+c*0*c*0*col=1
+x*0*y*0*col="red"*0*border=NA
+spline.poly*0*border="red"*0*lwd=2
+my.shape
+x.pol*0*y.pol*0*col=col.poly2*0*lty=0
+coords*0*col='red'*0*border=F
+x=c*0*y = c*0*col = "green4"
+p
+xv*0*yv*0*border = border*0*col = col[circle]*0*lty = lty*0*lwd = lwd
+x=x*0*y=y1*0*col='green'
+x
+c
+x.pol*0*y.pol*0*col=col.poly1*0*lty=0
+x = c*0*y = c*0*col=rgb*0*border="white"
+d2*0*d2*0*col=rgb
+x= c*0*y=c*0*col=rgb
+p2*0*p2
+bz*0*bz*0*col=rgb*0*border=NA
+xx **0*yy **0*lty = cglty*0*lwd = cglwd*0*border = cglcol
+c*0*c*0*col = as.character*0*border = NA
+x[i]*0*y[i]
+data*0*data*0*col='violetred4'*0*border=NA
+rate1*0*rate2*0*ell*0*1]*0*ell*0*2]
+chuld*0*lty=2*0*border="gray"
+red*0*col="red"*0*border=NULL
+X.Vec*0*Y.Vec*0*col = "grey"*0*border = NA
+k*0*col = "light grey"*0*border = NA*0*density = 20
+coords*0*180*0*by=1*0*90
+p1*0*p1*0*border=2
+c*0*c*0*col = "grey75"
+xd*0*yd+*0*col="black"*0*border=NA
+c*0*c*0*col="white"
+1:9
+c*0*c*0*col='red'
+xy.poly*0*col=alpha
+bnd
+x*0*y*0*gp = gpar
+extpoly*0*border=NA*0*col="white"
+c*0*c*0*col = "grey"*0*border = NA
+xcoords*0*ycoords*0*...
+mapproject*0*col=COL[i]*0*border=COL[i]*0*lwd=0.3
+yellow*0*col="yellow"*0*border=NULL
+xcoords*0*ycoords*0*col = cell.cols*0*border = NA
+c*0*c*0*col="blue4"
+x=.box_X*0*y=.box_Y*0*default.units="native"*0*gp=gpar
+c*0*c*0*col='gray'*0*border=NA
+c*0*c*0*col="gray"
+x=c*0*y= c
+p1[1*0*]*0*p1[2*0*]*0*ell*0*1]*0*ell*0*2]
+d1*0*d1*0*col=rgb*0*lty=0
+x=c*0*y=c*0*density=3*0*col="red"
+dat*0*dat*0*col='violetred4'*0*border=NA
+c*0*c*0*col = "grey75"*0*border = FALSE

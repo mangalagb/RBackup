@@ -1,0 +1,8 @@
+x
+x*0*nrpoints=Inf*0*colramp=colorRampPalette*0*bandwidth=40
+x1*0*x2*0*colramp=colramp
+x*0*nrpoints = 0*0*postPlotHook = fudgeit
+x*0*y
+diamonds*0*diamonds
+x*0*nrpoints=0
+dat[2:3]

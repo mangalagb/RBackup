@@ -1,0 +1,23 @@
+      t.close() #Close temporary file, will cause it to be deleted
+yourpath = '/home/gowri/Rfiles/data_dump/CoOccuringAnalysis/src/window_based_analysis/new_output'
+      t = tempfile.NamedTemporaryFile(mode="r+")
+    for name in files:
+
+      i = open(filename, 'r')
+      #Overwriting original file with temporary file contents          
+def modify_file(filename):
+      i.close() #Close input file
+           t.write(line[:-4]+"\n")
+      #Copy input file to temporary file, modifying as we go
+      for line in i:
+import os
+      #Create temporary file read/write
+      o = open(filename, "w")  #Reopen input file writable
+for root, dirs, files in os.walk(yourpath, topdown=False):
+	modify_file(name)
+           o.write(line)  
+      #Open input file read-only
+import sys
+      for line in t:
+      t.seek(0) #Rewind temporary file to beginning
+import tempfile

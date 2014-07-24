@@ -1,0 +1,31 @@
+k
+
+x=x*0*y=y*0*z=z*0*levels=levels*0*col=colorpanel
+volcano*0*color = terrain.colors*0*asp = 1*0*nlevels=5
+as.double*0*as.double*0*z
+x = fld*0*y= fld*0*z = fld*0*color.palette =colorRampPalette*0*xlab = "Longitude"*0*ylab = "Latitude"*0*main = "Rwandan"*0*key.title = title
+z=z1*0*y=c*0*col=col1*0*cex.lab=2*0*cex.main=1.1*0*nlevels=20*0*main=
+x*0*y*0*log*0*col=rainbow*0*nlevels=256
+volcano*0*color = jet.colors*0*asp = 1*0*nlevels=100
+intflow
+x*0*y*0*z*0*col=rainbow*0*nlevels=256
+x=seq*0*y=seq*0*mm
+m*0*color=colorRampPalette
+x=seq*0*y=seq*0*mm*0*color.palette = colorRampPalette*0*xlab = "Longitude*0*ylab = "Latitude*0*plot.axes = {}
+dens
+time2*0*depth*0*t
+x*0*y*0*z2*0*color.palette=rainbow
+long*0*lati*0*t*0*color.palette=terrain.colors*0*plot.axes=draw.map
+x*0*y*0*z2*0*col=getcolor*0*nlevels=200
+x*0*y*0*z*0*color.palette=rainbow
+z
+x*0*y*0*z2*0*col=rainbow*0*nlevels=100
+x*0*y*0*volcano*0*asp=1*0*frame.plot=F*0*plot.axes = {}
+my.matrix*0*nlevels=10*0*color=my.heat.colors
+x*0*y*0*z*0*las=0*0*plot.axes={}*0*plot.title={}
+x*0*y*0*z2*0*col=rainbow*0*nlevels=200
+z=dat1*0*col=Contourcolors*0*plot.axes=points
+x*0*y*0*z
+fld
+a*0*color.palette=heat.colors
+x=x*0*y=y*0*z=z*0*levels=levels*0*col=colorpanel*0*xlim=rev*0*ylim=rev*0*plot.axes={}*0*xlab="x"*0*frame=FALSE

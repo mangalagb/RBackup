@@ -1,0 +1,436 @@
+unlist
+x*0*plot = FALSE*0*breaks = breaks
+dist
+alcohol*0*plot=FALSE
+Data*0*plot=FALSE*0*breaks=breaks
+temp[[x]]*0*main = x
+x*0*breaks*0*plot=FALSE
+msample[i]
+x*0*col=cols*0*...
+x*0*breaks=100*0*plot=FALSE
+x*0*xlim = c*0*ylim = c
+rnorm*0*plot = FALSE
+rnorm*0*col=i
+as.Date*0*breaks="days"*0*freq=TRUE
+yourdata[*0*i]*0*breaks=
+x*0*breaks=0:U
+a*0*xlim=c*0*col="red"
+mtcars[*0*i]
+x*0*...
+x1*0*xlab=""*0*main="Group A"
+aa*0*col="pink"*0*add=T*0*freq=F*0*breaks=10
+dataset[*0*i]*0*main ="title"
+cancerchi3[*0*1]
+islands
+hplot*0*plot=FALSE*0*freq=FALSE
+grades*0*prob=TRUE
+rnorm*0*main = title*0**0*death.cause[[i]]
+log*0*...
+dataB*0*breaks=
+var*0*breaks=seq
+v*0*w
+rnorm*0*col = "red"
+log10*0*axes = FALSE
+Data*0*breaks="hours"*0*freq=T*0*xlab="Time"*0*col="red"*0*main="Sat  Volume"*0*axes=F
+Z*0*breaks=20*0*xlim=c
+samples*0*prob=TRUE
+1:10*0*cex.main=2*0*cex.axis=1.2*0*cex.lab=1.2*0*main=expression
+test*0*freq=FALSE*0*breaks=0:10*0*lwd=10*0*lend="butt"
+d*0*xlim=c
+rnorm*0*col='blue'*0*xlim=c
+b*0*add=T
+c*0*breaks=bins*0*freq= FALSE*0*right=FALSE*0*breaks=bins*0*freq= FALSE*0*right=FALSE*0*xaxt="n"
+data[*0*1]*0*freq=FALSE*0*breaks=800
+rb*0*1
+z
+x*0*breaks=seq*0*plot=FALSE
+b*0*plot=F
+1:10*0*"npc"
+residuals
+cancerchi
+d[*0*k]*0*las=1*0*col="grey"*0*main=names*0*xlab=""*0*ylab=""
+data_sub*0*col="red"*0*add=T
+rnorm*0*ylab=NULL*0*main=NULL
+gpa
+x*0*plot = FALSE
+x*0*breaks=c*0*log="xy"
+vec*0*breaks = 100*0*plot=FALSE
+x*0*plot=F
+x*0*col="grey"*0*freq=FALSE*0*breaks=10
+unclass*0*xaxt="n"
+x*0*plot=F*0*breaks=10
+output
+vec_z*0*breaks=20
+dat2*0*breaks = c*0*plot = FALSE
+JOB*0*main="JOB"
+tmp[[p]]
+myDF[[nm]]*0*main=nm*0*values*0*main=name
+df*0*breaks*0*right=FALSE*0*plot=FALSE
+means*0*col='brown'
+x*0*prob=T*0*breaks=b
+perms.max
+x*0*probability=TRUE*0*breaks="fd"*0*ylim=c
+x*0*breaks=min*0*plot=FALSE*0*right=FALSE
+x*0*breaks="FD"
+TMP*0*breaks=c*0*plot=FALSE
+a*0*bins
+labels
+index*0*breaks = 100*0*prob=T
+dat.clean*0*breaks = seq*0*plot = FALSE
+x*0*breaks=100*0*col="grey"
+f3*0*freq=FALSE*0*breaks=breaks
+X*0*prob=TRUE
+y*0*breaks=seq*0*plot=FALSE
+rnorm*0*col='red'*0*add=T
+data2*0*bins*0*plot=0
+faithful*0*ylab = expression*0*ylab = ""
+x*0*main=''
+vals
+myvalues*0*100
+data[correct==0*0*1]*0*breaks=seq*0*plot=FALSE
+data*0*30*0*col="black"*0*freq=F
+rep*0*breaks=0:5
+dat
+data*0*breaks=seq
+outcome[*0*17]*0*main = "Heart failure"*0*xlim = xrange*0*xaxt="n"*0*xlab = "30-day Death Rate"
+Y1*0*breaks = 30*0*freq = FALSE
+energy*0*probability=TRUE
+vec*0*breaks = 800*0*freq = FALSE
+sat
+runif*0*density=c
+x[1]:x[2]*0*breaks =
+x*0*las=1
+log
+d1*0*freq=FALSE
+x*0*col="blue"
+x3*0*xlab=""*0*main=""
+y*0*col="green"*0*freq=F
+cancerchi4[*0*1]
+dat*0*xaxt='n'
+expdat*0*breaks=50*0*col="blue"*0*main="50 bins"
+tmp[[1]]
+x*0*breaks = br.pts*0*plot = FALSE
+data[:*0*i]
+parReplicate
+datapoints
+data*0*breaks=length*0*xlim=c
+x*0*col=color*0*xlab = xlab*0*main = main*0*...
+dat*0*breaks = "days"*0*breaks = "mins"
+y
+rbinom*0*breaks=function
+test.csv[test.csv*0*"a_pct"]
+X*0*color='white'
+ExampleData*0*xlim=c
+foo*0*prob=TRUE
+df*0*main="Max wind speed in January"*0*xlab="Speed"
+z*0*prob=T*0*breaks=b
+dat*0*brkvec*0*ylim*0*""
+table*0*xlab = "Frequency of Level Occurrence"*0*main = ""
+x*0*prob = TRUE*0*main = main2*0*xlab = xlab2*0*ylim = c*0*...*0*0.3989 * mix.object$lambda/mix.object$sigma
+x*0*plot=FALSE*0*breaks = c
+media.dia*0*main=c
+t1*0*breaks=b
+test*0*plot=FALSE
+data*0*xaxt = "n"
+obs*0*uo
+data*0*xlim=c*0*breaks=100*0*header=FALSE
+x*0*breaks=seq*0*xlim=c*0*xaxt="n"
+x*0*breaks=0:*0*xaxt="n"*0*right=FALSE*0*freq=FALSE
+duration*0*probability = TRUE*0*breaks = "FD"*0*col = "darkslategray4"*0*border = "seashell3"
+B*0*freq=F*0*breaks=30*0*col="red"*0*lty=0*0*xlim=c*0*freq=F
+vars
+dataframe[*0*i]
+bulkdata*0*breaks=bins*0*col='gray'*0*ylab="Discovered"*0*xlab="Year"*0*main=""*0*ylim=c*0*axes=FALSE
+res*0*breaks=seq
+mymeans
+mydata_x[*0*name]*0*main=h.name*0*xlab=name
+tmp
+x*0*prob=FALSE*0*col="gray"*0*xlim=c
+data1*0*bins*0*plot=0
+x4*0*xlab=""*0*main=""
+expRandom*0*freq = FALSE
+a*0*plot = FALSE
+r
+r*0*breaks=100*0*col="gray"*0*freq=FALSE
+cancerchi2
+duration*0*probability = TRUE*0*breaks = "FD"*0*col = "darkslategray4"*0*border = "seashell3"*0*main=""*0*ann=FALSE*0*axes=FALSE*0*xlim=c*0*ylim=c
+plotdata*0*xlim=c*0*breaks=c*0*main="Untailed Data"*0*xaxt='n'
+x*0*plot=FALSE*0*...
+X
+scale*0*breaks=20*0*plot=FALSE
+iris*0*col="lightblue"
+data*0*freq=TRUE*0*breaks=bins
+r*0*breaks=30
+xbar
+log10*0*freq = FALSE*0*col="blue"*0*xaxt="n"*0*xlab="B"
+a*0*breaks=c*0*freq=FALSE*0*right=FALSE
+ExampleData*0*main="the ... argument worked!"*0*col.axis=3
+x*0*breaks = c*0*freq = FALSE
+x*0*freq = FALSE
+rep*0*breaks=breakval
+ExampleData*0*ylim=c*0*border="red"
+h*0*prob=TRUE*0*main = ""*0*xlab = "x"*0*ylab = "y"*0*xlim = c*0*breaks = seq*0*ylim = c
+df
+rnorm*0*xlab=parse
+ExampleData*0*breaks=20*0*col="orange"
+x
+data[correct==1*0*1]*0*breaks=seq*0*plot=FALSE
+x*0*main = substitute
+x*0*xlim=c*0*xaxt="n"
+rhos
+logIntensityVector*0*main='Intensity per feature histogram'*0*xlab='logged intensity'*0*ylab='frequencies of features'*0*br=6
+my.graph
+claim*0*xlim = c*0*freq = FALSE*0*breaks = br*max*0*col='red'
+Cors[ids]*0*col="red"*0*add=TRUE
+d1*0*xlab = "Percentage of variance due to c1"*0*main = ""
+as.numeric
+data
+ranef*0*1]*0*xlab="Random 'Asym'"*0*main=""
+dat*0*breaks=brkvec2*0*col="gray"*0*freq=FALSE*0*axes=FALSE
+d1*0*breaks=breaks*0*plot=FALSE
+x[*0*1]
+dates*0*breaks = 7*0*freq = TRUE
+data*0*main=""*0*sub="Histogram of Underlying Data"*0*xlim=c
+data*0*col=colors[data]
+dat*0*breaks=c*0*breaks=c
+mi
+d*0*axes = FALSE
+x*0*freq = FALSE*0*axes = FALSE
+y*0*breaks=c*0*freq=TRUE*0*ylim=c
+dat*0*breaks=seq*0*plot=FALSE
+xpois
+rpois*0*plot=FALSE*0*breaks=0:10-0.1
+y*0*xaxt="n"
+DDZ*0*main="DDZ"
+df.m
+A[*0*1]*0*20*0*plot=FALSE
+tmp*0*add=TRUE*0*border='red'*0*lwd=3
+empl_count*0*breaks=yourbreaks*0*plot=F
+x*0*breaks=0:9
+cs*0*-1:max*0*plot = FALSE
+results1*0*breaks=bins*0*xlim=c
+rsn
+dist*0*main = paste
+samp*0*breaks = 3*0*col="lightblue"*0*border="pink"
+ce$Weight
+d
+rexp*0*breaks=60
+DF[*0*x]*0*main = gsub*0*xlab="Value"*0*2
+x*0*breaks=10
+dat[*0*col]*0*plot=FALSE*0*breaks=brk
+y*0*breaks=q*0*labels=comma*0*prob=seq*0*breaks=q*0*scales=list
+df2*0*xlab=""*0*ylab=""*0*main=suy[i]
+data*0*col=rgb*0*add=TRUE
+x*0*br = seq*0*freq=F*0*col="black"
+rnorm*0*col = "blue"
+perc
+HourMinute*0*breaks=seq
+x.gen*0*prob = TRUE
+data*0*breaks=seq*0*labels =paste0*0*col ="yellow"
+x[*0**0*1]
+msample
+d*0*freq=FALSE
+x2*0*xlab=""*0*main="Group B"
+mydata*0*breaks=buckets*0*plot=FALSE
+x2
+x[*0*2]*0*plot=FALSE*0*breaks=seq
+as.POSIXlt*0*"hours"
+pmin
+gb2_agg*0*prob=TRUE*0*breaks=100000
+cucumberLengths*0*plot = FALSE
+x*0*xlim=xlim1*0*ylim=xlim1*0*prob=TRUE*0*add=TRUE
+out[[i]][*0*3]*0*xlab="I*0*main=paste
+d*0*main=bquote
+sim*0*freq=FALSE
+X_bar
+edat*0*freq=F
+dataA*0*breaks=
+Hour*0*breaks=seq*0*main="Start time*0*end.time
+x.pois*0*breaks=100*0*freq=FALSE
+x[x != 0]*0*30*0*xlab=NA*0*ylab=NA
+runif
+islands*0*col="gray"*0*labels = TRUE*0*ylim=c*0*...
+g*0*breaks=10*0*density=10*0*col="lightgray"*0*xlab="Accuracy"*0*main="Overall"
+x*0*plot=FALSE
+mpg[*0*sapply
+expdat*0*breaks=5*0*col="blue"*0*main="5 bins"
+outcome[*0*23]*0*main = "Pneumonia"*0*xlim = xrange*0*xaxt="n"*0*xlab = "30-day Death Rate"
+x*0*col="light blue"
+data[*0*colname]
+x*0*col="gray"
+resample + noise*0*freq=FALSE
+values
+a*0*plot=F
+f2*0*freq=FALSE*0*breaks=breaks
+d2*0*breaks=breaks*0*plot=FALSE
+samples[*0*i]*0*main=names
+table*0*breaks=20
+AND*0*main="AND"
+a*0*main="A"
+mydata[*0*s]
+WindSpeed
+w*0*col="red"*0*freq=F*0*xlim=10+c
+x*0*xaxt="n"*0*bty="l"
+V2
+subset
+test*0*freq=F*0*xaxt="n"*0*xlab=""*0*ylab=""*0*main=""
+Cors*0*breaks=100
+degree_sequence*0*bins=dmax
+X[abs
+ro.FloatVector*0*xlab="val"*0*ylab="count"*0*main=""
+x8*0*breaks = 100
+x*0*br=10*0*col=c
+b*0*add=T*0*col=rgb
+mpg
+rnorm*0*plot=  FALSE
+x*0*xlim=c*0*probability=T*0*nclass=max*0*col='lightblue'*0*xlab=' '*0*ylab=' '*0*axes=F*0*main='Positive Skewed'
+sample_avg*0*breaks =7
+avgdata
+x*0*....
+alpha*0*cex.main=2*0*cex.axis=1.2*0*cex.lab=1.2*0*main=NULL
+data_delay*0*plot=F
+results2*0*breaks=bins*0*xlim=c
+x[*0**0*3]
+outdata
+X*0*breaks=40*0*col="grey"*0*main=expression
+Youtcomes
+data.timestamps*0*axes=F
+rnorm*0*add = TRUE
+file.filtered*0*main = hist.title*0*xlab = Slope*0*ylab = frequency*0*las = 2
+a*0*breaks=breaks*0*plot=F
+my.data*0*plot=F
+Hour*0*breaks=seq
+df*0*breaks=breaks*0*plot=FALSE*0*right=FALSE
+d1
+log10*0*breaks=50*0*col="gray"*0*main=""
+RandomNormal*0*seq*0*prob = TRUE
+datavar[condvar == conds[i]]*0*plot=F*0*breaks
+x*0*breaks=150*0*xlim=c*0*freq=FALSE
+out*0*sd
+data*0*xlim=c
+mtcars
+log10*0*plot=F
+x*0*freq=F*0*add=T
+outcome[*0*11]*0*main = "Heart Attack"*0*xlim = xrange*0*xaxt="n"*0*xlab = "30-day Death Rate"
+x[*0**0*2]
+x=HES2*0*breaks=bin_w*0*plot=FALSE
+ranef*0*2]*0*xlab="Random 'xmid'"*0*main=""
+dat*0*breaks="hours"*0*freq=TRUE*0*col = "red"*0*axes = FALSE
+dataset*0*breaks=rep
+d*0*plot=FALSE
+x*0*b*0*...
+ExampleData
+i
+x1*0*plot=FALSE
+dataset[[paste0*0*main ="title"
+m*0*5
+iris[*0*"%s"]*0*col="gray"*0*border="white"
+ExampleData*0*xlab="absolute frequency"
+user_mean*0*breaks = 30
+foo*0*freq=F*0*xlim=c*0*breaks=50*0*col="blue"
+n.val*0*xlab="n.val > q_95%"
+x[*0*VarList[i]]*0*main=paste*0*xlab=NA
+B[*0*2]*0*prob=TRUE*0*add=TRUE*0*col='blue'
+foo*0*freq=F
+nb*0*]*0*breaks = max
+rnorm*0*breaks = mybreaks
+rv*0*1:50
+my.data*0*breaks=c*0*xaxp=c
+t1*0*breaks=15
+data[
+g.grouped[[x]]*0*main=bquote*0*breaks=5*0*freq=T*0*border=F*0*col="lightblue"
+ts*0*breaks=7*24*0*plot=FALSE
+yourvariable
+rnorm
+we
+d$col3*0*col.name=c
+sample
+test$adj_unl_claim[test$adj_unl_claim < 100000]
+y*0*add = TRUE*0*col = 'white'
+rpois
+table
+vector*0*axes = FALSE*0*breaks = chartBreaks
+apply*0*breaks=10
+data1*0*col="blue"
+predict
+carrotLengths*0*plot = FALSE
+bulkdata*0*breaks=bins*0*col='gray'*0*ylab="Discovered"*0*xlab="Year"*0*main=""*0*add=TRUE
+faithful*0*ylab = "Density"*0*font.lab = 2
+x*0*breaks
+y*0*add = TRUE
+x*0*xlab = "Waiting interval"*0*ylab = "Eruption Freq"*0*probability = TRUE*0*main = "Density plot"*0*border = "gray"*0*sub= bquote
+X[X*0*]
+list*0*breaks=length*0*freq=TRUE
+mysamp
+hh2*0*plot=FALSE
+b*0*breaks=breaks*0*plot=F
+dfr$x
+newXa
+mtcars*0*main = paste
+perc*0*b
+dataset*0*breaks=seq
+reps
+rnorm*0*freq="FALSE"
+out
+m[*0*3]*0*xlim=c*0*ylim=c*0*prob=TRUE
+df[*0*i]*0*main=names
+islands*0*col="gray"*0*labels = TRUE
+randomData*0*freq=FALSE
+w*0*col="red"*0*freq=F*0*xlim=c
+var*0*breaks=seq*0*main = paste*0*xlab = ''
+t*0*breaks=cbreaks*0*ylim=c
+df*0*main="Max wind speed in 2011"*0*xlab="Speed"
+DF[
+means*0*main=""*0*sub="Histogram of Means"*0*xlim=c
+data*0*breaks="FD"*0*col="red"*0*xlab="xTitle"*0*main="Normal pdf and     histogram"
+
+df$hours
+nig.fit
+x*0*br*0*plot = FALSE
+many*0*plot=FALSE
+x*0*freq = FALSE*0*add = TRUE*0*plot = FALSE
+x[*0*1]*0*plot=FALSE*0*breaks=seq
+rnorm*0*breaks=100
+dfr$x*0*log = "y"
+few*0*breaks=mh*0*plot=FALSE
+cors
+values*0*10*0*seq
+z*0*xlab=""*0*ylab=""*0*main=""*0*yaxt="n"
+x*0*yaxt='n'*0*ylab='Percent'
+third histogram
+y*0*prob=T*0*breaks=b
+x2*0*plot=FALSE
+a*0*br*0*plot=F
+x*0*freq=F
+islands*0*main=NULL
+x*0*prob=TRUE
+eval*0*main=""
+x*0*breaks=breaks*0*plot=FALSE
+runif*0*breaks = 6*0*plot = FALSE
+pred*0*breaks=30*0*main=''*0*probability=TRUE
+d*0*breaks = 0:31
+y*0*plot=F*0*breaks=10
+subset*0*freq=FALSE
+x*0*breaks=buc
+y*0*seq*0*plot=0
+RES[[i]]*0*breaks=breaks*0*plot=FALSE
+y*0*plot=FALSE
+yourdata
+r*0*breaks=20*0*col="lightgrey"
+d*0*plot=FALSE*0*breaks=100
+samples*0*bins=100
+A*0*breaks=30
+rbeta
+xxx*0*breaks=brks*0*probability=TRUE*0*xlab=''*0*main=''
+f4*0*freq=FALSE*0*breaks=breaks
+Data*0*xlim=c*0*breaks=c
+a*0*plot=FALSE
+f1*0*freq=FALSE*0*breaks=breaks
+iris
+DF[*0*x]*0*main = gsub
+x*0*breaks = 30*0*freq = FALSE
+y*0*plot = FALSE*0*h*0*ylim = c
+a
+dt1*0*main=""*0*xlab="Blood pressure"
+c[ c >= seq*0*9 ]
+data*0*plot=F

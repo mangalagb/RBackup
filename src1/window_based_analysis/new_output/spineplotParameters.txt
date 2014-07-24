@@ -1,0 +1,4 @@
+improved ~ treatment*0*yaxlabels=abbreviate*0*5
+fail~temperature*0*yaxlabels=NA
+improved*0*treatment
+fail~temperature

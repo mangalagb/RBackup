@@ -1,0 +1,6 @@
+x, y, plot = TRUE, tol.ylab = 0.05, ylevels = NULL," bw = ""nrd0""", n = 512, from = NULL, to = NULL, col = NULL, border = 1," main = """"", xlab = NULL, ylab = NULL, yaxlabels = NULL, xlim = NULL, ylim = c(0-1), list()
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0

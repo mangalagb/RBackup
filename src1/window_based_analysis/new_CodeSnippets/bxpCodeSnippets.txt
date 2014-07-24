@@ -1,0 +1,8 @@
+bxp(bstats)
+bxp(groupbxp)
+bxp(z)
+bxp(summarydata)
+bxp(bx.p, angle=angles, density=densities)
+bxp()
+bxp(list)
+bxp(bxp.data)

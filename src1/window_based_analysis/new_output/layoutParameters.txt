@@ -1,0 +1,93 @@
+3*0*2
+2
+nrow
+nrow = do.call
+Layout
+1*0*1
+2*0*1*0*widths = diff*0*heights = diff
+t
+m
+plotRows
+c*0*heights=c
+nrow = 2*0*ncol = 1*0*heights = unit
+gl
+matrix*0*widths=c*0*heights=4*0*respect=TRUE
+matrix*0*widths=c*0*heights=c
+rbind*0*heights=c*0*respect=FALSE
+matrix*0*widths=c
+nrow = 2*0*ncol = 3*0*widths = unit*0*heights = unit*0*width = unit*0*height = unit*0*name = paste
+laymat
+1:4
+matrix
+N+1*0*N+1*0*widths=unit*0*heights = unit
+rbind*0*heights=c
+matrix*0*widths = 1*0*heights = c*0*respect = FALSE
+n.row
+matrix*0*width = c*0*height = c
+myggplot
+matrix*0*height=c
+1*0*3
+2*0*2
+3
+matrix*0*widths=months
+matrix*0*widths = lcm*0*heights = lcm*0*TRUE
+2*0*2*0*widths = widths*0*heights = heights
+mat
+1*0*axes = FALSE
+nrow=length*0*ncol=1
+mat*0*widths = c
+mat=matrix
+2*0*2*0*widths=c
+1*0*2
+
+nrow = 2*0*ncol = 3*0*widths = unit*0*heights = unit*0*width = unit
+1:2
+ii.table.row
+gl*0*vp=viewport
+rbind
+heights = unit*0*nrow = 1
+mat = Layout*0*widths = c*0*heights = c*0*respect = TRUE
+nrow=10*0*ncol=5
+matrix*0*widths=c*0*widths=c
+nrow=1*0*ncol=2
+lo
+mat = matrix*0*height = c
+1
+nrow=1*0*ncol=1*0*widths=0.8*0*heights=0.8*0*default.units="npc"
+1*0*method = "number"*0*tl.cex = 4*0*method = "number"*0*tl.cex = 0.8
+x
+c
+mat = m*0*heights = c
+nrow=1
+lmat*0*widths = lwid*0*heights = lhei*0*respect = FALSE
+matrix*0*widths = c*0*heights = c
+matrix*0*widths=widths*2
+1*0*newdata = NEW*0*type = "terms"
+mat = lmat*0*widths = lwid*0*heights = lhei*0*2:1
+1:2*0*heights=c
+1*0*1*0*widths = diff*0*heights = diff
+2*0*1
+t*0*widths=c
+layout.mat*0*respect=TRUE
+4
+matrix*0*widths=1*0*heights=c*0*respect=FALSE
+zones*0*widths=c*0*heights=c
+mat = lmat*0*widths = lwid*0*heights = lhei
+layMat*0*widths=c*0*heights=c
+matrix*0*widths = c
+1*0*range*0*pdat*0*type = "terms"*0*se.fit = TRUE*0*head
+matrix*0*heights=c
+matrix*0*width=c*0*height=c
+4*0*2
+2*0*1*0*widths=unit*0*heights = unit
+matrix*0*widths=c*0*height=6*0*respect=TRUE
+nrow=length
+length
+nrow=2*0*ncol=2*0*widths=c*0*heights=c*0*respect=TRUE
+matrix*0*widths=c*0*heights=4
+matrix*0*c*0*c*0*TRUE
+matrix*0*width=c
+layt
+2*0*1*0*heights=unit
+nrow=2*0*ncol=2*0*heights=c*0*widths=c*0*default.units=c
+m*0*widths = c*0*heights = c

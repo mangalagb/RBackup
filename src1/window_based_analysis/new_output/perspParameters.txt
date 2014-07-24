@@ -1,0 +1,36 @@
+x*0*x*0*z*0*theta = 30*0*phi = 30*0*expand = 0.5*0*col = "lightblue"*0*border=NA*0*ltheta = 120*0*shade = 0.75*0*ticktype = "detailed"
+
+m
+z=mat[*0*rep*0*r=5*0*theta=320*0*phi=35*0*shade=0.5*0*border=NULL*0*col=rep
+xs*0*zs*0*truth
+df.x*0*df.y*0*df.z
+den3d*0*xlab="Var1"*0*ylab="Var2"*0*zlab="Density"*0*shade = 0.1*0*col = cols*0*box=TRUE*0*phi=90*0*c*0*sides=1
+x*0*y*0*z*0*theta = 135*0*phi = 30*0*col = colorRampPalette*0*scale = FALSE*0*ltheta = -120*0*shade = 0.75*0*border = NA*0*box = FALSE
+preddf
+x=x*0*y=y*0*z=z*0*theta=40*0*phi=15*0*zlim=c
+ct.rsm*0*Conc~kGy*0*col=blue*0*theta=60*0*xlab="Some"*0*phi=0*0*r=3*0*d=1*0*ltheta=-135*0*lphi=0*0*shade=0.75*0*zlab="CT"*0*ylab="Conc"*0*col.axis=37*0*font.lab=2*0*col.lab=33*0*contour=
+outer
+x*0*y*0*z*0*theta = 90*0*phi = 30*0*expand = 0.5*0*col = "lightgreen"
+kde2d*0*col="grey90"*0*shade=1*0*theta=120*0*xlab="X"
+x*0*y*0*z*0*col = gray
+x1*0*x2*0*z*0*col=w4[1:100*0*1:100]
+freq2D*0*col=cols
+x*0*y*0*z*0*col=cm.colors*0*theta=-35*0*phi=10
+x = x*0*y = y*0*z = outer
+volcano
+new.dates*0*new.times*0*new.values*0*ticktype = "detailed"*0*r = 10*0*theta = 35*0*scale = FALSE
+x=1:10*0*y=1:10*0*z.mat*0*xlab="lambda_1"*0*ylab="lambda_2"*0*zlab="f
+x*0*y*0*z*0*col = color[facetcol]*0*phi = 15*0*theta = -50*0*xlab="x"*0*ylab="y"*0*zlab="Empirical Joint Density"*0*border=NA
+r
+surface*0*surface*0*surface*0*col=ifelse
+matrix*0*col=rainbow
+perot*0*gore*0*z*0*col=color[facetcol]*0*theta=-30*0*lwd=.3*0*xlab="Perot 96"*0*ylab="Gore 2000"*0*zlab="Predicted Votes for Buchanan"
+mba.int*0*theta = 135*0*phi = 30*0*col = "green3"*0*scale = FALSE*0*ltheta = -120*0*shade = 0.75*0*expand = 10*0*border = NA*0*box = FALSE
+z
+dat*0*dat*0*dat*0*xlab=xlab*0*zlab=zlab*0*zlim = dat*0*ylab=ylab*0*col = facet.col*0*border = border*0*box = box*0*theta = theta*0*phi = phi*0*r = r*0*ticktype = ticktype
+den3d*0*box=FALSE
+dat*0*dat*0*dat*0*zlim = dat*0*xlab=ylab*0*theta = theta*0*phi = phi*0*r = r*0*col = NA*0*border = NA*0*box = FALSE
+x*0*y*0*z
+x*0*y*0*z*0*theta = 30*0*phi = 30*0*expand = 0.5*0*col = "lightgreen"
+x*0*y*0*z*0*theta=50*0*phi=25*0*expand=0.75*0*col=color*0*ticktype="detailed"*0*xlab=""*0*ylab="time"*0*zlab="density"*0*shade=.4*0*border=NA*0*axes=F
+kde2d*0*col="grey90"*0*shade=1*0*theta=120*0*xlab="X"*0*0.19379195*0*0.10654362*0*0.06291946*0*0.03775168*0*0.03313758

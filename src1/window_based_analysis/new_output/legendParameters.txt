@@ -1,0 +1,108 @@
+x = "top"*0*inset = 0*0*legend = c*0*col=plot_colors*0*lwd=5*0*cex=.5*0*horiz = TRUE
+locator*0*rownames*0*fill=c
+x=1*0*y=9*0*legend=c*0*fill=c
+2*0*1*0*"My legend"*0*1*0*length.out=10
+s3d*0*pch = 19*0*yjust=0*0*legend = levels*0*col = seq_along
+1*0*min*0*bg=8*0*c*0*lty=c*0*lwd=c*0*col=c*0*cex=0.8
+1*0*colnames*0*bg="#ffffff55"*0*fill=rainbow
+1*0*5*0*"This legend text should not be disturbed by the dotted grey lines*0*\nbut the plotted dots should still be visible"*0*box.lwd = 0*0*box.col = "white"*0*bg = "white"
+1*0*max*0*fill=c*0*legend_expressions*0*"beta"*0*"gamma"*0*"delta"
+legend = c*0*col = c*0*x = "topright"*0*lty = 1
+x = 0.6*0*y = 1.15*0*legend = c*0*fill = c*0*xpd = T*0*ncol = 3*0*at = seq*0*labels = seq
+17*0*47*0*legend= legend_map*0*fill=c*0*density = c*0*angle = c*0*bty="n"*0*cex=0.6
+x='bottomleft'*0*legend = c*0*fill = my_col
+0*0*8*0*c*0*col=1:2*0*pch=1
+x=0*0*y=.15*0*"legend1"*0*cex=1*0*pt.cex =1.4*0*bty="n"*0*pch=22*0*pt.bg = "green"
+lgd*0*lgd*0*legend = c*0*pch = c*0*bty="n"
+x=.75*0*y=.15*0*" legend"*0*cex=1*0*pt.cex =1.4*0*bty="o"*0*col=c*0*pch=c*0*box.col="red"
+0.5*0*0.8*0*paste*0*density=c*0*angle=c
+x='top'*0*legend =as.character*0*fill = my_col[unique
+1*0*max*0*fill=c*0*legend_expressions
+7*0*4.5*0*pch=c*0*legend=c
+x=0*0*y=.15*0*c*0*cex=1*0*pt.cex =1.4*0*col=c*0*bty="n"*0*fill="green"*0*border="black"
+labels
+x="topleft"*0*legend=rev
+x=10*0*y=10*0*c*0*x.intersp=1*0*y.intersp=1*0*cex=c*0*bty="n"*0*fill=c*0*pch=c*0*pt.cex = c*0*lwd=1.5*0*title='Histo'
+x = "topright"
+4*0*9*0*names*0*lwd=4*0*col=c
+x=0*0*y=.15*0*c*0*cex=1*0*pt.cex =1.4*0*col=c*0*bty="o"*0*fill="green"*0*pch=c
+1*0*1*0*legend=c*0*density=c*0*angle=c*0*col=c*0*bty="n"*0*cex=1.5*0*xpd=TRUE
+x=0*0*y=.15*0*"legend1 "*0*cex=1*0*pt.cex=1.4*0*bty="n"*0*pch=22*0*col="black"*0*pt.bg="green"
+2*0*10*0*c*0*pch=c
+3.5*0*150
+15*0*1.5*0*colnames*0*cex=0.8*0*col=plotCol*0*pch=20
+x=.5*0*y=.9*0*c*0*pch=c*0*cex=.8*0*bty="n"*0*col=c
+x=165*0*y=30
+symbolWidth = 80
+locator
+x="center"*0*ncol=3*0*legend=c*0*fill=c*0*title="Fetch"
+x = "topright"*0*legend = levels*0*pch = 24*0*pt.bg = c*0*inset = 0.1
+le*0*legend=c*0*col=*0*lwd=2*0*lty = 1
+2*0*10*0*expression*0*pch=c
+x = 'top'*0*legend = unique*0*fill = my_col
+x="bottomright"
+x=my.legend.size2*0*y=my.legend.size*0*c
+x = "topleft"*0*legend = expression
+
+legend = c*0*col = c*0*x = "topright"*0*pch = 1
+8.5*0*90*0*col = jet.colors*0*legend=z*0*pch=15*0*y+2*0*labels=z
+10*0*1*0*mod
+direction="vertical"*0*title.position="top"
+loc='best'
+x=0.25*0*y=0.75*0*legend=c*0*fill=c*0*title="Legend"
+x=.75*0*y=.15*0*"legend2"*0*cex=1*0*pt.cex =1.4*0*bty="n"*0*pch=24*0*pt.bg = "black"
+x_position*0*y_position*0*legend=c*0*col=linecols*0*pch=15*0*bty="o"
+labels=c*0*pch=1:2
+0.1*0*0.9*0*legend=c*0*fill=rainbow*0*horiz=TRUE
+locator*0*legend=c*0*fill=c*0*y=0.6
+x*0*y*0*...*0*3*0*length.out=10
+locator*0*border=FALSE*0*fill=FALSE*0*"try the position"
+0.85*0*0.7*0*as.vector*0*fill=c
+x=.75*0*y=.15*0*"legend 2"*0*cex=1*0*pt.cex =1.4*0*bty="n"*0*pch=24*0*col="red"*0*pt.bg="white"
+x = 0.25*0*y = 35*0*c*0*bty="n"*0*lty=c*0*col=c*0*cex=0.8*0*inset=0
+x1*0*y1*0*c*0*bty="n"*0*lty=1*0*col="red"*0*cex=0.8
+2.8*0*0*0*c*0*pch = c*0*lty = c
+2*0*320*0*rownames*0*cex=1*0*angle = c*0*fill =rainbow
+0*0*13*0*6.5*0*14
+x="bottomleft"*0*legend=rp
+2*0*500*0*c*0*cex=1.5*0*pch=1:3*0*col=1:3
+x=10*0*y=10*0*c*0*x.intersp=1*0*y.intersp=1*0*cex=c*0*bty="n"*0*pch=c*0*pt.cex = c*0*lwd=1.5*0*title = 'Histo whithout fill '
+600*0*0.6*0*c*0*lty=c*0*lwd=c*0*col=c
+1*0*mymax+8
+2*0*10
+x = max*0*y = 1.15*0*xpd = T*0*ncol = 3*0*legend = c*0*fill = c
+end[i]*0*y[i]*0*name[i]*0*xjust=0*0*yjust=0.5
+2.8*0*-1*0*c*0*pch = c*0*lty = c
+x=1e+04*0*y=0.2*0*c*0*col=c*0*lty=c
+c*0*col = 1:2*0*x = 1*0*y = .8*0*lty="99"*0*pch=1:2
+x=max*0*y=max*0*legend="b"*0*pch=2
+0.7*0*0.3*0*sprintf*0*lty=c*0*lwd=c*0*col="blue"*0*title = "AUC"
+pardat*0*0*0*pardat*0*pardat*0*paste*0*palleg*0*align="rb"*0*gradient="y"*0*cex=0.7
+x = "topleft"*0*legend = substitute
+rng[1]*0*rng[4] + lg
+par*0*par*0*yjust=0*0*legend='anything'*0*pch=1
+x=max*0*legend="a"*0*pch=1
+1*0*max*0*fill=c*0*legend_expressions*0*greek*0*sep="~"
+2*0*4*0*as.expression
+7*0*4.3*0*unique*0*col=1:length*0*pch=1
+2*0*1*0*"My legend"
+5*0*70*0*c*0*cex=1.5*0*fill=2:3
+3.2*0*1*0*c*0*pch = c*0*lty = c
+list*0*"boom"
+100*0*.8
+rng[1]*0*rng[2]
+1*0*10*0*lty=1:3*0*col=1:3*0*legend=c*0*bty="n"*0*trace=TRUE
+topright*0*lty=1:2*0*c
+450*0*0.8*0*legend= c*0*lty=c*0*lwd=2
+5*0*5
+x=-1*0*c
+1*0*1*0*c*0*pch = c*0*lty = c
+where*0*legend = list*0*...
+x = "bottomleft"*0*legend = "bar"*0*pch = pch*0*...
+x='bottomright'*0*legend='Cor = 0.34'*0*legend=paste
+locator*0*levels*0*fill=colfill
+40*0*2*0*legend=c*0*fill=c*0*border=FALSE*0*bty="n"*0*y.intersp = 0.7*0*cex=0.7
+1.5*0*-42*0*nameListForLegend*0*pch = symbolVectorForLegend*0*cex=3*0*col="black"*0*border = 0
+x=.5*0*y=.9*0*c*0*cex=.8*0*bty="n"*0*col=c*0*pch=c
+5*0*10
+c*0*col = 1:2*0*x = 1*0*y = .8*0*lty=1*0*pt.bg=1:2*0*pch=21:22

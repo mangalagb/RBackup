@@ -1,0 +1,6 @@
+mosaicplot(x[, 2:4], main = 'Proportions')
+mosaicplot(dtab)
+mosaicplot(with)
+mosaicplot(country ~ name, data = df2)
+mosaicplot(a, dir = "h", off = 0, color = TRUE)
+mosaicplot(Loan.Purpose, Home.Ownership)

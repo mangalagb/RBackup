@@ -1,0 +1,680 @@
+x*0*y*0*col = "red"*0*lwd = 2
+y*0*type="l"*0*col="green"
+split_dat[[i]]
+upper*0*col="gold"
+lowess
+xfit*0*yfit*0*col="green"*0*lwd=2
+simulate*0*col="blue"
+c*0*c*0*type="l"*0*lty=2*0*lwd=0.5*0*col="black"
+p*0*sgam*0*lty = 1
+ecdf*0*col="green"
+x=0*0*y=c*0*default.units="npc"
+x*0*y[*0*i]*0*col=Col.rar1[i]
+path.1[1:i*0*]
+x_mod*0*y_mod*0*col=color*0*lwd=5
+xvec*0*predict
+x*0*y1
+rbind*0*col = "green"*0*lwd = 2
+m*0*predict*0*col='red'
+x*0*-y
+c*0*type="l"*0*pch=NA*0*lwd=1*0*col="grey"
+xv*0*yv
+dfr[*0*1]*0*dfr[*0*3]*0*col="red"
+scatterangle[id]*0*predict*0*col='red'*0*lwd=2
+x*0*est*0*col="white"
+x*0*...
+seq_along*0*x[[i]]
+density*0*lty = d
+x1*0*ksmooth*0*col='orange'*0*lwd=2
+Time*0*pred*0*col="blue"
+x[*0*1]*0*x[*0*3]*0*col = col[1]*0*lwd=2
+1:2*0*c*0*alpha=0.5*0*...
+xy*0*xy*0*col = gray*0*lwd = .5
+week1*0*type="o"*0*col="red"
+yhat ~ x*0*data = pred*0*col = "red"*0*lwd = 2
+data*0*lw1*0*col="red"*0*lwd=3
+newx*0*preds[*0*2]*0*lty = 'dashed'*0*col = 'red'
+xs*0*qM
+x_grid
+chx
+df*0*10^fit_line*0*col="red"
+r.sims[*0*i]*0*type="l"*0*col="#ff000010"
+tex3*0*col="blue"
+bf.red*0*lo.pred
+data*0*data[*0*i + 1]*0*type="l"*0*col=colors[i]
+t*0*fC*0*lty = 3
+df*0*log10*0*col="blue"
+p1 ~ x*0*data = r1*0*col = "red"
+tmp*0*tmp*0*col='green'
+c*0*c*0*col = col
+rep*0*c*0*col=i+1*0*type="l"
+c*0*matrix[*0*j]*0*col=j
+x*0*col = col*0*bg = bg*0*pch = pch*0*type = type*0*...
+x*0*y*0*col = "grey80"*0*y = 1:5
+boundaries
+week1*0*type="o"*0*col="green"
+x*0*hx
+ecdf*0*col="red"*0*col.01line="white"
+density*0*col = "blue"
+upper ~ a*0*data = pdat*0*subset = want*0*lty = "dashed"
+yy*0*seq*0*col=dcol
+simulate*0*col="red"
+seq
+temp1*0*col="red"
+x = c*0*y = Y*0*gp = gpar
+Res[*0*5]
+x[-1]*0*mod3*0*col = 'green'
+x[*0*i]*0*y[*0*i]*0*type = type[i]*0*lty = lty[[i]]*0*lwd = lwd[i]*0*lend = lend[i]*0*pch = pch[i]*0*col = col[i]*0*cex = cex[i]*0*bg = bg[i]
+xdens*0*xdens*0*col='blue'
+c*0*c*0*col=i
+Res[*0*4]*0*col="blue"
+cumsum
+sm*0*col = "red"
+my.datamat[i*0*]
+b_sequence*0*a_sequence
+z
+test*0*type="b"*0*col="#974449"*0*lwd=3
+rollmean*0*col = 2*0*lwd = 2
+cos
+data[*0*4]*0*data[*0*2]*0*type='l'*0*col='red'
+density ~ V1*0*data = dat*0*col = "red"*0*data = dat*0*type = "n"*0*ylim = c
+as.numeric*0*df*0*type="b"*0*col="blue"
+density*0*col="red"
+t*0*predict
+data*0*data*0*col='red'
+d[*0*1]*0*d[*0*2]*0*lty=ltys[i]*0*col=cols[i]*0*lwd=4
+plotroc*0*plotroc
+ifelse*0*x[
+x*0*y*0*'l'*0*lwd=.00000000001*0*col="black"
+x*0*predict*0*col='red'
+tr_error*0*type='l'*0*col='red'
+x_grid*0*predict*0*col = "red"*0*lwd = 3
+xval
+Y ~ X*0*data = pDF*0*col = "red"*0*lwd = 2
+den1 <-density*0*col="blue"*0*polygon
+a_sequence*0*b_sequence
+out
+msizes*0*type = "s"
+deathrow*0*deathrow*0*col="red"
+yhat ~ x*0*data = pdat*0*lwd = 2*0*col = "red"
+1:10*0*runif*0*col=2*0*lty=2
+hx*0*type="h"*0*lwd=linewidth-2*0*col=fillcol
+density*0*lty=3*0*col="red"
+x1*0*ksmooth*0*col='red'*0*lwd=2
+data*0*data*0*col = "pink"
+t*0*dat[*0*i]
+x=unit*0*y=0*0*default.units="native"
+PTARcCIage4[[j]]*0*PTARcCIage4[[j]]*0*...
+8:15*0*exp*0*data
+xx*0*predict*0*col='black'
+yhat ~ x*0*data = pred
+x=median*0*y=plot_Loc*0*default.units="native"
+sizes*0*type = "s"
+xcumsor[*0*perlin*numtri]*0*type="l"*0*lwd=2*0*col=rgb
+x*0*myf*0*col="red"
+N0*0*Ne
+x=0*0*y=c*0*default.units="native"
+cumfreq2*0*col="red"
+b*0*Data*0*col=vencido.col*0*lwd=2
+ecdf*0*col="red"
+density*0*col = "yellow"
+gC*0*col=col*0*lwd=0.5
+deathrow*0*deathrow*0*col="green"
+13:24*0*predict
+c*0*c*0*col = "blue"
+x*0*y*0*col="blue"*0*lwd=2
+D2*0*D2*0*lty=2*0*col="blue"
+x[*0*i]*0*col = colors[i]*0*...
+tail*0*head*0*type="o"*0*cex=0.5
+2:4*0*10:8*0*col=2*0*type="l"
+y/40~x
+pframe*0*predict
+seq*0*Tb*0*type="b"*0*lwd=2
+1:10*0*Pf[*0*i]*0*type = "l"*0*col="red"*0*lwd=5*0*ylim=c
+zz*0*zz*0*type="h"*0*lwd=48*0*lend="butt"*0*col="white"
+lowess*0*type = "p"*0*col = "red"*0*pch = 1
+foo*0*foo*0*col="red"*0*foo*0*FUN=length*0*freq=F
+density*0*col = "red"
+p*0*y2*0*type='l'*0*col="green"*0*ylim=range
+upper95.CI ~ p.move*0*option
+x<-c*0*a+b*x^k*0*col='red'
+path.2[1:i*0*]*0*col="red"*0*l2
+x = time*0*y = ratio.e*0*col = cc[src]
+newx*0*newy*0*col="red"*0*lwd="3"
+d*0*col = "darkgrey"
+dat*0*rollapply
+zoo*0*col="red"
+newdf*0*exp
+c*0*c*0*type="b"*0*lwd=5*0*col="white"
+rep*0*type="l"*0*pch=NA*0*lwd=1*0*col="black"
+year.day[[year.index]]*0*# x coordsusage.per.day.grouped.by.year[[year.index]]*0*# y coordscol=colors[year.index]
+x=1:60*0*y=predict
+1:140*0*value.pred12*0*col = "red"*0*period
+unit*0*unit*0*gp=gpar
+predict*0*col='red'*0*lwd=2
+res*0*col = "blue"
+dnorm*0*col="blue"*0*lty="dotted"*0*from=ToBeFilled*0*to=ToBeFilled*0*col="blue"*0*lty="dotted"*0*mean = mean
+y~x*0*temp2*0*...
+x*0*y[*0*3]*0*col="blue"
+def='native'*0*x=c*0*y=0*0*arrow=arrow
+data3*0*...
+fitted*0*lty = 2
+xi*0*yi*0*type='h'
+X
+pct_used
+betseq*0*lowlim
+x_mod*0*y_mod*0*col='white'*0*lwd=10
+ecdf*0*col="green"*0*col.01line="white"
+log*0*exp*0*col="red"*0*exp*0*col="red"
+x[-1]*0*mod2*0*col = 'green'
+dfP*0*dfP*0*lwd=2*0*col="blue"
+s*0*dnorm*0*col="red"
+tr*0*col = "black"
+c*0*type="l"*0*pch=NA*0*lwd=1*0*col="black"
+scatterangle[id]*0*signal2[id]*0*col='blue'*0*lwd=2
+x*0*y[*0*2]*0*col=mean.col*0*lwd=mean.lwd
+yhat ~ x*0*data = pred*0*subset = x >= xr[1] & x <= xr[2]*0*lwd = 2*0*col = "red"
+x=c*0*y = c*0*default.units='native'
+xNew*0*yNew
+Res[*0*6]
+pred*0*col=2
+xseq*0*sapply
+xcumsor[*0**0*type="l"*0*lwd=2*0*col=rgb
+xx*0*predict*0*col='red'
+stax:endx*0*qnorm
+1:366*0*Quantiles["90%"*0*]*0*col = gray*0*lty=4
+dat[*0*c*0*type="l"*0*col="red"
+x*0*sin*0*col='yellow'*0*type='l'
+ts
+Freq ~ x*0*xtds*0*type="h"*0*col="red"
+offer
+1:7*0*exp
+mean.mag~class.mids
+indiv*0*indiv*0*col = "yellow"
+x[sel]*0*fitted*0*col="blue"*0*lwd=3
+cps71*0*fitted*0*lty=1*0*col="blue"
+xw*0*col = 4
+step~events*0*data=df[df*0*]*0*type="s"*0*col=3
+lowess*0*lwd=2*0*col="darkblue"
+beforendafterdata[*0*x]*0*...
+p*0*sgam*0*lty = 2
+density
+dataPlot1[1]*0*lty=1*0*col="blue"
+dens2*0*col = "red"
+barp*0*1000*dnorm
+mfit.htx*0*col=2*0*fun=function*0*lty = "dashed"*0*conf.int = "only"
+tt
+rollmean*0*"AAPL.Open"]*0*col="red"*0*"SPY.Open"]
+c*0*c*0*type="l"*0*col="blue"
+predict*0*lwd=4*0*col='black'
+c*0*c*0*col = "red"
+seq*0*qs[2*0*]*0*lty=1*0*lwd=2
+T[-c*0*ps*0*col=3
+myx*0*normal * multiplier[1]*0*col = "blue"*0*lwd = 2
+xycoords*0*xycoords*0*...
+x0[i*0*]*0*...
+rollmean*0*"SPY.Open"]*0*col="red"
+smooth.spline*0*col = "red"
+x=plot_Loc*0*y=plot_Loc*0*default.units="native"
+y~x
+x0*0*predict*0*col = "red"
+ydens*0*ydens*0*col='blue'
+freq1*0*type="l"*0*col=
+dat_dens*0*lty=1*0*col="red"
+seq*0*predProbs*0*col=2*0*lwd=2
+newx*0*prd[*0*3]*0*col="red"*0*lty=2
+x*0*y
+rep*0*type="l"*0*col="lightgray"*0*lwd=1
+x*0*y4*0*col="darkgray"
+Dataset_2*0*Dataset_2
+gi*0*gi
+pts*0*f2*0*col="red"*0*type="b"*0*pch=16
+den[[i]]*0*col=i
+def='native'*0*y=c*0*x=0*0*arrow=arrow
+dat*0*dat*0*col="red"
+x1.eval*0*y.eval
+xt*0*yt*0*...
+b[*0*'dn']*0*col='red'
+bp*0*fit
+xpos*0*bVals*0*col = point_colors[2]
+yhat ~ x1*0*data = pdatx1*0*col = "red"*0*lwd = 2
+range*0*c
+xx*0*predict*0*col='purple'
+b[[2]]
+x*0*y2*0*col="green"
+x*0*y*0*lwd=1
+l.fit1*0*col = 2*0*lwd = 2
+t*0*fB*0*lty = 2
+rbind
+x=c*0*y=c
+1:length*0*x
+c*0*c*0*type = "o"*0*pch = 25
+density*0*col = 'red'
+points*0*col='red'
+x*0*y3*0*col="green"
+xv*0*uyv*0*lty=2*0*col=3
+xl*0*predict*0*y
+DD2 ~ Timestamp*0*data = out*0*type = "l"*0*col = "red"
+x[1:1000]*0*fitted.values[1:1000]*0*col="red"*0*lwd=2
+data[*0*i]
+6:9*0*c*0*col=3*0*type="l"
+circle*0*col = "#66666650"
+dat[*0*1]*0*dat[*0*2]*0*col=color
+log*0*log*0*col="red"
+x=plot_Loc*0*4]]*0*y=c*0*default.units="native"
+data[*0*4]*0*data[*0*3]*0*type='l'*0*col='green'
+x=c*0*y=0*0*default.units="npc"
+x*0*y2high*0*col='red'
+c*0*d[2*0*3:4]
+density*0*ylim=c
+xvals*0*pllogis*0*col=2
+prediction*0*col=lcol
+m2*0*col=4
+rvec*0*true*0*col=4*0*lwd=2
+x*0*y2low*0*col='green'
+x[g=="model"]*0*y[g=="model"]*0*col = "black"
+density*0*col=2*0*freq=FALSE
+data*0*data*0*col = "steelblue"
+D3*0*D3*0*lty=3*0*col="green"
+fit ~ spd*0*data = x_grid*0*col = "red"*0*lwd = thickLineWidth
+i+*0**0*col=max*0*pch=i*0*lty=i*0*type="b"
+x
+xx*0*yy*0*col="purple"
+x1*0*ksmooth*0*col='green'*0*lwd=2
+fitted*0*df
+fitted*0*lty = 1
+h*0*rep*0*type='S'
+male*0*pch=16*0*col = "red"
+xts*0*col = 2
+x[p]*0*y[p]*0*col="red"*0*type="b
+x*0*y*0*col="blue"
+perf2@x.values[[1]]*0*perf2@y.values[[1]]*0*col = 2
+data
+xvec*0*pq*0*col=2
+resid*0*type="l"*0*col="blue"
+loess*0*lowess
+d[ind*0*]*0*lwd = 2
+x=c*0*y=predict*0*col="red"*0*type="b"
+h1*0*h1*0*t="S"
+SL
+F*0*T
+c*0*c*0*...
+x*0*y2*0*col = "red"
+x=X*0*y=Y
+mp*0*data.30.c*0*col=34
+b.pred*0*col="green"*0*lty="dashed"
+pts*0*f3*0*col="green"*0*type="b"*0*pch=16
+Rvalues*0*predict
+tail*0*1-head
+week1*0*type="o"*0*col="purple"
+xy*0*col="red"*0*lwd=5
+xx*0*predict*0*col='grey'
+data*0*p[3]*dnorm
+v2*0*lwd=1*0*col="red"
+scp*0*col="white"
+smooth.spline
+severity.lm*0*conf= .85*0*interval = "prediction"
+density*0*col = "green"
+density ~ V1*0*data = dat*0*col = "red"
+power~time*0*B
+mfit.htx*0*col=2*0*fun=function
+ps*0*col=2
+Res[*0*2]*0*col="red"*0*type=o
+obs_v_exp*0*col="red"
+seq*0*xy*0*col=dcol
+x*0*c*0*type="S"
+c*0*c*0*gp=gpar*0*default.units="native"*0*y=0*0*width=0.5*0*height=1*0*just=c*0*y=0*0*width=0.5*0*height=1*0*just=c
+DF*0*predict
+x*0*y*0*col="purple"
+year*0*ger.90.10.ratio
+1:10*0*sample*0*pch=1*0*type="o"
+est
+newx*0*predict*0*col='blue'*0*lwd=2
+pdays*0*lo
+res[*0*1]*0*res[*0*3]*0*col='red'
+yd*0*xd*0*col="green"
+density*0*type = "n"
+1:3*0*rnorm*0*pch = 2*0*lty = 2*0*type="o"
+date*0*valueymod*0*type = "l"*0*col = "red"
+mean.yaxis ~ seq
+fit*0*col=2
+x=xd*0*y=yd+*0*ylim=c*0*col="grey50"*0*type="l"*0*lwd=2
+df*0*df*0*lwd = 2
+lake*0*type="b"*0*col="darkgreen"*0*lwd=3
+6:36*0*6/*0*type="o"
+density*0*col="red"*0*1000*0*replace=TRUE
+seq*0*pnorm*0*col=2
+xvec*0*logpred
+xcum[*0*rantri]*0*type="l"*0*lwd=1*0*col=rgb
+x*0*y1*0*col="red"
+xfit*0*yfit*0*col="black"*0*lwd=2
+rep
+myd[x*0*]*0*myd[x
+my.vwap
+xy*0*1-xy*0*type="o"*0*cex=0.5
+predict*0*col = "blue"*0*lwd = 2
+x*0*predict*0*col="red"
+myd*0*myd*0*pch=19*0*cex=.75*0*col="blue"*0*type="o"
+ctlns[[1]]*0*ctlns[[1]]*0*lwd=4*0*col="darkblue"
+med~t*0*data=res.df*0*col="steelblue"
+x*0*IntVector*0*col = "green"
+x = d*0*y = cumsum*0*lwd = 2
+mp[2*0*]*0*df*0*col="blue"
+female*0*pch=16*0*col = "green"
+t*0*x2*0*lwd=1*0*col="red"
+1:10*0*1:10*0*type="l"*0*lty=2
+1 - plotroc*0*plotroc*0*lwd = 2*0*lty = 5
+x=xval*0*y=ab*0*col="blue"
+greatCircle*0*col = "firebrick"
+c*0*c*0*col = "green"
+x*0*y[[i]]*0*col = colors[i - 1]
+predict*0*col = "red"*0*lwd = 2
+na.omit*0*col=2*0*aes
+df*0*df*0*col="red"*0*lty=2
+x = 1:nrow*0*y = Toyota
+upr ~ w_sp*0*data = x_grid*0*col = "red"*0*lwd = 2*0*lty = "dashed"
+step~events*0*data=df[df*0*]*0*type="s"*0*col=2
+r*0*tN*0*type='h'*0*col='red'*0*lwd=2
+smoo*0*smoo
+xv*0*lyv*0*lty=2*0*col=3
+density*0*col="red"*0*ylim=c
+1:366*0*Mean*0*lwd=3
+mysurvfit*0*col="blue"*0*lty=1
+loess.fit*0*loess.fit*0*...
+d*0*col="red"*0*1*0*1
+tex2*0*col="red"
+x*0*fitted*0*col="orange"*0*lwd=3*0*lty=2
+fit ~ w_sp*0*data = x_grid*0*col = "red"*0*lwd = 3
+fitted*0*col="green"*0*lwd=2
+density*0*lty="dotted"
+fitted*0*data=df
+indiv*0*indiv*0*col = "green"
+x1*0*y1*0*col = 'blue'
+x[10:20]*0*y[10:20]*0*type="b"
+cps71*0*coef*0*lty=2*0*col="red"
+smoothCounts
+time*0*surv
+spline*0*col = 2
+12 + seq*0*daily.avg
+m1*0*col=2
+data*0*data
+data1*0*col="blue"*0*lwd=1
+x=x[*0*i]*0*y=y[*0*i]*0*col=col[i]*0*lwd=10*0*lend=1
+density*0*col="blue"
+x=xval*0*y=ab*0*col="red"
+bp[idx]*0*predict
+h*0*dens1*0*col="red"
+x*0*dens2*0*col="darkgreen"
+cos*0*sin
+lower ~ b*0*data = pdat*0*subset = want*0*lty = "dashed"
+p*0*predict*0*lty=3*0*lwd=2
+1:24*0*bpt*0*]
+x*0*Change*0*type="b"
+lowess*0*lowess
+x*0*z*0*lwd=2*0*col="red"
+xfit*0*yfit*0*col="blue"*0*lwd=2
+lwr ~ w_sp*0*data = x_grid*0*col = "red"*0*lwd = 2*0*lty = "dashed"
+unique*0*fit
+xi*0*yi*0*type='s'
+which*0*na.omit*0*col=i
+x = 1:nrow*0*y = Renault
+survfit*0*col='green'
+1:length*0*conv.series*0*...
+x*0*y2*0*col="blue"
+smoothingSpline*0*col = "darkolivegreen3"*0*lwd = 2
+datt*0*col = "dark grey"
+x*0*pnorm*0*lwd=2
+c*0*c*0*lty="dotted"
+xx
+df*0*fit_power*0*col="blue"
+dpois
+fit[1]*0*lwd=2*0*col="black"*0*xscale=365.24
+Res[*0*3]*0*col="blue"
+xx*0*predict*0*col='orange'
+x.sub*0*col = 'red'*0*lwd = 2*0*xlim = c
+x*0*y[*0*6]*0*col="red"
+df2
+X2[ox2]*0*fitted
+low*0*type="l"
+xl*0*predict*0*col='red'*0*lwd=2
+predict*0*...
+c
+x.xfit/x.xscalefactor*0*x.yfit*0*col="red"
+d*0*fitted
+x + x.offset*0*y + y.offset*0*lend=2*0*ljoin=2*0*lwd=lwd*0*col=2
+fitted*0*col="blue"
+x*0*y*0*gp=gpar*0*default.units='naif'
+1:100*0*with
+fit*0*col="red"
+density*0*col="green"
+i + my.list[[i]]/scale.fact
+x.cord[*0*x]*0*y.cord[
+yearvec*0*predict
+cps71*0*gradients*0*lty=2*0*col="red"
+d*0*predict*0*lty=
+exy[dist2center == max*0*]
+density*0*lty = 2*0*lwd = 2
+estDecon*0*lty=2
+b*0*b*0*type="b"*0*col="blue"*0*pch=19
+x[-1]*0*mod*0*col = 'red'
+m*0*col=3*0*lwd=2
+1:366*0*Quantiles["0%"*0*]*0*col = gray*0*lty=4
+x*0*y2*0*type="l"*0*lwd=2*0*col="blue"
+dd*0*dd*0*col=3*0*type="b"
+x.t*0*y.c*0*col='red'
+newx*0*preds[*0*3]*0*lty = 'dashed'*0*col = 'red'
+lower*0*col="gold"
+a*0*z.pre*0*col="red"
+predict*0*col="purple"
+data*0*data*0*type='l'*0*col="blue"
+xnew*0*exp
+as.POSIXlt*0*MIN*0*lty=2
+dataPlot1[2]*0*lty=2*0*col="red"
+x1.eval*0*y.upper.ci*0*lty=3
+x=c*0*y=50-1*c
+seq*0*qs[3*0*]*0*lty=2*0*col=2
+DNase1*0*predict
+x=plot_Loc*0*3]]*0*y=c*0*default.units="native"
+sort*0*BAR
+unit
+9:17*0*1:9 * fit2*0*col="blue"
+x[!sel]*0*exp*0*col="navy"*0*lwd=3
+s2
+hx
+yfit_healthy*0**0*col="blue"*0*lwd=2
+x*0*z*0*col="red"
+rollmedianR*0*lwd=2*0*col="Red"
+density*0*col=2
+deseason*0*2]*0*col="red"
+c*0*c*0*col="blue"
+dbh*0*h
+x*0*y*0*col="red"
+t*0*predict*0*col="red"*0*lwd=3
+x*0*fy*0*col="blue"*0*lwd=2
+MeanRewards[*0*"epsi1"]*0*col = 'orange'*0*lwd = 2
+b*0*Data*0*col=castigos.col*0*lwd=2
+v
+x = bar2[30:*0*y = predict
+x1*0*smooth*0*col='blue'*0*lwd=2
+xs*0*predict*0*col="gray"
+low*0*low
+x*0*y2
+test*0*type="b"*0*col="#304E67"*0*lwd=3
+spline*0*col = 4
+bp
+xx*0*f*0*col = 'blue'*0*lwd = 1.2
+SESSION*0*MEANWIDEANGLE*0*type='b'*0*col='green'
+obrv[1:20]*0*value[1:20]*0*col="red"
+x ~ y*0*data = pred*0*type = "l"*0*col = "red"*0*lwd = 1
+y.yfit*0*y.xfit/y.xscalefactor*0*col="red"
+dd*0*dd
+predict*0*seq*0*col="red"
+sort*0*dnorm*0*col="red"*0*dnorm
+ev1dens*0*ev1dens*0*lty=3*0*lwd=2.5*0*col="red"
+ssizevec*0*powvec2*0*col="red"
+week1*0*type="o"*0*col="blue"
+a.hole*0*col='red'
+c*0*c
+x*0*y*0*gp = gpar*0*default.units = "native"
+yz*0*col = "red"
+ctlns[[x]][[2]]*0*ctlns[[x]][[3]]
+xx*0*predict*0*col='blue'
+dens*0*col="red"*0*lwd=2
+1:366*0*Quantiles["10%"*0*]*0*col = gray
+p*0*y3*0*col="blue"
+xl*0*predict
+X[hpts*0*]
+redata[1*0*]*0*type="l"*0*pch=NA*0*lwd=1*0*col="grey"
+P2*0*P2*0*col="green"
+x = d*0*y = d*0*lwd = 2
+h*0*c*0*type='h'
+xx*0*predict*0*col='green'
+newdata*0*predict*0*col="red"
+density*0*col='red'*0*lwd=3*0*xlim=c
+x=median*0*y=c*0*default.units="native"
+emp_dens*0*lty=1
+0:2*0*allPAL.DE[i*0*]*0*col=i*0*lwd=2
+yhat ~ x2*0*data = pdatx2*0*col = "red"*0*lwd = 2
+dat*0*dat*0*col=x[2]
+x[1:1000]*0*pred.upper[1:1000]*0*lwd=2*0*col="blue"
+1:10*0*y
+x*0*y*0*col=col
+x*0*y*0*col="black"*0*lty="dotted"*0*y*0*main="X vs Y"*0*xlab="X"*0*ylab="Y"
+predict
+x - x.offset*0*y - y.offset*0*lend=2*0*ljoin=2*0*lwd=lwd*0*col=4
+x2*0*y2
+x*0*smooth
+df*0*fit_line*0*col="red"
+lower ~ a*0*data = pdat*0*subset = want*0*lty = "dashed"
+linexy*0*col=linecol*0*y=36.851*0*ratio=F*0*metric = T*0*relwidth=0.2*0*col ="white"*0*linecol="white"
+x=c*0*y=c*0*gp=gpar
+h*0*c*0*type='s'
+cps71*0*fitted*0*lty=2*0*col="red"
+p2 ~ x*0*data = r2*0*col = "blue"
+x0*0*predict*0*col = "blue"
+index*0*lo*0*col='purple'
+lower95.CI ~ p.move*0*option
+x[*0*i]*0*col=lcol[i]
+trans3d*0*col="Red"*0*cex=2
+MonthNum
+x0*0*predict
+DF[*0*2:3]
+dataPlot1[3]*0*lty=2*0*col="forestgreen"
+r.sims[*0*i]*0*type="l"*0*col=color[i]
+x*0*Change*1000*0*type="b"
+a*0*a*0*type="b"*0*col="red"*0*pch=19
+yd*0*yd*0*col="red"
+0:60
+smoothingSpline
+spa*0*col="light blue"
+c*0*c*0*col = "steelblue"*0*lwd = 3*0*lty = 22
+newx*0*prd[*0*2]*0*col="red"*0*lty=2
+density*0*xlim = xr*0*ylim = yr*0*col = i
+k*0*y2*0*type='l'*0*col="green"*0*ylim=range
+roc2*0*col="red"
+dens
+c*0*rep*0*col=i+1*0*type="l"
+loess.smooth
+x2*0*type='l'*0*col='red'
+dy*0*col = "blue"
+x*0*dnorm
+x*0*predict*0*col = "red"*0*lwd = 2
+plotroc*0**0*col="red"
+1:10*0*rep*0*lty=i
+b[*0*'mavg']*0*col='blue'
+x=c*0*y=c*0*col=col*0*lty="dotted"*0*lwd=0.5
+cos*0*sin*0*col=l*0*lwd=3
+m*0*col=2
+mysurvfit*0*col="blue"*0*lty=2
+x = pred*0*y = pred*0*col = col.line*0*lty = lty*0*lwd = lwd*0*...
+xl*0*a*0*col="blue"
+unrate.df
+density*0*col='red'
+new*0*predict
+x*0*x_total*0*col=4*0*lty=2
+x*0*predict*0*col = 3*0*lwd = 2
+my.comb[[i]]*0*col="red"
+x*0*predict
+b[*0*'up']*0*col='red'
+m*0*col=2*0*lwd=2
+x*0*y1*0*pch=18*0*cex=.5*0*col="red"*0*type="b"
+
+dens*0*dens
+predict*0*col="red"
+seq*0*100*dpois
+Res[*0*1]*0*col="red"
+SESSION*0*MEANOVERLAP*0*type='b'*0*col='blue'
+seq*0*predict
+1:10*0*predict
+severity.lm*0*conf= .95*0*interval = "confidence"
+x.pos*0*Closes*0*col=x@colors*0*type=x@line.type
+dd*0*dd*0*col=2*0*type="b"
+fitted ~ Time*0*data = sucrose.line*0*xlab ="Time of the presentation of the danger cue"*0*ylab="Proportion of wasps leaving the patch"
+h
+1:10*0*runif*0*col=3*0*lty=2
+upper ~ b*0*data = pdat*0*subset = want*0*lty = "dashed"
+pred.prime*0*col=2
+k*0*y3
+x=x[c*0*y=y[c*0*col=col[n]
+c*0*Placement*0*col=cols[i]*0*lwd=2
+beta*0*quadratic*0*lty=2*0*col=3
+2+c*0*3+c
+as.POSIXlt*0*MAX*0*lty=2
+zz*0*zz*0*type="h"*0*lwd=50*0*lend="butt"
+0.5:12.5*0*c.out*0*col="red"*0*lwd=3
+x*0*y*0*...
+rvec*0*pred*0*col=2*0*lwd=2
+3+aa*cos*0*foo*0*3]+bb*sin
+x*0*f*0*lwd = 2
+xs*0*ys
+mydensity
+c*0*d[1*0*3:4]
+x = 1:nrow*0*y = Mazda
+offer[i]*0*predict
+1:n*0*bVals*0*col = point_colors[2]
+indiv*0*indiv*0*col = "blue"
+plotexpl*0*predresp^
+xy*0*xy*0*type="o"*0*cex=0.5
+xcumsor[*0*0.5*numtri]*0*type="l"*0*lwd=3*0*col=rgb
+x[1:1000]*0*pred.lower[1:1000]*0*lwd=2*0*col="blue"
+yy
+c*0*c*0*lwd = 2 * s[row.o*0*row.d] / mean
+m ~ unique
+1:9*0*1:9 * fit1*0*col="red"
+x1.eval*0*y.lower.ci*0*lty=3
+Z[subset]*0*col='red'
+x*0*y[[1]]
+xvals*0*predict
+yfit_diseased*0**0*col="red"*0*lwd=2
+c*0*c*0*col="red"
+time2*0*lfun[[ii]]
+x=plot_Loc*0*y=median*0*default.units="native"
+xcoord[hpts]*0*ycoord[hpts]*0*col = lcolor
+x*0*y2new*0*pch=24*0*cex=.5*0*col="green"*0*type="b"
+lowess*0*type = "p"*0*col = "blue"*0*pch = 1
+mp[2*0*]*0*df*0*col="green"
+dat
+c*0*1- rep
+z[*0*2]*0*col='red'
+b*0*lty=2
+xx*0*pred
+file2*0*file2*0*col="blue"
+c*0*lty=3*0*col='blue'
+1:10*0*1:10*0*type = "l"*0*xlim = c
+c*0*d[3*0*3:4]
+index*0*coredata*0*lwd=3
+MeanRewards[*0*"epsi2"]*0*col = 'navy'*0*lwd = 2
+uq~t*0*data=res.df*0*col="springgreen"
+x*0*y*0*col="orange"
+x*0*y*0*gp=gpar*0*default.units = "npc"
+1:366*0*Quantiles["100%"*0*]*0*col = gray
+dat*0*dat
+lowess*0*lowess*0*col="red"
+state.map.IOAPI.shp*0*lwd=0.8
+data.frame*0*lty="twodash"*0*col="deepskyblue4"*0*lwd=4
+x=1:length*0*y=panel*0*col="red"
+loess.smooth*0*col = "green"
+x*0*dcauchy*0*col="red"
+questionnumbers*0*result1*0*col = 'blue'*0*type = 'b'
+SwStr*0*P
+x1*0*predict*0*col="red"

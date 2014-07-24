@@ -1,0 +1,8 @@
+bstats
+groupbxp
+z
+summarydata
+bx.p*0*angle=angles*0*density=densities
+
+list
+bxp.data

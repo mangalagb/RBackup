@@ -1,0 +1,2 @@
+x, full = TRUE, scale = TRUE, radius = TRUE, labels = dimnames(x), locations = NULL, nrow = NULL, ncol = NULL, len = 1, key.loc = NULL, key.labels = dimnames(x), key.xpd = TRUE, xlim = NULL, ylim = NULL, flip.labels = NULL, draw.segments = FALSE, col.segments = 1:n.seg, col.stars = NA, col.lines = NA, axes = FALSE, frame.plot = axes, main = NULL, sub = NULL," xlab = """""," ylab = """"", cex = 0.8, lwd = 0.25," lty = par(""lty"")", xpd = FALSE, mar = pmin(), add = FALSE, plot = TRUE, list()
+1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0

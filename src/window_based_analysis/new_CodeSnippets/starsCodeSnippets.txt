@@ -1,1 +1,0 @@
-stars(mtcars1:3, 1:8], draw.segments = T, main = "Motor Trend Cars : stars, full = T, col.segments = 1:2)

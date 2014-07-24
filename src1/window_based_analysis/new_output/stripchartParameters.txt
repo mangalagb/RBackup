@@ -1,0 +1,17 @@
+x
+as.numeric*0*data=data*0*add=TRUE*0*vertical=TRUE*0*pch=1*0*lwd=1
+A*0*method = "stack"*0*offset = .5*0*at = .15*0*pch = 19*0*main = "Dotplot of Random Values"*0*xlab = "Random Values"
+mean ~ seq*0*data=dfrm*0*vertical=TRUE
+mydata*0*method="jitter"*0*vertical=T*0*main='plot'*0*pch=19*0*at=c*0*xlim=c
+A*0*method = "stack"*0*offset = .5*0*at = .15*0*pch = 19*0*main = "Dotplot of Random Values"*0*xlab = "Random Values"*0*xaxt="n"
+df[-1]*0*pch=c*0*vertical=TRUE
+x[1:5*0*]*0*vertical=TRUE*0*pch=19*0*xlim=c*0*axes=F
+c*0*pch=19*0*method="stack"*0*ylim=c
+decrease ~ treatment*0*main = "stripchart*0*vertical = TRUE*0*log = "y"*0*at=narrow.at*0*data = OrchardSprays*0*xlim=c
+casp6~trans.factor*0*data.frame*0*pch=1*0*vertical=T
+x*0*method="stack"*0*at=0
+c*0*vertical=T
+decrease~treatment*0*main ="stripchart"*0*vertical=TRUE*0*log = "y"*0*at=seq*0*data = OrchardSprays
+data.frame*0*vertical=TRUE*0*pch=1*0*xlab="Groups"*0*ylab="Values"
+x*0*cex=y
+mydata*0*method="jitter"*0*vertical=T*0*main='plot'*0*pch=19

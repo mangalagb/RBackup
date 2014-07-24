@@ -1,0 +1,163 @@
+df*0*0*0*df*0*ypts*0*col="gray80"
+x.min + temp*0*temp1 + i*0*x.min*0*i*0*col = col.grid*0*lty = lty.grid
+x0 = v_x*0*x1 = X_x*0*y0 = 0.29*0*y1 = 0.09
+time-epsilon*0*layer_0-layer_0_sd*0*time+epsilon*0*layer_0-layer_0_sd*0*lwd=2
+par*0*10*0*30*0*10
+x0=pos*0*y0=as.numeric*0*y1=as.numeric*0*col= mydf
+x0-s+w*0*y0-b*0*x0-l*0*y0-b+l/d*0*col=cols[3]*0*...
+df*0*df*0*K*0*1]*0*K*0*2]*0*col=COL[i]
+start*0*pos + 0.5*0*end*0*pos + 0.5*0*lwd = 2
+out[1*0*1]*0*out[1*0*2]*0*out[*0*1]*0*out[*0*2]*0*col="#cccccc"
+0*0*50*0*50*0*0
+x*0*y-sd*0*x*0*y+sd
+xvar*0*yvar*0*xint
+0*0*1:8*0*599*0*1:8*0*gray
+mydf*0*rowseq*0*mydf*0*rowseq
+x-0.02*0*y+sd*0*x+0.02*0*y+sd
+50*0*0*0*100*0*0
+p2*0*p2*0*p3*0*p3*0*lwd=2*0*col=2*0*y*0*z
+x0=0.5*0*x1=0.47*0*y0=unit*0*y1=unit*0*gp=gpar
+AminoData*0*AminoData*0*AminoData*0*AminoData + .5 * AminoData*0*lty = AminoData*0*lwd = AminoData*0*col = as.character
+x0=0.5*0*y0=0*0*x1=0.5*0*y=1*0*gp=gpar
+x0=start*0*x1=start+duration*0*y0=2
+rep*0*first*0*rep*0*second*0*col="gray"
+xcenter*0*bxmin*0*xcenter*0*bxq2*0*lwd=1
+x[i]-epsilon*0*up*0*x[i]+epsilon*0*up
+time-epsilon*0*layer_0+layer_0_sd*0*time+epsilon*0*layer_0+layer_0_sd*0*lwd=2
+x[n]*0*y[n]*0*x[n]*0*fitted*0*col = "orange"*0*lwd = 3
+x-epsilon*0*y-sd*0*x+epsilon*0*y-sd
+0.5-epsilon*0*0.5*0*0.5+epsilon*0*0.5*0*gp=gpar
+1:3*0*dt[*0*3]*0*1:3*0*dt[*0*4]
+x-epsilon*0*y+sd*0*x+epsilon*0*y+sd
+x0-s*0*y0-b*0*x0-l*0*y0-b+l/d*0*col=cols[3]*0*...
+lineat*0*0*0*lineat*0*lineheight*0*col=col
+d*0*d*0*d*0*d*0*lwd=2
+x0 = x*0*x1 = x*0*y0 = lx*0*y1 = ux*0*col = "red"*0*...
+x*0*lo[subscripts]*0*x*0*up[subscripts]*0*col=col.line*0*...
+x0=0.5*0*y0=0.5*0*x1=0.5+x['value']*0.8*0*y1=0.5*0*arrow=arrow*0*gp=gpar
+bleft*0*bxmin*0*bright*0*bxmin*0*lwd=1
+x0=x['x2']*0*y0=x['y2']*0*x1=x['x3']*0*y1=x['y3']
+x0 = max*0*y0 = max*0*y1 = par*0*lwd=2
+x.min +*0*i * yz.f + z.min*0*x.max +*0*i * yz.f + z.min*0*col = col.grid*0*lty = lty.grid
+1*0*d*0*5*0*d*0*lty=2
+out[1*0*1]*0*out[1*0*2]*0*out[*0*1]*0*out[*0*2]*0*99*0*1000
+x[n]*0*y[n]*0*x[n]*0*predict
+c*0*c*0*c*0*c
+2*0*d*0*5*0*d*0*lty=2
+x*0*y*0*x*0*fitted*0*col = "pink"
+1:2*0*d*0*1:2*0*d
+x0=ss*0*x1=ss*0*y0=ss*0*y1=ss
+x*0*y*0*x.h*0*y.h*0*col=col.hour
+x0=0*0*y0=0.5*0*x1=1*0*y=0.5*0*gp=gpar
+xvar*0*yvar*0*xvar*0*
+y0=id*0*y1=id*0*x0=Start1*0*x1=Stop1*0*col=2:7
+0*0*0*0*cos*0*sin*0*col = 'red'
+x[i]*0*low*0*x[i]*0*up
+x0*0*0*0*x0*0*y0
+rotx0y0[*0*1]*0*rotx0y0[*0*2]*0*rotx1y1[*0*1]*0*rotx1y1[*0*2]*0*col="blue"
+y.3d*0*y.3d*0*y.3d.1*0*y.3d.1
+0*0*0.6*0*1*0*0.6*0*lwd=8
+mydata*0*mydata*0*mydata*0*mydata
+x.3d*0*x.3d*0*x.3d.1*0*x.3d.1
+x.min +*0*i * yz.f + z.min*0*x.min +*0*i * yz.f + z.max*0*col = col.grid*0*lty = lty.grid
+xvar*0*yvar*0*xvar*0*xvar
+rep*0*rep
+xpts*0*dat*0*xpts*0*dat*0*col=1:2*0*lwd=2
+x*0*rep*0*x*0*dnorm*0*col=heat.colors*0*lwd=2
+1*0*-1*0*1*0*6.25*0*lty=3
+1:ncol*0*cis[1*0*]*0*1:ncol*0*cis[2*0*]
+mydf*0*mydf*0*y1=mydf
+start*0*pNum*0*end*0*pNum*0*lwd = 3
+mapdata1*0*-.3*0*mapdata1*0*.3
+x-hw*0*y*0*x*0*ul*0*...
+x[1]*0*x[3]*0*x[2]
+x0-s+w*0*y0-b*0*x0-l*0*y0-b-l/d*0*col=cols[3]*0*...
+fit_vals*0*fit_vals*0*elevation_points*0*elevation_points*0*lty = 3
+x*0*y*0*x*0*y+yse*0*col="blue"
+x0*0*y0*0*x0+.06*cos*0*y0+.06*sin*0*default="native"*0*gp=gpar
+x-hw*0*y*0*x*0*ll*0*...
+xpts-bar*0*dat*0*xpts+bar*0*dat*0*col=1:2*0*lwd=2
+x[-251]*0*y[-251]*0*x[-1]*0*y[-1]*0*col=cols*0*...
+0.5*max*0*0.9*max*0*0.6*max*0*0.9*max
+averages-ranges*0*1:4*0*averages+ranges*0*1:4
+0*0*0*0*.8*cos
+1:3*0*dt[*0*3]*0*1:3*0*dt[*0*5]
+seq1[s]*0*values[s]*0*seq1[s+1]*0*values[s+1]*0*col=ifelse
+x*0*y*0*x*.9*0*y*.9*0*default="native"
+x*0*y*0*x*0*int*0*col="red"
+
+i*0*z.min*0*i +*0*yz.f * y.max + z.min*0*col = col.grid*0*lty = lty.grid
+obrv[i-1]*0*value[i-1]*0*obrv[i]*0*value[i]*0*col="blue"
+endpoints[1]*0*endpoints[2]*0*endpoints[3]*0*endpoints[4]*0*col = "#66666650"
+xmin*0*ticks*0*xmin*0*ticks*0*xpd = TRUE
+x2y2.data[*0*1]*0*x2y2.data[*0*2]*0*x1y1.data[sol*0*1]*0*x1y1.data[sol*0*2]
+df*0*df*0*df*0*df*0*col=df
+x0=x.vals*0*y0=0*0*x1=x.vals*0*y1=y.vals*0*13
+x*0*ll*0*x+hw*0*y*0*...
+time*0*layer_0-layer_0_sd*0*time*0*layer_0+layer_0_sd*0*lwd=2
+9*0*111.5*0*12*0*111.5*0*y*0*"message"
+0*0*0.4*0*1*0*0.4*0*lwd=8
+x[i]-epsilon*0*low*0*x[i]+epsilon*0*low
+1:nr*0*lcl*0*1:nr*0*ucl*0*col = factor
+factor.to.int*0*0
+0*0*-age*0*size*0*-age
+x0 = sd_x*0*y0= 0*0*x1 = sd_x*0*y1 = sd_y*0*col = "firebrick4"*0*lwd = 2
+x*0*y*0*x.m*0*y.m*0*col=col.min
+c
+x0 = dat*0*y0 = dat*0*x1 = dat*0*y1 = dat*0*col = "blue"*0*lwd = 6*0*lend = 2
+A[1]*0*A[2]*0*B[1]*0*B[2]*0*lwd=3
+x*0*y*0*x*0*fitted*0*col = "blue"*0*65
+1.75*0*mean*0*2.25*0*mean
+start*0*pos*0*end*0*pos
+x*0*ul*0*x+hw*0*y*0*...
+bleft*0*bxmedian*0*bright*0*bxmedian*0*lwd=3
+xdata*0*y-dy*0*xdata*0*y+dy
+0.5*0*sqrt*0*1*0*0
+perc80*0*par*0*perc80*0*.8
+x1*0*y1*0*x2*0*y2*0*...
+x.start*0*y*0*x.end*0*y*0*col="orange"*0*lwd=2
+as.numeric*0*y0=y1*0*y1=y2
+x0-s*0*y0-b*0*x0-l*0*y0-b-l/d*0*col=cols[3]*0*...
+ll[*0*1]*0*ll[*0*1]*0*ll[*0*2]*0*ll[*0*2]*0*name="mysegment"*0*gp=gpar
+4*0*0*0*4*0*23*0*col="red"*0*lwd=2
+head*0*head*0*x[-1]*0*y[-1]*0*rep*0*head*0*x[-1]*0*y[-1]*0*rep
+x.min + temp*0*temp1 + i*0*x.max + temp*0*temp1 + i*0*col = col.grid*0*lty = lty.grid
+0.75*0*median*0*1.25
+bleft*0*bxmax*0*bright*0*bxmax*0*lwd=1
+0*0*0*0*.6*cos
+p1*0*p1*0*p2*0*p2*0*col = 'white'
+xi[*0*"lwr"]*0*yvals*0*xi[*0*"upr"]*0*yvals*0*col="black"*0*...
+1*0*0*0*0*0*0
+zp*0*zp*0*zp*0*zp*0*col='skyblue'*0*lwd=10*0*lend=1
+zn*0*zn*0*zn*0*zn*0*col='salmon'*0*lwd=10*0*lend=1
+x0=x0*0*y0=sin*0*x1=x0+0.1*0*y1=sin*0*col=colour
+0.75*0*mean*0*1.25*0*mean
+0.365*0*0.77*0*0.365*0*0.83*0*lwd = 2
+as.numeric*0*x*0*y1 = y + delta*0*lwd=10*0*lend=1
+zscore*0*0*0*zscore*0*dnorm*0*zmax*0*0.01
+x0*0*y0*0*x1*0*y1*0*col="red"*0*lwd=2
+as.vector*0*rep.int
+x0*0*y0*0*x0+.08*cos*0*y0+.08*sin*0*default="native"*0*gp=gpar
+x0=0.5*0*x1=0.53*0*y0=unit*0*y1=unit*0*gp=gpar
+y0=seg*0*y1=seg*0*x0=start*0*x1=end*0*col=2:7
+par*0*.8*0*perc80*0*.8
+x-hw*0*y*0*x+hw*0*y*0*...
+2.75*0*mean*0*3.25*0*mean
+x0=x[1]*0*y0=x[2]*0*x1=x[3]*0*y1=x[4]*0*lty=2*0*col="grey80"*0*90
+unit*0*unit*0*unit*0*unit*0*gp=gpgrid
+0*0*0.2*0*1*0*0.2*0*lwd=8
+3*0*d*0*3*0*d*0*lwd=2
+x0 = v_x*0*x1 = v_x*0*y0 = 0.3*0*y1 = 0.7
+d*0*d*0*d*0*d*0*lwd=2*0*col='red'
+x0=z[1:6*0*2]*0*y0=z[1:6*0*1]*0*x1=z[7:12*0*2]*0*y1=z[7:12*0*1]
+min
+xdata*0*y+dy*0*tpos*0*y+2*dy
+dat*0*c*0*dat*0*dat
+0*0*0*0*1*0*0
+i +*0*yz.f * y.max + z.min*0*i +*0*yz.f * y.max + z.max*0*col = col.grid*0*lty = lty.grid
+0*0*0*0*0.5*0*sqrt
+x0=pos*0*y0=c*0*y1=c*0*col= mydf
+x-0.02*0*y-sd*0*x+0.02*0*y-sd
+xcenter*0*bxq4*0*xcenter*0*bxmax*0*lwd=1
+0*0*0*0*0*0*1*0*col= "red"*0*lwd = 2
+x.end[-length

@@ -1,1 +1,0 @@
-(x, , range = 1.5, width = NULL, varwidth = FALSE, notch = FALSE, outline = TRUE, names, plot = TRUE, border = par("fg"), col = NULL, log = "", pars = list(), horizontal = FALSE, add = FALSE, at = NULL)

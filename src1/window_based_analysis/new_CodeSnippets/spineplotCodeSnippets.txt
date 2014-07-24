@@ -1,0 +1,4 @@
+spineplot(improved ~ treatment, yaxlabels=abbreviate, 5)
+spineplot(fail~temperature, yaxlabels=NA)
+spineplot(improved, treatment)
+spineplot(fail~temperature)

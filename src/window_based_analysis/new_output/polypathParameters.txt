@@ -1,3 +1,0 @@
-
-
-c*0*c*0*col="light blue"*0*rule="evenodd"

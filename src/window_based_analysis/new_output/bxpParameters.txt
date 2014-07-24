@@ -1,8 +1,0 @@
-bstats
-
-list
-summarydata
-groupbxp
-bx.p*0*angle=angles*0*density=densities
-z
-bxp.data
