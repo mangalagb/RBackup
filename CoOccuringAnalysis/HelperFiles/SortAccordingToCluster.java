@@ -1,44 +1,25 @@
 package HelperFiles;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import javax.swing.plaf.TableUI;
+
+import com.google.common.base.Splitter;
+import com.google.common.collect.Lists;
+
+import au.com.bytecode.opencsv.CSVReader;
 class SortAccordingToCluster
 {
 	
-	public void readClusterArray(String[] arr)
-	{
-		int clusterNumber[] = {2,6,2,5,5,3,7,6,1,5,7,2,7,4,1,5,2,7,2,7,2,1};
-		int max = Integer.MIN_VALUE;
-		
-		for(int i = 0; i < clusterNumber.length; i++) {
-		      if(clusterNumber[i] > max) {
-		         max = clusterNumber[i];
-		      }
-		}
-		
-		String[][] clusters = new String[max][];
-		for (int i = 0; i < max; i++)
-		{
-		    clusters[i] = new String[10];
-		}
-		
-		
-		for(int i=0; i< clusterNumber.length; i++)
-		{
-			int num = clusterNumber[i]; //6
-			//clusters[num][]= arr[0];
-			
-			
-			
-		}
-	}
 	
-	public void readCodeSnippetFile() throws IOException
+	public String[] readCodeSnippetFile() throws IOException
 	{
 		//Scanner sc = new Scanner(new File("./src/window_based_analysis/functions/AxisCodeSnippets.txt"));
 		
@@ -47,28 +28,50 @@ class SortAccordingToCluster
 		while (sc.hasNextLine()) {
 		  lines.add(sc.nextLine());
 		}
-
+		// Array containing code snippets
 		String[] arr = lines.toArray(new String[0]);
 		
-		//readClusterArray(arr);
-		sortIntoClusters(arr);
+		return arr;
 	}
 	
-	public void sortIntoClusters(String[] x)
+	public int[] readClusterNumbers() throws IOException
 	{
-		//String[] x = {"a", "b", "c"};
+		BufferedReader br = null;
+		String sCurrentLine;
+		br = new BufferedReader(new FileReader("/home/gowri/MATLAB SCRIPTS/NEW/try.csv"));
+		int[] clusterNumbers = null;
 		
-		int[] y = {2,6,2,5,5,3,7,6,1,5,7,2,7,4,1,5,2,7,2,7,2,1};
-		int max = Integer.MIN_VALUE;
+		while ((sCurrentLine = br.readLine()) != null) {
+			clusterNumbers = extractNumbers(sCurrentLine);
+		}
+		br.close();
+		return clusterNumbers;
+	}
+	
+	public int[] extractNumbers(String line)
+	{
+		Iterable<String> itr = Splitter.on(",").split(line);
+		List<String> temporary = Lists.newArrayList(itr);
 		
-		for(int i = 0; i < y.length; i++) {
-		      if(y[i] > max) {
-		         max = y[i];
-		      }
+		int[] clusterNumbers = new int[temporary.size()];
+		
+		for(int i=0; i<temporary.size();i++)
+		{
+			clusterNumbers[i] = Integer.parseInt(temporary.get(i));
 		}
 		
-		System.out.println(y.length);
-		System.out.println(x.length);
+		return clusterNumbers;
+	}
+	public void sortIntoClusters(String[] codeSnippet, int[] clusterNumbers)
+	{
+		
+		int max = Integer.MIN_VALUE;
+		
+		for(int i = 0; i < clusterNumbers.length; i++) {
+		      if(clusterNumbers[i] > max) {
+		         max = clusterNumbers[i];
+		      }
+		}
 		
 		ArrayList<ArrayList<String>> clusters = new ArrayList<ArrayList<String>>();
 		
@@ -76,14 +79,11 @@ class SortAccordingToCluster
 			clusters.add(new ArrayList<String>());
 		}
 		
-		for(int i=0; i<x.length; i++)
+		for(int i=0; i<codeSnippet.length; i++)
 		{
-			clusters.get(y[i]-1).add(x[i]);
+			clusters.get(clusterNumbers[i]-1).add(codeSnippet[i]);
 			
 		}
-		
-		//System.out.println(clusters.get(0).get(0));
-		//System.out.println(clusters.get(4).toString());
 		
 		for(int i=0; i<max; i++)
 		{
@@ -99,21 +99,14 @@ class SortAccordingToCluster
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public static void main(String[] args) throws IOException
 	{
 		SortAccordingToCluster s = new SortAccordingToCluster();
-		s.readCodeSnippetFile();
-	//	s.sortIntoClusters();
+		
+		String [] codeSnippets = s.readCodeSnippetFile();
+		int[] clusterNumbers = s.readClusterNumbers();
+		
+		s.sortIntoClusters(codeSnippets, clusterNumbers);
 		
 	}
 }
