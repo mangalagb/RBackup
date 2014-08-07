@@ -1,0 +1,62 @@
+@(functionName: String, labels: Map[String, String])
+@import helper.twitterBootstrap._
+@import java.math.BigInteger;  var i=1;
+
+<html>
+<head>
+<link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("css/bootstrap.min.css"))'>
+<link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("css/bootstrap-theme.min.css"))'>
+<script src='@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))' type='text/javascript' ></script>
+<script src='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.js"))' type='text/javascript' ></script>
+<link rel='stylesheet' href='@routes.Assets.at("stylesheets/doReview.css")'>
+
+</head>
+<body>
+
+
+<h1> @functionName Code snippets</h1><br><br><br>
+
+<div class="accordion" id="accordion">
+
+@for((key, value) <- labels) {
+
+@{i=i+1}
+
+<div class="accordion-group">
+
+    <div class="accordion-heading">
+    <h4 class="panel-title">
+
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse@i">
+
+       @key
+
+      </a>
+      </h4>
+
+    </div>
+
+    <div id="collapse@i" class="accordion-body collapse">
+
+      <div class="accordion-inner">
+
+        @Html(HtmlFormat.escape(value).toString.replace("\n", "<br />"))
+        
+      </div>
+
+    </div>
+
+  </div>
+
+	<br><br><br><br>
+
+
+}
+
+</div>
+ 
+
+
+           
+</body>
+</html>
