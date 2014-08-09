@@ -9,22 +9,69 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import models.*;
+
 import com.google.common.base.Splitter;
 
 class ShowSourceCode{
 	
 	
 	
-	public HashMap<String, String> getSourceCode(ArrayList<String> lines, String functionName) throws IOException
+	public String getSourceCode(String functionName, String parameters) throws IOException
 	{
-		HashMap<String, String> result = new HashMap<String, String>();
 		
-		for(String line : lines)
+		if(parameters.contains(")") && parameters.contains("("))
 		{
-			readFile(line, functionName, result);
+			String temp = parameters.replace(")", "");
+			String temp1 = functionName + "(";
+			parameters = temp.replace(temp1, "");
+			
 		}
 		
-		return result;
+		BufferedReader br = null;
+		
+		try{
+			
+			String sCurrentLine;
+			String buf = "";
+			String sourceCode = "";
+
+			 br = new BufferedReader(new FileReader(
+					 "./public/sourcecode/" + functionName + "Code.txt"));
+
+
+			while ((sCurrentLine = br.readLine()) != null) {
+				buf = buf + sCurrentLine + "\n";
+			}
+			
+			Iterable<String> itr = Splitter
+					.on("-------------------------------------------------------------------------------------------------------")
+					.split(buf);
+			
+			for (String snippet : itr) {
+				
+				Pattern pattern = Pattern.compile("(.*)"+ parameters + "(.*)");
+				Matcher matcher = pattern.matcher(snippet);
+				
+				if(matcher.find())
+				{
+					
+					sourceCode = sourceCode + snippet;
+					sourceCode = sourceCode + "+++++++++++++++++++++++++++++++++++++++++++++++++";
+					
+				}
+				
+			}
+			
+			br.close();
+			return sourceCode;
+			
+		}
+		finally
+		{
+			
+		}
+		
 		
 		
 	}
@@ -89,27 +136,25 @@ class ShowSourceCode{
 
 	}
 	
-//	public static void main(String[] args) throws IOException
-//	{
-//		ShowSourceCode s = new ShowSourceCode();
-//		String functionName = "Axis";
-//		
-//		ReadFile r = new ReadFile();
-//    	ArrayList<String> lines = r.readFile(functionName);
-//    	
-//    	
-//		s.getSourceCode(lines, functionName);
-//		
-//		for (Map.Entry<String, String> entry : result.entrySet()) {
-//
-//			System.out.println(entry.getKey());
-//			System.out.print(entry.getValue());
-//			System.out.print("+++++++++++++++++++++++++++++++++++++++++++=");
-//
-//		}
-//		
-//		
-//		
-//	}
+	public static void main(String[] args) throws IOException
+	{
+		ShowSourceCode s = new ShowSourceCode();
+		String functionName = "Axis";
+		String line = "Axis(x = X, side = 1)";
+		
+		//ReadFile r = new ReadFile();
+    	//ArrayList<String> lines = r.readFile(functionName);
+    	
+    	
+		String h = s.getSourceCode(functionName, line);
+		
+		
+			System.out.println(h);
+
+		
+		
+		
+		
+	}
 	
 }
