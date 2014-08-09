@@ -113,11 +113,11 @@ public class temp
 			
 		}
 		
-		public HashMap<SourceCode, ArrayList<SourceCode>> returnClusterMembers(String functionName, String path) throws IOException
+		public HashMap<SourceCode, List<SourceCode>> returnClusterMembers(String functionName, String path) throws IOException
 		{
 			ArrayList<String> lines = readFile(functionName, path);
 			
-			HashMap<SourceCode, ArrayList<SourceCode>> result = new HashMap<SourceCode, ArrayList<SourceCode>>();
+			HashMap<SourceCode, List<SourceCode>> result = new HashMap<SourceCode, List<SourceCode>>();
 			
 			SourceCode clusterHead = new SourceCode();
 			ArrayList<SourceCode> myList = new ArrayList<SourceCode>();
@@ -164,16 +164,16 @@ public class temp
 		{
 			
 			temp t = new temp();
-			HashMap<SourceCode, ArrayList<SourceCode>> result = t.returnClusterMembers("Axis", "./public/functions/allSnippets/AxisCodeSnippets.txt");
+			HashMap<SourceCode, List<SourceCode>> result = t.returnClusterMembers("Axis", "./public/functions/allSnippets/AxisCodeSnippets.txt");
 			
-			for (Map.Entry<SourceCode, ArrayList<SourceCode>> entry : result.entrySet()) {
+			for (Map.Entry<SourceCode, List<SourceCode>> entry : result.entrySet()) {
 				
 				System.out.println(entry.getKey().getSnippet());
 				if(! entry.getKey().getSourceCode().equals(""))
 					System.out.println("yes");
 				System.out.println(entry.getValue().size());
 				
-				ArrayList<SourceCode> myList = entry.getValue();
+				List<SourceCode> myList = entry.getValue();
 				
 				for(SourceCode s : myList)
 				{

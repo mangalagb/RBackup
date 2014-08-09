@@ -3,6 +3,7 @@ package controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import models.*;
@@ -31,12 +32,19 @@ public class Application extends Controller {
     	Function function = new Function();
     	function.functionName = dynamicForm.get("functionName");
     	
-    	ReadFile r = new ReadFile();
+    	//ReadFile r = new ReadFile();
     	String path = "./public/functions/allSnippets/" + function.functionName + "CodeSnippets.txt";
     	
-    	HashMap<String, String> result = r.returnClusterMembers(function.functionName, path);
+    	//HashMap<String, String> result = r.returnClusterMembers(function.functionName, path);
+    	
+    	temp t = new temp();
+    	HashMap<SourceCode, List<SourceCode>> result1 = t.returnClusterMembers(function.functionName, path);
+    	
+    	
     	  
-       return ok(doReview.render(function.functionName, result));
+      // return ok(doReview.render(function.functionName, result));
+       
+       return ok(tempwhat.render(function.functionName, result1));
     	
      }
     
