@@ -11,11 +11,16 @@
 <script src='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.js"))' type='text/javascript' ></script>
 <link rel='stylesheet' href='@routes.Assets.at("stylesheets/doReview.css")'>
 
+<style>
+
+</style>
+
 </head> 
 <body>
 
 
 <h1> @functionName Code snippets</h1><br><br><br>
+
 
 
 
@@ -29,27 +34,100 @@
 <div class="accordion-group">
 
     <div class="accordion-heading">
-    <h4 class="panel-title">
-
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse@i">
-
+    
+  	<table  cellpadding="10">
+    
+    <tr>
+   <td width= "700" style = " font-family: Courier New, Courier, monospace; font-size: 19px;"> <div class="panel-title">
+	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse@i">
        @key.snippet    
+      
        <br>
+	 </a>
+     </div></td>
+     
+      <td ><div class="centerDiv" >
+      
+     <!-- Button trigger modal -->
+<a data-toggle="modal" data-target="#myModal@i">
+ <img src="@routes.Assets.at("images/viewcode.png")" width="70" height="70" />
+</a>
 
-      </a>
-      </h4>
-
+<!-- Modal -->
+<div class="modal fade" id="myModal@i" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body" style = " font-family: Courier New, Courier, monospace; font-size: 17px;">
+      
+        @Html(HtmlFormat.escape(key.sourceCode).toString.replace("\n", "<br />"))
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+      
+      
+      
+      </div> </td>
+     </tr>
+     
+     </table>
+	
     </div>
 
     <div id="collapse@i" class="accordion-body collapse">
-
+ @{i=i+1}
       <div class="accordion-inner">
-
+		
        @for(innervalue <- value){
         <br>
- 	 	 @innervalue.snippet       
+         @{i=i+1}
+        <table  cellpadding="10">
+        <tr>
+       
+ 	 	<td width= "700" style ="font-family: Courier New, Courier, monospace; font-size: 19px;"> @innervalue.snippet </td>       
+ 	 	  
+ 	 	  <td width="300"><div class="centerDiv">
+      
+      <!-- Button trigger modal -->
+<a data-toggle="modal" data-target="#myModal@i">
+ <img src="@routes.Assets.at("images/viewcode.png")" width="50" height="50" />
+</a>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal@i" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body" style = " font-family: Courier New, Courier, monospace; font-size: 17px;">
+      
+        @Html(HtmlFormat.escape(innervalue.sourceCode).toString.replace("\n", "<br />"))
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+      
+      </div> </td>
+ 	 	  </tr>
  	 	  <br>
- 	 
+ 	 	</table>
+ 	 	
  	 	}
         
       </div>
