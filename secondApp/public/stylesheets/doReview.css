@@ -4,12 +4,16 @@ body{
 }
 
 h1{
-	color  :red ;
 	text-align:center;
+	color : #CC3300;
 }
 
 div.accordion div.accordion-group div.accordion-heading h4{
 font-family: Helvetica;
 color: #003399;
+}
+
+b{
+	color : #CC3300;
 }
 

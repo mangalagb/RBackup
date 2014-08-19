@@ -9,8 +9,9 @@
 <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("css/bootstrap-theme.min.css"))'>
 <script src='@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))' type='text/javascript' ></script>
 <script src='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.js"))' type='text/javascript' ></script>
-<link rel='stylesheet' href='@routes.Assets.at("stylesheets/doReview.css")'>
 
+<link rel='stylesheet' href='@routes.Assets.at("stylesheets/bootstrap.min.css")'>
+<link rel='stylesheet' href='@routes.Assets.at("stylesheets/doReview.css")'>
 <style>
 
 </style>
@@ -59,12 +60,11 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">@key.snippet</h4>
       </div>
       <div class="modal-body" style = " font-family: Courier New, Courier, monospace; font-size: 17px;">
       
         @Html(HtmlFormat.escape(key.sourceCode).toString.replace("\n", "<br />"))
-      
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -93,7 +93,7 @@
         <table  cellpadding="10">
         <tr>
        
- 	 	<td width= "700" style ="font-family: Courier New, Courier, monospace; font-size: 19px;"> @innervalue.snippet </td>       
+ 	 	<td width= "700" style ="font-family: Courier New, Courier, monospace; font-size: 17px;"> @innervalue.snippet </td>       
  	 	  
  	 	  <td width="300"><div class="centerDiv">
       
@@ -108,12 +108,11 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">@innervalue.snippet</h4>
       </div>
       <div class="modal-body" style = " font-family: Courier New, Courier, monospace; font-size: 17px;">
       
-        @Html(HtmlFormat.escape(innervalue.sourceCode).toString.replace("\n", "<br />"))
-      
+       @Html(HtmlFormat.escape(innervalue.sourceCode).toString.replace("\n", "<br />"))
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

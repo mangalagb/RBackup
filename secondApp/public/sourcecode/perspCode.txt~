@@ -1,0 +1,697 @@
+tikzDevice tikz tikzDevice require( tikzDevice )
+
+tikz( 'myPlot.tex' )
+
+plot( 1, 1, main = '\\LaTex\\ is $\\int e^{xy}$' )
+
+dev.off() \include{path/to/myPlot.tex} pgfSweave Sweave \usepackage{tikz} tikz() pdf() tikz() persp() tikzDevice pgfSweave
+-------------------------------------------------------------------------------------------------------
+par(bg = "black");persp(volcano)
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+persp ## Create a simple surface  f(x,y) = -x^2 - y^2
+## Colour the surface according to x^2 only
+nx = 31; ny = 31
+x = seq(-1, 1, length = nx)
+y = seq(-1, 1, length = ny)
+z = outer(x, y, function(x,y) -x^2  -y^2)
+## Fourth dim
+z_col = outer(x, y, function(x,y) x^2)
+
+## Average the values at the corner of each facet
+## and scale to a value in [0, 1].  We will use this
+## to select a gray for colouring the facet. 
+hgt = 0.25 * (z_col[-nx,-ny] + z_col[-1,-ny] + z_col[-nx,-1] + z_col[-1,-1])
+hgt = (hgt - min(hgt))/ (max(hgt) - min(hgt))
+
+##  Plot the surface with the specified facet colours.
+persp(x, y, z, col = gray(1 - hgt))
+persp(x, y, z, col=cm.colors(31)[floor(31*hgt+1)], theta=-35, phi=10) library(rgl)
+## Generate the data using the above commands
+## New window
+open3d()
+
+## clear scene:
+clear3d("all")
+
+## setup env:
+bg3d(color="#887777")
+light3d()
+
+surface3d(x, y, z, color=cm.colors(31)[floor(31*hgt+1)], alpha=0.5)
+-------------------------------------------------------------------------------------------------------
+x <- seq(-10, 10, length.out = 50)  
+y <- x  
+rotsinc <- function(x,y) {
+    sinc <- function(x) { y <- sin(x)/x ; y[is.na(y)] <- 1; y }  
+    10 * sinc( sqrt(x^2+y^2) )  
+}
+
+z <- outer(x, y, rotsinc)  
+persp(x, y, z) require(rgl)  
+surface3d(x, y, z)
+-------------------------------------------------------------------------------------------------------
+outer fn3d <- function(x,y) x^2-y^2
+persp(outer(seq(-10,10,length=30),seq(-10,10,length=30),fn3d)) ?persp rgl
+-------------------------------------------------------------------------------------------------------
+set.seed(123)
+lambda<-as.matrix(runif(2),nrow=2)
+a<-matrix(runif(10),ncol=2)
+y<-runif(5)
+
+fun = function(lambda) {-y %*% log(a %*% lambda) + lambda %*% apply(a,2,sum)}
+
+#Create grid 
+lambda.grid<-expand.grid(1:10,1:10)
+names(lambda.grid)<-c("lambda_1","lambda_2")
+
+z<-apply(lambda.grid,1,fun) #Evaluate function for each row
+
+#Change z into matrix form for persp plots
+
+z.mat<-matrix(z,ncol=10,byrow=FALSE)
+
+persp(x=1:10,y=1:10,z.mat,xlab="lambda_1",ylab="lambda_2",zlab="f(lambda_1,lambda_2)")
+-------------------------------------------------------------------------------------------------------
+persp() wireframe() set.seed(3)
+dat <- data.frame(Dates = rep(seq(Sys.Date(), Sys.Date() + 9, by = 1), 
+                              each = 24),
+                  Times = rep(0:23, times = 10),
+                  Value = rep(c(0:12,11:1), times = 10) + rnorm(240)) persp() x y z new.dates <- with(dat, sort(unique(Dates)))
+new.times <- with(dat, sort(unique(Times)))
+new.values <- with(dat, matrix(Value, nrow = 10, ncol = 24, byrow = TRUE)) 
+persp(new.dates, new.times, new.values, ticktype = "detailed", r = 10, theta = 35, scale = FALSE) col chartSeries3d0() wireframe() Date wireframe() require(lattice)
+wireframe(Value ~ as.numeric(Dates) + Times, data = dat, drape = TRUE) wireframe() "Date"
+-------------------------------------------------------------------------------------------------------
+x    <- c(0.1, 0.2, 0.3, 0.4, 0.5)
+y    <- c(1, 2, 3, 4, 5)
+zfun <- function(a,b) {a*b * ( 0.9 + 0.2*runif(a*b) )}
+z    <- outer(x, y, FUN="zfun") x y > x
+[1] 0.1 0.2 0.3 0.4 0.5
+> y
+[1] 1 2 3 4 5
+> z
+          [,1]      [,2]      [,3]      [,4]      [,5]
+[1,] 0.1037159 0.2123455 0.3244514 0.4106079 0.4777380
+[2,] 0.2144338 0.4109414 0.5586709 0.7623481 0.9683732
+[3,] 0.3138063 0.6015035 0.8308649 1.2713930 1.5498939
+[4,] 0.4023375 0.8500672 1.3052275 1.4541517 1.9398106
+[5,] 0.5146506 1.0295172 1.5257186 2.1753611 2.5046223 persp(x, y, z)
+-------------------------------------------------------------------------------------------------------
+raster SpatialGridDataFrame readGDAL raster() plot3D library(rgdal)
+library(rasterVis)
+
+r <- raster(system.file("pictures/cea.tif", package = "rgdal")[1])
+plot3D(r) library(rgdal)
+library(raster)
+library(rgl)
+
+## read the file with raster 
+
+r <- raster(system.file("external/test.ag", package="sp")[1])
+
+## just use simple persp plot
+persp(r)
+
+## convert to sp's SpatialGridDataFrame (or use readGDAL directly)
+## (for very large rasters this could be prohibitive in terms of memory)
+sgdf <- as(r, "SpatialGridDataFrame")
+
+## convert to R's image() format, a list with x,y vector and z matrix
+
+x <- as.image.SpatialGridDataFrame(sgdf)
+
+## plot with rgl, ugly but see ?surface3d for colour options etc.
+surface3d(x$x, x$y, x$z)
+-------------------------------------------------------------------------------------------------------
+outer persp z <- outer(x,y, function(x,y) sin(sqrt(x^2+y^2)))
+persp(x,y,z) ?persp persp3d rgl require(rgl)
+persp3d(x,y,z,col="blue") persp jet.colors <- colorRampPalette( c("blue", "green") ) 
+pal <- jet.colors(100)
+col.ind <- cut(z,100) # colour indices of each point
+persp3d(x,y,z,col=pal[col.ind]) smooth=FALSE
+-------------------------------------------------------------------------------------------------------
+line draw.cont.line persp.lm <- 
+function (x, form, at, bounds, zlim, zlab, xlabs, col = "white", xlab=xlab,
+    contours = NULL, hook, atpos = 3, theta = -25, phi = 20, 
+    r = 4, border = NULL, box = TRUE, ticktype = "detailed", ylab,
+    ... ) 
+{
+    draw.cont.line = function(line) {
+        if (cont.varycol) {
+            cont.col = col
+            if (length(col) > 1) 
+                cont.col = col[cut(c(line$level, dat$zlim), length(col))][1]
+        }
+        polygon(trans3d(line$x, line$y, cont.z, transf), col = cont.col, 
+            lwd = cont.lwd)
+    }
+    plot.data = contour.lm(x, form, at, bounds, zlim, xlabs, 
+        atpos = atpos, plot.it = FALSE)
+    transf = list()
+    if (missing(zlab)) 
+        zlab = ""
+    facet.col = col
+    cont = !is.null(contours)
+    if (mode(contours) == "logical") 
+        cont = contours
+    cont.first = cont
+    cont.z = cz = plot.data[[1]]$zlim[1]
+    cont.col = 1
+    cont.varycol = FALSE
+    cont.lwd = 1
+    if (is.character(contours)) {
+        idx = charmatch(contours, c("top", "bottom", "colors"), 
+            0)
+        if (idx == 1) {
+            cont.first = FALSE
+            cont.z = plot.data[[1]]$zlim[2]
+        }
+        else if (idx == 2) {
+        }
+        else if (idx == 3) {
+            cont.varycol = TRUE
+            if (length(col) < 2) 
+                col = rainbow(40)
+        }
+        else cont.col = contours
+    }
+    else if (is.list(contours)) {
+        if (!is.null(contours$z)) 
+            cz = contours$z
+        if (is.numeric(cz)) 
+            cont.z = cz
+        else if (cz == "top") {
+            cont.first = FALSE
+            cont.z = plot.data[[1]]$zlim[2]
+        }
+        if (!is.null(contours$col)) 
+            cont.col = contours$col
+        if (!is.null(contours$lwd)) 
+            cont.lwd = contours$lwd
+        if (charmatch(cont.col, "colors", 0) == 1) {
+            cont.varycol = TRUE
+            if (length(col) < 2) 
+                col = rainbow(40)
+        }
+    }
+    for (i in 1:length(plot.data)) {
+        dat = plot.data[[i]]
+        cont.lines = NULL
+        if (!missing(hook)) 
+            if (!is.null(hook$pre.plot)) 
+                hook$pre.plot(dat$labs)
+        if (cont) 
+            cont.lines = contourLines(dat$x, dat$y, dat$z)
+        if (cont && cont.first) {
+            transf = 
+persp(dat$x, dat$y, dat$z, zlim = dat$zlim, xlab=ylab,theta = theta, phi = phi, r = r, col = NA, border = NA, box = FALSE)
+            lapply(cont.lines, draw.cont.line)
+            par(new = TRUE)
+        }
+        if (length(col) > 1) {
+            nrz = nrow(dat$z)
+            ncz = ncol(dat$z)
+            zfacet = dat$z[-1, -1] + dat$z[-1, -ncz] + dat$z[-nrz, 
+                -1] + dat$z[-nrz, -ncz]
+            zfacet = c(zfacet/4, dat$zlim)
+            facet.col = cut(zfacet, length(col))
+            facet.col = col[facet.col]
+        }
+        transf =
+persp(dat$x,dat$y,dat$z,xlab=xlab,zlab=zlab, zlim = dat$zlim, ylab=ylab,col = facet.col, border = border, box = box, theta = theta, phi = phi, r = r, ticktype = ticktype)
+        if (atpos == 3) 
+            title(sub = dat$labs[5])
+        if (cont && !cont.first) 
+            lapply(cont.lines, draw.cont.line)
+        if (!missing(hook)) 
+            if (!is.null(hook$post.plot)) 
+                hook$post.plot(dat$labs)
+        plot.data[[i]]$transf = transf
+    }
+    invisible(plot.data)
+}
+
+persp(ct.rsm,Conc~kGy,col=blue,theta=60,xlab="Some",phi=0,r=3,d=1,ltheta=-135,lphi=0,shade=0.75,zlab="CT",ylab="Conc",col.axis=37,font.lab=2,col.lab=33,contour=("colors"))
+-------------------------------------------------------------------------------------------------------
+theta phi rgl.snapshot() rgl.postscript() persp3d() persp()
+-------------------------------------------------------------------------------------------------------
+library(Sleuth2) data $ mlr<-lm(Buchanan2000~Perot96*Gore2000,data=ex1222) expand.grid() predict() perot <- seq(1000,40000,by=1000)
+gore <-  seq(1000,400000,by=2000) perot <- sort(unique(ex1222$Perot96)); gore <- sort(unique(ex1222$Gore2000)) pframe <- with(ex1222,expand.grid(Perot96=perot,Gore2000=gore))
+mlrpred <- predict(mlr,newdata=pframe) nrz <- length(perot)
+ncz <- length(gore)
+z <- matrix(mlrpred,nrow=nrz) #ffcccc #cc0000 jet.colors <- colorRampPalette( c("#ffcccc", "#cc0000") ) grep("red",colors(),value=TRUE) # Generate the desired number of colors from this palette
+nbcol <- 100
+color <- jet.colors(nbcol)
+
+# Compute the z-value at the facet centres
+zfacet <- z[-1, -1] + z[-1, -ncz] + z[-nrz, -1] + z[-nrz, -ncz]
+# Recode facet z-values into color indices
+facetcol <- cut(zfacet, nbcol)
+
+persp(perot, gore, z,col=color[facetcol],theta=-30, lwd=.3,xlab="Perot 96", ylab="Gore 2000", zlab="Predicted Votes for Buchanan") ?persp rgl library(rgl)
+## see ?persp3d for discussion of colour handling
+vertcol <- cut(z, nbcol)
+persp3d(perot, gore, z,
+      col=color[vertcol],smooth=FALSE,lit=FALSE,
+      xlab="Perot 96", ylab="Gore 2000", zlab="Predicted Votes for Buchanan") scatter3d car library(car)
+scatter3d(Buchanan2000~Perot96*Gore2000,data=ex1222)
+-------------------------------------------------------------------------------------------------------
+fr <- function(x) {
+  x1 <- round( x[1] )
+  x2 <- round( x[2] )
+  value <- 100 * (x2 - x1 * x1)^2 + (1 - x1)^2
+  penalty <- (x1 - x[1])^2 + (x2 - x[2])^2
+  value + 1e3 * penalty
+}
+
+# Plot the function
+x <- seq(-3,3,length=200)
+z <- outer(x,x, Vectorize( function(u,v) fr(c(u,v)) ))
+persp(x,x,z,theta = 30, phi = 30, expand = 0.5, col = "lightblue", border=NA,ltheta = 120, shade = 0.75, ticktype = "detailed") library(RColorBrewer)
+image(x,x,z, 
+  las=1, useRaster=TRUE,
+  col=brewer.pal(11,"RdYlBu"),
+  xlab="x", ylab="y"
+) # Minimize
+library(DEoptim)
+library(NMOF)
+library(pso)
+DEoptim(fr, c(-3,-3), c(3,3))$optim$bestmem
+psoptim(c(-2,1), fr, lower=c(-3,-3), upper=c(3,3))
+DEopt(fr, list(min=c(-3,-3), max=c(3,3)))$xbest
+PSopt(fr, list(min=c(-3,-3), max=c(3,3)))$xbest library(NMOF)
+gridSearch(fr, list(seq(-3,3), seq(-3,3)))$minlevels # Unmodified function
+f <- function(x) 
+  100 * (x[2] - x[1] * x[1])^2 + (1 - x[1])^2
+
+# Neighbour function
+# Beware: in this example, with a smaller neighbourhood, it does not converge.
+neighbour <- function(x,...)
+  x + sample(seq(-3,3), length(x), replace=TRUE)
+
+# Local search (will get stuck in local extrema)
+library(NMOF)
+LSopt(f, list(x0=c(-2,1), neighbour=neighbour))$xbest
+# Threshold Accepting
+TAopt(f, list(x0=c(-2,1), neighbour=neighbour))$xbest get_neighbour_function <- function(memory_size = 100, df=4, scale=1){
+  # Static variables
+  already_visited <- NULL
+  i <- 1
+  # Define the neighbourhood
+  values <- seq(-10,10)
+  probabilities <- dt(values/scale, df=df)
+  probabilities <- probabilities / sum(probabilities)
+  # The function itself
+  function(x,...) {
+    if( is.null(already_visited) ) {
+      already_visited <<- matrix( x, nr=length(x), nc=memory_size )
+    }
+    # Do not reuse the function for problems of a different size
+    stopifnot( nrow(already_visited) == length(x) )
+    candidate <- x
+    for(k in seq_len(memory_size)) {
+      candidate <- x + sample( values, p=probabilities, length(x), replace=TRUE )
+      if( ! any(apply(already_visited == candidate, 2, all)) )
+        break
+    }
+    if( k == memory_size ) {
+      cat("Are you sure the neighbourhood is large enough?\n")
+    } 
+    if( k > 1 ) {
+      cat("Rejected", k - 1, "candidates\n")
+    }
+    if( k != memory_size ) {
+      already_visited[,i] <<- candidate
+      i <<- (i %% memory_size) + 1
+    }
+    candidate
+  }
+} f <- function(x) {
+  result <- prod( 2 + ((x-10)/1000)^2 - cos( (x-10) / 2 ) )  
+  cat(result, " (", paste(x,collapse=","), ")\n", sep="")
+  result
+}
+plot( seq(0,1e3), Vectorize(f)( seq(0,1e3) ) )
+
+LSopt(f, list(x0=c(0,0), neighbour=get_neighbour_function()))$xbest
+TAopt(f, list(x0=c(0,0), neighbour=get_neighbour_function()))$xbest
+optim(c(0,0), f, gr=get_neighbour_function(), method="SANN")$par g <- function(x) 
+  f(x) + 1000 * sum( (x-round(x))^2 )
+DEoptim(g, c(0,0), c(1000,1000))$optim$bestmem
+-------------------------------------------------------------------------------------------------------
+surface3d seq() outer surface3d persp3d curve_3d <- function(f2, x_range=c(-1, 1), y_range=c(-1, 1), col=1:6 ){ 
+       if (!require(rgl) ) {stop("load rgl")}
+       xvec <- seq(x_range[1], x_range[2], len=15)
+        yvec <- seq(y_range[1], y_range[2], len=15)
+       fz <- outer(xvec, yvec, FUN=f2)
+       open3d()
+       persp3d( xvec, yvec, fz, col=col) }
+curve_3d(f2)
+snapshot3d("out3dplane.png") persp() wireframe() outer Vectorize mapply
+-------------------------------------------------------------------------------------------------------
+outer persp(x = x, y = y, z = outer(x, y, fun))
+-------------------------------------------------------------------------------------------------------
+persp persp(matrix(1:16,nrow=4),col=rainbow(9))
+-------------------------------------------------------------------------------------------------------
+# data
+mat <- matrix(dpois(rep(1:20, 10), lambda=rep(10:1, each=20)), ncol=10)
+
+# 2d line plot
+matplot(mat, type="l", col="black", lty=1)
+
+# 3d ribbon plots
+par(mar = c(0, 1, 0, 1))
+par(mfrow=c(1,2))
+persp(z=mat[,rep(seq(ncol(mat)), each=2)], r=5, theta=320, phi=35, shade=0.5,border=NULL, col=rep(c("#808080FE","#00000000"), each=nrow(mat)-1))border=NA, col=rep(c("#808080FE","#00000000"), each=nrow(mat)-1))
+par(mfrow=c(1,1))
+par(mar = c(5,4,4,2)+.1) persp()
+-------------------------------------------------------------------------------------------------------
+persp require(grDevices) # for trans3d
+x <- seq(-10, 10, length= 30)
+y <- x
+f <- function(x,y) { r <- sqrt(x^2+y^2); 10 * sin(r)/r }
+z <- outer(x, y, f)
+z[is.na(z)] <- 1
+persp(x, y, z, theta = 90, phi = 30, expand = 0.5, col = "lightgreen") theta = 30 
+persp(x, y, z, theta = 30, phi = 30, expand = 0.5, col = "lightgreen") colors() lightgreen
+-------------------------------------------------------------------------------------------------------
+x <- rnorm(1000)
+y <- 2 + x*rnorm(1000,1,.1) + rnorm(1000)
+library(MASS)
+den3d <- kde2d(x, y)
+persp(den3d, box=FALSE) ?persp
+-------------------------------------------------------------------------------------------------------
+fmt=persp(x, y, z, col = color[facetcol], phi = 15, theta = -50, xlab="x", ylab="y", zlab="Empirical Joint Density", border=NA)
+pt = Sample[1,]
+points(trans3d(pt[1],pt[2],.001,fmt),pch=20, col="Red")
+lines(trans3d(c(pt[1],pt[1]), c(pt[2],pt[2]), c(0,.001),fmt),col="Red",cex=2)
+-------------------------------------------------------------------------------------------------------
+## An example matrix
+(m <- matrix(1:9, ncol=3))
+#      [,1] [,2] [,3]
+# [1,]    1    4    7
+# [2,]    2    5    8
+# [3,]    3    6    9
+
+## The same matrix rotated 90 degrees clockwise
+t(m)[,nrow(m):1]
+#      [,1] [,2] [,3]
+# [1,]    3    2    1
+# [2,]    6    5    4
+# [3,]    9    8    7 image() m <- matrix(1:9, ncol=3)
+
+
+## ------- These plotting functions DO rotate a matrix --------
+
+## image()
+image(m, col=blues9)
+
+## levelplot() -- a lattice equivalent of image()
+library(lattice)    
+levelplot(m, at=(1:10)-0.5, col.regions=blues9)
+
+## Others
+contour(m)
+filled.contour(m, color=colorRampPalette(blues9))
+persp(m) 
+lattice::contourplot(m)
+lattice::wireframe(m)  ## Nicely illustrates the logic of the indexing it uses
+
+
+## ------- These plotting functions DO NOT --------
+
+## imageRaster() -- a graphical primitive used by image(), among other functions 
+plot(0:1, 0:1, type="n", xlab="", ylab="")
+rasterImage(matrix(blues9, ncol=3), 0,0,1,1, interpolate=FALSE)
+
+## grid.raster() -- imageRaster()'s counterpart in the grid graphical system
+library(grid)
+grid.raster(matrix(blues9, ncol=3), interpolate=FALSE)
+
+## plot(raster()) in raster package
+library(raster)
+plot(raster(m), col=blues9)
+-------------------------------------------------------------------------------------------------------
+persp(z)
+
+x = seq(1,10,0.1); y = seq(1,10,0.1)
+z= outer(x,y,"*")
+data =data.frame(x=rep(x, times=91), y=rep(y, each=91), z=c(z) )
+data.loess = loess(z~x*y,data =data)
+data.fit = expand.grid(list(x = seq(min(x),max(x),0.1), y = seq(min(y),max(y),0.1)))
+z = predict(data.loess, newdata =data.fit)
+persp(z)
+-------------------------------------------------------------------------------------------------------
+x x z <- matrix(runif(60000), 3, 20000)
+emp.cdf <- function(z)
+  function(x) mean( apply( z <= x, 2, all ) )
+emp.cdf(z)( c(.5,.5,.5) )  # Approximately 1/8 n <- 10
+z <- matrix(runif(2*n), 2, n)
+f <- emp.cdf(z)
+g <- function(u,v) f(c(u,v))
+persp( outer( sort(z[1,]), sort(z[2,]), Vectorize(g) ) )
+
+x <- seq(0,1,length=100)
+persp( outer( x, x, Vectorize(g) ) ) apply expand.grid n <- 100
+z <- matrix(runif(3*n), 3, n)
+f <- emp.cdf(z)
+p <- apply( z, 2, f ) n 3*n
+-------------------------------------------------------------------------------------------------------
+mba.surf MBA persp data(LIDAR)
+mba.int <- mba.surf(LIDAR, 300, 300, extend=TRUE)$xyz.est
+# Two ways of imaging....
+image(mba.int, xaxs="r", yaxs="r")
+persp(mba.int, theta = 135, phi = 30, col = "green3", scale = FALSE,ltheta = -120, shade = 0.75, expand = 10, border = NA, box = FALSE)
+-------------------------------------------------------------------------------------------------------
+s() te() fx = TRUE ?te # following shows how tensor pruduct deals nicely with 
+# badly scaled covariates (range of x 5% of range of z )
+require(mgcv)
+test1 <- function(x, z ,sx=0.3, sz=0.4) { 
+  x <- x*20
+  (pi ** sx * sz) * (1.2 * exp(-(x - 0.2)^2 / sx^2 - ( z - 0.3)^2 / sz^2) +
+  0.8 * exp(-(x - 0.7)^2 / sx^2 -(z - 0.8)^2 / sz^2))
+}
+n <- 500
+
+old.par<-par(mfrow=c(2,2))
+x <- runif(n) / 20
+z<-runif(n)
+xs <- seq(0, 1, length=30) / 20
+zs <- seq(0, 1, length=30)
+pr <- data.frame(x=rep(xs, 30), z=rep(zs, rep(30, 30)))
+truth <- matrix(test1(pr$x, pr$z), 30, 30)
+f <- test1(x, z)
+y <- f + rnorm(n) * 0.2
+
+## model 1 with s() smooths
+b1 <- gam(y ~ s(x,z))
+persp(xs, zs, truth)
+title("truth")
+vis.gam(b1)
+title("t.p.r.s")
+
+## model 2 with te() smooths
+b2 <- gam(y ~ te(x, z))
+vis.gam(b2)
+title("tensor product")
+
+## model 3 te() smooths specifying margin bases
+b3 <- gam(y ~ te(x, z, bs=c("tp", "tp")))
+vis.gam(b3)
+title("tensor product")
+par(old.par)
+-------------------------------------------------------------------------------------------------------
+shade=1 border=NA persp axes=FALSE trans3d persp.mat <- 
+persp(x, y, z, theta=50, phi=25, expand=0.75, col=color,ticktype="detailed", xlab="", ylab="time", zlab="density",shade=.4, border=NA, axes=F)
+
+# The coords at which we want ticks
+x.ticks <- seq(-0.2, 0.2, 0.1)
+# Transform them in 3D
+x.3d <- trans3d(x.ticks, 0, 0, persp.mat)
+x.3d.1 <- trans3d(x.ticks, 0, -2, persp.mat)
+# The coordinates for the text
+x.3d.labels <- trans3d(x.ticks, -60, -3, persp.mat)
+# Draw the axis ticks
+segments(x.3d$x, x.3d$y, x.3d.1$x, x.3d.1$y)
+# Write the labels
+text(x.3d.labels$x, x.3d.labels$y, x.ticks, cex=0.8)
+
+# Do the same for the other axes, customize the text labels
+# to write dates
+
+y.ticks <- seq(0, 2000, 500)
+# Or whatever you like...
+y.labels <- c("2009", "2010", "2011", "2012", "2013")
+y.3d <- trans3d(0.2, y.ticks, 0, persp.mat)
+y.3d.1 <- trans3d(0.2, y.ticks, -2, persp.mat)
+y.3d.labels <- trans3d(0.22, y.ticks, -3, persp.mat)
+segments(y.3d$x, y.3d$y, y.3d.1$x, y.3d.1$y)
+text(y.3d.labels$x, y.3d.labels$y, y.labels, cex=0.8)
+-------------------------------------------------------------------------------------------------------
+persp wireframe expand.grid preddf <- expand.grid(x=seq(xmin, xmax, len=51),
+                      y=seq(ymin, ymax, len=51))
+
+preddf$z <- predict(model, preddf)
+
+persp(preddf) xmin xmax ymin ymax
+-------------------------------------------------------------------------------------------------------
+expand.grid outer z <- outer(x,y, function(x,y) 
+  predict(mod,data.frame(x=x,y=y)))
+persp(x,y,z)
+-------------------------------------------------------------------------------------------------------
+MASS::kde2d KernSmooth::bkde2D contour persp require(KernSmooth)
+z <- bkde2D(df, .5)
+persp(z$fhat)
+-------------------------------------------------------------------------------------------------------
+ggplot image contour persp require(mvtnorm)
+    xy <- rmvnorm(1000,c(5,10),sigma=rbind(c(3,-2),c(-2,3)))
+
+    nbins <- 20
+    x.bin <- seq(floor(min(xy[,1])), ceiling(max(xy[,1])), length=nbins)
+    y.bin <- seq(floor(min(xy[,2])), ceiling(max(xy[,2])), length=nbins)
+
+    freq <-  as.data.frame(table(findInterval(xy[,1], x.bin),findInterval(xy[,2], y.bin)))
+    freq[,1] <- as.numeric(freq[,1])
+    freq[,2] <- as.numeric(freq[,2])
+
+    freq2D <- diag(nbins)*0
+    freq2D[cbind(freq[,1], freq[,2])] <- freq[,3]
+
+    par(mfrow=c(1,2))
+    image(x.bin, y.bin, freq2D, col=topo.colors(max(freq2D)))
+    contour(x.bin, y.bin, freq2D, add=TRUE, col=rgb(1,1,1,.7))
+
+    palette(rainbow(max(freq2D)))
+    cols <- (freq2D[-1,-1] + freq2D[-1,-(nbins-1)] + freq2D[-(nbins-1),-(nbins-1)] + freq2D[-(nbins-1),-1])/4
+    persp(freq2D, col=cols) require(rgl)
+surface3d(x.bin,y.bin,freq2D/10, col="red")
+-------------------------------------------------------------------------------------------------------
+require(MASS)
+set.seed(42)
+persp(kde2d(rnorm(100), rnorm(100)), col="grey90", shade=1, theta=120, xlab="X") d_in <- c(0.30117450, 0.19379195, 0.10654362, 0.06291946, 0.03775168, 0.03313758)
+d_out <- c(0.36115772, 0.17072148, 0.09228188, 0.05369128, 0.04572148, 0.02055369)
+
+persp(kde2d(d_in, d_out), col="grey90", shade=1, theta=120, xlab="X")
+-------------------------------------------------------------------------------------------------------
+persp() trans3d # data
+arv = data.frame(axis_x = rnorm(n=300, mean=-0.20, sd=1.01),
+             axis_y = rnorm(n=300, mean=-0.45, sd=0.97),
+             elevation = rnorm(n=300, mean=-813.2, sd=13.89))
+# fit             
+model = lm(formula = elevation ~ (axis_x + axis_y)^2 + I(axis_x^2) + I(axis_y^2), data = arv)
+
+# grid for plotting function
+x <- seq(min(arv$axis_x), max(arv$axis_x), length.out = 20)
+y <- seq(min(arv$axis_y), max(arv$axis_y), length.out = 20)
+
+# function for predicted surface from model
+f <- function(x, y) { cbind(1,x,y,x^2,y^2,x*y) %*% coef(model) }
+
+# predicted values in form that persp() can use
+z <- outer(x, y, f)
+
+# 3d plot of surface with persp()
+ele_3d <- persp(x=x,y=y,z=z, theta=40, phi=15, zlim=c(min(arv$elevation), max(arv$elevation)) )
+
+# transform observed values into 2d space
+elevation_points <- trans3d(arv$axis_x, arv$axis_y, arv$elevation, pmat=ele_3d)
+
+# plot observed values
+points(elevation_points)
+
+# add dotted lines from surface to observed values
+fit_vals <- trans3d(arv$axis_x, arv$axis_y, fitted(model), pmat = ele_3d)
+segments(fit_vals$x, fit_vals$y, elevation_points$x, elevation_points$y, lty = 3) wireframe()
+-------------------------------------------------------------------------------------------------------
+parallel mcparallel fork clusterCall > library(parallel)
+> clusterCall
+function (cl = NULL, fun, ...) 
+{
+    cl <- defaultCluster(cl)
+    for (i in seq_along(cl)) sendCall(cl[[i]], fun, list(...))
+    checkForRemoteErrors(lapply(cl, recvResult))
+} sendCall recvResult bigmemory big.matrix as.big.matrix z as.big.matrix library(bigmemory)
+big <- as.big.matrix(z) big describe attach.big.matrix cl <- makePSOCKcluster(2)
+worker.init <- function(descr) {
+  library(bigmemory)
+  big <<- attach.big.matrix(descr)
+  X11()  # use "quartz()" on a Mac; "windows()" on Windows
+  NULL
+}
+clusterCall(cl, worker.init, describe(big)) persp sendCall parallel:::sendCall(cl[[1]], function() {persp(big[]); NULL}, list()) r1 <- parallel:::recvResult(cl[[1]]) clusterEvalQ(cl[1], persp(big[]))
+-------------------------------------------------------------------------------------------------------
+col.regions wireframe(volcano, drape = TRUE,
+       aspect = c(61/87, 0.4),
+       light.source = c(10,0,10), 
+       col.regions = colorRampPalette(c("blue", "pink"))(100)) ?persp > 
+persp(x, y, z, theta = 135, phi = 30, col = colorRampPalette(c("blue", "pink"))(9500), scale = FALSE,ltheta = -120, shade = 0.75, border = NA, box = FALSE)
+-------------------------------------------------------------------------------------------------------
+x <- rnorm(30)
+y <- rnorm(30)
+
+library(MASS)
+den3d <- kde2d(x, y)
+
+cols <- c("blue", "red")[(outer(na.omit(filter(den3d$x>0.5,c(1,1), sides=1)),
+                                na.omit(filter(den3d$y>0.5,c(1,1), sides=1)),
+                                "+")==4) + 1]
+
+persp(den3d,xlab="Var1", ylab="Var2", zlab="Density", shade = 0.1, col = cols, box=TRUE, phi=90) persp den3d$x filter help("filter") filter(den3d$x>0.5,c(1,1), sides=1)
+#[1] NA  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  2  2  2  2  2  2 filter NA den3d$y TRUE FALSE == FALSE TRUE
+-------------------------------------------------------------------------------------------------------
+require(akima) # akima package for easy surface interpolation
+a <- seq(-1,1,0.01)
+b <- seq(-1,1,0.01)
+lambda1 <- function(a,b){eigen(matrix(c(a,b,a-b,a+b,b,a,a,a,b),3,3,byrow=T))$values[[1]]} 
+# make it a data frame for all permutations to fix the issue that
+# your current code runs for a, b vectors so you get the same result 200x
+mytab<-data.frame(expand.grid(a=a,b=b))
+# use adply and transform to generate the 1st eigenvalues for each
+# takes a while for 200 x 200! you could reduce a & b
+mytab<-mytab<-adply(mytab, 1, transform, c = lambda1(a, b))
+# use interp from akima to create 40x40 matrix - you can change this
+surface<-interp(mytab$a,mytab$b,mytab$c)
+# plot the surface
+persp(surface$x,surface$y,surface$z,col=ifelse(surface$z>=0,"red","white"))
+
+# you can also create a spinning plot like this:
+
+require(rgl)
+plot3d(1,1,3,       # just an easy way to set the plot area
+   xlab="a",
+   ylab="b",
+   zlab="lambda1")
+
+surface3d(surface$x,surface$y,surface$z,
+      col=ifelse(surface$z>=0,"red","white"), size=1) a <- seq(-1,1,0.05)
+b <- seq(-1,1,0.05)
+lambda1 <- function(a,b){eigen(matrix(c(a,b,a-b,a+b,b,a,a,a,b),3,3,byrow=T))$values[[1]]} 
+mytab<-data.frame(expand.grid(a=a,b=b))
+
+mytab$c<-apply(mytab, 1, function(x)lambda1(x["a"],x["b"]))
+
+surface<-NULL
+surface$x<-unique(mytab$a)
+surface$y<-unique(mytab$b)
+surface$z<-matrix(mytab$c,nrow=length(surface$x),byrow=TRUE) 
+
+persp(surface$x,surface$y,surface$z,col=ifelse(surface$z>=0,"red","white"))
+-------------------------------------------------------------------------------------------------------
+require(rgl)
+require(reshape2)
+df.x<-unique(df$x)
+df.y<-unique(df$z)
+df.z<-acast(df,x~z)
+persp(df.x,df.y,df.z)
+surface3d(df.x,df.y,df.z)
+-------------------------------------------------------------------------------------------------------
+persp col w2 <- w/max(w)
+cr <- colorRamp(c('white','yellow','red'))
+w3 <- cr(w2)
+w4 <- rgb( w3[,1], w3[,2], w3[,3], maxColorValue=255 )
+dim(w4) <- c(101,101)
+
+persp(x1,x2,z, col=w4[1:100,1:100])
+-------------------------------------------------------------------------------------------------------

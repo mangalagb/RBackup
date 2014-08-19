@@ -4,16 +4,26 @@
 <html>
 <head>
 
-<link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("css/bootstrap.min.css"))'>
-<link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("css/bootstrap-theme.min.css"))'>
+
 <script src='@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))' type='text/javascript' ></script>
 <script src='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.js"))' type='text/javascript' ></script>
+<link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("css/bootstrap.min.css"))'>
+<link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("css/bootstrap-theme.min.css"))'>
+
+<link rel='stylesheet' href='@routes.Assets.at("stylesheets/bootstrap.min.css")'>
 <link rel='stylesheet' href='@routes.Assets.at("stylesheets/review.css")'>
 
 </head>
 <body>
+<br>
+<br>
+<table align=center>
+<tr>
 
-<h2>R Helper Tool</h2>
+<td><img src="@routes.Assets.at("images/R.jpeg")"></td>
+<td style='padding:0px 0px 5px 9px'><h1> Helper Tool</h1></td>
+</tr>
+</table>
 
    @form(action = routes.Application.doReview()) {
      
@@ -30,7 +40,7 @@
 	
       <input type="submit" value="Tell me more about this function !">
       
-      
+     
       <br><br><br>
       
       

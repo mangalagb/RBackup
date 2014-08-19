@@ -3,10 +3,31 @@ body{
 	padding-left: 35px;
 }
 
-h2{
+h1{
 color : #CC3300;
 text-align:center
 }
 
 h3{
 color : #003399;}
+
+input[type=submit]{
+	padding:5px 30px;
+	border:1px solid #8ec1da;
+	border-radius:4px;
+	-webkit-box-shadow:
+		inset 0 1px 3px #fff,
+		inset 0 -15px #cbe6f2,
+		0 0 3px #8ec1da;
+	-moz-box-shadow:
+		inset 0 1px 3px #fff,
+		inset 0 -15px #cbe6f2,
+		0 0 3px #8ec1da;
+	box-shadow:
+		inset 0 1px 3px #fff,
+		inset 0 -15px #cbe6f2,
+		0 0 3px #8ec1da;
+	background-color:#ddeef6;
+	color:#3985a8;
+	text-shadow:0 1px #fff;
+}

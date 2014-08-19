@@ -4,9 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import com.google.common.base.Splitter;
 
 import models.*;
@@ -67,6 +64,7 @@ public class temp
 				while ((sCurrentLine = br.readLine()) != null) {
 					buf = buf + sCurrentLine + "\n";
 				}
+				br.close();
 				
 				Iterable<String> itr1 = Splitter
 						.on(",")
@@ -83,26 +81,30 @@ public class temp
 				Boolean contains = false;
 				
 				for (String snippet : itr) {
-					
-					for (String param : itr1) {
-						
+					for(String param : itr1)
+					{//Check if all parameters are present or not in the snippet
 						if(snippet.contains(param.trim()))
 						{
 							contains = true;
 						}
 						else
-							contains = false;
+							{contains = false;
+							break;
+							}
+							
 					}
 					
+					//Snippet contains all the parameters
 					if(contains == true)
 					{
-						sourceCode = sourceCode + snippet;
+						sourceCode = sourceCode.concat(snippet);
+						sourceCode = sourceCode.concat("+++++++++++++++++++++++++++++++++\n");
 					}
 					
 					
 				}
 				
-				br.close();
+				
 				return sourceCode;
 				
 			}
@@ -112,6 +114,7 @@ public class temp
 			}
 			
 		}
+		
 		
 		public HashMap<SourceCode, List<SourceCode>> returnClusterMembers(String functionName, String path) throws IOException
 		{
@@ -164,26 +167,30 @@ public class temp
 		{
 			
 			temp t = new temp();
-			HashMap<SourceCode, List<SourceCode>> result = t.returnClusterMembers("Axis", "./public/functions/allSnippets/AxisCodeSnippets.txt");
+			String param ="x = y, side = 2, ...";
+			
+			//System.out.println(h);
+			
+			//String path = "./public/functions/allSnippets/myAxisCodeSnippets.txt";
+			String path = "./public/functions/allSnippets/AxisCodeSnippets.txt";
+			
+			HashMap<SourceCode, List<SourceCode>> result = t.returnClusterMembers("Axis", path);
 			
 			for (Map.Entry<SourceCode, List<SourceCode>> entry : result.entrySet()) {
 				
-				System.out.println(entry.getKey().getSnippet());
-				if(! entry.getKey().getSourceCode().equals(""))
-					System.out.println("yes");
-				System.out.println(entry.getValue().size());
+				SourceCode s = entry.getKey();
+				System.out.println("KEY = "+s.getSnippet());
+				System.out.println(s.getSourceCode());
 				
-				List<SourceCode> myList = entry.getValue();
 				
-				for(SourceCode s : myList)
+				for(SourceCode d : entry.getValue())
 				{
-					if(!s.getSourceCode().equals(""))
-					System.out.println("yes");
+					System.out.println("VALUE =  "+d.getSnippet());
+					System.out.println(d.getSourceCode());
 					
-					else
-					System.out.println("no");
 				}
-				System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++");
+				
 			}
+
 		}
 }
