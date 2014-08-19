@@ -4,10 +4,12 @@ public class SourceCode
 {
 	public String snippet;
 	public String sourceCode;
+	public String toHighlight;
 	
 	public SourceCode(SourceCode clusterHead) {
 		this.snippet = clusterHead.snippet;
 		this.sourceCode = clusterHead.sourceCode;
+		this.toHighlight = clusterHead.toHighlight;
 	}
 
 	public SourceCode() {
@@ -21,6 +23,9 @@ public class SourceCode
 	public String getSourceCode() {
         return sourceCode;
     }
+	public String getToHighlight() {
+        return toHighlight;
+    }
 	
 	public void setSnippet(String name) {
         this.snippet = name;
@@ -28,5 +33,9 @@ public class SourceCode
 	
 	public void setSourceCode(String name) {
         this.sourceCode = name;
+    }
+	
+	public void setToHighlight(String toHighlight) {
+        this.toHighlight = toHighlight;
     }
 }

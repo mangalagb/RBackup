@@ -32,13 +32,13 @@ public class Application extends Controller {
     	Function function = new Function();
     	function.functionName = dynamicForm.get("functionName");
     	
-    	//ReadFile r = new ReadFile();
+    	
     	String path = "./public/functions/allSnippets/" + function.functionName + "CodeSnippets.txt";
     	
     	//HashMap<String, String> result = r.returnClusterMembers(function.functionName, path);
     	
-    	temp t = new temp();
-    	HashMap<SourceCode, List<SourceCode>> result1 = t.returnClusterMembers(function.functionName, path);
+    	ReadFile r = new ReadFile();
+    	HashMap<SourceCode, List<SourceCode>> result1 = r.returnClusterMembers(function.functionName, path);
     	
     	
     	  
