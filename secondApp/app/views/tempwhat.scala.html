@@ -2,6 +2,7 @@
 
 @import helper.twitterBootstrap._
 @import java.math.BigInteger;  var i=1;
+@import java.lang.String; val name="""image("""; 
 
 <html>
 <head>
@@ -22,12 +23,14 @@
 
 <h1> @functionName Code snippets</h1><br><br><br>
 
+
  @if(result != null) {
 <div class="accordion" id="accordion">
 
 @for((key, value) <- result) {
 
 @{i=i+1}
+
 
 <div class="accordion-group">
 
@@ -39,7 +42,7 @@
    <td width= "700" style = " font-family: Courier New, Courier, monospace; font-size: 19px;"> <div class="panel-title">
 	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse@i">
        @key.snippet    
-      
+   
        <br>
 	 </a>
      </div></td>
@@ -57,7 +60,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">@key.snippet</h4>
+        <h4 class="modal-title" id="myModalLabel">@key.snippet @key.toHighlight </h4>
       </div>
       <div id="inputText@i">
       
@@ -68,8 +71,12 @@
       
       </div>
       <script type="text/javascript">
-      
-      highlight('Axis',@i);
+       
+    highlight('@key.toHighlight',@i)
+ 
+
+     
+    
       </script>
       
       <div class="modal-footer">
