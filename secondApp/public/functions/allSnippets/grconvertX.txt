@@ -1,0 +1,32 @@
+grconvertX(tail, "user", "ndc")
+grconvertX(0, "user", "ndc")
+grconvertX(c, from="user", to="ndc")
+$grconvertX(1, from = "inches", to = "ndc", from = "inches", to = "ndc")
+
+grconvertX(min, to='ndc')
+$grconvertX(max, to='ndc')
+grconvertX(x, to='inches')
+
+grconvertX(xy[1], from='ndc', to='inches')
+$grconvertX(transCoords[1], from = 'inches', to ='device')
+
+grconvertX(0.5)
+grconvertX()
+$grconvertX(x)
+
+grconvertX(1, from='nfc', from='nfc')
+grconvertX(0.505, from='ndc', from='ndc')
+grconvertX(0.8, "npc")
+grconvertX(0.5, "npc")
+grconvertX(0.995, from='ndc')
+grconvertX(1:2, "user")
+grconvertX(1, from='npc', from='npc')
+grconvertX(0.75, from='npc', from='npc')
+grconvertX(0.495, from='ndc')
+$grconvertX(c, from='npc')
+grconvertX(u[1:2], "user", "ndc")
+grconvertX(0, from='nic')
+grconvertX(c, "npc")
+grconvertX(0.005, from='ndc', from='ndc')
+grconvertX(0, from='nfc', from='nfc')
+

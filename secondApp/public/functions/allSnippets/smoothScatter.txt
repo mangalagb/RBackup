@@ -1,0 +1,14 @@
+$smoothScatter(x1, x2, colramp=colramp)
+
+$smoothScatter(x)
+
+$smoothScatter(x, nrpoints=Inf, colramp=colorRampPalette, bandwidth=40)
+
+$smoothScatter(dat[2:3])
+
+smoothScatter(x, y)
+$smoothScatter(diamonds, diamonds)
+
+smoothScatter(x, nrpoints=0)
+$smoothScatter(x, nrpoints = 0, postPlotHook = fudgeit)
+

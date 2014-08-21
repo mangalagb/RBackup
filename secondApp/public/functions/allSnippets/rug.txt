@@ -1,0 +1,16 @@
+$rug(qntl, side = 2, col = "blue", lwd = 2)
+
+$rug(b1, col = 'red')
+
+rug(x, side=1)
+$rug(y, side=2)
+
+rug(b1)
+rug(cross)
+rug(numRunsNeeded, lty=2)
+$rug(dat100)
+
+rug(T, col =  adjustcolor, lwd = 4)
+rug(range, lwd=3, col="red")
+$rug(which, col = "red", lwd = 2)
+

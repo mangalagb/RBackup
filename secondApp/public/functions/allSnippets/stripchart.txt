@@ -1,0 +1,30 @@
+$stripchart(c, vertical=T)
+
+$stripchart(df[-1], pch=c, vertical=TRUE)
+
+$stripchart(data.frame, vertical=TRUE, pch=1, xlab="Groups", ylab="Values")
+
+$stripchart(c, pch=19, method="stack", ylim=c)
+
+$stripchart(x[1:5, ], vertical=TRUE, pch=19, xlim=c, axes=F)
+
+$stripchart(mydata, method="jitter", vertical=T, main='plot', pch=19, at=c, xlim=c)
+
+stripchart(decrease~treatment, main ="stripchart", vertical=TRUE, log = "y", at=seq, data = OrchardSprays)
+$stripchart(decrease ~ treatment, main = "stripchart, vertical = TRUE, log = "y", at=narrow.at, data = OrchardSprays, xlim=c)
+
+$stripchart(mean ~ seq, data=dfrm, vertical=TRUE)
+
+$stripchart(x)
+
+$stripchart(x, cex=y)
+
+$stripchart(x, method="stack", at=0)
+
+stripchart(mydata, method="jitter", vertical=T, main='plot', pch=19)
+$stripchart(as.numeric, data=data, add=TRUE, vertical=TRUE, pch=1, lwd=1)
+stripchart(casp6~trans.factor, data.frame, pch=1, vertical=T)
+
+stripchart(A, method = "stack", offset = .5, at = .15, pch = 19, main = "Dotplot of Random Values", xlab = "Random Values")
+$stripchart(A, method = "stack", offset = .5, at = .15, pch = 19, main = "Dotplot of Random Values", xlab = "Random Values", xaxt="n")
+

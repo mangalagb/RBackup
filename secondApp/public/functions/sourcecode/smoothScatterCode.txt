@@ -1,0 +1,78 @@
+require(gplots) 
+
+# example data, bivariate normal, no correlation
+x <- rnorm(2000, sd=4) 
+y <- rnorm(2000, sd=1) 
+
+# separate scales for each axis, this looks circular
+hist2d(x,y, nbins=50, col = c("white",heat.colors(16))) 
+rug(x,side=1) 
+rug(y,side=2) 
+box() library("geneplotter")  ## from BioConductor
+require("RColorBrewer") ## from CRAN
+
+x1  <- matrix(rnorm(1e4), ncol=2)
+x2  <- matrix(rnorm(1e4, mean=3, sd=1.5), ncol=2)
+x   <- rbind(x1,x2)
+
+layout(matrix(1:4, ncol=2, byrow=TRUE))
+op <- par(mar=rep(2,4))
+smoothScatter(x, nrpoints=0)
+smoothScatter(x)
+smoothScatter(x, nrpoints=Inf,colramp=colorRampPalette(brewer.pal(9,"YlOrRd")), bandwidth=40)
+colors  <- densCols(x)
+plot(x, col=colors, pch=20)
+
+par(op)
+-------------------------------------------------------------------------------------------------------
+source("http://bioconductor.org/biocLite.R")
+biocLite("geneplotter")    
+library(ggplot2)
+data(diamonds)
+library(geneplotter)
+smoothScatter(diamonds$carat,diamonds$price)
+-------------------------------------------------------------------------------------------------------
+library(mlbench) ## this package has a smiley function
+n <- 1e5 ## number of points
+p <- mlbench.smiley(n,sd1 = 0.4, sd2 = 0.4) ## make a smiley :-)
+x <- p$x[,1]; y <- p$x[,2]
+par(mfrow = c(1,2)) ## plot side by side
+plot(x,y) ## left plot, regular scatter plot
+smoothScatter(x,y) ## right plot, smoothed scatter plot hexbin smoothScatter() graphics
+-------------------------------------------------------------------------------------------------------
+fields::imageplot par(mar) fudgeit <- function(){
+  xm <- get('xm', envir = parent.frame(1))
+  ym <- get('ym', envir = parent.frame(1))
+  z  <- get('dens', envir = parent.frame(1))
+  colramp <- get('colramp', parent.frame(1))
+  image.plot(xm,ym,z, col = colramp(256), legend.only = T, add =F)
+}
+
+par(mar = c(5,4,4,5) + .1)
+smoothScatter(x, nrpoints = 0, postPlotHook = fudgeit) ?bkde2D transformation smoothScatter
+-------------------------------------------------------------------------------------------------------
+ggsubplot library(ggplot2)
+library(ggsubplot)
+
+# Make up some data
+set.seed(955)
+dat <- data.frame(cond = rep(c("A", "B"), each=5000),
+                  xvar = c(rep(1:20,250) + rnorm(5000,sd=5),rep(16:35,250) + rnorm(5000,sd=5)),
+                  yvar = c(rep(1:20,250) + rnorm(5000,sd=5),rep(16:35,250) + rnorm(5000,sd=5)))
+
+
+# Scatterplot with subplots (simple)
+ggplot(dat, aes(x=xvar, y=yvar)) +
+  geom_point(shape=1) +
+  geom_subplot2d(aes(xvar, yvar,
+                     subplot = geom_bar(aes(rep("dummy", length(xvar)), ..count..))), bins = c(15,15), ref = NULL, width = rel(0.8), ply.aes = FALSE) # Scatterplot with subplots (including a third variable) 
+
+ggplot(dat, aes(x=xvar, y=yvar)) +
+  geom_point(shape=1, aes(color = factor(cond))) +
+  geom_subplot2d(aes(xvar, yvar,
+                     subplot = geom_bar(aes(cond, ..count.., fill = cond))),
+                 bins = c(15,15), ref = NULL, width = rel(0.8), ply.aes = FALSE) smoothScatter() smoothScatter(dat[2:3])
+-------------------------------------------------------------------------------------------------------
+smoothScatter colramp = colorRampPalette(c('white', 'blue', 'green', 'yellow', 'red'))
+smoothScatter(x1, x2, colramp=colramp)
+-------------------------------------------------------------------------------------------------------

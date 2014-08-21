@@ -1,0 +1,10 @@
+stem(v/100)
+stem(log)
+$stem(fsizes)
+stem(x)
+stem()
+stem(y)
+
+stem(y, scale = 2)
+$stem(y, scale=0.5, atom=0.1)
+

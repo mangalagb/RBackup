@@ -1,0 +1,20 @@
+locator(1, type, ...)
+$locator(1, "Species B", "Species C")
+
+locator(1, y=0.6)
+$locator(1)
+locator(2)
+locator(n=1)
+locator()
+locator(n=2)
+locator(with)
+
+locator(type = "o")
+locator(type = "l")
+$locator(type="l")
+locator(type='p', pch=1, col='red', lwd=1.2, cex=1.2)
+locator(type='l')
+
+locator(n=4, type='p', pch=4, col='blue', lwd=2)
+$locator(1, type='p')
+

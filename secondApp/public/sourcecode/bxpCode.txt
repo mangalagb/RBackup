@@ -1,0 +1,178 @@
+bstats <- boxplot(count ~ spray, data = InsectSprays, col = "lightgray") 
+#need to "waste" this plot
+bstats$out <- NULL
+bstats$group <- NULL
+bxp(bstats)  # this will plot without any outlier points
+-------------------------------------------------------------------------------------------------------
+panel.tuftebxp <- 
+function (x, y, box.ratio = 1, box.width = box.ratio/(1 + box.ratio), horizontal=FALSE,
+    pch = box.dot$pch, col = box.dot$col, 
+    alpha = box.dot$alpha, cex = box.dot$cex, font = box.dot$font, 
+    fontfamily = box.dot$fontfamily, fontface = box.dot$fontface, 
+    fill = box.rectangle$fill, varwidth = FALSE, notch = FALSE, 
+    notch.frac = 0.5, ..., levels.fos = if (horizontal) sort(unique(y)) else sort(unique(x)), 
+    stats = boxplot.stats, coef = 1.5, do.out = TRUE, identifier = "bwplot") 
+{
+    if (all(is.na(x) | is.na(y))) 
+        return()
+    x <- as.numeric(x)
+    y <- as.numeric(y)
+    box.dot <- trellis.par.get("box.dot")
+    box.rectangle <- trellis.par.get("box.rectangle")
+    box.umbrella <- trellis.par.get("box.umbrella")
+    plot.symbol <- trellis.par.get("plot.symbol")
+    fontsize.points <- trellis.par.get("fontsize")$points
+    cur.limits <- current.panel.limits()
+    xscale <- cur.limits$xlim
+    yscale <- cur.limits$ylim
+    if (!notch) 
+        notch.frac <- 0
+    #removed horizontal code
+     blist <- tapply(y, factor(x, levels = levels.fos), stats, 
+            coef = coef, do.out = do.out)
+        blist.stats <- t(sapply(blist, "[[", "stats"))
+        blist.out <- lapply(blist, "[[", "out")
+        blist.height <- box.width
+        if (varwidth) {
+            maxn <- max(table(x))
+            blist.n <- sapply(blist, "[[", "n")
+            blist.height <- sqrt(blist.n/maxn) * blist.height
+        }
+        blist.conf <- if (notch) 
+            sapply(blist, "[[", "conf")
+        else t(blist.stats[, c(2, 4), drop = FALSE])
+        ybnd <- cbind(blist.stats[, 3], blist.conf[2, ], blist.stats[, 
+            4], blist.stats[, 4], blist.conf[2, ], blist.stats[, 
+            3], blist.conf[1, ], blist.stats[, 2], blist.stats[, 
+            2], blist.conf[1, ], blist.stats[, 3])
+        xleft <- levels.fos - blist.height/2
+        xright <- levels.fos + blist.height/2
+        xbnd <- cbind(xleft + notch.frac * blist.height/2, xleft, 
+            xleft, xright, xright, xright - notch.frac * blist.height/2, 
+            xright, xright, xleft, xleft, xleft + notch.frac * 
+                blist.height/2)
+        xs <- cbind(xbnd, NA_real_)
+        ys <- cbind(ybnd, NA_real_)
+        panel.segments(rep(levels.fos, 2), c(blist.stats[, 2], 
+            blist.stats[, 4]), rep(levels.fos, 2), c(blist.stats[, 
+            1], blist.stats[, 5]), col = box.umbrella$col, alpha = box.umbrella$alpha, 
+            lwd = box.umbrella$lwd, lty = box.umbrella$lty, identifier = paste(identifier, 
+                "whisker", sep = "."))
+
+        if (all(pch == "|")) {
+            mult <- if (notch) 
+                1 - notch.frac
+            else 1
+            panel.segments(levels.fos - mult * blist.height/2, 
+                blist.stats[, 3], levels.fos + mult * blist.height/2, 
+                blist.stats[, 3], lwd = box.rectangle$lwd, lty = box.rectangle$lty, 
+                col = box.rectangle$col, alpha = alpha, identifier = paste(identifier, 
+                  "dot", sep = "."))
+        }
+        else {
+            panel.points(x = levels.fos, y = blist.stats[, 3], 
+                pch = pch, col = col, alpha = alpha, cex = cex, 
+                 identifier = paste(identifier, 
+                  "dot", sep = "."))
+        }
+        panel.points(x = rep(levels.fos, sapply(blist.out, length)), 
+            y = unlist(blist.out), pch = plot.symbol$pch, col = plot.symbol$col, 
+            alpha = plot.symbol$alpha, cex = plot.symbol$cex*0.5, 
+            identifier = paste(identifier, "outlier", sep = "."))
+
+}
+bwplot(weight ~ Diet + Time + Chick, data=cw, panel= 
+         function(x,y, ...) panel.tuftebxp(x=x,y=y,...))
+-------------------------------------------------------------------------------------------------------
+bxp dat <- read.table(text="Method    LCL    mean    UCL    var
+ A         -5     4       15     27
+ B         -9     2       13     33
+ C         -8     4       16     36
+ ", header=TRUE)
+ dat$sdpd <- dat$mean + dat$var^0.5
+ dat$sdmd <- dat$mean - dat$var^0.5
+ dat
+#------
+  Method LCL mean UCL var      sdpd      sdmd
+1      A  -5    4  15  27  9.196152 -1.196152
+2      B  -9    2  13  33  7.744563 -3.744563
+3      C  -8    4  16  36 10.000000 -2.000000
+#----------
+ bxpm <- with(dat, t(matrix(c(LCL, sdmd, mean, sdpd, UCL), 3,5)))
+ bxpm
+#----------
+          [,1]      [,2] [,3]
+[1,] -5.000000 -9.000000   -8
+[2,] -1.196152 -3.744563   -2
+[3,]  4.000000  2.000000    4
+[4,]  9.196152  7.744563   10
+[5,] 15.000000 13.000000   16
+
+ bxp(list(stats=bxpm, names=dat$Method ), main="Not a real boxplot\n
+                                                Perhaps a double dynamite plot?")
+-------------------------------------------------------------------------------------------------------
+bxp boxplot dat <- read.table(text="sample1   1   38   10   8    10   13
+sample2   1   39   10   9    11   14
+sample3   2   36   11   10   10   13", row.names=1, header=FALSE) t dat2 <- t(dat[, c(1, 4, 5, 6, 2)]) #Min, 25pct, 50pct, 75pct, Max bxp(list(stats=dat2, n=rep(10, ncol(dat2)))) #n is the number of observations in each group
+-------------------------------------------------------------------------------------------------------
+summarydata<-list(stats=matrix(c(1,2,3,4,5),5,1), n=10)
+bxp(summarydata) sd<-boxplot(dummydata)
+str(sd)
+-------------------------------------------------------------------------------------------------------
+dset1 <- 1:10
+dset2 <- 10:20
+dset3 <- 20:30 plot=FALSE result1 <- boxplot(dset1,plot=FALSE,names="month1")
+result2 <- boxplot(dset2,plot=FALSE,names="month2")
+result3 <- boxplot(dset3,plot=FALSE,names="month3") bxp mylist <- list(result1, result2, result3)
+groupbxp <- do.call(mapply, c(cbind, mylist))
+bxp(groupbxp)
+-------------------------------------------------------------------------------------------------------
+ggplot2 boxplot bxp xypolygon my.bxp <- function (all.bxp.argument,angle,density, ...) {
+    .....#### bxp code
+    xypolygon(xx, yy, lty = boxlty[i], lwd = boxlwd[i], 
+    border = boxcol[i],angle[i],density[i])  
+    .......## bxp code after
+    xypolygon(xx, yy, lty = "blank", col = boxfill[i],angle[i],density[i])      
+    ......
+
+} require(stats)
+set.seed(753)
+(bx.p <- boxplot(split(rt(100, 4), gl(5, 20))))
+layout(matrix(c(1,2),nrow=1),
+       width=c(4,1)) 
+angles=c(60,30,40,50,60)
+densities=c(50,30,40,50,30)
+par(mar=c(5,4,4,0)) #Get rid of the margin on the right side
+my.bxp(bx.p,angle=angles,density=densities)
+par(mar=c(5,0,4,2)) #No margin on the left side
+plot(c(0,1),type="n", axes=F, xlab="", ylab="")
+legend("top", paste("region", 1:5),
+       angle=angles,density=densities)
+-------------------------------------------------------------------------------------------------------
+#create a dummy boxplot that you can modify the data easily
+  z<- boxplot(1:10)
+
+  #look at the outbut an assign yout data to stats
+  z$stats<- your_data
+
+  #use bxp to plot, via add you can combine all three
+  bxp(z)
+-------------------------------------------------------------------------------------------------------
+bxp testdata=data.frame(R1=c(0,5,3,2,4),R2=c(1,7,3,2.8,6))
+o=c(1,5,3,4,2) # the rows in increasing order
+bxp.data=list(stats=data.matrix(testdata[o,]),n=rep(1,ncol(testdata)))
+# the n=... parameter doesn't affect the plot, but it still needs to be there
+bxp(bxp.data) help(par)
+-------------------------------------------------------------------------------------------------------
+bxp boxplot bxp bxp q1 <- qnorm(0.25)
+q2 <- qnorm(0.5)
+q3 <- qnorm(0.75)
+
+lower <- q1 - 1.5*(q3-q1)
+upper <- q3 + 1.5*(q3-q1)
+
+tmp.list <- list( stats=rbind(lower, q1, q2, q3, upper),
+    out=numeric(0), group=numeric(0), names='')
+
+bxp( tmp.list )
+-------------------------------------------------------------------------------------------------------

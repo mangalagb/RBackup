@@ -1,0 +1,697 @@
+library("png")
+# read a sample file (R logo)
+img <- readPNG(system.file("img", "Rlogo.png", package="png"))
+# img2 <- readPNG(system.file("img", "Rlogo.png", package="png"))
+img2 <- readPNG("hand.png", TRUE) # here import a different image 
+if (exists("rasterImage")) { 
+  plot(1:1000, type='n')
+  rasterImage(img, 100, 100, 200, 200)
+  rasterImage(img2, 300, 300, 400, 400)
+}
+-------------------------------------------------------------------------------------------------------
+require(grDevices)
+#set up the plot region:
+op <- par(bg = "thistle") <h>
+plot(c(100, 250), c(300, 450), type = "n", xlab="", ylab="")
+image <- as.raster(matrix(0:1, ncol=5, nrow=3))
+rasterImage(image, 100, 300, 150, 350, interpolate=FALSE)
+rasterImage(image, 100, 400, 150, 450)
+rasterImage(image, 200, 300, 200 + xinch(.5), 300 + yinch(.3), interpolate=FALSE)
+rasterImage(image, 200, 400, 250, 450, angle=15, interpolate=FALSE)
+par(op)
+-------------------------------------------------------------------------------------------------------
+rimage igraph qgraph rasterImage # Load rimage library:
+library('rimage')
+
+# Read the image:
+data(logo)
+img <- imagematrix(logo) # Sample an adjacency matrix:
+set.seed(1)
+adj <- matrix(sample(0:1,10^2,T,prob=c(0.8,0.2)),10,10) qgraph library('qgraph')
+
+# Run qgraph (plot the graph) and save the layout:
+L <- qgraph(adj,borders=FALSE,vsize=0,labels=F,directed=F)$layout
+
+# Plot images:
+apply(L,1,function(x)rasterImage(img,x[1]-0.1,x[2]-0.1,x[1]+0.1,x[2]+0.1)) igraph library('igraph')
+
+# Make the graph
+G <- graph.adjacency(adj,mode="undirected")
+
+# Create fixed layout:
+set.seed(1)
+L <- layout.fruchterman.reingold(G)
+
+# Rescale the layout to -1 to 1
+L[,1]=(L[,1]-min(L[,1]))/(max(L[,1])-min(L[,1]))*2-1
+L[,2]=(L[,2]-min(L[,2]))/(max(L[,2])-min(L[,2]))*2-1
+
+# Plot:
+plot(G,layout=L,vertex.size=0,vertex.frame.color="#00000000",vertex.label="")
+
+# Set images:
+apply(L,1,function(x)rasterImage(img,x[1]-0.1,x[2]-0.1,x[1]+0.1,x[2]+0.1)) vsize qgraph vertex.size igraph qgraph L <- qgraph(adj,borders=FALSE,vsize=10,labels=F,shape="square",color="#00000000")$layout
+
+apply(L,1,function(x)rasterImage(img,x[1]-0.1,x[2]-0.1,x[1]+0.1,x[2]+0.1)) igraph G <- graph.adjacency(adj)
+
+set.seed(1)
+L <- layout.fruchterman.reingold(G)
+
+L[,1]=(L[,1]-min(L[,1]))/(max(L[,1])-min(L[,1]))*2-1
+L[,2]=(L[,2]-min(L[,2]))/(max(L[,2])-min(L[,2]))*2-1
+
+plot(G,layout=L,vertex.size=17,vertex.shape="square",vertex.color="#00000000",vertex.frame.color="#00000000",vertex.label="")
+
+apply(L,1,function(x)rasterImage(img,x[1]-0.1,x[2]-0.1,x[1]+0.1,x[2]+0.1)) rimage png ReadImages qgraph # Download R logo:
+download.file("http://cran.r-project.org/Rlogo.jpg", file <- tempfile(fileext = ".jpg"), 
+    mode = "wb")
+
+# Sample an adjacency matrix:
+set.seed(1)
+adj <- matrix(sample(0:1, 10^2, TRUE, prob = c(0.8, 0.2)), 10, 10)
+
+# Run qgraph:
+qgraph(adj, images = file, labels = FALSE, borders = FALSE) qgraph
+-------------------------------------------------------------------------------------------------------
+read.jpeg() rimage anImage <- read.jpeg("anImage.jpeg")
+plot(anImage)
+points(my.x,my.y,col="red")
+... ?par readPNG png readPNG rasterImage img <- readPNG(system.file("img", "Rlogo.png", package="png"))
+r = as.raster(img[,,1:3])
+r[img[,,4] == 0] = "white"
+
+plot(1:2,type="n")
+rasterImage(r,1,1,2,2) read.gif caTools Gif <- read.gif("http://www.openbsd.org/art/puffy/ppuf600X544.gif")
+
+n <- dim(Gif$image)
+image(t(Gif$image)[n[2]:1,n[1]:1],col=Gif$col,axes=F) image(t(Gif$image)[n[2]:1,n[1]:1],col=Gif$col,axes=F)
+op <- par(new=T)
+plot(1:100,new=T)
+par(op)
+-------------------------------------------------------------------------------------------------------
+png thumb_ makeThumb <- function(file, height, width) {
+  require(png)
+  img <- readPNG(file)
+
+  png(file = paste("thumb", file, sep = "_"), height = height, width = width)
+    par(mar=c(0,0,0,0), xaxs="i", yaxs="i", ann=FALSE)
+    plot(1:2, type='n', xaxt = "n", yaxt = "n", xlab = "", ylab = "")
+    lim <- par()
+    rasterImage(img, lim$usr[1], lim$usr[3], lim$usr[2], lim$usr[4])
+  dev.off()
+} lapply lapply(listOfFiles, makeThumb, height = 200, width = 200)
+-------------------------------------------------------------------------------------------------------
+maxv <- 500
+
+v <- t(<matrix>)
+d <- <vector>
+di <- <vector>
+dm <- <vector>
+nr <- nrow(v)
+nc <- ncol(v)
+
+library(grid)
+vnorm <- v
+for (r in 1:nr) {
+  for (c in 1:nc) {
+    vnorm[r,c] <- min(1, v[r, nc-c+1]/500)
+    if (vnorm[r,c] == 0) {vnorm[r,c] <- "blue"}
+    else {vnorm[r,c] <- grey(vnorm[r,c])}
+  }
+}
+vnorm <- t(vnorm)
+
+x <- seq(1, nr)
+y <- rep(1, nr)
+xrange <- range(d)
+yrange <- c(0, 24)
+
+bm <- 90
+lm <- 40
+tm <- 12
+rm <- 12
+
+png(file="graph.png", width=nr+lm+rm, height=nc+tm+bm)
+par(mai=c(bm/72, lm/72, tm/72, rm/72))
+plot(d, y, ann=FALSE, xlim=xrange, ylim=yrange, axes=FALSE, xaxs="i", yaxs="i")
+axis(1, at=dm,labels=dm, col.axis="black", las=2)
+axis(2, at=seq(0,24),labels=seq(0,24), col.axis="black", las=2)
+rasterImage(vnorm, xrange[1], yrange[1], xrange[2], yrange[2], interpolate=FALSE)
+dev.off()
+-------------------------------------------------------------------------------------------------------
+> png("plot.png")
+> makeplot(100000) # simple function that plots 100k points 
+> dev.off()
+X11cairo 
+       2 
+> plotPNG = readPNG("plot.png")
+> pdf("plot.pdf")
+> par(mai=c(0,0,0,0))
+> plot(c(0,1),c(0,1),type="n")
+> rasterImage(plotPNG,0,0,1,1)
+> dev.off()
+-------------------------------------------------------------------------------------------------------
+func<- gsub(varname, 'zvar', func)
+    funcderiv<- try( D(parse(text=func), 'zvar') )
+    if(class(funcderiv) == 'try-error') stop("Can't calculate derivative") if(missing(funcderiv)){blah blah} # build Newton-Raphson fractal
+#define: f(z)  the convergence per Newton's method is 
+# zn+1 = zn - f(zn)/f'(zn)
+#record which root each starting z0 converges to, 
+# and to get even nicer coloring, record the number of iterations to get there.
+# Inputs:
+#   func: character string, including the variable. E.g., 'x+ 2*x^2' or 'sin(x)'
+#   varname: character string indicating the variable name
+#   zreal: vector(preferably) of Re(z)
+#   zim: vector of Im(z)
+#   rootprec: convergence precision for the NewtonRaphson algorithm
+#   maxiter: safety switch, maximum iterations, after which throw an error
+#
+nrfrac<-function(func='z^5 - 1 ', varname = 'z', zreal= seq(-5,5,by=.1), zim, rootprec=1.0e-5, maxiter=1e4, drawplot=T, drawiterplot=F, ...) {
+    zreal<-as.vector(zreal)
+    if(missing(zim)) zim <- as.vector(zreal)
+# precalculate F/F' 
+    # check for differentiability (in R's capability)
+    # and make sure to get the correct variable name into the function
+    func<- gsub(varname, 'zvar', func)
+    funcderiv<- try( D(parse(text=func), 'zvar') )
+    if(class(funcderiv) == 'try-error') stop("Can't calculate derivative")  
+# Interesting "feature" of deparse : default is to limit each string to 60 or64
+# chars.  Need to avoid that here.  Doubt I'd ever see a derivative w/ more
+# than 500 chars, the max allowed by deparse. To do it right, 
+# need sum(nchar(funcderiv)) as width, and even then need to do some sort of
+# paste(deparse(...),collapse='') to get a single string
+    nrfunc <- paste(text='(',func,')/(',deparse(funcderiv, width=500),')', collapse='')
+# first arg to outer()  will give rows
+# Stupid Bug: I need to REVERSE zim to get proper axis orientation
+    zstart<- outer(rev(zim*1i), zreal, "+")
+    zindex <- 1:(length(zreal)*length(zim))
+    zvec <- data.frame(zdata=as.vector(zstart), zindex=zindex,     itermap=rep(0,length(zindex)), badroot=rep(0,length(zindex)), rooterr=rep(0,length(zindex)) )
+
+#initialize data.frame for zout.  
+    zout=data.frame(zdata=rep(NA,length(zstart)), zindex=rep(NA,length(zindex)),     itermap=rep(0,length(zindex)), badroot=rep(0,length(zindex)), rooterr=rep(0,length(zindex)))
+    # a value for rounding purposes later on; yes it works for  rootprec >1 
+    logprec <-  -floor(log10(rootprec))
+    newtparam <- function(zvar) {}
+    body(newtparam)[2]  <- parse(text=paste('newz<-', nrfunc, collapse=''))
+    body(newtparam)[3] <- parse(text=paste('return(invisible(newz))'))
+    iter <- 1
+    zold <- zvec  # save zvec so I can return original values
+    zoutind <- 1 #initialize location to write solved values
+    while (iter <= maxiter & length(zold$zdata)>0 ) {
+        zold$rooterr <- newtparam(zold$zdata)
+        zold$zdata <- zold$zdata - zold$rooterr
+        rooterr <- abs(zold$rooterr)
+        zold$badroot[!is.finite(rooterr)] <- 1
+        zold$zdata[!is.finite(rooterr)] <- NA
+# what if solvind = FFFFFFF? -- can't write 'nothing' to zout
+        solvind <- (zold$badroot >0 | rooterr<rootprec)
+            if( sum(solvind)>0 ) zout[zoutind:(zoutind-1+sum(solvind)),] <- zold[solvind,]
+    #update zout index to next 'empty' row
+        zoutind<-zoutind + sum(solvind)
+# update the iter count for remaining elements:
+        zold$itermap <- iter
+# and reduce the size of the matrix being fed back to loop
+        zold<-zold[!solvind,]
+        iter <- iter +1
+    # just wonder if a gc() call here would make any difference
+# wow -- it sure does
+        gc()
+    }  # end of while
+# Now, there may be some nonconverged values, so:
+#  badroot[]  is set to 2  to distinguish from Inf/NaN locations
+        if( zoutind < length(zindex) ) { # there are nonconverged values
+#  fill the remaining rows, i.e. zout.index:length(zindex)
+            zout[(zoutind:length(zindex)),] <- zold # all of it
+            zold$badroot[] <- 2 # yes this is safe for length(badroot)==0
+            zold$zdata[]<-NA #keeps nonconverged values from messing up results
+            }
+#  be sure to properly re-order everything...
+    zout<-zout[order(zout$zindex),]
+    zout$zdata <- complex(re=round(Re(zout$zdata),logprec), im=round(Im(zout$zdata),logprec) )
+    rootvec <- factor(as.vector(zout$zdata), labels=c(1:length(unique(na.omit(as.vector(zout$zdata))))))
+    #convert from character, too!
+    rootIDmap<-matrix(as.numeric(rootvec), nr=length(zim))
+# to colorize very simply:  
+    if(drawplot) {
+             colorvec<-rainbow(length(unique(as.vector(rootIDmap))))
+        imagemat<-rootIDmap
+        imagemat[,]<-colorvec[imagemat]  #now has color strings
+        dev.new()
+# all '...' arguments used to set up plot
+        plot(range((zreal)),range((zim)), t='n',xlab='real',ylab='imaginary',... ) 
+        rasterImage(imagemat, range(zreal)[1], range(zim)[1], range(zreal)[2], range(zim)[2], interp=F)     
+        }
+
+    outs <- list(rootIDmap=rootIDmap, zvec=zvec, zout=zout, nrfunc=nrfunc)
+    return(invisible(outs))
+}
+-------------------------------------------------------------------------------------------------------
+lattice raster rasterVis vectorplot() spplot() levelplot() base graphics plot() "RasterLayer" levelplot() require(raster)
+require(rasterVis)
+
+## Create a raster and a SpatialPoints object.
+r <- raster()
+r[] <- 1:ncell(r)
+SP <- spsample(Spatial(bbox=bbox(r)), 10, type="random")
+
+## Then plot them    
+levelplot(r, col.regions = rev(terrain.colors(255)), cuts=254, margin=FALSE) +
+layer(sp.points(SP, col = "red"))
+
+## Or use this, which produces the same plot.
+# spplot(r, scales = list(draw=TRUE), 
+#        col.regions = rev(terrain.colors(255)), cuts=254) +
+# layer(sp.points(SP, col = "red")) SpatialPoints ## A function to test whether points fall within a raster's extent
+inExtent <- function(SP_obj, r_obj) {
+    crds <- SP_obj@coord
+    ext  <- extent(r_obj)
+    crds[,1] >= ext@xmin  &  crds[,1] <= ext@xmax &
+    crds[,2] >= ext@ymin  &  crds[,2] <= ext@ymax
+}
+## Remove any points in SP that don't fall within the extent of the raster 'r'
+SP <- SP[inExtent(SP, r), ] plot(r) plot raster rasterImage() image() useRaster plot() useRaster=TRUE ## Chain of functions dispatched by `plot(r, useRaster=TRUE)`
+getMethod("plot", c("RasterLayer", "missing"))
+raster:::.plotraster2
+raster:::.rasterImagePlot
+
+## Call within .rasterImagePlot() that sets up the plotting region
+plot(NA, NA, xlim = e[1:2], ylim = e[3:4], type = "n",
+           , xaxs = "i", yaxs = "i", asp = asp, ...)
+
+## Example showing why the above call produces the 'wrong' y-axis limits
+plot(c(-180,180), c(-90,90), 
+     xlim = c(-180,180), ylim = c(-90,90), pch = 16,
+     asp = 1,
+     main = "plot(r, useRaster=TRUE) -> \nincorrect y-axis limits") useRaster=FALSE ## Chain of functions dispatched by `plot(r, useRaster=FALSE)`
+getMethod("plot", c("RasterLayer", "missing"))
+raster:::.plotraster2
+raster:::.imageplot
+image.default
+
+## Call within image.default() that sets up the plotting region
+plot(NA, NA, xlim = xlim, ylim = ylim, type = "n", xaxs = xaxs, 
+     yaxs = yaxs, xlab = xlab, ylab = ylab, ...)
+
+## Example showing that the above call produces the wrong aspect ratio
+plot(c(-180,180), c(-90,90), 
+     xlim = c(-180,180), ylim = c(-90,90), pch = 16,
+     main = "plot(r,useRaster=FALSE) -> \nincorrect aspect ratio")
+-------------------------------------------------------------------------------------------------------
+rasterImage updateusr TeachingDemos library(EBImage)
+ice <- readImage('My Pictures/ice.png')
+pos <- structure(list(teamid = c("6", "6", "6", "6", "6", "6", "2",
+  "6", "6", "6", "2", "6", "10", "10", "10", "10", "20", "20",
+  "10", "10", "10", "20", "20", "20", "10", "10"), xcoord = c("79",
+  "81", "33", "34", "75", "52", "-67", "80", "44", "79", "-53",
+  "54", "-55", "-81", "-66", "-66", "45", "81", "-78", "-70", "-59",
+  "50", "53", "63", "-79", "-78"), ycoord = c("0", "0", "-18",
+  "-20", "6", "-11", "-7", "7", "-28", "-10", "35", "22", "25",
+  "-5", "25", "23", "-11", "13", "22", "16", "13", "23", "7", "16",
+  "8", "8")), .Names = c("teamid", "xcoord", "ycoord"),
+ class = "data.frame", row.names = c(74328L,
+  74331L, 74332L, 74334L, 74336L, 74338L, 74340L, 74341L, 74346L,
+  74347L, 74348L, 74349L, 100136L, 100137L, 100138L, 100139L, 100147L,
+  100148L, 100151L, 100154L, 100156L, 100158L, 100159L, 100161L,
+  100163L, 100167L)) 
+pos$xcoord <- as.numeric(pos$xcoord)
+pos$ycoord <- as.numeric(pos$ycoord)
+
+ice2 <- as.raster(ice)
+
+pin <- par('pin')
+plot( c(-100,100), c(-40,40), type='n', xlab='', ylab='', 
+    asp=pin[1]/pin[2], axes=FALSE, xaxs='i', yaxs='i')
+rasterImage(ice2, -100, -40, 100, 40, interpolate=FALSE)
+with(pos, text(xcoord, ycoord, teamid, col='green', cex=1.2) )
+-------------------------------------------------------------------------------------------------------
+rasterImage tmp <- as.raster(  rev(c('#00ff00','#0000ff')[df$taxid]) ) 
+par(xpd=NA)
+rasterImage( tmp, 3, 0.5, 3.1, 4.5, interpolate=FALSE) x= x= add=TRUE z2 <- cbind(z, NA, NA)
+image(x=c(1:3,3.05, 3.1), y=1:nr, z=t(z2), axes=FALSE)
+
+z3 <- cbind(NA,NA,NA, as.numeric(df$taxid))
+image(x=c(1:3,3.05, 3.1), y=1:nr, z=t(z3), add=TRUE, col=c('#00ff00','#0000ff'))
+-------------------------------------------------------------------------------------------------------
+par( mar=c(1,5,5,1) )
+plot.new()
+plot.window( xlim=c(0,10), ylim=c(0,11) )
+
+quant_vals <- findInterval( cor_matrix[-11,], 
+    c(-Inf, quantile(cor_matrix[-11,], c(0.05, 0.25, 0.45, 0.55, 0.75, 0.95), na.rm=TRUE ),
+            Inf) )
+quant_vals[ is.na(quant_vals) ] <- 4
+cols <- c('#ff0000','#ff6666','#ffaaaa','#ffffff','#aaffaa','#66ff66','#00ff00')
+colmat <- matrix( cols[quant_vals], ncol=10, nrow=10)
+
+rasterImage(colmat, 0, 1, 10, 11, interpolate=FALSE)
+for(i in seq_along( cor_matrix[11,] ) ) {
+    rect( i-1, 0.1, i-1 + cor_matrix[11,i]/max(cor_matrix[11,]), 0.9, col='lightsteelblue3')
+}
+
+text( col( cor_matrix )-0.5, 11.5-row( cor_matrix ), cor_matrix, font=2 )
+rect( 0,1,10,11 )
+rect( 0,0,10,1)
+axis(2, at=(11:1)-0.5, labels=rownames(cor_matrix), tick=FALSE, las=2)
+axis(3, at=(1:10)-0.5, labels=colnames(cor_matrix), tick=FALSE, las=2)
+
+rect(0,8,3,11, lwd=2)
+rect(4,4,7,7, lwd=2)
+rect(8,1,10,3, lwd=2)
+-------------------------------------------------------------------------------------------------------
+library(jpeg)
+library(png)
+library(plyr)
+
+reduceCol <-  function(x,dim=c(1,1))
+{
+  arr <- array(dim=c(nrow(x),ncol(x),4))
+  cols <- col2rgb(c(x),alpha=TRUE)
+  arr[,,1] <- matrix(cols[1,],nrow(x),ncol(x),byrow=TRUE)
+  arr[,,2] <- matrix(cols[2,],nrow(x),ncol(x),byrow=TRUE)
+  arr[,,3] <- matrix(cols[3,],nrow(x),ncol(x),byrow=TRUE)
+  arr[,,4] <- matrix(cols[4,],nrow(x),ncol(x),byrow=TRUE)
+
+
+
+  Res <- array(dim=c(dim,4))
+  if (dim[1]>1) seqRows <- as.numeric(cut(1:nrow(x),dim[1])) else seqRows <- rep(1,nrow(x))
+  if (dim[2]>1) seqCols <- as.numeric(cut(1:ncol(x),dim[2])) else seqCols <- rep(1,ncol(x))
+
+
+  for (i in 1:dim[1])
+  {
+    for (j in 1:dim[2])
+    { 
+      for (z in 1:4)
+      {
+        Res[i,j,z] <- mean(arr[seqRows==i,seqCols==j,z])
+      }
+    }
+  }
+  return(Res)
+}
+
+rgbarr2colmat <- function(mat) 
+{
+  Res <- array(dim=dim(mat)[1:2])
+  for (i in 1:dim(mat)[1])
+  {
+    for (j in 1:dim(mat)[2])
+    {
+      Res[i,j] <- rgb(mat[i,j,1],mat[i,j,2],mat[i,j,3],mat[i,j,4],maxColorValue=255)
+    }
+  }
+  return(Res)
+}
+
+artymosaic <- function(BG,pics,res=c(10,10))
+{
+  BGreduced <- reduceCol(BG,res)
+  Picmeancol <- lapply(pics,reduceCol)
+
+  blockPic <- array(dim=res)
+  for (i in 1:res[1])
+  {
+    for (j in 1:res[2])
+    {
+      blockPic[i,j] <- which.min(sapply(Picmeancol,function(x)sum(abs(BGreduced[i,j,]-x))))
+    }
+  }
+  blockPic <- t(blockPic)
+  blockPic <- blockPic[,ncol(blockPic):1]
+
+  # Open empty plot:
+  par(mar=c(0,0,0,0))
+  plot(1,xlim=c(0,1),ylim=c(0,1),type="n",bty="n",axes=FALSE)
+
+  # plot moasics:
+  seqRows <- seq(0,1,length=res[1]+1)
+  seqCols <- seq(0,1,length=res[2]+1)
+  for (i in 1:res[1])
+  {
+    for (j in 1:res[2])
+    {
+      rasterImage(pics[[blockPic[i,j]]],seqRows[i],seqCols[j],seqRows[i+1],seqCols[j+1],interpolate=FALSE)
+    }
+  }
+} artymosaic bg <- readJPEG("Rlogo.jpg")
+BG <- as.raster(bg)
+
+jpgs <- lapply(list.files("mosaic/",pattern="\\.jpg",full.names=TRUE),readJPEG)
+pics <- lapply(jpgs,as.raster)
+
+png("test.png")
+artymosaic(BG,pics,c(50,50))
+dev.off()
+-------------------------------------------------------------------------------------------------------
+library(png)
+
+#Replace the directory and file information with your info
+ima <- readPNG("C:\\Documents and Settings\\Bill\\Data\\R\\Data\\Images\\sun.png")
+
+#Set up the plot area
+plot(1:2, type='n', main="Plotting Over an Image", xlab="x", ylab="y")
+
+#Get the plot information so the image will fill the plot box, and draw it
+lim <- par()
+rasterImage(ima, lim$usr[1], lim$usr[3], lim$usr[2], lim$usr[4])
+grid()
+lines(c(1, 1.2, 1.4, 1.6, 1.8, 2.0), c(1, 1.3, 1.7, 1.6, 1.7, 1.0), type="b", lwd=5, col="white")
+-------------------------------------------------------------------------------------------------------
+rasterImage grDevices layout layout(matrix(1:2,ncol=2), width = c(2,1),height = c(1,1))
+plot(1:20, 1:20, pch = 19, cex=2, col = colfunc(20))
+
+legend_image <- as.raster(matrix(colfunc(20), ncol=1))
+plot(c(0,2),c(0,1),type = 'n', axes = F,xlab = '', ylab = '', main = 'legend title')
+text(x=1.5, y = seq(0,1,l=5), labels = seq(0,1,l=5))
+rasterImage(legend_image, 0, 0, 1,1)
+-------------------------------------------------------------------------------------------------------
+rasterImage rasterImage par('usr') grconvertX grconvertY rasterImage add=TRUE tmp <- rnorm(100)
+hist(tmp)
+image <- as.raster(matrix(0:1, ncol=5, nrow=3))
+tmp2 <- par('usr')
+rasterImage(image, tmp2[1], tmp2[3], tmp2[2], tmp2[4])
+hist(tmp, add=TRUE, border='red', lwd=3)
+-------------------------------------------------------------------------------------------------------
+png raster library(png)
+library(raster) spotimg.png pngimg <- readPNG("spotimg.png")
+plot(NA,xlim=c(0,10),ylim=c(0,10))
+rasterImage(pngimg,4.5,4.5,5,5) rasterImage xleft, ybottom, xright, ytop
+-------------------------------------------------------------------------------------------------------
+library(png)
+# use the URL from your post, or construct on-the-fly
+url = "http://pulse.blogs.yandex.net/?size=small&charset=utf8&period=20120116-20130116&query0=%D0%BF%D1%83%D1%82%D0%B8%D0%BD"
+download.file(url,destfile='/tmp/test.png',mode='wb')
+xvals=rnorm(10)
+yvals=rnorm(10)
+# just set up an "empty" plot
+plot(xvals,yvals,type='n')
+r = readPNG('/tmp/test.png')
+# read the help for rasterImage for details
+rasterImage(r,-1,-1,1,1)
+# plot the points over the image
+points(xvals,yvals)
+-------------------------------------------------------------------------------------------------------
+## An example matrix
+(m <- matrix(1:9, ncol=3))
+#      [,1] [,2] [,3]
+# [1,]    1    4    7
+# [2,]    2    5    8
+# [3,]    3    6    9
+
+## The same matrix rotated 90 degrees clockwise
+t(m)[,nrow(m):1]
+#      [,1] [,2] [,3]
+# [1,]    3    2    1
+# [2,]    6    5    4
+# [3,]    9    8    7 image() m <- matrix(1:9, ncol=3)
+
+
+## ------- These plotting functions DO rotate a matrix --------
+
+## image()
+image(m, col=blues9)
+
+## levelplot() -- a lattice equivalent of image()
+library(lattice)    
+levelplot(m, at=(1:10)-0.5, col.regions=blues9)
+
+## Others
+contour(m)
+filled.contour(m, color=colorRampPalette(blues9))
+persp(m) 
+lattice::contourplot(m)
+lattice::wireframe(m)  ## Nicely illustrates the logic of the indexing it uses
+
+
+## ------- These plotting functions DO NOT --------
+
+## imageRaster() -- a graphical primitive used by image(), among other functions 
+plot(0:1, 0:1, type="n", xlab="", ylab="")
+rasterImage(matrix(blues9, ncol=3), 0,0,1,1, interpolate=FALSE)
+
+## grid.raster() -- imageRaster()'s counterpart in the grid graphical system
+library(grid)
+grid.raster(matrix(blues9, ncol=3), interpolate=FALSE)
+
+## plot(raster()) in raster package
+library(raster)
+plot(raster(m), col=blues9)
+-------------------------------------------------------------------------------------------------------
+par(mar=c(0,0,0,0))
+plot.new()
+rasterImage(z,-0.03,-0.03,1.03,1.03,interpolate=FALSE) par(mar=c(0,0,0,0))
+plot.new()
+rasterImage(z,-0.04,-0.04,1.04,1.04,interpolate=FALSE)
+-------------------------------------------------------------------------------------------------------
+library(raster)
+r <- brick(file.path(R.home(), "doc", "html", "logo.jpg"))
+pdf("a.pdf")
+plotRGB(r)
+dev.off()
+-------------------------------------------------------------------------------------------------------
+png mean=100; sd=15
+lb=80; ub=120
+
+x <- seq(-4,4,length=100)*sd + mean
+hx <- dnorm(x,mean,sd)
+
+# load package and an image
+library(png)
+ima <- readPNG("Red_Hot_Sun.PNG")
+
+# plot an empty plot with your labels, etc.
+plot(1,xlim=c(min(x),max(x)), type="n", xlab="IQ Values", ylab="Density",
+  main="Normal Distribution", axes=FALSE)
+# put in the image
+lim <- par()
+rasterImage(ima, lim$usr[1], lim$usr[3], lim$usr[2], lim$usr[4])
+
+# add your plot
+par(new=TRUE)
+plot(x, hx, xlim=c(min(x),max(x)), type="l", xlab="", ylab="", axes=FALSE)
+i <- x >= lb & x <= ub
+lines(x, hx)
+# add a polygon to cover the background above plot
+polygon(c(x,180,180,20,20), c(hx,0,1,1,0), col="white")
+# add polygons to cover the areas under the plot you don't want visible
+polygon(c(-20,-20,x[x<=lb],lb), c(-10,min(hx),hx[x<=lb],-10), col="white")
+polygon(c(ub,x[x>=ub],200,200), c(-1,hx[x>=ub],min(hx),-1), col="white")
+
+# add your extra text
+area <- pnorm(ub, mean, sd) - pnorm(lb, mean, sd)
+result <- paste("P(",lb,"< IQ <",ub,") =",
+   signif(area, digits=3))
+mtext(result,2)
+-------------------------------------------------------------------------------------------------------
+png("~/output.png", width=1800, height=1000)
+par(mfrow=c(2,2))
+# do fancy plot stuff here
+dev.off()
+# <---- I used a second cell here ---->
+library(png)
+x <- readPNG("~/output.png")
+png("tmp.png", width=1800, height=1000)
+plot(1:2, type="n", axes=F, xlab="", ylab="")
+# rasterImage() prints on the plot. The plot goes from x = c(1,2) to y = c(1,2).
+# So we tell rasterImage() to print within that x/y (i.e. "1,1,2,2") to keep
+# the plot scaled correctly.
+rasterImage(x, 1, 1, 2, 2)
+dev.off()
+-------------------------------------------------------------------------------------------------------
+bmp library(bmp)
+fl <- system.file("images", "5HT1bMARCM-F000001_seg001_lsm.bmp",  package = "bmp")
+b <- read.bmp(fl) str(b)
+ int [1:206, 1:206, 1:3] 107 111 119 123 115 119 119 139 143 143 ...
+ - attr(*, "header")=List of 13
+  ..$ filesize     : num 127774
+  ..$ offset       : num 54 dim(b)
+[1] 206 206   3 as.raster max m <- as.raster(b, max = 255) m str(m)
+ 'raster' chr [1:206, 1:206] "#6B0303" "#6F0303" "#770303" ...
+
+
+dim(m)
+[1] 206 206 plot(1, type = "n", axes = FALSE, xlab = "", ylab = "")
+usr <- par("usr")
+rasterImage(m, usr[1], usr[3], usr[2], usr[4]) readbitmap rgdal raster
+-------------------------------------------------------------------------------------------------------
+rasterImage image <- as.raster( matrix( seq(0,1,length.out=1001), nrow=1001, ncol=1001) )
+tmp <- ( row(image) - 501 ) ^2 + ( col(image) - 501 )^2
+image[tmp > 500^2] <- NA
+
+image2 <- as.raster( matrix( seq(1,0, length.out=1001), nrow=1001, ncol=1001) )
+image2[ tmp > 500^2 ] <- NA
+
+image3 <- row(image) + col(image)
+image3 <- image3/max(image3)
+image3[tmp>500^2] <- NA
+image4 <- 1-image3
+image3 <- as.raster(image3)
+image4 <- as.raster(image4)
+
+plot( 0:1, 0:1, type='n', asp=1,ann=FALSE,axes=FALSE)
+rect(0,0,1,1, col='grey')
+rasterImage(image, 0.2, 0.2, 0.3, 0.3)
+rasterImage(image2, 0.6, 0.6, 0.7, 0.7)
+rasterImage(image3, 0.6, 0.3, 0.7, 0.4)
+rasterImage(image4, 0.3, 0.7, 0.4, 0.8)
+-------------------------------------------------------------------------------------------------------
+con <- url("http://actor.epa.gov/actor/image?format=png%3Aw1000%2Ch1000&casrn=1478-61-1",
+    open='rb')
+
+rawpng <- readBin(con, what='raw', n=50000)
+
+close(con)
+
+png1 <- readPNG(rawpng) plot(1:10, type='n')
+rasterImage( as.raster(png1), 3,3,8,8 )
+-------------------------------------------------------------------------------------------------------
+rasterImage plotTriMatrix <- function(x) {
+  ## clear lower triangle
+  x[lower.tri(x)] <- NA
+
+  ## calculate diag
+  nr <- nrow(x)
+  nc <- ncol(x)
+  d <- sqrt(nr^2 + nc^2)
+  d2 <- 0.5 * d
+
+  ## empty plot area
+  plot(NA, type="n", xlim=c(0, d), ylim=c(0, d), xlab="", ylab="")
+
+  ## plot matrix and rotate 45
+  rasterImage(as.raster(x),xleft=d2, xright=d2+nc, ybottom=-d2, ytop=-d2+nr+1,interpolate=FALSE, angle=45)
+} set.seed(123)
+m <- matrix(runif(100), 10, 10)
+
+plotTriMatrix(m)
+-------------------------------------------------------------------------------------------------------
+xy <- data.frame(x=runif(10, 0, 100), y=runif(10, 0, 100))
+
+require(png)
+img <- readPNG(system.file("img", "Rlogo.png", package="png"))
+
+thumbnails <- function(x, y, images, width = 0.1*diff(range(x)), 
+                       height = 0.1*diff(range(y))){
+
+  images <- replicate(length(x), images, simplify=FALSE)
+  stopifnot(length(x) == length(y))
+
+  for (ii in seq_along(x)){
+    rasterImage(images[[ii]], xleft=x[ii] - 0.5*width,ybottom= y[ii] - 0.5*height,xright=x[ii] + 0.5*width, ytop= y[ii] + 0.5*height, interpolate=FALSE)
+  }
+}
+
+plot(xy, t="n")
+thumbnails(xy[,1], xy[,2], img)
+-------------------------------------------------------------------------------------------------------
+library(png)
+foo<-readPNG("c:/test/b/s2.png")
+#that's an array n by m by 3 . Now reduce to grey
+bar<- foo[,,1]+foo[,,2]+foo[,,3]
+# normalize
+bar <- bar/max(bar)
+# one of many ways to plot
+plot(c(0,1),c(0,1),t='n')
+rasterImage(bar, 0,0,1,1) bar foo
+-------------------------------------------------------------------------------------------------------

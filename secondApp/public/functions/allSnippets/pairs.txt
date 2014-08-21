@@ -1,0 +1,56 @@
+pairs(iris[, 1:4], lower.panel=panel.Kendall, upper.panel=panel.points)
+pairs(as.matrix, lower.panel = panel.low, upper.panel = panel.up)
+pairs(USJudgeRatings, lower.panel = my_line, upper.panel = panel.cor)
+$pairs(as.matrix, vars], lower.panel = panel.low, upper.panel = panel.up)
+
+$pairs(iris, upper.panel = panel.cor)
+
+$pairs(f, col=1:ncol, upper.panel=NULL, main="Factor loadings")
+
+pairs()
+pairs(testData)
+pairs(my_rasters)
+pairs(USJudgeRatings[)
+pairs(k)
+pairs(iris[, 2:4])
+pairs(data[i)
+pairs(iris)
+pairs(data.matrix)
+$pairs(data)
+pairs(banknote[)
+pairs(daq)
+
+$pairs(Dat, log="xy")
+
+$pairs(list, panel = function)
+
+$pairs(as.data.frame, upper.panel = pnl, diag.panel = pnl, cex.labels = 1)
+
+$pairs(U, panel = mypanel, diag.panel=mydiag.panel, label.pos = 0.5)
+
+pairs(C, col=c)
+pairs(m, col=cols)
+pairs(iris[1:4], main = "Anderson's Iris Data -- 3 species", pch = 21, bg = c, oma=c)
+pairs(X, xlim=c, ylim=c)
+pairs(pc.cr, col=c)
+pairs(a[, 2:3], col=a[, 1])
+pairs(f$loadings, factors=5)
+pairs(iris, col=cols)
+$pairs(pca, 1:5], col = mycolors)
+
+$pairs(m, panel=panelfun, panel=panelfun, pch=16)
+
+$pairs(iris[1:4], main = "Width", pch = 24, bg = c, upper.panel=NULL, labels=c, font.labels=1, cex.labels=2)
+
+$pairs(tmp, lower.panel=panel.cor, upper.panel=panel.my.points, labels=c)
+pairs(dat[, -5], lower.panel = foo.lower, upper.panel = foo.upper, data)
+
+pairs(dat[, -5], lower.panel = foo.lower, upper.panel = foo.upper, ind.upper = dat, ind.lower = dat, col.upper = 'blue', col.lower = 'red')
+pairs(x.mat, col = cl, lower.panel=low.panelfun, upper.panel=up.panelfun)
+$pairs(rbind, col = cl, lower.panel=low.panelfun, upper.panel=up.panelfun)
+
+pairs(e1, e2)
+pairs(pc$x, c)
+$pairs(dat, labels=c)
+pairs(ddbind[, grep)
+

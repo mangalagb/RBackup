@@ -1,0 +1,10 @@
+$mosaicplot(Loan.Purpose, Home.Ownership)
+mosaicplot(x[, 2:4], main = 'Proportions')
+
+$mosaicplot(a, dir = "h", off = 0, color = TRUE)
+
+$mosaicplot(country ~ name, data = df2)
+
+mosaicplot(dtab)
+$mosaicplot(with)
+

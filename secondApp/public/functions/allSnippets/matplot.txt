@@ -1,0 +1,128 @@
+$matplot(1:10, log10, type="l", xlab="log2, ylab="log10, lty=1)
+
+matplot(x=1:12, log10, type="l", ylab="log10, xlab="log2, col=1:3, lty=1)
+$matplot(xl, pvals, type="l", col=cvec, lty=lvec, xlab='X label', ylab='Y label')
+
+$matplot(xcum, type="l", xlab="Number of Bets", ylab="Cumulative Sum", main="Cumulative Results", col=rgb)
+
+$matplot(p, t, type='l', xlab='prob', ylab='count')
+
+matplot(x[, 1], x[, -1], type="l", lty = 1)
+$matplot(rbind, rbind, type='l', lty=1)
+matplot(x, y, ..., x[, 2], 2])
+matplot(L1[, 1], L1[, -1], type="l", lty=1, bty="l", las=1)
+matplot(X, Y, type="l", lty=1)
+matplot(foo[, 1], foo[, c, t='l', 'col2')
+
+$matplot(temp1, cbind, t="l", lty=1, col=c)
+
+matplot(cbind, type="l", col=1, lty = 1)
+matplot(mat, type="l", col="black", lty=1)
+matplot(counts, type="l", lty=1, col=colors)
+$matplot(cbind, type="l", col=1, lty=1)
+
+$matplot(DF[, -1], col=1:ncol, type='l', lty=1, ylim=range, axes=FALSE)
+
+matplot(d, type="l", lty=1, lwd=3, las=1)
+$matplot(mmean, type="l", lwd=3, lty=1)
+
+matplot(x = myDat[, 1], y = myDat[, -1], type = "p", pch = 21)
+$matplot(d[, 1], d[, -1], type="b", pch=1, xaxt="n")
+
+$matplot(x, cbind, type="l", col=c)
+
+$matplot(x=1:4, dl, type="b", ylim=c, col=c)
+
+$matplot(seq, mat, type="n", ylim=c)
+
+matplot(dat, type = c, pch=1, col = 1:4)
+$matplot(t, type="b", pch=20, col=cl)
+
+$matplot(test_transposed, type = "b", ylab="y", col=colors, main="MATPLOT with groups", pch = 1:2)
+
+$matplot(dataPlot1, axes=T, frame=T, type="l", xlab="time, ylab="temperature, main=names)
+
+matplot(fVals, powsF, type="l", lty=1, lwd=2, xlab="effect size f", ylab="Power", main="Power one-way ANOVA", xaxs="i", xlim=c, col=c)
+$matplot(dVals, powsT, type="l", lty=1, lwd=2, xlab="effect size d", ylab="Power", main="Power one-sample t-Test", xaxs="i", xlim=c, col=c)
+
+$matplot(t, type='l', lty=1)
+
+matplot(mydata[, 1], mydata[, -1], type="l")
+matplot(x=No., y=cbind, type="l")
+matplot(x, y, type="p")
+matplot(df[, 1], df[, -1], type="l")
+matplot(x=data[[1]], y=data[-1], type="l", xaxt="n")
+matplot(x = df[, 1], y = df[, -1], type = "l")
+matplot(1:nrow, df, type="l")
+matplot(HDL.mon.mat[, 1], HDL.mon.mat, type="pl")
+$matplot(com_30, DCCrho, xaxt = "n", type='l')
+
+$matplot(temp, type = "o", pch = 1)
+
+$matplot(dat, col=c, pch=20)
+
+matplot(X, t, pch=1)
+$matplot(x, cbind, pch=1)
+
+$matplot(dat[, 1], dat[2:5], type="o", pch=19, col=c, xaxt="n", xlab="Year-Month", ylab="Value", x=dat, format="%Y-%m")
+
+$matplot(mat, type="l", ylim=c, ylab="y TBA", main="TBA", xlab="x TBA", axes=FALSE, frame.plot=FALSE, col=coll, lty=rep)
+
+matplot(testdf, show.values = TRUE, axes = FALSE, xlab = "", ylab = "", vcex = 2, vcol = "black", extremes = c)
+matplot(x=Mvalues, show.values=2, cellcolors=Mcolors, xlab="x", ylab="y", axes=FALSE, vcex=0.4)
+$matplot(t, show.legend = TRUE, axes = TRUE, xlab = "", ylab = "", extremes = c)
+
+$matplot(t, ], t="l", lty=1, las=1, ylab="Score", xlab="Test", xaxt="n")
+
+$matplot(M, cbind, type="b", xlab= "Minutes", ylab=expression, xlim=range, ylim=range)
+
+matplot(x, cbind)
+matplot(head, n = 6L, ...)
+$matplot(lambda, b)
+matplot(1:n, m)
+matplot(df[, 1], df_approx)
+matplot(df, df[)
+
+matplot(replicate, type="l")
+matplot(d.que, type="l", measure=c)
+matplot(data.matrix, type="b", xaxt="n")
+matplot(test["time"], test[c, type="l")
+matplot(t, type="l")
+matplot(t, type = "l")
+matplot(d.cum, type="l")
+matplot(obs_v_exp, type='l')
+matplot(df1_xts_merge, type="l", screens=1, auto.legend=TRUE)
+matplot(data[, namesOfThreeLargest], type="l")
+$matplot(cbind, type='l')
+
+$matplot(Data[id], type='l')
+
+matplot(mat, cellcolors = color.scale)
+matplot(cbind)
+matplot()
+$matplot(data)
+matplot(t, show.legend = TRUE, extremes = c)
+matplot(x, cellcolors=palmat, main=paste, show.values=2, vcol=rgb, axes=FALSE, vcex=0.7)
+
+$matplot(data2[, 1:2], add=TRUE)
+
+$matplot(y = mat1)
+
+$matplot(data1[, 1:2], xlim = c, ylim = c)
+
+$matplot(dat[1], dat[-1])
+
+matplot(colnames, t, xlab="Tube numbers", ylab="standard deviation", type="b", lty=1, pch=19)
+$matplot(rownames, Alltubes, xlab="Measurement locations", ylab="standard deviation", type="b", lty=1, pch=19)
+
+matplot(rnorm, col="blue", axes=F, type="l", lwd=10, xlab="", ylab="")
+$matplot(rnorm, col="red", axes=F, type="l", lwd=10, xlab="", ylab="")
+
+matplot(df, type="b", lty=1, pch=1, col=c)
+matplot(1:23, t, type="l", col=colors, lty=1, pch=markers, bty="n", las=1, main="Categorical Percent over Time")
+matplot(1:10, data.frame, type="l", lty=1, lwd=1, col=c, type="l", lty=1, lwd=1, col=c)
+matplot(df, df[, 2:3], type = "b", pch=19, col = 1:2)
+matplot(x = df[, 1], y = df[, -1], type = "l", lty = 1, col = cols)
+matplot(SBP.qtr.mat[, 1], SBP.qtr.mat, type="pl", ISOdate, "10 years")
+$matplot(as.numeric, t, type="o", pch=19, lty=1, ann=FALSE)
+

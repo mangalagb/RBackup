@@ -1,0 +1,30 @@
+$dotchart(aData2[, 2], labels=aData2[, 1], xlim=c)
+
+$dotchart(b, xlim=c)
+
+$dotchart(x, col="blue", xlim=c, main=title)
+
+dotchart(t, 3], main="Frequencies of topics1 - topics2")
+dotchart(tab, main = "dotchart or dotplot")
+$dotchart(VADeaths, main = "Death Rates in Virginia - 1940", main = "Death Rates in Virginia - 1940")
+
+$dotchart(averages, labels=labels, xlab='average', pch=20, xlim=c)
+
+$dotchart(data, data, xlab="Indmed", ylab="States")
+
+dotchart(data)
+dotchart(mag, group = cats)
+dotchart(m)
+$dotchart(table)
+dotchart(total)
+dotchart(count)
+dotchart(VADeaths)
+dotchart()
+
+dotchart(x, labels = row.names, cex=.7, groups = -x, gcolor = "black", color = x, pch=19, main = "Gas", xlab = "Miles Per Gallon")
+$dotchart(x, labels = row.names, cex=.7, groups = factor, gcolor = "black", color = x, pch=19, main ="Gas cylinder", xlab = "Miles Per Gallon")
+
+dotchart(varImpData[, c)
+dotchart(as.matrix, labels = "")
+$dotchart(dat, dat$Value)
+

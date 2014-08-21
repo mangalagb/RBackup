@@ -1,0 +1,343 @@
+density: the density of shading lines, in lines per inch.  The default
+          value of ‘NULL’ means that no shading lines are drawn.
+          Non-positive values of ‘density’ also inhibit the drawing of
+          shading lines.
+
+pie(c(1,2,3),density=c(1,2,20))
+
+hist(runif(200),density=c(10,20,30))
+-------------------------------------------------------------------------------------------------------
+packages <- available.packages()[,'Package']
+
+ ggplot(data.frame(n = nchar(packages))) +
+   geom_histogram(aes(n), binwidth=1) all <- length(packages)
+ ## 3168
+ up <- sum(toupper(packages) == packages)
+ ## 262
+ low <- sum(tolower(packages) == packages)
+ ## 1697
+ pie(c(up, low, all-up-low), labels=c("UPPERCASE","lowercase","cAmElCaSe")) let <- sapply(sapply(letters, grep, tolower(packages)), length)
+ barplot(let) length(packages[grep("2$", packages, perl=TRUE)])
+ # 29
+-------------------------------------------------------------------------------------------------------
+object.sizes <- function(obs=ls(envir=.GlobalEnv))
+
+{
+
+return(rev(sort(sapply(obs, function (object.name) object.size(get(object.name))))))
+
+}
+
+pie(object.sizes(), main="Memory usage by object")
+-------------------------------------------------------------------------------------------------------
+n = 1000
+
+set.seed(12345)
+n.clusters = 100
+clusters = rep(1:n.clusters, length.out=n)
+
+n.factors = 10
+factors = round(rnorm(n, n.factors/2, n.factors/5))
+factors[factors > n.factors] = n.factors
+factors[factors < 1] = 1
+
+data = data.frame(cluster=clusters, factor=factors) > data
+  cluster factor
+1       1      6
+2       2      6
+3       3      5
+4       4      4
+5       5      6
+6       6      1
+... counts = with(data, table(tapply(factor, cluster, function(x) paste(as.character(sort(unique(x))), collapse='')))) dev.new(width=5, height=5)
+pie(counts[counts>1])
+-------------------------------------------------------------------------------------------------------
+foo <- sapply(as.list(values), function(x) bquote(.(x) ~ m^3))
+pie(values, labels = as.expression(foo))
+-------------------------------------------------------------------------------------------------------
+count.uid d2 pie(d2$count.uid,labels=d2$school)
+-------------------------------------------------------------------------------------------------------
+setContentType("image/png")
+t <- tempfile()
+png(t,type="cairo")
+plot(rnorm(10))
+dev.off()
+sendBin(readBin(t,'raw',n=file.info(t)$size))
+unlink(t)
+DONE
+-------------------------------------------------------------------------------------------------------
+plot(1:5,type="n",main="Pie charts are evil",xlab="",ylab="",axes=FALSE)#empty plot
+require(plotrix)
+main_col <- c("#ff0000","#80ff00","#00ffff")#nice colors
+main_pie <- floating.pie(3,3,c(40,50,20), col=main_col,radius=1)#your big pie
+#here are your small pies with labels using plotrix functions
+small_col <- c("black","white")
+small_lab <- c("I","II")
+A <- floating.pie(3.8,4.5,c(15,5), col=small_col,radius=0.2)
+pie.labels(3.8,4.5,A,small_lab,border=F,radius=0.3,cex=0.8)
+B <- floating.pie(1.7,2,c(15,25), col=small_col,radius=0.2)
+pie.labels(1.7,2,B,small_lab,border=F,radius=0.3,cex=0.8)
+C <- floating.pie(4.3,2,c(5,45), col=small_col,radius=0.2)
+pie.labels(4.3,2,C,small_lab,border=F,radius=0.3,cex=0.8)
+#and finally very useful legend
+legend("right",legend=c("A","B","C"),col=main_col,bty="n",pch=15)
+-------------------------------------------------------------------------------------------------------
+c25 <- c("dodgerblue2","#E31A1C", # red
+                "green4",
+                "#6A3D9A", # purple
+                "#FF7F00", # orange
+                "black","gold1",
+                "skyblue2","#FB9A99", # lt pink
+                "palegreen2",
+                "#CAB2D6", # lt purple
+                "#FDBF6F", # lt orange
+                "gray70", "khaki2",
+                "maroon","orchid1","deeppink1","blue1","steelblue4",
+                "darkturquoise","green1","yellow4","yellow3",
+                "darkorange4","brown")
+pie(rep(1,25), col=c25)
+-------------------------------------------------------------------------------------------------------
+fig.keep fig.keep = 'last' require(knitr)
+temp <- "```{r junkislands, fig.width=8, fig.height=5, fig.keep = 'last'}
+layout(t(1:2))
+pie(islands)
+barplot(islands)
+```"
+cat(temp, file="junk.Rmd")
+knit("junk.Rmd", "junk.md") ```r
+layout(t(1:2))
+pie(islands)
+barplot(islands)
+```
+
+![plot of chunk junkislands](figure/junkislands.png)
+-------------------------------------------------------------------------------------------------------
+load(url("http://dl.dropbox.com/u/61803503/nycounty.RData"))
+
+library(plotrix)
+e=10^-5
+myglyff=function(gi) {
+floating.pie(mean(gi$long),
+             mean(gi$lat),
+             x=c(gi[1,"white"]+e,
+                 gi[1,"black"]+e,
+                 gi[1,"hispanic"]+e,
+                 gi[1,"asian"]+e,
+                 gi[1,"other"]+e),
+              radius=.1) #insert size variable here
+}
+
+g1=ny[which(ny$group==1),]
+plot(g1$long,
+     g1$lat,
+     type='l',
+     xlim=c(-80,-71.5),
+     ylim=c(40.5,45.1))
+
+myglyff(g1)
+
+for(i in 2:62)
+  {gi=ny[which(ny$group==i),]
+    lines(gi$long,gi$lat)
+    myglyff(gi)
+  }
+-------------------------------------------------------------------------------------------------------
+R ?pie $ cat t.r 
+require(grDevices)
+
+pie.sales <- c(0.12, 0.3, 0.26, 0.16, 0.04, 0.12)
+png('t1.png')
+ pie(pie.sales, clockwise=TRUE, main="pie(*, clockwise=TRUE)", 
+     labels=c('a','b','c','d','e','f'))
+ segments(0,0, 0,1, col= "red", lwd = 2)
+ text(0,1, "init.angle = 90", col= "red")
+-------------------------------------------------------------------------------------------------------
+par(mfrow = c(1,2))
+pie(c(mappedReads,unmappedReads),labels=labels[1:2], main = "Global")
+pie(c(mappedTargetReads,offtargetmappedReads),labels=labels[3:4],
+    main = "MappedReads")
+-------------------------------------------------------------------------------------------------------
+xpd=TRUE par() par(xpd=TRUE)
+pie(numb, col=colors, labels=numb_labels, clockwise=TRUE)
+legend(-1.4,1.6, legend = xx, fill=colors, bty="n")
+-------------------------------------------------------------------------------------------------------
+ggplot2 layout par(mai = c(0,0,0,0))
+layout(c(1,2),heights=c(0.3,1))
+plot.new()
+legend("bottom", legend = xx, fill=colors, bty="n")
+pie(numb, col=colors, labels=numb_labels, clockwise=TRUE)
+-------------------------------------------------------------------------------------------------------
+polygon lines pie ... lwd ...
+polygon(c(P$x, 0), c(P$y, 0), density = density[i], angle = angle[i], 
+        border = border[i], col = col[i], lty = lty[i])
+    P <- t2xy(mean(x[i + 0:1]))
+    lab <- as.character(labels[i])
+    if (!is.na(lab) && nzchar(lab)) {
+        lines(c(1, 1.05) * P$x, c(1, 1.05) * P$y)
+.... par(lwd = 2) pie # save original settings
+opar <- par(no.readonly = TRUE)
+par(lwd = 2)
+pie(x1$V1, labels=lbls1, col=tail(brewer.pal(3, 'PuBu'), n=2), 
+  main=paste('My 3.1415'), cex=1.1) par(lwd = 3) # reset to original
+par(opar)
+-------------------------------------------------------------------------------------------------------
+geom_line() rainbow() colorspace # Function taken from example(colorspace::rainbow_hcl)
+wheel <- function(col, radius = 1, ...)
+   pie(rep(1, length(col)), col = col, radius = radius, ...)
+wheel(rainbow(13)) ggplot(regime_shift_part1, 
+       aes(x = TStep, y = KgBiomass, colour=factor(Ecoregion))) + 
+  # geom_point(size=2.2) +
+   theme_bw() +
+   scale_x_discrete(name="Time Step", breaks=(0:2)*100 + 50, 
+                    labels=seq(2050, 2250, by = 100))+
+   labs(title="Maximum Biomass Producing Region",
+        colour = "Ecoregion", linetype = "Scenario") + 
+   theme(text = element_text(size=12), axis.text.x = element_text(vjust=1)) +
+   scale_y_continuous(name=expression(paste("Maximum Biomass (Kg m"^"-2",")"))) +
+   geom_line(aes(linetype = factor(Scenario)), size = 1.5)+
+   facet_wrap(~ Species) +
+   scale_colour_manual(breaks = levels(factor(regime_shift_part1$Ecoregion)),
+                       values = rainbow(13)) geom_line() Error: geom_path: If you are using dotted or dashed lines, colour, size and linetype must be constant over the line
+-------------------------------------------------------------------------------------------------------
+data2 <- data[data$count %in% tail(sort(data$count),5),]
+pie(data2$count, data2$METRIC_ID) data3 <- data2
+data3$METRIC_ID <- as.character(data3$METRIC_ID)
+data3 <- rbind(data3,data.frame(count=sum(data[! data$count %in% tail(sort(data$count),5),"count"]),METRIC_ID="others"))
+pie(data3$count, data3$METRIC_ID)
+-------------------------------------------------------------------------------------------------------
+NA labls <- data$METRIC_ID
+labls[data$count <  3] <- NA
+pie(data$count, paste(labls))
+-------------------------------------------------------------------------------------------------------
+weight optimize optim div.ratio <- function(weight, vol, cov.mat){
+  weight <- weight / sum(weight)
+  dr <- (t(weight) %*% vol) / (sqrt(t(weight) %*% cov.mat %*% (weight)))  
+  return(-dr)
+} out <- optim(par     = rep(1 / length(vol), length(vol)),  # initial guess
+             fn      = div.ratio,
+             vol     = vol,
+             cov.mat = cov.mat,
+             method  = "L-BFGS-B",
+             lower   = 0,
+             upper   = 1) opt.weights <- out$par / sum(out$par)
+# [1] 0.154271776 0.131322307 0.073752360 0.030885856 0.370706931 0.049627627
+# [7] 0.055785740 0.126062746 0.007584657
+
+pie(opt.weights, names(vol))
+-------------------------------------------------------------------------------------------------------
+setwd('c:/users/mmiller21/simple r programs/')
+
+# define fruits of interest
+
+fruits <- c('apple', 'pumpkin', 'pecan')
+
+# define ingredients of interest
+
+ingredients <- c('all.purpose.flour', 'sugar', 'ground.cinnamon')
+
+# define every combination of fruit and ingredient
+
+fruits.and.ingredients <- expand.grid(fruits, ingredients)
+
+old.fruit <- as.character(rep('apple', nrow(fruits.and.ingredients)))
+old.ingredient  <- as.character(rep('all.purpose.flour', nrow(fruits.and.ingredients)))
+
+fruits.and.ingredients2 <- cbind(old.fruit , as.character(fruits.and.ingredients[,1]),
+                           old.ingredient, as.character(fruits.and.ingredients[,2]))
+
+colnames(fruits.and.ingredients2) <- c('old.fruit', 'new.fruit', 'old.ingredient', 'new.ingredient')
+
+
+# begin function
+
+make.pie <- function(old.fruit, new.fruit, old.ingredient, new.ingredient) {
+
+new.ingredient2 <- gsub('\\.',  '', new.ingredient)
+old.ingredient2 <- gsub('\\.',  '', old.ingredient)
+
+new.ingredient3 <- gsub('\\.', ' ', new.ingredient)
+old.ingredient3 <- gsub('\\.', ' ', old.ingredient)
+
+# file name
+
+old.file <- paste(old.fruit, ".pie.", old.ingredient, ".arsc.Jun26.2013.r", sep="")
+new.file <- paste(new.fruit, ".pie.", new.ingredient, ".arsc.Jun26.2013.r", sep="")
+
+# read original fruit and original ingredient
+
+flour   <- readLines(old.file)
+
+# add new file name
+
+flour.a <- gsub(paste("# ", old.file, sep=""), 
+                paste("# ", new.file, sep=""), flour)
+
+# read new data file 
+
+old.data.file <- print(paste("my.data = convert.txt(\"../", old.fruit, "pie", old.ingredient2, ".txt\",", sep=""), quote=FALSE)
+
+new.data.file <- print(paste("my.data = convert.txt(\"../", new.fruit, "pie", new.ingredient2, ".txt\",", sep=""), quote=FALSE)
+
+flour.b <- ifelse(flour.a == old.data.file, new.data.file, flour.a)
+
+flour.c <- ifelse(flour.b == paste('ingredient <- c(\'', old.ingredient3, '\')', sep=""), 
+                             paste('ingredient <- c(\'', new.ingredient3, '\')', sep=""), flour.b)
+
+cat(flour.c, file = new.file, sep=c("\n"))
+
+}
+
+apply(fruits.and.ingredients2, 1, function(x) make.pie(x[1], x[2], x[3], x[4]))
+-------------------------------------------------------------------------------------------------------
+pie() celltype table() with(veteran,pie(table(celltype)))
+-------------------------------------------------------------------------------------------------------
+pie(c(1,1),init.angle=90)
+-------------------------------------------------------------------------------------------------------
+par(mar=c(1,1,1,1)); 
+layout(matrix(c(0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,
+                1,1,1,1,6,6,0, 
+                1,2,2,5,5,6,0, 
+                1,2,2,1,0,0,0, 
+                1,1,1,3,0,0,0, 
+                0,0,0,0,3,0,0, 
+                0,0,0,0,0,3,4, 
+                0,0,0,0,0,4,4), nrow=9, byrow=TRUE)); 
+
+pie(x=c(0.4,0.3,0.2,0.1), labels = NA); 
+pie(x=c(0.4,0.3,0.2,0.1), labels = NA); 
+
+plot(x=1, y=1, type='n', axes = FALSE, xlim = c(0,100), ylim = c(0,100))
+arrows(x0=0, y0=100, x1 = 80, y1 = 20, length=0.25)
+
+pie(x=c(0.4,0.3,0.2,0.1), labels = NA); 
+
+plot(x=1, y=1, type='n', axes = FALSE, xlim = c(0,100), ylim = c(0,100))
+arrows(x0=0, y0=0, x1 = 80, y1 = 90)
+
+pie(x=c(0.4,0.3,0.2,0.1), labels = NA); plot layout arrows arrows pie plot arrows pie
+-------------------------------------------------------------------------------------------------------
+read.table("proj1.txt", header=TRUE, sep="\t") sex print(sex) 
+##  < table of extent 0 > mydata <- read.table('http://lib.stat.cmu.edu/datasets/CPS_85_Wages', 
+                     sep='\t', header=FALSE,skip=27,nrows=562-28) myheader <- readLines('http://lib.stat.cmu.edu/datasets/CPS_85_Wages',n=26)
+# get the lines that correspond with the definitions.
+vars <- tail(myheader,length(mydata))
+# set names with scrubbed text
+names(mydata) <- gsub(':.+|\t','',vars)
+# now 
+sex = table(mydata$SEX)
+pie(sex, labels = c('Male','Female') )
+-------------------------------------------------------------------------------------------------------
+pie(table(data), names(table(data)))
+-------------------------------------------------------------------------------------------------------
+pie(c(colSums(m1)[1],colSums(m2)[1])) barplot(c(colSums(m1),colSums(m2)), col=c(rep(1,ncol(m1)),rep(2,ncol(m1)))) #get col sums
+m1_sums <- colSums(m1)
+m2_sums <- colSums(m2)
+#make negatives zero
+m1_sums[m1_sums<0] <- 0
+m2_sums[m2_sums<0] <- 0
+#pie
+par(mfrow = c(1,2))
+pie(m1_sums,main="m1 - colSums")
+pie(m2_sums,main="m2 - colSums")
+-------------------------------------------------------------------------------------------------------

@@ -1,0 +1,9 @@
+$cdplot(aspect~change, data = mydata)
+
+$cdplot(fail ~ temperature)
+
+$cdplot(fail ~ temperature, cex.axis=2)
+
+cdplot(x~mydata, ylab = NA, xlab = NA, yaxlabels = "n")
+$cdplot(y=fail, x=temperature, cex.x=2, cex.y=3)
+

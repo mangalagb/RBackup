@@ -1,0 +1,13 @@
+$strheight(words[i], cex=size[i], ...)
+
+strheight(LAB, 'inches')
+$strheight(legend, units = "user")
+
+strheight(txt, font=2, cex=2)
+$strheight(object, cex = cex)
+
+strheight(s2)
+strheight(s1)
+strheight(labels)
+$strheight()
+

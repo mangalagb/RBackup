@@ -1,0 +1,647 @@
+border legend.v2('bottomright', 
+        c("no box, no point","no box, no point",estNames) , 
+        lty=c(rep('dotted',2),rep('solid',3)), 
+        col=c('black','red',1,2,4),
+        pch=c(-1,-1,rep(16,3)),
+        lwd=1,
+        border = c("white", "white", "black", "black", "black"),
+        trace = TRUE,
+        fill=c( 0, 0,
+                rep( c( rgb(0.5,0.5,0.1,0.25),
+                                rgb(0.5,0.1,0.1,0.25),
+                                rgb(0.1,0.1,0.5,0.25)), 2)),
+        inset=0,bg='white') ?rect xbox if (mfill) legend.v2 <- function (x, y = NULL, legend, fill = NULL, col = par("col"), 
+        border = "black", lty, lwd, pch, angle = 45, density = NULL, 
+        bty = "o", bg = par("bg"), box.lwd = par("lwd"), box.lty = par("lty"), 
+        box.col = par("fg"), pt.bg = NA, cex = 1, pt.cex = cex, pt.lwd = lwd, 
+        xjust = 0, yjust = 1, x.intersp = 1, y.intersp = 1, adj = c(0, 
+                0.5), text.width = NULL, text.col = par("col"), merge = do.lines && 
+                has.pch, trace = FALSE, plot = TRUE, ncol = 1, horiz = FALSE, 
+        title = NULL, inset = 0, xpd, title.col = text.col, title.adj = 0.5, 
+        seg.len = 2) 
+{
+    if (missing(legend) && !missing(y) && (is.character(y) || 
+                is.expression(y))) {
+        legend <- y
+        y <- NULL
+    }
+    mfill <- !missing(fill) || !missing(density)
+    if (!missing(xpd)) {
+        op <- par("xpd")
+        on.exit(par(xpd = op))
+        par(xpd = xpd)
+    }
+    title <- as.graphicsAnnot(title)
+    if (length(title) > 1) 
+        stop("invalid title")
+    legend <- as.graphicsAnnot(legend)
+    n.leg <- if (is.call(legend)) 
+                1
+            else length(legend)
+    if (n.leg == 0) 
+        stop("'legend' is of length 0")
+    auto <- if (is.character(x)) 
+                match.arg(x, c("bottomright", "bottom", "bottomleft", 
+                                "left", "topleft", "top", "topright", "right", "center"))
+            else NA
+    if (is.na(auto)) {
+        xy <- xy.coords(x, y)
+        x <- xy$x
+        y <- xy$y
+        nx <- length(x)
+        if (nx < 1 || nx > 2) 
+            stop("invalid coordinate lengths")
+    }
+    else nx <- 0
+    xlog <- par("xlog")
+    ylog <- par("ylog")
+    rect2 <- function(left, top, dx, dy, density = NULL, angle, 
+            ...) {
+        r <- left + dx
+        if (xlog) {
+            left <- 10^left
+            r <- 10^r
+        }
+        b <- top - dy
+        if (ylog) {
+            top <- 10^top
+            b <- 10^b
+        }
+        rect(left, top, r, b, angle = angle, density = density, 
+                ...)
+    }
+    segments2 <- function(x1, y1, dx, dy, ...) {
+        x2 <- x1 + dx
+        if (xlog) {
+            x1 <- 10^x1
+            x2 <- 10^x2
+        }
+        y2 <- y1 + dy
+        if (ylog) {
+            y1 <- 10^y1
+            y2 <- 10^y2
+        }
+        segments(x1, y1, x2, y2, ...)
+    }
+    points2 <- function(x, y, ...) {
+        if (xlog) 
+            x <- 10^x
+        if (ylog) 
+            y <- 10^y
+        points(x, y, ...)
+    }
+    text2 <- function(x, y, ...) {
+        if (xlog) 
+            x <- 10^x
+        if (ylog) 
+            y <- 10^y
+        text(x, y, ...)
+    }
+    if (trace) 
+        catn <- function(...) do.call("cat", c(lapply(list(...), 
+                                    formatC), list("\n")))
+    cin <- par("cin")
+    Cex <- cex * par("cex")
+    if (is.null(text.width)) 
+        text.width <- max(abs(strwidth(legend, units = "user", 
+                                cex = cex)))
+    else if (!is.numeric(text.width) || text.width < 0) 
+        stop("'text.width' must be numeric, >= 0")
+    xc <- Cex * xinch(cin[1L], warn.log = FALSE)
+    yc <- Cex * yinch(cin[2L], warn.log = FALSE)
+    if (xc < 0) 
+        text.width <- -text.width
+    xchar <- xc
+    xextra <- 0
+    yextra <- yc * (y.intersp - 1)
+    ymax <- yc * max(1, strheight(legend, units = "user", cex = cex)/yc)
+    ychar <- yextra + ymax
+    if (trace) 
+        catn("  xchar=", xchar, "; (yextra,ychar)=", c(yextra, 
+                        ychar))
+    if (mfill) {
+        xbox <- xc * 0.8
+        ybox <- yc * 0.5
+        dx.fill <- xbox
+    }
+    do.lines <- (!missing(lty) && (is.character(lty) || any(lty > 
+                                    0))) || !missing(lwd)
+    n.legpercol <- if (horiz) {
+                if (ncol != 1) 
+                    warning("horizontal specification overrides: Number of columns := ", 
+                            n.leg)
+                ncol <- n.leg
+                1
+            }
+            else ceiling(n.leg/ncol)
+    has.pch <- !missing(pch) && length(pch) > 0
+    if (do.lines) {
+        x.off <- if (merge) 
+                    -0.7
+                else 0
+    }
+    else if (merge) 
+        warning("'merge = TRUE' has no effect when no line segments are drawn")
+    if (has.pch) {
+        if (is.character(pch) && !is.na(pch[1L]) && nchar(pch[1L], 
+                type = "c") > 1) {
+            if (length(pch) > 1) 
+                warning("not using pch[2..] since pch[1L] has multiple chars")
+            np <- nchar(pch[1L], type = "c")
+            pch <- substr(rep.int(pch[1L], np), 1L:np, 1L:np)
+        }
+    }
+    if (is.na(auto)) {
+        if (xlog) 
+            x <- log10(x)
+        if (ylog) 
+            y <- log10(y)
+    }
+    if (nx == 2) {
+        x <- sort(x)
+        y <- sort(y)
+        left <- x[1L]
+        top <- y[2L]
+        w <- diff(x)
+        h <- diff(y)
+        w0 <- w/ncol
+        x <- mean(x)
+        y <- mean(y)
+        if (missing(xjust)) 
+            xjust <- 0.5
+        if (missing(yjust)) 
+            yjust <- 0.5
+    }
+    else {
+        h <- (n.legpercol + (!is.null(title))) * ychar + yc
+        w0 <- text.width + (x.intersp + 1) * xchar
+        if (mfill) 
+            w0 <- w0 + dx.fill
+        if (do.lines) 
+            w0 <- w0 + (seg.len + +x.off) * xchar
+        w <- ncol * w0 + 0.5 * xchar
+        if (!is.null(title) && (abs(tw <- strwidth(title, units = "user", 
+                                    cex = cex) + 0.5 * xchar)) > abs(w)) {
+            xextra <- (tw - w)/2
+            w <- tw
+        }
+        if (is.na(auto)) {
+            left <- x - xjust * w
+            top <- y + (1 - yjust) * h
+        }
+        else {
+            usr <- par("usr")
+            inset <- rep(inset, length.out = 2)
+            insetx <- inset[1L] * (usr[2L] - usr[1L])
+            left <- switch(auto, bottomright = , topright = , 
+                    right = usr[2L] - w - insetx, bottomleft = , 
+                    left = , topleft = usr[1L] + insetx, bottom = , 
+                    top = , center = (usr[1L] + usr[2L] - w)/2)
+            insety <- inset[2L] * (usr[4L] - usr[3L])
+            top <- switch(auto, bottomright = , bottom = , bottomleft = usr[3L] + 
+                            h + insety, topleft = , top = , topright = usr[4L] - 
+                            insety, left = , right = , center = (usr[3L] + 
+                                usr[4L] + h)/2)
+        }
+    }
+    if (plot && bty != "n") {
+        if (trace) 
+            catn("  rect2(", left, ",", top, ", w=", w, ", h=", 
+                    h, ", ...)", sep = "")
+        rect2(left, top, dx = w, dy = h, col = bg, density = NULL, 
+                lwd = box.lwd, lty = box.lty, border = box.col)
+    }
+    xt <- left + xchar + xextra + (w0 * rep.int(0:(ncol - 1), 
+                rep.int(n.legpercol, ncol)))[1L:n.leg]
+    yt <- top - 0.5 * yextra - ymax - (rep.int(1L:n.legpercol, 
+                        ncol)[1L:n.leg] - 1 + (!is.null(title))) * ychar
+    if (mfill) {
+        if (plot) {
+            fill <- rep(fill, length.out = n.leg)
+            rect2(left = xt, top = yt + ybox/2, dx = xbox * 3, dy = ybox, 
+                    col = fill, density = density, angle = angle, 
+                    border = border)
+        }
+        xt <- xt + dx.fill
+    }
+    if (plot && (has.pch || do.lines)) 
+        col <- rep(col, length.out = n.leg)
+    if (missing(lwd)) 
+        lwd <- par("lwd")
+    if (do.lines) {
+        if (missing(lty)) 
+            lty <- 1
+        lty <- rep(lty, length.out = n.leg)
+        lwd <- rep(lwd, length.out = n.leg)
+        ok.l <- !is.na(lty) & (is.character(lty) | lty > 0)
+        if (trace) 
+            catn("  segments2(", xt[ok.l] + x.off * xchar, ",", 
+                    yt[ok.l], ", dx=", seg.len * xchar, ", dy=0, ...)")
+        if (plot) 
+            segments2(xt[ok.l] + x.off * xchar, yt[ok.l], dx = seg.len * 
+                            xchar, dy = 0, lty = lty[ok.l], lwd = lwd[ok.l], 
+                    col = col[ok.l])
+        xt <- xt + (seg.len + x.off) * xchar
+    }
+    if (has.pch) {
+        pch <- rep(pch, length.out = n.leg)
+        pt.bg <- rep(pt.bg, length.out = n.leg)
+        pt.cex <- rep(pt.cex, length.out = n.leg)
+        pt.lwd <- rep(pt.lwd, length.out = n.leg)
+        ok <- !is.na(pch) & (is.character(pch) | pch >= 0)
+        x1 <- (if (merge && do.lines) 
+                xt - (seg.len/2) * xchar
+            else xt)[ok]
+        y1 <- yt[ok]
+        if (trace) 
+            catn("  points2(", x1, ",", y1, ", pch=", pch[ok], 
+                    ", ...)")
+        if (plot) 
+            points2(x1, y1, pch = pch[ok], col = col[ok], cex = pt.cex[ok], 
+                    bg = pt.bg[ok], lwd = pt.lwd[ok])
+    }
+    xt <- xt + x.intersp * xchar
+    if (plot) {
+        if (!is.null(title)) 
+            text2(left + w * title.adj, top - ymax, labels = title, 
+                    adj = c(title.adj, 0), cex = cex, col = title.col)
+        text2(xt, yt, labels = legend, adj = adj, cex = cex, 
+                col = text.col)
+    }
+    invisible(list(rect = list(w = w, h = h, left = left, top = top), 
+                    text = list(x = xt, y = yt)))
+}
+-------------------------------------------------------------------------------------------------------
+plotCI(x=myx+0.2,y=...) plotCI_offset <- function (x, y = NULL, uiw, liw = uiw, ui, li, err = "y", ylim = NULL, 
+xlim = NULL, type = "p", col = par("col"), barcol = col, 
+pt.bg = par("bg"), sfrac = 0.01, gap = 1, lwd = par("lwd"), 
+lty = par("lty"), labels = FALSE, add = FALSE, xlab, ylab, 
+minbar, maxbar,offset=0.2, ...) if (!add) {
+    if (invalid(labels) || labels == FALSE)
+        #Add offset here to ensure plot window is right size
+        plot(x+offset, y, ylim = ylim, xlim = xlim, col = col, xlab = xlab, 
+            ylab = ylab, ...)
+    else {
+        plot(x, y, ylim = ylim, xlim = xlim, col = col, type = "n", 
+            xlab = xlab, ylab = ylab, ...)
+        text(x, y, label = labels, col = col, ...)
+    }
+} if (err == "y") {
+    if (gap != FALSE) 
+        gap <- strheight("O") * gap
+    smidge <- par("fin")[1] * sfrac
+    if (!is.null(li))
+        #Add offset to CIs 
+        myarrows(x+offset, li, x+offset, pmax(y - gap, li), col = barcol, 
+            lwd = lwd, lty = lty, angle = 90, length = smidge, 
+            code = 1)
+    if (!is.null(ui)) 
+        myarrows(x+offset, ui, x+offset, pmin(y + gap, ui), col = barcol, 
+            lwd = lwd, lty = lty, angle = 90, length = smidge, 
+            code = 1)
+}
+-------------------------------------------------------------------------------------------------------
+strwidth strheight stroverlap <- function(x1,y1,s1, x2,y2,s2) {
+  sh1 <- strheight(s1)
+  sw1 <- strwidth(s1)
+  sh2 <- strheight(s2)
+  sw2 <- strwidth(s2)
+
+  overlap <- FALSE
+  if (x1<x2) 
+    overlap <- x1 + sw1 > x2
+  else
+    overlap <- x2 + sw2 > x1
+
+  if (y1<y2)
+    overlap <- overlap && (y1 +sh1>y2)
+  else
+    overlap <- overlap && (y2+sh2>y1)
+
+  return(overlap)
+}
+stroverlap(.5,.5,"word", .6,.5, "word")
+-------------------------------------------------------------------------------------------------------
+white Plot <- Plot + 
+  geom_text(data = TextFrame, aes(x = X, y = Y, label = LAB), colour = 'white') alpha geom_point Plot <- Plot + geom_point(size = 20, alpha = 0.5) width height Labels <- c("Alabama", "Alaska", "Arizona", "Arkansas", 
+    "Pennsylvania + California")
+TextFrame <- data.frame(X = 4:8, Y = 4:8, LAB = Labels)
+TextFrame <- transform(TextFrame,
+    w = strwidth(LAB, 'inches') + 0.25,
+    h = strheight(LAB, 'inches') + 0.25
+)
+
+ggplot(data = SampleFrame,aes(x = X, y = Y)) + 
+  geom_point(size = 20) +
+  geom_rect(data = TextFrame, aes(xmin = X - w/2, xmax = X + w/2, 
+    ymin = Y - h/2, ymax = Y + h/2), fill = "grey80") +
+  geom_text(data = TextFrame,aes(x = X, y = Y, label = LAB), size = 4)
+-------------------------------------------------------------------------------------------------------
+strheight strwidht strheight strwidth png(); plot(...); dev.off() x <- 1:300
+y <- 1:300
+plot(x, y, type="l")
+
+txt <- "A note about this plot!"
+rwidth <- strwidth(txt, font=2, cex=2)
+rheight <- strheight(txt, font=2, cex=2)
+
+tx <- 150
+ty <- 100
+
+text(tx, ty,txt, font=2, cex=2, col="blue", offset=1)
+
+rect(tx-0.5*rwidth, ty-0.5*rheight, tx+0.5*rwidth, ty+0.5*rheight)
+-------------------------------------------------------------------------------------------------------
+words library(wordcloud)
+
+colored.wordcloud <- function(words,freq,scale=c(4,.5),min.freq=3,max.words=Inf,random.order=TRUE,random.color=FALSE,
+        rot.per=.1,colors="black",ordered.colors=FALSE,use.r.layout=FALSE,...) { 
+    tails <- "g|j|p|q|y"
+    last <- 1
+    nc<- length(colors)
+
+    if (ordered.colors) {
+        if (length(colors) != 1 && length(colors) != length(words)) {
+            stop(paste("Length of colors does not match length of words",
+                       "vector"))
+        }
+    }
+
+    overlap <- function(x1, y1, sw1, sh1) {
+        if(!use.r.layout)
+            return(.overlap(x1,y1,sw1,sh1,boxes))
+        s <- 0
+        if (length(boxes) == 0) 
+            return(FALSE)
+        for (i in c(last,1:length(boxes))) {
+            bnds <- boxes[[i]]
+            x2 <- bnds[1]
+            y2 <- bnds[2]
+            sw2 <- bnds[3]
+            sh2 <- bnds[4]
+            if (x1 < x2) 
+                overlap <- x1 + sw1 > x2-s
+            else 
+                overlap <- x2 + sw2 > x1-s
+
+            if (y1 < y2) 
+                overlap <- overlap && (y1 + sh1 > y2-s)
+            else 
+                overlap <- overlap && (y2 + sh2 > y1-s)
+            if(overlap){
+                last <<- i
+                return(TRUE)
+            }
+        }
+        FALSE
+    }
+
+    ord <- rank(-freq, ties.method = "random")
+    words <- words[ord<=max.words]
+    freq <- freq[ord<=max.words]
+    if (ordered.colors) {
+        colors <- colors[ord<=max.words]
+    }
+
+    if(random.order)
+        ord <- sample.int(length(words))
+    else
+        ord <- order(freq,decreasing=TRUE)
+    words <- words[ord]
+    freq <- freq[ord]
+    words <- words[freq>=min.freq]
+    freq <- freq[freq>=min.freq]
+    if (ordered.colors) {
+        colors <- colors[ord][freq>=min.freq]
+    }
+
+    thetaStep <- .1
+    rStep <- .05
+    plot.new()
+    op <- par("mar")
+    par(mar=c(0,0,0,0))
+    plot.window(c(0,1),c(0,1),asp=1)
+    normedFreq <- freq/max(freq)
+    size <- (scale[1]-scale[2])*normedFreq + scale[2]
+    boxes <- list()
+
+
+
+    for(i in 1:length(words)){
+        rotWord <- runif(1)<rot.per
+        r <-0
+        theta <- runif(1,0,2*pi)
+        x1<-.5
+        y1<-.5
+        wid <- strwidth(words[i],cex=size[i],...)
+        ht <- strheight(words[i],cex=size[i],...)
+        #mind your ps and qs
+        if(grepl(tails,words[i]))
+            ht <- ht + ht*.2
+        if(rotWord){
+            tmp <- ht
+            ht <- wid
+            wid <- tmp  
+        }
+        isOverlaped <- TRUE
+        while(isOverlaped){
+            if(!overlap(x1-.5*wid,y1-.5*ht,wid,ht) &&
+                    x1-.5*wid>0 && y1-.5*ht>0 &&
+                    x1+.5*wid<1 && y1+.5*ht<1){
+        if (!random.color) {
+                if (ordered.colors) {
+                    cc <- colors[i]
+                }
+                else {
+                    cc <- ceiling(nc*normedFreq[i])
+                    cc <- colors[cc]
+                }
+        } else {
+         cc <- colors[sample(1:nc,1)]
+        }
+                text(x1,y1,words[i],cex=size[i],offset=0,srt=rotWord*90,
+                        col=cc,...)
+                #rect(x1-.5*wid,y1-.5*ht,x1+.5*wid,y1+.5*ht)
+                boxes[[length(boxes)+1]] <- c(x1-.5*wid,y1-.5*ht,wid,ht)
+                isOverlaped <- FALSE
+            }else{
+                if(r>sqrt(.5)){
+                    warning(paste(words[i],
+                                    "could not be fit on page. It will not be plotted."))
+                    isOverlaped <- FALSE
+                }
+                theta <- theta+thetaStep
+                r <- r + rStep*thetaStep/(2*pi)
+                x1 <- .5+r*cos(theta)
+                y1 <- .5+r*sin(theta)
+            }
+        }
+    }
+    par(mar=op)
+    invisible()
+} colors = c("blue", "red", "orange", "green")
+colored.wordcloud(colors, c(10, 5, 3, 9), colors=colors)
+-------------------------------------------------------------------------------------------------------
+addtable2plot locator cellheight <- max(strheight(c(column.names, row.names, as.vector(unlist(table)))
+-------------------------------------------------------------------------------------------------------
+grconvertX grconvertY #  left edge of matrix
+l.x <- grconvertX(0, from='nic')
+# right side of matrix (right side of inner minus wspace and wside)
+r.x <- grconvertX(grconvertX(1, from='nic', to='inches') - (wspace+wside)/2.54,
+    from='inches')
+
+# find 2 line heights from top
+t.y <- grconvertY(1, from='ndc') - 2*strheight('Test text')
+# or 2 line heights above inner margin
+t.y <- grconvertY(1, from='nic') + 2*strheight('Test text')
+
+
+par(xpd=NA)
+text( (l.x+r.x)/2, t.y, 'Test text' )
+-------------------------------------------------------------------------------------------------------
+text mtext segment plot.new()
+segments(0.365, 0.77, 0.365, 0.83, lwd = 2)
+text(0.365,0.77-strheight("O", cex=4)/2,"O", cex=4)
+-------------------------------------------------------------------------------------------------------
+strwidth() library(igraph)
+camp <- graph.formula(Harry:Steve:Don:Bert - Harry:Steve:Don:Bert,
+                      Pam:Brazey:Carol:Pat - Pam:Brazey:Carol:Pat,
+                      Holly   - Carol:Pat:Pam:Jennie:Bill,
+                      Bill    - Pauline:Michael:Lee:Holly,
+                      Pauline - Bill:Jennie:Ann,
+                      Jennie  - Holly:Michael:Lee:Ann:Pauline,
+                      Michael - Bill:Jennie:Ann:Lee:John,
+                      Ann     - Michael:Jennie:Pauline,
+                      Lee     - Michael:Bill:Jennie,
+                      Gery    - Pat:Steve:Russ:John,
+                      Russ    - Steve:Bert:Gery:John,
+                      John    - Gery:Russ:Michael)
+
+V(camp)$label <- V(camp)$name
+set.seed(42)   ## to make this reproducable
+co <- layout.auto(camp)
+
+plot(0, type="n", ann=FALSE, axes=FALSE, xlim=extendrange(co[,1]), 
+     ylim=extendrange(co[,2]))
+plot(camp, layout=co, rescale=FALSE, add=TRUE,
+     vertex.shape="rectangle",
+     vertex.size=(strwidth(V(camp)$label) + strwidth("oo")) * 100,
+     vertex.size2=strheight("I") * 2 * 100)
+-------------------------------------------------------------------------------------------------------
+bquote() # Pass the function a string and a character to split on
+# The splitting is greedy (i.e. it will split on all matches so make sure you are splitting on a unqiue character such as ":" in your example)
+tsplit <- function( string , split ){
+    require( stringr )
+    blurb <- paste( string )
+    blurbs <- strsplit( blurb , paste(split) )
+    annot <- bquote( paste( bold( .( blurbs[[1]][1] ) ) , .(split) , .(blurbs[[1]][2]) , sep = "" ) )
+    return( annot )
+}
+
+
+
+#And the function in action...
+j <- tsplit( "Define: This is my blurb" , ":" )
+textplot( paste( " " ) ) #Get new plot
+text(0.5 , 0.5 , j ) #paste the text showMethods(textplot) getAnywhere(textplot.character) text textplot.character() tplot.cust <-   function ( object , split , halign = c("center", "left", "right"), valign = c("center", 
+"top", "bottom"), cex, fixed.width = TRUE, cspace = 1, lspace = 1, 
+mar = c(0, 0, 3, 0) + 0.1, tab.width = 8, ...) 
+{
+# extra code to split text according to 'split' argument and make text before the split bold.
+require(stringr)
+blurb <- paste( object )
+blurbs <- strsplit( blurb , paste(split) )
+annot <- bquote( paste( bold( .( blurbs[[1]][1] ) ) , .(split) , .(blurbs[[1]][2]) , sep = "" ) )
+
+
+object <- paste(object, collapse = "\n", sep = "")
+object <- gplots:::replaceTabs(object, width = tab.width) #you need to add gplots::: to this line because replaceTabs is a function that is not exported from the gplots namespace
+halign = match.arg(halign)
+valign = match.arg(valign)
+plot.new()
+opar <- par()[c("mar", "xpd", "cex", "family")]
+on.exit(par(opar))
+par(mar = mar, xpd = FALSE)
+if (fixed.width) 
+    par(family = "mono")
+plot.window(xlim = c(0, 1), ylim = c(0, 1), log = "", asp = NA)
+slist <- unlist(lapply(object, function(x) strsplit(x, "\n")))
+slist <- lapply(slist, function(x) unlist(strsplit(x, "")))
+slen <- sapply(slist, length)
+slines <- length(slist)
+if (missing(cex)) {
+    lastloop <- FALSE
+    cex <- 1
+}
+else lastloop <- TRUE
+for (i in 1:20) {
+    oldcex <- cex
+    cwidth <- max(sapply(unlist(slist), strwidth, cex = cex)) * 
+        cspace
+    cheight <- max(sapply(unlist(slist), strheight, cex = cex)) * 
+        (lspace + 0.5)
+    width <- strwidth(object, cex = cex)
+    height <- strheight(object, cex = cex)
+    if (lastloop) 
+        break
+    cex <- cex/max(width, height)
+    if (abs(oldcex - cex) < 0.001) {
+        lastloop <- TRUE
+    }
+}
+if (halign == "left") 
+    xpos <- 0
+else if (halign == "center") 
+    xpos <- 0 + (1 - width)/2
+else xpos <- 0 + (1 - width)
+if (valign == "top") 
+    ypos <- 1
+else if (valign == "center") 
+    ypos <- 1 - (1 - height)/2
+else ypos <- 1 - (1 - height)
+text(x = xpos, y = ypos, labels = annot , adj = c(0, 1), 
+    cex = cex, ...) #add the newly created annot expression here
+par(opar)
+invisible(cex)
+} blurb <- "Define: This is my blurb"
+tplot.cust(blurb, ":" , halign="left", valign="top", cex = 1,  family="serif")
+-------------------------------------------------------------------------------------------------------
+?text ?arrows x <- seq(0, 2, by=0.1)
+y <- x*x
+plot(x, y, type="l")
+
+text(0.25, 2, "Some text", pos=3)
+arrows(0.25, 2, 1, 1) text lines arrows x <- seq(0, 2, by=0.1)
+y <- x*x
+plot(x, y, type="l")
+
+# x0, y0: coordinates of text; see ?text
+# x1, y1: coordinates to which the arrows are drawn; see ?arrows
+# labels: text
+# vOffset/hOffset: vertical/horizontal offset
+callout <- function(x0, y0, x1, y1, labels, vOffset=0.25, hOffset=0.25) {
+  ## fetch labels width/height
+  w <- strwidth(labels)
+  w2 <- w/2
+  h <- strheight(labels)
+  h2 <- h/2
+
+  ## draw text
+  text(x0, y0, labels=labels)
+
+  ## calulate arrow starting point/line end point
+  x01 <- x0+w2*(1+hOffset)
+  y01 <- y0-h2*(1+vOffset)
+
+  ## draw horizontal lines
+  for (i in seq(along=x0)) {
+    lines(c(x0[i]-w2[i], x01[i]), c(y01[i], y01[i]))
+  }
+
+  ## draw arrows
+  arrows(x0=x01, y0=y01, x1=x1, y1=y1)
+}
+
+callout(c(0.25, 0.25), c(2, 3), c(1, 1.5), c(1, 2.25),
+        c("Some text", "Some other text"))
+-------------------------------------------------------------------------------------------------------

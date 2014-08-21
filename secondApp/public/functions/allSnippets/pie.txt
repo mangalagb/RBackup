@@ -1,0 +1,44 @@
+$pie(rep, col = col, radius = radius, ...)
+
+$pie(c, labels=c, length)
+
+$pie(c, labels=labels[1:2], main = "Global")
+
+pie(m1_sums, main="m1 - colSums")
+pie(object.sizes, main="Memory usage by object")
+$pie(m2_sums, main="m2 - colSums")
+
+$pie(numb, col=colors, labels=numb_labels, clockwise=TRUE)
+
+pie(islands)
+$pie()
+
+$pie(c, init.angle=90)
+
+$pie(pie.sales, clockwise=TRUE)
+
+$pie(c, density=c)
+
+pie(rep, col=c25)
+$pie(c, col=c)
+
+$pie(x[1], x[2], x[3])
+
+$pie(counts[counts>1])
+
+pie(4.3, 2, c, col=small_col, radius=0.2)
+pie(1.7, 2, c, col=small_col, radius=0.2)
+pie(3, 3, c, col=main_col, radius=1)
+$pie(3.8, 4.5, c, col=small_col, radius=0.2)
+
+pie(data2, data2)
+pie(d2, labels=d2)
+pie(sex, labels = c)
+pie(table, names)
+pie(data3, data3)
+$pie(x=c, labels = NA)
+pie(opt.weights, names)
+pie(values, labels = as.expression)
+pie(data, paste)
+pie(x1, labels=lbls1)
+

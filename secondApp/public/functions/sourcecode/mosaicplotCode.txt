@@ -1,0 +1,46 @@
+X <- structure(list(
+  ID = 1:50,
+  A = structure(c(6L, 1L, 2L, 4L, 4L, 3L, 7L, 1L, 3L, 4L, 1L, 1L, 4L, 4L, 1L, 3L, 5L, 5L, 2L, 6L, 6L, 1L, 1L, 1L, 3L, 3L, 5L, 6L, 3L, 2L, 8L, 5L, 2L, 6L, 5L, 2L, 8L, 3L, 5L, 1L, 1L, 6L, 2L, 8L, 8L, 4L, 1L, 2L, 6L, 2L), .Label = c("AA","BB", "CC", "DD", "FF", "GG", "HH", "II"), class = "factor"),
+  B = structure(c(3L, 2L, 6L, 2L, 3L, 6L, 8L, 3L, 1L, 8L, 6L, 3L, 2L, 6L, 7L, 8L, 2L, 6L, 5L, 5L, 2L, 1L, 3L, 2L, 5L, 3L, 1L, 4L, 3L, 8L, 3L, 1L, 2L, 7L, 1L, 5L, 1L, 7L, 5L, 6L, 8L, 5L, 4L, 4L, 2L, 2L, 4L, 5L, 3L, 3L), .Label = c("RR", "SS", "TT", "UU", "VV", "XX", "YY", "ZZ"), class = "factor")
+  ), .Names = c("ID", "A", "B"), class = "data.frame", row.names = c(NA, -50L)
+)
+
+mosaicplot(with(X,table(A,B)))
+-------------------------------------------------------------------------------------------------------
+## make up random data (no real pattern)
+dat <- data.frame(q1=sample(c("N","Y","U"),size=1000,replace=TRUE),
+                  sex=sample(c("M","F"),size=1000,replace=TRUE))
+dtab <- with(dat,table(q1,sex))
+chisq.test(dtab)
+mosaicplot(dtab)
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+mosaicplot() aa <- c(rep(FALSE, 35517), rep(TRUE, 1160))
+a <- table(aa)
+
+mosaicplot(a, dir = "h", off = 0, color = TRUE) ?mosaicplot
+-------------------------------------------------------------------------------------------------------
+ggplot2 geom_bar library(reshape2)
+library(plyr)
+# long format with column of proportions within each id
+xlong <- ddply(melt(x, id.vars = 'id'), .(id), mutate, prop = value / sum(value))
+
+ggplot(xlong, aes(x = id, y = prop, fill = variable)) + geom_bar(stat = 'identity') # note position = 'fill' would work with the value column
+ ggplot(xlong, aes(x = id, y = value, fill = variable)) +
+       geom_bar(stat = 'identity', position = 'fill', aes(fill = variable)) plot x # get the numeric columns as a matrix
+xt <- as.matrix(x[,2:4])
+# set the rownames to be the first column of x
+rownames(xt) <- x[[1]]
+# set the class to be a table so plot will call plot.table
+class(xt) <- 'table'
+plot(xt) mosaicplot mosaicplot(x[,2:4], main = 'Proportions')
+-------------------------------------------------------------------------------------------------------
+chisq.test(Loan.Purpose,Home.Ownership) mosaicplot(Loan.Purpose,Home.Ownership)
+-------------------------------------------------------------------------------------------------------
+rep country <- with(df, rep(x = Country, times = Count))
+name <- with(df, rep(x = Name, times = Count))
+
+df2 <- data.frame(country, name)
+mosaicplot(country ~ name, data = df2)
+-------------------------------------------------------------------------------------------------------

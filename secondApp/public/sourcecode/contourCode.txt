@@ -1,0 +1,1402 @@
+contour x <- seq(-3,3)
+y <- seq(-3,3)
+
+z <- outer(x,y, function(x,y,...) x^2 + y^2 ) contour(x,y,z, lty=1) library("fields")
+contour(predict.surface(Tps(as.matrix(expand.grid(x=x,y=y)),as.vector(z)))) Tps() contour lattice ggplot2 geom_contour() ds <- matrix(rnorm(100), nrow = 10) 
+library(reshape) 
+molten <- melt(data = ds) 
+library(ggplot2) 
+ggplot(molten, aes(x = X1, y = X2, z = value)) + geom_contour()
+-------------------------------------------------------------------------------------------------------
+>>> xi = linspace(min(X), max(X))
+>>> yi = linspace(min(Y), max(Y))
+>>> zi = griddata(X, Y, Z, xi, yi)
+>>> contour(xi, yi, zi) >>> from mpl_toolkits.mplot3d import Axes3D
+>>> fig = figure()
+>>> ax = Axes3D(fig)
+>>> xim, yim = meshgrid(xi, yi)
+>>> ax.plot_surface(xim, yim, zi)
+>>> show()
+
+>>> help(meshgrid(x, y))
+    Return coordinate matrices from two coordinate vectors.
+    [...]
+    Examples
+    --------
+    >>> X, Y = np.meshgrid([1,2,3], [4,5,6,7])
+    >>> X
+    array([[1, 2, 3],
+           [1, 2, 3],
+           [1, 2, 3],
+           [1, 2, 3]])
+    >>> Y
+    array([[4, 4, 4],
+           [5, 5, 5],
+           [6, 6, 6],
+           [7, 7, 7]]) >>> fig = figure()
+>>> ax = Axes3D(fig)
+>>> ax.contour(xi, yi, zi) # ax.contourf for filled contours
+>>> show()
+-------------------------------------------------------------------------------------------------------
+from rpy2.robjects.lib.ggplot2 import ggplot, aes_string, geom_contour
+from rpy2.robjects.vectors import DataFrame
+
+# Assume that data are in a .csv file with three columns X,Y,and Z
+# read data from the file
+dataf = DataFrame.from_csv('mydata.csv')
+
+p = ggplot(dataf) + \
+    geom_contour(aes_string(x = 'X', y = 'Y', z = 'Z'))
+p.plot() from rpy2.robjects.packages import importr
+from rpy2.robjects.vectors import DataFrame
+from rpy2.robjects import Formula
+
+lattice = importr('lattice')
+rprint = robjects.globalenv.get("print")
+
+# Assume that data are in a .csv file with three columns X,Y,and Z
+# read data from the file
+dataf = DataFrame.from_csv('mydata.csv')
+
+p = lattice.wireframe(Formula('Z ~ X * Y'), shade = True, data = dataf)
+rprint(p)
+-------------------------------------------------------------------------------------------------------
+filled.contour plot.axes filled.contour(x = seq(from=-1.5,to=1.5,length=20),
+      y = seq(from=1,to=3.75,length=25), z = mypredict,
+      col = hsv(h=seq(from=2/3,to=0,length=20),s=1,v=1),
+      plot.axes = {axis(1); axis(2); rect(left, bottom, right, top);}) lines rect
+-------------------------------------------------------------------------------------------------------
+par(mfrow = c(1, 3))
+image(m1, zlim = c(-1, 1))
+contour(m1 - m2, add = TRUE)
+image(m2, zlim = c(-1, 1))
+contour(m1 - m2, add = TRUE)
+image(m1 - m2, zlim = c(0, 1))
+contour(m1 - m2, add = TRUE)
+-------------------------------------------------------------------------------------------------------
+fit <- loess( z ~ x+ y, span=0.01 )
+dev.new()
+
+contour( b, b, matrix( predict(fit), 100, 100 ) )
+-------------------------------------------------------------------------------------------------------
+v <- ggplot(pts, aes(theta_1, theta_2, z = z))
+v <- v + stat_contour(aes(colour = ..level..),bins=50) + xlab(expression(Theta[1])) + ylab(expression(Theta[2]))
+v + geom_path(aes(x=x,y=y,z=z), data=some.mat)
+-------------------------------------------------------------------------------------------------------
+yield <- read.table(textConnection("Lat Lon mxgYield
+38.96152878 -123.5578995 7.925971605
+39.24150085 -123.6392975 19.6720449
+39.52162933 -123.7214966 19.777747
+39.80192947 -123.8044968 12.23218451
+40.36297989 -123.9729004 15.00058428
+40.64371872 -124.058403 1.443492322
+38.74369812 -123.1184998 1.938840925"), header=TRUE)
+require(akima)
+ak.yld <- with( yield, interp(x=Lat, y=Lon, z=mxgYield))
+contour(ak.yld)
+-------------------------------------------------------------------------------------------------------
+library(ggplot2)
+
+p <- ggplot(TrainC, aes(x1, x2))
+p + geom_point(aes(colour = as.numeric(y) + 1))
+
+df <- data.frame(x = rep(xp, np), y = rep(yp, each = np), z = zp)
+p <- ggplot(df, aes(x, y, z = z))
+p + stat_contour(bins = 1)
+-------------------------------------------------------------------------------------------------------
+d <- transform(melt(matrix(zp, np)), xp=xp[X1], yp=yp[X2])
+ggplot(d, aes(xp, yp, z=value)) + 
+  geom_contour() + 
+  geom_point(aes(x1, x2, colour=y, z=NULL), data=TrainC)
+-------------------------------------------------------------------------------------------------------
+kde2d MASS filled.contour d <- structure(list(X = c(-60L, 60L, 7L, -22L, 59L, 29L, -58L, 60L, 
+7L, -21L, 61L, 29L, -57L, -22L, 59L, 29L, -56L, 61L, 8L, -20L, 
+62L, 30L), Y = c(-18L, -62L, 14L, -60L, 58L, 22L, -18L, -61L, 
+14L, -59L, 59L, 22L, -18L, -59L, 60L, 24L, -17L, -60L, 16L, -58L, 
+60L, 23L)), .Names = c("X", "Y"), class = "data.frame", row.names = c(NA, 
+-22L))
+require(MASS)
+dens <- kde2d(d$X, d$Y, h=75, n=50)  #overrode default bandwidth
+filled.contour(dens)
+-------------------------------------------------------------------------------------------------------
+add contour() x <- -6:16
+y <- x
+z1 <- outer(x, sqrt(abs(x)), FUN = "/")
+z2 <- outer(x, abs(x), FUN = "/")
+contour(x, x, z1)
+contour(x, x, z2, add = TRUE, col = "red") ## overlay second contour as.layer
+-------------------------------------------------------------------------------------------------------
+x <- seq(0.4,1.01,length=1000)
+y <- seq(0,3,length=1000)
+z <- outer(x,y,function(x,y) 1-0.125*y^2-x^2-0.005)
+contour(x,y,z,levels=0,drawlabels=FALSE) library(emdbook)
+curve3d(1-0.125*y^2-x^2-0.005,
+        xlim=c(0.4,1.01),
+        ylim=c(0,3),
+        n=c(100,100),
+        sys3d="contour",drawlabels=FALSE,levels=0) for outer()
+-------------------------------------------------------------------------------------------------------
+z matrix x y ?contour x = seq(0, 10, by = 0.5)
+y = seq(0, 10, by = 0.5)
+z <- outer(x, y)
+
+contour(x, y, z)
+-------------------------------------------------------------------------------------------------------
+kde2d MASS df <- data.frame(x=rnorm(10000),y=rnorm(10000)) MASS k <- with(df,MASS:::kde2d(x,y))
+filled.contour(k) ggplot geom_density2d() kde2d() library(ggplot2)
+ggplot(df,aes(x=x,y=y))+geom_density2d() filled.contour layout ggplot(df,aes(x=x,y=y))+
+  stat_density2d(aes(alpha=..level..), geom="polygon") +
+  scale_alpha_continuous(limits=c(0,0.2),breaks=seq(0,0.2,by=0.025))+
+  geom_point(colour="red",alpha=0.02)+
+  theme_bw()
+-------------------------------------------------------------------------------------------------------
+par(bg = 3)
+image.plot(s,xlab="P/E Ratio", ylab="VIX", 
+    main="Contour Map of SPY Returns vs P/E Ratio and Vix") 
+abline(v=(seq(0,100,5)), col=6, lty="dotted") 
+abline(h=(seq(0,100,5)), col=6, lty="dotted") 
+contour(s, add=TRUE)
+-------------------------------------------------------------------------------------------------------
+pupilplot <- function (wf, cp = NULL, col = topo.colors(256), addContours = FALSE, 
+cscale = TRUE, ...) 
+ {
+     if (cscale) {
+         mar.orig <- (par.orig <- par(c("mar", "las", "mfrow")))$mar
+        on.exit(par(par.orig))
+        w <- (3 + mar.orig[2]) * par("csi") * 2.54
+        layout(matrix(c(2, 1), ncol = 2), widths = c(1, lcm(w)))
+        par(las = 1)
+        mar <- mar.orig
+        mar[4] <- mar[2]
+        mar[2] <- 1
+        par(mar = mar) 
+    thelist <- list(...)  
+    findz <- which(names(thelist) == 'zlim')  
+    if (length(findz) > 0 ) {   
+        zlim <- thelist$zlim  
+        }else{  
+                zlim <- range(wf, finite = TRUE) #the original line  
+        } 
+ # end of my hack  
+        levels <- seq(zlim[1], zlim[2], length = length(col))
+        plot.new()
+        plot.window(xlim = c(0, 1), ylim = range(levels), xaxs = "i", yaxs = "i")
+        rect(0, levels[-length(levels)], 1, levels[-1], col = col,  density = NA)
+        axis(4)
+         box()
+        mar <- mar.orig
+        mar[4] <- 0
+        par(mar = mar)
+    }
+    if (is.null(cp)) {
+        axis1 <- 1:nrow(wf)
+        axis2 <- 1:ncol(wf)
+    }
+    else {
+         axis1 <- ((1:nrow(wf)) - cp$xc)/cp$rx
+        axis2 <- ((1:ncol(wf)) - cp$yc)/cp$ry
+    }
+    image(axis1, axis2, wf, col = col, asp = 1, xlab = "X", ylab = "Y",  ...)
+     if (addContours) 
+        contour(axis1, axis2, wf, add = TRUE)
+}
+-------------------------------------------------------------------------------------------------------
+n <- 25; x <- y <- seq(n); z <- outer(x,y,function(x,y) (x-15)^2*(y-10)^3)
+filled.contour(x,y,z,col=rainbow(256),nlevels=256)
+filled.contour(x,y,log(z),col=rainbow(256),nlevels=256)  ## warning: NaNs produced
+filled.contour(x,y,log(pmax(z,0.001)),col=rainbow(256),nlevels=256) pmax Inf x <- 1:5
+y <- 1:5
+z <- matrix(outer(x,y,"+"),nrow=5)
+
+filled.contour(x,y,z)
+filled.contour(x,y,z,color.palette=rainbow)
+z2 <- z
+
+z2[5,5] <- Inf
+
+filled.contour(x,y,z2,color.palette=rainbow)
+filled.contour(x,y,z2,col=rainbow(100),nlevels=100)
+-------------------------------------------------------------------------------------------------------
+x <- 10*1:nrow(volcano)
+ y <- 10*1:ncol(volcano)
+contour(x, y, volcano); 
+clines <- contourLines(x, y, volcano)
+x <- clines[[9]][["x"]]
+ y <- clines[[9]][["y"]]
+ level <- clines[[9]][["level"]]
+ level
+#[1] 130 A = 0.5* abs( sum( x[1:(length(x)-1)]*y[2:length(x)] - y[1:(length(x)-1)]*x[2:length(x)] ) )
+A
+#[1] 233542.1
+-------------------------------------------------------------------------------------------------------
+volcano3d example(direct.labels) directlabels volcano3d <- melt(volcano)
+colnames(volcano3d) <- c("x", "y", "z") (p <- ggplot(volcano3d, aes(x, y, z = z)) + 
+  geom_contour()
+) aes aes(x = x, y = y, z = freq) aes_string(x = "x", y = "y", z = "freq") x y aes(x, y, z = freq)
+-------------------------------------------------------------------------------------------------------
+KernSmooth library("KernSmooth")
+data(geyser, package="MASS") bkde2D x <- cbind(geyser$duration, geyser$waiting)
+est <- bkde2D(x, bandwidth=c(0.7, 7)) contour(est$x1, est$x2, est$fhat)
+-------------------------------------------------------------------------------------------------------
+contour f <- function(x,y) x^2 - 3*y^2 + 2*x*y - 20
+x <- y <- seq(-10,10,length=100)
+z <- outer(x,y,f)
+contour(
+  x=x, y=x, z=z, 
+  levels=0, las=1, drawlabels=FALSE, lwd=3
+)
+-------------------------------------------------------------------------------------------------------
+geom_raster pdf("mew.pdf")
+print(v + geom_raster(aes(fill=z)) + stat_contour(size=2) + scale_fill_gradient("z"))
+dev.off()
+-------------------------------------------------------------------------------------------------------
+colour geom_tile colour fill print(v + 
+  geom_tile(aes(fill=z, colour=z), size=1) + 
+  stat_contour(size=2) + 
+  scale_fill_gradient("z")
+)
+-------------------------------------------------------------------------------------------------------
+th <- rescale(c(124, volcano3d$z))[1]
+sc <- continuous_scale("colour", "", palette = function(x) {ifelse(x > th, "black", "grey")})
+
+v + 
+ stat_contour(aes(colour=..level..,size=..level..)) + 
+ sc+
+ scale_size("size") + labs(colour = "size")
+-------------------------------------------------------------------------------------------------------
+time2 <- as.POSIXct(time) > time2
+## [1] "2011-01-01 01:00:00 EST" "2011-01-01 02:00:00 EST"
+## [3] "2011-01-01 03:00:00 EST" "2011-01-01 04:00:00 EST" filled.contour(time2,depth,t(temp))
+-------------------------------------------------------------------------------------------------------
+library(akima) 
+library(ggplot2) 
+
+x = rnorm(20)
+y = rnorm(20)
+z = rnorm(20)
+
+t. = interp(x,y,z)
+t.df <- data.frame(t.)
+
+gt <- data.frame( expand.grid(X1=t.$x, 
+                              X2=t.$y), 
+                  z=c(t.$z), 
+                  value=cut(c(t.$z), 
+                            breaks=seq(-1,1,0.25)))
+
+p <- ggplot(gt) + 
+    geom_tile(aes(X1,X2,fill=value)) + 
+    geom_contour(aes(x=X1,y=X2,z=z), colour="black") + 
+    coord_polar()
+p <- p + scale_fill_brewer()
+p ggplot2
+-------------------------------------------------------------------------------------------------------
+scale() fields library(akima) 
+library(fields) 
+
+x <- rnorm(20, 4, 3)
+y <- rnorm(20, 5e-5, 1e-5)
+x <- scale(x) # comment out these two lines 
+y <- scale(y) # to reproduce your error
+z <- rnorm(20)
+
+s <- interp(x,y,z)
+image.plot(s) ggplot2 library(akima) 
+library(ggplot2) 
+
+x <- rnorm(20, 4, 3)
+y <- rnorm(20, 5e-5, 1e-5)
+x <- scale(x) # comment out these two lines 
+y <- scale(y) # to reproduce your error
+z <- rnorm(20)
+
+t. <- interp(x,y,z)
+t.df <- data.frame(t.)
+
+gt <- data.frame( expand.grid(X1=t.$x, 
+                              X2=t.$y), 
+                  z=c(t.$z), 
+                  value=cut(c(t.$z), 
+                            breaks=seq(min(z),max(z),0.25)))
+
+p <- ggplot(gt) + 
+    geom_tile(aes(X1,X2,fill=value)) + 
+    geom_contour(aes(x=X1,y=X2,z=z), colour="black") 
+p ggplot
+-------------------------------------------------------------------------------------------------------
+library("akima")
+library("ggplot2")
+
+x.orig <- rnorm(20, 4, 3)
+y.orig <- rnorm(20, 5e-5, 1e-5)
+x <- scale(x.orig)  
+y <- scale(y.orig) 
+z <- rnorm(20)
+
+t. <- interp(x,y,z)
+t.df <- data.frame(t.)
+
+gt <- data.frame( expand.grid(x=t.$x, 
+                              y=t.$y), 
+                  z=c(t.$z), 
+                  value=cut(c(t.$z), 
+                            breaks=seq(min(z),max(z),0.25)))
+
+p <- ggplot(gt) + geom_tile(aes(x,y,fill=value)) + 
+    geom_contour(aes(x=x,y=y,z=z), colour="black") 
+
+get.labels <- function(break.points, orig.data, scaled.data, digits) { 
+    labels <- as.character(lapply(break.points,      
+            function(i) round(i * min(orig.data) 
+                              / min(scaled.data),
+                              digits)
+                                  )
+                           )
+    labels
+}
+
+x.break.points <- seq(min(x), max(x), 0.5)
+x.labels <- get.labels(x.break.points, x.orig, x, digits=2)
+p <- p + scale_x_continuous(breaks=x.break.points, 
+                            labels=x.labels)
+
+y.break.points <- seq(min(y), max(y), 0.5)
+y.labels <- get.labels(y.break.points, y.orig, y, digits=8)
+p <- p + scale_y_continuous(breaks=y.break.points, 
+                            labels=y.labels)
+
+p
+-------------------------------------------------------------------------------------------------------
+curve2<-data.frame(x=c(4,5,5,6,6,7),
+                    y=c(2,2,1,1,2,3))
+ fillin <- function(ax, ay, bx, by, scaling= 10, steps= 100) floor(cbind(seq(from = ax, to = bx, len = steps), seq(from = ay, to = by, len = steps)) * scaling)
+ Bmat <- matrix(0, 100, 100)
+ for (i in 2:nrow(curve2)){
+ Bmat[fillin (curve2[i-1,1], curve2[i-1,2], curve2[i,1], curve2[i,2])] =1
+ }
+ Bmat.orig = Bmat
+
+ Bmat = Bmat.orig
+ #construct utility function based on 
+ #manhattan distances to closest point?
+ shift = function(mat, offset){
+ mat0 = array(0, dim = dim(mat)+2)
+ mat0[1:nrow(mat) +1+ offset[1] , 1:ncol(mat) + 1+offset[2]] = mat
+ return(mat0[1:nrow(mat) + 1, 1:ncol(mat) + 1])
+ }
+
+ for (i in 1:100){
+ Bm = (Bmat != 0)
+ Btmp1 = shift(Bm, c(1,0))
+ Btmp2 = shift(Bm, c(-1,0))
+ Btmp3 = shift(Bm, c(0,1))
+ Btmp4 = shift(Bm, c(0,-1))
+
+ Bmat = Bmat + pmax(Bm ,Btmp1, Btmp2, Btmp3, Btmp4)/i
+ }
+
+ Bmat2 = replace(Bmat, Bmat == max(Bmat), max(Bmat) + 10)
+
+ #construct and compare rasterised versions
+ getcurve = function(trans = c(0,1),  curve=data.frame(x=c(1,1,2,2,3) ,
+                    y=c(9,6,6,3,3) ), Bmat = Bmat2){
+ Amat = array(0, dim = dim(Bmat))
+ curve[,1] = curve[,1] + trans[1]
+ curve[,2] = curve[,2] * trans[2]
+ for (i in 2:nrow(curve)){
+ fillin (curve[i-1,1], curve[i-1,2], curve[i,1], curve[i,2]) -> ind
+ if (min(ind) < 1 || max(ind) > nrow(Bmat)) return( array(-1, dim= dim(Bmat)))
+ Amat[ind] =1
+ }
+ Amat = (Amat - mean(Amat))/sd(as.vector(Amat))
+ Amat
+ }
+ compcurve = function(trans = c(0,1), curve=data.frame(x=c(1,1,2,2,3) ,
+                    y=c(9,6,6,3,3) ) , Bmat = Bmat2){
+ Amat = getcurve(trans, curve, Bmat)
+ -sum(Amat * Bmat)
+ }
+ #SANN seems to work for this, but is slow. Beware of finite differencing
+ # - criterion is non-smooth! 
+ optim(c(0,1), compcurve, method = "SANN", Bmat = Bmat2) -> output
+ image(Bmat)
+ contour(getcurve(output$par), add = T)
+-------------------------------------------------------------------------------------------------------
+ternaryplot a<- c (0.1, 0.5, 0.5, 0.6, 0.2, 0, 0, 0.004166667, 0.45) 
+b<- c (0.75,0.5,0,0.1,0.2,0.951612903,0.918103448,0.7875,0.45)
+c<- c (0.15,0,0.5,0.3,0.6,0.048387097,0.081896552,0.208333333,0.1) 
+d<- c (500,2324.90,2551.44,1244.50, 551.22,-644.20,-377.17,-100, 2493.04) 
+df<- data.frame (a, b, c)
+
+
+# First create the limit of the ternary plot:
+plot(NA,NA,xlim=c(0,1),ylim=c(0,sqrt(3)/2),asp=1,bty="n",axes=F,xlab="",ylab="")
+segments(0,0,0.5,sqrt(3)/2)
+segments(0.5,sqrt(3)/2,1,0)
+segments(1,0,0,0)
+text(0.5,(sqrt(3)/2),"c", pos=3)
+text(0,0,"a", pos=1)
+text(1,0,"b", pos=1)
+
+# The biggest difficulty in the making of a ternary plot is to transform triangular coordinates into cartesian coordinates, here is a small function to do so:
+tern2cart <- function(coord){
+    coord[1]->x
+    coord[2]->y
+    coord[3]->z
+    x+y+z -> tot
+    x/tot -> x  # First normalize the values of x, y and z
+    y/tot -> y
+    z/tot -> z
+    (2*y + z)/(2*(x+y+z)) -> x1 # Then transform into cartesian coordinates
+    sqrt(3)*z/(2*(x+y+z)) -> y1
+    return(c(x1,y1))
+    }
+
+# Apply this equation to each set of coordinates
+t(apply(df,1,tern2cart)) -> tern
+
+# Intrapolate the value to create the contour plot
+resolution <- 0.001
+require(akima)
+interp(tern[,1],tern[,2],z=d, xo=seq(0,1,by=resolution), yo=seq(0,1,by=resolution)) -> tern.grid
+
+# And then plot:
+image(tern.grid,breaks=c(-1000,0,500,1000,1500,2000,3000),col=rev(heat.colors(6)),add=T)
+contour(tern.grid,levels=c(-1000,0,500,1000,1500,2000,3000),add=T)
+points(tern,pch=19)
+-------------------------------------------------------------------------------------------------------
+nlevels = 5 require(grDevices) # for colours
+filled.contour(volcano, color = terrain.colors, asp = 1, nlevels=5)
+-------------------------------------------------------------------------------------------------------
+require(reshape) 
+require(mapdata)
+require(mapproj)
+df <- read.table('year.dat',head=F)
+names(df) <- c("value", "x", "y", "t")
+dfc <- cast(df[ ,-4], x ~ y)
+mm<-as.matrix(dfc,ncol=480,nrow=241)
+#pdf('mappamondo.pdf')
+ filled.contour(x=seq(0,360,length.out=480),y=seq(-90,90,length.out=241),mm,color.palette = colorRampPalette(c("lightblue", "blue","violet", "black")),
+xlab = "Longitude (°)", ylab = "Latitude (°)",
+plot.axes = {axis(1); axis(2);          
+map('world2Hires',
+xlim = c(0, 360), 
+ylim = c(-90, 90), 
+add = T, col = "black")}
+)
+
+#dev.off()
+-------------------------------------------------------------------------------------------------------
+> map(projection=foo,parameters=foo)
+> par('usr')   # will return vector of plot limits filled.contour(lons, lats, glb.data)
+ filled.contour(lons, lats, glb.data,plot.axes={axis(1,...);axis(2,...);map(projection=foo,parameters=foo,add=T)}) 
+filled.contour(lons, lats, glb.data,plot.axes={axis(1,...);axis(2,...);par(usr=c(-180,180,-90,90));
+map(add=T)}) 
+filled.contour(lons, lats, glb.data)
+plot.axes={axis(1,...);axis(2,...);
+par(usr=c(0,360,-90,90));map(add=T);  #eastern hemisphere
+par(usr=c(-360,0,-90,90));map(add=T)}   #western
+)
+-------------------------------------------------------------------------------------------------------
+outer Vectorize make_plot <- function(y, sigma, theta, lambda) { 
+  n <- length(y)
+  sig_intv <- seq(.1,2*sigma,.01);
+  th_intv <- seq(-abs(2*theta),abs(2*theta),.01);
+
+  z <- outer(
+    sig_intv, th_intv,
+    Vectorize(function(s,t){dmvnorm(y,rep(0,n),y_mat(n,lambda,theta=t,sigma=s))})
+  )
+
+  contour(sig_intv,th_intv,z);
+}
+-------------------------------------------------------------------------------------------------------
+0 = -1+ x^2 + 4*(y^2) + x*y x<-seq(-1.1,1.1,length=1000)
+y<-seq(-1,1,length=1000)
+z<-outer(x,y,function(x,y) 4*y^2+x^2+x*y -1 )
+contour(x,y,z,levels=0)
+-------------------------------------------------------------------------------------------------------
+interp akima require(akima)
+data <- data.frame(x=c(1,1,2,2,3,4,5,6,7,7,8,9),
+                   y=c(2,4,5,1,3,8,4,8,1,1,6,9),
+                   distance=c(66,84,93,76,104,29,70,19,60,50,46,36))
+resolution <- 0.1 # you can increase the resolution by decreasing this number (warning: the resulting dataframe size increase very quickly)
+a <- interp(x=data$x, y=data$y, z=data$distance, 
+            xo=seq(min(data$x),max(data$x),by=resolution), 
+            yo=seq(min(data$y),max(data$y),by=resolution), duplicate="mean")
+image(a) #you can of course modify the color palette and the color categories. See ?image for more explanation filled.contour filled.contour(a, color.palette=heat.colors)
+-------------------------------------------------------------------------------------------------------
+d <- transform(expand.grid(x=seq(-2,2,length=51),
+            y=seq(-2,2,length=51)),z=x^2+3*x*y+4*x+2*y+2*y^2) geom_contour g1 <- qplot(x,y,z=z,data=d,colour=factor(..level..),geom="contour") stat_contour stat_contour() levels contour() contourLines() g1 + scale_colour_discrete(breaks="0",limits=c("0","0"),na.value=NA,
+                          guide="none")
+-------------------------------------------------------------------------------------------------------
+value df$trimval <- pmin(df$value, 2)  
+ # the range in the example below is roughly -4.5 to 4.5 contour.plot require(reshape)
+  require(mapdata)
+  require(mapproj)
+  df <- data.frame(value=rnorm( 480*241), x=seq(0,360,length.out=480),y=seq(-90,90,length.out=241) )
+df$trimval <- pmin(df$value, 2)
+
+  dfc <- cast(df[-1], x ~ y)
+  mm<-as.matrix(dfc,ncol=480,nrow=241)
+  filled.contour(x=seq(0,360,length.out=480),y=seq(-90,90,length.out=241),mm,
+         color.palette = colorRampPalette(c("lightblue", "blue","violet", "black")),
+         xlab = "Longitude (°)", ylab = "Latitude (°)",
+         plot.axes = {axis(1); axis(2);            
+                      map('world2Hires',
+                      xlim = c(0, 360), 
+                      ylim = c(-90, 90), 
+                      add = T, col = "black")}
+                )
+-------------------------------------------------------------------------------------------------------
+contour(mat)
+-------------------------------------------------------------------------------------------------------
+x1 = seq(0, 1,.1)
+n1=seq(1.0,1.6,0.01)
+n2=seq(2.4,3,0.01)
+
+#question 3 - as a function mu.a, mu.b
+px.q3 <- function(mu.a, mu.b, x=x1)
+{
+  n1 <- dnorm(x, mean = mu.a, sd = 0.3)
+  n2 <- dnorm(x, mean = mu.b, sd = 0.3)
+  #p(x_d)
+  pxd<- 0.7 * n1 + (1-0.7) * n2
+
+  return
+  {
+  prod(pxd)
+  }   
+}
+
+vectorised.px.q3=Vectorize(px.q3)
+y= outer(n1,n2, FUN=vectorised.px.q3)
+contour(n1,n2,y)
+-------------------------------------------------------------------------------------------------------
+# Basic plot
+v <- ggplot(volcano3d, aes(x, y, z = z))
+library(directlabels)
+v2 <- v + stat_contour(aes(colour = ..level..))
+direct.label(v2)
+-------------------------------------------------------------------------------------------------------
+black getcolor <- function(z, n) {
+  is.wholenumber <-
+    function(x, tol = .Machine$double.eps^0.5)  abs(x - round(x)) < tol
+  pp <- pretty(range(z, finite=TRUE), n)
+  ifelse(is.wholenumber(pp), 'black', rainbow(n))
+}
+
+filled.contour(x,y,z2,col=getcolor(z2, 200),nlevels=200)
+-------------------------------------------------------------------------------------------------------
+txtlab <- c("2", "4", "6", "8", "Inf")
+txtpos <- c(1.25, 2, 3, 4, 4.75)
+ctlns <- contourLines(x, y, z2, levels=c(3, 5, 7, 9))
+filled.contour(x,y,z2,col=rainbow(200),nlevels=200, 
+     plot.axes={axis(1); axis(2); text(txtpos, txtpos, txtlab, cex=1.5);
+     sapply(1:4, function(x) lines(ctlns[[x]][[2]], ctlns[[x]][[3]], lwd=2))
+})
+-------------------------------------------------------------------------------------------------------
+require(akima)
+ gps.interp <- with( gpsdata[-(1:2), ], interp(x=latitude, y=longitude, z=value))
+ contour(gps.interp)
+-------------------------------------------------------------------------------------------------------
+interp akima age2100 <- read.table("temp.csv",header=TRUE,sep=",")
+
+x <- age2100$x
+y <- age2100$y
+z <- age2100$z
+
+require(akima)
+
+fld <- interp(x,y,z)
+
+par(mar=c(5,5,1,1))
+filled.contour(fld) image image.scale source("image.scale.R") # http://menugget.blogspot.de/2011/08/adding-scale-to-image-plot.html
+
+x11(width=5, height=6)
+layout(matrix(c(1,2), nrow=1, ncol=2), widths=c(4,1), height=6, respect=TRUE)
+layout.show(2)
+
+par(mar=c(4,4,1,1))
+image(fld)
+contour(fld, add=TRUE)
+points(age2100$x,age2100$y, pch=".", cex=2)
+
+par(mar=c(4,0,1,4))
+image.scale(fld$z, xlab="", ylab="", xaxt="n", yaxt="n", horiz=FALSE)
+box()
+axis(4)
+mtext("text", side=4, line=2.5)
+-------------------------------------------------------------------------------------------------------
+polypath #function to extract coordinates from shapefile (by Paul Hiemstra)
+allcoordinates_lapply = function(x) { 
+    polys = x@polygons 
+    return(do.call("rbind", lapply(polys, function(pp) { 
+           do.call("rbind", lapply(pp@Polygons, coordinates)) 
+           }))) 
+} 
+q = allcoordinates_lapply(shapefile)
+
+#extract subset of coordinates, otherwise strange line connections occur...
+lat = q[110:600,1]
+long = q[110:600,2]
+
+#define ranges for polypath
+xrange <- range(lat, na.rm=TRUE)
+yrange <- range(long, na.rm=TRUE)
+xbox <- xrange + c(-20000, 20000)
+ybox <- yrange + c(-20000, 20000)
+
+#plot your stuff
+plot(shapefile, lwd=2)
+image(fld, axes=F, add=T)
+contour(fld, add=T)
+#and here is the magic 
+polypath(c(lat, NA, c(xbox, rev(xbox))),
+         c(long, NA, rep(ybox, each=2)),
+         col="white", rule="evenodd")
+-------------------------------------------------------------------------------------------------------
+## An example matrix
+(m <- matrix(1:9, ncol=3))
+#      [,1] [,2] [,3]
+# [1,]    1    4    7
+# [2,]    2    5    8
+# [3,]    3    6    9
+
+## The same matrix rotated 90 degrees clockwise
+t(m)[,nrow(m):1]
+#      [,1] [,2] [,3]
+# [1,]    3    2    1
+# [2,]    6    5    4
+# [3,]    9    8    7 image() m <- matrix(1:9, ncol=3)
+
+
+## ------- These plotting functions DO rotate a matrix --------
+
+## image()
+image(m, col=blues9)
+
+## levelplot() -- a lattice equivalent of image()
+library(lattice)    
+levelplot(m, at=(1:10)-0.5, col.regions=blues9)
+
+## Others
+contour(m)
+filled.contour(m, color=colorRampPalette(blues9))
+persp(m) 
+lattice::contourplot(m)
+lattice::wireframe(m)  ## Nicely illustrates the logic of the indexing it uses
+
+
+## ------- These plotting functions DO NOT --------
+
+## imageRaster() -- a graphical primitive used by image(), among other functions 
+plot(0:1, 0:1, type="n", xlab="", ylab="")
+rasterImage(matrix(blues9, ncol=3), 0,0,1,1, interpolate=FALSE)
+
+## grid.raster() -- imageRaster()'s counterpart in the grid graphical system
+library(grid)
+grid.raster(matrix(blues9, ncol=3), interpolate=FALSE)
+
+## plot(raster()) in raster package
+library(raster)
+plot(raster(m), col=blues9)
+-------------------------------------------------------------------------------------------------------
+a<-contour(x,y,z,level=0, xlim=range(x), ylim=range(y))
+ b<-contour(x,y,z,level=0, xlim=range(x), ylim=range(y), add=TRUE)
+-------------------------------------------------------------------------------------------------------
+edat <- read.table(file=file.choose())
+ with(edat, plot(V1,V2), cex=0.2) with(edat, plot(V1,V2, cex=0.2, col=V5)) with(edat, arrows(V1,V2, V1-20*V6*V7, V2-20*V6*V8, length=0.04, col="orange") ) with(edat, plot(V1,V2, cex=0.3, col=V5, xlim=c(0, 10000), ylim=c(-8000, -2000) ))
+with(edat, arrows(V1,V2, V1-20*V6*V7, V2-20*V6*V8, length=0.04, col="orange") ) require(akima)
+intflow<- with(edat, interp(x=x, y=y, z=Temps, xo=seq(min(x), max(x), length = 410), 
+              yo=seq(min(y), max(y), length = 410), duplicate="mean", linear=FALSE) )
+
+require(lattice)
+contourplot(intflow$z)
+filled.contour(intflow)
+with( intflow, contour(x=x, y=y, z=z) ) points plot
+-------------------------------------------------------------------------------------------------------
+Ellipses <- read.table(file.choose())
+names(Ellipses) <- c('x','y','dfluxx','dfluxy','kxx','Temps','gradTx','gradTy')
+require(splancs)
+require(akima) #First the background layer (the 'kxx' layer):
+# Here the regular grid on which we're gonna do the interpolation
+E.grid <- with(Ellipses, 
+               expand.grid(seq(min(x),max(x),length=200),
+                           seq(min(y),max(y),length=200)))
+names(E.grid) <- c("x","y") # Without this step, function inout throws an error
+E.grid$Value <- rep(0,nrow(E.grid))
+#Split the dataset according to unique values of kxx
+E.k <- split(Ellipses,Ellipses$kxx)
+# Find the convex hull delimiting each of those values domain
+E.k.ch <- lapply(E.k,function(X){X[chull(X$x,X$y),]}) 
+for(i in unique(Ellipses$kxx)){ # Pick the value for each coordinate in our regular grid
+    E.grid$Value[inout(E.grid[,1:2],E.k.ch[names(E.k.ch)==i][[1]],bound=TRUE)]<-i
+}
+
+# Then the regular grid for the second layer (Temp)
+T.grid <- with(Ellipses,
+               interp(x,y,Temps, xo=seq(min(x),max(x),length=200),        
+                      yo=seq(min(y),max(y),length=200), 
+                      duplicate="mean", linear=FALSE))
+# The regular grids for the arrow layer (gradT)
+dx <- with(Ellipses,
+           interp(x,y,gradTx,xo=seq(min(x),max(x),length=15),
+                  yo=seq(min(y),max(y),length=10),
+                  duplicate="mean", linear=FALSE))
+dy <- with(Ellipses,
+           interp(x,y,gradTy,xo=seq(min(x),max(x),length=15),
+                  yo=seq(min(y),max(y),length=10),
+                  duplicate="mean", linear=FALSE))
+T.grid2 <- with(Ellipses,
+               interp(x,y,Temps, xo=seq(min(x),max(x),length=15),        
+                      yo=seq(min(y),max(y),length=10), 
+                      duplicate="mean", linear=FALSE))
+gradTgrid<-expand.grid(dx$x,dx$y) palette(grey(seq(0.5,0.9,length=5)))
+par(mar=rep(0,4))
+plot(E.grid$x, E.grid$y, col=E.grid$Value, 
+     axes=F, xaxs="i", yaxs="i", pch=19)
+contour(T.grid, add=TRUE, col=colorRampPalette(c("blue","red"))(15), drawlabels=FALSE)
+arrows(gradTgrid[,1], gradTgrid[,2],  # Here I multiply the values so you can see them
+       gradTgrid[,1]-dx$z*40*T.grid2$z, gradTgrid[,2]-dy$z*40*T.grid2$z, 
+       col="yellow", length=0.05) ?inout ?chull ?interp ?expand.grid ?contour
+-------------------------------------------------------------------------------------------------------
+#Let's create some random values:
+ee<-array(rnorm(89*180),dim=c(89,180))
+
+#If ee has 89 rows (corresponding to latitude I guess) then lati needs 89 values:
+lati <- seq(-90,90,length=89) #Latitudes goes from -90 to 90 as far as I know :)
+#Same thing with columns/longitude:
+long <- seq(-180,180,length=180)
+
+#you probably want your contour behind the continents so first an empty plot:
+plot(NA, xlim=c(-180,180), ylim=c(-90,90), xlab="", ylab="", xaxs="i", yaxs="i")
+#Then your contour (you need to transpose ee so that rows are longitudes):
+contour(long, lati, t(ee), add=TRUE)
+# And then your continents:
+maps::map(database="world", fill=TRUE, col="light blue", add=TRUE)
+-------------------------------------------------------------------------------------------------------
+filled.contour library(maps)
+ee<-array(rnorm(89*180),dim=c(89,180))
+lati <- seq(-90,90,length=89) #Latitudes goes from -90 to 90 as far as I know :)
+long <- seq(-180,180,length=180)
+draw.map <- function() {maps::map(database="world", fill=TRUE, col="light blue", add=TRUE)}
+filled.contour(long,lati,t(ee), color.palette=terrain.colors, plot.axes=draw.map())
+-------------------------------------------------------------------------------------------------------
+image.plot fields library(fields)
+image.plot(volcano)
+contour(volcano, add = TRUE)
+-------------------------------------------------------------------------------------------------------
+HPDregionplot library(MASS)
+x <- rnorm(1000, 0, 1.3)
+y <- rnorm(1000, 0, 1);
+dens <- kde2d(x, y, n=200); ## estimate the z counts
+
+prob <- c(.98, .95, .90, .8, .5, .1)
+dx <- diff(dens$x[1:2])
+dy <- diff(dens$y[1:2])
+sz <- sort(dens$z)
+c1 <- cumsum(sz) * dx * dy
+levels <- sapply(prob, function(x) {
+    approx(c1, sz, xout = 1 - x)$y
+})
+
+plot(x,y)
+contour(dens, levels=levels, labels=prob, add=T)
+-------------------------------------------------------------------------------------------------------
+p4 = "+proj=lcc +lat_1=50  +lat_2=50 +lat_0=0  +lon_0=253 +x_0=0  +y_0=0" rgdal:spTransform coordinates(dat)=~lon+lat
+proj4string(dat)=CRS("+init=epsg:4326")
+dat2=spTransform(dat,CRS(p4))
+bb=bbox(dat2)
+lonx=seq(bb[1,1],  bb[1,2],len=277)
+laty=seq(bb[2,1], bb[2,2],len=349)
+r=raster(list(x=laty,y=lonx,z=md))
+plot(r)
+contour(r,add=TRUE)
+-------------------------------------------------------------------------------------------------------
+filled.contour filled.contour my.filled.contour <-
+function (x = seq(0, 1, length.out = nrow(z)), y = seq(0, 1,
+    length.out = ncol(z)), z, xlim = range(x, finite = TRUE),
+    ylim = range(y, finite = TRUE), zlim = range(z, finite = TRUE),
+    levels = pretty(zlim, nlevels), nlevels = 20, color.palette = cm.colors,
+    col = color.palette(length(levels) - 1), plot.title, plot.axes,
+    key.title, key.axes, asp = NA, xaxs = "i", yaxs = "i", las = 1,
+    axes = TRUE, frame.plot = axes, ...)
+{
+    if (missing(z)) {
+        if (!missing(x)) {
+            if (is.list(x)) {
+                z <- x$z
+                y <- x$y
+                x <- x$x
+            }
+            else {
+                z <- x
+                x <- seq.int(0, 1, length.out = nrow(z))
+            }
+        }
+        else stop("no 'z' matrix specified")
+    }
+    else if (is.list(x)) {
+        y <- x$y
+        x <- x$x
+    }
+    if (any(diff(x) <= 0) || any(diff(y) <= 0))
+        stop("increasing 'x' and 'y' values expected")
+    mar.orig <- (par.orig <- par(c("mar", "las", "mfrow")))$mar
+    on.exit(par(par.orig))
+    w <- (3 + mar.orig[2L]) * par("csi") * 2.54
+    layout(matrix(c(2, 1), ncol = 2L), widths = c(1, lcm(w)))
+    par(las = las)
+    mar <- mar.orig
+    mar[4L] <- mar[2L]
+    mar[2L] <- 1
+    par(mar = mar)
+    plot.new()
+    plot.window(xlim = c(0, 1), ylim = range(levels), xaxs = "i",
+        yaxs = "i")
+#    rect(0, levels[-length(levels)], 1, levels[-1L], col = col)
+#    if (missing(key.axes)) {
+#        if (axes)
+#            axis(4)
+#    }
+#    else key.axes
+#    box()
+    if (!missing(key.title))
+        key.title
+    mar <- mar.orig
+    mar[4L] <- 1
+    par(mar = mar)
+    plot.new()
+    plot.window(xlim, ylim, "", xaxs = xaxs, yaxs = yaxs, asp = asp)
+    if (!is.matrix(z) || nrow(z) <= 1L || ncol(z) <= 1L)
+        stop("no proper 'z' matrix specified")
+    if (!is.double(z))
+        storage.mode(z) <- "double"
+    .Internal(filledcontour(as.double(x), as.double(y), z, as.double(levels),col = col))
+    if (missing(plot.axes)) {
+        if (axes) {
+            title(main = "", xlab = "", ylab = "")
+            Axis(x, side = 1)
+            Axis(y, side = 2)
+        }
+    }
+    else plot.axes
+    if (frame.plot)
+        box()
+    if (missing(plot.title))
+        title(...)
+    else plot.title
+    invisible()
+} my.filled.
+contour(x=x, y=y, z=z,levels=levels,col=colorpanel(),xlim=rev(),ylim=rev(r),plot.axes=axis(1),xlab="x",frame=FALSE)
+-------------------------------------------------------------------------------------------------------
+.filled.contour plot(NA,xlim=rev(range(x)),
+               ylim=rev(range(y)),xlab="x",ylab="y",
+               frame=FALSE,axes=F,xaxs="i",yaxs="i")
+
+.filled.contour(x=x, y=y, z=z,levels=levels,col=colorpanel(length(levels) + 1, "white", "grey10"))
+draw.contour()
+axis(1, c(0.18, 0.01), label=TRUE, tcl=-0.5)
+axis(2, c(0.18, 0.01), label=TRUE, tcl=-0.5, las=1)
+-------------------------------------------------------------------------------------------------------
+.Internal(filled
+contour(as.double(x), as.double(y), z, as.double(levels), col = col)) .filled.contour(as.double(x), as.double(y), z, as.double(levels), 
+                            col = col)
+-------------------------------------------------------------------------------------------------------
+clims z = matrix(rnorm(10*10, sd=3), 10)
+
+z2 <- z
+z2[z2 > 3] <- 3
+z2[z2 < -5] <- -5
+
+# or simply
+z2 = scales::squish(z, c(-5, 3))
+
+filled.contour(z) filled.contour(z2)
+-------------------------------------------------------------------------------------------------------
+filled.contour(z=dat1,col=Contourcolors,plot.axes=points( x=seq(0, 1, length.out = nrow(dat1)),y=rep(.5,20), col=PointColors,cex=5,pch=19))
+-------------------------------------------------------------------------------------------------------
+y filled.contour filled.contour(z=z1,y=c(0,.33,1),col=col1,cex.lab=2,cex.main=1.1,nlevels=20,main=('Heat map with custom y placement'))
+-------------------------------------------------------------------------------------------------------
+plot.title plot.axes key.title key.axes ?filled.contour ...: additional graphical parameters, currently only passed to
+      ‘title()’. x=1:10
+y=1:10
+z=array(rnorm(100),dim=c(10,10))
+
+filled.contour(x,y,z,las=0,plot.axes={},plot.title={})
+-------------------------------------------------------------------------------------------------------
+install.packages("directlabels", repos="http://r-forge.r-project.org") library(plyr)
+library(ggplot2)
+library(directlabels)
+library(reshape)
+volcano<-melt(volcano)
+v<-ggplot(volcano, aes(X1,X2,z=value))
+e<-v + stat_contour(aes(colour=..level..), breaks=c(165))
+direct.label(e) ggplot z stat_contour geom_contour colour stat_contour ..level.. e<-v + stat_contour(aes(colour=..level..), colour = "blue", breaks=c(165))
+e<-e + scale_colour_continuous(low = "#FF0000", high = "#FF0000")
+direct.label(e)
+-------------------------------------------------------------------------------------------------------
+#some data
+set.seed(42)
+x1 <- rnorm(20)
+x2 <- runif(20)
+x3 <- rpois(20,10)
+x4 <- rexp(20)
+y <- 10 + 2*x1 + 3*x2^2 + 4*x3 +5*x4 + rnorm(20, sd=0.1)
+
+dat <- data.frame(x1, x2, x3, x4, y)
+
+#fit the model
+fit <- lm(y~x1+I(x2^2)+x3+x4, data=dat)
+summary(fit)
+
+#ranges and fixed values
+fix_x <- c(0.3, 0.4, 15, 1)
+min_x <- c(-3, 0, 5, 0)
+max_x <- c(3, 1, 20, 7)
+
+#all combinations
+combis <- combn(seq_len(ncol(dat)-1),2)
+#number of x-values 
+#(warning! don't make too large since expand.grid is used)
+n <- 100
+
+#create new data and predict for each combination
+newdat <- lapply(seq_len(ncol(combis)),
+                 function(i) {
+                   gr <- expand.grid(seq(from=min_x[combis[1,i]],
+                                         to=max_x[combis[1,i]],
+                                         length.out=n),
+                                     seq(from=min_x[combis[2,i]],
+                                         to=max_x[combis[2,i]],
+                                         length.out=n))
+
+                   newdat <- as.data.frame(matrix(nrow=nrow(gr), ncol=ncol(dat)-1))
+                   newdat[,combis[,i]] <- gr
+                   newdat[,-combis[,i]] <- matrix(rep(fix_x[-combis[,i]],each=nrow(gr)), nrow=nrow(gr))
+
+                   newdat <- as.data.frame(newdat)
+                   names(newdat) <- head(names(dat),-1)
+
+                   newdat$y <- predict(fit, newdata=newdat)
+
+                   newdat$comb <- paste(combis[,i],collapse=" vs. ")
+                   #rename so rbind works as needed
+                   names(newdat)[combis[,i]] <- c("xa","xb")
+                   names(newdat)[-combis[,i]] <- c(paste0("fix",letters[seq_len(ncol(dat)-3)]), "y", "comb")
+                   newdat
+                 })
+
+newdat <- do.call(rbind,newdat)
+
+#plot
+library(ggplot2)
+ggplot(newdat, aes(x=xa, y=xb, z=y)) + 
+  stat_contour() + 
+  facet_wrap(~comb, scales="free", ncol=2) +
+  xlab("") +
+  ylab("")
+-------------------------------------------------------------------------------------------------------
+ggplot image contour persp require(mvtnorm)
+    xy <- rmvnorm(1000,c(5,10),sigma=rbind(c(3,-2),c(-2,3)))
+
+    nbins <- 20
+    x.bin <- seq(floor(min(xy[,1])), ceiling(max(xy[,1])), length=nbins)
+    y.bin <- seq(floor(min(xy[,2])), ceiling(max(xy[,2])), length=nbins)
+
+    freq <-  as.data.frame(table(findInterval(xy[,1], x.bin),findInterval(xy[,2], y.bin)))
+    freq[,1] <- as.numeric(freq[,1])
+    freq[,2] <- as.numeric(freq[,2])
+
+    freq2D <- diag(nbins)*0
+    freq2D[cbind(freq[,1], freq[,2])] <- freq[,3]
+
+    par(mfrow=c(1,2))
+    image(x.bin, y.bin, freq2D, col=topo.colors(max(freq2D)))
+    contour(x.bin, y.bin, freq2D, add=TRUE, col=rgb(1,1,1,.7))
+
+    palette(rainbow(max(freq2D)))
+    cols <- (freq2D[-1,-1] + freq2D[-1,-(nbins-1)] + freq2D[-(nbins-1),-(nbins-1)] + freq2D[-(nbins-1),-1])/4
+    persp(freq2D, col=cols) require(rgl)
+surface3d(x.bin,y.bin,freq2D/10, col="red")
+-------------------------------------------------------------------------------------------------------
+require(MASS)
+dens <- with(dat, MASS::kde2d(Age, Value))
+str(dens)
+#-------------
+List of 3
+ $ x: num [1:25] 1657 1671 1686 1700 1715 ...
+ $ y: num [1:25] -0.267 -0.249 -0.232 -0.214 -0.197 ...
+ $ z: num [1:25, 1:25] 0.00152 0.00187 0.00226 0.00267 0.00312 ...
+#--------------
+# kde2d is designed for contour display: x-vector, y-vector, z-Matrix
+ contour(dens) points(dat$Age, dat$Value, cex=0.3, col="red")
+-------------------------------------------------------------------------------------------------------
+colour # Add category column to data.frames, then combine.
+v1$category = "A"
+v2$category = "B"
+v3 = rbind(v1, v2)
+
+p1 = ggplot(v3, aes(x=Var1, y=Var2, z=value, colour=category)) +
+     stat_contour(binwidth=10) +
+     theme(panel.background=element_rect(fill="grey90")) +
+     theme(panel.grid=element_blank()) +
+     labs(title="Plot 1")
+
+p2 = ggplot(v3, aes(x=Var1, y=Var2, z=value, colour=category)) +
+     stat_contour(aes(alpha=..level..), binwidth=10) +
+     theme(panel.background=element_rect(fill="white")) +
+     theme(panel.grid=element_blank()) +
+     labs(title="Plot 2")
+
+p3 = ggplot(v3, aes(x=Var1, y=Var2, z=value, group=category)) +
+     stat_contour(aes(color=..level..), binwidth=10) +
+     scale_colour_gradient(low="white", high="#A1CD3A") +
+     theme(panel.background=element_rect(fill="grey50")) +
+     theme(panel.grid=element_blank()) +
+     labs(title="Plot 3")
+
+p4 = ggplot(v3, aes(x=Var1, y=Var2, z=value, linetype=category)) +
+     stat_contour(aes(color=..level..), binwidth=10) +
+     scale_colour_gradient(low="white", high="#A1CD3A") +
+     theme(panel.background=element_rect(fill="grey50")) +
+     theme(panel.grid=element_blank()) +
+     labs(title="Plot 4")
+
+library(gridExtra)
+ggsave(filename="plots.png", height=8, width=10,
+       plot=arrangeGrob(p1, p2, p3, p4, nrow=2, ncol=2)) aes(colour=category) ..level.. aes(group=category)
+-------------------------------------------------------------------------------------------------------
+x <- 10*1:nrow(volcano)
+  y <- 10*1:ncol(volcano)
+  filled.contour(x, y, volcano,asp=1, frame.plot=F,plot.axes = {})
+-------------------------------------------------------------------------------------------------------
+?colorRampPalette ## 'jet.colors' is "as in Matlab"
+## (and hurting the eyes by over-saturation)
+jet.colors <-
+  colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan",
+                     "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000")) filled.contour(volcano, color = jet.colors, asp = 1, nlevels=100)
+-------------------------------------------------------------------------------------------------------
+contour contourplot bar<-matrix(runif(100,nrow=10))
+contour(bar)
+contour(bar,levels = 0.2, lwd=3, add=TRUE) contourplot contour contour(bar,lwd=c(2,1,1,1,1,)) graphics
+-------------------------------------------------------------------------------------------------------
+my.heat.colors <- function(x) { rev(heat.colors(x, alpha=1)) }
+ my.matrix  <- interp(X,Y,Z)
+ ind.mat.na <- which(is.na(c(my.matrix$z)))
+ my.matrix$z[ind.mat.na] <- 0
+ filled.contour(my.matrix, nlevels=10, color=my.heat.colors)
+-------------------------------------------------------------------------------------------------------
+X <- read.csv("tempcontour.txt")
+library(akima)
+## needed to specify the 'duplicate' argument (see ?interp)
+interp1 <- with(X,interp(Latitude,Longitude,Temperature,
+                         duplicate="mean"))
+names(interp1) <- colnames(X)  ## assumes colnames are in Lat/Long/Temp order
+
+png("interp1.png")
+with(interp1,contour(Longitude,Latitude,Temperature,ylab="Latitude",xlab="Longitude"))
+dev.off()
+-------------------------------------------------------------------------------------------------------
+melt() Tps() ggplot2 levelplot library(reshape)
+library(lattice)
+
+LWsurfm<-melt(surf.te.outLW)
+LWsurfm<-rename(LWsurfm, c("value"="z", "Var1"="x", "Var2"="y"))
+LWsurfms<-na.omit(LWsurfm)
+SWsurfms[,"Morph"]<-c("SW")
+
+SWsurfm<-melt(surf.te.outSW)
+SWsurfm<-rename(SWsurfm, c("value"="z", "X1"="x", "X2"="y"))
+SWsurfms<-na.omit(SWsurfm)
+LWsurfms[,"Morph"]<-c("LW")
+
+LWSWsurf<-rbind(LWsurfms, SWsurfms)
+
+LWSWp<-ggplot(LWSWsurf, aes(x,y,z=z))+facet_wrap(~Morph)
+LWSWp<-LWSWp+geom_tile(aes(fill=z))+stat_contour()
+LWSWp
+-------------------------------------------------------------------------------------------------------
+expand.grid outer library(ggplot2)
+testPts <- transform(expand.grid(x=1:10,y=1:5),z=sin(x*y))
+(ggplot(data=testPts, aes(x=x, y=y, z=z))
+ + stat_contour()
+ + geom_point(aes(colour=z))
+)
+-------------------------------------------------------------------------------------------------------
+pts.grid <- interp(as.data.frame(pts)$coords.x1, as.data.frame(pts)$coords.x2, as.data.frame(pts)$GWLEVEL_TI)
+pts.grid2 <- expand.grid(x=pts.grid$x, y=pts.grid$y)
+pts.grid2$z <- as.vector(pts.grid$z) stat_contour() (ggplot(as.data.frame(pts), aes(x=coords.x1, y=coords.x2, z=GWLEVEL_TI))
+#+ geom_tile(data=na.omit(pts.grid2), aes(x=x, y=y, z=z, fill=z))
++ stat_contour(data=na.omit(pts.grid2), binwidth=2, colour="red", aes(x=x, y=y, z=z))
++ geom_point()
+)
+-------------------------------------------------------------------------------------------------------
+fourvar fourvar <- function(a1,a2,l1,l2){ 
+  a1* integrate( function(x) {(1-x)^(a1-1)*(1-x^(l2/l1) )^a2} , 0 , 1)$value } integrate Vectorize() mat <- outer( seq(.01, 10, length=100),  
+                seq(.01, 10, length=100), 
+                Vectorize( function(x,y) fourvar(a1=2, x/2, l1=2, l2=y/2) ) ) lattice::contourplot directlabel require(reshape2)
+mmat <- melt(mat)
+str(mmat) # to see the names in the melted matrix
+g <- ggplot(mmat, aes(x=Var1, y=Var2, z=value) )
+g <- g+stat_contour(aes(col = ..level..), breaks=seq(.1, .9, .1) )
+g <- g + scale_colour_continuous(low = "#000000", high = "#000000") # make black
+install.packages("directlabels", repos="http://r-forge.r-project.org", type="source")
+require(directlabels)
+direct.label(g) require(lattice)
+  contourplot(mat, at=seq(.1,.9,.1))
+-------------------------------------------------------------------------------------------------------
+library(akima)
+
+# interpolation
+fld <- with(df, interp(x = Lon, y = Lat, z = Rain))
+
+filled.contour(x=fld$x,y=fld$y,z=fld$z,color.palette=colorRampPalette(),xlab = "Longitude",ylab = "Latitude",main = "Rwandan rainfall",key.title = title()
+ library(ggplot)
+library(reshape2)
+
+# prepare data in long format
+df <- melt(fld$z, na.rm = TRUE)
+names(df) <- c("x", "y", "Rain")
+df$Lon <- fld$x[df$x]
+df$Lat <- fld$y[df$y]
+
+ggplot(data = df, aes(x = Lon, y = Lat, z = Rain)) +
+  geom_tile(aes(fill = Rain)) +
+  stat_contour() +
+  ggtitle("Rwandan rainfall") +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  scale_fill_continuous(name = "Rain (mm)",
+                        low = "white", high = "blue") +
+  theme(plot.title = element_text(size = 25, face = "bold"),
+        legend.title = element_text(size = 15),
+        axis.text = element_text(size = 15),
+        axis.title.x = element_text(size = 20, vjust = -0.5),
+        axis.title.y = element_text(size = 20, vjust = 0.2),
+        legend.text = element_text(size = 10)) ggmap # grab a map. get_map creates a raster object
+library(ggmap)
+rwanda1 <- get_map(location = c(lon = 29.75, lat = -2),
+                  zoom = 9,
+                  maptype = "toner",
+                  source = "stamen")
+# alternative map
+# rwanda2 <- get_map(location = c(lon = 29.75, lat = -2),
+#                   zoom = 9,
+#                   maptype = "terrain")
+
+# plot the raster map
+g1 <- ggmap(rwanda1)
+g1
+
+# plot map and rain data
+# use coord_map with default mercator projection
+g1 + 
+  geom_tile(data = df, aes(x = Lon, y = Lat, z = Rain, fill = Rain), alpha = 0.8) +
+  stat_contour(data = df, aes(x = Lon, y = Lat, z = Rain)) +
+  ggtitle("Rwandan rainfall") +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  scale_fill_continuous(name = "Rain (mm)",
+                        low = "white", high = "blue") +
+  theme(plot.title = element_text(size = 25, face = "bold"),
+        legend.title = element_text(size = 15),
+        axis.text = element_text(size = 15),
+        axis.title.x = element_text(size = 20, vjust = -0.5),
+        axis.title.y = element_text(size = 20, vjust = 0.2),
+        legend.text = element_text(size = 10)) +
+  coord_map() # Since I don't have your map object, I do like this instead:
+# get map data from
+# http://biogeo.ucdavis.edu/data/diva/adm/RWA_adm.zip
+# unzip files to folder named "rwanda"
+
+# read shapefile with rgdal::readOGR
+# just try the first out of three shapefiles, which seemed to work.
+# 'dsn' (data source name) is the folder where the shapefile is located
+# 'layer' is the name of the shapefile without the .shp extension.
+
+library(rgdal)
+rwa <- readOGR(dsn = "rwanda", layer = "RWA_adm0")
+class(rwa)
+# [1] "SpatialPolygonsDataFrame"
+
+# convert SpatialPolygonsDataFrame object to data.frame
+rwa2 <- fortify(rwa)
+class(rwa2)
+# [1] "data.frame"
+
+# plot map and raindata  
+ggplot() + 
+  geom_polygon(data = rwa2, aes(x = long, y = lat, group = group),
+               colour = "black", size = 0.5, fill = "white") +
+  geom_tile(data = df, aes(x = Lon, y = Lat, z = Rain, fill = Rain), alpha = 0.8) +
+  stat_contour(data = df, aes(x = Lon, y = Lat, z = Rain)) +
+  ggtitle("Rwandan rainfall") +
+  xlab("Longitude") +
+  ylab("Latitude") +
+  scale_fill_continuous(name = "Rain (mm)",
+                        low = "white", high = "blue") +
+  theme_bw() +
+  theme(plot.title = element_text(size = 25, face = "bold"),
+        legend.title = element_text(size = 15),
+        axis.text = element_text(size = 15),
+        axis.title.x = element_text(size = 20, vjust = -0.5),
+        axis.title.y = element_text(size = 20, vjust = 0.2),
+        legend.text = element_text(size = 10)) +
+  coord_map()
+-------------------------------------------------------------------------------------------------------
+filled.contour points plot.axes filled.contour(x,y,z, col=rev(heat.colors(n=20, alpha=0.7)), nlevels=15,
+               plot.axes={points(0,0)})
+-------------------------------------------------------------------------------------------------------
+graphicalBMI <- function(meter, kg, showPlot=TRUE){
+
+  BMI <- kg/(meter^2)
+
+  if(showPlot){
+    x <- seq(1.5, 1.9, by = 0.001)
+    y <- seq(30, 200, by = 0.5)
+
+    # here we call graphicalBMI by setting showPlot=F to avoid infinite recursion
+    z <- outer(x, y, FUN = function(x, y) {graphicalBMI(x, y, FALSE)})
+    contour(x, y, z, nlevels = 10, method = "edge", main = "BMI")
+    abline(h = kg, v= meter, col="darkgrey") 
+    points(meter, kg, col="red", cex=2, pch=16, bg="red")
+  }
+  return(BMI)
+}
+
+
+# usage example:
+graphicalBMI(1.8,70) # plot produced
+
+graphicalBMI(1.8,70,FALSE) # no plot produced
+-------------------------------------------------------------------------------------------------------
+binwidth= breaks= ggplot(volcano3d, aes(x, y, z = z)) + 
+  stat_contour(breaks=c(120,140,160))
+-------------------------------------------------------------------------------------------------------
+v1 = v +  stat_contour(aes(colour=..level..,size=..level..)) + 
+scale_colour_continuous(guide=FALSE) scale_size_continuous
+-------------------------------------------------------------------------------------------------------
+df <- data.frame(PC1 = runif(20),
+            PC2 = runif(20),
+            aa = rbinom(20,1,0.5))
+
+
+point.density <- function(row){
+  points <- df[df$aa == row[[3]],]
+  x.dist <- (points$PC1 - row[[1]])^2
+  y.dist <- (points$PC2 - row[[2]])^2
+  x <- x.dist[order(x.dist)[1:5]]
+  y <- y.dist[order(y.dist)[1:5]]
+  1/mean(sqrt(x + y))
+}
+
+# you need to calculate the density for the whole grid.
+res <- c(1:100)/100 # this is the resolution, so gives a 100x100 grid
+
+plot.data0 <- data.frame(x.val = rep(res,each = length(res)),
+                        y.val = rep(res, length(res)),
+                        type = rep(0,length(res)^2))
+
+plot.data1 <- data.frame(x.val = rep(res,each = length(res)),
+                         y.val = rep(res, length(res)),
+                         type = rep(1,length(res)^2))
+
+plot.data <- rbind(plot.data0,plot.data1)
+
+# we need a density value for each point type, so 2 grids
+densities <- apply(plot.data,1,point.density)
+plot.data <- cbind(plot.data, z.val = densities)
+
+library(ggplot2)
+
+# use stat_contour to draw the densities. Be careful to specify which dataset you're using
+ggplot() +  stat_contour(data = plot.data, aes(x=x.val, y=y.val, z=z.val, colour =    factor(type)), bins = 20, alpha = 0.4) + geom_point(data = df, aes(x=PC1,y=PC2,colour = factor(aa)))
+-------------------------------------------------------------------------------------------------------
+R x=seq(-107,-106,.1)
+y=seq(33,34,.1)
+coords=expand.grid(x,y)
+data1=data.frame(coords,depth=runif(nrow(coords),0,2))
+names(data1)=c('x','y','value')
+
+# get max and min values 
+xmn=min(data1[,1]); xmx=max(data1[,1])
+ymn=min(data1[,2]); ymx=max(data1[,2]) # compute interpolated raster. Note that this is not the 'spatial-temporal K function' requested in the question, as pointed out in a comment below, but a linear interpolation
+library(akima)
+akima.li <- interp(data1[,1], data1[,2], data1[,3], duplicate = "median",
+                   xo=seq(xmn,xmx, length=100),
+                   yo=seq(ymn,ymx, length=100)) # plot interpolated raster 
+image(akima.li, col = rainbow(100, alpha = 1)) # plot interpolated contour 
+contour(akima.li, nlevels = 3) # put the raster and contours together
+image(akima.li, col = rainbow(100, alpha = 1))
+contour(akima.li, nlevels = 3, add = TRUE) image(akima.li, col = gray.colors(10, start = 0, end = 0.9, gamma = 2.2, alpha = 1))
+contour(akima.li, nlevels = 3, add = TRUE) image(akima.li, col = gray.colors(10, start = 0, end = 1, gamma = 1, alpha = 1))
+contour(akima.li, nlevels = 3, add = TRUE, lty = 0)
+-------------------------------------------------------------------------------------------------------
+#f is your function
+f <- function (x_1, x_2) 0.651 - 0.728 * x_1 - 0.552 * x_2 - 0.006 * x_1 * x_2 - 0.071 * x_1^2 +.170 * x_2^2
+
+#length=1000 to be safe, could be set lower
+x_1 <- seq(0, 1, length=1000)
+x_2 <- seq(0, 1, length=1000)
+z <- outer(x_1, x_2, FUN=f)
+contour(x_1, x_2, z, levels=0)
+-------------------------------------------------------------------------------------------------------
+library(ggplot2)
+library(reshape2)   # for melt(...)
+## same as first response
+x <- seq(0,10,length=1000)
+y <- seq(-10,10, length=1000)
+z <- outer(x,y,FUN=f)
+# need this extra step 
+gg <- melt(z, value.name="z",varnames=c("X","Y"))
+# creates the plot
+ggplot(gg) + stat_contour(aes(x=X, y=Y, z=z), breaks=0)
+-------------------------------------------------------------------------------------------------------
+elliptic pracma f <- function(z) 1/z  # the complex function
+P <- c(-2-1i, 2-1i)   # straight line between two points
+
+require(pracma)
+cintegral(f, P)       # complex integral along path P
+## [1] 0+2.214297i integral.contour() integral.segment() elliptic f P <- c(-1i, 1, 1i, -1, -1i)  # rectangle around 0
+cintegral(f, P)
+## [1] 0+6.283185i 2*pi*1i
+-------------------------------------------------------------------------------------------------------
+model <- lm( charges~age+hrs+age*hrs, df)
+# set up grid of (x,y) values
+age <- seq(0,1000, by=20)
+hrs <- seq(0,1000, by=20)
+gg <- expand.grid(age=age, hrs=hrs)
+# prediction from the linear model
+gg$charges <-predict(model,newdata=gg)
+
+# contour plot 
+library(ggplot2)
+library(colorRamps)  
+library(grDevices)
+jet.colors <- colorRampPalette(matlab.like(9))
+ggplot(gg, aes(x=age, y=hrs, z=charges))+
+  stat_contour(aes(color=..level..),binwidth=200, size=2)+
+  scale_color_gradientn(colours=jet.colors(8)) # 3D scatterplot
+library(scatterplot3d)
+scatterplot3d(gg$age, gg$hrs, gg$charges) # interactive 3D scatterplot (just a screen shot here)
+library(rgl)
+plot3d(gg$age,gg$hrs,gg$charges) # interactive 3D surface plot with shading (screen shot)
+colorjet <- jet.colors(100)
+open3d()
+rgl.surface(x=age, z=hrs, y=0.05*gg$charges, 
+            color=colorzjet[ findInterval(gg$charges, seq(min(gg$charges), max(gg$charges), length=100))] )
+axes3d()
+-------------------------------------------------------------------------------------------------------
+contourLines areapl splancs help(kde2d) attach(geyser)
+
+plot(duration, waiting, xlim = c(0.5,6), ylim = c(40,100))
+f1 <- kde2d(duration, waiting, n = 50, lims = c(0.5, 6, 40, 100))
+image(f1)
+contour(f1) C8 = contourLines(f1,level=0.008)
+length(C8)
+[1] 3 C8 areapl > sapply(C8,function(ring){areapl(cbind(ring$x,ring$y))})
+[1] 14.65282 12.27329 14.75005 > sum(sapply(C8,function(ring){areapl(cbind(ring$x,ring$y))}))
+[1] 41.67617
+-------------------------------------------------------------------------------------------------------

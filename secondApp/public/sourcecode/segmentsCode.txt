@@ -1,0 +1,3490 @@
+png("bipartite.png")
+
+## Make up data.
+data <- data.frame(X1=sample(state.region, 10),
+                   X2=sample(state.region, 10))
+
+## Set up plot window.
+plot(0, xlim=c(0,1), ylim=c(0,1),
+     type="n", axes=FALSE, xlab="", ylab="")
+
+factor.to.int <- function(f) {
+  (as.integer(f) - 1) / (length(levels(f)) - 1)
+}
+
+segments(factor.to.int(data$X1), 0, factor.to.int(data$X2), 1,
+         col=data$X1)
+axis(1, at = seq(0, 1, by = 1 / (length(levels(data$X1)) - 1)),
+     labels = levels(data$X1))
+axis(3, at = seq(0, 1, by = 1 / (length(levels(data$X2)) - 1)),
+     labels = levels(data$X2))
+dev.off()
+-------------------------------------------------------------------------------------------------------
+segments perp.segment.coord <- function(x0, y0, lm.mod){
+ #finds endpoint for a perpendicular segment from the point (x0,y0) to the line
+ # defined by lm.mod as y=a+b*x
+  a <- coef(lm.mod)[1]  #intercept
+  b <- coef(lm.mod)[2]  #slope
+  x1 <- (x0+b*y0-a*b)/(1+b^2)
+  y1 <- a + b*x1
+  list(x0=x0, y0=y0, x1=x1, y1=y1)
+} ss <- perp.segment.coord(temperature, diseasesev, severity.lm)
+do.call(segments, ss)
+#which is the same as:
+segments(x0=ss$x0, x1=ss$x1, y0=ss$y0, y1=ss$y1) pty="s" xlim ylim
+-------------------------------------------------------------------------------------------------------
+# functions we'll need...
+add.num.before.and.after <- function(vec, num = NULL)
+{
+    # this will add a number before and after every number in a vector.
+    # the deafult adds the number which is one more then the length of the vector 
+        # assuming that later we will add a zero column to a data.frame and will use that column to add the zero columns...
+    if(is.null(num)) num <- rep(length(vec) +1, length(vec))
+    if(length(num)==1) num <- rep(num, length(vec))
+
+    #x <- as.list(vec)
+    list.num.x.num <- sapply(seq_along(vec) , function(i) c(num[i], vec[i], num[i]),  simplify = F)
+    num.x.num <- unlist(list.num.x.num)
+
+    return(num.x.num)
+}
+
+add.0.columns.to.DF <- function(DF, zero.column.name = " ")
+{
+    # this function gets a data frame
+    # and returns a data.frame with extra two columns (of zeros) before and after every column
+
+    zero.column <- rep(0, dim(DF)[1])   # the column of zeros
+    column.seq <- seq_len(dim(DF)[2])   # the column ID for the original data.frame
+
+    DF.new.order <- add.num.before.and.after(column.seq)    # add the last column id before and after every element in the column id vector
+
+    DF.and.zero <- cbind(DF, zero.column)   # making a new data.frame with a zero column at the end
+
+    new.DF <- DF.and.zero[,DF.new.order]    # moving the zero column (and replicating it) before and after every column in the data.frame
+
+    # renaming the zero columns to be " "
+    columns.to.erase.names <- ! (colnames(new.DF) %in% colnames(DF))        
+    colnames(new.DF)[columns.to.erase.names] <- zero.column.name
+
+    return(new.DF)
+}
+
+
+angles.by.weight <-  function(angles,  weights = NULL)
+{
+
+    angles <- angles[-1]    # remove the 0 from "angles"
+    angles <- c(angles, 2*pi) # add last slice angle
+    number.of.slices = length(angles)
+    if(is.null(weights)) weights <- rep(.6, number.of.slices)   # Just for the example
+
+    slice.angle <- diff(angles)[1]
+
+    #new.angles <- rep(0, 3*length(angles))
+    new.angles <- numeric()
+
+    for(i in seq_along(angles))
+    {
+        weighted.slice.angle <- slice.angle*weights[i]
+        half.leftover.weighted.slice.angle <- slice.angle* ((1-weights[i])/2)
+
+        angle1 <- angles[i] - (weighted.slice.angle + half.leftover.weighted.slice.angle)
+        angle2 <- angles[i] - half.leftover.weighted.slice.angle
+        angle3 <- angles[i]
+
+        new.angles <- c(new.angles,
+                        angle1,angle2,angle3)                       
+    }
+
+    new.angles.length <- length(new.angles)
+    new.angles <- c(0, new.angles[-new.angles.length])
+
+    return(new.angles)
+}
+
+# The updated stars function
+stars2 <-
+    function (x, full = TRUE, scale = TRUE, radius = TRUE, labels =
+            dimnames(x)[[1L]], 
+                locations = NULL, nrow = NULL, ncol = NULL, len = 1, key.loc = NULL, 
+                key.labels = dimnames(x)[[2L]], key.xpd = TRUE, xlim = NULL, 
+                ylim = NULL, flip.labels = NULL, draw.segments = FALSE, col.segments = 1L:n.seg, 
+                col.stars = NA, axes = FALSE, frame.plot = axes, main = NULL, 
+                sub = NULL, xlab = "", ylab = "", cex = 0.8, lwd = 0.25, 
+                lty = par("lty"), xpd = FALSE, mar = pmin(par("mar"), 1.1 + 
+                    c(2 * axes + (xlab != ""), 2 * axes + (ylab != ""), 1, 
+            #            0)), add = FALSE, plot = TRUE, ...) 
+                        0)), add = FALSE, plot = TRUE, col.radius = NA, polygon = TRUE, 
+                        key.len = len,
+                        segment.weights = NULL, 
+                        ...)
+{
+    if (is.data.frame(x)) 
+        x <- data.matrix(x)
+    else if (!is.matrix(x)) 
+        stop("'x' must be a matrix or a data frame")
+    if (!is.numeric(x)) 
+        stop("data in 'x' must be numeric")
+
+
+    # this code was moved here so that the angles will be proparly created...
+    n.seg <- ncol(x) # this will be changed to the ncol of the new x - in a few rows...
+    # creates the angles
+    angles <- if (full) 
+        seq.int(0, 2 * pi, length.out = n.seg + 1)[-(n.seg + 1)]
+    else if (draw.segments) 
+        seq.int(0, pi, length.out = n.seg + 1)[-(n.seg + 1)]
+    else seq.int(0, pi, length.out = n.seg)
+    if (length(angles) != n.seg) 
+        stop("length of 'angles' must equal 'ncol(x)'")
+
+    # changing to allow weighted segments
+    angles <- angles.by.weight(angles, segment.weights)
+    #angles <- angles.by.weight.2(angles)   # try2
+    # try3 
+    # weights <- sample(c(.3,.9), length(angles)-1, replace = T)
+    # angles <- weights / sum(weights) * 2 * pi
+    # angles <- c(0,angles )
+
+
+
+
+    # changing to allow weighted segments
+     col.segments <- add.num.before.and.after(col.segments, "white") # for colors
+     x <- add.0.columns.to.DF(x)
+
+
+
+
+
+
+
+    n.loc <- nrow(x)
+    n.seg <- ncol(x)
+    if (is.null(locations)) {
+        if (is.null(nrow)) 
+            nrow <- ceiling(if (!is.numeric(ncol)) sqrt(n.loc) else n.loc/ncol)
+        if (is.null(ncol)) 
+            ncol <- ceiling(n.loc/nrow)
+        if (nrow * ncol < n.loc) 
+            stop("nrow * ncol <  number of observations")
+        ff <- if (!is.null(labels)) 
+            2.3
+        else 2.1
+        locations <- expand.grid(ff * 1L:ncol, ff * nrow:1)[1L:n.loc, 
+            ]
+        if (!is.null(labels) && (missing(flip.labels) ||
+!is.logical(flip.labels))) 
+            flip.labels <- ncol * mean(nchar(labels, type = "c")) > 
+                30
+    }
+    else {
+        if (is.numeric(locations) && length(locations) == 2) {
+            locations <- cbind(rep.int(locations[1L], n.loc), 
+                rep.int(locations[2L], n.loc))
+            if (!missing(labels) && n.loc > 1) 
+                warning("labels do not make sense for a single location")
+            else labels <- NULL
+        }
+        else {
+            if (is.data.frame(locations)) 
+                locations <- data.matrix(locations)
+            if (!is.matrix(locations) || ncol(locations) != 2) 
+                stop("'locations' must be a 2-column matrix.")
+            if (n.loc != nrow(locations)) 
+                stop("number of rows of 'locations' and 'x' must be equal.")
+        }
+        if (missing(flip.labels) || !is.logical(flip.labels)) 
+            flip.labels <- FALSE
+    }
+    xloc <- locations[, 1]
+    yloc <- locations[, 2]
+
+    # Here we created the angles, but I moved it to the beginning of the code
+
+
+    if (scale) {
+        x <- apply(x, 2L, function(x) (x - min(x, na.rm = TRUE))/diff(range(x, 
+            na.rm = TRUE)))
+    }
+    x[is.na(x)] <- 0
+    mx <- max(x <- x * len)
+    if (is.null(xlim)) 
+        xlim <- range(xloc) + c(-mx, mx)
+    if (is.null(ylim)) 
+        ylim <- range(yloc) + c(-mx, mx)
+    deg <- pi/180
+    op <- par(mar = mar, xpd = xpd)
+    on.exit(par(op))
+    if (plot && !add) 
+        plot(0, type = "n", ..., xlim = xlim, ylim = ylim, main = main, 
+            sub = sub, xlab = xlab, ylab = ylab, asp = 1, axes = axes)
+    if (!plot) 
+        return(locations)
+    s.x <- xloc + x * rep.int(cos(angles), rep.int(n.loc, n.seg))
+    s.y <- yloc + x * rep.int(sin(angles), rep.int(n.loc, n.seg))
+    if (draw.segments) {
+        aangl <- c(angles, if (full) 2 * pi else pi)
+        for (i in 1L:n.loc) {
+            px <- py <- numeric()
+            for (j in 1L:n.seg) {
+                k <- seq.int(from = aangl[j], to = aangl[j + 
+                  1], by = 1 * deg)
+                px <- c(px, xloc[i], s.x[i, j], x[i, j] * cos(k) + 
+                  xloc[i], NA)
+                py <- c(py, yloc[i], s.y[i, j], x[i, j] * sin(k) + 
+                  yloc[i], NA)
+            }
+            polygon3(px, py, col = col.segments, lwd = lwd, lty = lty)
+        }
+    }
+    else {
+        for (i in 1L:n.loc) {
+#            polygon3(s.x[i, ], s.y[i, ], lwd = lwd, lty = lty, 
+#                col = col.stars[i])
+            if (polygon)
+                polygon3(s.x[i, ], s.y[i, ], lwd = lwd, lty = lty, 
+                  col = col.stars[i])
+            if (radius) 
+                segments(rep.int(xloc[i], n.seg), rep.int(yloc[i], 
+#                  n.seg), s.x[i, ], s.y[i, ], lwd = lwd, lty = lty)
+                  n.seg), s.x[i, ], s.y[i, ], lwd = lwd, lty = lty, col =
+col.radius)
+        }
+    }
+    if (!is.null(labels)) {
+        y.off <- mx * (if (full) 
+            1
+        else 0.1)
+        if (flip.labels) 
+            y.off <- y.off + cex * par("cxy")[2L] * ((1L:n.loc)%%2 - 
+                if (full) 
+                  0.4
+                else 0)
+        text(xloc, yloc - y.off, labels, cex = cex, adj = c(0.5, 
+            1))
+    }
+    if (!is.null(key.loc)) {
+        par(xpd = key.xpd)
+        key.x <- key.len * cos(angles) + key.loc[1L]
+        key.y <- key.len * sin(angles) + key.loc[2L]
+        if (draw.segments) {
+            px <- py <- numeric()
+            for (j in 1L:n.seg) {
+                k <- seq.int(from = aangl[j], to = aangl[j + 
+                  1], by = 1 * deg)
+                px <- c(px, key.loc[1L], key.x[j], key.len * cos(k) + 
+                  key.loc[1L], NA)
+                py <- c(py, key.loc[2L], key.y[j], key.len * sin(k) + 
+                  key.loc[2L], NA)
+            }
+            polygon3(px, py, col = col.segments, lwd = lwd, lty = lty)
+        }
+        else {
+#            polygon3(key.x, key.y, lwd = lwd, lty = lty)
+            if (polygon)
+                polygon3(key.x, key.y, lwd = lwd, lty = lty)
+            if (radius) 
+                segments(rep.int(key.loc[1L], n.seg), rep.int(key.loc[2L], 
+#                  n.seg), key.x, key.y, lwd = lwd, lty = lty)
+                  n.seg), key.x, key.y, lwd = lwd, lty = lty, col = col.radius)
+        }
+
+
+        lab.angl <- angles + if (draw.segments) 
+            (angles[2L] - angles[1L])/2
+        else 0
+        label.x <- 1.1 * key.len * cos(lab.angl) + key.loc[1L]
+        label.y <- 1.1 * key.len * sin(lab.angl) + key.loc[2L]
+        for (k in 1L:n.seg) {
+            text.adj <- c(if (lab.angl[k] < 90 * deg || lab.angl[k] > 
+                270 * deg) 0 else if (lab.angl[k] > 90 * deg && 
+                lab.angl[k] < 270 * deg) 1 else 0.5, if (lab.angl[k] <= 
+                90 * deg) (1 - lab.angl[k]/(90 * deg))/2 else if (lab.angl[k] <=
+                270 * deg) (lab.angl[k] - 90 * deg)/(180 * deg) else 1 - 
+                (lab.angl[k] - 270 * deg)/(180 * deg))
+            text(label.x[k], label.y[k], labels = key.labels[k], 
+                cex = cex, adj = text.adj)
+        }
+    }
+    if (frame.plot) 
+        box(...)
+    invisible(locations)
+} #require(debug)
+# mtrace(stars2)
+stars(mtcars[1:3, 1:8],
+        draw.segments = T,
+        main = "Motor Trend Cars : stars(*, full = F)", full = T, col.segments = 1:2)
+
+stars2(mtcars[1:3, 1:8],
+        draw.segments = T,
+        main = "Motor Trend Cars : stars(*, full = F)", full = T, col.segments = 0:3,
+        segment.weights = c(.2,.2,1,1,.4,.4,.6,.9))
+-------------------------------------------------------------------------------------------------------
+?segments n=58; segments(x[n],y[n],x[n],predict(yx.lm)[n])
+n=65; segments(x[n],y[n],x[n],predict(yx.lm)[n])
+-------------------------------------------------------------------------------------------------------
+segments() set.seed(2)
+x <- 1:100
+
+y <- 20 + 3 * x
+e <- rnorm(100, 0, 60)
+y <- 20 + 3 * x + e
+
+plot(x,y)
+yx.lm <- lm(y ~ x)
+lines(x, predict(yx.lm), col="red")
+## Add segments
+segments(x, y, x, fitted(yx.lm), col = "blue") n <- c(58,65)
+segments(x[n], y[n], x[n], fitted(yx.lm)[n], col = "orange", lwd = 3)
+-------------------------------------------------------------------------------------------------------
+maps map("state")
+points(longitute,latitude) segments() map_data() geom_polygon() geom_point() geom_segment() maptools mapproj mapdata
+-------------------------------------------------------------------------------------------------------
+plot.TukeyHSD2 <- function (x, ...) {
+    for (i in seq_along(x)) {
+        xi <- x[[i]][, -4, drop = FALSE]
+        yvals <- nrow(xi):1
+        plot(c(xi[, "lwr"], xi[, "upr"]), rep.int(yvals, 2), 
+            type = "n", axes = FALSE, xlab = "", ylab = "", ...)
+        axis(1, ...)
+        axis(2, at = nrow(xi):1, labels = dimnames(xi)[[1L]], 
+            srt = 0, ...)
+        abline(h = yvals, lty = 1, lwd = 1, col = "lightgray")
+        abline(v = 0, lty = 2, lwd = 1, ...)
+        segments(xi[, "lwr"], yvals, xi[, "upr"], yvals, col="black", ...)
+        segments(as.vector(xi), rep.int(yvals - 0.1, 3), as.vector(xi), 
+            rep.int(yvals + 0.1, 3), col="black", ...)
+        title(main = paste(format(100 * attr(x, "conf.level"), 
+            2), "% family-wise confidence level\n", sep = ""), 
+            xlab = paste("Differences in mean levels of", names(x)[i]))
+        box()
+    }
+}
+-------------------------------------------------------------------------------------------------------
+plot(), lines(), abline(), points(), polygon(), segments(), rect(), box(), arrows(), ... set.seed(100)
+x <- 1:10
+y <- x^2
+y2 <- x^3
+yse <- abs(runif(10,2,4))
+
+plot(x,y, type = "n")  # type="n" only plots the pane, no curves or points.
+
+# plots the area between both curves
+polygon(c(x,sort(x,decreasing=T)),c(y,sort(y2,decreasing=T)),col="grey")
+# plot both curves
+lines(x,y,col="purple")
+lines(x, y2, col = "red")
+# add the points to the first curve
+points(x, y, col = "black")
+# adds some lines indicating the standard error
+segments(x,y,x,y+yse,col="blue")
+# adds some flags indicating the standard error
+arrows(x,y,x,y-yse,angle=90,length=0.1,col="darkgreen")
+-------------------------------------------------------------------------------------------------------
+border legend.v2('bottomright', 
+        c("no box, no point","no box, no point",estNames) , 
+        lty=c(rep('dotted',2),rep('solid',3)), 
+        col=c('black','red',1,2,4),
+        pch=c(-1,-1,rep(16,3)),
+        lwd=1,
+        border = c("white", "white", "black", "black", "black"),
+        trace = TRUE,
+        fill=c( 0, 0,
+                rep( c( rgb(0.5,0.5,0.1,0.25),
+                                rgb(0.5,0.1,0.1,0.25),
+                                rgb(0.1,0.1,0.5,0.25)), 2)),
+        inset=0,bg='white') ?rect xbox if (mfill) legend.v2 <- function (x, y = NULL, legend, fill = NULL, col = par("col"), 
+        border = "black", lty, lwd, pch, angle = 45, density = NULL, 
+        bty = "o", bg = par("bg"), box.lwd = par("lwd"), box.lty = par("lty"), 
+        box.col = par("fg"), pt.bg = NA, cex = 1, pt.cex = cex, pt.lwd = lwd, 
+        xjust = 0, yjust = 1, x.intersp = 1, y.intersp = 1, adj = c(0, 
+                0.5), text.width = NULL, text.col = par("col"), merge = do.lines && 
+                has.pch, trace = FALSE, plot = TRUE, ncol = 1, horiz = FALSE, 
+        title = NULL, inset = 0, xpd, title.col = text.col, title.adj = 0.5, 
+        seg.len = 2) 
+{
+    if (missing(legend) && !missing(y) && (is.character(y) || 
+                is.expression(y))) {
+        legend <- y
+        y <- NULL
+    }
+    mfill <- !missing(fill) || !missing(density)
+    if (!missing(xpd)) {
+        op <- par("xpd")
+        on.exit(par(xpd = op))
+        par(xpd = xpd)
+    }
+    title <- as.graphicsAnnot(title)
+    if (length(title) > 1) 
+        stop("invalid title")
+    legend <- as.graphicsAnnot(legend)
+    n.leg <- if (is.call(legend)) 
+                1
+            else length(legend)
+    if (n.leg == 0) 
+        stop("'legend' is of length 0")
+    auto <- if (is.character(x)) 
+                match.arg(x, c("bottomright", "bottom", "bottomleft", 
+                                "left", "topleft", "top", "topright", "right", "center"))
+            else NA
+    if (is.na(auto)) {
+        xy <- xy.coords(x, y)
+        x <- xy$x
+        y <- xy$y
+        nx <- length(x)
+        if (nx < 1 || nx > 2) 
+            stop("invalid coordinate lengths")
+    }
+    else nx <- 0
+    xlog <- par("xlog")
+    ylog <- par("ylog")
+    rect2 <- function(left, top, dx, dy, density = NULL, angle, 
+            ...) {
+        r <- left + dx
+        if (xlog) {
+            left <- 10^left
+            r <- 10^r
+        }
+        b <- top - dy
+        if (ylog) {
+            top <- 10^top
+            b <- 10^b
+        }
+        rect(left, top, r, b, angle = angle, density = density, 
+                ...)
+    }
+    segments2 <- function(x1, y1, dx, dy, ...) {
+        x2 <- x1 + dx
+        if (xlog) {
+            x1 <- 10^x1
+            x2 <- 10^x2
+        }
+        y2 <- y1 + dy
+        if (ylog) {
+            y1 <- 10^y1
+            y2 <- 10^y2
+        }
+        segments(x1, y1, x2, y2, ...)
+    }
+    points2 <- function(x, y, ...) {
+        if (xlog) 
+            x <- 10^x
+        if (ylog) 
+            y <- 10^y
+        points(x, y, ...)
+    }
+    text2 <- function(x, y, ...) {
+        if (xlog) 
+            x <- 10^x
+        if (ylog) 
+            y <- 10^y
+        text(x, y, ...)
+    }
+    if (trace) 
+        catn <- function(...) do.call("cat", c(lapply(list(...), 
+                                    formatC), list("\n")))
+    cin <- par("cin")
+    Cex <- cex * par("cex")
+    if (is.null(text.width)) 
+        text.width <- max(abs(strwidth(legend, units = "user", 
+                                cex = cex)))
+    else if (!is.numeric(text.width) || text.width < 0) 
+        stop("'text.width' must be numeric, >= 0")
+    xc <- Cex * xinch(cin[1L], warn.log = FALSE)
+    yc <- Cex * yinch(cin[2L], warn.log = FALSE)
+    if (xc < 0) 
+        text.width <- -text.width
+    xchar <- xc
+    xextra <- 0
+    yextra <- yc * (y.intersp - 1)
+    ymax <- yc * max(1, strheight(legend, units = "user", cex = cex)/yc)
+    ychar <- yextra + ymax
+    if (trace) 
+        catn("  xchar=", xchar, "; (yextra,ychar)=", c(yextra, 
+                        ychar))
+    if (mfill) {
+        xbox <- xc * 0.8
+        ybox <- yc * 0.5
+        dx.fill <- xbox
+    }
+    do.lines <- (!missing(lty) && (is.character(lty) || any(lty > 
+                                    0))) || !missing(lwd)
+    n.legpercol <- if (horiz) {
+                if (ncol != 1) 
+                    warning("horizontal specification overrides: Number of columns := ", 
+                            n.leg)
+                ncol <- n.leg
+                1
+            }
+            else ceiling(n.leg/ncol)
+    has.pch <- !missing(pch) && length(pch) > 0
+    if (do.lines) {
+        x.off <- if (merge) 
+                    -0.7
+                else 0
+    }
+    else if (merge) 
+        warning("'merge = TRUE' has no effect when no line segments are drawn")
+    if (has.pch) {
+        if (is.character(pch) && !is.na(pch[1L]) && nchar(pch[1L], 
+                type = "c") > 1) {
+            if (length(pch) > 1) 
+                warning("not using pch[2..] since pch[1L] has multiple chars")
+            np <- nchar(pch[1L], type = "c")
+            pch <- substr(rep.int(pch[1L], np), 1L:np, 1L:np)
+        }
+    }
+    if (is.na(auto)) {
+        if (xlog) 
+            x <- log10(x)
+        if (ylog) 
+            y <- log10(y)
+    }
+    if (nx == 2) {
+        x <- sort(x)
+        y <- sort(y)
+        left <- x[1L]
+        top <- y[2L]
+        w <- diff(x)
+        h <- diff(y)
+        w0 <- w/ncol
+        x <- mean(x)
+        y <- mean(y)
+        if (missing(xjust)) 
+            xjust <- 0.5
+        if (missing(yjust)) 
+            yjust <- 0.5
+    }
+    else {
+        h <- (n.legpercol + (!is.null(title))) * ychar + yc
+        w0 <- text.width + (x.intersp + 1) * xchar
+        if (mfill) 
+            w0 <- w0 + dx.fill
+        if (do.lines) 
+            w0 <- w0 + (seg.len + +x.off) * xchar
+        w <- ncol * w0 + 0.5 * xchar
+        if (!is.null(title) && (abs(tw <- strwidth(title, units = "user", 
+                                    cex = cex) + 0.5 * xchar)) > abs(w)) {
+            xextra <- (tw - w)/2
+            w <- tw
+        }
+        if (is.na(auto)) {
+            left <- x - xjust * w
+            top <- y + (1 - yjust) * h
+        }
+        else {
+            usr <- par("usr")
+            inset <- rep(inset, length.out = 2)
+            insetx <- inset[1L] * (usr[2L] - usr[1L])
+            left <- switch(auto, bottomright = , topright = , 
+                    right = usr[2L] - w - insetx, bottomleft = , 
+                    left = , topleft = usr[1L] + insetx, bottom = , 
+                    top = , center = (usr[1L] + usr[2L] - w)/2)
+            insety <- inset[2L] * (usr[4L] - usr[3L])
+            top <- switch(auto, bottomright = , bottom = , bottomleft = usr[3L] + 
+                            h + insety, topleft = , top = , topright = usr[4L] - 
+                            insety, left = , right = , center = (usr[3L] + 
+                                usr[4L] + h)/2)
+        }
+    }
+    if (plot && bty != "n") {
+        if (trace) 
+            catn("  rect2(", left, ",", top, ", w=", w, ", h=", 
+                    h, ", ...)", sep = "")
+        rect2(left, top, dx = w, dy = h, col = bg, density = NULL, 
+                lwd = box.lwd, lty = box.lty, border = box.col)
+    }
+    xt <- left + xchar + xextra + (w0 * rep.int(0:(ncol - 1), 
+                rep.int(n.legpercol, ncol)))[1L:n.leg]
+    yt <- top - 0.5 * yextra - ymax - (rep.int(1L:n.legpercol, 
+                        ncol)[1L:n.leg] - 1 + (!is.null(title))) * ychar
+    if (mfill) {
+        if (plot) {
+            fill <- rep(fill, length.out = n.leg)
+            rect2(left = xt, top = yt + ybox/2, dx = xbox * 3, dy = ybox, 
+                    col = fill, density = density, angle = angle, 
+                    border = border)
+        }
+        xt <- xt + dx.fill
+    }
+    if (plot && (has.pch || do.lines)) 
+        col <- rep(col, length.out = n.leg)
+    if (missing(lwd)) 
+        lwd <- par("lwd")
+    if (do.lines) {
+        if (missing(lty)) 
+            lty <- 1
+        lty <- rep(lty, length.out = n.leg)
+        lwd <- rep(lwd, length.out = n.leg)
+        ok.l <- !is.na(lty) & (is.character(lty) | lty > 0)
+        if (trace) 
+            catn("  segments2(", xt[ok.l] + x.off * xchar, ",", 
+                    yt[ok.l], ", dx=", seg.len * xchar, ", dy=0, ...)")
+        if (plot) 
+            segments2(xt[ok.l] + x.off * xchar, yt[ok.l], dx = seg.len * 
+                            xchar, dy = 0, lty = lty[ok.l], lwd = lwd[ok.l], 
+                    col = col[ok.l])
+        xt <- xt + (seg.len + x.off) * xchar
+    }
+    if (has.pch) {
+        pch <- rep(pch, length.out = n.leg)
+        pt.bg <- rep(pt.bg, length.out = n.leg)
+        pt.cex <- rep(pt.cex, length.out = n.leg)
+        pt.lwd <- rep(pt.lwd, length.out = n.leg)
+        ok <- !is.na(pch) & (is.character(pch) | pch >= 0)
+        x1 <- (if (merge && do.lines) 
+                xt - (seg.len/2) * xchar
+            else xt)[ok]
+        y1 <- yt[ok]
+        if (trace) 
+            catn("  points2(", x1, ",", y1, ", pch=", pch[ok], 
+                    ", ...)")
+        if (plot) 
+            points2(x1, y1, pch = pch[ok], col = col[ok], cex = pt.cex[ok], 
+                    bg = pt.bg[ok], lwd = pt.lwd[ok])
+    }
+    xt <- xt + x.intersp * xchar
+    if (plot) {
+        if (!is.null(title)) 
+            text2(left + w * title.adj, top - ymax, labels = title, 
+                    adj = c(title.adj, 0), cex = cex, col = title.col)
+        text2(xt, yt, labels = legend, adj = adj, cex = cex, 
+                col = text.col)
+    }
+    invisible(list(rect = list(w = w, h = h, left = left, top = top), 
+                    text = list(x = xt, y = yt)))
+}
+-------------------------------------------------------------------------------------------------------
+panel.tuftebxp <- 
+function (x, y, box.ratio = 1, box.width = box.ratio/(1 + box.ratio), horizontal=FALSE,
+    pch = box.dot$pch, col = box.dot$col, 
+    alpha = box.dot$alpha, cex = box.dot$cex, font = box.dot$font, 
+    fontfamily = box.dot$fontfamily, fontface = box.dot$fontface, 
+    fill = box.rectangle$fill, varwidth = FALSE, notch = FALSE, 
+    notch.frac = 0.5, ..., levels.fos = if (horizontal) sort(unique(y)) else sort(unique(x)), 
+    stats = boxplot.stats, coef = 1.5, do.out = TRUE, identifier = "bwplot") 
+{
+    if (all(is.na(x) | is.na(y))) 
+        return()
+    x <- as.numeric(x)
+    y <- as.numeric(y)
+    box.dot <- trellis.par.get("box.dot")
+    box.rectangle <- trellis.par.get("box.rectangle")
+    box.umbrella <- trellis.par.get("box.umbrella")
+    plot.symbol <- trellis.par.get("plot.symbol")
+    fontsize.points <- trellis.par.get("fontsize")$points
+    cur.limits <- current.panel.limits()
+    xscale <- cur.limits$xlim
+    yscale <- cur.limits$ylim
+    if (!notch) 
+        notch.frac <- 0
+    #removed horizontal code
+     blist <- tapply(y, factor(x, levels = levels.fos), stats, 
+            coef = coef, do.out = do.out)
+        blist.stats <- t(sapply(blist, "[[", "stats"))
+        blist.out <- lapply(blist, "[[", "out")
+        blist.height <- box.width
+        if (varwidth) {
+            maxn <- max(table(x))
+            blist.n <- sapply(blist, "[[", "n")
+            blist.height <- sqrt(blist.n/maxn) * blist.height
+        }
+        blist.conf <- if (notch) 
+            sapply(blist, "[[", "conf")
+        else t(blist.stats[, c(2, 4), drop = FALSE])
+        ybnd <- cbind(blist.stats[, 3], blist.conf[2, ], blist.stats[, 
+            4], blist.stats[, 4], blist.conf[2, ], blist.stats[, 
+            3], blist.conf[1, ], blist.stats[, 2], blist.stats[, 
+            2], blist.conf[1, ], blist.stats[, 3])
+        xleft <- levels.fos - blist.height/2
+        xright <- levels.fos + blist.height/2
+        xbnd <- cbind(xleft + notch.frac * blist.height/2, xleft, 
+            xleft, xright, xright, xright - notch.frac * blist.height/2, 
+            xright, xright, xleft, xleft, xleft + notch.frac * 
+                blist.height/2)
+        xs <- cbind(xbnd, NA_real_)
+        ys <- cbind(ybnd, NA_real_)
+        panep(levels.fos, 2), c(blist.stats[, 2], blist.stats[, 4]), rep(levels.fos, 2), c(blist.stats[, 1], blist.stats[, 5]), col = box.umbrella$col, alpha = box.umbrella$alpha, 
+            lwd = box.umbrella$lwd, lty = box.umbrella$lty, identifier = paste(identifier, 
+                "whisker", sep = "."))
+
+        if (all(pch == "|")) {
+            mult <- if (notch) 
+                1 - notch.frac
+            else 1
+            els.fos - mult * blist.height/2, 
+                blist.stats[, 3], levels.fos + mult * blist.height/2, 
+                blist.stats[, 3], lwd = box.rectangle$lwd, lty = box.rectangle$lty, 
+                col = box.rectangle$col, alpha = alpha, identifier = paste(identifier, 
+                  "dot", sep = "."))
+        }
+        else {
+            panel.points(x = levels.fos, y = blist.stats[, 3], 
+                pch = pch, col = col, alpha = alpha, cex = cex, 
+                 identifier = paste(identifier, 
+                  "dot", sep = "."))
+        }
+        panel.points(x = rep(levels.fos, sapply(blist.out, length)), 
+            y = unlist(blist.out), pch = plot.symbol$pch, col = plot.symbol$col, 
+            alpha = plot.symbol$alpha, cex = plot.symbol$cex*0.5, 
+            identifier = paste(identifier, "outlier", sep = "."))
+
+}
+bwplot(weight ~ Diet + Time + Chick, data=cw, panel= 
+         function(x,y, ...) panel.tuftebxp(x=x,y=y,...))
+-------------------------------------------------------------------------------------------------------
+segments() seq1 <- seq(from=1, to=10, by=0.1)
+values <- sin(seq1)
+s <- seq(length(seq1)-1)
+segments(seq1[s], values[s], seq1[s+1], values[s+1], col=ifelse(values > 0.5, "red", "yellow"))
+-------------------------------------------------------------------------------------------------------
+segments lines segments plot type="n" x0 <- seq(1, 10, 0.1)
+colour <- ifelse(sin(seq(from=1, to=10,by=0.1))>0.5,"red","blue")
+
+plot(x0, sin(x0), type="n")
+segments(x0=x0, y0=sin(x0), x1=x0+0.1, y1=sin(x0+0.1), col=colour) ?segments
+-------------------------------------------------------------------------------------------------------
+x y findInterval x <- rnorm(1000) # Sample data
+y <- density(x)  # Calculate and store density
+
+x0 <- 2 # Desired position on x-axis
+y0 <- y$y[findInterval(x0, y$x)] # Corresponding y value
+
+plot(density(x))
+segments(x0, 0, x0, y0)
+-------------------------------------------------------------------------------------------------------
+dnorm() zmax <- 4
+curve(dnorm, -zmax, zmax, xaxt = 'n', bty = 'n')
+axis(1, -zmax:zmax, pos = 0) dnorm zscore <- 1.65
+segments(zscore, 0, zscore, dnorm(zscore)) x <- seq(zscore, zmax, 0.01)
+y <- c(0, dnorm(x)[1:(length(x)-2)],0)
+polygon(x,y, density = 20) segments text
+-------------------------------------------------------------------------------------------------------
+set.seed(1)
+t1 = rnorm(10); t2 = rnorm(10, 2)
+t1_g2 = rnorm(10, 4);t2_g2 = rnorm(10)
+
+##Don't print the axes labels
+par(ann=FALSE)
+
+##Plot first set of data.
+##Need to check for sensible ranges
+##Use the jitter function to spread data out.
+plot(jitter(rep(0,10),amount=0.2), t1,
+     xlim=range(-0.5,3.5), ylim=range(-3,8),
+     axes=FALSE,frame.plot=TRUE)
+points(jitter(rep(1,10), amount=0.2), t1_g2, col=2)
+points(jitter(rep(2,10), amount=0.2), t2)
+points(jitter(rep(3,10), amount=0.2), t2_g2, col=2)
+
+##Add in the y-axis
+axis(2, seq(-4,8,by=2))
+
+##Add in the x-axis labels
+mtext("Treatment 1", side = 1, at=0.5)
+mtext("Treatment 2", side = 1, at=2.5)
+
+##Add in the means
+segments(-0.25, mean(t1), 0.25, mean(t1))
+segments(0.75, mean(t1_g2), 1.25, mean(t1_g2))
+segments(1.75, mean(t2), 2.25, mean(t2))
+segments(2.75, mean(t2_g2), 3.25, mean(t2_g2))
+
+##Add in the legend
+legend(0, 8, c("Group 1", "Group 2"), col=1:2, pch=1)
+-------------------------------------------------------------------------------------------------------
+dat = as.data.frame(rbind(c("1492", "Columbus sailed the ocean blue"),
+                       c("1976", "Americans listened to Styx"),
+                       c("2008", "Financial meltdown")))
+dat$V1 <- as.Date(dat$V1,"%Y")
+dat$val <- c(-1,1,-0.5)
+
+plot(dat$V1,dislocations, type = "n",xaxt = "n",bty = "n", 
+     xlab = "Time", ylab = "Dislocations")
+u <- par("usr")
+arrows(u[1], 0, u[2], 0, xpd = TRUE)
+points(dat$V1,dat$val,pch = 20)
+segments(dat$V1,c(0,0,0),dat$V1,dat$val)
+text(x=dat$V1,y=dat$val,labels=dat$V2,pos=c(4,2,2))
+-------------------------------------------------------------------------------------------------------
+ggplot ggplot data.frame data.frame col ggplot geom_line scale_colour_identity library(ggplot2)
+
+df <- data.frame(
+  x = 1:100,
+  y = rnorm(100,1,100),
+  col = c(rep("red", 50), rep("black", 10), rep("red", 40))
+)
+
+ggplot(df, aes(x=x, y=y)) + 
+  geom_line(aes(colour=col, group=1)) + 
+  scale_colour_identity() df <- data.frame(
+  x = 1:100,
+  y = rnorm(100,1,100)
+)
+
+ggplot(df, aes(x=x, y=y)) + geom_line(aes(colour=x)) segments df <- data.frame(
+  x = 1:100,
+  y = rnorm(100,1,100),
+  col = c(rep("red", 50), rep("black", 10), rep("red", 40))
+)
+
+plot(df$x, df$y, type="n")
+for(i in 1:(length(df$x)-1)){
+  segments(df$x[i], df$y[i], df$x[i+1], df$y[i+1], col=df$col[i])
+}
+-------------------------------------------------------------------------------------------------------
+lines segments()
+-------------------------------------------------------------------------------------------------------
+xyplot(y~x, data=df, panel=function(x,y,subscripts, groups, ...) {
+  for(k in seq_len(length(subscripts)-1)) {
+    i <- subscripts[k]
+    j <- subscripts[k+1]
+    panel.segments(df$x[i], df$y[i], df$x[j], df$y[j], col=df$col[i])
+  }
+}) | y~x|a a df <- data.frame(
+  x = 1:100,
+  y = rnorm(100,1,100),
+  col = c(rep("red", 50), rep("black", 10), rep("red", 40)),
+  a = 1:2
+) group= xyplot(y~x, group=a, data=df, panel=function(x,y,subscripts, groups, ...) {
+  if(missing(groups)) { groups <- rep(1, length(subscripts)) }
+  grps <- split(subscripts, groups)
+  for(grp in grps) {
+    for(k in seq_len(length(grp)-1)) {
+      i <- grp[k]
+      j <- grp[k+1]
+      panel.segments(df$x[i], df$y[i], df$x[j], df$y[j], col=df$col[i])
+    }
+  }
+})
+-------------------------------------------------------------------------------------------------------
+segments(head(x, -1), head(y, -1), x[-1], y[-1], rep(c("red", "black", "red"), c(49, 10, 40))) segments(head(x, -1), head(y, -1), x[-1], y[-1], rep(c("red", "black"), c(49, 10)))
+-------------------------------------------------------------------------------------------------------
+dev.new(width=4, height=4)
+plot(xvar, yvar, asp=1)
+
+a = 0
+b = 1
+
+abline (a, b, col = "red", lty = 2)
+
+myd$xint = with(myd, (b*yvar + xvar - b*a) / (b^2 + 1))
+myd$yint = with(myd, (b*yvar + b*xvar + a) / (b^2 + 1))
+
+with(myd, segments(xvar, yvar, xint, yint))
+with(myd, text(xvar, yvar, labels=namelab, pos=3, cex=0.5))
+-------------------------------------------------------------------------------------------------------
+set.seed(123)
+namelab <- paste ("ET", 1:10, sep = "")
+xvar <- 1:10
+yvar <- rnorm(10, 5, 5)
+
+plot(xvar, yvar)
+abline (a= 0, b = 1, col = "red", lty = 2)
+segments(xvar,yvar,xvar,xvar)
+text(xvar,yvar,namelab,pos=3) segments(xvar,yvar,xvar,((xvar*b)+a))
+-------------------------------------------------------------------------------------------------------
+grid segments(p1$x, p1$y, p2$x, p2$y, col = 'white') grid rgl
+-------------------------------------------------------------------------------------------------------
+library(grid)
+ll = replicate(2, grid.locator())
+g = grid.segments(ll[,1]$x, ll[,1]$y, ll[,2]$x, ll[,2]$y, name="mysegment", gp=gpar(col="pink", lwd=5))
+grid.remove("mysegment")
+-------------------------------------------------------------------------------------------------------
+zp=z[z$diff>0,]
+zn=z[z$diff<0,]
+plot(z$date,z$max,type='n',ylim=range(0,max(z$max)))
+segments(zp$date,zp$min,zp$date,zp$max,col='skyblue',lwd=10,lend=1)
+segments(zn$date,zn$min,zn$date,zn$max,col='salmon',lwd=10,lend=1)
+-------------------------------------------------------------------------------------------------------
+col z cut() cut2() x,y,z z.cols <- cut(z, 3, labels = c("pink", "green", "yellow"))
+plot(x,y, col = as.character(z.cols), pch = 16) legend col type = "p" plot(x,y, type = "l", col = as.character(z.cols)) lines() segments() type = "l"
+-------------------------------------------------------------------------------------------------------
+require(quantmod) 
+getSymbols("SPY") 
+chart_Series(SPY, subset="2011-08::", type = "candlesticks" ) 
+text(9, 112.00, "SOME TEXT", adj=0); 
+segments(9, 111.5, 12, 111.5) ; text(x,y,"message")
+-------------------------------------------------------------------------------------------------------
+# Comparison of Linear Regression & PCA
+# Generate sample data
+
+set.seed(39) # gives a decent-looking example
+np <- 10 # number of data points
+x <- -np:np
+e <- rnorm(length(x), 0, 10)
+y <- rnorm(1, 0, 2) * x + 3*rnorm(1, 0, 2) + e
+
+# Plot the main data & residuals
+
+plot(x, y, main = "Regression minimizes the y-residuals & PCA the normals", asp = 1)
+yx.lm <- lm(y ~ x)
+lines(x, predict(yx.lm), col = "red", lwd = 2)
+segments(x, y, x, fitted(yx.lm), col = "pink")
+
+# Now the PCA using built-in functions
+# rotation = loadings = eigenvectors
+
+r <- prcomp(cbind(x,y), retx = TRUE)
+b <- r$rotation[2,1] / r$rotation[1,1] # gets slope of loading/eigenvector 1
+a <- r$center[2] - b * r$center[1]
+abline(a, b, col = "blue") # Plot 1st PC
+
+# Plot normals to 1st PC
+
+X <- pointOnLineNearPoint(x, y, b, a)
+segments( x, y, X[,1], X[,2], col = "lightblue1")
+
+###### Needed Functions
+
+pointOnLineNearPoint <- function(Px, Py, slope, intercept) {
+    # Px, Py is the point to test, can be a vector.
+    # slope, intercept is the line to check distance.
+
+    Ax <- Px-10*diff(range(Px))
+    Bx <- Px+10*diff(range(Px))
+    Ay <- Ax * slope + intercept
+    By <- Bx * slope + intercept
+    pointOnLine(Px, Py, Ax, Ay, Bx, By)
+    }
+
+pointOnLine <- function(Px, Py, Ax, Ay, Bx, By) {
+
+    # This approach based upon comingstorm's answer on
+    # stackoverflow.com/questions/3120357/get-closest-point-to-a-line
+    # Vectorized by Bryan
+
+    PB <- data.frame(x = Px - Bx, y = Py - By)
+    AB <- data.frame(x = Ax - Bx, y = Ay - By)
+    PB <- as.matrix(PB)
+    AB <- as.matrix(AB)
+    k_raw <- k <- c()
+    for (n in 1:nrow(PB)) {
+        k_raw[n] <- (PB[n,] %*% AB[n,])/(AB[n,] %*% AB[n,])
+        if (k_raw[n] < 0)  { k[n] <- 0
+            } else { if (k_raw[n] > 1) k[n] <- 1
+                else k[n] <- k_raw[n] }
+        }
+    x = (k * Ax + (1 - k)* Bx)
+    y = (k * Ay + (1 - k)* By)
+    ans <- data.frame(x, y)
+    ans
+    }
+-------------------------------------------------------------------------------------------------------
+fields graphics #Create example data with coordinates for plotting height of bars
+position <- c(0, 1, 3, 4, 5, 7, 8, 9,   0, 1, 2, 4.5, 7, 8, 9)
+group <- c(1, 1, 1,  1, 1, 1, 1, 1,   2, 2, 2, 2, 2, 2, 2)
+barheight <- c(0.5, 0.4, 0.4, 0.4, 0.6,  0.3, 0.4, 1, 0.75, 0.75, 0.75, 1, 0.8, 0.2, 0.6)
+y.start <- c(group-barheight/2)
+y.end <- c(group+barheight/2)
+mydf <- data.frame (position, group, barheight, y.start, y.end)
+#Remove any crap from the plot
+plot(0,type="n",ylim=c(0,3),xlim=c(0,10),axes=F,ylab="",xlab="")
+#Create two horizontal lines
+require(fields)
+yline(1,lwd=4)
+yline(2,lwd=4)
+#Create text for the lines
+text(10,1.1,"Group 1",cex=0.7)
+text(10,2.1,"Group 2",cex=0.7)
+#Draw vertical bars
+segments(mydf$position[1:8],mydf$y.start[1:8],y1=mydf$y.end[1:8])
+segments(mydf$position[9:15],mydf$y.start[9:15],y1=mydf$y.end[9:15])
+#Add circle in custom position
+require(plotrix)
+draw.circle(mydf$position[14],2,0.2)
+draw.circle(mydf$position[4],1,0.2)
+-------------------------------------------------------------------------------------------------------
+-age plot(-age~size, type="n",yaxt="n", xlab="", ylab="Age")
+lines(-age~size)
+segments(0, -age, size, -age)
+axis(2, labels=c(0,5,10,15,20), at=-c(0,5,10,15,20), las=1) ylab="" text
+-------------------------------------------------------------------------------------------------------
+segments > mydata
+  from to values
+1    5 10     34
+2   10 14     45
+3   14 23     46
+4   23 34     54
+
+plot(NA,xlim=c(0,40),ylim=c(0,60))
+points(values~from,data=mydata)
+points(values~to,data=mydata)
+segments(mydata$from,mydata$values,mydata$to,mydata$values)
+-------------------------------------------------------------------------------------------------------
+X # generate some artificial data
+reset
+set sample 200
+set table 'rnd.dat'
+plot invnorm(rand(0))
+unset table
+
+# display the CDF
+unset key
+set yrange [0:1]
+perc80=system("cat rnd.dat | sed '1,4d' | awk '{print $2}' | sort -n | \
+          awk 'BEGIN{i=0} {s[i]=$1; i++;} END{print s[int(NR*0.8-0.5)]}'")
+set arrow from perc80,0 to perc80,0.8 nohead lt 2 lw 2
+set arrow from graph(0,0),0.8 to perc80,0.8 nohead lt 2 lw 2
+plot 'rnd.dat' using 2:(1./200.) smooth cumulative perc90 arrow 0.8 table trunc(rank(x))/length(x) Rscript -e 'x=read.table("~/rnd.dat")[,2]; sort(x)[trunc(length(x)*.8)]' rnd.dat quantile x <- rnorm(200)
+xs <- sort(x)
+xf <- (1:length(xs))/length(xs)
+plot(xs, xf, xlab="X", ylab="Cumulative frequency")
+## quick outline of the 80th percentile rank
+perc80 <- xs[trunc(length(x)*.8)]
+abline(h=.8, v=perc80) 
+## alternative solution
+plot(ecdf(x))
+segments(par("usr")[1], .8, perc80, .8)
+segments(perc80, par("usr")[3], perc80, .8)
+-------------------------------------------------------------------------------------------------------
+set.seed(1)
+    # make data.frame just with info for the lines you'll actually draw
+    # your data was mostly zeros, no need for those lines
+    position <- sort(sample(1:4563,45,replace = FALSE))
+    # but the x position needs to be shaved down!
+    # modulars are the real x positions on the plot:
+    xpos <- position%%600
+    # line direction appeared in your example but not in your text
+    posorneg <- sample(c(-1,1),45,replace = TRUE,prob=c(.05,.95))
+    # oxidant concentration for line width- just rescale the oxidant concentration
+    # values you have to fall between say .5 and 3, or whatever is nice and visible
+    oxconc   <- (.5+runif(45))^2
+    # oxidant type determines line type- you mention 2
+    # just assign these types to lines types (integers in R)
+    oxitype  <- sample(c(1,2),45,replace = TRUE) 
+    # let's say there's another dimension you want to map color to
+    # in your example png, but not in your description.
+    color <- sample(c("green","black","blue"),45,replace=TRUE)
+
+    # and finally, which level does each segment need to belong to?
+    # you have 8 line levels in your example png. This works, might take
+    # some staring though:
+    level <- 0
+    for (i in 0:7){
+    level[position %in% ((i*600):(i*600+599))] <- 8-i
+    }
+
+    # now stick into data.drame:
+    AminoData <-data.frame(position = position, xpos = xpos, posorneg = posorneg, 
+         oxconc = oxconc, oxitype = oxitype, level = level, color = color) # now we draw the base plot:
+    par(mar=c(3,3,3,3))
+    plot(NULL, type = "n", axes = FALSE, xlab = "", ylab = "", 
+         ylim =  c(0,9), xlim = c(-10,609))
+    # horizontal segments:
+    segments(0,1:8,599,1:8,gray(.5))
+    # some ticks: (also not pretty)
+    segments(rep(c((0:5)*100,599),8), rep(1:8,each=7)-.05, rep(c((0:5)*100,599),8), 
+       rep(1:8,each=7)+.05, col=gray(.5))
+    # label endpoints:
+    text(rep(10,8)+.2,1:8-.2,(7:0)*600,pos=2,cex=.8)
+    text(rep(589,8)+.2,1:8-.2,(7:0)*600+599,pos=4,cex=.8)
+    # now the amino line segments, remember segments() is vectorized
+segments(AminoData, AminoData, AminoData, AminoData + .5 * AminoData$posorneg, lty = AminoData$oxitype, lwd = AminoData$oxconc, col = as.character(AminoData$color))
+    title("mostly you just need to reshape and prepare\nyour data to do this easily in base")
+-------------------------------------------------------------------------------------------------------
+# Split the plot area in two
+layout(matrix(c(1,1,2),nc=1))
+# First plot
+plot( pos, value, type="l", las=1 )
+# Reduce the margins for the second plot
+m <- par()$mar
+m[1] <- m[3] <- 0
+par(mar=m)
+# Set the limits of the second plot
+plot( pos, pos-pos, type="n", axes=FALSE, xlab="", ylab="" )
+# Add the rectangle, the segments and the text.
+polygon( 
+  c(0,max(mydf2$pos),max(mydf2$pos),0), 
+  .2*c(-1,-1,1,1),
+  col=rgb(.1,.5,.3)
+)
+segments( mydf$position, -.5, mydf$position, .5 )
+text(mydf$position, -.7, mydf$label)
+text(mydf$position,  .7, mydf$position)
+-------------------------------------------------------------------------------------------------------
+dat dput() PA character den.PA <- density(dat$PA)
+    plot(den.PA)
+
+    for (i in 1:nrow(dat)){
+        lineat <- dat$PA[i]
+        organism <- as.character(dat$Species)[i]
+        lineheight <- den.PA$y[which.min(abs(den.PA$x - lineat))]
+        print (organism)
+        if (organism == 'EQUUSCABALLUS'){
+            col <- 'red'
+        }
+        if (organism == 'HOMOSAPIENS'){
+            col <- 'blue'
+        }
+        if (organism == 'MUSMUSCULUS'){
+            col <- 'green'
+        }
+        if (organism == 'BOSTAURUS'){
+            col <- 'purple'
+        }
+        segments(lineat,0,lineat,lineheight,col=col)
+    } lines() segments() = <-
+-------------------------------------------------------------------------------------------------------
+npups <-length(pupil_data$PupilLeft)
+segments(1:(npups-1), pupil_data$PupilLeft[-npups],  # the starting points
+           2:npups, pupil_data$PupilLeft[-1] )        # the ending points
+-------------------------------------------------------------------------------------------------------
+dat <- read.csv2(text="start;duration
+ 1;4
+ 7;3
+ 15;2
+ ")
+ plot(NA, xlim=c(0,20), ylim=c(0,9), ylab="",xlab="X", xaxt="n", yaxt="n")
+ with(dat, segments(x0=start, x1=start+duration, y0=2,y1=2))
+ with(dat, text( start+duration/2, 2.5, labels=duration))
+ axis(1, at=seq(0,20,by=2), labels=seq(0,20,by=2))
+-------------------------------------------------------------------------------------------------------
+fields:::image.plot par("fg" = NA)
+    plot(r, xlim = c(xmin(r), xmax(r)), ylim = c(ymin(r), ymax(r)), axes = FALSE)
+    par(new = TRUE,"fg" = "black")
+    plot(r, xlim = c(xmin(r), xmax(r)), ylim = c(ymin(r), ymax(r)), axes = FALSE, legend.only = TRUE)
+    axis(1, pos = -90, xpd = TRUE)
+    rect(-180,-90,180,90,xpd = TRUE)
+    ticks <- (ymin(r):ymax(r))[(ymin(r):ymax(r)) %% 20 == 0]
+    segments(xmin(r),ticks,xmin(r)-5,ticks, xpd = TRUE)
+    text(xmin(r),ticks,ticks,xpd=TRUE,pos=2)
+        title("sorry, this could probably be done in some more elegant way")
+-------------------------------------------------------------------------------------------------------
+plot(pos, type = 'n', xlim = range(c(start, end)), ylim = c(13,0))
+grid()
+segments(start, pos, end, pos) r <- par('usr') 
+plot(pos, type = 'n', xlim = range(c(start, end)), ylim = c(13.5,0.5), xlab = '', 
+    xaxt = 'n', yaxt = 'n', panel.first = rect(r[1], r[3], r[2], r[4], col = 'goldenrod'))
+# abline(h = 1:13, col = 'white')
+# abline(v = 1:13, col = 'white')
+grid(lty = 1, col = 'white')
+axis(1, 1:13, 1:13, cex.axis = 0.8)
+axis(2, 1:13, 1:13, las = 1, cex.axis = 0.8)
+segments(start, pos + 0.5, end, pos + 0.5, lwd = 2)
+-------------------------------------------------------------------------------------------------------
+plot ggplot ggplot base ggplot threshold <- 2.2
+set.seed(123)
+stackOne=data.frame(id=rep(c(1,2,3),each=3),
+                y=rnorm(9,2,1),
+                x=rep(c(1,2,3),3))
+# create a second df to hold segment data
+d <- stackOne 
+d$y2 <- c(d$y[-1], NA)
+d$x2 <- c(d$x[-1], NA) 
+d <- d[-findInterval(unique(d$id), d$id), ] # remove last row for each group
+
+plot(stackOne[, 3:2], pch=20)
+# clip to region above the threshold
+clip(min(stackOne$x), max(stackOne$x), threshold, max(stackOne$y))
+segments(d$x, d$y, d$x2, d$y2, lwd=2)
+# clip to region below the threshold
+clip(min(stackOne$x), max(stackOne$x), min(stackOne$y), threshold)
+segments(d$x, d$y, d$x2, d$y2, lwd=2, col='red')
+points(stackOne[, 3:2], pch=20) # plot points again so they lie over lines ggplot geom_line(aes(group=id, color = y < 2.2)) color = y < 2.2 threshold <- 2.2 # set colour-transition threshold
+yres <- 0.01 # y-resolution (accuracy of colour change location)
+
+d <- stackOne # for code simplification
+# new cols for point coordinates of line end
+d$y2 <- c(d$y[-1], NA)
+d$x2 <- c(d$x[-1], NA) 
+d <- d[-findInterval(unique(d$id), d$id), ] # remove last row for each group
+# new high-resolution y coordinates between each pair within each group
+y.new <- apply(d, 1, function(x) {
+  seq(x['y'], x['y2'], yres*sign(x['y2'] - x['y']))
+})
+d$len <- sapply(y.new, length) # length of each series of points
+# new high-resolution x coordinates corresponding with new y-coords
+x.new <- apply(d, 1, function(x) {
+  seq(x['x'], x['x2'], length.out=x['len'])
+})
+id <- rep(seq_along(y.new), d$len) # new group id vector
+y.new <- unlist(y.new)
+x.new <- unlist(x.new)
+d.new <- data.frame(id=id, x=x.new, y=y.new)
+
+p <- ggplot(d.new, aes(x=x,y=y)) +
+  geom_line(aes(group=d.new$id, color=d.new$y < threshold))+
+  geom_point(data=stackOne)+
+  scale_color_discrete(sprintf('Below %s', threshold))
+p ggplotGrob viewport
+-------------------------------------------------------------------------------------------------------
+segments() polygons() points() apply()
+-------------------------------------------------------------------------------------------------------
+segments(out[1,1],out[1,2],out[,1],out[,2]) dat <- matrix(runif(1000*99),99,1000)
+dat <- rbind(rep(0.1,1000),dat)
+out <- cmdscale(dist(dat),k = 2)
+plot(out,type="n")
+segments(out[1,1],out[1,2],out[,1],out[,2],col="#cccccc")
+points(out,col="black",pch=20)
+points(out[1,1],out[1,2],col = "red",pch=20)
+-------------------------------------------------------------------------------------------------------
+diamondCI <- function(x, y, ul, ll, w = ul-ll, ...){
+    hw <- w/2
+    segments(x-hw, y, x+hw, y, ...)  # horizontal bar
+    segments(x-hw, y, x, ul, ...) # left upper diag
+    segments(x, ul, x+hw, y, ...) # right upper diag
+    segments(x-hw, y, x, ll, ...) # left lower diag
+    segments(x, ll, x+hw, y, ...) # right lwoer diag
+    } plot(1,1)
+diamondCI(1, 1, 1.2, 0.7, col = 'red', lwd = 3)
+-------------------------------------------------------------------------------------------------------
+delta <- pmax(0.2, y - x)
+
+plot(z,x,type='n')
+segments(as.numeric(z),x ,y1 = y + delta, lwd=10, lend=1)
+-------------------------------------------------------------------------------------------------------
+circle <- function(x, y, rad = 1, nvert = 500, ...){
+    rads <- seq(0,2*pi,length.out = nvert)
+    xcoords <- cos(rads) * rad + x
+    ycoords <- sin(rads) * rad + y
+    polygon(xcoords, ycoords, ...)
+}
+
+# asp = 1 due to Hans' comment below- wouldn't let me leave a comment just saying 'thanks'
+plot(-5:5, type="n", xlim = c(-5,5), ylim = c(-5,5), asp = 1)
+circle(0,0,4)
+circle(-1.5,1.5,.5)
+circle(1.5,1.5,.5)
+circle(0,0,1)
+segments(-2,-2,2,-2)
+-------------------------------------------------------------------------------------------------------
+axis(2, 1:5, myLabels) datf$pNum <- as.numeric(datf$person)
+plot(datf$pNum, xlim = c(0, 53), type = 'n', yaxt = 'n', xlab ='Duration (words)', ylab = 'person', main = 'Speech Duration')
+axis(2, 1:5, sort(unique(datf$person)), las = 2, cex.axis = 0.75)
+with(datf, segments(start, pNum, end, pNum, lwd = 3, lend=2))
+-------------------------------------------------------------------------------------------------------
+x <- strptime(20120101:20120105,'%Y%m%d')
+y1 <- c(11,22,33,44,55)
+y2 <- c(15,23,33,45,57)
+
+r <- range(c(y1, y2)) 
+
+plot(c(x, x), c(y1, y2), type="n", xlab="Date", ylab="y")
+points(x, y1, pch=18)
+points(x, y2, pch=18)
+segments(as.numeric(x), y0=y1, y1=y2)
+-------------------------------------------------------------------------------------------------------
+library(grid)
+epsilon <- 1e-4
+grid.newpage()
+grid.points(x=c(0.5-epsilon,0.5+epsilon), y=c(0.5,0.5), pch="+", gp=gpar(cex=2), def="npc")
+grid.segments(0.5-epsilon, 0.5, 0.5+epsilon, 0.5, gp=gpar(lineend="square",lwd=50, alpha=0.2))
+grid.segments(0.5-epsilon, 0.5, 0.5+epsilon, 0.5, gp=gpar(lineend="round",lwd=50, alpha=0.2))
+grid.segments(0.5-epsilon, 0.5, 0.5+epsilon, 0.5, gp=gpar(lineend="butt",lwd=50, alpha=0.2)) grid.newpage()
+grid.rect(x=0.5, y=0.5, width=0.01, height=0, gp=gpar(fill="black", col="red", lwd=10, linejoin="mitre"))
+-------------------------------------------------------------------------------------------------------
+labels <- c('a', 'b', 'c', 'd')
+averages <- c(10, 40, 20, 30)
+ranges <- c(5, 8, 4, 10)
+dotchart(averages, labels=labels, xlab='average',  pch=20,
+         xlim=c(min(averages-ranges), max(averages+ranges)))
+segments(averages-ranges, 1:4, averages+ranges, 1:4)
+-------------------------------------------------------------------------------------------------------
+par(mfrow = c(1,3),xpd = NA)
+
+for (i in 1:3){
+    x <- rnorm(200,i)
+    hist(x)
+    if (i == 1) segments(par("usr")[1],10,30,10)
+}
+-------------------------------------------------------------------------------------------------------
+d=1:10
+plot(d,type="l") text(0.5*max(d), 0.9*max(d), expression(Result == frac(Green, Blue)), cex=1.5) text(0.4*max(d), 0.9*max(d), "Result =", cex=1.5)
+text(0.55*max(d), 0.93*max(d), "Green", col="green", cex=1.5)
+text(0.55*max(d), 0.87*max(d), "Blue", col="blue", cex=1.5)
+segments(0.5*max(d), 0.9*max(d), 0.6*max(d), 0.9*max(d))
+-------------------------------------------------------------------------------------------------------
+value<-rnorm(100,1000,200) ##create list of numbers, "scan()" may be used for real observations
+nmbrs<-length(value) ## determine the length of vector
+obrv<-1:length(value) ## create list of observations
+par(xpd=FALSE)
+sd1<-sd(value[1:20])*1 ## 1 standart deviation
+sd2<-sd(value[1:20])*2 ## 2 standart deviations
+sd3<-sd(value[1:20])*3 ## 3 standart deviations
+usd1<-mean(value)+sd1 ## upper limit
+lsd1<-mean(value)-sd1 ## lower limit
+lsd2<-mean(value)-sd2 ## lower limit
+usd2<-mean(value)+sd2 ## upper limit
+usd3<-mean(value)+sd3 ## upper limit
+lsd3<-mean(value)-sd3 ## lower limit
+
+## ploting the grid
+plot(obrv,value,type="n",xlab="Observations",ylab="Value",ylim=c(lsd3-sd1,usd3+sd1))
+abline(h=mean(value),col=2,lty=1)
+abline(h=usd1,col=3,lty=3)
+abline(h=lsd1,col=3,lty=3)
+abline(h=usd2,col=4,lty=2)
+abline(h=lsd2,col=4,lty=2)
+abline(h=usd3,col=6,lty=1)
+abline(h=lsd3,col=6,lty=1)
+
+
+## 20 first values for L-G chart for QC limits
+for (i in 1:20) 
+{
+points(obrv[i],value[i],col="black")
+}
+lines(obrv[1:20],value[1:20],col="red")
+
+
+## if over mean - "red", under mean - "blue"
+for (i in 21:nmbrs) 
+{
+points(obrv[i],value[i],col="blue")
+segments(obrv[i-1],value[i-1],obrv[i],value[i],col="blue")
+}
+
+# 1s points - blue; 2s points - red
+#if (value[i]<usd1 || value[i]>lsd1) points(obrv[i],value[i],col="blue")
+#if (value[i]>usd1 || value[i]<lsd1) points(obrv[i],value[i],col="red")
+
+#12s violation rule
+#if (value[i]>usd1 || value[i]<usd1) text(30, usd3, "12s violation")
+#if (value[i]>usd1 || value[i]<usd1) text(30, usd3, "12s violation")
+#segments(obrv[i-1],value[i-1],obrv[i],value[i],col="blue")
+#if (value[i]>usd1) break
+#}
+
+
+#legend placement - might be omited
+#legend(1,min(value)-sd1*0.2,bg=8,c("mean","sd1","sd2","sd3"),lty=c(1,3,2,1),lwd=c(2.5,2.5,2.5,2.5),col=c(2,3,4,6),cex=0.8)
+-------------------------------------------------------------------------------------------------------
+ggplot plot plot.as.stack= function(mapdata1, mbar.col = "blue"){
+    # mapdata1 <- mapdata[mapdata$chr == chr,]
+    m <- par()$mar
+    m[1] <- m[3] <- 0
+    par(mar=m)
+    # Set the limits of the  plot
+    plot(mapdata1$position,mapdata1$position-mapdata1$position, type="n",
+       axes=FALSE, 
+    xlab="", ylab="Chromsome", yaxt="n" )
+
+    polygon(
+      c(0,max(mapdata1$position + 0.08 * max(mapdata1$position)),max(mapdata1$position)+
+         0.08 * max(mapdata1$position),0),
+      .2*c(-0.3,-0.3,0.3,0.3),
+      col= mbar.col
+    )
+    segments(mapdata1$position, -.3, mapdata1$position, .3 )
+    text(mapdata1$position, -.7, mapdata1$snpname, srt = 90, cex.lab = chr.lab)
+    text(mapdata1$position,  .7, mapdata1$position,cex.lab = chr.lab )
+    text(0, labels = paste("Chr",unique(mapdata1$chr)))
+}
+
+# Example Run.
+par(mfrow=c(length(unique(mapdata$chr)),1))
+x=by(mapdata,factor(mapdata$chr),plot.as.stack) # Assigned to x to prevent output
+par(mfrow=c(1,1)) by chr plot.as.stack = function(chr){
+    mapdata1 <- mapdata[mapdata$chr == chr,]
+    ...
+} par(mfrow=c(5,1))
+sapply(1:5,plot.as.stack)
+par(mfrow=c(1,1))
+-------------------------------------------------------------------------------------------------------
+plot(c(0,13),c(1,12),type = "n",axes = FALSE,xlab = "Position",ylab = "")
+segments(x0 = dat$start,y0 = dat$pos,x1 = dat$end,y1 = dat$pos,col = "blue",lwd = 6,lend = 2)
+text(x = dat$start - 0.5,y = dat$pos,labels = dat$pos,font = 2)
+axis(1)
+axis(1,at = c(0,12),labels = FALSE,tcl = 0.5) axis
+-------------------------------------------------------------------------------------------------------
+plot(dt[,3], pch="•", ylim=c(-20, 50), axes=F, ann=F, cex=1.5, bty = 'o')
+abline(h=0, col=1, lty=2)
+arrows(1:3, dt[,3], 1:3, dt[,4], angle = 90, length = 0.08) segments(1:3, dt[,3], 1:3, dt[,5])
+segments(1:3, dt[,3], 1:3, dt[,4])
+-------------------------------------------------------------------------------------------------------
+closeval closeval <- c(50,48,47,47,59,60,57,48,42,50)
+cvlag <- c(NA,head(closeval,-1))
+dset <- data.frame(closeval,cvlag)
+dset <- subset(dset,closeval!=cvlag | is.na(cvlag))
+dset$cvlag2 <- c(NA,NA,head(dset$closeval,-2))
+
+plot(dset$closeval)
+
+dset <- dset[2:nrow(dset),]
+dset$maxlag <- apply(dset[c("cvlag","cvlag2")],1,max,na.rm=TRUE)
+dset$minlag <- apply(dset[c("cvlag","cvlag2")],1,min,na.rm=TRUE)
+
+dset$change <- (dset$closeval-dset$cvlag) > 0
+
+dset$keyval[dset$change==FALSE] <- dset$minlag[dset$change==FALSE]
+dset$keyval[dset$change==TRUE] <- dset$maxlag[dset$change==TRUE]
+
+segments(
+2:(nrow(dset)+1),
+dset$closeval,
+2:(nrow(dset)+1),
+dset$keyval,
+col=ifelse(dset$change==TRUE,"red","blue")
+)
+-------------------------------------------------------------------------------------------------------
+PolarImageInterpolate <- function(x, y, z, outer.radius = 1, 
+            breaks, col, nlevels = 20, contours = TRUE, legend = TRUE, 
+            axes = TRUE, circle.rads = pretty(c(0,outer.radius))){
+
+        minitics <- seq(-outer.radius, outer.radius, length.out = 1000)
+        # interpolate the data
+        Interp <- akima:::interp(x = x, y = y, z = z, 
+                extrap = TRUE, 
+                xo = minitics, 
+                yo = minitics, 
+                linear = FALSE)
+        Mat <- Interp[[3]]
+
+        # mark cells outside circle as NA
+        markNA <- matrix(minitics, ncol = 1000, nrow = 1000) 
+        Mat[!sqrt(markNA ^ 2 + t(markNA) ^ 2) < outer.radius] <- NA 
+
+        # sort out colors and breaks:
+        if (!missing(breaks) & !missing(col)){
+            if (length(breaks) - length(col) != 1){
+                stop("breaks must be 1 element longer than cols")
+            }
+        }
+        if (missing(breaks) & !missing(col)){
+            breaks <- seq(min(Mat,na.rm = TRUE), max(Mat, na.rm = TRUE), length = length(col) + 1)
+            nlevels <- length(breaks) - 1
+        }
+        if (missing(col) & !missing(breaks)){
+            col <- rev(heat.colors(length(breaks) - 1))
+            nlevels <- length(breaks) - 1
+        }
+        if (missing(breaks) & missing(col)){
+            breaks <- seq(min(Mat,na.rm = TRUE), max(Mat, na.rm = TRUE), length = nlevels + 1)
+            col <- rev(heat.colors(nlevels))
+        }
+
+        # if legend desired, it goes on the right and some space is needed
+        if (legend) {
+            par(mai = c(1,1,1.5,1.5))
+        }
+
+        # begin plot
+        image(x = minitics, y = minitics, t(Mat), useRaster = TRUE, asp = 1, 
+            axes = FALSE, xlab = "", ylab = "", col = col, breaks = breaks)
+
+        # add contours if desired
+        if (contours){
+            CL <- contourLines(x = minitics, y = minitics, t(Mat), levels = breaks)
+            A <- lapply(CL, function(xy){
+                        lines(xy$x, xy$y, col = gray(.2), lwd = .5)
+                    })
+        }
+
+        # add radial axes if desired
+        if (axes){ 
+            # internals for axis markup
+            RMat <- function(radians){
+                matrix(c(cos(radians), sin(radians), -sin(radians), cos(radians)), ncol = 2)
+            }    
+
+            circle <- function(x, y, rad = 1, nvert = 500){
+                rads <- seq(0,2*pi,length.out = nvert)
+                xcoords <- cos(rads) * rad + x
+                ycoords <- sin(rads) * rad + y
+                cbind(xcoords, ycoords)
+            }
+
+            # draw circles
+            if (missing(circle.rads)){
+                circle.rads <- pretty(c(0,outer.radius))
+            }
+
+            for (i in circle.rads){
+                lines(circle(0, 0, i), col = "#66666650")
+            }
+
+            # put on radial spoke axes:
+            axis.rads <- c(0, pi / 6, pi / 3, pi / 2, 2 * pi / 3, 5 * pi / 6)
+            r.labs <- c(90, 60, 30, 0, 330, 300)
+            l.labs <- c(270, 240, 210, 180, 150, 120)
+
+            for (i in 1:length(axis.rads)){ 
+                endpoints <- zapsmall(c(RMat(axis.rads[i]) %*% matrix(c(1, 0, -1, 0) * outer.radius,ncol = 2)))
+                segments(endpoints[1], endpoints[2], endpoints[3], endpoints[4], col = "#66666650")
+                endpoints <- c(RMat(axis.rads[i]) %*% matrix(c(1.1, 0, -1.1, 0) * outer.radius, ncol = 2))
+                lab1 <- bquote(.(r.labs[i]) * degree)
+                lab2 <- bquote(.(l.labs[i]) * degree)
+                text(endpoints[1], endpoints[2], lab1, xpd = TRUE)
+                text(endpoints[3], endpoints[4], lab2, xpd = TRUE)
+            }
+            axis(2, pos = -1.2 * outer.radius, at = sort(union(circle.rads,-circle.rads)), labels = NA)
+            text( -1.21 * outer.radius, sort(union(circle.rads, -circle.rads)),sort(union(circle.rads, -circle.rads)), xpd = TRUE, pos = 2)
+        }
+
+        # add legend if desired
+        # this could be sloppy if there are lots of breaks, and that's why it's optional.
+        # another option would be to use fields:::image.plot(), using only the legend. 
+        # There's an example for how to do so in its documentation
+        if (legend){
+            ylevs <- seq(-outer.radius, outer.radius, length = nlevels + 1)
+            rect(1.2 * outer.radius, ylevs[1:(length(ylevs) - 1)], 1.3 * outer.radius, ylevs[2:length(ylevs)], col = col, border = NA, xpd = TRUE)
+            rect(1.2 * outer.radius, min(ylevs), 1.3 * outer.radius, max(ylevs), border = "#66666650", xpd = TRUE)
+            text(1.3 * outer.radius, ylevs,round(breaks, 1), pos = 4, xpd = TRUE)
+        }
+    }
+
+    # Example
+    set.seed(10)
+    x <- rnorm(20)
+    y <- rnorm(20)
+    z <- rnorm(20)
+    PolarImageInterpolate(x,y,z, breaks = seq(-2,8,by = 1)) image() # arguments:
+
+    # Mat, a matrix of z values as follows:
+    # leftmost edge of first column = 0 degrees, rightmost edge of last column = 360 degrees
+    # columns are distributed in cells equally over the range 0 to 360 degrees, like a grid prior to transform
+    # first row is innermost circle, last row is outermost circle
+
+    # outer.radius, By default everything scaled to unit circle 
+    # ppa: points per cell per arc. If your matrix is little, make it larger for a nice curve
+    # cols: color vector. default = rev(heat.colors(length(breaks)-1))
+    # breaks: manual breaks for colors. defaults to seq(min(Mat),max(Mat),length=nbreaks)
+    # nbreaks: how many color levels are desired?
+    # axes: should circular and radial axes be drawn? radial axes are drawn at 30 degree intervals only- this could be made more flexible.
+    # circle.rads: at which radii should circles be drawn? defaults to pretty(((0:ncol(Mat)) / ncol(Mat)) * outer.radius)
+
+    # TODO: add color strip legend.
+
+    PolarImagePlot <- function(Mat, outer.radius = 1, ppa = 5, cols, breaks, nbreaks = 51, axes = TRUE, circle.rads){
+
+        # the image prep
+        Mat      <- Mat[, ncol(Mat):1]
+        radii    <- ((0:ncol(Mat)) / ncol(Mat)) * outer.radius
+
+        # 5 points per arc will usually do
+        Npts     <- ppa
+        # all the angles for which a vertex is needed
+        radians  <- 2 * pi * (0:(nrow(Mat) * Npts)) / (nrow(Mat) * Npts) + pi / 2
+        # matrix where each row is the arc corresponding to a cell
+        rad.mat  <- matrix(radians[-length(radians)], ncol = Npts, byrow = TRUE)[1:nrow(Mat), ]
+        rad.mat  <- cbind(rad.mat, rad.mat[c(2:nrow(rad.mat), 1), 1])
+
+        # the x and y coords assuming radius of 1
+        y0 <- sin(rad.mat)
+        x0 <- cos(rad.mat)
+
+        # dimension markers
+        nc <- ncol(x0)
+        nr <- nrow(x0)
+        nl <- length(radii)
+
+        # make a copy for each radii, redimension in sick ways
+        x1 <- aperm( x0 %o% radii, c(1, 3, 2))
+        # the same, but coming back the other direction to close the polygon
+        x2 <- x1[, , nc:1]
+        #now stick together
+        x.array <- abind:::abind(x1[, 1:(nl - 1), ], x2[, 2:nl, ], matrix(NA, ncol = (nl - 1), nrow = nr), along = 3)
+        # final product, xcoords, is a single vector, in order, 
+        # where all the x coordinates for a cell are arranged
+        # clockwise. cells are separated by NAs- allows a single call to polygon()
+        xcoords <- aperm(x.array, c(3, 1, 2))
+        dim(xcoords) <- c(NULL)
+        # repeat for y coordinates
+        y1 <- aperm( y0 %o% radii,c(1, 3, 2))
+        y2 <- y1[, , nc:1]
+        y.array <- abind:::abind(y1[, 1:(length(radii) - 1), ], y2[, 2:length(radii), ], matrix(NA, ncol = (length(radii) - 1), nrow = nr), along = 3)
+        ycoords <- aperm(y.array, c(3, 1, 2))
+        dim(ycoords) <- c(NULL)
+
+        # sort out colors and breaks:
+        if (!missing(breaks) & !missing(cols)){
+            if (length(breaks) - length(cols) != 1){
+                stop("breaks must be 1 element longer than cols")
+            }
+        }
+        if (missing(breaks) & !missing(cols)){
+            breaks <- seq(min(Mat,na.rm = TRUE), max(Mat, na.rm = TRUE), length = length(cols) + 1)
+        }
+        if (missing(cols) & !missing(breaks)){
+            cols <- rev(heat.colors(length(breaks) - 1))
+        }
+        if (missing(breaks) & missing(cols)){
+            breaks <- seq(min(Mat,na.rm = TRUE), max(Mat, na.rm = TRUE), length = nbreaks)
+            cols <- rev(heat.colors(length(breaks) - 1))
+        }
+
+        # get a color for each cell. Ugly, but it gets them in the right order
+        cell.cols <- as.character(cut(as.vector(Mat[nrow(Mat):1,ncol(Mat):1]), breaks = breaks, labels = cols))
+
+        # start empty plot
+        plot(NULL, type = "n", ylim = c(-1, 1) * outer.radius, xlim = c(-1, 1) * outer.radius, asp = 1, axes = FALSE, xlab = "", ylab = "")
+        # draw polygons with no borders:
+        polygon(xcoords, ycoords, col = cell.cols, border = NA)
+
+        if (axes){
+
+            # a couple internals for axis markup.
+
+            RMat <- function(radians){
+                matrix(c(cos(radians), sin(radians), -sin(radians), cos(radians)), ncol = 2)
+            }
+
+            circle <- function(x, y, rad = 1, nvert = 500){
+                rads <- seq(0,2*pi,length.out = nvert)
+                xcoords <- cos(rads) * rad + x
+                ycoords <- sin(rads) * rad + y
+                cbind(xcoords, ycoords)
+            }
+            # draw circles
+            if (missing(circle.rads)){
+                circle.rads <- pretty(radii)
+            }
+            for (i in circle.rads){
+                lines(circle(0, 0, i), col = "#66666650")
+            }
+
+            # put on radial spoke axes:
+            axis.rads <- c(0, pi / 6, pi / 3, pi / 2, 2 * pi / 3, 5 * pi / 6)
+            r.labs <- c(90, 60, 30, 0, 330, 300)
+            l.labs <- c(270, 240, 210, 180, 150, 120)
+
+            for (i in 1:length(axis.rads)){ 
+                endpoints <- zapsmall(c(RMat(axis.rads[i]) %*% matrix(c(1, 0, -1, 0) * outer.radius,ncol = 2)))
+                segments(endpoints[1], endpoints[2], endpoints[3], endpoints[4], col = "#66666650")
+                endpoints <- c(RMat(axis.rads[i]) %*% matrix(c(1.1, 0, -1.1, 0) * outer.radius, ncol = 2))
+                lab1 <- bquote(.(r.labs[i]) * degree)
+                lab2 <- bquote(.(l.labs[i]) * degree)
+                text(endpoints[1], endpoints[2], lab1, xpd = TRUE)
+                text(endpoints[3], endpoints[4], lab2, xpd = TRUE)
+            }
+            axis(2, pos = -1.2 * outer.radius, at = sort(union(circle.rads,-circle.rads)))
+        }
+        invisible(list(breaks = breaks, col = cols))
+    } image() set.seed(1)
+    x <- runif(20, min = 0, max = 360)
+    y <- runif(20, min = 0, max = 40)
+    z <- rnorm(20)
+
+    Interp <- akima:::interp(x = x, y = y, z = z, 
+            extrap = TRUE, 
+            xo = seq(0, 360, length.out = 300), 
+            yo = seq(0, 40, length.out = 100), 
+            linear = FALSE)
+    Mat <- Interp[[3]]
+
+    PolarImagePlot(Mat)
+-------------------------------------------------------------------------------------------------------
+?par ‘lend’ The line end style.  This can be specified as an integer or
+      string:
+
+      ‘0’ and ‘"round"’ mean rounded line caps [_default_];
+
+      ‘1’ and ‘"butt"’ mean butt line caps;
+
+      ‘2’ and ‘"square"’ mean square line caps. > plot(0:1,0:1,type="n")
+> par(lend=0); segments(0,0.2,1,0.2,lwd=8)
+> par(lend=1); segments(0,0.4,1,0.4,lwd=8)
+> par(lend=2); segments(0,0.6,1,0.6,lwd=8)
+-------------------------------------------------------------------------------------------------------
+event_times <- c(5,3,6,8) groups xyplot(Y~time,groups=subject_identifier,data=cdat,
+              panel=function(x,y,groups,...){
+                panel.xyplot(x,y,groups=groups,...)
+                panel.segments(x0=x[(grp-1)*10+event_times[grp]],
+                               x1=x[(grp-1)*10+event_times[grp]], 
+                               y0=y[(grp-1)*10+event_times[grp]]-.2,
+                             y1=y[(grp-1)*10+event_times[grp]]+.2, groups=groups,...)},
+       type=c('l')) (group-1)*10 panel.superpose
+-------------------------------------------------------------------------------------------------------
+set.seed(33)
+nsamples=500
+nperms=10
+nclusters=3
+
+df <- data.frame(x=runif(nsamples), y=runif(nsamples), MOS=runif(nsamples))
+
+MOS.sums <- matrix(NaN, nrow=nperms, ncol=nclusters)
+colnames(MOS.sums) <- paste("cluster", 1:nclusters, sep=".")
+rownames(MOS.sums) <- paste("perm", 1:nperms, sep=".")
+
+seeds <- round(runif(nperms, min=1, max=10000))
+
+    plot(df$x, df$y)
+COL <- rainbow(nperms)
+for(i in seq(nperms)){
+    set.seed(seeds[i])
+    ORD <- sample(nsamples)
+    K <- kmeans(df[ORD,1:2], centers=nclusters)
+    MOS.sums[i,] <- tapply(df$MOS[ORD], K$cluster, sum)
+    segments(df$x[ORD], df$y[ORD], K$centers[K$cluster,1], K$centers[K$cluster,2], col=COL[i])
+}
+seeds
+MOS.sums
+-------------------------------------------------------------------------------------------------------
+plot(NULL, ylim=c(0,4), xlim=range(mydf$pos))
+ abline(h=1:4 ,col=1:2 )
+ with(mydf, 
+segments(x0=pos, y0=as.numeric(interaction(mydf)), y1=as.numeric(interaction(mydf)),col= mydf$grp, lty=as.numeric(mydf$sgrp)) )se
+
+
+ ylim ylab yaxt="n" axis() plot(NULL, ylim=c(0.5,4.5), xlim=range(mydf$pos))
+ with(mydf, 
+segments(x0=pos, y0=c(1.3), y1=c(1.3), col= mydf$sgrp, lty=as.numeric(mydf$grp)) )
+abline(h=c(1.3,1.7,3.3,3.7) ,col= rep(1:2, each=2), lty=1:2,lwd=3)
+-------------------------------------------------------------------------------------------------------
+convertToColors() "#FFFFFF heat.colors() NA library(grid)
+
+## Data: heatmap
+set.seed (123)
+myd <- data.frame ( matrix(sample (c(1, 0, -1), 500, replace = "T"), 50))
+mmat <-  cor(myd)
+diag(mmat) <- NA
+mmat[upper.tri (mmat)] <- NA
+## Data: Positions
+vard <- c(1, 10, 15, 18, 20, 23, 24, 30, 35, 40)
+
+## Construct a function to convert a numeric matrix to a matrix of color names.
+## The lowest value in the matrix maps to red, the highest to white,
+## and the NAs to "transparent".
+convertToColors <- function(mat) {
+    # Produce 'normalized' version of matrix, with values ranging from 0 to 1
+    rng <- range(mat, na.rm = TRUE)
+    m <- (mat - rng[1])/diff(rng)
+    # Convert to a matrix of sRGB color strings
+    m2 <- m; class(m2) <- "character"
+    m2[!is.na(m2)] <- rgb(colorRamp(heat.colors(10))(m[!is.na(m)]), max = 255)
+    m2[is.na(m2)] <- "transparent"
+    return(m2)
+}
+
+## Initialize plot and prepare two viewports
+grid.newpage()
+heatmapViewport <- viewport(height=1/sqrt(2), width=1/sqrt(2), angle = -135) 
+annotationViewport <- viewport(y = 0.7, height = 0.4)
+
+## Plot heat map
+pushViewport(heatmapViewport)
+    grid.raster(t(convertToColors(mmat)), interpolate = FALSE)
+upViewport()
+
+## Precompute x-locations of text and segment elements
+n <- nrow(mmat)
+v_x <- vard/max(vard)
+X_x <- seq(0, 1, len=n)
+
+## Plot the annotated green bar and line segments
+pushViewport(annotationViewport)
+    ## Green rectangle
+    grid.polygon(x = c(0,0,1,1,0), y = c(.45,.55,.55,.45,.45),
+                 gp = gpar(fill = "green4"))
+    pushViewport(viewport(width = (n-1)/n))
+        ## Segments and text marking vard values
+        grid.segments(x0 = v_x, x1 = v_x, y0 = 0.3, y1 = 0.7)
+        grid.text(label = vard, x = v_x, y = 0.75, rot = 90)
+        ## Text marking heatmap column names (X1-X10)
+        grid.text(paste0("X", seq_along(X_x)), x = X_x, y=0.05,
+                  gp = gpar(fontface="bold"))
+        ## Angled lines
+        grid.segments(x0 = v_x, x1 = X_x, y0 = 0.29, y1 = 0.09)
+    upViewport()
+upViewport()
+-------------------------------------------------------------------------------------------------------
+text mtext segment plot.new()
+segments(0.365, 0.77, 0.365, 0.83, lwd = 2)
+text(0.365,0.77-strheight("O", cex=4)/2,"O", cex=4)
+-------------------------------------------------------------------------------------------------------
+ternaryplot a<- c (0.1, 0.5, 0.5, 0.6, 0.2, 0, 0, 0.004166667, 0.45) 
+b<- c (0.75,0.5,0,0.1,0.2,0.951612903,0.918103448,0.7875,0.45)
+c<- c (0.15,0,0.5,0.3,0.6,0.048387097,0.081896552,0.208333333,0.1) 
+d<- c (500,2324.90,2551.44,1244.50, 551.22,-644.20,-377.17,-100, 2493.04) 
+df<- data.frame (a, b, c)
+
+
+# First create the limit of the ternary plot:
+plot(NA,NA,xlim=c(0,1),ylim=c(0,sqrt(3)/2),asp=1,bty="n",axes=F,xlab="",ylab="")
+segments(0,0,0.5,sqrt(3)/2)
+segments(0.5,sqrt(3)/2,1,0)
+segments(1,0,0,0)
+text(0.5,(sqrt(3)/2),"c", pos=3)
+text(0,0,"a", pos=1)
+text(1,0,"b", pos=1)
+
+# The biggest difficulty in the making of a ternary plot is to transform triangular coordinates into cartesian coordinates, here is a small function to do so:
+tern2cart <- function(coord){
+    coord[1]->x
+    coord[2]->y
+    coord[3]->z
+    x+y+z -> tot
+    x/tot -> x  # First normalize the values of x, y and z
+    y/tot -> y
+    z/tot -> z
+    (2*y + z)/(2*(x+y+z)) -> x1 # Then transform into cartesian coordinates
+    sqrt(3)*z/(2*(x+y+z)) -> y1
+    return(c(x1,y1))
+    }
+
+# Apply this equation to each set of coordinates
+t(apply(df,1,tern2cart)) -> tern
+
+# Intrapolate the value to create the contour plot
+resolution <- 0.001
+require(akima)
+interp(tern[,1],tern[,2],z=d, xo=seq(0,1,by=resolution), yo=seq(0,1,by=resolution)) -> tern.grid
+
+# And then plot:
+image(tern.grid,breaks=c(-1000,0,500,1000,1500,2000,3000),col=rev(heat.colors(6)),add=T)
+contour(tern.grid,levels=c(-1000,0,500,1000,1500,2000,3000),add=T)
+points(tern,pch=19)
+-------------------------------------------------------------------------------------------------------
+triplot #First draw the empty ternary diagram:
+plot(NA,NA,xlim=c(0,1),ylim=c(0,sqrt(3)/2),asp=1,bty="n",axes=F,xlab="",ylab="")
+segments(0,0,0.5,sqrt(3)/2)
+segments(0.5,sqrt(3)/2,1,0)
+segments(1,0,0,0)
+
+text(0,0,labels="1, 2 or 3",pos=1)
+text(1,0,labels="6",pos=1)
+text(0.5,sqrt(3)/2,labels="4 or 5",pos=3)
+
+#The following function is for transforming ternary coordinates into cartesian coordinates:
+tern2cart <- function(coord){
+    coord[1]->x
+    coord[2]->y
+    coord[3]->z
+    x+y+z->tot
+    x/tot -> x
+    y/tot -> y
+    z/tot -> z
+    (2*y + z)/(2*(x+y+z)) -> x1
+    sqrt(3)*z/(2*(x+y+z)) -> y1
+    return(c(x1,y1))
+    }
+
+#Here are your zones:
+green.zone<-matrix(c(0,0,100,40,0,60,0,40,60,0,0,100),nrow=4,byrow=TRUE)
+blue.zone<-matrix(c(30,10,60,30,40,30,0,70,30,0,40,60,30,10,60),nrow=5,byrow=TRUE)
+purple.zone<-matrix(c(90,0,10,100,0,0,30,70,0,30,40,30,50,40,10,90,0,10),nrow=6,byrow=TRUE)
+red.zone<-matrix(c(30,40,30,30,70,0,0,100,0,0,70,30,30,40,30),nrow=5,byrow=TRUE)
+yellow.zone<-matrix(c(90,0,10,40,0,60,30,10,60,30,40,30,50,40,10,90,0,10),nrow=6,byrow=TRUE)
+
+#Then transformed into cartesian coordinates:
+t(apply(green.zone,1,tern2cart))->green
+t(apply(blue.zone,1,tern2cart))->blue
+t(apply(purple.zone,1,tern2cart))->purple
+t(apply(red.zone,1,tern2cart))->red
+t(apply(yellow.zone,1,tern2cart))->yellow
+
+#And plotted:
+polygon(green,col="green",border=NULL)
+polygon(blue,col="blue",border=NULL)
+polygon(purple,col="purple",border=NULL)
+polygon(red,col="red",border=NULL)
+polygon(yellow,col="yellow",border=NULL)
+
+#And finally the grid:
+a<-seq(0.9,0.1, by=-0.1)
+b<-rep(0,9)
+c<-seq(0.1,0.9,by=0.1)
+grid<-data.frame(x=c(a, b, c, a, c, b),y=c(b, c, a, c, b, a),z=c(c, a, b, b, a, c))
+t(apply(grid,1,tern2cart)) -> grid.tern
+cbind(grid.tern[1:27,],grid.tern[28:54,])->grid
+apply(grid,1,function(x){segments(x0=x[1],y0=x[2],x1=x[3],y1=x[4],lty=2,col="grey80")}) paste(seq(10,90,by=10),"%")->lab
+text(grid.tern[9:1,],paste(lab,"\n(1, 2 or 3)"),col="grey80",cex=0.7, pos=2)
+text(grid.tern[18:10,],paste(lab,"\n(4 or 5)"),col="grey80",cex=0.7, pos=4)
+text(grid.tern[27:19,],paste(lab,"\n(6)"),col="grey80",cex=0.7, pos=1) df<-data.frame('1, 2 or 3'=c(10,33.3,50,100), '6'=c(0,33.3,50,0), '4 or 5'=c(90,33.3,0,0))
+df
+  X1..2.or.3   X6 X4.or.5
+1       10.0  0.0    90.0
+2       33.3 33.3    33.3
+3       50.0 50.0     0.0
+4      100.0  0.0     0.0
+
+t(apply(df, 1, tern2cart)) -> df.tern
+points(df.tern, pch="*", cex=3)
+-------------------------------------------------------------------------------------------------------
+plot(NA,NA,xlim=c(0,1),ylim=c(0,1),asp=1,bty="n",axes=F,xlab="",ylab="")
+segments(0,0,0.5,sqrt(3)/2)
+segments(0.5,sqrt(3)/2,1,0)
+segments(1,0,0,0)
+# sm - how smooth the plot is. Higher values will plot very slowly
+sm <- 500
+for (y in 1:(sm*sqrt(3)/2)/sm){
+    for (x in (y*sm/sqrt(3)):(sm-y*sm/sqrt(3))/sm){
+        ## distance from base line:
+        d.red = y
+        ## distance from line y = sqrt(3) * x:
+        d.green = abs(sqrt(3) * x - y) / sqrt(3 + 1)
+        ## distance from line y = - sqrt(3) * x + sqrt(3):
+        d.blue = abs(- sqrt(3) * x - y + sqrt(3)) / sqrt(3 + 1)
+        points(x, y, col=rgb(1-d.red,1 - d.green,1 - d.blue), pch=19)
+    }
+} d.red d.green d.blue colorRamp sm plot(NA,NA,xlim=c(0,1),ylim=c(0,1),asp=1,bty="n",axes=F,xlab="",ylab="")
+sm <- 500
+x <- do.call(c, sapply(1:(sm*sqrt(3)/2)/sm, 
+                       function(i) (i*sm/sqrt(3)):(sm-i*sm/sqrt(3))/sm))
+y <- do.call(c, sapply(1:(sm*sqrt(3)/2)/sm, 
+                       function(i) rep(i, length((i*sm/sqrt(3)):(sm-i*sm/sqrt(3))))))
+d.red = y
+d.green = abs(sqrt(3) * x - y) / sqrt(3 + 1)
+d.blue = abs(- sqrt(3) * x - y + sqrt(3)) / sqrt(3 + 1)
+points(x, y, col=rgb(1-d.red,1 - d.green,1 - d.blue), pch=19)
+-------------------------------------------------------------------------------------------------------
+grid gwidget require(grid)
+
+drawClock <- function(hour, minute) {
+    t <- seq(0, 2*pi, length=13)[-13]
+    x <- cos(t)
+    y <- sin(t)
+
+    grid.newpage()
+    pushViewport(dataViewport(x, y, gp=gpar(lwd=4)))
+    # Circle with ticks
+    grid.circle(x=0, y=0, default="native", 
+                r=unit(1, "native"))
+    grid.segments(x, y, x*.9, y*.9, default="native")
+    # Hour hand
+    hourAngle <- pi/2 - (hour + minute/60)/12*2*pi
+    grid.segments(0, 0, .6*cos(hourAngle), .6*sin(hourAngle), 
+                  default="native", gp=gpar(lex=4))
+    # Minute hand
+    minuteAngle <- pi/2 - (minute)/60*2*pi
+    grid.segments(0, 0, .8*cos(minuteAngle), .8*sin(minuteAngle), 
+                  default="native", gp=gpar(lex=2))    
+    grid.circle(0, 0, default="native", r=unit(1, "mm"),
+                gp=gpar(fill="white"))
+} drawClock(hour = 2, minute = 30)
+-------------------------------------------------------------------------------------------------------
+polygon(c(0,x1, xpos, x2), c(0, y1, ypos, y2), border="red", col="black", lwd=4) segments segments(c(0,0,x1,x2), c(0, 0, y1, y2), c(x1,x2,xpos,xpos), c(y1,y2,ypos,ypos))
+-------------------------------------------------------------------------------------------------------
+R ?pie $ cat t.r 
+require(grDevices)
+
+pie.sales <- c(0.12, 0.3, 0.26, 0.16, 0.04, 0.12)
+png('t1.png')
+ pie(pie.sales, clockwise=TRUE, main="pie(*, clockwise=TRUE)", 
+     labels=c('a','b','c','d','e','f'))
+ segments(0,0, 0,1, col= "red", lwd = 2)
+ text(0,1, "init.angle = 90", col= "red")
+-------------------------------------------------------------------------------------------------------
+dfr <- data.frame(seg=sample(1:6, 20, replace=TRUE), start=sample(1:100, 20, replace=TRUE), end=sample(1:100,20, replace=TRUE) )
+ plot(c(1,100), c(1,6), type="n")
+ with(dfr, segments(y0=seg, y1=seg, x0=start, x1=end, col=2:7, lwd=3)) Contig <- read.table(text=" Start1  Stop1 Start2 Stop2 Start3 Stop3 Start4 Stop4
+ 1   1   90  90  100 120 150 200 400
+ 2   1   100 120 150 200 400 NA  NA
+ 3   1   30  90  100 120 135 200 400
+ 4   1   100 120 140 200 400 NA  NA
+ 5   -35 80  90  100 130 150 200 400
+ 6   1   100 200 300 360 400 NA  NA")
+ # the reshape function can be tricky.... but seems to finally work.
+ reshape(Contig, direction="long", sep="",
+     varying=list(Start=names(Contig)[c(1,3,5,7)],
+                   Stop=names(Contig)[c(2,4,6,8)] )  )
+#------------------------------
+    time Start1 Stop1 id
+1.1    1      1    90  1
+2.1    1      1   100  2
+3.1    1      1    30  3
+4.1    1      1   100  4
+5.1    1    -35    80  5
+6.1    1      1   100  6
+1.2    2     90   100  1
+2.2    2    120   150  2
+3.2    2     90   100  3
+4.2    2    120   140  4
+5.2    2     90   100  5
+6.2    2    200   300  6
+1.3    3    120   150  1
+2.3    3    200   400  2
+3.3    3    120   135  3
+4.3    3    200   400  4
+5.3    3    130   150  5
+6.3    3    360   400  6
+1.4    4    200   400  1
+2.4    4     NA    NA  2
+3.4    4    200   400  3
+4.4    4     NA    NA  4
+5.4    4    200   400  5
+6.4    4     NA    NA  6
+#-----------------
+
+ LContig <- reshape(Contig, direction="long", sep="",
+   varying=list(Start=names(Contig)[c(1,3,5,7)], Stop=names(Contig)[c(2,4,6,8)] )  )
+ plot(range(c(Contig$Start1, Contig$Stop1) , na.rm=TRUE ), c(1,6),
+            type="n", xlab="Segments", ylab="Groups")
+  with(LContig, segments(y0=id, y1=id, x0=Start1, x1=Stop1, col=2:7, lwd=3))
+-------------------------------------------------------------------------------------------------------
+gap.plot() ylim c(0, 500) c(0, 250) ## made up data
+GRO.Controls <- c(25, 40:50, 60, 150)
+GRO.Breast <- c(70, 80:90, 110, 500)
+
+##Scatter plot for both groups
+library(plotrix)
+gap.plot(jitter(rep(0,length(GRO.Controls)),amount = 0.2), GRO.Controls,
+         gap = c(175,425), xtics = -2, # no xtics visible
+         ytics = seq(0, 500, by = 50),
+         xlim = c(-0.5, 1.5), ylim = c(0, 250), 
+         xlab = "", ylab = "Concentrations (pg/ml)", main = "GRO(P=0.0010)")
+gap.plot(jitter(rep(1,length(GRO.Breast)),amount = 0.2), GRO.Breast,
+         gap = c(175, 425), col = "blue", add = TRUE)
+
+##Adds x- variable (groups) labels
+mtext("Controls", side = 1, at= 0.0)
+mtext("Breast Cancer", side = 1, at= 1.0)
+
+##Adds median lines for each group
+segments(-0.25, median(GRO.Controls), 0.25, median(GRO.Controls), lwd = 2.0)
+segments(0.75, median(GRO.Breast), 1.25, median(GRO.Breast), lwd = 2.0, 
+    col = "blue")
+-------------------------------------------------------------------------------------------------------
+quantile() rug() set.seed(1)
+X <- rnorm(200)
+boxplot(X, yaxt = "n")
+
+## compute the required quantiles
+qntl <- quantile(X, probs = c(0.85, 0.90))
+
+## add them as a rgu plot to the left hand side
+rug(qntl, side = 2, col = "blue", lwd = 2)
+
+## add the box and axes
+axis(2)
+box() str() set.seed(1) ## make reproducible
+HWD <- data.frame(Hour = rep(0:23, 10),
+                  Houston_Load = rnorm(24*10)) Hour Hour quantile() quants <- sapply(split(HWD$Houston_Load, list(HWD$Hour)),
+                 quantile, probs = c(0.85, 0.9)) R> quants <- sapply(split(HWD$Houston_Load, list(HWD$Hour)),
++                  quantile, probs = c(0.85, 0.9))
+R> quants
+            0         1        2         3         4         5        6
+85% 0.3576510 0.8633506 1.581443 0.2264709 0.4164411 0.2864026 1.053742
+90% 0.6116363 0.9273008 2.109248 0.4218297 0.5554147 0.4474140 1.366114
+            7         8        9       10        11        12       13       14
+85% 0.5352211 0.5175485 1.790593 1.394988 0.7280584 0.8578999 1.437778 1.087101
+90% 0.8625322 0.5969672 1.830352 1.519262 0.9399476 1.1401877 1.763725 1.102516
+           15        16        17        18       19        20       21
+85% 0.6855288 0.4874499 0.5493679 0.9754414 1.095362 0.7936225 1.824002
+90% 0.8737872 0.6121487 0.6078405 1.0990935 1.233637 0.9431199 2.175961
+          22        23
+85% 1.058648 0.6950166
+90% 1.145783 0.8436541 boxplot(Houston_Load ~ Hour, data = HWD, axes = FALSE)
+xlocs <- 1:24 ## where to draw marks
+tickl <- 0.15 ## length of marks used
+for(i in seq_len(ncol(quants))) {
+    segments(x0 = rep(xlocs[i] - 0.15, 2), y0 = quants[, i],
+             x1 = rep(xlocs[i] + 0.15, 2), y1 = quants[, i],
+             col = c("red", "blue"), lwd = 2)
+}
+title(xlab = "Hour", ylab = "Houston Load")
+axis(1, at = xlocs, labels = xlocs - 1)
+axis(2)
+box()
+legend("bottomleft", legend = paste(c("0.85", "0.90"), "quantile"),
+       bty = "n", lty = "solid", lwd = 2, col = c("red", "blue"))
+-------------------------------------------------------------------------------------------------------
+z dotplot(factor(z) ~ ... jitter.x=TRUE jitter.y=TRUE z z horizontal=TRUE useOuterStrips(dotplot(z ~ factor(sample.size) | 
+                             as.factor(effect.size)*as.factor(true.dose),
+                  groups=as.factor(type), data=df.dose,  
+                  as.table=TRUE, horizontal=FALSE, jitter.x=TRUE)) panel.groups panel df.dose$se <- 200
+df.dose$type <- factor(df.dose$type)
+df.dose$sample.size <- factor(df.dose$sample.size)
+
+panel.groups.mydotplot <- function(x, y, subscripts, up, lo, 
+                                   col=NA, col.line=NA, ...) {
+  panel.points(x, y, ...)
+  panel.segments(x, lo[subscripts], x, up[subscripts], col=col.line, ...)
+}
+panel.mydotplot <- function(x, y, subscripts, groups, ..., jitter=0.1) {
+  jitter <- seq(-1,1,len=nlevels(groups))*jitter
+  xx <- as.numeric(x) + jitter[as.numeric(groups[subscripts])]
+  panel.dotplot(x, y, groups=groups, subscripts=subscripts, pch=NA, ...)
+  panel.superpose(xx, y, groups=groups, subscripts=subscripts,  
+                  panel.groups=panel.groups.mydotplot, ...)
+}
+pp <- dotplot(z ~ sample.size | as.factor(effect.size)*as.factor(true.dose),
+              groups=type, data=df.dose, as.table=TRUE, horizontal=FALSE,
+              up=df.dose$z + df.dose$se, lo=df.dose$z - df.dose$se,
+              panel=panel.mydotplot, auto.key=list(space="right"))
+useOuterStrips(pp)
+-------------------------------------------------------------------------------------------------------
+d1 d28 # Get the submatrices
+I <- unlist(lapply(0:6, function(a) a:6))
+J <- rep(0:6, 7:1)
+d2 <- mapply(function(i,j) d[1:6+6*i, 1:6+6*j], I, J, SIMPLIFY=FALSE)
+
+# Setup the layout and add an outer margin for the title and axis labels
+layout(matrix(c(1:28, 0, 0), 5, 6))
+par(oma=c(3,3,3,1), mar=c(2,2,1,1))
+
+# Plot all the matrices oriented the same way they appear in text
+# i.e. the first (vertical) dimension is plotted along the Y-axis
+for(k in 1:length(d2)){
+    x <- 1:6+6*J[k]
+    y <- 1:6+6*I[k]
+
+    # Heatmap & grid
+    image(x, y, t(d2[[k]][nrow(d2[[k]]):1,]), las=1, axes=FALSE,
+          breaks=c(-1e10, -5.45, -4.65, 4.65, 5.45, 1e10),
+          col=c("red","orange","white","orange","red"))
+    xg <- apply(!is.na(d2[[k]]), 2, sum)
+    yg <- rev(apply(!is.na(d2[[k]]), 1, sum))
+    segments(c(x[1]-1, x)+.5, min(y)-.5,
+             c(x[1]-1, x)+.5, min(y)+c(6, yg)-.5, xpd=TRUE)
+    segments(min(x)-.5,         c(y[1]-1, y)+.5,
+             min(x)+c(6,xg)-.5, c(y[1]-1, y)+.5, xpd=TRUE)
+
+    # X & Y-axis values
+    mtext(x, 1, .1, at=x, cex=.5)
+    mtext(rev(y), 2, .2, at=y, las=1, cex=.5)
+
+    # Values of each cell
+    text(rep(x, each=6), rep(rev(y), 6),
+     sub("NA", "", sprintf("%.2f", d2[[k]])), cex=.3)
+}
+
+# Add title and axis labels
+title("All 28 submatrices", outer=TRUE)
+mtext("Columns", outer=TRUE, 1, 1)
+mtext("Rows", outer=TRUE, 2, 1) xpd segments
+-------------------------------------------------------------------------------------------------------
+# k fold-cross validation
+set.seed(1)
+k <- 80;
+result <- 0;
+library('pls');
+folds <- cvsegments(nrow(imDF), k);
+for (fold in 1:k){
+    currentFold <- folds[fold][[1]];
+    fit = svm(classes ~ ., data=imDF[-currentFold,], type='C-classification', kernel='linear')
+    pred = predict(fit, imDF[currentFold,])
+    result <- result + table(true=imDF[currentFold,]$classes, pred=pred);   
+}
+classAgreement(result)
+-------------------------------------------------------------------------------------------------------
+datf datf <- datf[order(datf$pollut, datf$lag), ] datfPlusNA <- lapply(split(datf, datf$pollut), function(x) rbind(NA, x, NA))
+datf <- do.call(rbind, datfPlusNA) nr <- nrow(datf)  # find out how many rows all together
+with(datf, {# this allows entering your commands more succinctly
+    # first you could set up the plot so you can select the order of drawing
+    plot(1:nr, or, ylim = c(0.8, 1.3), type = 'n', xaxt = 'n', xlab = '', ylab = 'Odds Ratio and 95% CI', frame.plot = TRUE, panel.first = grid(nx = NA, ny = NULL))
+    # arrows(1:nr, lcl, 1:nr, ucl, length = 0.02, angle = 90, code = 3, col = factor(lag)) 
+    # you could use arrows above but you don't want ends so segments is easier
+    segments(1:nr, lcl, 1:nr, ucl, col = factor(lag))
+    # add your points
+    points(1:nr, or, pch = 19, cex = 0.6)
+    xLabels <- na.omit(unique(pollut))
+    axis(1, seq(4, 34, by = 6) - 0.5, xLabels)
+})
+abline(h = 1.0)
+-------------------------------------------------------------------------------------------------------
+# plot the results
+boxplot(base, xlim=c(1,4), col="gray", xaxt="n", ylab="Base values", outline=FALSE)
+axis(side=1,1,labels=('base'))
+par(new=TRUE)
+boxplot(exps, col="red", ylim=c(-200,200), outline=FALSE, axes=FALSE)
+axis(4)
+axis(side=1,1:3,labels=c("% exp1","% exp2","% exp3"))
+grid() boxplot base exps axis(side=1,1:3,labels=c("% exp1","% exp2","% exp3")) #divide your plottin area into 2 columns with one row.
+par(mfrow = c(1, 2))
+# plot the results
+boxplot(base, col="gray", xaxt="n", ylab="Base values", outline=FALSE,axes=FALSE)
+axis(2)
+axis(side=1,1,labels=('base'))
+segments(0,0,1,0)
+boxplot(exps,col="red", xaxt="n", ylim=c(-200,200), outline=FALSE, axes=FALSE)
+axis(4)
+axis(side=1,at=(1:3),labels=c("% exp1","% exp2","% exp3"))
+-------------------------------------------------------------------------------------------------------
+rose.diag y <- scan() # paste in the values from the question and hit return twice
+y <- circlar(y) # not necessary but prevents a warning
+rose.diag(y, units = 'degrees', zero = pi/2) # units doesn't change the underlying units circular y <- circlar(y, zero = pi/2)
+rose.diag(y, units = 'degrees') # note, no 0 call here > par('usr')
+[1] -1.376553  1.376553 -1.123200  1.123200 symbols(0, 0, circle = 0.2, inches = FALSE, add = TRUE, fg = 'red') lines.circular segments arrows m <- mean.circle(y)
+segments(0, 0, cos(m+pi/2), sin(m+pi/2), col = 'red') # note I need to add the new 0 position... there is a lines.circular function but it wasn't obvious to me how to use it. rose.diag circle symbols
+-------------------------------------------------------------------------------------------------------
+scatterplot3d library(scatterplot3d)
+x <- c(1,4,3,6,2,5)
+y <- c(2,2,4,3,5,9)
+z <- c(1,3,5,9,2,2)
+s <- scatterplot3d(x,y,z)
+
+## now draw a line between points 2 and 3
+p2 <- s$xyz.convert(x[2],y[2],z[2])
+p3 <- s$xyz.convert(x[3],y[3],z[3])
+segments(p2$x,p2$y,p3$x,p3$y,lwd=2,col=2) rgl segments3d plot3d(x,y,z)
+segments3d(x[2:3],y[2:3],z[2:3],col=2,lwd=2)
+-------------------------------------------------------------------------------------------------------
+?identify ?zoomInPlot rxlim rylim /20 identify() par(mfrow = c(1,2))
+plot(1:10) # 1
+plot(1:10) # 2
+identifyPch(1:10) identifyPch() ?identify par(mfg=c(1, 1)) zoom <- function (x, y, xlim, ylim, xd, yd) 
+{
+  rxlim <- x + c(-1, 1) * (diff(range(xd))/20)
+  rylim <- y + c(-1, 1) * (diff(range(yd))/20)
+  par(mfrow = c(1, 2))
+  plot(xd, yd, xlab = "mean", ylab = "sd")
+  xext <- yext <- rxext <- ryext <- 0
+  if (par("xaxs") == "r") {
+    xext <- diff(xlim) * 0.04
+    rxext <- diff(rxlim) * 0.04
+  }
+  if (par("yaxs") == "r") {
+    yext <- diff(ylim) * 0.04
+    ryext <- diff(rylim) * 0.04
+  }
+  rect(rxlim[1] - rxext, rylim[1] - ryext, rxlim[2] + rxext, 
+       rylim[2] + ryext)
+  xylim <- par("usr")
+  xypin <- par("pin")
+  rxi0 <- xypin[1] * (xylim[2] - (rxlim[1] - rxext))/diff(xylim[1:2])
+  rxi1 <- xypin[1] * (xylim[2] - (rxlim[2] + rxext))/diff(xylim[1:2])
+  y01i <- xypin[2] * (xylim[4] - (rylim[2] + ryext))/diff(xylim[3:4])
+  y02i <- xypin[2] * ((rylim[1] - ryext) - xylim[3])/diff(xylim[3:4])
+  mu <- x
+  curve(dnorm(x, mean = mu, sd = y), from = -4 * y + mu, to = 4 * y + mu, 
+        xlab = paste("mean:", round(mu, 2), ", sd: ", round(y, 2)), ylab = "")
+  xypin <- par("pin")
+  par(xpd = NA)
+  xylim <- par("usr")
+  xymai <- par("mai")
+  x0 <- xylim[1] - diff(xylim[1:2]) * (xymai[2] + xymai[4] + 
+                                         rxi0)/xypin[1]
+  x1 <- xylim[1] - diff(xylim[1:2]) * (xymai[2] + xymai[4] + 
+                                         rxi1)/xypin[1]
+  y01 <- xylim[4] - diff(xylim[3:4]) * y01i/xypin[2]
+  y02 <- xylim[3] + diff(xylim[3:4]) * y02i/xypin[2]
+  par(xpd = TRUE)
+  xend <- xylim[1] - diff(xylim[1:2]) * xymai[2]/(2 * xypin[1])
+  xprop0 <- (xylim[1] - xend)/(xylim[1] - x0)
+  xprop1 <- (xylim[2] - xend)/(xylim[2] - x1)
+  par(xpd = NA)
+  x0, x0, x1, x1), c(y01, y02, y01, y02), 
+           c(xend, xend, xend, xend), 
+           c(xylim[4] - (xylim[4] - y01) * xprop0, 
+             xylim[3] + (y02 - xylim[3]) * xprop0, 
+             xylim[4] - (xylim[4] - y01) * xprop1, 
+             xylim[3] + (y02 - xylim[3]) * xprop1))
+  par(mfg = c(1, 1))
+  plot(xd, yd, xlab = "mean", ylab = "sd")
+}
+
+ident <- function(x, y, ...)
+{
+  ans <- identify(x, y, n = 1, plot = FALSE, ...)
+  if(length(ans)) {
+    zoom(x[ans], y[ans], range(x), range(y), x, y)
+    points(x[ans], y[ans], pch = 19)
+    ident(x, y)
+  }
+}
+
+x <- rnorm(10)
+y <- rnorm(10, mean = 5)
+par(mfrow = c(1, 2))
+plot(x, y, xlab = "mean", ylab = "sd")
+ident(x, y)
+-------------------------------------------------------------------------------------------------------
+library(grid)
+
+## Set up plotting area with reasonable x-y limits
+## and a "native" scale related to the scale of the data.
+x <- -1:1
+y <-  extendrange(c(myd$myears, myd2$myears))
+dvp <- dataViewport(x, y, name = "figure")
+
+grid.newpage()
+pushViewport(dvp)
+
+## Plot the central timeline
+grid.lines(unit(0, "native"), unit(c(0,245), "native"),
+           gp = gpar(col="dodgerblue"))
+
+## Annotate LHS
+grid.segments(x0=0.5, x1=0.47, y0=unit(c(0, myd$myears), "native"), y1=unit(c(0, myd$myears), "native"),gp=gpar(col="dodgerblue"))
+grid.text(label=c(0, myd$myears), x=0.44, y=unit(c(0, myd$myears), "native"))
+grid.text(label=myd$period, x=0.3, y=unit(myd$label, "native"),
+          just=0, gp=gpar(col="dodgerblue", fontface="italic"))
+
+## Annotate RHS
+## Create a function that plots a pointer to the specified coordinate
+pointer <- function(x, y, width=1) {
+    grid.polygon(x = x + unit(width*(c(0, .1, .1)), "npc"),
+                 y = y + unit(width*(c(0, .03, -.03)), "npc"), 
+                 gp = gpar(fill="dodgerblue", col="blue", lwd=2))
+}
+## Call it once for each milestone
+for(y in myd2$myears) {
+    pointer(unit(.5, "npc"), y=unit(y, "native"), width=0.3)
+}
+## Or, if you just want blue line segments instead of those gaudy pointers:
+## grid.segments(x0=0.5, x1=0.53,y0=unit(c(myd2$myears), "native"),y1=unit(c(myd2$myears), "native"), gp=gpar(col="dodgerblue"))
+
+grid.text(label=myd2$event, x=0.55, y=unit(myd2$myears, "native"),
+          just=0)
+-------------------------------------------------------------------------------------------------------
+require(clue)
+sol <- solve_LSAP(t(distances)) mean(dist_min[,3])
+# [1] 0.05696033
+mean(sqrt(
+  (x2y2.data[,1] - x1y1.data[sol, 1])^2 +  
+    (x2y2.data[,2] - x1y1.data[sol, 2])^2))
+#[1] 0.05194625 plot(x1y1.data,col="blue")       
+points(x2y2.data,col="red")
+segments(x2y2.data[,1], x2y2.data[,2], x1y1.data[sol, 1], x1y1.data[sol, 2])
+-------------------------------------------------------------------------------------------------------
+library(grid) polar <- read.table(text ='
+degree value
+1    120  0.50
+2     30  0.20
+3   160  0.20
+4     35  0.50
+5    150  0.40
+6    90  0.14
+7    70  0.50
+8      20  0.60',header=T)
+
+
+## function to create axis label
+axis.text <- function(col,row,text,angle){
+  pushViewport(viewport(layout.pos.col=col,layout.pos.row=row,just=c('top')))
+  grid.text(angle,vjust=0) 
+  grid.text(text,vjust=2)         
+  popViewport()
+}
+
+## function to create the arrows, Here I use the data
+arrow.custom <- function(polar){
+  pushViewport(viewport(layout.pos.col=2,layout.pos.row=2))
+  apply(polar,1,function(x){
+       pushViewport(viewport(angle=x['degree']))  
+          grid.segments(x0=0.5,y0=0.5,x1=0.5+x['value']*0.8,y1=0.5,arrow=arrow(type='closed'),gp=gpar(fill='grey'))
+       popViewport()
+  })
+  popViewport()
+}
+
+
+## The global layout 3*3 matrix
+lyt=grid.layout(3, 3, 
+                   widths= unit(c(4,15,4), "lines"),
+                   heights=unit(c(4,15,4), "lines"),
+                   just='center')
+pushViewport(viewport(layout=lyt,xscale=2*extendrange(polar$value)))
+ ## the central part : circles , arrows and axes
+pushViewport(viewport(layout.pos.col=2,layout.pos.row=2))
+grid.circle(r=c(0.5,0.3),gp = gpar(ltw=c(3,2),col=c('black','grey')))
+arrow.custom(polar)
+grid.segments(x0=0.5,y0=0,x1=0.5,y=1,gp=gpar(col='grey'))
+grid.segments(x0=0,y0=0.5,x1=1,y=0.5,gp=gpar(col='grey'))
+popViewport()
+
+## the axis labels 
+axis.text(1,2,'Phragmites',expression(270 * degree))
+axis.text(3,2,'Spartina',expression(90 * degree))
+axis.text(2,1,'Increasing tropic position',expression(0 * degree))
+axis.text(2,3,'Decreasing tropic position',expression(180 * degree))
+-------------------------------------------------------------------------------------------------------
+d <- ggplot(platelay, aes(y=rown,x=factor(coln))) + 
+  geom_point(aes(colour = colorvar), size =18) + theme_bw() data <- ggplot_build(d)$data[[1]]
+
+ x <- data$x
+ y <- data$y
+ grid.newpage()
+ pushViewport(plotViewport(c(4, 4, 2, 2)),
+               dataViewport(x, y)) grid.ellipse(x, y,size=20,  ar = 2,angle=0,gp =gpar(fill=data$colour))
+ grid.xaxis(at=c(labels=1:12,ticks=NA),gp=gpar(cex=2))
+ grid.yaxis(at = 1:8,label=rev(LETTERS[1:8]),gp=gpar(cex=2))
+
+ grid.roundrect(gp=gpar(fill=NA)) gpgrid <- gpar(col='grey',lty=2,col='white')
+grid.segments(unit(1:12, "native") ,unit(0, "npc"), unit(1:12, "native"),unit(1, "npc"),gp=gpgrid)
+grid.segments(unit(0, "npc"), unit(1:8, "native"), unit(1, "npc"),unit(1:8, "native"),gp=gpgrid)
+upViewport()
+-------------------------------------------------------------------------------------------------------
+gridBase rose.diag hack require(grid)
+#grid.newpage()
+##generate some data 
+x <- circular(runif(50, 0, 2*pi))
+bins <- 8
+rotation <- 'clock'
+##tcl =0(no ticks), tcl.text=-2 to write away the ticks marks
+rose.diag(x, bins=bins,zero=0,  rotation='clock',
+          tcl=0,tcl.text=-2,col='#80FF00FF')
+library(gridBase)
+## I use the plot viewport
+vp <- baseViewports()$plot
+pushViewport(vp)           ## here we go!
+## radial transformation 
+at <- (0:bins - 0.5)/bins * 2 * pi
+
+## ticks
+grid.segments( x0 =  .95*sin(at),  y0 = 0.95*cos(at),
+               x1 = 1.05*sin(at),  y1 = 1.05*cos(at),
+               default.units = "native")
+## ticks labels
+grid.text(x = 1.1*sin(at),   default.units = "native",
+          y = 1.1*cos(at),   gp=gpar(col='red'),
+          label = c("N", "NE", "E", "SE", "S", "SW", "W", "NW")) ## dashed lines from the center for visual aspect 
+grid.segments( x0 =  .95*sin(at),  y0 = 0.95*cos(at),
+               x1 = 0,  0,
+               gp = gpar(lty="dashed"),
+               default.units = "native")
+
+## circle just to get the same color of text
+grid.circle(r=1,x=0,y=0,gp=gpar(col='red',fill=NA,lwd=2), default.units = "native")
+## remove the viewport
+popViewport(1)
+-------------------------------------------------------------------------------------------------------
+width plot.ohlc.candles width R> xts:::plot.ohlc.candles
+function (x, width = 0.2, order = 1:4, bar.col = "grey", candle.col = "white", 
+    ...) 
+{
+    segments(.index(x), x[, order[2]], .index(x), x[, order[3]], 
+        col = bar.col, ...)
+    rect(.index(x) - width, x[, order[1]], .index(x) + width, 
+        x[, order[4]], col = candle.col, ...)
+}
+<environment: namespace:xts> plot.xts(SF, type='candles', width=60*60*24*0.25)
+-------------------------------------------------------------------------------------------------------
+apply(MSA, 2, function(x1) {
+  apply(MSA, 2, function(x2) {
+    t.test(x1, x2)
+  })
+}) cis <- apply(MSA, 2, function(x) mean(x) + c(-1, 1) * sd(x) * 1.96)
+plot.new()
+plot.window(xlim=c(1, ncol(cis)), ylim=range(cis))
+segments(1:ncol(cis), cis[1, ], 1:ncol(cis), cis[2, ])
+axis(1, at=1:ncol(cis), labels=colnames(MSA))
+axis(2)
+box()
+abline(h=mean(MSA), lty='dashed')
+title('Forest plot of 95% confidence intervals of MSA')
+-------------------------------------------------------------------------------------------------------
+lattice segments set.seed(12345)
+
+# Generate some data
+num.points <- 10
+x <- sort(sample(1:100, num.points))
+y <- sample(1:40, num.points, replace=T)
+
+
+# Plot the data with style = "s" and "S"
+par(mfrow=c(1,3))
+
+plot(x, y, "s", col="red", lwd=2, las=1, 
+     main="Style: 's'", xlim=c(0, 100))
+points(x, y, pch=19, col="red", cex=0.8)
+
+plot(x, y, "S", col="blue", lwd=2, las=1, 
+     main="Style: 'S'", xlim=c(0, 100))
+points(x, y, pch=19, col="blue", cex=0.8)
+
+# Now plot our points
+plot(x, y, pch=19, col="orange", cex=0.8, las=1, 
+     main="Centered steps", xlim=c(0, 100))
+
+# Calculate the starting and ending points of the
+# horizontal segments, by shifting the x coordinates
+# by half the difference with the next point
+# Note we leave the first and last point as starting and
+# ending points
+x.start <- x - (c(0, diff(x)/2))
+x.end <- x + (c(diff(x)/2, 0))
+
+# Now draw the horizontal segments
+segments(x.start, y, x.end, y, col="orange", lwd=2)
+# and the vertical ones (no need to draw the last one)
+segments(x.end[-length(x.end)], y[1:(length(y)-1)], 
+         x.end[-length(x.end)], y[-1], col="orange", lwd=2)
+-------------------------------------------------------------------------------------------------------
+panel.segments segments library(lattice)
+xyplot(y~x,
+       panel =function(...){
+         ll <- list(...)
+         x <- ll$x
+         y <- ll$y
+         x.start <- x - (c(0, diff(x)/2))
+         x.end   <- x + (c(diff(x)/2, 0))
+         panel.segments(x.start, y, x.end, y, col="orange", lwd=2)
+         panel.segments(x.end[-length(x.end)], y[1:(length(y)-1)], 
+                        x.end[-length(x.end)], y[-1], col="orange", lwd=2)
+         ## this is optional just to compare with type s
+         panel.xyplot(...,type='s')
+         ## and type S
+         panel.xyplot(...,type='S')
+       })
+-------------------------------------------------------------------------------------------------------
+read.table(text = 'col1 col2
+           0012 0001245',head=T,colClasses=c('character','numeric'))
+
+
+myd <- data.frame (X = 1:5, 
+                   Y = c(0.8, 0.6, 0.7, 0.75,  0.1), 
+                   clockd = c(12.05, 12.25, 12.45, 1.30, 2.1)) library(lattice)
+library(grid)
+xyplot(Y~X,data=myd,
+       panel=function(x,y,...)
+       {
+
+         panel.fill(col='yellow')
+         panel.lines(x,y)
+
+         h_min <- do.call(rbind,strsplit(as.character(myd$clockd),'[.]'))
+         hours <- as.numeric(h_min[,1])
+         minutes <- as.numeric(h_min[,2])
+         lapply(seq_along(x),
+                         function(i)drawClock(x[i],y[i],hour = hours[i], minute = minutes[i]))
+
+
+       }) drawClock <- function(x0,y0,hour, minute) {
+  t <- seq(0, 2*pi, length=13)[-13]
+  x <- cos(t)
+  y <- sin(t)
+  # Circle with ticks
+  grid.circle(x=x0, y=y0, default="native", 
+              r=unit(0.4,'in'),gp=gpar(fill='blue',alpha=0.5))
+  #         grid.segments(x, y, x*.9, y*.9, default="native")
+  # Hour hand
+  hourAngle <- pi/2 - (hour + minute/60)/12*2*pi
+  grid.segments(x0, y0, x0+.06*cos(hourAngle), y0+.06*sin(hourAngle), default="native", gp=gpar(lex=4))
+  # Minute hand
+  minuteAngle <- pi/2 - (minute)/60*2*pi
+  grid.segments(x0, y0, x0+.08*cos(minuteAngle), y0+.08*sin(minuteAngle), default="native", gp=gpar(lex=2))    
+}
+-------------------------------------------------------------------------------------------------------
+clockplot<-function(x, y, h, m, r, border="black", col="lightblue", 
+                    col.hour="darkblue", col.min="red"){
+#x and y are the coordinates of the clock
+#h and m the hour (base 12) and minutes
+# r the radius of the clock
+    t<-seq(0,2*pi,by=0.01)
+    x.c<-r*cos(t)+x
+    y.c<-r*sin(t)+y
+
+    t.h<-pi/2 - 2*pi*(h-m/60)/12
+    x.h<-0.5*r*cos(t.h)+x
+    y.h<-0.5*r*sin(t.h)+y
+
+    t.m<-pi/2 - 2*pi*m/60
+    x.m<-r*cos(t.m)+x
+    y.m<-r*sin(t.m)+y
+
+    polygon(x.c,y.c,col=col, border=border)
+    segments(x,y,x.h,y.h,col=col.hour)
+    segments(x,y,x.m,y.m,col=col.min)
+    }
+
+myd <- data.frame (X = 1:5, Y = c(0.8, 0.6, 0.7, 0.75,  0.1), 
+                   clockd = c(12.05, 12.25, 12.45, 1.30, 2.1))
+myd$hour<-myd$clockd%/%1
+myd$min<-myd$clockd%%1 *100
+
+plot(myd$X, myd$Y, type="l", asp=1)
+apply(myd,1,function(x)clockplot(x[1],x[2],x[4],x[5], r=0.25))
+-------------------------------------------------------------------------------------------------------
+tile.list secr::pointsInPolygon # Sample data
+x <- matrix( rnorm(20), nc = 2 )
+y <- matrix( rnorm(1000), nc=2 )
+
+# Tessellation
+library(deldir)
+d <- deldir(x[,1], x[,2])
+plot(d, wlines="tess")
+
+# Pick a cell at random 
+cell <- sample( tile.list(d), 1 )[[1]]
+points( cell$pt[1], cell$pt[2], pch=16 )
+polygon( cell$x, cell$y, lwd=3 )
+
+# Select the points inside that cell
+library(secr)
+i <- pointsInPolygon(
+  y, 
+  cbind( 
+    c(cell$x,cell$x[1]), 
+    c(cell$y,cell$y[1])
+  )
+)
+points(y[!i,], pch=".")
+points(y[i,], pch="+")
+
+# Compute a tessellation of those points
+dd <- deldir(y[i,1], y[i,2])
+plot(dd, wlines="tess", add=TRUE) distance_to_segment <- function(M, A, B) {
+  norm <- function(u) sqrt(sum(u^2))
+  lambda <- sum( (B-A) * (M-A) ) / norm(B-A)^2
+  if( lambda <= 0 ) {
+    norm(M-A)
+  } else if( lambda >= 1 ) {
+    norm(M-B)
+  } else {
+    N <- A + lambda * (B-A)
+    norm(M-N)
+  }
+}
+A <- c(-.5,0)
+B <- c(.5,.5)
+x <- seq(-1,1,length=100)
+y <- seq(-1,1,length=100)
+z <- apply(
+  expand.grid(x,y), 
+  1, 
+  function(u) distance_to_segment( u, A, B )
+)
+par(las=1)
+image(x, y, matrix(z,nr=length(x)))
+box()
+segments(A[1],A[2],B[1],B[2],lwd=3)
+
+library(secr)
+distance_to_polygon <- function(x, poly) {
+  closed_polygon <- rbind(poly, poly[1,])
+  if( pointsInPolygon( t(x), closed_polygon ) )
+    return(0)
+  d <- rep(Inf, nrow(poly))
+  for(i in 1:nrow(poly)) {
+    A <- closed_polygon[i,]
+    B <- closed_polygon[i+1,]
+    d[i] <- distance_to_segment(x,A,B)
+  }
+  min(d)
+}
+x <- matrix(rnorm(20),nc=2)
+poly <- x[chull(x),]
+x <- seq(-5,5,length=100)
+y <- seq(-5,5,length=100)
+z <- apply(
+  expand.grid(x,y), 
+  1, 
+  function(u) distance_to_polygon( u, poly )
+)
+par(las=1)
+image(x, y, matrix(z,nr=length(x)))
+box()
+polygon(poly, lwd=3) x --> lambda * x + a
+y --> lambda * y + b # Sample data 
+x <- matrix(rnorm(20),nc=2)
+x <- x[chull(x),]
+y <- matrix( c(1,2) + 5*rnorm(20), nc=2 )
+plot(y, axes=FALSE, xlab="", ylab="")
+polygon(x)
+
+# Function to minimize:
+# either the sum of the squares of the distances to the polygon, 
+# if at least one point is outside, 
+# or minus the square of the scaling factor.
+# It is not continuous, but (surprisingly) that does not seem to be a problem.
+f <- function( p ) {
+  lambda <- log( 1 + exp(p[1]) )
+  a <- p[2:3]
+  y0 <- colMeans(y)
+  transformed_points <- t( lambda * (t(y)-y0) + a )
+  distances <- apply(
+    transformed_points, 
+    1, 
+    function(u) distance_to_polygon(u, x)
+  )
+  if( all(distances == 0) ) - lambda^2
+  else                      sum( distances^2 )
+}
+# Minimize this function
+p <- optim(c(1,0,0), f)$par
+# Compute the optimal parameters
+lambda <- log( 1 + exp(p[1]) )
+a <- p[2:3]
+y0 <- colMeans(y)
+# Compute the new coordinates
+transformed_points <- t( lambda * (t(y)-y0) + a )
+# Plot them
+segments( y[,1], y[,2], transformed_points[,1], transformed_points[,2], lty=3 )
+points( transformed_points, pch=3 )
+library(deldir)
+plot( 
+  deldir( transformed_points[,1], transformed_points[,2] ), 
+  wlines="tess", add=TRUE 
+)
+-------------------------------------------------------------------------------------------------------
+lg2 = lng*2 clust <- cutree(hclust(dist(mydf$position[1:lng])),h=0.75)
+u <- rep(T,length(unique(clust)))
+clust.labels <- sapply(c(1:lng),function (i)
+    {
+    if (u[clust[i]])
+        {
+        u[clust[i]] <<- F
+        as.character(mydf$mylab)[i]
+        }
+    else
+        {
+        ""
+        }
+    })
+
+segments(mydf$position[1:lng],mydf$y.start[1:lng],y1=mydf$y.end[1:lng])
+segments(mydf$position[lg1:lg2],mydf$y.start[lg1:lg2],y1=mydf$y.end[lg1:lg2])
+text(mydf$position[1:lng],mydf$y.start[1:lng]+0.65, clust.labels, srt = 90)
+text(mydf$position[lg1:lg2],mydf$y.start[lg1:lg2]+0.65, mydf$mylab[lg1:lg2], srt = 90) h cutree()
+-------------------------------------------------------------------------------------------------------
+clpl <- function(xdata, names, y=1, dy=0.25, add=FALSE){
+  o = order(xdata)
+  xdata=xdata[o]
+  names=names[o]
+  if(!add)plot(0,type="n",ylim=c(y-1,y+2),xlim=range(xdata),axes=F,ylab="",xlab="")
+  abline(h=1,lwd=4)
+  dy=0.25
+  segments(xdata,y-dy,xdata,y+dy)
+  tpos = seq(min(xdata),max(xdata),len=length(xdata))
+  text(tpos,y+2*dy,names,srt=90,adj=0)
+  segments(xdata,y+dy,tpos,y+2*dy)
+} clpl(mydf$position[lg1:lg2],mydf$mylab[lg1:lg2])
+-------------------------------------------------------------------------------------------------------
+## here the edit 
+dat.lines <- do.call(cbind,apply(connectd,2,
+                                 function(x){
+                                   id <- match(x,plotcord$plotname)
+                                   plotcord[id,c(2,3)]}))
+
+colnames(dat.lines) <- paste(rep(c('x','y'),3),rep(1:3,each=2),sep='') x1 y1   x2 y2   x3 y3
+1 1.750  2 1.50  3 2.00  3
+2 5.250  2 5.00  3 5.50  3
+3 1.375  1 1.00  2 1.75  2
+4 3.500  1 1.75  2 5.25  2
+5 6.000  1 1.75  2 5.25  2
+6 7.500  1 5.25  2 8.00  2 xyplot library(latticeExtra))
+xyplot(plotgridY~plotgridX,data= plotcord,
+       panel=function(x,y,...){
+     apply(dat.lines,1,function(x){
+       panel.segments(x0=x['x2'],y0=x['y2'],x1=x['x3'],y1=x['y3'])
+       boxh <- 0.5
+       x1=x['x1']
+       y1=x['y1']
+       y2 <- x['y2']
+       x2 <- (x['x2']+x['x3'])/2
+       ydelta <- (y2 - y1)/2
+       browser()
+       panel.segments(c(x1, x1, x2), c(y1, y1 + ydelta, y2 - 
+                                   ydelta), c(x1, x2, x2), c(y1 + ydelta, y2 - 
+                                                               ydelta, y2))
+     })
+
+         panel.rect(x=x,y=y,width=unit(2,'cm'),
+                    height=unit(2,'cm'),col='lightyellow')
+         panel.xyplot(x,y,...)
+         panel.text(x,y,adj=c(0,-3),
+                    label=plotcord$plotname,cex=1.5)
+
+         ## add some prove of concept detail 
+         panel.rect(x=x,y=y,width=unit(0.5,'cm'),
+                    height=unit(0.5,'cm'),col='lightblue',lty=2)
+         panel.text(x,y,adj=c(1,2),
+                    label=paste(plotcord$plotname,1,sep=''),cex=1,col='blue')
+         panel.text(x,y,adj=c(-0.5,2),
+                    label=paste(plotcord$plotname,2,sep=''),
+                    cex=1,col='blue')
+
+
+         },ylim=extendrange(plotcord$plotgridY,f=0.5),xlab='',ylab='', axis = axis.grid,
+   main='Arrangement of large number of plots \n and connect with lines ')
+-------------------------------------------------------------------------------------------------------
+segments epsilon plot (x, y, ylim=c(0, 6))
+epsilon = 0.02
+for(i in 1:5) {
+    up = y[i] + sd[i]
+    low = y[i] - sd[i]
+    segments(x[i],low , x[i], up)
+    segments(x[i]-epsilon, up , x[i]+epsilon, up)
+    segments(x[i]-epsilon, low , x[i]+epsilon, low)
+} segments(x, y-sd,x, y+sd)
+epsilon = 0.02
+segments(x-epsilon,y-sd,x+epsilon,y-sd)
+segments(x-epsilon,y+sd,x+epsilon,y+sd)
+-------------------------------------------------------------------------------------------------------
+segments plot (x, y, ylim=c(0,6))
+segments(x,y-sd,x,y+sd)
+epsilon <- 0.02
+segments(x-epsilon,y-sd,x+epsilon,y-sd)
+segments(x-epsilon,y+sd,x+epsilon,y+sd)
+-------------------------------------------------------------------------------------------------------
+a <- c(1000 , 5 , 1050 , 1050 , -2 , 1029 , 1029 , 4 , 1070 , 1070 , -3 , 
+     1038 , 1038 , 2 , 1059 , 1059 , 4 , 1101)
+x <- matrix(a , 3 , 6)
+
+# make it a data.frame :)
+z <- data.frame(b = c(x[1, ], x[3, ]), year = c(rep(0, 6), rep(1, 6)))
+
+# make a mysterious plot
+plot(z[, 2], z[, 1]) + segments(x0=z[1:6, 2], y0=z[1:6, 1], x1=z[7:12, 2], y1=z[7:12, 1])
+-------------------------------------------------------------------------------------------------------
+barplot(table(cut(x, breaks=quantile(x, probs=c(0,0.15, 0.85, 1) ) )  ) ) plot(x=x, y=rep(1,length(x)) , type="n")
+segments( x0=c( min(z), quantile(z, probs=c(0,0.15, 0.85) ) ), 
+             x1 =quantile(z, probs=c(0,0.15, 0.85, 1) ) , 
+             y0=rep(1, 4), y1=rep(1,4) , col=c("red", "green", "blue"), lwd=30, lend=10)
+-------------------------------------------------------------------------------------------------------
+x <- runif(100,-2,2)
+y <- x**2-rnorm(100) # an approximately quadratic relation between x and y. 
+plot(x,y)
+quadratic.model <- lm(y ~ x + I(x**2))
+int <- function(x) predict(quadratic.model,list(x=x))
+plot(int,xlim=c(-2,2),col="navy",add=T)
+segments(x,y,x,int(x),col="red")
+-------------------------------------------------------------------------------------------------------
+lines() segments() par(las=1,bty="l") dat <- transform(dat,k2=c(0,cumsum(diff(kanzler)!=0))) s <- split(dat,dat$k2) plot(ger.90.10.ratio~year,data=dat,type="n") invisible(lapply(s,
+     function(x) with(x,lines(year,ger.90.10.ratio,col=kanzler)))) ggplot2 k2 library("ggplot2")
+qplot(year,ger.90.10.ratio,data=dat,colour=factor(kanzler),
+      group=k2,geom="line")
+-------------------------------------------------------------------------------------------------------
+segments first <- 1:10
+second <- 2:11
+boxplot(first,second, boxwex=0.3)
+points(rep(c(1.2,1.8),each=10),c(first,second),pch=19)
+segments(rep(1.2,10),first,rep(1.8,10),second,col="gray")
+-------------------------------------------------------------------------------------------------------
+atop test<-c(1,2,3,4,4.5,3.5,5.6)
+test2<-0.033111111
+plot(test,c(1:length(test)))
+
+segments(4,0,4,23,col="red",lwd=2)
+text(5, 4.5, 
+     labels = bquote(atop(Qua[0.99] == phantom(), .(round(test2,4)))),
+     col="red", cex = 1.4)
+-------------------------------------------------------------------------------------------------------
+bquote test<-c(1,2,3,4,4.5,3.5,5.6)
+test2<-0.033111111
+lines<- c( expression(Qua[0.99] == phantom(0)) ,
+           bquote(.(round(test2,4)))
+          )
+plot(test,c(1:length(test)))
+
+segments(4,0,4,23,col="red",lwd=2)
+text(5, c(4.5, 4), labels =lines ,col="red", cex = 1.4) atop atop atop( atop(..., ...), atop(..., phantom() )
+-------------------------------------------------------------------------------------------------------
+par(xpd=NA) grconvertX grconvertY layout( matrix( c(1,2,3,2), 2 ) )
+par(xpd=NA)
+with(iris, plot(Sepal.Width, Sepal.Length, col=Species) )
+save1.x <- grconvertX( 0.25, from='npc', to='ndc' )
+save2.x <- grconvertX( iris$Sepal.Width[1], to='ndc' )
+save2.y <- grconvertY( iris$Sepal.Length[1], to='ndc' )
+with(iris, plot(Petal.Width, Petal.Length, col=Species) )
+with(iris, arrows( Petal.Width[1], Petal.Length[1], 
+   grconvertX( save2.x, from='ndc' ), 
+   grconvertY( save2.y, from='ndc' ), col='orange' ) )
+with( iris, plot( Petal.Length, Sepal.Length, col=Species ) )
+segments( grconvertX( 0.75, from='npc' ), grconvertY(0.9, from='npc'),
+   grconvertX( save1.x, from='ndc'), col='purple' )
+-------------------------------------------------------------------------------------------------------
+# fix the data because we're going to use it twice:
+d=sample(data)
+# plot it with X and Y coords known (note 1 larger than dimension)
+image(1:51,1:3,matrix(d,nrow=50, ncol=2),las=1)
+# add diagonal shading
+polygon(x=c(1,51,51,1),y=c(1,1,3,3),density=3,col="red")
+# replot. The NA's show through:
+image(1:51,1:3,matrix(d,nrow=50, ncol=2),las=1,add=TRUE)
+# outline the cells.
+abline(h=1:3)
+abline(v=1:51) x0=c(1:50,1:50)
+x1=x0+1
+y0=c(rep(1,50),rep(2,50))
+y1=y0+1
+image(1:51,1:3,matrix(d,nrow=50, ncol=2),las=1)
+segments(x0,y0,x1,y1,col="red",lwd=2)
+image(1:51,1:3,matrix(d,nrow=50, ncol=2),las=1,add=TRUE)
+abline(v=1:51);abline(h=1:3)
+-------------------------------------------------------------------------------------------------------
+x <- seq(from=-3, to=3,by=0.01)
+curve(dnorm(x,0,1), xlim=c(-3,3))
+segments(x, rep(0,length(x)),x,dnorm(x,0,1) , col=heat.colors(length(x)), lwd=2)
+-------------------------------------------------------------------------------------------------------
+# All the distances (you could also use a loop)
+distances <- outer( 
+  1:nrow(x), 
+  1:nrow(ccenters), 
+  Vectorize( function(i,j) { 
+    sum( (x[i,] - ccenters[j,])^2 )
+  } )
+)
+
+# Find the nearest cluster
+clusters <- apply( distances, 1, which.min )
+
+# Plot
+plot( x, col=clusters, pch=15 )
+segments( ccenters[clusters,1], ccenters[clusters,2], x[,1], x[,2], col=clusters )
+-------------------------------------------------------------------------------------------------------
+barplot() plot() segments()
+-------------------------------------------------------------------------------------------------------
+dd <- read.table(text="
+SampleID   y1    y1(answer) y2        y2(answer)  y3      y3(answer) 
+Sample_1   0-50  yes        51-60     no          61-85   yes
+Sample_2   0-40  yes        41-60     no          61-86   no
+Sample_3   0-45  unknown    46-69     yes         70-85   unknown",
+header=TRUE) library(reshape2)
+dd2 <- melt(dd,id.var=1)
+dd2 <- transform(dd2,
+                 var2=substr(as.character(variable),1,2),
+                 type=ifelse(grepl("\\.",as.character(variable)),"answer","range"))
+dd2 <- subset(dd2,select=-variable)
+dd3 <- dcast(dd2,SampleID+var2~type)
+library("stringr")
+dd3 <- transform(dd3,start=as.numeric(str_extract(range,"^[0-9]+")),
+                 end=as.numeric(str_extract(range,"[0-9]+$")),
+                 answer=factor(answer,levels=c("yes","no","unknown"))) library("ggplot2")
+ggplot(dd3)+
+    geom_segment(aes(x=start,xend=end,y=SampleID,yend=SampleID,colour=answer))+
+    scale_colour_manual(values=c("red","green","gray"))+
+    theme_bw() segments()
+-------------------------------------------------------------------------------------------------------
+lower.bound + mean + upper.bound groups= panel.superpose() mean subscripts upper.bound lower.bound LABS <- LETTERS[1:4]
+with(df,
+     dotplot(mean ~ code | problem * topic,
+             lb=lower.bound, ub=upper.bound, mpch = c(3,1)[consistent+1],
+             ylim = extendrange(c(0,100)),
+             panel = function(x, y, lb, ub, mpch, ..., subscripts) {
+                 panel.dotplot(x, y, ..., pch=mpch[subscripts])
+                 lpoints(x, lb[subscripts], pch=6)
+                 lpoints(x, ub[subscripts], pch=2)
+                 lsegments(x,lb[subscripts],x,ub[subscripts],col="grey60")
+                 ltext(x=x[3], y=95, LABS[panel.number()], col="red",fontface=2)
+             },
+             scales = list(x = list(draw = FALSE)), as.table = TRUE)
+     )
+-------------------------------------------------------------------------------------------------------
+par(mar=c(3,5,3,5))
+plot(NA, xlim=c(.5,3.5), ylim=c(0, max(d$upper[1:2])), bty="l", xaxt="n", xlab="",ylab="Mean")
+points(d$mean[1:2], pch=19)
+segments(1,d$mean[1],5,d$mean[1],lty=2)
+segments(2,d$mean[2],5,d$mean[2],lty=2)
+axis(1, 1:3, d$what)
+segments(1:2,d$lower[1:2],1:2,d$upper[1:2])
+axis(4, seq((d$mean[1]-30),(d$mean[1]+50),by=10), seq(-30,50,by=10), las=1)
+points(3,d$mean[1]+d$mean[3],pch=17, cex=1.5)
+segments(3,d$lower[3]+d$lower[2],3,d$lower[3]+d$upper[2], lwd=2)
+mtext("Difference", side=4, at=d$mean[1], line=3)
+-------------------------------------------------------------------------------------------------------
+?plot ?abline ?text d <- data.frame(Name=LETTERS, Odds_Ratio_log2=runif(26, -8, 8), 
+                p_value=runif(26))
+plot(d$Odds_Ratio_log2, d$p_value, pch=20, xlim=c(-8, 8), ylim=c(0, 1),
+     axes=F, xlab='', ylab='', yaxs='i')
+abline(v=0, lwd=3)
+axis(3, lwd=3, at=seq(-8, 8, 1), cex.axis=0.8, lwd.ticks=1)
+mtext('Odds (Log2)', 3, line=2.5)
+text(d$Odds_Ratio_log2, d$p_value, d$Name, pos=4, cex=0.7) yaxs='i' plot axes=F ?axis mtext ylab '' plot mtext('p-value', 2) segments text segments(-0.1, seq(0, 1, 0.1), 0, seq(0, 1, 0.1), lwd=2)
+text(rep(0, 10), seq(0, 1, 0.1), seq(0, 1, 0.1), cex=0.7, pos=2) opar <- par(no.readonly = TRUE)
+d <- data.frame(Name=LETTERS, Odds_Ratio_log2=runif(26, -8, 8), 
+                p_value=runif(26))
+plot(d$Odds_Ratio_log2, d$p_value, pch=20, xlim=c(-8, 8), ylim=c(0, 1),
+     axes=F, xlab='', ylab='', yaxs='i', col='gray20')
+abline(v=0, lwd=3)
+axis(3, lwd=3, at=seq(-8, 8, 1), cex.axis=0.8, lwd.ticks=1)
+mtext('Odds (Log2)', 3, line=2.5)
+text(d$Odds_Ratio_log2, d$p_value, d$Name, pos=4, offset=0.3, cex=0.7)
+
+par(xpd=NA)
+segments(-0.1, seq(0.1, 0.9, 0.1), 0, seq(0.1, 0.9, 0.1), lwd=2)
+text(rep(0, 10), seq(0.1, 0.9, 0.1), seq(0.1, 0.9, 0.1), 
+     cex=0.7, pos=2, offset=0.3)
+par(opar)
+-------------------------------------------------------------------------------------------------------
+shade=1 border=NA persp axes=FALSE trans3d persp.mat <- persp(x, y, z, theta=50, phi=25, expand=0.75, col=color,
+      ticktype="detailed", xlab="", ylab="time", zlab="density",
+      shade=.4, border=NA, axes=F)
+
+# The coords at which we want ticks
+x.ticks <- seq(-0.2, 0.2, 0.1)
+# Transform them in 3D
+x.3d <- trans3d(x.ticks, 0, 0, persp.mat)
+x.3d.1 <- trans3d(x.ticks, 0, -2, persp.mat)
+# The coordinates for the text
+x.3d.labels <- trans3d(x.ticks, -60, -3, persp.mat)
+# Draw the axis ticks
+segments(x.3d$x, x.3d$y, x.3d.1$x, x.3d.1$y)
+# Write the labels
+text(x.3d.labels$x, x.3d.labels$y, x.ticks, cex=0.8)
+
+# Do the same for the other axes, customize the text labels
+# to write dates
+
+y.ticks <- seq(0, 2000, 500)
+# Or whatever you like...
+y.labels <- c("2009", "2010", "2011", "2012", "2013")
+y.3d <- trans3d(0.2, y.ticks, 0, persp.mat)
+y.3d.1 <- trans3d(0.2, y.ticks, -2, persp.mat)
+y.3d.labels <- trans3d(0.22, y.ticks, -3, persp.mat)
+segments(y.3d$x, y.3d$y, y.3d.1$x, y.3d.1$y)
+text(y.3d.labels$x, y.3d.labels$y, y.labels, cex=0.8)
+-------------------------------------------------------------------------------------------------------
+inset par(mar=c(5, 5, 6, 3), xpd=TRUE)
+
+plot(time, layer_0, ylim=c(0,1), type="o", lty=1, lwd=2,ylab="Longitudinal fCOVER",     xlab="Days after seeding", cex.lab=1.5, cex.axis=1.5, cex.main=1.5, cex.sub=1.5)
+segments(time, layer_0-layer_0_sd,time, layer_0+layer_0_sd, lwd=2)
+segments(time-epsilon,layer_0-layer_0_sd,time+epsilon,layer_0-layer_0_sd, lwd=2)
+segments(time-epsilon,layer_0+layer_0_sd,time+epsilon,layer_0+layer_0_sd, lwd=2)
+
+for (i in c(1:5)){ 
+  par(new=TRUE)
+  eval(parse(text=paste("plot(time, layer_",i,", ylim=c(0,1), type='o', xlab='',     ylab='', xaxt='n', yaxt='n',lwd=2, lty=",i+1,", col=",i+1,")+
+  segments(time, layer_",i,"-layer_",i,"_sd,time, layer_",i,"+layer_",i,"_sd,     col=",i+1,",lwd=2)+
+  segments(time-epsilon,layer_",i,"-layer_",i,"_sd,time+epsilon,layer_",i,"-layer_",i,"_sd, col=",i+1,",lwd=2)+
+  segments(time-epsilon,layer_",i,"+layer_",i,"_sd,time+epsilon,layer_",i,"+layer_",i,"_sd, col=",i+1,",lwd=2)", sep="")))
+}
+
+legend("top", inset = c(0, -0.25), legend=c("0-5 cm","5-10 cm", "10-15 cm", "15-20 cm", "20-25 cm","25-30 cm"), lty=c(1,2,3,4,5,6), col=c(1,2,3,4,5,6),ncol=3, lwd=2, cex=1.5)
+-------------------------------------------------------------------------------------------------------
+boxplot.stats polygon boxpattern <- 
+function(y, xcenter, boxwidth, angle=NULL, angle.density=10, ...) {
+    # draw an individual box
+    bstats <- boxplot.stats(y)
+    bxmin <- bstats$stats[1]
+    bxq2 <- bstats$stats[2]
+    bxmedian <- bstats$stats[3]
+    bxq4 <- bstats$stats[4]
+    bxmax <- bstats$stats[5]
+    bleft <- xcenter-(boxwidth/2)
+    bright <- xcenter+(boxwidth/2)
+    # boxplot
+    polygon(c(bleft,bright,bright,bleft,bleft),
+        c(bxq2,bxq2,bxq4,bxq4,bxq2), angle=angle[1], density=angle.density)
+    polygon(c(bleft,bright,bright,bleft,bleft),
+        c(bxq2,bxq2,bxq4,bxq4,bxq2), angle=angle[2], density=angle.density)
+    # lines
+    segments(bleft,bxmedian,bright,bxmedian,lwd=3) # median
+    segments(bleft,bxmin,bright,bxmin,lwd=1) # min
+    segments(xcenter,bxmin,xcenter,bxq2,lwd=1)
+    segments(bleft,bxmax,bright,bxmax,lwd=1) # max
+    segments(xcenter,bxq4,xcenter,bxmax,lwd=1)
+    # outliers
+    if(length(bstats$out)>0){
+        for(i in 1:length(bstats$out))
+            points(xcenter,bstats$out[i])
+    }
+}
+
+drawboxplots <- function(y, x, boxwidth=1, angle=NULL, ...){
+    # figure out all the boxes and start the plot
+    groups <- split(y,as.factor(x))
+    len <- length(groups)
+    bxylim <- c((min(y)-0.04*abs(min(y))),(max(y)+0.04*max(y)))
+    xcenters <- seq(1,max(2,(len*(1.4))),length.out=len)
+    if(is.null(angle)){
+        angle <- seq(-90,75,length.out=len)
+        angle <- lapply(angle,function(x) c(x,x))
+    }
+    else if(!length(angle)==len)
+        stop("angle must be a vector or list of two-element vectors")
+    else if(!is.list(angle))
+        angle <- lapply(angle,function(x) c(x,x))
+    # draw plot area
+    plot(0, xlim=c(.97*(min(xcenters)-1), 1.04*(max(xcenters)+1)),
+        ylim=bxylim, 
+        xlab="", xaxt="n",
+        ylab=names(y), 
+        col="white", las=1)
+
+    axis(1, at=xcenters, labels=names(groups))
+    # draw boxplots
+    plots <- mapply(boxpattern, y=groups, xcenter=xcenters,
+        boxwidth=boxwidth, angle=angle, ...)
+} mydat <- data.frame(y=c(rnorm(200,1,4),rnorm(200,2,2)),
+                    x=sort(rep(1:2,200)))
+drawboxplots(mydat$y, mydat$x) mydat <- data.frame(y=c(rnorm(200,1,4),rnorm(200,2,2),
+                        rnorm(200,3,3),rnorm(400,-2,8)),
+                    x=sort(rep(1:5,200)))
+drawboxplots(mydat$y, mydat$x) drawboxplots(mydat$y, mydat$x, boxwidth=.5, angle.density=30) drawboxplots(mydat$y, mydat$x, # specify list of two-element angle parameters
+             angle=list(c(0,0),c(90,90),c(45,45),c(45,-45),c(0,90))) x <- rep(1:10,10)
+y <- sort(x)
+plot(y~x, xlim=c(0,11), ylim=c(0,11), pch=20)
+outerbox.x <- c(2.5,0.5,10.5,10.5,0.5,0.5,2.5,7.5,7.5,2.5)
+outerbox.y <- c(2.5,0.5,0.5,10.5,10.5,0.5,2.5,2.5,7.5,7.5)
+polygon(outerbox.x,outerbox.y, col="white", border="white") # donut
+polygon(c(2.5,2.5,7.5,7.5,2.5),c(2.5,2.5,2.5,7.5,7.5)) # inner box
+-------------------------------------------------------------------------------------------------------
+?tri r$tlist[k] -- r$tlist[r$tlptr[k]] r <- tri.mesh(x,y)
+k <- seq_len( r$tlnew - 1 )
+i <- r$tlist[k]          
+j <- r$tlist[r$tlptr[k]]
+keep <- i > 0
+i <- abs( i[ keep ] )
+j <- abs( j[ keep ] )
+plot( x, y )
+segments( r$x[i], r$y[i], r$x[j], r$y[j], col="grey" )
+distances <- sqrt( ( r$x[i] - r$x[j] ) ^ 2 + ( r$y[i] - r$y[j] ) ^ 2 )
+threshold <- 2.5  # Choose the threshold manually
+i <- i[ distances < threshold ]
+j <- j[ distances < threshold ]
+segments( r$x[i], r$y[i], r$x[j], r$y[j], lwd = 2 )
+-------------------------------------------------------------------------------------------------------
+segments par('usr') lty=1 plot(x,y,type = 'l')
+ segments(x0 = max(x), y0 = max(y), y1 = par('usr')[4], lwd=2)
+-------------------------------------------------------------------------------------------------------
+lwd=12 lwd=10 plot(0)
+segments(.9,.1,.8,.3, lwd=12, lend='square', col='black')
+segments(.9,.1,.8,.3, lwd=10, lend='square', col='pink')
+-------------------------------------------------------------------------------------------------------
+library(earth)
+library(pls)
+
+set.seed(1)
+
+k <- 10;
+resulti <- 0
+result <- vector("list", k);
+folds <- cvsegments(nrow(trees), k);
+
+for (fold in 1 : k){
+  currentFold <- folds[fold][[1]];
+  fit = earth(Volume ~ ., data=trees[-currentFold,])
+  pred = predict(fit, trees[currentFold,]);
+  result[[fold]] <- resulti + table(true=trees[currentFold,3], pred=pred)
+} melt reshape2 result require(reshape2)
+
+df.1 <- melt(result[[1]])
+df.1[df.1$value == 1, ]
+-------------------------------------------------------------------------------------------------------
+library(earth)
+library(pls)
+set.seed(1)
+
+k <- 10;
+folds <- cvsegments(nrow(trees), k);
+result <- rep (NA, nrow (trees))
+
+for (fold in 1 : k){
+  currentFold <- folds[[fold]]
+  fit = earth(Volume ~ ., data=trees[-currentFold,])
+  result [currentFold] <- predict(fit, trees[currentFold,]);
+} > plot (trees$Volume, result) > head (cbind (trees, pred.Vol = result))
+  Girth Height Volume  pred.Vol
+1   8.3     70   10.3  9.701729
+2   8.6     65   10.3 10.627089
+3   8.8     63   10.2 10.737521
+4  10.5     72   16.4 16.313330
+5  10.7     81   18.8 21.297516
+6  10.8     83   19.7 22.408600
+-------------------------------------------------------------------------------------------------------
+abline plot(1:10, 1:10,xlim=c(0,10), ylim=c(0,10))
+sapply(seq(0,20,by=2), function(a) abline(a=a, b=-1,lty=3,col="red"))
+sapply(seq(-10,10,by=2), function(a) abline(a,b=1,lty=3,col="red")) angle=pi/8; rot=tan(angle); backrot=tan(angle+pi/2)
+sapply(seq(-10,10,by=2), function(inter) abline(a=inter, 
+                                                b=rot,lty=3,col="red"))
+sapply(seq(0,40,by=2), function(inter) abline(a=inter, 
+                                           b=backrot, lty=3,col="red")) grid segments lines plot(1:10, 1:10,xlim=c(0,10), ylim=c(0,10)); angle=pi/8; rot=tan(angle);backrot=tan(angle+pi/2)
+x0y0 <- matrix( c(rep(-20,41), -20:20), 41)
+x1y1 <- matrix( c(rep(20,41), -20:20), 41)
+# The rot function will construct a rotation matrix
+rot <- function(theta) matrix(c( cos( theta ) , sin( theta ) ,
+ -sin( theta ), cos( theta ) ), 2)
+# Leave origianal set of point untouched but create rotated version
+ rotx0y0 <- x0y0%*%rot(pi/8)
+ rotx1y1 <- x1y1%*%rot(pi/8)
+ segments(rotx0y0[,1] ,rotx0y0[,2], rotx1y1[,1], rotx1y1[,2], col="blue")
+# Use originals again, ... or could write to rotate the new points
+ rotx0y0 <- x0y0%*%rot(pi/8+pi/2)
+ rotx1y1 <- x1y1%*%rot(pi/8+pi/2)
+ segments(rotx0y0[,1] ,rotx0y0[,2], rotx1y1[,1], rotx1y1[,2], col="blue")
+-------------------------------------------------------------------------------------------------------
+dat <- setNames(data.frame(rbind(b,d,g,p)),c("value","low","high"))
+dat
+#   value    low   high
+#b 12.142 12.076 12.208
+#d 12.800 12.700 12.900
+#g 12.100 12.000 12.200
+#p 12.669 12.528 12.811 ?par # in order - margins for bottom,left,top,right
+# for reference, the defaults are c(5.1,4.1,4.1,2.1)
+par(mar=c(5.1,9,4.1,9)) dev.new(width=5,height=4) # set some constants
+  # nominal locations of points on x-axis
+xpts <- 1:nrow(dat)
+  # 95CI bar width
+bar <- 0.05
+  # colour scheme
+palette(c("red","blue"))
+
+# make the base plot
+plot(xpts, dat$value, ylim=c(min(dat),max(dat)), 
+     col=1:2, pch=19, cex=2, xaxt="n")
+
+# add the axis back with proper labels
+axis(1,at=xpts,labels=rownames(dat))
+
+# add the 95% CI bars and lines
+segments(xpts,dat$low,xpts,dat$high,col=1:2,lwd=2)
+segments(xpts-bar,dat$low,xpts+bar,dat$low,col=1:2,lwd=2)
+segments(xpts-bar,dat$high,xpts+bar,dat$high,col=1:2,lwd=2)
+-------------------------------------------------------------------------------------------------------
+persp() trans3d # data
+arv = data.frame(axis_x = rnorm(n=300, mean=-0.20, sd=1.01),
+             axis_y = rnorm(n=300, mean=-0.45, sd=0.97),
+             elevation = rnorm(n=300, mean=-813.2, sd=13.89))
+# fit             
+model = lm(formula = elevation ~ (axis_x + axis_y)^2 + I(axis_x^2) + I(axis_y^2), data = arv)
+
+# grid for plotting function
+x <- seq(min(arv$axis_x), max(arv$axis_x), length.out = 20)
+y <- seq(min(arv$axis_y), max(arv$axis_y), length.out = 20)
+
+# function for predicted surface from model
+f <- function(x, y) { cbind(1,x,y,x^2,y^2,x*y) %*% coef(model) }
+
+# predicted values in form that persp() can use
+z <- outer(x, y, f)
+
+# 3d plot of surface with persp()
+ele_3d <- persp(x=x,y=y,z=z, theta=40, phi=15, zlim=c(min(arv$elevation), max(arv$elevation)) )
+
+# transform observed values into 2d space
+elevation_points <- trans3d(arv$axis_x, arv$axis_y, arv$elevation, pmat=ele_3d)
+
+# plot observed values
+points(elevation_points)
+
+# add dotted lines from surface to observed values
+fit_vals <- trans3d(arv$axis_x, arv$axis_y, fitted(model), pmat = ele_3d)
+segments(fit_vals$x, fit_vals$y, elevation_points$x, elevation_points$y, lty = 3) wireframe()
+-------------------------------------------------------------------------------------------------------
+axes=FALSE segment() plot(x, y, axes=FALSE, ylim=c(0, 8), xlim=c(-0.4, 1.2), pch=19, 
+     cex.axis=0.8, cex.lab=0.9, xlab="Male/Female expression ratio (log)", 
+     ylab="Z/W expression ratio in females")
+axis(side=1, cex.axis=0.8, cex.lab=0.9)
+axis(side=2, cex.axis=0.8, cex.lab=0.9, las=1)
+segments(x,      y-sd, x,      y+sd)
+segments(x-0.02, y+sd, x+0.02, y+sd)
+segments(x-0.02, y-sd, x+0.02, y-sd)
+-------------------------------------------------------------------------------------------------------
+inertia <- function(x0=0, y0=0, a, b, r=1/5, l=0.25, d=3, s=0, w=NULL, cols="black", npoints=101, ...){
+  if(length(cols==1)) cols <- rep(cols,3)
+  # ellipse:
+  f <- function(x) sqrt(round(b^2*(1-(x-x0)^2/a^2),14)) 
+  curve(y0 + f(x), from=x0-a, to=x0-a*r, add=TRUE, n=npoints, col=cols[1], ...)
+  curve(y0 + f(x), from=x0+a*r, to=x0+a, add=TRUE, n=npoints, col=cols[2], ...)
+  curve(y0 - f(x), from=x0-a, to=x0+a, add=TRUE, n=npoints, col=cols[3], ...)
+  # arrow:
+  segments(x0-s, y0-b, x0-l, y0-b+l/d, col=cols[3], ...)
+  segments(x0-s, y0-b, x0-l, y0-b-l/d, col=cols[3], ...)
+  if(!is.null(w)){
+    segments(x0-s+w, y0-b, x0-l, y0-b+l/d, col=cols[3], ...)
+    segments(x0-s+w, y0-b, x0-l, y0-b-l/d, col=cols[3], ...)
+  }
+}
+-------------------------------------------------------------------------------------------------------
+xyplot(y ~ x | a, groups = z < 5, data = DF, col = c("black", "red"),
+       pch=20, cex=0.3,
+       panel = function(...,subscripts){
+         limits <- current.panel.limits()
+         xx <- limits$xlim
+         yy <- limits$ylim
+         if(unique(print(DF[subscripts,'a']))=="two"){
+           lsegments(xx[1], yy[1], xx[1], yy[2],lwd=20)
+         }else{
+           lsegments(xx[2], yy[1], xx[2], yy[2],lwd=20)
+         }
+
+         panel.xyplot(...,subscripts=subscripts)
+       })
+-------------------------------------------------------------------------------------------------------
+lines() a+b*x a=50 b=-1 segments() segments() plot.new()
+plot.window(xlim=c(0,100),ylim=c(0,100))
+lines(x=c(0,50),y=50-1*c(0,50))
+segments(50,0,100,0)
+-------------------------------------------------------------------------------------------------------
+segments Draw line segments between pairs of points. plot.new()
+plot.window(xlim=c(0,100),ylim=c(0,100))
+#abline(a=50,b=-1)
+#abline(a=0,b=0)
+segments(0,50,50,0)
+segments(50,0,100,0)
+axis(1)
+axis(2)
+title(main="Graph")
+title(xlab="X")
+title(ylab="Y")
+box()
+-------------------------------------------------------------------------------------------------------
+pre = data.frame(DateTime = as.POSIXct(c("2013-01-27 09:00:00", "2013-01-27 10:00:00", 
+                                     "2013-01-27 11:00:00", "2013-01-27 12:00:00", 
+                                     "2013-01-27 13:00:00")),
+            t.ws = c(32.7, 35.5, 37.1, 37.6, 38.7),
+            mean.tort = c(32.4, 34.9, 35.1, 36.8, 37.7),
+            se.tort = c(0.825, 0.84, 0.21, 0.228, 0.28)) require(lattice)
+
+xyplot(mean.tort+t.ws~DateTime, pre,
+   main="Pre-Translocation",
+   xlab=list(label="Date and Time"), 
+   ylab=list(label="Temperature (°C)"),
+   scales = list(tck = c(1, 0),
+                 x=list(cex=0.8, rot=45, tick.number=40),
+                 y=list(cex=0.8, tick.number=8, limits=c(29,43))),
+   key=list(text=list(c("Tortoise","Ambient")), 
+            lines=list(col=c("red", "blue"), 
+                       type="l"), corner=c(0.5,0.92)),
+   lx = pre$mean.tort - pre$se.tort, ux = pre$mean.tort + pre$se.tort,
+   panel = function (x,y, lx, ux,  ...){
+     panel.xyplot(x,y, type = "b", col=c("red", "blue"), ...)
+     panel.segments(x0 = x, x1 = x, y0 = lx, y1 = ux, col = "red", ...)
+   }
+) panel.arrows()
+-------------------------------------------------------------------------------------------------------
+x.vals <- c(mean(g)-(1:3*sd(g)), mean(g), mean(g)+(1:3*sd(g)))
+y.vals <- dnorm(x.vals, mean=mean(g),sd=sd(g))*diff(h$mids[1:2])*length(g)
+segments(x0=x.vals, y0=0, x1=x.vals, y1=y.vals) xlim=c(-3,13) hist() xfit
+-------------------------------------------------------------------------------------------------------
+hist myhist <- hist(mtcars$mpg)
+multiplier <- myhist$counts / myhist$density
+mydensity <- density(mtcars$mpg)
+mydensity$y <- mydensity$y * multiplier[1]
+
+plot(myhist)
+lines(mydensity) myhist <- hist(mtcars$mpg)
+multiplier <- myhist$counts / myhist$density
+mydensity <- density(mtcars$mpg)
+mydensity$y <- mydensity$y * multiplier[1]
+
+plot(myhist)
+lines(mydensity)
+
+myx <- seq(min(mtcars$mpg), max(mtcars$mpg), length.out= 100)
+mymean <- mean(mtcars$mpg)
+mysd <- sd(mtcars$mpg)
+
+normal <- dnorm(x = myx, mean = mymean, sd = mysd)
+lines(myx, normal * multiplier[1], col = "blue", lwd = 2)
+
+sd_x <- seq(mymean - 3 * mysd, mymean + 3 * mysd, by = mysd)
+sd_y <- dnorm(x = sd_x, mean = mymean, sd = mysd) * multiplier[1]
+
+segments(x0 = sd_x, y0= 0, x1 = sd_x, y1 = sd_y, col = "firebrick4", lwd = 2)
+-------------------------------------------------------------------------------------------------------
+mydf <- data.frame(
+    SubgroupH=c('Age',NA,NA,'Sex',NA,NA),
+    Subgroup=c(NA,'<70','>70',NA,'Male','Female'),
+    NoOfPatients=c(NA,2815,1935,NA,3843,908),
+    HazardRatio=c(NA,0.97,0.86,NA,0.93,0.81),
+    HazardLower=c(NA,0.77,0.69,NA,0.78,0.59),
+    HazardUpper=c(NA,1.22,1.07,NA,1.12,1.12),
+    Pvalue=c(NA,0.77,0.17,NA,0.47,0.21),
+    PvalueI=c(0.46,NA,NA,0.46,NA,NA),
+    stringsAsFactors=FALSE
+) #png('temp.png', width=8, height=4, units='in', res=400)
+rowseq <- seq(nrow(mydf),1)
+par(mai=c(1,0,0,0))
+plot(mydf$HazardRatio, rowseq, pch=15,
+    xlim=c(-10,12), ylim=c(0,7),
+    xlab='', ylab='', yaxt='n', xaxt='n',
+    bty='n')
+axis(1, seq(-2,2,by=.4), cex.axis=.5)
+
+segments(1,-1,1,6.25, lty=3)
+segments(mydf$HazardLower, rowseq, mydf$HazardUpper, rowseq)
+
+mtext('Off-Pump\nCABG Better',1, line=2.5, at=0, cex=.5, font=2)
+mtext('On-Pump\nCABG Better',1.5, line=2.5, at=2, cex=.5, font=2)
+
+text(-8,6.5, "Subgroup", cex=.75, font=2, pos=4)
+t1h <- ifelse(!is.na(mydf$SubgroupH), mydf$SubgroupH, '')
+text(-8,rowseq, t1h, cex=.75, pos=4, font=3)
+t1 <- ifelse(!is.na(mydf$Subgroup), mydf$Subgroup, '')
+text(-7.5,rowseq, t1, cex=.75, pos=4)
+
+text(-5,6.5, "No. of\nPatients", cex=.75, font=2, pos=4)
+t2 <- ifelse(!is.na(mydf$NoOfPatients), format(mydf$NoOfPatients,big.mark=","), '')
+text(-3, rowseq, t2, cex=.75, pos=2)
+
+text(-1,6.5, "Hazard Ratio (95%)", cex=.75, font=2, pos=4)
+t3 <- ifelse(!is.na(mydf$HazardRatio), with(mydf, paste(HazardRatio,' (',HazardLower,'-',HazardUpper,')',sep='')), '')
+text(3,rowseq, t3, cex=.75, pos=4)
+
+text(7.5,6.5, "P Value", cex=.75, font=2, pos=4)
+t4 <- ifelse(!is.na(mydf$Pvalue), mydf$Pvalue, '')
+text(7.5,rowseq, t4, cex=.75, pos=4)
+
+text(10,6.5, "P Value for\nInteraction", cex=.75, font=2, pos=4)
+t5 <- ifelse(!is.na(mydf$PvalueI), mydf$PvalueI, '')
+text(10,rowseq, t5, cex=.75, pos=4)
+#dev.off()
+-------------------------------------------------------------------------------------------------------
+csa <- function(x1,y1,x2,y2,first.col,second.col, ...) {
+    cols <- colorRampPalette( c(first.col,second.col) )(250)
+    x <- approx(c(0,1),c(x1,x2), xout=seq(0,1,length.out=251))$y
+    y <- approx(c(0,1),c(y1,y2), xout=seq(0,1,length.out=251))$y
+
+    arrows(x[250],y[250],x[251],y[251], col=cols[250], ...)
+    segments(x[-251],y[-251],x[-1],y[-1],col=cols, ...)
+
+}
+
+
+color.scale.arrow <- Vectorize(csa, c('x1','y1','x2','y2') )
+
+# Create sample data 2
+x <- c(1,3,5,3,2,1,6,2)
+y <- c(2,5,3,7,2,1,5,6)
+
+x1 <- c(1,3,5,3)
+y1 <- c(2,5,3,7)
+x2 <- c(2,1,6,2)
+y2 <- c(2,1,5,6)
+
+# Plot sample data 2
+plot(x,y, main='')
+color.scale.arrow(x1,y1,x2,y2,'red','blue',lwd=2)
+-------------------------------------------------------------------------------------------------------
+grid=c('xy','yz') z <- seq(-10, 10, 0.01)
+x <- cos(z)
+y <- sin(z)
+sactter.grid(x, y, z, highlight.3d=TRUE,
+              col.axis="blue",
+              grid=c('xy','xz','yz'),  ## add grid to all facets
+          col.grid="lightblue") if ("xy" %in% grid || grid) {
+        i <- x.min:x.max
+        segments(i, z.min, i + (yx.f * y.max), yz.f * y.max + z.min, col = col.grid, lty = lty.grid)
+        i <- 0:y.max
+        segments(x.min + (i * yx.f), i * yz.f + z.min, x.max + (i * yx.f), i * yz.f + z.min, col = col.grid, lty = lty.grid)
+    }
+    if ("xz" %in% grid) {
+        i <- x.min:x.max
+        segments(i + (yx.f * y.max), yz.f * y.max + z.min, i + (yx.f * y.max), yz.f * y.max + z.max, col = col.grid, lty = lty.grid)
+        temp <- yx.f * y.max
+        temp1 <- yz.f * y.max
+        i <- z.min:z.max
+        segments(x.min + temp,temp1 + i, x.max + temp,temp1 + i , col = col.grid, lty = lty.grid)
+
+    }
+
+    if ("yz" %in% grid) {
+        i <- 0:y.max
+        segments(x.min + (i * yx.f), i * yz.f + z.min,  x.min + (i * yx.f) ,i * yz.f + z.max,  col = col.grid, lty = lty.grid)
+        temp <- yx.f * y.max
+        temp1 <- yz.f * y.max
+        i <- z.min:z.max
+        segments(x.min + temp,temp1 + i, x.min, i , col = col.grid, lty = lty.grid)
+
+
+
+    }
+-------------------------------------------------------------------------------------------------------
+df$YM <- as.Date(paste0("01",df$YearMonth), format="%d%Y%m")
+rangeYM <- range(df$YM)
+
+plot(NA,ylim=c(-1,1),xlim=rangeYM,ann=FALSE,axes=FALSE)
+abline(h=0,lwd=2,col="#5B7FA3")
+
+ypts <- rep_len(c(-1,1), length.out=nrow(df))
+txtpts <- rep_len(c(1,3), length.out=nrow(df))
+segments(df$YM,0,df$YM,ypts,col="gray80")
+
+axis.Date(
+ 1,
+ at=seq.Date(rangeYM[1],rangeYM[2],by="month"),
+ format="%Y-%m",
+ cex.axis=0.6,
+ pos=0,
+ lwd=0,
+ lwd.tick=2,
+ col="#5B7FA3",
+ font=2
+)
+
+points(df$YM,y=ypts, pch="-", cex=1.5, col="#5B7FA3")
+par(xpd=NA)
+text(
+  df$YM, y=ypts,
+  labels=paste(df$Person1,df$Person2,df$Event,sep="\n"), cex=0.7, pos=txtpts
+)
+par(xpd=FALSE)
+-------------------------------------------------------------------------------------------------------
+dat <- read.table(text=
+ "min     max     value
+  1       5         23
+  8       15        9
+ 33      35        30",
+ header=TRUE) newdat <- with(dat,data.frame(x=c(min,max),y=rep(value,2)))
+newdat <- plyr::arrange(newdat,x)
+plot(y~x,type="s",data=newdat) plot(max~value,data=dat,xlim=range(c(dat$min,dat$max)),
+     type="n")
+apply(dat,1,function(x) segments(x[1],x[3],x[2],x[3]))
+-------------------------------------------------------------------------------------------------------

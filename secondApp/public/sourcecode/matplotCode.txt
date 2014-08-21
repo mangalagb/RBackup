@@ -1,0 +1,1208 @@
+> x <- 0:10
+> matplot(cbind(x, x, x), cbind(3*x+1, 4*x+2, x+1), 
+          type='l', xlab='x', ylab='y') xlab ylab type='l' ?matplot ?plot ?matplot lty
+-------------------------------------------------------------------------------------------------------
+TRUE/FALSE lm() predict() severity.lm ## Dataset from 
+#  apsnet.org/education/advancedplantpath/topics/
+#    RModules/doc1/04_Linear_regression.html
+
+## Disease severity as a function of temperature
+
+# Response variable, disease severity
+diseasesev<-c(1.9,3.1,3.3,4.8,5.3,6.1,6.4,7.6,9.8,12.4)
+
+# Predictor variable, (Centigrade)
+temperature<-c(2,1,5,5,20,20,23,10,30,25)
+
+## For convenience, the data may be formatted into a dataframe
+severity <- as.data.frame(cbind(diseasesev,temperature))
+
+## Fit a linear model for the data and summarize the output from function lm()
+severity.lm <- lm(diseasesev~temperature,data=severity)
+
+## Get datapoints predicted by best fit line and confidence bands
+## at every 0.01 interval
+xRange=data.frame(temperature=seq(min(temperature),max(temperature),0.01))
+pred4plot <- predict(
+  severity.lm,
+  xRange,
+  level=0.95,
+  interval="confidence"
+) modelConfInt <- predict(
+  severity.lm,
+  level = 0.95,
+  interval = "confidence"
+)
+
+insideInterval <- modelConfInt[,'lwr'] < severity[['diseasesev']] &
+  severity[['diseasesev']] < modelConfInt[,'upr'] plot() points() matplot() par(new=TRUE) add=TRUE par(new=TRUE) add par() # Take a look at the data- those points inside the interval
+plot(
+  diseasesev~temperature,
+  data=severity[ insideInterval,],
+  xlab="Temperature",
+  ylab="% Disease Severity",
+  pch=16,
+  pty="s",
+  xlim=c(0,30),
+  ylim=c(0,30)
+)
+title(main="Graph of % Disease Severity vs Temperature")
+
+# Add points outside the interval, color differently
+points(
+  diseasesev~temperature,
+  pch = 16,
+  col = 'red',
+  data = severity[ !insideInterval,]
+)
+
+# Add regression line and confidence intervals
+matplot(
+  xRange,
+  pred4plot,
+  lty=c(1,2,2),   #vector of line types and widths
+  type="l",       #type of plot for each column of y
+  add = TRUE
+)
+-------------------------------------------------------------------------------------------------------
+matplot(df$time,df[,c("a","b","c","mean")],
+  type="l",
+  col=c("#FF000040","#00FF0040","#0000FF40","black"),
+  lty=1,lwd=3)
+-------------------------------------------------------------------------------------------------------
+matplot fun1<-function(x) sin(cos(x)*exp(-x/2))
+fun2<-function(x) sin(cos(x)*exp(-x/4))
+x<-seq(0,2*pi,0.01)
+matplot(x,cbind(fun1(x),fun2(x)),type="l",col=c("blue","red"))
+-------------------------------------------------------------------------------------------------------
+df = data.frame(s1=s1, s2=s2); 
+matplot(1:10, data.frame(a=rnorm(10), b=rnorm(10)), type="l", lty=1, lwd=1, col=c("blue","red")) matplot(df, type="l", lty=1, lwd=1, col=c("blue","red"))
+-------------------------------------------------------------------------------------------------------
+P     <- 3                             # number of groups for ANOVA
+fVals <- seq(0, 1.2, length.out=100)   # effect sizes f for ANOVA
+dVals <- seq(0, 3, length.out=100)     # effect sizes d for t-Test
+nn    <- seq(10, 25, by=5)             # group sizes
+alpha <- 0.05                          # test for level alpha
+
+# function to calculate one-way ANOVA power for given group size
+getFPow <- function(n) {
+    critF <- qf(1-alpha, P-1, P*n - P) # critical F-value
+
+    # probabilities of exceeding this F-value given the effect sizes f
+    # P*n*fVals^2 is the non-centrality parameter
+    1-pf(critF, P-1, P*n - P, P*n * fVals^2)
+}
+
+# function to calculate one-sample t-Test power for given group size
+getTPow <- function(n) {
+    critT <- qt(1-alpha, n-1)           # critical t-value
+
+    # probabilities of exceeding this t-value given the effect sizes d
+    # sqrt(n)*d is the non-centrality parameter
+    1-pt(critT, n-1, sqrt(n)*dVals)
+}
+
+powsF <- sapply(nn, getFPow)      # ANOVA power  for for all group sizes
+powsT <- sapply(nn, getTPow)      # t-Test power for for all group sizes
+
+dev.new(width=10, height=5)
+par(mfrow=c(1, 2))
+matplot(fVals, powsF, type="l", lty=1, lwd=2, xlab="effect size f",ylab="Power", main="Power one-way ANOVA", xaxs="i",xlim=c(-0.05, 1.1), col=c("blue", "red"))
+legend(x="bottomright", legend=paste("Nj =", c(10, 15, 20, 25)), lwd=2,
+       col=c("blue", "red", "darkgreen", "green"))
+matplot(dVals, powsT, type="l", lty=1, lwd=2, xlab="effect size d",ylab="Power", main="Power one-sample t-Test", xaxs="i", xlim=c(-0.05, 1.1), col=c("blue", "red"))
+legend(x="bottomright", legend=paste("N =", c(10, 15, 20, 25)), lwd=2,
+       col=c("blue", "red", "darkgreen", "green"))
+-------------------------------------------------------------------------------------------------------
+library(ggplot2) # load reshape, plyr, and ggplot2 d2 <- ldply(data_list)
+cast(d2, cumSize~.id, value_var="cumloadTime")
+cast(d2, cumSize~.id, value_var="query1")
+matplot(d.cum, type="l")
+matplot(d.que, type="l") d3 <- melt(d2, measure=c("cumloadTime", "query1"))
+ggplot(d3, aes(cumSize, value, colour=.id)) + geom_line() + 
+  facet_wrap(~variable, nrow=2, scale="free_y")
+-------------------------------------------------------------------------------------------------------
+library(plotrix)
+
+ #Build a 40 Row by 40 Column Matrix
+ n <- 40
+ mat <- matrix(rnorm(n*n), nrow = n)
+
+ #Plot it
+ color2D.matplot(mat, cellcolors = color.scale(mat, c(0,0.5,1), c(1,0.5,0), 0))
+-------------------------------------------------------------------------------------------------------
+matplot(replicate(5,cumsum(rnorm(100,mean=0.4,sd=0.7))),type="l")
+-------------------------------------------------------------------------------------------------------
+dat smooth.spline() n n = 48 SSpline <- function(x, y, n = 48, ...) {
+    ## fit the spline to x, and y
+    mod <- smooth.spline(x, y, ...)
+    ## predict from mod for n points over range of x
+    pred.dat <- seq(from = min(x), to = max(x), length.out = n)
+    ## predict
+    preds <- predict(mod, x = pred.dat)
+    ## return
+    preds
+} > res <- SSpline(time, dat[1, 2:9])
+> res
+$x
+ [1]  0.000000  0.893617  1.787234  2.680851  3.574468  4.468085  5.361702
+ [8]  6.255319  7.148936  8.042553  8.936170  9.829787 10.723404 11.617021
+[15] 12.510638 13.404255 14.297872 15.191489 16.085106 16.978723 17.872340
+[22] 18.765957 19.659574 20.553191 21.446809 22.340426 23.234043 24.127660
+[29] 25.021277 25.914894 26.808511 27.702128 28.595745 29.489362 30.382979
+[36] 31.276596 32.170213 33.063830 33.957447 34.851064 35.744681 36.638298
+[43] 37.531915 38.425532 39.319149 40.212766 41.106383 42.000000
+
+$y
+ [1]  0.052349585  0.001126837 -0.049851737 -0.100341294 -0.150096991
+ [6] -0.198873984 -0.246427429 -0.292510695 -0.336721159 -0.378381377
+[11] -0.416785932 -0.451229405 -0.481006377 -0.505411429 -0.523759816
+[16] -0.535714043 -0.541224748 -0.540251293 -0.532753040 -0.518689349
+[21] -0.498019582 -0.470750611 -0.437182514 -0.397727107 -0.352796426
+[26] -0.302802508 -0.248157388 -0.189272880 -0.126447574 -0.059682959
+[31]  0.011067616  0.085850805  0.164713260  0.247701633  0.334851537
+[36]  0.425833795  0.519879613  0.616194020  0.713982047  0.812448724
+[41]  0.910799082  1.008296769  1.104781306  1.200419068  1.295380186
+[46]  1.389834788  1.483953003  1.577904960
+
+> plot(time, dat[1, 2:9])
+> lines(res, col = "blue") $y SSpline() apply() > res2 <- apply(dat[, 2:9], 1,
++               function(y, x, ...) { SSpline(x, y, ...)$y },
++               x = time)
+> head(res2)
+                1           2           3           4           5           6
+[1,]  0.052349585 -0.02500000  0.21250000 -0.06117869 -0.02153366 -0.02295792
+[2,]  0.001126837 -0.04293509  0.17175460 -0.10994988 -0.06538250 -0.06191095
+[3,] -0.049851737 -0.06407856  0.12846458 -0.15838412 -0.10899505 -0.10074427
+[4,] -0.100341294 -0.09168227  0.08005550 -0.20614476 -0.15213426 -0.13933920
+[5,] -0.150096991 -0.12899810  0.02395291 -0.25289514 -0.19456304 -0.17757705
+[6,] -0.198873984 -0.17927793 -0.04241763 -0.29829862 -0.23604434 -0.21533911 res2 dat res2 t(res2) matplot() > matplot(x = seq(min(time), max(time), length = 48), 
++         y = res2, type = "l")
+-------------------------------------------------------------------------------------------------------
+ggplot(
+  melt(data.frame(date=as.Date(rownames(data), "%Y%m%d"), data), id.vars="date"),
+  aes(date, value, colour=variable)) + 
+  geom_line() ggplot(
+  melt(data.frame(date=as.Date(rownames(data), "%Y%m%d"), data), id.vars="date"),
+  aes(date, value)) + 
+  geom_line() + 
+  facet_wrap(~variable) +
+  opts(axis.text.x=theme_text(angle=90)) d <- data.frame(date=as.Date(rownames(data), "%Y%m%d"), data)
+matplot(d[,1], d[,-1], type="b", pch=1, xaxt="n")
+axis(1, d[,1], labels=d[,1])
+-------------------------------------------------------------------------------------------------------
+lsoda gfun <- function(t,y,parms,...) {
+  ## 'with' trick lets us write gradient in terms of variable/parameter names
+  with(as.list(c(y,parms)),
+       list(c(b=beta-k*b,a=alpha-b*gamma),NULL))
+}
+
+library(deSolve)
+L1 <- lsoda(y=c(b=1,a=1),
+            times=seq(0,10,by=0.1),
+            func=gfun,
+            parms=c(alpha=0.1,beta=0.2,gamma=0.05,k=0.01))
+
+matplot(L1[,1],L1[,-1],type="l",lty=1,bty="l",las=1)
+-------------------------------------------------------------------------------------------------------
+library(plotrix)
+
+ #Build the matrix data to look like a correlation matrix
+ n <- 8
+ x <- matrix(runif(n*n), nrow=n)
+ xmin <- 0
+ xmax <- 1
+ for (i in 1:n) x[i, i] <- 1.0 #Make the diagonal all 1's
+
+ #Generate the palette for the matrix and the legend.  Generate labels for the legend
+ palmat <- color.scale(x, c(1, 0.4), c(1, 0.4), c(0.96, 1))
+ palleg <- color.gradient(c(1, 0.4), c(1, 0.4), c(0.96, 1), nslices=100)
+ lableg <- c(formatC(xmin, format="f", digits=2), formatC(1*(xmax-xmin)/4, format="f", digits=2), formatC(2*(xmax-xmin)/4, format="f", digits=2), formatC(3*(xmax-xmin)/4, format="f", digits=2), formatC(xmax, format="f", digits=2))
+
+ #Set up the plot area and plot the matrix
+ par(mar=c(5, 5, 5, 8))
+ color2D.matplot(x, cellcolors=palmat, main=paste(n, " X ", n, " Matrix Using Color2D.matplot", sep=""), show.values=2, vcol=rgb(0,0,0), axes=FALSE, vcex=0.7)
+ axis(1, at=seq(1, n, 1)-0.5, labels=seq(1, n, 1), tck=-0.01, padj=-1)
+
+ #In the axis() statement below, note that the labels are decreasing.  This is because
+ #the above color2D.matplot() statement has "axes=FALSE" and a normal axis()
+ #statement was used.
+ axis(2, at=seq(1, n, 1)-0.5, labels=seq(n, 1, -1), tck=-0.01, padj=0.7)
+
+ #Plot the legend
+ pardat <- par()
+ color.legend(pardat$usr[2]+0.5, 0, pardat$usr[2]+1, pardat$usr[2], paste(" ", lableg, sep=""), palleg, align="rb", gradient="y", cex=0.7)
+-------------------------------------------------------------------------------------------------------
+tcars <- read.table(textConnection(" V1       Mazda     Toyota     Peugeot
+    Car1.txt 0,507778837 0,19834711 0,146892655
+    Car2.txt 0,908717802 0,64214047 0,396508728", header=TRUE, dec=",")
+ # need to use dec arg with commas as decimal points!
+ tcars
+        V1     Mazda    Toyota   Peugeot
+1 Car1.txt 0.5077788 0.1983471 0.1468927
+2 Car2.txt 0.9087178 0.6421405 0.3965087
+
+ matplot(data.matrix(tcars[-1]), type="b", xaxt="n")
+ axis(1, labels=tcars[[1]],at=1:NROW(tcars))
+-------------------------------------------------------------------------------------------------------
+for #Set the number of bets and number of trials and % lines
+numbet <- 6000 #6000 bets
+numtri <- 1000 #Run 1000 trials of the 6000 bets
+perlin <- 0.05 #Show the +/- 5% lines on the graph
+rantri <- 60 #The 60th trial (just a random trial to be drawn)
+
+#Fill a matrix where the rows are the cumulative bets and the columns are the trials
+xcum <- matrix(NA, nrow=numbet, ncol=numtri)
+for (i in 1:numtri) {
+  x <- sample(c(-1,1), numbet, replace = TRUE)
+  xcum[,i] <- cumsum(x)
+}
+
+#Plot the trials as transparent lines so you can see the build up
+matplot(xcum, type="l", xlab="Number of Bets", ylab="Cumulative Sum", main="Cumulative Results", col=rgb(0.01, 0.01, 0.01, 0.02))
+grid()
+
+#Sort the trials of each bet so you can pick out the desired %
+xcumsor <- xcum
+for (i in 1:numbet) {
+  xcumsor[i,] <- xcum[i,order(xcum[i,])]
+}
+
+#Draw the upper/lower limit lines and the 50% probability line     
+lines(xcumsor[, perlin*numtri], type="l", lwd=2, col=rgb(1, 0.0, 0.0)) #Lower limit
+lines(xcumsor[, 0.5*numtri], type="l", lwd=3, col=rgb(0, 1, 0.0)) #50% Line
+lines(xcumsor[, (1-perlin)*numtri], type="l", lwd=2, col=rgb(1, 0.0, 0.0)) #Upper limit
+
+#Show one of the trials
+lines(xcum[, rantri], type="l", lwd=1, col=rgb(1, 0.8, 0)) #Random trial
+
+#Draw the legend
+legend("bottomleft", legend=c("Various Trials", "Single Trial", "50% Probability", "Upper/Lower % Limts"), bg="white", lwd=c(1, 1, 3, 2), col=c("darkgray", "orange", "green", "red")) #Set the bet sequence and the % lines
+betseq <- 1:100000 #1 to 100,000 bets
+perlin <- 0.05 #Show the +/- 5% lines on the graph
+
+#Calculate the Upper and Lower limits using perlin
+#qnorm() gives the multiplier for the square root
+upplim <- qnorm(1-perlin)*sqrt(betseq)
+lowlim <- qnorm(perlin)*sqrt(betseq)
+
+#Get the range for y
+yran <- range(upplim, lowlim)
+
+#Plot the upper and lower limit lines
+plot(betseq, upplim, ylim=yran, type="l", xlab="", ylab="")
+lines(betseq, lowlim) dralim lines dralim #Set the bet sequence and the % lines
+betseq <- 0:700 #0 to 700 bets
+perlin <- 0.05 #Show the +/- 5% lines on the graph
+
+#Define a function that plots the upper and lower % limit lines
+dralim <- function(stax, endx, perlin) {
+  lines(stax:endx, qnorm(1-perlin)*sqrt((stax:endx)-stax))
+  lines(stax:endx, qnorm(perlin)*sqrt((stax:endx)-stax))
+}
+
+#Build the plot area and draw the vertical dashed lines
+plot(betseq, rep(0, length(betseq)), type="l", ylim=c(-50, 50), main="", xlab="Trial Number", ylab="Cumulative Hits")
+abline(h=0)
+abline(v=35, lty="dashed") #Seg 1
+abline(v=185, lty="dashed") #Seg 2
+abline(v=385, lty="dashed") #Seg 3
+abline(v=485, lty="dashed") #Seg 4
+abline(v=585, lty="dashed") #Seg 5
+
+#Draw the % limit lines that correspond to the vertical dashed lines by calling the
+#new function dralim.
+dralim(0, 35, perlin) #Seg 1
+dralim(36, 185, perlin) #Seg 2
+dralim(186, 385, perlin) #Seg 3
+dralim(386, 485, perlin) #Seg 4
+dralim(486, 585, perlin) #Seg 5
+dralim(586, 701, perlin) #Seg 6
+-------------------------------------------------------------------------------------------------------
+matplot y matplot(x, cbind(y1, y2)) ?matplot
+-------------------------------------------------------------------------------------------------------
+# A function for counting outcomes for a certain probability
+f <- function(d, p) {
+  lp <- d$prob < p
+  c(TNeg=sum(lp & d$out==0), TPos=sum(!lp & d$out==1))
+}
+
+# Make it accept a vector of probabilities
+vf <- Vectorize(f, 'p')
+
+# Sample data
+n <- 100
+d <- data.frame(prob=runif(n), out=round(runif(n)))
+# Probabilities to plot
+p <- seq(0,1, len=20)
+
+res <- vf(d, p)
+colnames(res) <- paste('p(', p, ')', sep='')
+matplot(p, t(res), type='l', xlab='prob', ylab='count')
+-------------------------------------------------------------------------------------------------------
+# first plot
+plot(x, y1, ylim=range(c(y1,y2)))
+
+# second plot  EDIT: needs to have same ylim
+par(new = TRUE)
+plot(x, y2, ylim=range(c(y1,y2)), axes = FALSE, xlab = "", ylab = "") matplot(x, cbind(y1,y2))
+  matplot(x, cbind(y1,y2), pch=1)
+-------------------------------------------------------------------------------------------------------
+matplot dat<-as.data.frame(cbind(c(1,2,5,7),c(2.1,4.2,-0.5,1),c(9,3,6,2.718)))
+
+plot.new()
+plot.window(c(0,nrow(dat)),range(dat))
+matplot(dat,col=c("red","blue","yellow"),pch=20) dat datx daty for if dat<-as.data.frame(
+    cbind(c(1,2,5,7,2.1,4.2,-0.5,1,9,3,6,2.718)
+    ,c(rep("red",4),rep("blue",4),rep("yellow",4))))
+
+dat[,1]=as.numeric(dat[,1]) #This is necessary because
+                            #the second column consisting of strings confuses R
+                            #into thinking that the first column must consist of strings, too
+plot(dat[,1],pch=20,col=dat[,2])
+-------------------------------------------------------------------------------------------------------
+set.seed(123)
+tmat <- matrix(rnorm(16)^2,ncol=4) 
+   # need entries to be positive, could have used abs()
+tmat <- tmat/rowSums(tmat) # need the rows to sum to 1
+tmat
+            [,1]       [,2]       [,3]        [,4]
+[1,] 0.326123580 0.01735335 0.48977444 0.166748625
+[2,] 0.016529424 0.91768404 0.06196453 0.003822008
+[3,] 0.546050789 0.04774713 0.33676288 0.069439199
+[4,] 0.001008839 0.32476060 0.02627217 0.647958394
+require(expm)   # for the %^% function
+matplot( t(         # need to transpose to get arguments to matplot correctly
+       sapply(1:20, function(x) matrix(c(1,0,0,0), ncol=4) %*% (tmat %^% x) ) ) )
+-------------------------------------------------------------------------------------------------------
+axes=FALSE axis.Date # Sample data
+library(quantmod)
+getSymbols( "^DJI" )
+x <- DJI
+
+# Plot without the date axis
+matplot( 
+  index(x), coredata(Ad(x)), 
+  axes=FALSE, 
+  xlab="", ylab="",
+  type="l", lwd=3
+)
+axis(2, las=1)
+
+# Some date arithmetics
+all_days <- seq.Date( from=min(index(x)), to=max(index(x)), by=1 )
+months  <- all_days[ format(all_days, "%d") == "01" ]
+january <- all_days[ format(all_days, "%m-%d") == "01-01" ]
+april   <- all_days[ format(all_days, "%m-%d") == "04-01" ]
+july    <- all_days[ format(all_days, "%m-%d") == "07-01" ]
+october <- all_days[ format(all_days, "%m-%d") == "10-01" ]
+
+# Finally plot the axes
+axis.Date(1, at=months,  label=FALSE, tcl=-.3) 
+axis.Date(1, at=january, label=format(january, "%Y"))
+axis.Date(1, at=april,   label=format(april,   "%b"))
+axis.Date(1, at=july,    label=format(july,    "%b"))
+axis.Date(1, at=october, label=format(october, "%b"))
+-------------------------------------------------------------------------------------------------------
+ind <- function(x) {
+  # Divide each column by the first non-NA value
+  # (There may already be a function to do that.)
+  coredata(x) <- t(t(coredata(x)) / apply(coredata(x),2,function(u){ c(u[!is.na(u)&u!=0],NA)[1] }))
+  x
+}
+x <- cbind( Ad(GSPC), Ad(VIX) )
+x <- x["2011-11::"]
+
+# Using base graphics
+matplot( 
+  index(x), coredata(ind(x)), 
+  xlab="", ylab="", main="",
+  type="l", lty=1, lwd=3, axes=FALSE 
+)
+abline(h=1, lty=3, col="lightgrey")
+axis(2, las=1)
+axis.Date(1, index(x))
+box()
+legend( "topleft", gsub("\\..*", "", names(x)), lty=1, lwd=3, col=1:2 )
+
+# If you prefer ggplot2
+library(ggplot2)
+library(reshape2)
+d <- data.frame( date = index(x), coredata(ind(x)) )
+names(d) <- gsub("\\..*", "", names(d))
+d <- melt(d, id.vars="date")
+ggplot(d, aes(date, value, color=variable)) + geom_line(size=2)
+-------------------------------------------------------------------------------------------------------
+cumsum sum matplot sweep matplot(t(apply(b, 1, function(x) cumsum(x)/sum(x) )),type="l")
+-------------------------------------------------------------------------------------------------------
+windowsize by by=1 windowsize nchar(inputseq) slidingwindowplotATGC = function(windowsize, by, inputseq) {
+  s = strsplit(inputseq, "")[[1]]
+  colors = c("green", "black", "red", "blue")
+  counts =  rollapply(factor(s), width=windowsize, by=by,table)
+  matplot(counts,type="l", lty=1,col=colors)
+  counts
+}
+
+itest <- "aagaaaagatcaaagaccagccgccccaccccccagagccccccc"
+slidingwindowplotATGC(10, itest)
+-------------------------------------------------------------------------------------------------------
+temperature <- function(temp1,temp2,temp3)
+{ t1 <- deparse(substitute(temp1))
+  t2 <- deparse(substitute(temp2))
+  t3 <- deparse(substitute(temp3)) 
+    dataPlot1 <- data.frame(temp1,temp2,temp3)
+    matplot(dataPlot1,axes=T,frame=T,type="l",xlab="time (hour)",ylab="temperature(C)",main=names(dataPlot1))
+    lines(dataPlot1[1],lty=1,col="blue")
+    lines(dataPlot1[2],lty=2,col="red")
+    lines(dataPlot1[3],lty=2,col="forestgreen")  
+    legend("topright", c(t1,t2,t3), lty=c(1,2,2),
+            col=c("blue","red","forestgreen"))
+-------------------------------------------------------------------------------------------------------
+"Average daily per capita calories from the U.S. food availability, adjusted for spoilage and other waste",,,,,,
+,,,,,,
+"Meat, eggs, and nuts",Dairy,Fruit,Vegetables,Flour and cereal products,Added fats and oils and dairy fats,Caloric sweeteners
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+463,267,70,125,432,411,402
+472,268,72,123,426,405,405
+470,265,67,122,421,416,410 skip read.csv d <- read.csv("Calories.csv", skip=2)
+matplot(d, type="l", lty=1, lwd=3, las=1)
+legend("topleft", names(d), col=1:ncol(d), lty=1, lwd=3)
+-------------------------------------------------------------------------------------------------------
+matplot(temp1$x, cbind(temp1$y, temp2$y), t="l", lty=1, col=c("red", "blue")) library(ggplot2)
+qplot(x, y, colour=which, geom="path", data=lattice::make.groups(temp1, temp2))
+-------------------------------------------------------------------------------------------------------
+xtabs dat <- read.table(text="person    week    year   
+personA   6       1
+personA   22      1
+personA   41      1
+personA   42      1
+personA   1       2
+personA   23      2
+personB   8       2
+personB   9       2
+", header=TRUE)
+xtabs(~person+year, data=dat)
+#-----------------
+         year
+person    1 2
+  personA 4 2
+  personB 0 2
+ matplot( xtabs(~person+year, data=dat)) axis matplot(  xtabs(~person+year, data=dat), xaxt="n", type="b")
+-------------------------------------------------------------------------------------------------------
+library(reshape)
+test = data.frame(x =  rep(1:3, each = 2),
+                  group =  rep(c("Group 1","Group 2"),3),
+                  groupcd= rep(c(1,2),3),
+                  y=   c(22,8,11,4,7,5)
+                  )
+colors<-c("red","blue")
+
+#Transform  data to wide format 
+test_transposed<-reshape(test, 
+                         idvar='x',
+                         drop="group",
+                         timevar="groupcd", 
+                         direction="wide")
+colors<-c("red","blue")
+
+#drop x column
+test_transposed$x<-NULL
+
+matplot(test_transposed, type = "b",ylab="y",col=colors,main="MATPLOT with groups",pch = 1:2)
+
+legend("top", 
+       legend=unique(test$group), 
+       lty=1:2, 
+       col=colors,
+       pch=1:2  )
+-------------------------------------------------------------------------------------------------------
+a1 <- t(apply(a,1,scale))
+a2 <- t(apply(a1,1,diff))
+
+cl <- clara(a2,2)
+matplot(t(a),type="b", pch=20, col=cl$clustering)
+-------------------------------------------------------------------------------------------------------
+matplot() df <- cbind(sort(rnorm(10)), sort(rnorm(10,-2)), sort(rlnorm(10)))
+matplot(df, type="b", lty=1, pch=1, col=c("blue", "red", "black"))
+-------------------------------------------------------------------------------------------------------
+?axis ?Axis ## store number of rows
+nRow <- 10
+
+## your example code 
+## (only the number "10" is replaced by nRow and oma is adapted)
+plot.new()
+
+par(mar=c(2, 2, 1, 1), oma=c(2, 4, 0, 4), xpd=NA)
+
+for (i in 1:nRow) {
+
+    par(mar=c(2, 2, 1, 1), fig=c(0, 0.5, (nRow-i)/nRow, ((nRow+1)-i)/nRow), new=TRUE)    
+    matplot(rnorm(20)*sample(100, 1),                                          col="blue", axes=F, type="l", lwd=10, xlab="", ylab="")
+
+    par(mar=c(2, 2, 1, 1), fig=c(0.5, 1, (nRow-i)/nRow, ((nRow+1)-i)/nRow), new=TRUE)
+    matplot(rnorm(20)*sample(100, 1),                                          col="red", axes=F, type="l", lwd=10, xlab="", ylab="")    
+}
+
+## define new user coordinates
+usr <- c(0, 1, 0, 1) ## x1, x2, y1, y2
+
+## calculate tick positons
+## in general: (usr[3]+(diff(usr[3:4])/(nRow-1))*0:(nRow-1))
+## but our usecase is much easier:
+ticksAt <- 1/(nRow-1)*0:(nRow-1)
+
+## choose left column and reset user plotting area (usr)
+par(mar=c(2, 2, 1, 1), fig=c(0, 0.5, 0, 1), usr=usr, new=TRUE)
+## draw axis; see ?Axis for details
+Axis(side=2, at=ticksAt, labels=as.character(1:(nRow)), line=0.5)
+
+## choose right column and reset user plotting area (usr, not needed because already done)
+par(mar=c(2, 2, 1, 1), fig=c(0.5, 1, 0, 1), usr=usr, new=TRUE)
+## draw axis; see ?Axis for details
+Axis(side=4, at=ticksAt, labels=as.character((nRow+1):(2*nRow)), line=0.5)
+-------------------------------------------------------------------------------------------------------
+matplot #Fake data
+x <- data.frame(x = 1:100, y1 = rnorm(100), y2 = runif(100))
+#Plot
+matplot(x[,1], x[, -1], type="l", lty = 1)
+#Everyone needs a little legend love
+legend("topright", legend = colnames(x)[-1], fill=seq_along(colnames(x)[-1])) library(ggplot2)
+library(reshape2)
+#Melt into long format with first column as the id variable
+x.m <- melt(x, id.vars = 1)
+#Plot it
+ggplot(x.m, aes(x, value, colour = variable)) +
+  geom_line() +
+  theme_bw()
+-------------------------------------------------------------------------------------------------------
+dat <- data.frame(xvals=1:100,
+                  y=matrix(rnorm(600),ncol=6)) loess predict formulae <- lapply(names(dat)[-1],
+                   function(yvar) as.formula(paste(yvar,"xvals",sep="~")))
+loessfits <- lapply(formulae,loess,data=dat)
+
+xl <- with(dat,seq(min(xvals),max(xvals), length.out=1000))
+pvals <- do.call(cbind,lapply(loessfits,predict,newdata=data.frame(xvals=xl))) ?par ## set box type (open), horizontal tick labels, axis label and title size
+par(bty="l",las=1,cex.main=2,cex.lab=2) cvec <- c("gray","pink","red","cyan","black","green")
+lvec <- 1:6 matplot(xl,pvals,type="l",col=cvec,lty=lvec,xlab='X label', ylab='Y label')    
+legend("topright", paste0("L",1:6), pch=1, lty=lvec,col=cvec, inset = .02)
+-------------------------------------------------------------------------------------------------------
+X X <- seq(0, 10, length=21)
+roots <- sapply(X, function(x) polyroot(c(1,x,1))) 
+roots[abs(Im(roots)) > 1e-10] <- NA
+matplot(X, t(roots), pch=1)
+-------------------------------------------------------------------------------------------------------
+df <- read.csv("df.csv",sep=",",head=T)
+x <- cbind(df$Xax,df$Xax,df$Xax,df$Xax)
+y <- cbind(df$A,df$B,df$C,df$D)
+matplot(x,y,type="p")
+-------------------------------------------------------------------------------------------------------
+matplot matplot ?matplot ?par # Generate data
+categories <- c("Entertainment", "Games", "Health", "Personal Finance",
+    "Shopping", "Music", "USSites", "Porn")
+colors <- c("green", "blue", "cyan", "yellow", "magenta", "orange",
+    "red", "black")
+markers <- 1:8
+pt <- matrix(runif(length(categories)*23), length(categories), 23)
+
+# Plot
+matplot(1:23, t(pt), type="l", col=colors, lty=1, pch=markers,bty="n", las=1, main="Categorical Percent over Time")
+legend("topright", col=colors, categories, bg="white", lwd=1, pch=markers)
+-------------------------------------------------------------------------------------------------------
+SBP.qtr.mat <- aggregate(set1HLI$SBP, 
+                          list(  year(set1HLI$Drawdt)+0.25* quarter(set1HLI$Drawdt)), 
+                           quantile, prob=c(0.1,0.25,0.5,0.75, 0.9,0.95, 0.975), na.rm=TRUE)
+ matplot(SBP.qtr.mat[,1], SBP.qtr.mat$x, type="pl") polygon x, y col cut.POSIXt" as a breaks argument , there is the option of using multiples of time units with > seq(ISOdate(1910,1,1), ISOdate(1999,1,1), "10 years")
+[1] "1910-01-01 12:00:00 GMT" "1920-01-01 12:00:00 GMT" "1930-01-01 12:00:00 GMT" "1940-01-01 12:00:00 GMT"
+[5] "1950-01-01 12:00:00 GMT" "1960-01-01 12:00:00 GMT" "1970-01-01 12:00:00 GMT" "1980-01-01 12:00:00 GMT"
+[9] "1990-01-01 12:00:00 GMT" cut.POSIXt > str( cut( seq(ISOdate(1910,1,1), ISOdate(1999,1,1), "years"), "10 years") )
+ Factor w/ 9 levels "1910-01-01","1920-01-01",..: 1 1 1 1 1 1 1 1 1 1 ...
+> str( cut( seq(ISOdate(1910,1,1), ISOdate(1999,1,1), "years"), "5 years") )
+ Factor w/ 18 levels "1910-01-01","1915-01-01",..: 1 1 1 1 1 2 2 2 2 2 ...
+-------------------------------------------------------------------------------------------------------
+# data
+mat <- matrix(dpois(rep(1:20, 10), lambda=rep(10:1, each=20)), ncol=10)
+
+# 2d line plot
+matplot(mat, type="l", col="black", lty=1)
+
+# 3d ribbon plots
+par(mar = c(0, 1, 0, 1))
+par(mfrow=c(1,2))
+persp(z=mat[,rep(seq(ncol(mat)), each=2)], r=5, theta=320, phi=35, shade=0.5,
+      border=NULL, col=rep(c("#808080FE","#00000000"), each=nrow(mat)-1))
+persp(z=mat[,rep(seq(ncol(mat)), each=2)], r=5, theta=320, phi=35, shade=0.5,
+      border=NA, col=rep(c("#808080FE","#00000000"), each=nrow(mat)-1))
+par(mfrow=c(1,1))
+par(mar = c(5,4,4,2)+.1) persp()
+-------------------------------------------------------------------------------------------------------
+reshape reshape2 head() d <- data.frame(time=rep(1:10,10),x=rep(1:10,each=10),y=1:100)
+library(reshape2)
+str(dcast(d,time~x))  ## regular data frame
+detach("package:reshape2")
+library(reshape)
+str(z <- cast(d,time~x))
+matplot(head(z))  ## error utils::head.data.frame as.matrix.cast_df matplot head.cast_df <- function (x, n = 6L, ...)  {
+    stopifnot(length(n) == 1L)
+    n <- if (n < 0L) {
+        max(nrow(x) + n, 0L)
+    } else min(n, nrow(x))
+    h <- x[seq_len(n), , drop = FALSE]
+    ## fix cast_df-specific row names element
+    attr(h,"rdimnames")[[1]] <- rdimnames(h)[[1]][seq_len(n),,drop=FALSE]
+    h
+} reshape reshape2 reshape::cast reshape2::dcast
+-------------------------------------------------------------------------------------------------------
+apply parse(text = ...) .expressions <- paste(colnames(data),greek,sep="")
+legend_expressions <-parse(text = .expressions)
+
+matplot(data)
+legend(1,max(data),fill=c("black","red","green","blue"),legend_expressions) ~ sep = '' sep = '~' paste .expressions <- paste(colnames(data),greek,sep="~")
+legend_expressions <-parse(text = .expressions)
+
+matplot(data)
+legend(1,max(data),fill=c("black","red","green","blue"),legend_expressions) sprintf greek <- c("alpha", "beta", "gamma", "delta")
+other_stuff <- c('hello world','again this','and again','hello')
+
+.expressions <- mapply(sprintf, colnames(data), other_stuff, greek, 
+                       MoreArgs = list(fmt = '"%s %s"~(%s)'))
+
+.expressions  
+##                           A                           B                           C                           D 
+## "\"A hello world\"~(alpha)"   "\"B again this\"~(beta)"   "\"C and again\"~(gamma)"       "\"D hello\"~(delta)" 
+
+ legend_expressions <-parse(text = .expressions)
+
+matplot(data)
+legend(1,max(data),fill=c("black","red","green","blue"),legend_expressions)
+-------------------------------------------------------------------------------------------------------
+parse() greek <- c("alpha", "beta", "gamma", "delta")
+cnames <- paste(LETTERS[1:4], letters[1:4])
+
+legend_expressions <- 
+sapply(1:4, function(i) {
+    as.expression(substitute(A (B), 
+                  list(A = as.name(cnames[i]), B = as.name(greek[i]))))
+})
+
+matplot(data)
+legend(1,max(data),fill=c("black","red","green","blue"),legend_expressions)
+-------------------------------------------------------------------------------------------------------
+matplot df1 <- data.frame(x=1:10, y=1:10)
+df2 <- data.frame(x=0:13, y=(0:13)^1.2)
+df3 <- data.frame(x= -3:5, y= 5:(-3))
+
+mylist <- list( df1, df2, df3 )
+max.n <- max(sapply(mylist,nrow))
+tmpfun <- function(df, which.col, n) {
+    tmp <- df[[which.col]]
+    c(tmp, rep(NA, n-length(tmp)))
+}
+
+matplot( sapply(mylist, tmpfun, which.col='x', n=max.n),sapply(mylist, tmpfun, which.col='y', n=max.n), type='b' ) lengths <- sapply(mylist, nrow)
+df.all <- do.call(rbind, mylist)
+df.all$group <- rep( seq_along(lengths), lengths )
+
+library(lattice)
+xyplot( y~x, data=df.all, groups=group, type='b' )
+
+library(ggplot2)
+qplot(x,y, colour=factor(group), data=df.all, geom=c('point','path') ) zoomplot
+-------------------------------------------------------------------------------------------------------
+matplot myDat x 1 y matplot(x = myDat[, 1], y = myDat[, -1], type = "p", pch = 21) latticeExtra ggplot2like library(latticeExtra)
+
+xyplot(as.formula(paste(paste0(names(myDat)[-1], collapse = "+"), "~",
+  names(myDat[1]))),
+  data = myDat, par.settings = ggplot2like(), grid = TRUE)
+-------------------------------------------------------------------------------------------------------
+matplot() matplot(y = mat1, pch = c(4,1), col = "black", xaxt ="n",
+        xlab = "x-axis", ylab = "y-axis")
+axis(1, at = 1:nrow(mat1), labels = rownames(mat1))             ## Thanks, Joran
+-------------------------------------------------------------------------------------------------------
+matplot(df1_xts_merge,type="l") na.approx na.spline plot(na.approx(df1_xts_merge),screens=1,auto.legend=TRUE)
+-------------------------------------------------------------------------------------------------------
+manipulate(
+   barplot(as.matrix(longley[,factor]), 
+           beside = TRUE, main = factor),
+   factor = picker(1,2,2:3)) 2:3 manipulate(
+matplot(foo[,1],foo[,c(which(c(fp2,fp3)==1))],t='l'), fp2 = checkbox(TRUE,'col2') ,fp3 = checkbox(TRUE,'col3')) fp4 fpick[4]=checkbox(TRUE,'col4')
+-------------------------------------------------------------------------------------------------------
+mydata <- read.csv("mydatafile.csv")
+matplot(mydata[,1],mydata[,-1],type="l") header=TRUE read.csv() mydata[,-1] mydata[,-1] type="l" ?matplot ?plot matplot
+-------------------------------------------------------------------------------------------------------
+library(plotrix) color2D.matplot()
+-------------------------------------------------------------------------------------------------------
+layout(matrix(c(1, 2, 1, 3), ncol=2, byrow=TRUE), widths=c(2, 1)) layout(matrix(c(1, 2, 1, 3), ncol=2, byrow=TRUE), widths=c(2, 1))
+color2D.matplot(x=Mvalues, show.values=2, cellcolors=Mcolors, xlab="x", ylab="y", axes=FALSE, vcex=0.4)
+gg2 <- ggplot(diamonds, aes(clarity, fill=cut)) + geom_bar(position="dodge") 
+ta <- do.call(arrangeGrob, list(gg2,gg2)) vp <- viewport(height=unit(1, "npc"), width=unit(0.33, "npc"), 
+               just="right", x=1, y=0.5) print(ta, vp=vp)
+-------------------------------------------------------------------------------------------------------
+dat <- read.table(text=", 1A+,2A+,3A-,3A+,5A-,5A+,6A-,6A+,7A-,7A+
+6,4.530309305,5.520356001,3.437626731,5.146758132,,4.355022819,,4.191337618,,4.076583859
+10,8.697814022,9.765817956,,9.636004092,3.725756716,8.600484774,3.457423715,8.358842335,2.246622784,7.244668991
+12,,,8.176341701,,,,,,,
+17,,,,,6.24785396,,5.077069513,,3.137524578", header=TRUE, sep=",", fill=TRUE)
+
+matplot(dat[1], dat[-1])
+-------------------------------------------------------------------------------------------------------
+data.frame matplot set.seed(1) # make it reproducible 
+n <- 1000
+v1 <- rnorm (c, 100, 15)
+v2 <- rnorm (c, 80, 10)
+v3 <- rnorm (c, 50, 5)
+r1 <- ((v1*v2^2)/v3)
+data <- cbind (v1, v2, v3, r1)
+rm(v1, v2, v3, r1) # Cleanup
+
+head(data)
+#             v1       v2       v3        r1
+# [1,]  90.60319 95.11781 54.59489 15014.651
+# [2,] 102.75465 83.89843 53.91068 13416.349
+# [3,]  87.46557 73.78759 50.37282  9453.824
+# [4,] 123.92921 57.85300 40.05324 10355.899
+# [5,] 104.94262 91.24931 53.09913 16455.977
+# [6,]  87.69297 79.55066 49.71936 11161.612 sapply myAggVars <- c("v1", "v2", "v3")
+temp <- sapply(myAggVars, function(x) {
+  aggregate(r1 ~ cut(get(x), quantile(get(x), probs = seq(0, 1, .1)), 
+                     include.lowest = TRUE), data, mean)[[2]]
+})
+temp
+#              v1        v2        v3
+#  [1,]  9453.824 10355.899 10355.899
+#  [2,] 11161.612  9453.824 20834.485
+#  [3,] 15014.651 11161.612 17755.902
+#  [4,] 13528.961 13896.830 13896.830
+#  [5,] 13416.349 13416.349 11161.612
+#  [6,] 16455.977 13528.961  9453.824
+#  [7,] 13896.830 17755.902 13528.961
+#  [8,] 17755.902 20834.485 16455.977
+#  [9,] 20834.485 16455.977 13416.349
+# [10,] 10355.899 15014.651 15014.651 matplot(temp, type = "o", pch = 1)
+-------------------------------------------------------------------------------------------------------
+matplot dat <- matrix(runif(40,1,20),ncol=4) # make data
+ matplot(dat, type = c("b"),pch=1,col = 1:4) #plot
+ legend("topleft", legend = 1:4, col=1:4, pch=1) # optional legend ggplot pch matplot() plot()
+-------------------------------------------------------------------------------------------------------
+DF matplot m <- setNames(t(DF[-1]), DF[[1]])
+n <- nrow(m)
+matplot(1:n, m) library(zoo)
+
+z <- zoo(m)
+
+# classic graphics
+plot(z) # multiple panels
+plot(z, screens = 1, col = 1:n) # one panel
+
+library(lattice)
+xyplot(z)
+xyplot(z, screens = 1, col = 1:n)
+
+library(ggplot2)
+autoplot(z)
+autoplot(z, facets = NULL) + aes(linetype = NULL)
+-------------------------------------------------------------------------------------------------------
+> set.seed(1)
+> DF <- data.frame(2000:2009,matrix(rnorm(50, 1000, 200), ncol=5))
+> colnames(DF) <- c('Year', paste0('Country', 2:ncol(DF)))
+> DF # this is how the data.frame looks like:
+   Year  Country2  Country3  Country4  Country5  Country6
+1  2000  874.7092 1302.3562 1183.7955 1271.7359  967.0953
+2  2001 1036.7287 1077.9686 1156.4273  979.4425  949.3277
+3  2002  832.8743  875.7519 1014.9130 1077.5343 1139.3927
+4  2003 1319.0562  557.0600  602.1297  989.2390 1111.3326
+5  2004 1065.9016 1224.9862 1123.9651  724.5881  862.2489
+6  2005  835.9063  991.0133  988.7743  917.0011  858.5010
+7  2006 1097.4858  996.7619  968.8409  921.1420 1072.9164
+8  2007 1147.6649 1188.7672  705.8495  988.1373 1153.7066
+9  2008 1115.1563 1164.2442  904.3700 1220.0051  977.5308
+10 2009  938.9223 1118.7803 1083.5883 1152.6351 1176.2215
+> matplot(DF[,-1], col=1:ncol(DF), type='l', lty=1, ylim=range(DF), axes=FALSE)
+> axis(1, 1:nrow(DF), as.character(DF[,1]))
+> axis(2)
+> box() #- to make it look "as usual"
+> legend('topright', names(DF), col=1:ncol(DF), lty=1, cex=.65)
+-------------------------------------------------------------------------------------------------------
+?boxplot.stats mo.mtx <- tapply(dat$values, dat$month, function( mo.dat) c( fivenum(mo.dat), length(mo.dat) ) 
+ matplot( mo.mtx[, 1:5] , type="l" )
+-------------------------------------------------------------------------------------------------------
+boxplot plot plot TRUE stats matpoints matplot(..., type = 'p') matpoints(t(boxplot(test, plot = FALSE)$stats), pch = 19, col = 'black')
+-------------------------------------------------------------------------------------------------------
+with(list(p=0.5, m=50, n=20, alpha=0.1),
+ with(list(phat=rbinom(m,n,p)/n, zstar=1-alpha/2),
+      with(list(SE=sqrt((1-phat)*phat/n)),{
+        matplot(rbind(phat-SE*zstar,phat+SE*zstar),rbind(1:m,1:m), type='l',lty=1)
+        abline(v=p)}))) local({
+  p=0.5;m=50;n=20;alpha=0.1
+  phat=rbinom(m,n,p)/n
+  zstar=1-alpha/2
+  SE=sqrt((1-phat)*phat/n)
+  matplot(rbind(phat-SE*zstar,phat+SE*zstar),rbind(1:m,1:m), type='l',lty=1)
+  abline(v=p)
+})
+-------------------------------------------------------------------------------------------------------
+replicate() matplot() y <- ts(arima.sim(model=list(order = c(1,1,1), ar=.8,ma=.7), 100)) # Simulate data
+yseries <- Arima(y,order=c(1,1,1))
+simyseries <- ts(replicate(10, simulate(yseries, nsim=10)),start=end(y)+1) # Change the first parameter of replicate() to change the number os simulated paths
+matplot(cbind(y,simyseries), type='l')
+-------------------------------------------------------------------------------------------------------
+points lines with(COUNT, plot(SESSION, MEANVISUAL, type='b', 
+  ylim=range(MEANVISUAL,MEANOVERLAP,MEANWIDEANGLE)))
+with(COUNT, lines(SESSION, MEANOVERLAP, type='b', col='blue', pch=2))
+with(COUNT, lines(SESSION, MEANWIDEANGLE, type='b', col='green', pch=3)) matplot matplot( COUNT$SESSION, COUNT[ , 2:4], type='b' )
+-------------------------------------------------------------------------------------------------------
+matplot() t() timeser <- read.table(text = "           1    2        3     4    5    6    7      8
+line1     0.22  0.075  0.35  0.89   0   0.35  0.42  2.34   
+line2      0    0.47   0.89  2.51   0   0.36  1.14  2.09
+line3     1.22  0.075  0.35  0.89   0   0.35  0.42  1.34
+line4     2.22  0.75   0.45  0.99   0   0.54  0.24  2.34
+line5     3.22  0.275  0.55  0.819  0   0.25  0.34  2.34", header = TRUE)
+
+matplot(t(timeser), type = "l")
+-------------------------------------------------------------------------------------------------------
+confint.coxph.penal fit1 <- coxph(Surv(time, status) ~ meal.cal + ph.ecog + pspline(age, 3), na.omit(cancer) )
+temp <- predict(fit1, type='terms', se=TRUE) 
+it(cancer)$age, exp(cbind( temp$fit[, 3], temp$fit[,3] - 2* temp$se.fit[,3], temp$fit[,3] + 2* temp$se.fit[,3])), 
+        log='y', xlab="Age", ylab="Estimated Relative Risk", col=c('red',"blue","blue") ) summary(fit0) invisible() str(summary(fit1)) cat NULL getAnywhere(summary.coxph.penal)
+-------------------------------------------------------------------------------------------------------
+data.frame test test <- read.table(file="insert.your.file.here",header=TRUE) time plot lines matplot
+matplot(test["time"],test[c("x","y")],type="l") y x lm time x y lm(y ~ time, data=test), col="red")
+lm(x ~ time, data=test), col="black") abline(lm(y ~ time, data=test), col="red"))
+abline(lm(x ~ time, data=test), col="black"))
+-------------------------------------------------------------------------------------------------------
+dccresults$DCC[,2] DCCrho = as.vector(dccresults$DCC[,2]) matplot(x,y, ...) x matplot(DCCrho, x[,2]) Y <- as.vector(dccresults$DCC[,2])
+X <- seq_along(Y)
+plot(X,Y)
+-------------------------------------------------------------------------------------------------------
+matplot(com_30$date, DCCrho, xaxt = "n", type='l')
+axis(1, com_30$date, format(com_30$date, "%y"), cex.axis = .7)
+-------------------------------------------------------------------------------------------------------
+matplot df <- as.data.frame(matrix(runif(525 * 95), ncol=95))
+for (i in 1:ncol(df))  
+  df[,i]=df[,i]+i
+df[1,] = rep(0, 95) matplot(1:nrow(df), df, type="l")
+-------------------------------------------------------------------------------------------------------
+df = data.frame(id = rep(letters[1:5], each = 100),
+                time = rep(Sys.time() + 1:100, 5),
+                value = runif(500) + rep(1:5, each = 100))
+
+library(reshape2)
+df <- dcast(df,time~id)
+matplot(df[,1],df[,-1],type="l")
+-------------------------------------------------------------------------------------------------------
+df <- data.frame(x = c(0, 5, 10, 15), y = c(2.2, 3.8, 4.6, 7.6), z = c(4.5, 6.8, 9.3, 10.5))
+ggplot(df, aes(x)) + 
+  geom_line(aes(y = y, colour = "y")) + 
+  geom_line(aes(y = z, colour = "z")) require(lattice)
+xyplot(df$x ~ df[,2] + df[,3], type = c('l','l'), col = c("blue", "red"), auto.key=T) require("reshape")
+require("ggplot2")
+
+df <- melt(df, id="x")  # convert to long format
+ggplot(df,aes(x=x, y=value, colour=variable)) +
+    geom_line() matplot(df$x, df[,2:3], type = "b", pch=19 ,col = 1:2)
+-------------------------------------------------------------------------------------------------------
+ggplot2 par lambda=seq(0,1,length.out=100)
+b1=lambda^2
+b2=lambda^2+1 
+b=cbind(b1,b2)
+perc=rnorm(100)
+par(mfrow = c(2,1))
+matplot(lambda,b)
+hist(perc) matplot hist par(mfrow = c(1,2)) matplot(lambda,b)
+par(new = TRUE)
+hist(perc)
+-------------------------------------------------------------------------------------------------------
+matplot df 1997 1993 df[df==0] <- NA
+matplot(as.numeric(names(df)),t(as.matrix(df)), type="o",pch=19,lty=1,ann=FALSE)
+title(xlab="Years",ylab="Values") df <- read.table(textConnection("
+       1989  1990  1991  1992  1997
+    A  -30   -16     0     0     0
+    B   12    32     7     0     0
+    C    0     0     0     0     0
+    D    0     3    -8    -6     6
+    E    0     0     0     0    -7
+"),header=T,check.names=FALSE)
+-------------------------------------------------------------------------------------------------------
+maraqa <- c(84.8,68.9,84.9,92.5)
+aqua <- c(75,65.1,79.4,82.3)
+mar <- c(84.7,68.3,84.5,77.4)
+
+# combine data as matrix
+mat<-cbind(maraqa, aqua, mar)
+rownames(mat)<-c("A", "B", "C", "D")
+
+#define colours
+coll<-c("red", "blue", "black")
+
+matplot(mat, type="l", ylim=c(60, 95), ylab="y TBA", main="TBA", xlab="x TBA", axes=FALSE, frame.plot=FALSE, col=coll, lty=rep(1,3))
+# axes= do you want standart axis or make your own?
+# frame.plot= frame arround plot yes/no
+
+matpoints(mat, pch=rep(17,3), col=coll, ad=TRUE)
+# to add points, pch controlls for type of points
+
+axis(side=1, 1:4, labels=rownames(mat))
+axis(side=2, 60:95, labels=60:95)
+legend("topleft",# position
+       legend=c("maraqa", "aqua", "mar"),# names in legend,
+       lty=c(1,1,1),# type of filling in this case solide line,
+       col = coll,# colour of filling, 
+       cex=0.7)# scaling parameter
+-------------------------------------------------------------------------------------------------------
+lty matplot(cbind(c(1,3,7,3), c(2,4,4,7)), type="l", col=1, lty=1)
+-------------------------------------------------------------------------------------------------------
+lty matplot(cbind(c(1,3,7,3), c(2,4,4,7)), type="l", col=1, lty = 1)
+-------------------------------------------------------------------------------------------------------
+txt <-"[1 2 3 4]  
+ [5 6]  
+ [7 8 9 10 15]  
+ [4] " read.table(text=gsub("\\[|\\]", "", readLines(textConnection(txt)) ), 
+           fill=TRUE, header=FALSE)
+  V1 V2 V3 V4 V5
+1  1  2  3  4 NA
+2  5  6 NA NA NA
+3  7  8  9 10 15
+4  4 NA NA NA NA apply(dl, 1, function(x) barplot(x[!is.na(x)] )  )
+ matplot(x=1:4, dl, type="b", ylim=c(0,20),  col=c("red", "orange", "blue", "green", "purple"))
+-------------------------------------------------------------------------------------------------------
+as.POSIXct as.POSIXlt data.frame dat <- read.csv(text="Date_Time,A1,B2,C1,E2
+24/06/2012 12:20:00,NA,5.515,20,NA
+24/06/2012 13:20:00,41,NA,NA,3.519
+25/06/2012 14:00:00,NA,NA,NA,NA
+25/07/2012 14:20:00,30,NA,30,NA
+27/08/2012 15:20:00,NA,71,NA,NA
+28/09/2012 18:00:00,11,NA,55,11")
+
+dat$Date_Time <- as.POSIXct(dat$Date_Time,format="%d/%m/%Y %H:%M:%S")
+
+matplot(dat[,1],dat[2:5],type="o",pch=19,col=c("green","red","blue","black"),xaxt="n",xlab="Year-Month",ylab="Value") POSIXct axis.POSIXct(side=1,x=dat$Date_Time,format="%Y-%m")
+-------------------------------------------------------------------------------------------------------
+col=2:4 col=i lapply() approx() x y y approx() df_approx = matrix(nrow = nrow(df), ncol = 3)
+for(i in 2:4) df_approx[,i-1] = approx(df[,1], df[,i], n=length(df[[1]]) )$y
+matplot(df[,1], df_approx)
+-------------------------------------------------------------------------------------------------------
+cor A<-data.frame(A1=c(1,2,3,4,5),B1=c(6,7,8,9,10),C1=c(11,12,13,14,15 ))
+
+B<-data.frame(A2=c(6,7,7,10,11),B2=c(2,1,3,8,11),C2=c(1,5,16,7,8))
+
+cor(A,B)
+
+#           A2        B2       C2
+# A1 0.9481224 0.9190183 0.459588
+# B1 0.9481224 0.9190183 0.459588
+# C1 0.9481224 0.9190183 0.459588
+
+diag(cor(A,B))
+#[1] 0.9481224 0.9190183 0.4595880 Unit: microseconds
+                   expr     min       lq   median       uq      max neval
+        diag(cor(A, B)) 230.292 238.4225 243.0115 255.0295  352.955   100
+      mapply(cor, A, B) 267.076 281.5120 286.8030 299.5260  375.087   100
+ unlist(Map(cor, A, B)) 250.053 259.1045 264.5635 275.9035 1146.140   100 set.seed(42)
+A <- as.data.frame(matrix(rnorm(10*n),ncol=n))
+B <- as.data.frame(matrix(rnorm(10*n),ncol=n)) b <- sapply(2^(1:12), function(n) {
+    set.seed(42)
+    A <- as.data.frame(matrix(rnorm(10*n),ncol=n))
+    B <- as.data.frame(matrix(rnorm(10*n),ncol=n))
+
+    require(microbenchmark)
+    res <- print(microbenchmark(
+                   diag(cor(A,B)),
+                   mapply(cor, A, B),
+                   unlist(Map(cor,A,B)),
+                   times=10
+                 ),unit="us")
+    res$median
+})
+
+b <- t(b)
+
+matplot(x=1:12,log10(b),type="l",ylab="log10(median [µs])", xlab="log2(n)",col=1:3,lty=1)
+legend("topleft", legend=c("diag(cor(A, B))", 
+                           "mapply(cor, A, B)",
+                           "unlist(Map(cor,A,B))"),lty=1, col=1:3)
+-------------------------------------------------------------------------------------------------------
+heatmap library(gplots)
+
+# need data as matrix
+mm <- as.matrix(testdf, ncol = 3)
+
+heatmap.2(x = mm, Rowv = FALSE, Colv = FALSE, dendrogram = "none",
+          cellnote = mm, notecol = "black", notecex = 2,
+          trace = "none", key = FALSE, margins = c(7, 11)) heatmap.2 axis heatmap.2 axis(1 side addtable2plot library(plotrix)
+
+# while plotrix is loaded anyway:
+# set colors with color.scale
+# need data as matrix*
+mm <- as.matrix(testdf, ncol = 3)
+cols <- color.scale(mm, extremes = c("red", "yellow"))
+
+par(mar = c(0.5, 1, 2, 0.5))
+# create empty plot
+plot(1:10, axes = FALSE, xlab = "", ylab = "", type = "n")
+
+# add table
+addtable2plot(x = 1, y = 1, table = testdf,
+              bty = "o", display.rownames = TRUE,
+              hlines = TRUE, vlines = TRUE,
+              bg = cols,
+              xjust = 2, yjust = 1, cex = 3)
+
+# *According to `?color.scale`, `x` can be a data frame.
+# However, when I tried with `testdf`, I got "Error in `[.data.frame`(x, segindex) : undefined columns selected". color2D.matplot library(plotrix)
+par(mar = c(0.5, 8, 3.5, 0.5))
+color2D.matplot(testdf, show.values = TRUE,axes = FALSE,xlab = "",ylab = "",vcex = 2,vcol = "black",extremes = c("red", "yellow"))
+axis(3, at = seq_len(ncol(testdf)) - 0.5,
+     labels = names(testdf), tick = FALSE, cex.axis = 2)
+axis(2, at = seq_len(nrow(testdf)) -0.5,
+     labels = rev(rownames(testdf)), tick = FALSE, las = 1, cex.axis = 2)
+-------------------------------------------------------------------------------------------------------
+lattice library(plotrix)
+color2D.matplot(t(Data[ , 2]), show.legend = TRUE, extremes = c("yellow", "red")) ?color2D.matplot par(mar = c(5.1, 4.1, 0, 2.1))
+windows(width = 10, height = 2.5)
+color2D.matplot(t(Data[ , 2]),show.legend = TRUE, axes = TRUE,xlab = "",ylab = "",extremes = c("yellow", "red"))
+-------------------------------------------------------------------------------------------------------
+?predict.survreg predict lfit <- survreg(Surv(time, status) ~ ph.ecog, data=lung)
+pct <- 1:98/100   # The 100th percentile of predicted survival is at +infinity
+ptime <- predict(lfit, newdata=data.frame(ph.ecog=2), type='quantile',
+                 p=pct, se=TRUE)
+matplot(cbind(ptime$fit, ptime$fit + 2*ptime$se.fit,ptime$fit - 2*ptime$se.fit)/30.5, 1-pct,
+         xlab="Months", ylab="Survival", type='l', lty=c(1,2,2), col=1)
+ # The plot should be examined since you asked for a median survival time
+ abline(h= 0.5)
+ # You can  drop a vertical from the intersection to get that graphically str(ptime)
+List of 2
+ $ fit   : num [1:98] 9.77 16.35 22.13 27.46 32.49 ...
+ $ se.fit: num [1:98] 2.39 3.53 4.42 5.16 5.82 ... ptime$fit[which((1-pct)==0.5)]
+# [1] 221.6023
+-------------------------------------------------------------------------------------------------------
+matplot matplot(obs_v_exp, type='l')
+-------------------------------------------------------------------------------------------------------
+> matplot (matrix(1:100, nrow=10, ncol=10)[1], matrix(1:100, nrow=12, ncol=10))
+Error in matplot(matrix(1:100, nrow = 10, ncol = 10)[, 1], matrix(1:100,  : 
+'x' and 'y' must have same number of rows add=TRUE matplot(data1[,1:2], xlim = c(0,max_valuex), ylim = c(0,max_valuey))
+matplot(data2[,1:2], add=TRUE)
+-------------------------------------------------------------------------------------------------------
+mat <- sapply(-10:10, function(mean) dnorm(seq(-20,20,len=210), mean))+
+        sapply(rep(0,21), function(mean) dnorm(seq(-20,20,len=210), mean))
+matplot(seq(-20,20,len=210), mat, type="n", ylim=c(0,1.5))
+matlines(seq(-20,20,len=210), mat+rep( seq(0,1, len=21), each=210), lty=1,col=1)
+-------------------------------------------------------------------------------------------------------
+png()  # default file name is "Rplot001.png" in your working directory
+matplot(M, cbind(A,B,C), type="b", xlab= "Minutes", ylab=expression(Temperature~degree*F), xlim=range(M)+c(-5,5), ylim=range(c(A,B,C)) +c(-1,1) )
+dev.off()
+# See ?legend and ?title for further annotation
+-------------------------------------------------------------------------------------------------------
+matplot ggplot HDL.mon.mat <- aggregate(dfrm$Flow, 
+               list(  dfrm$Year + dfrm$Month/12), 
+               quantile, prob=c(0.1,0.25,0.5,0.75, 0.9), na.rm=TRUE)
+matplot(HDL.mon.mat[,1], HDL.mon.mat$x, type="pl")
+-------------------------------------------------------------------------------------------------------
+matplot # Create some data
+df <- data.frame(ID=1:10, Test1=sample(50:100, 10), 
+                 Test2=sample(50:100, 10), Test3=sample(50:100, 10))
+# Plot it! We remove the ID column, which we don't need to plot
+matplot(t(df)[-1,], t="l", lty=1, las=1, ylab="Score", xlab="Test", xaxt="n")
+# Use the column labels as axis titles
+axis(1, at=1:(ncol(df)-1), labels=names(df)[-1])
+-------------------------------------------------------------------------------------------------------
+Df <- read.csv('https://dl.dropboxusercontent.com/s/nj243qcs6sx6fu8/Rates.csv?dl=1&token_hash=AAEvqZvmuesLhKJSrYHiasj-h0ULrABzbU0Q39bU6FJSCQ', 
+           skip=19)
+
+X <- as.matrix(Df[,grep("x",names(Df))])
+Y <- as.matrix(Df[,grep("y",names(Df))])
+
+matplot(X, Y, type="l", lty=1)
+-------------------------------------------------------------------------------------------------------
+data <- as.data.frame(data)
+data$dates <- as.Date(as.character(data$dates), format="%Y%m%d")
+ head(data)
+       dates col1 col2 col3 col4
+1 2010-11-01    1   11   21   31
+2 2010-11-02    2   12   22   32
+3 2010-11-03    3   13   23   33
+4 2010-11-04    4   14   24   34
+5 2010-11-05    5   15   25   35
+6 2010-11-06    6   16   26   36 graphics::matplot png("my.png")
+matplot(x=data[[1]], y=data[-1], type="l", xaxt="n")
+axis(1, at=data$dates,labels=as.character(data$dates))
+dev.off() > p <- ggplot(data=data, aes(x=dates, y=data[,2:5]) )+geom_line()
+> p
+Don't know how to automatically pick scale for object of type data.frame. Defaulting to continuous
+Error: Aesthetics must either be length one, or the same length as the dataProblems:data[, 2:5]
+-------------------------------------------------------------------------------------------------------
+library(microbenchmark)
+library(data.table)
+timings <- sapply(1:10, function(n) {
+  DF <- data.frame(id=rep(as.character(seq_len(2^n)), each=40), val=rnorm(40*2^n), stringsAsFactors=FALSE)
+  DT <- data.table(DF, key="id")     
+  tofind <- unique(DF$id)[n-1]
+  print(microbenchmark( DF[DF$id==tofind,],
+                        DT[DT$id==tofind,],
+                        DT[id==tofind],
+                        `[.data.frame`(DT,DT$id==tofind,),
+                        DT[tofind]), unit="ns")$median
+})
+
+matplot(1:10, log10(t(timings)), type="l", xlab="log2(n)", ylab="log10(median (ns))", lty=1)
+legend("topleft", legend=c("DF[DF$id == tofind, ]",
+                           "DT[DT$id == tofind, ]",
+                           "DT[id == tofind]",
+                           "`[.data.frame`(DT,DT$id==tofind,)",
+                           "DT[tofind]"),
+       col=1:5, lty=1)
+-------------------------------------------------------------------------------------------------------
+matplot # Select first column (Count) as x variable, and all colums _except_ x as y variable. 
+
+# basic, default matplot
+matplot(x = df[ , 1], y = df[ , -1] , type = "l")
+
+# slightly customized matplot
+# create a vector of numbers, one for each response variable
+# numbers are mapped to colours in plot and legend
+cols = seq_len( ncol(df)-1 )
+
+matplot(x = df[, 1], y = df[ , -1] ,type = "l",lty = 1,col = cols)
+
+legend("bottom", 
+       legend = names(df[ , -1]), 
+       lty = 1,
+       col = cols) ggplot library(reshape2)
+library(ggplot2)
+df2 <- melt(df, id.var = "Count")
+ggplot(data = df2, aes(x = Count, y = value, colour = variable)) +
+  geom_line()
+-------------------------------------------------------------------------------------------------------
+matplot matplot(t(matrix(runif(10*180),ncol=180)),type='l',lty=1) ## 10x180 matrix
+-------------------------------------------------------------------------------------------------------
+str colSums str(sort(colSums(data[,2:length(data)]), 
+                 decreasing = TRUE)[1:3])
+#  Named num [1:3] 144 31 20
+#  - attr(*, "names")= chr [1:3] "column3" "column2" "column4" names colnames namesOfThreeLargest <- names(threeLargest) matplot matplot(data[, namesOfThreeLargest], type="l")
+-------------------------------------------------------------------------------------------------------
+sort() order() id <- order(colSums(Data[-1]),decreasing=TRUE)[1:3]
+matplot(Data[id],type='l')
+-------------------------------------------------------------------------------------------------------
+k = 20
+mmean = runmean(mm, k)
+
+matplot(mmean, type="l", lwd=3, lty=1)
+-------------------------------------------------------------------------------------------------------
+na.rm=TRUE tapply Alltubes <- tapply(datIn$Material.loss.interval,
+                   list(as.factor(datIn$Measurement.location),
+                        as.factor(datIn$Tube.number)),
+                   sd, na.rm=TRUE) par(mfrow=c(2,2), mar=c(4,4,1,1), oma=c(1,1,1,1))
+
+boxplot(Alltubes, names=colnames(Alltubes), xlab="Tube numbers",
+        ylab="standard deviation")
+
+boxplot(t(Alltubes), names=rownames(Alltubes), 
+        xlab="Measurement locations", ylab="standard deviation")
+
+matplot(colnames(Alltubes), t(Alltubes), xlab="Tube numbers", ylab="standard deviation", type="b", lty=1, pch=19)
+
+matplot(rownames(Alltubes), Alltubes, xlab="Measurement locations", ylab="standard deviation", type="b", lty=1, pch=19)
+-------------------------------------------------------------------------------------------------------
+with(dat,matplot(x=No.,y=cbind(Replies,PlusOnes,Reshares),type="l")
+-------------------------------------------------------------------------------------------------------

@@ -1,0 +1,38 @@
+rasterImage(image, 200, 400, 250, 450, angle=15, interpolate=FALSE)
+$rasterImage(as.raster, xleft=d2, xright=d2+nc, ybottom=-d2, ytop=-d2+nr+1, interpolate=FALSE, angle=45)
+
+rasterImage(imagemat, range, range, range, range, interp=F)
+rasterImage(img, lim, lim, lim, lim)
+rasterImage(r, 1, 1, 2, 2)
+rasterImage(image3, 0.6, 0.3, 0.7, 0.4)
+rasterImage(plotPNG, 0, 0, 1, 1)
+$rasterImage(ima, lim, lim, lim, lim)
+rasterImage(legend_image, 0, 0, 1, 1)
+rasterImage(x, 1, 1, 2, 2)
+rasterImage(image4, 0.3, 0.7, 0.4, 0.8)
+rasterImage(img2, 300, 300, 400, 400)
+rasterImage(bar, 0, 0, 1, 1)
+rasterImage(pngimg, 4.5, 4.5, 5, 5)
+rasterImage(r, -1, -1, 1, 1)
+rasterImage(image, 0.2, 0.2, 0.3, 0.3)
+rasterImage(image, 100, 400, 150, 450)
+rasterImage(img, 100, 100, 200, 200)
+rasterImage(image2, 0.6, 0.6, 0.7, 0.7)
+
+$rasterImage(images[[ii]], xleft=x[ii] - 0.5*width, ybottom= y[ii] - 0.5*height, xright=x[ii] + 0.5*width, ytop= y[ii] + 0.5*height, interpolate=FALSE)
+
+rasterImage(img, x[1]-0.1, x[2]-0.1, x[1]+0.1)
+rasterImage(image, tmp2[1], tmp2[3], tmp2[2], tmp2[4])
+$rasterImage(m, usr[1], usr[3], usr[2], usr[4])
+
+rasterImage(colmat, 0, 1, 10, 11, interpolate=FALSE)
+rasterImage(z, -0.03, -0.03, 1.03, 1.03, interpolate=FALSE)
+rasterImage(image, 100, 300, 150, 350, interpolate=FALSE)
+rasterImage(ice2, -100, -40, 100, 40, interpolate=FALSE)
+rasterImage(image, 200, 300, 200 + xinch, 300 + yinch, interpolate=FALSE)
+rasterImage(matrix, 0, 0, 1, 1, interpolate=FALSE)
+$rasterImage(z, -0.04, -0.04, 1.04, 1.04, interpolate=FALSE)
+
+rasterImage(vnorm, xrange[1], yrange[1], xrange[2], yrange[2], interpolate=FALSE)
+$rasterImage(pics[[blockPic[i, j]]], seqRows[i], seqCols[j], seqRows[i+1], seqCols[j+1], interpolate=FALSE)
+

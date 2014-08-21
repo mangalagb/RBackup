@@ -1,0 +1,354 @@
+$boxplot(zx [, order, horizontal = FALSE, outline = FALSE)
+
+boxplot(x, horizontal=TRUE, axes=FALSE, range=2)
+$boxplot(R, horizontal = TRUE, ..)
+
+$boxplot(ci[1, ], ci[2, ], ci[3, ], ci[4, ])
+
+$boxplot(df.agg, , border="red")
+
+boxplot(sat.act, sat.act, col ='pink')
+$boxplot(ExampleData, col="purple", par, ylab="Dissolved Aluminum")
+
+boxplot(y1, y2, ylim=lmts, names=c, xlab="y", type=1)
+boxplot(test, test, names=c, data=test, names=c)
+boxplot(m1, m2, names=z)
+boxplot(x1, x2, ylim=lmts, names=c, xlab="x")
+$boxplot(yourdata, yourdata, main="ZScores", xlab="Group", ylab="ZScorevalue", names=c)
+
+boxplot(x, horizontal=T)
+boxplot(X, horizontal = TRUE, axes = FALSE, staplewex = 1)
+$boxplot(x, horizontal=TRUE, axes=FALSE)
+
+$boxplot(df, border=c, lwd=c)
+
+boxplot(df, names=2002:2011)
+boxplot(matrix, names=c)
+boxplot(temp, names = c)
+$boxplot(fitted, names = month.abb, cex.axis = 0.8)
+
+boxplot(dset2, plot=FALSE, names="month2")
+$boxplot(dset1, plot=FALSE, names="month1")
+
+boxplot(x, plot=FALSE)
+boxplot(testdata, plot=F)
+boxplot(X, plot=FALSE)
+$boxplot(dd, plot=FALSE)
+
+$boxplot(df, names=2002:2011, col=colors)
+
+boxplot(dd, col=cols, header=T)
+boxplot(myd, col = "lightgreen")
+$boxplot(myd, col = "lightgreen", ylim=c)
+
+$boxplot(y1, col="grey", outcol="red", col="grey", pars=list)
+
+boxplot(exps, col="red", ylim=c, outline=FALSE, axes=FALSE)
+boxplot(base, xlim=c, col="gray", xaxt="n", ylab="Base values", outline=FALSE)
+boxplot(exps, col="red", xaxt="n", ylim=c, outline=FALSE, axes=FALSE)
+$boxplot(base, col="gray", xaxt="n", ylab="Base values", outline=FALSE, axes=FALSE)
+
+boxplot(data, pars=list)
+$boxplot(data2, pars=list)
+
+$boxplot(df, names=2002:2011, boxcol="blue", medcol="red", whiskcol="blue", staplecol="blue", ylim = c, lty=1, las=1, ylab = "NDVI", outline = FALSE, boxfill = FALSE)
+
+boxplot(m, outline = FALSE)
+$boxplot(data, outline=F)
+
+$boxplot(b, add=TRUE, col=2)
+
+$boxplot(count ~ spray, data = InsectSprays, col = "lightgray", add = TRUE)
+
+$boxplot(count ~ spray, data = InsectSprays, notch = TRUE, add = TRUE, col = "blue")
+
+$boxplot(len~supp*dose, data=ToothGrowth, notch=TRUE, col=, main="Tooth Growth", xlab="Suppliment and Dose", axes = FALSE)
+
+$boxplot(rnorm, horizontal = TRUE, notch = TRUE, boxlwd = 4)
+
+$boxplot(dat[dat, ], notch=TRUE)
+
+boxplot(a, at = 0:2*3 + 1, xlim = c, ylim = range, xaxt = "n")
+boxplot(aerobic1, at = 1)
+$boxplot(a, at=1, xlim=c)
+
+$boxplot(sub_dat, add=TRUE, axes=FALSE, at=i)
+
+$boxplot(PIM[, x], MYC [, x], OBX[, x], WDR[, x], EV[, x], main = colnames, xlab = "PIM, MYC, OBX, WDR, EV")
+
+boxplot(results)
+boxplot(X, yaxt = "n")
+boxplot(x~factor, main=title)
+boxplot(d0, ylim=lmts)
+boxplot(x ~ factor, main = var)
+boxplot(count~, InsectSprays)
+boxplot(t)
+boxplot(y)
+boxplot(var1)
+boxplot(forboxplot)
+boxplot(M)
+boxplot(cats[, 2:3])
+boxplot(y[, x], main=names)
+boxplot(coredata)
+boxplot(example, xaxt="n", ylab="p value", xlab="number of genes")
+boxplot(mouse_data_raw, main="Mouse raw data")
+boxplot(log10, yaxt="n")
+boxplot(pb, las=2, cex.axis=.8)
+boxplot(x ~ y, data=e)
+boxplot(Alltubes)
+boxplot(Data~month, DF)
+boxplot(c)
+boxplot(d, xaxt="n")
+boxplot(d1, ylim=lmts)
+boxplot(fourth boxplot)
+boxplot(matrix, medcol="red")
+boxplot(rnorm)
+boxplot(x[, VarList[i]]~x[, GroupVar], main=paste)
+boxplot(split)
+boxplot(mydata_x[, name], main=b.name, xlab=name)
+boxplot(V1 ~ V3, droplevels)
+boxplot(xm)
+boxplot(v)
+$boxplot()
+boxplot(sdiff[, -1])
+boxplot(unlist)
+boxplot(test)
+boxplot(value~Treatment+variable, v)
+boxplot(d)
+boxplot(R)
+boxplot(x ~ c, subset=c %in% c, data=df)
+boxplot(testout, ylab="X2")
+boxplot(dummydata)
+boxplot(1:10)
+boxplot(1:10, yaxt = "n")
+boxplot(dd, boxwex = 0.3)
+boxplot(dd, axes=FALSE, frame.plot=TRUE, ylim=c)
+boxplot(x)
+boxplot(DATA.oner, main = "Box Plots of DATA.oner")
+boxplot(d, whisklty = 0, staplelty = 0)
+boxplot(datablock)
+boxplot(e)
+boxplot(vv)
+boxplot(df.col1)
+boxplot(df[, -1]/sqrt)
+boxplot(cars, xlab='dist')
+boxplot(w1)
+boxplot(HR~Phase, data=df2, main="Heart Rate of Females", xlab="Phase", ylab="Heart Rate, ylim=c, par)
+boxplot(fréquence~répétition, simPF)
+boxplot(x ~ group)
+boxplot(dd_tmp)
+boxplot(data, main = '')
+boxplot(x[, VarList[i]], main=paste)
+boxplot(TGS)
+boxplot(am, gap=list, axis.labels=T)
+boxplot(testout, ylab="Y")
+boxplot(Xtab)
+boxplot(variables, ~.)
+boxplot(wt, main="Boxplot of wt")
+boxplot(AvgVisits)
+boxplot(x2)
+boxplot(DATA.oner)
+boxplot(x, ylim=c)
+boxplot(X)
+boxplot(dataframe[, i])
+boxplot(d1)
+boxplot(plotdata[, i], main=names, type="l")
+boxplot(x, yaxt="n")
+boxplot(x[, i], main = names)
+boxplot(times3)
+boxplot(values~Treatment+ind, v)
+boxplot(data)
+boxplot(example)
+boxplot(a, ylim=c)
+boxplot(eval)
+boxplot(d, axes=FALSE, y=1:5)
+boxplot(res)
+boxplot(x~factor)
+boxplot(x~g)
+boxplot(x = as.list)
+boxplot(df, las=2)
+boxplot(c, ylim=c, axes=F)
+boxplot(a)
+boxplot(score, besides=T)
+boxplot(testout, ylab="X1")
+boxplot(mtcars)
+boxplot(df.m)
+boxplot(d, axes=FALSE)
+boxplot(DATA.oner, main = "Box Plot of DATA.oner")
+
+boxplot(las_score ~ leverancier, data=dat, notch=TRUE)
+boxplot(response~ordered, data=data, notch=TRUE, xlab="treatments", ylab="response")
+boxplot(Sepal.Length ~ Species, data = iris, notch = TRUE)
+$boxplot(response~fact, data=data, notch=TRUE, xlab="treatments", ylab="response")
+
+boxplot(xvar ~ f1, data=frame, plot=0)
+boxplot(len~supp*dose, data=ToothGrowth, plot = FALSE)
+$boxplot(value~cond, data=df, plot=FALSE)
+
+boxplot(Aluminum_Dissolved ~ Site, data = dat, col="purple", ylab = "Dissolved Aluminum", xlab = "Dissolved Aluminum", axes = FALSE)
+$boxplot(count ~ spray, data = InsectSprays, col = "lightgray")
+boxplot(Aluminum_Dissolved ~ Site, data = dat, col="purple", ylab = "Dissolved Aluminum", xlab = "Dissolved Aluminum", las=2, mar=c)
+boxplot(count ~ spray, data = InsectSprays, col = "lightgray", xaxt = "n", xlab = "")
+boxplot(count ~ spray, data = InsectSprays, col = "lightgray", main = "plot title")
+boxplot(count ~ spray, data = InsectSprays, col = "lightgray", frame=F)
+boxplot(count ~ spray, data = InsectSprays, col = "lightgray", frame = FALSE)
+boxplot(count~spray, data=InsectSprays, col=c)
+
+$boxplot(decrease ~ treatment, data = OrchardSprays, log = "y", col = "bisque")
+
+$boxplot(b~a, add=TRUE)
+
+boxplot(xvar ~ f1, data=frame, xlab="input values", names=paste)
+boxplot(Conductivity ~ Treatment + Time, names=rep, data=dat)
+$boxplot(data~reorder, data=df, las=2, names=unique)
+
+$boxplot(param~grp, data=snp, horizontal=TRUE, names=tt[[1]])
+
+$boxplot(count ~ spray, data = InsectSprays, outline = FALSE, boxlty = 0, whisklty = 0, staplelty = 0)
+
+$boxplot(x ~ var, yaxt="n", log="y")
+
+$boxplot(count ~ bymedian, data = InsectSprays, xlab = "Type of spray", ylab = "Insect count", main = "InsectSprays data", varwidth = TRUE, col = "lightgray")
+
+$boxplot(V1~factor, data=datasetcomb, at=c, ylab="Cell", xlab="Category/Year", xaxt="n", col=c)
+
+boxplot(S1G1 ~ R, data=x1, main="Output result", las = 2, pch=16, cex = 1, col = "lightblue", xlab = "R", ylab = "SNP values", ylim =c, border ="blue", boxwex = 0.3)
+$boxplot(count ~ spray, data = InsectSprays, col = "lightgray", border=c)
+
+boxplot(weight~Diet, horizontal = F, main = "", xlab = "Diet", ylab = "", pars = list, axes = FALSE)
+boxplot(weight~Chick, horizontal = F, main = "", xlab = "Chick", ylab = "", pars = list, axes = FALSE)
+$boxplot(weight~Time, horizontal = F, main = "", xlab="Time", ylab="Weight", pars = list, axes = FALSE)
+
+$boxplot(col3 ~ person, data=dat, main="Boxplot of three samples.", ylab="col3")
+
+$boxplot(b ~ a)
+
+$boxplot(Sal ~ interaction, data=test.data)
+
+$boxplot(data=meltData, value~variable)
+
+$boxplot(b ~ a_reordered)
+
+$boxplot(OM ~ Depth, data = dat, axes = FALSE, ann = FALSE)
+
+$boxplot(weight ~ interaction, dat=Daten)
+
+$boxplot(col3 ~ person, data=dat)
+
+$boxplot(series ~ time, data=Data)
+
+$boxplot(element~Season, data=Data, subset=sampletype==1)
+
+$boxplot(Freq ~ Var1, ylim = c)
+
+$boxplot(percent~value)
+
+$boxplot(time~month, data=dfrm)
+
+$boxplot(mylist[[i]][s])
+
+$boxplot(value~variable, data=new_vv)
+
+$boxplot(values ~ groups, data = dat, ylab = expression, xlab = expression)
+
+$boxplot(value~newgroup, data=data.2)
+
+$boxplot(y ~ cut)
+
+$boxplot(values ~ var)
+
+$boxplot(data~reorder, data=df)
+
+$boxplot(y~x1)
+
+$boxplot(data=dat, Conductivity ~ Treatment + Time)
+
+$boxplot(Houston_Load ~ Hour, data = HWD, axes = FALSE)
+
+$boxplot(vals~grp, data=newres)
+
+$boxplot(y~x, data=dft, yaxt='n')
+
+$boxplot(b~a)
+
+$boxplot(Ozone ~ Month, data = airquality)
+
+$boxplot(count ~ spray, data = InsectSprays, axes=FALSE)
+
+$boxplot(cost ~ type, data=DF)
+
+$boxplot(values ~ groups, data = dat)
+
+$boxplot(y ~ x, data=dfrm, ylim=c)
+
+$boxplot(count ~ spray, data = InsectSprays, axes=F, ylim=c)
+
+$boxplot(value~variable, data = xx1)
+
+$boxplot(v1 ~ v2)
+
+$boxplot(V2~grp, data=dafrm)
+
+$boxplot(V1 ~ factor, data=dat[ dat, ])
+
+$boxplot(col3 ~ col5 + myfile, data = mydata)
+
+$boxplot(mpg ~ cyl, data = mtcars, ylab = "Potrošnja goriva", xlab = "Broj cilindara", main = "Dijagram raspršenja")
+
+$boxplot(Score~Gender, data=df)
+
+$boxplot(samp~dist)
+
+$boxplot(value~code, data=x)
+
+$boxplot(quantity ~ bymedian)
+
+$boxplot(visits ~ as.factor, data=myData)
+
+$boxplot(car ~ paint, data=temp)
+
+$boxplot(values ~ group, data=dat, las=3)
+
+$boxplot(depth~hour, data=x, xlab="Hour of day", ylab="Depth)
+
+$boxplot(e[[1]], e[[2]])
+
+$boxplot(Gene[[i]], ylim=my.ylim, axes=FALSE)
+
+$boxplot(betaplasma~vituse)
+
+$boxplot(test~group1, data=out)
+
+$boxplot(simPF[[2]]~simPF[[1]])
+
+$boxplot(x, horizontal=TRUE, axes=FALSE, outline=FALSE)
+boxplot(data, horizontal=TRUE, outline=FALSE, ylim=c)
+boxplot(zx, horizontal = FALSE, outline = FALSE)
+
+boxplot(Tom[, "col3"], Bob[, "col3"], Stu[, "col3"])
+boxplot(measurement ~ measurement_option, mydf, mydf, as.vector)
+boxplot(diving.means, "", names)
+$boxplot(V1~droplevels, subset, ..., ...)
+
+boxplot(v, range=2, coef=2)
+boxplot(x ~ c, data=dfMod, "character")
+boxplot(sprdiurnal, e..t..c...)
+boxplot(e, e)
+boxplot(first, second, boxwex=0.3)
+boxplot(x, range=0, main="range=0")
+boxplot(DAYS.TO.FAILURE~TOTAL.LACE, cex.axis=.8, DAYS.TO.FAILURE, DAYS.TO.FAILURE)
+boxplot(split, ...)
+boxplot(e[, 1], e[, 2])
+boxplot(x, range=1.5, main="range=1.5")
+boxplot(x, range=1.7, main="range=1.7")
+$boxplot(as.formula, DF)
+
+boxplot(aerobic2, at = 2, add = TRUE)
+boxplot(x[1:5, ], add=T, at=1.5:5.5, boxwex=0.25, axes=F)
+boxplot(b, at=2, add=TRUE)
+boxplot(aerobic3, at = 3, add = TRUE)
+$boxplot(b, at = 0:2*3 + 2, xaxt = "n", add = TRUE)
+
+$boxplot(dset3, plot=FALSE, names="month3", result2, result3)
+boxplot(w1[, ], w2[, ], w3[, ], outline=FALSE, names=c)
+

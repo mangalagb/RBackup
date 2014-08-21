@@ -1,0 +1,873 @@
+expression(lab) lab lab text(0.5, 0.5, parse(text=lab), cex=cex, font=font) pairs pairs(dat, labels=c(expression(alpha), expression(beta), expression(gamma)))
+-------------------------------------------------------------------------------------------------------
+pairs(pc$x) plot(pc$x[, c(1,3)])  # e.g. pc1 and pc3
+-------------------------------------------------------------------------------------------------------
+#!/usr/bin/Rscript
+
+daq = read.table(file('mydata.dat'))
+X11()
+pairs(daq)
+
+message("Press Return To Continue")
+invisible(readLines("stdin", n=1)) /path/to/myscript.r Rscript /path/to/myscript.r
+-------------------------------------------------------------------------------------------------------
+DF R> pairs(~X+Y+Z, data=df, log="xy")
+There were 30 warnings (use warnings() to see them) log pairs() log(1 + x) pairs() pairs(~X+Y+Z, data=log(1+DF))
+-------------------------------------------------------------------------------------------------------
+paris pairs pairs add points col nc <- 100
+set.seed(1)
+x<-rnorm(nc)
+y<-rnorm(nc)
+z<-rnorm(nc)
+m<-cbind(x,y,z)
+
+cols <- ifelse(x>0.7,"red","black")
+pairs(m,col=cols) pairs points nc <- 100
+
+X<-rnorm(nc)
+Y<-rnorm(nc)
+Z<-rnorm(nc)
+m<-cbind(X,Y,Z)
+
+panelfun <- function(x,y,foo=X,...){
+    points(x[foo<0.7],y[foo<0.7],col="black",...)
+    points(x[foo>0.7],y[foo>0.7],col="red",...)
+}
+
+pairs(m,panel=panelfun) ... points pairs(m,panel=panelfun,pch=16)
+-------------------------------------------------------------------------------------------------------
+my_asc_files = dir("../somepath", pattern="*.asc", recursive=T, full.names=T)
+files_I_want = my_asc_files[c(1,12,32,33)] library(raster)
+my_rasters = lapply(files_I_want, raster) pairs(my_rasters) for(i in 1:length(my_rasters)) 
+  for(j in i:length(my_rasters))   
+    if(i != j) {
+      df = na.omit(data.frame(values(my_rasters[[i]]), values(my_rasters[[j]])))
+      cor(df[,1], df[,2])
+    }
+-------------------------------------------------------------------------------------------------------
+pairs f <- factanal(mtcars, factors=3)
+pairs(f$loadings) f <- factanal(mtcars, factors=5)
+pairs(f$loadings, col=1:ncol(mtcars), upper.panel=NULL, main="Factor loadings")
+par(xpd=TRUE) 
+legend('topright', bty='n', pch='o', col=1:ncol(mtcars), attr(f$loadings, 'dimnames')[[1]], title="Variables") library(scatterplot3d)
+f <- factanal(mtcars, factors=3)
+scatterplot3d(as.data.frame(unclass(f$loadings)), main="3D factor loadings", color=1:ncol(mtcars), pch=20)
+-------------------------------------------------------------------------------------------------------
+ggally_points getPlot putPlot custom_scale <- ggpairs(data.frame(x=exp(rnorm(1000)), y=rnorm(1000)),
+upper=list(continuous='points'), lower=list(continuous='points'))
+subplot <- getPlot(custom_scale, 1, 2) # retrieve the top left chart
+subplotNew <- subplot + scale_y_log10() # change the scale to log
+subplotNew$type <- 'logcontinuous' # otherwise ggpairs comes back to a fixed scale
+subplotNew$subType <- 'logpoints'
+custom_scale <- putPlot(custom_fill, subplotNew, 1, 2)
+-------------------------------------------------------------------------------------------------------
+M pnl <- function(x, y = x) { par(new = TRUE); ccf(x, y) }
+pairs(as.data.frame(M), upper.panel = pnl, diag.panel = pnl, cex.labels = 1)
+-------------------------------------------------------------------------------------------------------
+ddbind <- do.call(cbind, split(dd, dd$State_CD)  )
+pairs(ddbind[,grep("Pred", names(ddbind) )] )
+pairs(ddbind[,grep("Act", names(ddbind) )] )
+-------------------------------------------------------------------------------------------------------
+ggpairs my_cor <- ggally_cor(mtcars, aes_string(x = "mpg", y = "drat", colour = "cyl")
+          , corSize = 10) old_matrix <- ggpairs(mtcars, columns = c(1, 5), colour = "cyl")
+new_matrix <- putPlot(old_matrix, my_cor, 1, 2)
+-------------------------------------------------------------------------------------------------------
+label.pos = 0.5 pairs(U,panel = mypanel, diag.panel=mydiag.panel,label.pos = 0.5) 0.5 + has.diag/3 has.diag TRUE diag.panel
+-------------------------------------------------------------------------------------------------------
+GGally library(ggplot2)
+    library(reshape2)
+    library(plyr)
+    library(GGally)
+    #
+    n <- 100   # number of observations
+    i <- 4     # number of variables, cannot exceed 26 since letters are used as labels
+    #
+    # create data, following @Davy
+    d <- data.frame(id= gl(n, 1, labels, paste("id", 1:n,sep="")), 
+                    variable=gl(i, n, labels=LETTERS[1:i]),value=rnorm(n*i))
+    #
+    # reshape for plotting, from @baptise
+    group <- unique(d$variable)
+    m <- dcast(d, ...~variable, subset=.(variable %in% group))
+    #
+    # make scatterplot matrix using GGally package
+    # as suggested by @Dason
+    ggpairs(m[,2:ncol(m)], 
+           lower = list(continuous = "smooth"),
+           axisLabels="show")
+    # done! ggplot2 GGally R
+-------------------------------------------------------------------------------------------------------
+Dat <- matrix(exp(rnorm(100,0,2) + rnorm(300)),100,3)
+pairs(Dat,log="xy")
+-------------------------------------------------------------------------------------------------------
+require(GGally)
+mtcars$cyl <- as.factor(mtcars$cyl)
+ggpairs(mtcars, columns = c(1, 5), colour = "cyl", params=list(corSize=12))
+-------------------------------------------------------------------------------------------------------
+pairs pairs par(usr = c(0, 1, 0, 1)) log = "xy" par(usr = c(0, 1, 0, 1), xlog = FALSE, ylog = FALSE) ## adapted from panel.cor in ?pairs
+panel.cor <- function(x, y, digits=2, cex.cor, quarter, ...)
+{
+  usr <- par("usr"); on.exit(par(usr))
+  par(usr = c(0, 1, 0, 1), xlog = FALSE, ylog = FALSE)
+  r <- rev(tapply(seq_along(quarter), quarter, function(id) cor(x[id], y[id])))
+  txt <- format(c(0.123456789, r), digits=digits)[-1]
+  txt <- paste(names(txt), txt)
+  if(missing(cex.cor)) cex.cor <- 0.8/strwidth(txt)
+  text(0.5, c(0.2, 0.4, 0.6, 0.8), txt)
+}
+
+
+-------------------------------------------------------------------------------------------------------
+custom_iris <- ggpairs(iris,upper = "blank",lower = "blank",
+                       title = "Custom Example")
+
+p1 <- ggplot(iris,aes(x = Sepal.Length,y = Sepal.Width)) + 
+          geom_point(size = 1,alpha = 0.3)
+p2 <- ggplot(iris,aes(x = Sepal.Width,y = Sepal.Length)) + 
+          geom_point()
+
+custom_iris <- putPlot(custom_iris,p1,2,1)
+custom_iris <- putPlot(custom_iris,p2,3,2)
+
+custom_iris ?ggpairs
+-------------------------------------------------------------------------------------------------------
+> word5
+[1] "hotter the doghou se would be bec ause the col or was diffe rent" > abc1_pairs
+    word1  word2
+1  hotter    the
+2     the doghou
+3  doghou     se
+4      se  would
+5   would     be
+6      be    bec
+7     bec   ause
+8    ause    the
+9     the    col
+10    col     or
+11     or    was
+12    was  diffe
+13  diffe   rent # Recursively delete wordpairs which lead to a correct word
+merge_wordpairs = function(wordpairs) {
+  require(plyr)
+  merged_pairs = as.character(mlply(wordpairs, merge_word))
+  correct_words_idxs = which(sapply(merged_pairs, word_correct))
+  if(length(correct_words_idxs) == 0) {
+    return(wordpairs)
+  } else {
+    message(sprintf("Number of words about to be merged in this pass: %s", length(correct_words_idxs)))
+    for(idx in correct_words_idxs) {
+      wordpairs = merge_specific_pair(wordpairs, idx, delete_pair = FALSE)
+    }
+    return(merge_wordpairs(wordpairs[-correct_words_idxs,])) # recursive call
+  }
+} > word5 <- "hotter the doghou se would be bec ause the col or was diffe rent"
+> abc1 = strsplit(word5, split = " ")[[1]]
+> abc1_pairs = wordlist2wordpairs(abc1)
+> abc1_pairs
+    word1  word2
+1  hotter    the
+2     the doghou
+3  doghou     se
+4      se  would
+5   would     be
+6      be    bec
+7     bec   ause
+8    ause    the
+9     the    col
+10    col     or
+11     or    was
+12    was  diffe
+13  diffe   rent
+> abc1_merged_pairs = merge_wordpairs(abc1_pairs)
+Number of words about to be merged in this pass: 4
+> merged_sentence = paste(wordpairs2wordlist(abc1_merged_pairs), collapse = " ")
+> c(word5, merged_sentence)
+[1] "hotter the doghou se would be bec ause the col or was diffe rent"
+[2] "hotter the doghouse would be because the color was different" # A bunch of functions
+# Data transformation
+wordlist2wordpairs = function(word_list) {
+  require(plyr)
+  wordpairs = ldply(seq_len(length(word_list) - 1), 
+                    function(idx) 
+                      return(c(word_list[idx], 
+                               word_list[idx+1])))
+  names(wordpairs) = c("word1", "word2")
+  return(wordpairs)
+}
+wordpairs2wordlist = function(wordpairs) {
+  return(c(wordpairs[[1]], wordpairs[[2]][nrow(wordpairs)]))
+}
+
+# Some checking functions
+# Is the word correct?
+word_correct = function(word) return(nrow(aspell(factor(word))) == 0)
+# Merge two words
+merge_word = function(word1, word2) return(paste(word1, word2, sep = ""))
+
+# Merge a specific pair, option to postpone deletion of pair
+merge_specific_pair = function(wordpairs, idx, delete_pair = TRUE) {
+  # merge pair into word
+  merged_word = do.call("merge_word", wordpairs[idx,])
+  # assign the pair to the idx above
+  if(!(idx == 1)) wordpairs[idx - 1, "word2"] = merged_word
+  if(!(idx == nrow(wordpairs))) wordpairs[idx + 1, "word1"] = merged_word
+  # assign the pair to the index below (if not last one)
+  if(delete_pair) wordpairs = wordpairs[-idx,]
+  return(wordpairs)
+}
+-------------------------------------------------------------------------------------------------------
+GGally require(GGally)
+data(tips)
+tips.sample <- tips[ ,c("total_bill", "tip", "day")]
+
+ggpairs(tips.sample, upper = list(continuous = "points", combo = "box"), 
+                     lower = list(continuous = "points", combo = "box"))
+-------------------------------------------------------------------------------------------------------
+txta txtb text set.seed(1)
+tmp <- matrix(replicate(4, rnorm(50)), ncol=4)
+panel.cor <- function(x, y, digits=2, prefix="", cex.cor, ...)
+{
+  usr <- par("usr"); on.exit(par(usr))
+  par(usr = c(0, 1, 0, 1))
+  rp <- cor(x, y, method="pearson", use="pairwise.complete.obs")
+  rs <- cor(x, y, method="spearman", use="pairwise.complete.obs")
+  rp <- format(rp, digits=digits)
+  rs <- format(rs, digits=digits)
+  txt <- substitute(list(R[p] == rp, R[s] == rs), list(rp=rp, rs=rs))
+  txta <- substitute(R[p] == rp, list(rp=rp))
+  txtb <- substitute(R[s] == rs, list(rs=rs))
+  if(missing(cex.cor)) cex.cor <- 0.8/strwidth(txt)
+  text(0.5, 0.6, txta, cex = 1.5)
+  text(0.5, 0.4, txtb, cex = 1.5)
+}
+panel.my.points <- function(x, y) {
+  points(x, y)
+  abline(0, 1)
+}
+pairs(tmp, lower.panel=panel.cor, upper.panel=panel.my.points, labels=c("model 1\nD1", "model 2\nD1", "model 1\nD2", "model 2\nD2"))
+-------------------------------------------------------------------------------------------------------
+ggpairs(iris, colour='Species', alpha=0.4)
+-------------------------------------------------------------------------------------------------------
+Y Y pch Y banknote pairs(banknote[,-c(1,7)], 
+  panel = function(x,y,...){
+    points(x,y,pch = ifelse(as.logical(banknote$Y), 0,15))}) data.frame $ with(banknote, ...) R banknote with(banknote, 
+pairs(list(Left = Left, Right = Right, Bottom = Bottom, Top = Top, Diagonal = Diagonal), panel = function(x,y) points(x,y, pch= ifelse(as.logical(Y),0,15)))
+-------------------------------------------------------------------------------------------------------
+get.pairs <- function(v){
+  l <- length(v)
+  n <- sum(1:l-1)
+  a <- vector("list",n)
+  j = 1
+  k = 2
+  for(i in 1:n){
+    a[[i]] <- c(v[j],v[k])
+    if(k < l){
+      k <- k + 1
+    } else {
+     j = j + 1
+     k = j + 1
+    }
+  }
+ return(a)
+} > (color.pairs <- get.pairs(levels(diam$color))))
+[[1]]
+[1] "D" "E"
+
+[[2]]
+[1] "D" "F"
+
+...
+
+[[21]]
+[1] "I" "J" > t.test(price~cut,data=diam[diam$color %in% color.pairs[[1]],])
+
+    Welch Two Sample t-test
+
+data:  price by cut 
+t = 8.1594, df = 427.272, p-value = 3.801e-15
+alternative hypothesis: true difference in means is not equal to 0 
+95 percent confidence interval:
+ 1008.014 1647.768 
+sample estimates:
+ mean in group Fair mean in group Ideal 
+           3938.711            2610.820 > lapply(color.pairs,function(x) t.test(price~cut,data=diam[diam$color %in% x,]))
+[[1]]
+
+    Welch Two Sample t-test
+
+data:  price by cut 
+t = 8.1594, df = 427.272, p-value = 3.801e-15
+alternative hypothesis: true difference in means is not equal to 0 
+95 percent confidence interval:
+ 1008.014 1647.768 
+sample estimates:
+ mean in group Fair mean in group Ideal 
+           3938.711            2610.820 
+
+...
+
+[[21]]
+
+    Welch Two Sample t-test
+
+data:  price by cut 
+t = 0.8813, df = 375.996, p-value = 0.3787
+alternative hypothesis: true difference in means is not equal to 0 
+95 percent confidence interval:
+ -260.0170  682.3882 
+sample estimates:
+ mean in group Fair mean in group Ideal 
+       4802.912            4591.726
+-------------------------------------------------------------------------------------------------------
+# Reduce dataset to 1000 to make things run faster
+d <- diamonds[sample(nrow(diamonds), 1000),]
+ggpairs(d[,-c(2:4)], lower=list(continuous = "smooth"))
+-------------------------------------------------------------------------------------------------------
+GGally ggparcoord() missing=[exclude,mean,median,min10,random] ggpairs() ggpair()
+-------------------------------------------------------------------------------------------------------
+ggpairs > library(GGally)
+> ggpairs(mtcars) > ggpairs(mydf[, 2:5])
+-------------------------------------------------------------------------------------------------------
+pairs(C, col=c("red", "blue")[rep(1:2, c(nrow(A), nrow(B)))]) C_f
+-------------------------------------------------------------------------------------------------------
+layout pairs mfrow oma
+ pairs(iris[1:4], main = "Anderson's Iris Data -- 3 species",pch = 21, bg = c("red", "green3", "blue")[iris$Species],oma=c(4,4,6,12))
+# allow plotting of the legend outside the figure region 
+# (ie within the space left by making the margins big)
+par(xpd=TRUE)
+legend(0.85, 0.7, as.vector(unique(iris$Species)),  
+       fill=c("red", "green3", "blue"))
+-------------------------------------------------------------------------------------------------------
+pairs() panel.cor() panel.cor <- function(x, y, digits=2, cex.cor)
+{
+  usr <- par("usr"); on.exit(par(usr))
+  par(usr = c(0, 1, 0, 1))
+  r <- abs(cor(x, y))
+  txt <- format(c(r, 0.123456789), digits=digits)[1]
+  test <- cor.test(x,y)
+  Signif <- ifelse(round(test$p.value,3)<0.001,"p<0.001",paste("p=",round(test$p.value,3)))  
+  text(0.5, 0.25, paste("r=",txt))
+  text(.5, .75, Signif)
+} panel.smooth() cex= col= pch= panel.smooth<-function (x, y, col = "blue", bg = NA, pch = 18, 
+                        cex = 0.8, col.smooth = "red", span = 2/3, iter = 3, ...) 
+{
+  points(x, y, pch = pch, col = col, bg = bg, cex = cex)
+  ok <- is.finite(x) & is.finite(y)
+  if (any(ok)) 
+    lines(stats::lowess(x[ok], y[ok], f = span, iter = iter), 
+          col = col.smooth, ...)
+} panel.hist() pairs() panel.hist <- function(x, ...)
+{
+  usr <- par("usr"); on.exit(par(usr))
+  par(usr = c(usr[1:2], 0, 1.5) )
+  h <- hist(x, plot = FALSE)
+  breaks <- h$breaks; nB <- length(breaks)
+  y <- h$counts; y <- y/max(y)
+  rect(breaks[-nB], 0, breaks[-1], y, col="cyan", ...)
+} pairs(USJudgeRatings[,c(2:3,6,1,7)],
+          lower.panel=panel.smooth, upper.panel=panel.cor,diag.panel=panel.hist)
+-------------------------------------------------------------------------------------------------------
+cols <- character(nrow(iris))
+cols[] <- "black"
+
+cols[iris$Species %in% c("setosa","versicolor")] <- "blue"
+cols[iris$Species == "virginica"] <- "red"
+pairs(iris,col=cols)
+-------------------------------------------------------------------------------------------------------
+foo.upper <- function(x,y,ind.upper,col.upper,ind.lower,col.lower,...){
+    points(x[ind.upper],y[ind.upper],col = col.upper,...)
+}
+
+foo.lower <- function(x,y,ind.lower,col.lower,ind.upper,col.upper,...){
+    points(x[ind.lower],y[ind.lower],col = col.lower,...)
+}
+
+pairs(dat[,-5],lower.panel = foo.lower,upper.panel = foo.upper,ind.upper = dat$type == 'brain',ind.lower = dat$type == 'heart',col.upper = 'blue',col.lower = 'red') ... dat <- as.data.frame(do.call(rbind,data))
+dat$type <- rep(c('brain','heart'),each = 100)
+
+foo.upper <- function(x,y,...){
+    points(x[dat$type == 'brain'],y[dat$type == 'brain'],col = 'red',...)
+}
+
+foo.lower <- function(x,y,...){
+    points(x[dat$type == 'heart'],y[dat$type == 'heart'],col = 'blue',...)
+}
+
+pairs(dat[,-5],lower.panel = foo.lower,upper.panel = foo.upper) layout dat <- do.call(rbind,data)
+dat <- as.data.frame(dat)
+dat$grp <- rep(letters[1:2],each = 100)
+
+plower <- function(x,y,grp,...){
+    panel.xyplot(x[grp == 'a'],y[grp == 'a'],col = 'red',...)
+}
+
+pupper <- function(x,y,grp,...){
+    panel.xyplot(x[grp == 'b'],y[grp == 'b'],...)
+}
+
+splom(~dat[,1:4],
+        data = dat,
+        lower.panel = plower,
+        upper.panel = pupper,
+        grp = dat$grp)
+-------------------------------------------------------------------------------------------------------
+ggpairs GGally ggpairs(wind)
+-------------------------------------------------------------------------------------------------------
+upper.panel= panel.points cex= panel.points<-function(x,y)
+{
+  points(x,y,cex=3)
+}
+
+pairs(iris[,1:4],lower.panel=panel.Kendall,upper.panel=panel.points)
+-------------------------------------------------------------------------------------------------------
+plot plot.data.frame pairs(data.matrix(data)) ... pairs type plot matplot
+-------------------------------------------------------------------------------------------------------
+panel.cor <- function(x, y, digits = 2, cex.cor, ...)
+{
+  usr <- par("usr"); on.exit(par(usr))
+  par(usr = c(0, 1, 0, 1))
+  # correlation coefficient
+  r <- cor(x, y)
+  txt <- format(c(r, 0.123456789), digits = digits)[1]
+  txt <- paste("r= ", txt, sep = "")
+  text(0.5, 0.6, txt)
+
+  # p-value calculation
+  p <- cor.test(x, y)$p.value
+  txt2 <- format(c(p, 0.123456789), digits = digits)[1]
+  txt2 <- paste("p= ", txt2, sep = "")
+  if(p<0.01) txt2 <- paste("p= ", "<0.01", sep = "")
+  text(0.5, 0.4, txt2)
+}
+
+pairs(iris, upper.panel = panel.cor)
+-------------------------------------------------------------------------------------------------------
+pc.cr <- princomp(USArrests, cor = TRUE)
+pairs(pc.cr$loadings, col=c("red", "green", "blue"))
+-------------------------------------------------------------------------------------------------------
+plotmatrix(mydf) library(GGally)
+
+ggpairs(mydf, upper=list(continuous = "points", combo = "box"))
+-------------------------------------------------------------------------------------------------------
+ada ada:::pairs.ada 
+pairs(as.matrix(rbind(train.data, test.x))[, vars], lower.panel = panel.low, upper.panel = panel.up) [, vars] train.data test.x as.matrix 
+pairs(as.matrix(rbind(train.data, test.x)[, vars]), lower.panel = panel.low, upper.panel = panel.up) as.matrix vars
+-------------------------------------------------------------------------------------------------------
+clu.pairs <- function(k, row)
+{
+    w <- which(row==k)
+
+    expand.grid(w, w)
+}
+
+row.pairs <- function(row)
+{
+    do.call(rbind, lapply(unique(row), function(k) clu.pairs(k, row)))
+}
+
+full.pairs <- function(data)
+{
+    do.call(rbind, lapply(seq_len(nrow(data)), function(i) row.pairs(data[i,])))
+} full.pairs(testData)
+-------------------------------------------------------------------------------------------------------
+pairs dim(iris)
+## five columns across
+pairs(iris)
+## If I only want the second, third and fourth columns. 
+pairs(iris[,2:4])
+-------------------------------------------------------------------------------------------------------
+points(cl$centers, col = 1:5, pch = 8, cex = 2) plot )) # I use the variable name "x" elsewhere, 
+# renaming it here explicitly for clarity  
+x.mat=x
+
+# I moved the "jitter" into this submethod, so you won't see it
+# in the main ' call. I needed to do this to identify the source
+# column the data came from in low.panelfun.
+up.panelfun <- function(x,y,clust=cl$cluster,...){
+  # this plots the main pairs plot
+  sapply(unique(clust), function(c){ points(jitter(x[clust==c]),jitter(y[clust==c]), col=c)}) 
+}
+
+low.panelfun <- function(x,y,clust=cl$cluster,...){
+  # this plots the main pairs plot
+  up.panelfun(x,y,clust)
+
+  # this finds the appropriate column the panel is related
+  # to and plots the centroids.
+  xi=which(length(x)==apply(x.mat, 2, function(v){sum(v==x)}))
+  yi=which(length(y)==apply(x.mat, 2, function(v){sum(v==y)}))
+  points(cl$centers[xi,],cl$centers[yi,], col = 1:5, pch = 8, cex = 2)
+}
+
+pairs(x.mat, col = cl$cluster,lower.panel=low.panelfun,upper.panel=up.panelfun) # amplify clusters by replicating data a few times
+pairs(rbind(x.mat, x.mat, x.mat, x.mat), col = cl$cluster,lower.panel=low.panelfun,upper.panel=up.panelfun) plot();points()
+-------------------------------------------------------------------------------------------------------
+my_line <- function(x,y,...){
+    points(x,y,...)
+    abline(a = 0,b = 1,...)
+}
+pairs(USJudgeRatings, lower.panel = my_line, upper.panel = panel.cor)
+-------------------------------------------------------------------------------------------------------
+grid.multipanel() require(grid)
+require(mvtnorm)
+
+set.seed(271)
+X <- rmvnorm(100, mean=1:4, sigma=diag(4:1)) # goal: draw this in a pairs plot
+
+panelGrob <- function(x=runif(10, -10, 10), y=runif(10, -10, 100), ...,
+  xlim = range(x), ylim=range(y),
+  axis.x=TRUE, axis.y=TRUE){
+  xx <- pretty(x) ; yy <- pretty(y)
+  xx <- xx[xx <= xlim[2] & xx >= xlim[1]]
+  yy <- yy[yy <= ylim[2] & yy >= ylim[1]]
+
+  r <- rectGrob()
+  dvp <- dataViewport(xData=xx, yData=yy)
+  p <- pointsGrob(x, y, pch=".", gp=gpar(col="red"), default.units="native",
+                  vp = dvp)
+
+  ax <- if(axis.x) xaxisGrob(at=xx, vp=dvp) else nullGrob()
+  ay <- if(axis.y) yaxisGrob(at=yy, vp=dvp) else nullGrob()
+
+  grobTree(r, ax, ay, p, ...)
+}
+
+grid.panel <- function(...)
+  grid.draw(panelGrob(...))
+
+grid.newpage()
+grid.panel(vp=viewport(width=0.8, height=0.8))
+
+
+pairsGrob <- function(X, ..., name=NULL, gp=NULL, vp=NULL){
+
+  N <- NCOL(X)
+  layout <- grid.layout(N+1, N+1, 
+                        widths=unit(c(2, rep(1, N)), c("lines", rep("null", N))), 
+                        heights = unit(c(rep(1, N), 2), c(rep("null", N), "lines")))
+
+
+  wrap <- function(ii, jj, ...){
+    panelGrob(X[,ii], X[,jj], ..., axis.x= ii == N, axis.y = jj == 1,
+              vp=viewport(layout.pos.row=ii, layout.pos.col=jj+1))
+  }
+
+  rowcol <- expand.grid(ii=seq_len(N), jj=seq_len(N))
+  gl <- mapply(wrap, ii=rowcol[,"ii"], jj=rowcol[,"jj"], MoreArgs=list(...),
+               SIMPLIFY=FALSE)
+
+  gTree(children=do.call(gList, gl), vp=viewport(layout=layout))
+}
+
+grid.pairs <- function(...) grid.draw(pairsGrob(...))
+
+grid.newpage()
+grid.pairs(X, xlim=c(-10,10), ylim=c(-10,10)) args(lattice::panel.xyplot)
+-------------------------------------------------------------------------------------------------------
+data = tips[,1:3]
+ pm <- ggpairs(data)
+ g11<-ggally_blank() 
+
+ for(i in 1:ncol(data)) {
+     for(j in 1:ncol(data)) {
+         if(i<=j) {
+             pm <- putPlot(pm, g11, i, j)
+         }
+     }
+ } axisLabels ncol(data)
+-------------------------------------------------------------------------------------------------------
+colpairs <- function(d) {
+  apply(combn(ncol(d),2), 2, function(x) d[,x])
+}
+
+x <- colpairs(iris)
+sapply(x, head, n=2)
+
+## [[1]]
+##   Sepal.Length Sepal.Width
+## 1          5.1         3.5
+## 2          4.9         3.0
+## 
+## [[2]]
+##   Sepal.Length Petal.Length
+## 1          5.1          1.4
+## 2          4.9          1.4
+...
+-------------------------------------------------------------------------------------------------------
+CREATE TABLE pairs
+        ( e1 varchar NOT NULL
+        , e2 varchar NOT NULL
+        , PRIMARY KEY (e1,e2)
+        );
+
+INSERT INTO pairs(e1,e2) VALUES
+('A' , 'B' )
+, ('B','C' )
+, ('C','D' )
+, ('C','G' )
+, ('E','F' )
+, ('I','E' )
+, ('H','G' )
+, ('J','K' )
+, ('K','L' )
+        ;
+WITH RECURSIVE tree AS (
+        WITH dpairs AS (
+        SELECT e1 AS one, e2 AS two FROM pairs WHERE e1 < e2
+        UNION ALL
+        SELECT e2 AS one, e1 AS two FROM pairs WHERE e1 > e2
+        )
+        SELECT dp.one AS opa
+                , dp.one AS one
+                , dp.two AS two
+        FROM dpairs dp
+        WHERE NOT EXISTS ( SELECT *
+                FROM dpairs nx
+                WHERE nx.two = dp.one
+                AND nx.one < dp.one
+                )
+        UNION ALL
+        SELECT tr.opa AS opa
+                , dp.one AS one
+                , dp.two AS two
+        FROM tree tr
+        JOIN dpairs dp ON dp.one = tr.two AND dp.two <> tr.opa AND dp.two <> tr.one
+        )
+SELECT opa,one,two
+        , dense_rank() OVER (ORDER BY opa) AS rnk
+FROM tree
+ORDER BY opa, one,two
+        ; opa | one | two | rnk 
+-----+-----+-----+-----
+ A   | A   | B   |   1
+ A   | B   | C   |   1
+ A   | C   | D   |   1
+ A   | C   | G   |   1
+ A   | G   | H   |   1
+ E   | E   | F   |   2
+ E   | E   | I   |   2
+ J   | J   | K   |   3
+ J   | K   | L   |   3
+(9 rows)
+-------------------------------------------------------------------------------------------------------
+Usage:
+
+     cpairs(data, order = NULL, 
+         panel.colors = NULL, border.color = "grey70", show.points = TRUE, ...) panel.colors panel.controls Warning messages:
+1: In plot.window(...) : "panel.controls" is not a graphical parameter
+-------------------------------------------------------------------------------------------------------
+pairs(iris[1:4], main = "Width", pch = 24, bg = c("mediumorchid4"), upper.panel=NULL, labels=c("Sepal Length"), font.labels=1, cex.labels=2)
+
+legend(x = "topright",legend = levels(iris$Species),
+        pch = 24,pt.bg = c("mediumorchid4", "mediumpurple1", "lightpink1"),
+        inset = 0.1) locator inset
+-------------------------------------------------------------------------------------------------------
+class("data") character class(data) data2 data data$S1.pre ~ data$S2.pre ~ data$V1.pre ~ data$V2.pre pairs 
+pairs(~data$S1.pre + data$S2.pre + data$V1.pre + data$V2.pre) $ data[, V1.pre] > apply(as.matrix(data[1,]), 2, class)
+     id        cond      S1.pre      S2.pre     S1.post     S2.post 
+"character" "character" "character" "character" "character" "character" 
+V1.pre      V2.pre     V1.post     V2.post 
+"character" "character" "character" "character" cond > data.matrix <- (data[, -2])
+> apply(data.matrix, 2, class)
+   id    S1.pre    S2.pre   S1.post   S2.post    V1.pre    V2.pre   V1.post 
+"integer" "integer" "integer" "integer" "integer" "integer" "integer" "integer" 
+V2.post 
+"integer"
+-------------------------------------------------------------------------------------------------------
+set.seed(1)
+a <- data.frame(Group=factor(sample(c("control","low","medium","high"),20,TRUE),
+                             levels= c("control","low","medium","high")),
+                x=rnorm(20),y=rnorm(20))
+col.list <- c("green","orange","brown","black")
+palette(col.list)
+pairs(a[,2:3], col=a[,1]) col=a[,1] palette()[a[,1]] palette()[a[,1]]
+[1] "orange" "orange" "brown"  "black"  "green"  "black"  "black"  "brown"  "brown"  "green"  "green"  "green"  "brown"  "orange"
+[15] "black"  "orange" "brown"  "black"  "orange" "black" 
+
+table(a[,1], palette()[a[,1]])
+         black brown green orange
+  control     0     0     4      0
+  low         0     0     0      5
+  medium      0     5     0      0
+  high        6     0     0      0 Indices[,1]
+-------------------------------------------------------------------------------------------------------
+plotmatrix(iris[,1:3]) + stat_density2d()
+-------------------------------------------------------------------------------------------------------
+cross validated prcomp >library(ggplot2)
+>data(mpg)
+>data <- mpg[,c("displ", "year", "cyl", "cty", "hwy")]
+# get the numeric columns only for this easy demo
+>prcomp(data, scale=TRUE)
+
+Standard deviations:
+  [1] 1.8758132 1.0069712 0.5971261 0.2658375 0.2002613
+
+Rotation:
+  PC1         PC2        PC3         PC4         PC5
+displ  0.49818034 -0.07540283  0.4897111  0.70386376 -0.10435326
+year   0.06047629 -0.98055060 -0.1846807 -0.01604536  0.02233245
+cyl    0.49820578 -0.04868461  0.5028416 -0.68062021  0.18255766
+cty   -0.50575849 -0.09911736  0.4348234  0.15195854  0.72264881
+hwy   -0.49412379 -0.14366800  0.5330619 -0.13410105 -0.65807527 70 % = 1.8758132^2 / (1.8758132^2 + 1.0069712^2 + 0.5971261^2 + 0.2658375^2 + 0.2002613^2) PC1       
+displ  0.49818034 
+year   0.06047629
+cyl    0.49820578
+cty   -0.50575849
+hwy   -0.49412379 displ cyl cty hwy year pairs(data)
+-------------------------------------------------------------------------------------------------------
+ggpairs combo_aes <- addAndOverwriteAes(aes_string(x = xColName, 
+            y = yColName, ...), section_aes) ggpairs(diamonds[, 1:2], colour='cut') ggpairs(diamonds[, 1:2], colour='cut') + scale_fill_brewer(palette = "Set2") + ggplot <- function(...) ggplot2::ggplot(...) + scale_fill_brewer(palette="Set2")
+ggpairs(diamonds[, 1:2], colour='cut')
+-------------------------------------------------------------------------------------------------------
+diamonds.samp <- diamonds[sample(1:dim(diamonds)[1],200),]
+g<-ggpairs(diamonds.samp, columns=8:10,
+        upper=list(continuous='cor'),
+        lower=list(continuous = 'points'),
+        diag=list(continuous='density'),
+        axisLabels='show'
+)
+
+add_p<-function(g,i,params){
+
+  side=length(g$columns)                # get number of cells per side
+  lapply(i,function(i){
+
+    s<-as.character(g$plots[i])         # get existing call as a template
+    l<-nchar(s)
+    p<-paste0(substr(s,1,l-1),",",params,")")   # append params before last bracket
+    r<-i%/%side+1                               # work out the position on the grid
+    c<-i%%side
+
+    array(c(p,r,c))                     # return the sub-plot and position data
+
+    })
+
+}
+
+
+rep_cells<-c(4,7,8)
+add_params<-"alpha=0.3, size=0.1, color='red'"
+
+ggally_data<-g$data                         # makes sure that the internal parameter picks up your data (it always calls it's data 'ggally_data'
+calls<-add_p(g,rep_cells,params=add_params)  #call the function
+for(i in 1:length(calls)){g<-putPlot(g,calls[[i]][1],as.numeric(calls[[i]][2]),as.numeric(calls[[i]][3]))}
+
+g                                # call the plot
+-------------------------------------------------------------------------------------------------------
+axisLabels "show" xx <- mtcars[,c(1,3,4,6)]   ## extract mpg, disp, hp, and wt from mtcars
+library(GGally)
+ggpairs(xx, diag=list(continuous="density"), axisLabels='show')
+-------------------------------------------------------------------------------------------------------
+data # just generates example - YOU SHOULD PROVIDE THIS!!!
+data <- data.frame(tyrosine=1:10 + rnorm(10,sd=2), 
+                   urea    =2*1:10 + rnorm(10,sd=2),
+                   glucose =30 -2*1:10 +rnorm(10,sd=2),
+                   inosine =25 -1:10 + rnorm(10,sd=2))
+data
+     tyrosine      urea  glucose  inosine
+1  -0.2529076  5.023562 29.83795 26.71736
+2   2.3672866  4.779686 27.56427 22.79442
+3   1.3287428  4.757519 24.14913 22.77534
+4   7.1905616  3.570600 18.02130 20.89239
+5   5.6590155 12.249862 21.23965 17.24588
+6   4.3590632 11.910133 17.88774 18.17001
+7   7.9748581 13.967619 15.68841 17.21142
+8   9.4766494 17.887672 11.05850 16.88137
+9  10.1515627 19.642442 11.04370 18.20005
+10  9.3892232 21.187803 10.83588 16.52635 cor(data)
+           tyrosine       urea    glucose    inosine
+tyrosine  1.0000000  0.8087897 -0.9545523 -0.8512938
+urea      0.8087897  1.0000000 -0.8577782 -0.8086910
+glucose  -0.9545523 -0.8577782  1.0000000  0.8608000
+inosine  -0.8512938 -0.8086910  0.8608000  1.0000000 pairs(data)
+-------------------------------------------------------------------------------------------------------
+pch col pairs pairs(rbind(iris[1:4], kmeans(iris[1:4],3)$centers), 
+      pch=rep(c(1,2), c(nrow(iris), 3)), 
+      col=rep(c(1,2), c(nrow(iris), 3)))
+-------------------------------------------------------------------------------------------------------
+panel cl <- kmeans(iris[1:4],3)
+idx <- subset(expand.grid(x=1:4,y=1:4),x!=y)
+i <- 1
+(iris[1:4],bg=cl$cluster,pch=21,panel=function(x, y,bg, ...) {
+                points(x, y, pch=21,bg=bg)
+                points(cl$center[,idx[i,'x']],cl$center[,idx[i,'y']],
+                             cex=4,pch=10,col='blue')
+                i <<- i +1
+            }) lattice splom library(lattice)
+splom(iris[1:4],groups=cl$cluster,pch=21,
+            panel=function(x, y,i,j,groups, ...) {
+                panel.points(x, y, pch=21,col=groups)
+                panel.points(cl$center[,j],cl$center[,i],
+                             pch=10,col='blue')
+            },auto.key=TRUE)
+-------------------------------------------------------------------------------------------------------
+z1 <- rnorm(10000, mean=1, sd=1); z2 <- rnorm(10000, mean=3, sd=3); z3 <- rnorm(10000, mean=5, sd=5); z4 <- rnorm(10000, mean=7, sd=7); z5 <- rnorm(10000, mean=9, sd=9); mydata <- matrix(c(z1, z2, z3, z4, z5), 2500, 20, byrow=T, dimnames=list(paste("R", 1:2500, sep=""), paste("C", 1:20, sep=""))) 
+
+summary(pca) 
+summary(pca)$importance[, 1:6] 
+
+x11(height=6, width=12, pointsize=12); par(mfrow=c(1,2)) 
+
+mycolors <- c("red", "green", "blue", "magenta", "black") # Define plotting colors. plot(pca$x, pch=20, col=mycolors[sort(rep(1:5, 500))]) 
+
+plot(pca$x, type="n"); text(pca$x, rownames(pca$x), cex=0.8, col=mycolors[sort(rep(1:5, 500))]) 
+pairs(pca$x[,1:5], col = mycolors) library(scatterplot3d) 
+scatterplot3d(pca$x[,1:3], pch=20, color=mycolors[sort(rep(1:5, 500))]) library(rgl); rgl.open(); offset <- 50; par3d(windowRect=c(offset, offset, 640+offset, 640+offset)); rm(offset); rgl.clear(); rgl.viewpoint(theta=45, phi=30, fov=60, zoom=1); spheres3d(pca$x[,1], pca$x[,2], pca$x[,3], radius=0.3, color=mycolors, alpha=1, shininess=20); aspect3d(1, 1, 1); axes3d(col='black'); title3d("", "", "PC1", "PC2", "PC3", col='black'); bg3d(" require(GGally)
+ggpairs(pca$x[,1:5])
+-------------------------------------------------------------------------------------------------------
+set.seed(1)
+library(GGally)
+library(hexbin)
+df <- as.data.frame(matrix(rnorm(20*3), ncol=3))
+p <- ggpairs(df, lower="blank")
+seq <- 1:ncol(df)
+for (x in seq)
+  for (y in seq) 
+    if (y>x) 
+      p <- putPlot(p, ggplot(df, aes_string(x=names(df)[x],y=names(df)[y])) + stat_binhex(bins=4), y,x)
+p
+-------------------------------------------------------------------------------------------------------
+pca <- prcomp(Mm, scale=T)
+
+# Check out whats in it
+str(pca)
+
+# Prints variance summary for all principal components.
+summary(pca) 
+
+# Accesses subset of components.
+summary(pca)$importance[, 1:20]
+
+require(GGally)
+ggpairs(pca$x[,1:4])
+-------------------------------------------------------------------------------------------------------
+library(ggplot2)
+library(data.table)
+library(reshape2)  # for melt(...)
+library(plyr)      # for .(...)
+
+xx <- with(iris, data.table(id=1:nrow(iris), group=Species, 
+           Sepal.Length, Sepal.Width,Petal.Length, Petal.Width))
+# reshape for facetting with ggplot
+yy <- melt(xx,id=1:2, variable.name="H", value.name="xval")
+yy <- data.table(yy,key="id,group")
+ww <- yy[,list(V=H,yval=xval),key="id,group"]
+zz <- yy[ww,allow.cartesian=T]
+setkey(zz,H,V,group)
+zz <- zz[,list(id, group, xval, yval, min.x=min(xval), min.y=min(yval),
+               range.x=diff(range(xval)),range.y=diff(range(yval))),by="H,V"]
+# points colored by group (=species)
+# density plots for each variable by group
+d  <-  zz[H==V, list(x=density(xval)$x,
+          y=mean(min.y)+mean(range.y)*density(xval)$y/max(density(xval)$y)),
+          by="H,V,group"]
+ggp = ggplot(zz)
+ggp = ggp + geom_point(subset  =.(H!=V), 
+                       aes(x=xval, y=yval, color=factor(group)), 
+                       size=3, alpha=0.5)
+ggp = ggp + geom_line(subset = .(H==V), data=d, aes(x=x, y=y, color=factor(group)))
+ggp = ggp + facet_grid(V~H, scales="free")
+ggp = ggp + scale_color_discrete(name="Species")
+ggp = ggp + labs(x="", y="")
+ggp ggpairs(...) ggpairs(...)
+-------------------------------------------------------------------------------------------------------

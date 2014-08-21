@@ -1,0 +1,1676 @@
+prepanel.ci <- function(x, y, lx, ux, subscripts, ...) {
+    x <- as.numeric(x)
+    lx <- as.numeric(lx[subscripts])
+    ux <- as.numeric(ux[subscripts])
+    list(xlim = range(0, x, ux, lx, finite = TRUE))
+}
+
+
+panel.ci <- function(x, y, lx, ux, subscripts, ...) {
+    x <- as.numeric(x)
+    y <- as.numeric(y)
+    lx <- as.numeric(lx[subscripts])
+    ux <- as.numeric(ux[subscripts])
+    panel.barchart(x, y, ...)
+    panel.arrows(lx, y, ux, y, col = 'black',length = 0.25, unit = "native",angle = 90, code = 3)
+}
+
+p <- barchart(reorder(var, mean) ~ mean, data=plot.data,
+              lx=plot.data$mean-plot.data$error,
+              ux=plot.data$mean+plot.data$error,
+              panel=panel.ci,
+              prepanel=prepanel.ci)
+print(p)
+-------------------------------------------------------------------------------------------------------
+par(new=TRUE) plot(1,1) ## start a plot
+opar <- par(new = TRUE, ## add a new layer
+            mar = c(0,0,0,0)) ## with no margins margins
+## set up the plotting area for this layer
+plot(1,1,xlim=c(0,1),ylim=c(0,1),type='n',xlab='',ylab='') 
+arrows(0.1,0.05,0.5,0.05) ## add arrow
+par(opar) ## return the plot parameters to their prior values plot(1,1,xlim=0:1,ylim=0:1)
+arrows(0.1,0.05,0.5,0.05)
+gpar <- par()
+opar <- par(new = TRUE, mar = c(0,0,0,0),xaxs='i',yaxs='i')
+
+m1 <- (gpar$usr[2] - gpar$usr[1])/(gpar$plt[2] - gpar$plt[1])
+c1 <- gpar$usr[1] - m1*gpar$plt[1]
+m2 <- (gpar$usr[4] - gpar$usr[3])/(gpar$plt[4] - gpar$plt[3])
+c2 <- gpar$usr[3] - m2*gpar$plt[3]
+xlim <- c(c1, m1 + c1)
+ylim <- c(c2, m2 + c2)
+
+plot(1,1,xlim=xlim,ylim=ylim,type='n',xlab='',ylab='')
+arrows(0.1,0.05,0.5,0.05,col='red')
+points(1,1,col='red')
+par(opar)
+-------------------------------------------------------------------------------------------------------
+arrows(1.4, -1, 1.4, 0, xpd = TRUE)
+-------------------------------------------------------------------------------------------------------
+plot(), lines(), abline(), points(), polygon(), segments(), rect(), box(), arrows(), ... set.seed(100)
+x <- 1:10
+y <- x^2
+y2 <- x^3
+yse <- abs(runif(10,2,4))
+
+plot(x,y, type = "n")  # type="n" only plots the pane, no curves or points.
+
+# plots the area between both curves
+polygon(c(x,sort(x,decreasing=T)),c(y,sort(y2,decreasing=T)),col="grey")
+# plot both curves
+lines(x,y,col="purple")
+lines(x, y2, col = "red")
+# add the points to the first curve
+points(x, y, col = "black")
+# adds some lines indicating the standard error
+segments(x,y,x,y+yse,col="blue")
+# adds some flags indicating the standard error
+arrows(x,y,x,y-yse,angle=90,length=0.1,col="darkgreen")
+-------------------------------------------------------------------------------------------------------
+group ## format a new data structure with all variables we want
+dat <- data.frame(dathsd[, c(2,5)], treat = trtplt, yrplt = yrplt,
+                  upr = dathsd$means + 2 * dathsd$std.err,
+                  lwr = dathsd$means - 2 * dathsd$std.err)
+## compute ylims
+ylims <- range(dat$lwr, dat$upr)
+ylims <- ylims + (c(-1,1) * (0.05 * diff(ylims)))
+## plot
+xyplot(means ~ yrplt, data = dat, group = treat, lwr = dat$lwr, upr = dat$upr,
+       type = c("p","l"), ylim = ylims,
+       panel = function(x, y, lwr, upr, ...) {
+           panel.arrows(x0 = x, y0 = lwr, x1 = x, y1 = upr,angle = 90, code = 3, length = 0.05)
+           panel.xyplot(x, y, ...)
+       })
+-------------------------------------------------------------------------------------------------------
+?arrow length angle lwd lty plot(c(0:10),type="n")
+
+arrows(1,0,2,1,length=0.2,angle=20)
+arrows(1,1,2,2,length=0.1,angle=40,lwd=3)
+
+invisible(mapply(arrows,
+        rep(c(3,6),each=4),rep(3:6,2),
+        rep(c(5,8),each=4),rep(5:8,2),
+        angle=seq(10,40,length.out=8),
+        length=rep(seq(0.1,0.3,length.out=4),2),
+        lwd=rep(1:4,each=2))
+)
+-------------------------------------------------------------------------------------------------------
+plotCI(x=myx+0.2,y=...) plotCI_offset <- function (x, y = NULL, uiw, liw = uiw, ui, li, err = "y", ylim = NULL, 
+xlim = NULL, type = "p", col = par("col"), barcol = col, 
+pt.bg = par("bg"), sfrac = 0.01, gap = 1, lwd = par("lwd"), 
+lty = par("lty"), labels = FALSE, add = FALSE, xlab, ylab, 
+minbar, maxbar,offset=0.2, ...) if (!add) {
+    if (invalid(labels) || labels == FALSE)
+        #Add offset here to ensure plot window is right size
+        plot(x+offset, y, ylim = ylim, xlim = xlim, col = col, xlab = xlab, 
+            ylab = ylab, ...)
+    else {
+        plot(x, y, ylim = ylim, xlim = xlim, col = col, type = "n", 
+            xlab = xlab, ylab = ylab, ...)
+        text(x, y, label = labels, col = col, ...)
+    }
+} if (err == "y") {
+    if (gap != FALSE) 
+        gap <- strheight("O") * gap
+    smidge <- par("fin")[1] * sfrac
+    if (!is.null(li))
+        #Add offset to CIs 
+        myarrows(x+offset, li, x+offset, pmax(y - gap, li), col = barcol, 
+            lwd = lwd, lty = lty, angle = 90, length = smidge, 
+            code = 1)
+    if (!is.null(ui)) 
+        myarrows(x+offset, ui, x+offset, pmin(y + gap, ui), col = barcol, 
+            lwd = lwd, lty = lty, angle = 90, length = smidge, 
+            code = 1)
+}
+-------------------------------------------------------------------------------------------------------
+coefplot2 <-  # the rest of the pasted function should follow voffset=0 arrows(ci1, (1:k), ci2, (1:k), lty = lty[1], lwd = lwd[1], col = col, arrows(ci1, (1:k)+voffset, ci2, (1:k)+voffset, lty = lty[1], lwd = lwd[1], col = col, points(cf , (1:k)+voffset, pch = pch, col = col) coefplot2(M2, xlim=c(-2, 6) )
+par(new=TRUE)    # could not get the add=TRUE argument to work either.
+coefplot2(M3, col="blue", xlim=c(-2, 6), voffset=0.4)
+par(new=TRUE)
+coefplot2(M1, col="red", xlim=c(-2, 6) , voffset=0.2)
+-------------------------------------------------------------------------------------------------------
+#Reproducing factor analysis from Venables & Ripley
+#Note I'm only doing three factors, not five
+data(ability.cov)
+ability.FA <- factanal(covmat = ability.cov,factor = 3, rotation = "promax")
+load <- loadings(ability.FA)
+rot <- ability.FA$rot
+
+#Pairs of factor loadings to plot
+ind <- combn(1:3,2)
+par(mfrow = c(2,2))
+nms <- row.names(load)
+#Loop over pairs of factors and draw each plot
+for (i in 1:3){
+    eqscplot(load[,ind[1,i]],load[,ind[2,i]],xlim = c(-1,1),
+        ylim = c(-0.5,1.5),type = "n",
+        xlab = paste("Factor",as.character(ind[1,i])),
+        ylab = paste("Factor",as.character(ind[2,i])))
+    text(load[,ind[1,i]],load[,ind[2,i]],labels = nms)
+
+    arrows(c(0,0),c(0,0),rot[ind[,i],ind[,i]][,1],
+        rot[ind[,i],ind[,i]][,2],length = 0.1)
+}
+-------------------------------------------------------------------------------------------------------
+arrows x=cos( seq(0, pi, by=pi/8)  )
+ y=sin( seq(0, pi, by=pi/8))
+ plot(1,1, ylim=range(y), xlim=range(x))
+ arrows(x[-length(x)],y[-length(y)], x[-1],y[-1]) multarrows <- function(x0,y0, x1,y1,n_arr, ...) {x<- seq(x0,x1, length=n_arr+1)
+             y<-seq(y0,y1, length=n_arr+1)
+             arrows(x[-length(x)],y[-length(y)], x[-1],y[-1], ...) }
+plot(0,0, xlim=c(0,2), ylim=c(0,11)); multarrows(0,0, 1,10, 10)
+-------------------------------------------------------------------------------------------------------
+arrowLine <- function(x0,y0,x1,y1,nArrow=1,...)
+{
+  lines(c(x0,x1),c(y0,y1),...)
+  Ax=seq(x0,x1,length=nArrow+1)
+    Ay=seq(y0,y1,length=nArrow+1)
+  for (i in 1:nArrow)
+  {
+    arrows(Ax[i],Ay[i],Ax[i+1],Ay[i+1],...)
+  }
+} plot(0:1,0:1)
+arrowLine(0,0,1,1,4)
+-------------------------------------------------------------------------------------------------------
+arrowLine <- function(x, y, N=10, ...){
+  lengths <- c(0, sqrt(diff(x)^2 + diff(y)^2))
+  l <- cumsum(lengths)
+  tl <- l[length(l)]
+  el <- seq(0, to=tl, length=N+1)[-1]
+
+  plot(x, y, t="l", ...)
+
+  for(ii in el){
+
+    int <- findInterval(ii, l)
+    xx <- x[int:(int+1)]
+    yy <- y[int:(int+1)]
+
+    ## points(xx,yy, col="grey", cex=0.5)
+
+    dx <- diff(xx)
+    dy <- diff(yy)
+    new.length <- ii - l[int]
+    segment.length <- lengths[int+1]
+
+    ratio <- new.length / segment.length
+
+    xend <- x[int] + ratio * dx
+    yend <- y[int] + ratio * dy
+    points(xend,yend, col="white", pch=19)
+    arrows(x[int], y[int], xend, yend, length=0.1)
+
+}
+
+}
+
+set.seed(123)
+x = sort(c(0, runif(200, 0,2* pi), 2*pi))
+y=sin(x)
+
+arrowLine(x, y, N=20)
+-------------------------------------------------------------------------------------------------------
+opar <- par(lwd=3)
+barplot(c(6,7))
+arrows(0,0,10,0,lwd=3, col="grey")
+par(opar)
+-------------------------------------------------------------------------------------------------------
+dat = as.data.frame(rbind(c("1492", "Columbus sailed the ocean blue"),
+                       c("1976", "Americans listened to Styx"),
+                       c("2008", "Financial meltdown")))
+dat$V1 <- as.Date(dat$V1,"%Y")
+dat$val <- c(-1,1,-0.5)
+
+plot(dat$V1,dislocations, type = "n",xaxt = "n",bty = "n", 
+     xlab = "Time", ylab = "Dislocations")
+u <- par("usr")
+arrows(u[1], 0, u[2], 0, xpd = TRUE)
+points(dat$V1,dat$val,pch = 20)
+segments(dat$V1,c(0,0,0),dat$V1,dat$val)
+text(x=dat$V1,y=dat$val,labels=dat$V2,pos=c(4,2,2))
+-------------------------------------------------------------------------------------------------------
+require(plyr)
+
+data(iris)
+
+pcr <- prcomp(~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width, data = iris)
+
+indiv <- data.frame(pcr$x[,1:2])
+
+indiv$species <- iris$Species
+
+column <- data.frame(pcr$rotation[ ,1:2])
+
+n <- nrow(indiv)
+
+eigenval <- pcr$sdev[1:2]
+
+eigenval <- eigenval * sqrt(n)
+
+indiv <- transform(indiv, pc1 = PC1 / eigenval[1], pc2  = PC2 / eigenval[2])
+
+column <- transform(column, pc1 = PC1 * eigenval[1], pc2  = PC2 * eigenval[2])
+
+### based on stats:::biplot.default
+
+unsigned.range <- function(x) c(-abs(min(x, na.rm = TRUE)),  abs(max(x, na.rm = TRUE)))
+
+rangx1 <- unsigned.range(indiv[, 4])
+rangx2 <- unsigned.range(indiv[, 5])
+rangy1 <- unsigned.range(column[, 3])
+rangy2 <- unsigned.range(column[, 4])
+
+mylim <- range(rangx1, rangx2)
+ratio <- max(rangy1/rangx1, rangy2/rangx2)
+
+nspecies <- table(iris$Species)
+
+# compute the convex hull for each species
+hull <- dlply(indiv[,1:3], .(species), chull)
+
+# get points connected
+hull <- llply(hull, function(x) c(x, x[1]))
+
+
+plot(pc2 ~ pc1, data = indiv, cex = 0.5, col = c("blue", "yellow", "green")[iris$Species], xlim = mylim, ylim = mylim)
+
+lines(indiv$pc1[hull$setosa], indiv$pc2[hull$setosa] , col = "blue")
+
+lines(indiv$pc1[cumsum(nspecies)[1] + hull$versicolor], indiv$pc2[cumsum(nspecies)[1] + hull$versicolor], col = "yellow")
+
+lines(indiv$pc1[cumsum(nspecies)[2] + hull$virginica],  indiv$pc2[cumsum(nspecies)[2] + hull$virginica], col = "green")
+
+par(new = TRUE)
+
+plot(pc1 ~ pc2, data = column, axes = FALSE, type = "n", xlim = mylim * ratio, ylim = mylim * ratio, xlab = "", ylab = "")
+
+text(column$pc1, column$pc2, labels = rownames(column), cex = 0.5, col = "red")
+
+arrows(0, 0, column$pc1 * 0.8, column$pc2 * 0.8, col = "red", length = 0.2)
+
+axis(3, col = "red")
+
+axis(4, col = "red")
+-------------------------------------------------------------------------------------------------------
+dfrm <- data.frame(method=LETTERS[1:3], lcl=c(-5,-9,-8), 
+                   mean=c(4,2,4), ucl=c(15,13,16), var=c(27,33,36))
+# I use stripchart to avoid axis relabeling and casting of factor to numeric
+# with default plot function
+stripchart(mean ~ seq(1,3), data=dfrm, vertical=TRUE, ylim=c(-10,20),
+           group.names=levels(dfrm$method), pch=19)
+with(dfrm, arrows(1:3, mean-lcl, 1:3, mean+lcl, angle=90, code=3, length=.1))
+abline(h=0, lty=2)
+-------------------------------------------------------------------------------------------------------
+barchart() Dotplot()  Dotplot() # Create the customized panel function
+mypanel.Dotplot <- function(x, y, ...) {
+    panel.Dotplot(x,y,...)
+        tips <- attr(x, "other")
+        panel.arrows(x0 = tips[,1], y0 = y, x1 = tips[,2], y1 = y, length = 0.15, unit = "native",angle = 90, code = 3)
+}
+
+# Use almost the same call as before, replacing the default panel function 
+# with your customized function.
+Dotplot(name ~ Cbind(mean,lo,up),data=d,ylab="",xlab="",col=1,cex=1,
+        panel = mypanel.Dotplot,
+        par.settings = list(plot.line=list(col=1),
+                       layout.heights=list(bottom.padding=20,top.padding=20)))
+-------------------------------------------------------------------------------------------------------
+length with(rt5, 
+  arrows(xvals,mort,xvals,mort+se,length=.3, angle=90, code=3,col="navy", lwd=5)
+)
+-------------------------------------------------------------------------------------------------------
+# Compute the position of the labels to limit overlaps:
+# move them as little as possible, but keep them 
+# at least .1 units apart.
+library(quadprog)
+spread <- function(b, eps=.1) {
+  stopifnot(b == sort(b))
+  n <- length(b)
+  Dmat <- diag(n)
+  dvec <- b
+  Amat <- matrix(0,nr=n,nc=n-1)
+  Amat[cbind(1:(n-1), 1:(n-1))] <- -1
+  Amat[cbind(2:n,     1:(n-1))] <-  1
+  bvec <- rep(eps,n-1)
+  r <- solve.QP(Dmat, dvec, Amat, bvec)
+  r$solution
+}
+DF <- DF[ order(DF$difficulty), ]
+DF$position <- spread(DF$difficulty, .1)
+
+ylim <- range(DF$difficulty)
+plot( NA, 
+  xlim = c(.5,2), 
+  ylim = ylim + .1*c(-1,1)*diff(ylim),
+  axes=FALSE, xlab="", ylab="" 
+)
+text(.9,  DF$position, labels=round(DF$difficulty,3), adj=c(1,0))
+text(1.1, DF$position, labels=DF$item, adj=c(0,0))
+arrows(1,min(DF$position),1,max(DF$position),code=3)
+text(1,min(DF$position),labels="Easier",adj=c(.5,2))
+text(1,max(DF$position),labels="More difficult",adj=c(.5,-1))
+text(.9, max(DF$position),labels="Difficulty",adj=c(1,-2))
+text(1.1,max(DF$position),labels="Item",      adj=c(0,-2))
+-------------------------------------------------------------------------------------------------------
+DF <- DF[order(DF$difficulty), ]
+
+par(mar=c(1, 1, 3, 0)+.4)
+plot(rep(1:2, each=10), DF$difficulty, main = "Item Map         ",
+    ylim = c(max(DF$difficulty)+1, min(DF$difficulty)-.2), 
+    type = "n", xlab="", ylab="", axes=F, xaxs="i")
+
+text(rep(1.55, 20), rev(DF$difficulty[c(T, F)]), 
+    DF$item[c(F, T)], cex=.5, pos = 4)
+text(rep(1, 20), rev(DF$difficulty[c(F, T)]), 
+    DF$item[c(T, F)], cex=.5, pos = 4)
+par(mar=c(0, 0, 0,0))
+arrows(1.45, 2.45, 1.45, -1.29, .1, code=3)
+text(rep(1.52, 20), DF$difficulty[c(T, F)], 
+    rev(round(DF$difficulty, 2))[c(T, F)], cex=.5, pos = 2)
+text(rep(1.44, 20), DF$difficulty[c(F, T)], 
+    rev(round(DF$difficulty, 2))[c(F, T)], cex=.5, pos = 2)
+text(1.455, .5,  "DIFFICULTY", cex=1, srt = -90)
+text(1.45, -1.375,  "More Difficult", cex=.6)
+text(1.45, 2.5,  "Easier", cex=.6)
+par(mar=c(0, 0, 0,0))
+-------------------------------------------------------------------------------------------------------
+prepanel=function(y, stderr, subscripts=subscripts, ...){
+  uy <- as.numeric(y+stderr[subscripts])
+  ly <- as.numeric(y-stderr[subscripts])
+  list(ylim=range(y,uy,ly, finite=TRUE))
+}
+panel.err=function(x, y, subscripts, groups, stderr, box.ratio, ...){
+  d <- 1/(nlevels(groups)+nlevels(groups)/box.ratio)
+  g <- (as.numeric(groups[subscripts])-1); g <- (g-median(g))*d
+  panel.arrows(as.numeric(x)+g,y-stderr[subscripts], as.numeric(x)+g, y+stderr[subscripts],
+               code=3,angle=90, length=0.025)
+}
+barchart(Change~fTreat,groups=Process,change,
+         stderr=change$stderr,
+         ylab="Pocertage change",
+         xlab="Treatment",
+         ylim=-115:50,
+         auto.key=list(points=FALSE,rectangles=TRUE,columns=2),
+         scales=list(alternating=FALSE,
+                     tick.number=7,
+                     tck=c(-1,0)),
+         prepanel=prepanel,
+         panel=function(x, y, subscripts, groups, stderr, box.ratio, ...){
+             panel.barchart(x, y, subscripts=subscripts,
+                            groups=groups, box.ratio=box.ratio,origin=0, ...)
+             panel.abline(h=0,col="black",...)
+             panel.err(x, y, subscripts=subscripts,
+                       groups=groups, box.ratio=box.ratio,stderr=change$stderr)
+           }
+         ) structure(list(Treat = structure(c(3L, 4L, 1L, 2L, 3L, 4L, 1L, 
+2L), .Label = c("12-380", "12-750", "8-380", "8-750"), class = "factor"), 
+    Process = structure(c(1L, 1L, 1L, 1L, 2L, 2L, 2L, 2L), .Label = c("Respiration", 
+    "Calcification"), class = c("ordered", "factor")), Change = c(-33L, 
+    -35L, 21L, 18L, 7L, -29L, -8L, -79L), stderr = c(20L, 6L, 
+    10L, 9L, 33L, 38L, 21L, 32L), fTreat = structure(c(1L, 2L, 
+    3L, 4L, 1L, 2L, 3L, 4L), .Label = c("8-380", "8-750", "12-380", 
+    "12-750"), class = c("ordered", "factor"))), .Names = c("Treat", 
+"Process", "Change", "stderr", "fTreat"), row.names = c(NA, -8L
+), class = "data.frame")
+-------------------------------------------------------------------------------------------------------
+plot(dt[,3], pch="•", ylim=c(-20, 50), axes=F, ann=F, cex=1.5, bty = 'o')
+abline(h=0, col=1, lty=2)
+arrows(1:3, dt[,3], 1:3, dt[,4], angle = 90, length = 0.08) segments(1:3, dt[,3], 1:3, dt[,5])
+segments(1:3, dt[,3], 1:3, dt[,4])
+-------------------------------------------------------------------------------------------------------
+plot graphics::arrow arrows(0,1,0,0) 
+lines(c(1,1),c(-.5,.5)) 
+arrows(1,2,.5,.5)
+-------------------------------------------------------------------------------------------------------
+arrows plot(c(0,1),c(0,1))
+arrows(0,0,1,1)
+-------------------------------------------------------------------------------------------------------
+barchart(scores, horizontal=FALSE, stack=FALSE, 
+     xlab='Sample', ylab='Mean Score (max of 9)',
+     auto.key=list(rectangles=TRUE, points=FALSE),
+     panel=function(x, y, box.ratio, groups, errbars, ...) {
+         # We need to specify groups because it's not actually the 4th 
+         # parameter
+         panel.barchart(x, y, box.ratio, groups=groups, ...)
+         x <- as.numeric(x)
+         nvals <- nlevels(groups)
+         groups <- as.numeric(groups)
+         box.width <- box.ratio / (1 + box.ratio)
+         for(i in unique(x)) {
+             ok <- x == i
+             width <- box.width / nvals
+             locs <- i + width * (groups[ok] - (nvals + 1)/2)
+             panel.arrows(locs, y[ok] + 0.5, scores.ses[,i], ...)
+         }
+     } )
+-------------------------------------------------------------------------------------------------------
+plot(x=rep(x_mean, 3), y=c(y_mean, y_max, y_min), bty='n', type="n" )
+rect(2,-4,4,4,col = rgb(0.5,0.5,0.5,1/4))
+arrows(x0=x_mean, y0=y_min, x1=x_mean, y1=y_max, length=0)
+points( x=x_mean, y=y_mean, pch=16) rgb rect
+-------------------------------------------------------------------------------------------------------
+arrows require(plotrix)
+
+color.scale.arrow = function(x1,y1,x2,y2,first.col,second.col,
+lwd= par('lwd'),lty=par('lty'),angle=30,length=0.25) {
+        x=mapply(seq,x1,x2,length.out=256) # Each column is one arrow
+        y=mapply(seq,y1,y2,length.out=256) # Each column is one arrow
+
+        arrows(x[255,],y[255,],x[256,],y[256,],col=ifelse(y[256,]<y[255,],first.col,second.col),lwd=lwd,lty=lty,angle=angle,length=length)
+
+        rgb1=col2rgb(first.col)[,1] / 255
+        rgb2=col2rgb(second.col)[,1] / 255
+        cols=rbind(rgb1,(rgb1 + rgb2) / 2,rgb2)
+
+        invisible(
+              sapply(seq(ncol(x)),function(line) 
+                  color.scale.lines(x[,line],y[,line],
+                  cols[,'red'],cols[,'green'],cols[,'blue'],
+                  lwd=lwd,lty=lty)
+              )
+       )
+}
+
+# Create sample data
+set.seed(1)
+x <- runif(12); y <- rnorm(12)
+i <- order(x,y); x <- x[i]; y <- y[i]
+x1=x[s]
+x2=x[s+1]
+y1=y[s]
+y2=y[s+1]
+
+# Plot sample data
+plot(x,y, main='', type='n')
+color.scale.arrow(x1,y1,x2,y2,'red','blue',lwd=2) color.scale.arrow
+-------------------------------------------------------------------------------------------------------
+plot() text() arrows() for plot(myd$X,myd$Y, col='white', type="p", main="", ylab="", xlab="",
+    axes = FALSE, ylim = c(min(myd$Y)*.8, max(myd$Y)*1.2),
+    xlim = c(min(myd$X)*.8, max(myd$X)*1.2))
+
+child = data.frame()
+child = myd[!is.na(myd$Parent1),]
+DArrows = matrix(0,nrow(child),4);
+MArrows = matrix(0,nrow(child),4);
+
+for (n in 1:nrow(child)){
+    d<-child[n,];
+    c1<-myd$indvidual==as.character(d$Parent1);
+    b1<-myd[t(c1)];
+    c2<-myd$indvidual==as.character(d$Parent2);
+    b2<-myd[t(c2)];
+    DArrows[n, 1]=as.double(d$X)
+    DArrows[n, 2]=as.double(d$Y)
+    DArrows[n, 3]=as.double(b1[4])
+    DArrows[n, 4]=as.double(b1[5])    
+    MArrows[n, 1]=as.double(d$X)
+    MArrows[n, 2]=as.double(d$Y)
+    MArrows[n, 3]=as.double(b2[4])
+    MArrows[n, 4]=as.double(b2[5])
+}
+
+arrows(DArrows[,3],DArrows[,4],DArrows[,1],DArrows[,2],lwd= 2, col = "blue",length=".1")
+arrows(MArrows[,3],MArrows[,4],MArrows[,1],MArrows[,2],lwd=2, col = "red",length=".1")
+
+par(new=TRUE)
+
+plot(myd$X,myd$Y,type = "p", main = "", ylab = "", xlab = "",cex = myd$pchsize,
+axes = FALSE, pch = 21, ylim = c(min(myd$Y)*.8, max(myd$Y)*1.2),
+xlim=c(min(myd$X)*.8, max(myd$X)*1.2), bg = myd$fillcol,fg = 'black')
+
+text(1.12*myd$X, .85*myd$Y, myd$indvidual)
+
+arrows((DArrows[,3]+DArrows[,1])/2, (DArrows[,4]+DArrows[,2])/2,
+    DArrows[,1], DArrows[,2], lwd = 2, col = "blue", length = ".1")
+arrows((MArrows[,3]+MArrows[,1])/2, (MArrows[,4]+MArrows[,2])/2,
+    MArrows[,1], MArrows[,2], lwd = 2, col = "red", length = ".1")
+-------------------------------------------------------------------------------------------------------
+radarchart require(fmsb)
+x = c(rep(4.5,7),rep(0,7), 
+      3.34, 3.28, 1.37, 1.12, 3.52, 4.07, 3.66)
+a = as.data.frame(matrix(x,nrow=3, ncol=7,byrow=T))
+radarchart(a, axistype = 4, seg = 3, cglty = 3, 
+           pty = 32, cglcol = 1, plwd = 3, pcol = 1, axislabcol = 1,
+           labels = seq(from = min(x), to = max(x), length = 4)) radarchart = function (df, axistype = 0, seg = 4, pty = 16, pcol = 1:8, plty = 1:6, 
+          plwd = 1, cglty = 3, cglwd = 1, cglcol = "navy", axislabcol = "blue", 
+          title = "", maxmin = TRUE, na.itp = TRUE, labels = NULL, ...) 
+{
+  if (!is.data.frame(df)) {
+    cat("The data must be given as dataframe.\n")
+    return()
+  }
+  if ((n <- length(df)) < 3) 
+    return()
+  if (maxmin == FALSE) {
+    dfmax <- apply(df, 2, max)
+    dfmin <- apply(df, 2, min)
+    df <- rbind(dfmax, dfmin, df)
+  }
+  plot(c(-1.2, 1.2), c(-1.2, 1.2), type = "n", frame.plot = FALSE, 
+       axes = FALSE, xlab = "", ylab = "", main = title, asp = 1, 
+       ...)
+  theta <- seq(90, 450, length = n + 1) * pi/180
+  theta <- theta[1:n]
+  xx <- cos(theta)
+  yy <- sin(theta)
+  for (i in 0:seg) {
+    polygon(xx * (i + 1)/(seg + 1), yy * (i + 1)/(seg + 1), 
+            lty = cglty, lwd = cglwd, border = cglcol)
+    if (axistype == 1 | axistype == 3) 
+     ## Changes by me  
+     if(is.null(labels)) labels = paste(i/seg * 100, 
+                                         "(%)")
+      text(-0.05, (i + 1)/(seg + 1), labels[i+1], col = axislabcol)
+    if (axistype == 4 | axistype == 5) 
+      ## Changes by me
+      if(is.null(labels)) labels = sprintf("%3.2f", i/seg)
+      text(-0.05, (i + 1)/(seg + 1), labels[i+1], 
+           col = axislabcol)
+  }
+  arrows(xx/(seg + 1), yy/(seg + 1), xx * 1, yy * 1, lwd = cglwd, 
+         lty = cglty, length = 0, col = cglcol)
+  if (axistype == 2 | axistype == 3 | axistype == 5) {
+    text(xx[1:n], yy[1:n], df[1, 1:n], col = axislabcol)
+  }
+  text(xx * 1.2, yy * 1.2, colnames(df))
+  series <- length(df[[1]])
+  if (length(pty) < (series - 2)) {
+    ptys <- rep(pty, series - 2)
+    pcols <- rep(pcol, series - 2)
+    pltys <- rep(plty, series - 2)
+    plwds <- rep(plwd, series - 2)
+  }
+  else {
+    ptys <- pty
+    pcols <- pcol
+    pltys <- plty
+    plwds <- plwd
+  }
+  for (i in 3:series) {
+    xxs <- xx
+    yys <- yy
+    scale <- 1/(seg + 1) + (df[i, ] - df[2, ])/(df[1, ] - 
+      df[2, ]) * seg/(seg + 1)
+    if (sum(!is.na(df[i, ])) < 3) {
+      cat(sprintf("[DATA NOT ENOUGH] at %d\n%g\n", i, df[i, 
+                                                         ]))
+    }
+    else {
+      for (j in 1:n) {
+        if (is.na(df[i, j])) {
+          if (na.itp) {
+            left <- ifelse(j > 1, j - 1, n)
+            while (is.na(df[i, left])) {
+              left <- ifelse(left > 1, left - 1, n)
+            }
+            right <- ifelse(j < n, j + 1, 1)
+            while (is.na(df[i, right])) {
+              right <- ifelse(right < n, right + 1, 1)
+            }
+            xxleft <- xx[left] * (1/(seg + 1) + (df[i, 
+                                                    left] - df[2, left])/(df[1, left] - df[2, 
+                                                                                           left]) * seg/(seg + 1))
+            yyleft <- yy[left] * (1/(seg + 1) + (df[i, 
+                                                    left] - df[2, left])/(df[1, left] - df[2, 
+                                                                                           left]) * seg/(seg + 1))
+            xxright <- xx[right] * (1/(seg + 1) + (df[i, 
+                                                      right] - df[2, right])/(df[1, right] - 
+                                                        df[2, right]) * seg/(seg + 1))
+            yyright <- yy[right] * (1/(seg + 1) + (df[i, 
+                                                      right] - df[2, right])/(df[1, right] - 
+                                                        df[2, right]) * seg/(seg + 1))
+            if (xxleft > xxright) {
+              xxtmp <- xxleft
+              yytmp <- yyleft
+              xxleft <- xxright
+              yyleft <- yyright
+              xxright <- xxtmp
+              yyright <- yytmp
+            }
+            xxs[j] <- xx[j] * (yyleft * xxright - yyright * 
+              xxleft)/(yy[j] * (xxright - xxleft) - xx[j] * 
+              (yyright - yyleft))
+            yys[j] <- (yy[j]/xx[j]) * xxs[j]
+          }
+          else {
+            xxs[j] <- 0
+            yys[j] <- 0
+          }
+        }
+        else {
+          xxs[j] <- xx[j] * (1/(seg + 1) + (df[i, j] - 
+            df[2, j])/(df[1, j] - df[2, j]) * seg/(seg + 
+            1))
+          yys[j] <- yy[j] * (1/(seg + 1) + (df[i, j] - 
+            df[2, j])/(df[1, j] - df[2, j]) * seg/(seg + 
+            1))
+        }
+      }
+      polygon(xxs, yys, lty = pltys[i - 2], lwd = plwds[i - 
+        2], border = pcols[i - 2])
+      points(xx * scale, yy * scale, pch = ptys[i - 2], 
+             col = pcols[i - 2])
+    }
+  }
+}
+-------------------------------------------------------------------------------------------------------
+```{r clock, fig.width=7, fig.height=6, fig.show='animate'}
+par(mar = rep(3, 4))
+for (i in seq(pi/2, -4/3 * pi, length = 12)) {
+    plot(0, 0, pch = 20, ann = FALSE, axes = FALSE)
+    arrows(0, 0, cos(i), sin(i))
+    axis(1, 0, "VI"); axis(2, 0, "IX")
+    axis(3, 0, "XII"); axis(4, 0, "III"); box()
+}
+```
+-------------------------------------------------------------------------------------------------------
+# First two dummy clusters (since you didn't provide with some...)
+hc1 <- hclust(dist(USArrests), "average")
+hc2 <- hclust(dist(USArrests), "complete")
+
+l <- length(hc1$order)
+
+# The matrix to draw the arrows:
+cbind((1:l)[order(hc1$order)],(1:l)[order(hc2$order)]) -> ord_arrow
+
+# The two vectors of ordered leave labels:
+hc1$labels[hc1$order]->leaves1
+hc2$labels[hc2$order]->leaves2
+
+# And the plot:
+layout(matrix(1:5,nrow=1),width=c(5,2,3,2,5))
+
+# The first dendrogram:
+par(mar=c(3,3,3,0))
+plot(as.dendrogram(hc1),horiz=TRUE,leaflab="none", ylim=c(0,l))
+
+# The first serie of labels (i draw them separately because, for the second serie, I didn't find a simple way to draw them nicely on the cluster):
+par(mar=c(3,0,3,0))
+plot(NA, bty="n",axes=FALSE,xlim=c(0,1), ylim=c(0,l),ylab="",xlab="")
+sapply(1:l,function(x)text(x=0,y=x,labels=leaves1[x], pos=4, cex=0.8))
+
+# The arrows:
+par(mar=c(3,0,3,0))
+plot(NA, bty="n",axes=FALSE,xlim=c(0,1), ylim=c(0,l),ylab="",xlab="")
+apply(ord_arrow,1,function(x){arrows(0,x[1],1,x[2],code=3, length=0.05, col="blue")})
+
+# The second serie of labels:
+par(mar=c(3,0,3,0))
+plot(NA, bty="n",axes=FALSE, xlim=c(0,1), ylim=c(0,l), ylab="",xlab="")
+sapply(1:l,function(x)text(x=1,y=x,labels=leaves2[x], pos=2, cex=0.8))
+
+# And the second dendrogram (to reverse it I reversed the xlim vector:
+par(mar=c(3,0,3,3))
+plot(as.dendrogram(hc2),horiz=TRUE, xlim=c(0,max(dist(USArrests))), leaflab="none", ylim=c(0,l)) ape
+-------------------------------------------------------------------------------------------------------
+locator(1) > locator(1)
+$x
+[1] 1.365533
+
+$y
+[1] 2.25695 > locs <- locator(2)
+> locs
+$x
+[1] 1.265845 1.587567
+
+$y
+[1] 2.604642 2.267028 locs with(locs, arrows(x0=x[1], x1=x[2], y0=y[1], y1= y[2], code=1))
+-------------------------------------------------------------------------------------------------------
+arrow_pos = as.data.frame(matrix(1:2,2,2))
+colnames(arrow_pos)<- c("x","y")
+with(arrow_pos, arrows(x0=x[1],x1=x[2], y0=y[1],y1=y[2])) x_s<-c(1,2)
+y_s<-c(1,2)
+arrow_pos <- as.data.frame(rbind(x_s,y_s)) V1 = 1:3 length(V1); ceiling(mean(V1)); median(V1)
+-------------------------------------------------------------------------------------------------------
+?arrows plot(test)
+arrows(x0=0, y0=.745, x1=1800, y1=.745, code=0, lty=2)
+arrows(x0=1800, y0=0, x1=1800, y1=.745, code=0, lty=2)
+-------------------------------------------------------------------------------------------------------
+dashboard <- function(dial=list(
+                        list(color="red",
+                             range=c(10, 40)),
+                        list(color="yellow",
+                             range=c(40, 60)),
+                        list(color="green",
+                             range=c(70, 100))
+                        ),
+                      value=from) {
+
+
+  from <- min(unlist(lapply(dial, "[[", i="range")))
+  to <-  max(unlist(lapply(dial, "[[", i="range")))
+
+  theta <- seq(-pi/3, pi + pi/3, length=100)
+  r <- 1
+
+  scale <- function(x) {
+    m <- (pi + pi/3 - (-pi/3))/(from - to)
+    (pi + pi/3) + m*(x - from)
+  }
+
+  plot.new()
+  plot.window(xlim=c(-1, 1), ylim=c(sin(-pi/3), 1))
+
+  lines(cos(theta), sin(theta))
+  sapply(dial, function(l) {
+    d <- scale(l$range)
+    x <- seq(d[1], d[2], length=100)
+    lines(cos(x), sin(x), col=l$color, lwd=3)
+  })
+
+  ticks <- pretty(c(from, to), n=5)
+  ticks_th <- scale(ticks)
+  r <- 1 - .15
+  text(r*cos(ticks_th), r*sin(ticks_th), labels=ticks)
+
+  sapply(ticks_th, function(th) {
+    lines(cos(th)*c(1,.95), sin(th)*c(1, .95))
+  })
+
+  r <- 1 - .25
+  th <- scale(value)
+  arrows(0, 0, cos(th), sin(th))
+
+
+}
+
+dashboard( value=60)
+-------------------------------------------------------------------------------------------------------
+datf datf <- datf[order(datf$pollut, datf$lag), ] datfPlusNA <- lapply(split(datf, datf$pollut), function(x) rbind(NA, x, NA))
+datf <- do.call(rbind, datfPlusNA) nr <- nrow(datf)  # find out how many rows all together
+with(datf, {# this allows entering your commands more succinctly
+    # first you could set up the plot so you can select the order of drawing
+    plot(1:nr, or, ylim = c(0.8, 1.3), type = 'n', xaxt = 'n', xlab = '', ylab = 'Odds Ratio and 95% CI', frame.plot = TRUE, panel.first = grid(nx = NA, ny = NULL))
+    # arrows(1:nr, lcl, 1:nr, ucl, length = 0.02, angle = 90, code = 3, col = factor(lag)) 
+    # you could use arrows above but you don't want ends so segments is easier
+    segments(1:nr, lcl, 1:nr, ucl, col = factor(lag))
+    # add your points
+    points(1:nr, or, pch = 19, cex = 0.6)
+    xLabels <- na.omit(unique(pollut))
+    axis(1, seq(4, 34, by = 6) - 0.5, xLabels)
+})
+abline(h = 1.0)
+-------------------------------------------------------------------------------------------------------
+vegan rda() scale=TRUE plot() library(vegan)
+prin_comp<-rda(data[,2:9], scale=TRUE)
+pca_scores<-scores(prin_comp)
+
+plot(pca_scores$sites[,1],
+     pca_scores$sites[,2],
+     pch=21,
+     bg=as.numeric(data$Waterbody),
+     xlim=c(-2,2), 
+     ylim=c(-2,2))
+arrows(0,0,pca_scores$species[,1],pca_scores$species[,2],lwd=1,length=0.2) ordiellipse() vegan conf= ordiellipse(prin_comp,data$Waterbody,conf=0.99)
+-------------------------------------------------------------------------------------------------------
+myd <- data.frame(period = c("", "Triassic", "Jurasic", 
+                             "Cretaceous", "Cenzoic", ""), 
+                  myears = c(260, 245, 208, 145, 65, -5), 
+                  label = c(260, 226, 176,105, 32, -5))
+myd2 <- data.frame(event = c("Dinosaurs_strt", "Birds", 
+                             "Dinosaurs_ext", "Human"), 
+                   myears = c(235, 200, 60, 0.5))
+myd2$x <- 1
+with(myd2, plot(x, myears, ylim = c(-5, 250), xlim = c(0, 10), 
+                axes = FALSE, xlab = "", ylab = "", type = "n"))
+with(myd2, text(x, myears, event, pos = 4, xpd = TRUE))
+axis(side = 2, at = myd$label, labels = myd$period, las = 2)
+X0 <- rep(myd2$x, 4)
+Y0 <- myd2$myears
+X1 <- rep(-.25, 4)
+Y1 <- Y0
+arrows(X0, Y0, X1, Y1) pch arrows
+-------------------------------------------------------------------------------------------------------
+widths = c(0.5, 0.5, 1/3,1/4,1/5, 3.5, 0.5)
+heights = c(25, 10, 5,4.5,4,2,0.5) barplot ##Also specify colours
+barplot(heights, widths, space=0, 
+        col = colours()[1:6]) axis(1, 0:6) grid ##Look at ?grid to for more control over the grid lines
+grid() arrows(1, 10, 1.2, 12, code=1)
+text(1.2, 13, "A country") polygon polygon(c(4,4,5,5), c(20, 25, 25, 20), col="antiquewhite1")
+text(4.3, 22.5, "Hi there", cex=0.6) par(mar=c(3,3,2,1), 
+    mgp=c(2,0.4,0), tck=-.01,
+    cex.axis=0.9, las=1)
+-------------------------------------------------------------------------------------------------------
+arrows set.seed(1); ts.plot(x <-rnorm(10,0,1), ylim=c(-1.6,1.6))  # some random data
+arrows(x0=1:length(x), y0=0, y1=x, code=2, col=2, length=.1) # adding arrows
+text(x=1:10, y=x+.1, 0, labels=round(x,2), cex=0.65) # adding text
+abline(h=0) # adding a horizontal line at y=0
+-------------------------------------------------------------------------------------------------------
+lattice set.seed(1234)
+dat = data.frame(x=1:10, y = rnorm(10,0,1))
+xyplot(y~x,data=dat, type =c('l','p'),
+       panel = function(x,y,...){
+         panel.fill(col=rgb(1,1,0,0.5))
+         panel.xyplot(x,y,...)
+         panel.arrows(x, y0=0,x1=x, y1=y, code=2, col=2, length=.1)
+         panel.text(x,y,label=round(y,2),adj=1.2,cex=1.5)
+         panel.abline(a=0)
+
+       })
+-------------------------------------------------------------------------------------------------------
+DF <- data.frame(x=rnorm(10),y=rnorm(10),dx=runif(10),dy=runif(10))
+plot(NULL, type = "n", xlim=c(-3,3),ylim=c(-3,3))
+arrows(DF[,1], DF[,2], DF[,1] + DF[,3], DF[,2] + DF[,4])
+-------------------------------------------------------------------------------------------------------
+edat <- read.table(file=file.choose())
+ with(edat, plot(V1,V2), cex=0.2) with(edat, plot(V1,V2, cex=0.2, col=V5)) with(edat, arrows(V1,V2, V1-20*V6*V7, V2-20*V6*V8, length=0.04, col="orange") ) with(edat, plot(V1,V2, cex=0.3, col=V5, xlim=c(0, 10000), ylim=c(-8000, -2000) ))
+with(edat, arrows(V1,V2, V1-20*V6*V7, V2-20*V6*V8, length=0.04, col="orange") ) require(akima)
+intflow<- with(edat, interp(x=x, y=y, z=Temps, xo=seq(min(x), max(x), length = 410), 
+              yo=seq(min(y), max(y), length = 410), duplicate="mean", linear=FALSE) )
+
+require(lattice)
+contourplot(intflow$z)
+filled.contour(intflow)
+with( intflow, contour(x=x, y=y, z=z) ) points plot
+-------------------------------------------------------------------------------------------------------
+Ellipses <- read.table(file.choose())
+names(Ellipses) <- c('x','y','dfluxx','dfluxy','kxx','Temps','gradTx','gradTy')
+require(splancs)
+require(akima) #First the background layer (the 'kxx' layer):
+# Here the regular grid on which we're gonna do the interpolation
+E.grid <- with(Ellipses, 
+               expand.grid(seq(min(x),max(x),length=200),
+                           seq(min(y),max(y),length=200)))
+names(E.grid) <- c("x","y") # Without this step, function inout throws an error
+E.grid$Value <- rep(0,nrow(E.grid))
+#Split the dataset according to unique values of kxx
+E.k <- split(Ellipses,Ellipses$kxx)
+# Find the convex hull delimiting each of those values domain
+E.k.ch <- lapply(E.k,function(X){X[chull(X$x,X$y),]}) 
+for(i in unique(Ellipses$kxx)){ # Pick the value for each coordinate in our regular grid
+    E.grid$Value[inout(E.grid[,1:2],E.k.ch[names(E.k.ch)==i][[1]],bound=TRUE)]<-i
+}
+
+# Then the regular grid for the second layer (Temp)
+T.grid <- with(Ellipses,
+               interp(x,y,Temps, xo=seq(min(x),max(x),length=200),        
+                      yo=seq(min(y),max(y),length=200), 
+                      duplicate="mean", linear=FALSE))
+# The regular grids for the arrow layer (gradT)
+dx <- with(Ellipses,
+           interp(x,y,gradTx,xo=seq(min(x),max(x),length=15),
+                  yo=seq(min(y),max(y),length=10),
+                  duplicate="mean", linear=FALSE))
+dy <- with(Ellipses,
+           interp(x,y,gradTy,xo=seq(min(x),max(x),length=15),
+                  yo=seq(min(y),max(y),length=10),
+                  duplicate="mean", linear=FALSE))
+T.grid2 <- with(Ellipses,
+               interp(x,y,Temps, xo=seq(min(x),max(x),length=15),        
+                      yo=seq(min(y),max(y),length=10), 
+                      duplicate="mean", linear=FALSE))
+gradTgrid<-expand.grid(dx$x,dx$y) palette(grey(seq(0.5,0.9,length=5)))
+par(mar=rep(0,4))
+plot(E.grid$x, E.grid$y, col=E.grid$Value, 
+     axes=F, xaxs="i", yaxs="i", pch=19)
+contour(T.grid, add=TRUE, col=colorRampPalette(c("blue","red"))(15), drawlabels=FALSE)
+arrows(gradTgrid[,1], gradTgrid[,2], gradTgrid[,1]-dx$z*40*T.grid2$z, gradTgrid[,2]-dy$z*40*T.grid2$z, col="yellow", length=0.05)
+-------------------------------------------------------------------------------------------------------
+ow <- expand.grid(c(1.5,2.5),c(1.5,2.5))
+row.names(ow)<-letters[1:4]
+pw <- expand.grid(1:3,1:3)
+row.names(pw)<-LETTERS[1:9]
+B <- rbind(expand.grid("a",row.names(pw)[c(1,2,4,5)]),
+           expand.grid("b",row.names(pw)[c(2,3,5,6)]),
+           expand.grid("c",row.names(pw)[c(4,5,7,8)]),
+           expand.grid("d",row.names(pw)[c(5,6,8,9)]))
+B <- cbind(B,abs(rnorm(16))) # The location of your oil wells:
+ow
+   Var1 Var2
+a  1.5  1.5
+b  2.5  1.5
+c  1.5  2.5
+d  2.5  2.5
+# Of your production wells:
+pw
+  Var1 Var2
+A    1    1
+B    2    1
+C    3    1
+D    1    2
+E    2    2
+F    3    2
+G    1    3
+H    2    3
+I    3    3
+#And a b value for each pairs of neighbouring oil/production wells:
+   Var1 Var2 abs(rnorm(16))
+1     a    A     1.78527757
+2     a    B     1.61794028
+3     a    D     1.80234599
+4     a    E     0.04202002
+5     b    B     0.90265280
+6     b    C     1.05214769
+7     b    E     0.67932237
+8     b    F     0.11497430
+9     c    D     0.26288589
+10    c    E     0.50745137
+11    c    G     0.74102529
+12    c    H     1.43919338
+13    d    E     1.04111278
+14    d    F     0.49372216
+15    d    H     0.21500663
+16    d    I     0.20156929 weirdplot <- function(ow_loc, pw_loc, B, 
+                     pch_ow=19, pch_pw=17, 
+                     col_ow="green", col_pw="blue", col_b="red", breaks){
+    # with ow_loc and pw_loc the locations of your wells
+    # B the correspondance table
+    # pch_ow and pch_pw the point type for the wells
+    # col_b, col_ow and col_pw the colors for the arrows and the wells
+    # and breaks a vector of size categories for b values
+    plot(pw_loc,type="n")
+    b<-cut(B[,3], breaks=breaks)
+    for(i in 1:nrow(B)){
+        start=ow_loc[row.names(ow)==B[i,1],]
+        end=pw_loc[row.names(pw)==B[i,2],]
+        arrows(x0=start[,1],y0=start[,2], x1=end[,1], y1=end[,2], lwd=b[i], col=col_b)
+        }
+    points(pw_loc, pch=pch_pw, col=col_pw)
+    points(ow_loc, pch=pch_ow, col=col_ow)
+    } weirdplot(ow, pw, B, breaks=c(0,0.5,1,1.5,2))
+-------------------------------------------------------------------------------------------------------
+arrows axis plot ## you call plot without axes, without box, without axes labels
+plot(x, y1,type="l",frame.plot=FALSE,
+     axes=FALSE,xlab='',ylab='')
+## write some text
+text(0.3,0.2,labels="y=x")
+text(max(x),-0.1,"x")
+text(-0.1,max(x),'y')
+## draw axes lines with arrows
+arrows(min(x), 0, max(x), 0)
+arrows(0, min(x), 0, max(x))
+## add axes ticks
+axis(1,at=c(0,0.5,1),pos=0)
+axis(2,at=c(0,0.5,1),pos=0)
+-------------------------------------------------------------------------------------------------------
+plotmath par(mar=c(8, 4, 2, 4))
+plot(1:5,1:5,xaxt='n',frame.plot=FALSE,xlab='')
+expr1 <- expression(L[2](delta[J~S](X,W),theta))
+expr2 <- expression(L[4](delta[J~S](X,W),theta))
+axis(1,las=2,labels=c(expr1,expr1),at=2:3,pos=1)
+arrows(0,1,5,1)
+-------------------------------------------------------------------------------------------------------
+par(xpd=NA) grconvertX grconvertY layout( matrix( c(1,2,3,2), 2 ) )
+par(xpd=NA)
+with(iris, plot(Sepal.Width, Sepal.Length, col=Species) )
+save1.x <- grconvertX( 0.25, from='npc', to='ndc' )
+save2.x <- grconvertX( iris$Sepal.Width[1], to='ndc' )
+save2.y <- grconvertY( iris$Sepal.Length[1], to='ndc' )
+with(iris, plot(Petal.Width, Petal.Length, col=Species) )
+with(iris, arrows( Petal.Width[1], Petal.Length[1], 
+   grconvertX( save2.x, from='ndc' ), 
+   grconvertY( save2.y, from='ndc' ), col='orange' ) )
+with( iris, plot( Petal.Length, Sepal.Length, col=Species ) )
+segments( grconvertX( 0.75, from='npc' ), grconvertY(0.9, from='npc'),
+   grconvertX( save1.x, from='ndc'), col='purple' )
+-------------------------------------------------------------------------------------------------------
+plotCI arrows() x <- 1:10
+L <- -(1:10)
+U <- 1:10
+ylim <- range(c(L,U))
+plot(x,y=rep(NA,length(x)),type="n",ylim=ylim)
+arrows(x,L,x,U,code=3,angle=90,length=0.1)
+-------------------------------------------------------------------------------------------------------
+
+lda.arrows <- function(x, myscale = 1, tex = 0.75, choices = c(1,2), ...){
+  ## adds `biplot` arrows to an lda using the discriminant function values
+  heads <- coef(x)
+  arrows(x0 = 0, y0 = 0, x1 = myscale * heads[,choices[1]], y1 = myscale * heads[,choices[2]], ...)
+  text(myscale * heads[,choices], labels = row.names(heads), 
+    cex = tex)
+} dis2 <- lda(as.matrix(iris[, 1:4]), iris$Species)
+plot(dis2, asp = 1)
+lda.arrows(dis2, col = 2, myscale = 2) myscale choices
+-------------------------------------------------------------------------------------------------------
+?text ?arrows x <- seq(0, 2, by=0.1)
+y <- x*x
+plot(x, y, type="l")
+
+text(0.25, 2, "Some text", pos=3)
+arrows(0.25, 2, 1, 1) text lines arrows x <- seq(0, 2, by=0.1)
+y <- x*x
+plot(x, y, type="l")
+
+# x0, y0: coordinates of text; see ?text
+# x1, y1: coordinates to which the arrows are drawn; see ?arrows
+# labels: text
+# vOffset/hOffset: vertical/horizontal offset
+callout <- function(x0, y0, x1, y1, labels, vOffset=0.25, hOffset=0.25) {
+  ## fetch labels width/height
+  w <- strwidth(labels)
+  w2 <- w/2
+  h <- strheight(labels)
+  h2 <- h/2
+
+  ## draw text
+  text(x0, y0, labels=labels)
+
+  ## calulate arrow starting point/line end point
+  x01 <- x0+w2*(1+hOffset)
+  y01 <- y0-h2*(1+vOffset)
+
+  ## draw horizontal lines
+  for (i in seq(along=x0)) {
+    lines(c(x0[i]-w2[i], x01[i]), c(y01[i], y01[i]))
+  }
+
+  ## draw arrows
+  arrows(x0=x01, y0=y01, x1=x1, y1=y1)
+}
+
+callout(c(0.25, 0.25), c(2, 3), c(1, 1.5), c(1, 2.25),
+        c("Some text", "Some other text"))
+-------------------------------------------------------------------------------------------------------
+lines x <- seq(0, 2, by=0.1)
+y <- x*x
+plot(x, y, type="l")
+text(0.25,2.2,'Some text')
+lines(c(0, 0.5,1), c(2 ,2,1),
+      lwd=3, col="grey")
+
+arrows(0.5,2,1,1,lwd=3, col="grey")
+-------------------------------------------------------------------------------------------------------
+lattice panel function xyplot geom_point panel.abline geom_abline grid.polygon geom_polygon panel.loess stat_smooth panel.arrows geom_errobar
+ panel.arrows(x.bar, ybar.hat$fit + ybar.hat$se.fit * t.quant, x.bar, ybar.hat$fit - ybar.hat$se.fit * t.quant, col = "darkgrey", length = 0.05, angle = 90, code = 3)
+ dat.arrow <- data.frame(x=x.bar, ymax= ybar.hat$fit + ybar.hat$se.fit * 
+             t.quant, ymin= ybar.hat$fit - ybar.hat$se.fit * 
+             t.quant)
+ pl <- pl +  geom_errorbar(data=dat.arrow, aes(x,ymin=ymin,ymax=ymax),
+              col = "darkgrey", width = 0.10) equivalence.ggplot equivalence.xyplot equivalence.ggplot <- function(x,y, alpha, b0.ii, b1.ii,
+                               b0.absolute = FALSE,add.smooth=FALSE){
+  x.bar <- mean(x, na.rm = TRUE)
+  min.x <- min(x, na.rm = TRUE)
+  max.x <- max(x, na.rm = TRUE)
+  the.model <- lm(y ~ x)
+
+  if (b0.absolute) 
+    y.poly <- x.bar + b0.ii * c(-1, 1, 1, -1)
+  else y.poly <- x.bar * (1 + b0.ii * c(-1, 1, 1, -1))
+  dat.poly <- data.frame(x = c(min.x, min.x, max.x, max.x), 
+                         y = y.poly)
+  dat <- data.frame(x,y)
+  p <- function(dat,dat.poly){
+    h <- ggplot(dat) +
+    geom_polygon(data=dat.poly,aes(x,y),col = "light gray", fill = gray(0.9)) +
+    geom_point(aes(x,y)) +
+    stat_smooth(data=dat,col='black',
+                  aes(x=x,y=y),method="lm", se=FALSE,
+                  fullrange =TRUE)+
+
+    theme_bw()
+    if (add.smooth) 
+      h <- h +  geom_smooth(aes(x,y),method='loess')
+    h
+  }
+  pl <- p(dat,dat.poly)
+
+  n <- sum(complete.cases(cbind(x, y)))
+  ybar.hat <- predict(the.model, newdata = data.frame(x = x.bar), 
+                      se = TRUE)
+  t.quant <- qt(1 - alpha/2, df.residual(the.model))
+  dat.arrow <- data.frame(x=x.bar, ymax= ybar.hat$fit + ybar.hat$se.fit * 
+                 t.quant, ymin= ybar.hat$fit - ybar.hat$se.fit * 
+                 t.quant)
+  pl <- pl + 
+    geom_errorbar(data=dat.arrow, aes(x,ymin=ymin,ymax=ymax),
+                  col = "darkgrey", width = 0.10)
+  pl
+
+  se.slope <- coef(summary(the.model))[2, 2]
+  dat.arrow1 <- data.frame(x=x.bar, ymax=  ybar.hat$fit + se.slope * t.quant * 
+                             x.bar, ymin=ybar.hat$fit - se.slope * t.quant * 
+                             x.bar)
+
+  pl <- pl + 
+    geom_errorbar(data=dat.arrow1, aes(x,ymin=ymin,ymax=ymax),
+                  col = "black", width = 0.10)
+  addLines <- function(pl,the.model){
+  pl <- pl + geom_abline(intercept = coef(summary(the.model))[1, 1], slope = 1 - 
+                 b1.ii, col = "darkgrey", lty = 2) + 
+    geom_abline(intercept = coef(summary(the.model))[1, 1], slope = 1 + 
+                 b1.ii, col = "darkgrey", lty = 2)  
+  }
+  pl <- addLines(pl,the.model)
+  pl
+
+} library(gridExtra)
+p.gg  <- equivalence.ggplot(mydata$x,mydata$y,alpha=0.05, b0.ii=0.25, b1.ii=0.25)
+p.lat <- equivalence.xyplot(mydata$y~mydata$x,alpha=0.05, b0.ii=0.25, b1.ii=0.25)
+grid.arrange(p.gg,p.lat)
+-------------------------------------------------------------------------------------------------------
+windRose windRose.2 <- function (mydata, ws = "ws", wd = "wd", ws2 = NA, wd2 = NA, ws.int = 2, 
+    angle = 30, type = "default", cols = "default", grid.line = NULL, 
+    width = 1, seg = NULL, auto.text = TRUE, breaks = 4, offset = 10, 
+    paddle = TRUE, key.header = NULL, key.footer = "(m/s)", key.position = "bottom", 
+    key = TRUE, dig.lab = 5, statistic = "prop.count", pollutant = NULL, 
+    annotate = TRUE, border = NA, ...) 
+{
+    if (is.null(seg)) 
+        seg <- 0.9
+    if (length(cols) == 1 && cols == "greyscale") {
+        trellis.par.set(list(strip.background = list(col = "white")))
+        calm.col <- "black"
+    }
+    else {
+        calm.col <- "forestgreen"
+    }
+    current.strip <- trellis.par.get("strip.background")
+    on.exit(trellis.par.set("strip.background", current.strip))
+    if (360/angle != round(360/angle)) {
+        warning("In windRose(...):\n  angle will produce some spoke overlap", 
+            "\n  suggest one of: 5, 6, 8, 9, 10, 12, 15, 30, 45, etc.", 
+            call. = FALSE)
+    }
+    if (angle < 3) {
+        warning("In windRose(...):\n  angle too small", "\n  enforcing 'angle = 3'", 
+            call. = FALSE)
+        angle <- 3
+    }
+    extra.args <- list(...)
+    extra.args$xlab <- if ("xlab" %in% names(extra.args)) 
+        quickText(extra.args$xlab, auto.text)
+    else quickText("", auto.text)
+    extra.args$ylab <- if ("ylab" %in% names(extra.args)) 
+        quickText(extra.args$ylab, auto.text)
+    else quickText("", auto.text)
+    extra.args$main <- if ("main" %in% names(extra.args)) 
+        quickText(extra.args$main, auto.text)
+    else quickText("", auto.text)
+    if (is.character(statistic)) {
+        ok.stat <- c("prop.count", "prop.mean", "abs.count", 
+            "frequency")
+        if (!is.character(statistic) || !statistic[1] %in% ok.stat) {
+            warning("In windRose(...):\n  statistic unrecognised", 
+                "\n  enforcing statistic = 'prop.count'", call. = FALSE)
+            statistic <- "prop.count"
+        }
+        if (statistic == "prop.count") {
+            stat.fun <- length
+            stat.unit <- "%"
+            stat.scale <- "all"
+            stat.lab <- ""
+            stat.fun2 <- function(x) signif(mean(x, na.rm = TRUE), 
+                3)
+            stat.lab2 <- "mean"
+            stat.labcalm <- function(x) round(x, 1)
+        }
+        if (statistic == "prop.mean") {
+            stat.fun <- function(x) sum(x, na.rm = TRUE)
+            stat.unit <- "%"
+            stat.scale <- "panel"
+            stat.lab <- "Proportion contribution to the mean (%)"
+            stat.fun2 <- function(x) signif(mean(x, na.rm = TRUE), 
+                3)
+            stat.lab2 <- "mean"
+            stat.labcalm <- function(x) round(x, 1)
+        }
+        if (statistic == "abs.count" | statistic == "frequency") {
+            stat.fun <- length
+            stat.unit <- ""
+            stat.scale <- "none"
+            stat.lab <- "Count by wind direction"
+            stat.fun2 <- function(x) round(length(x), 0)
+            stat.lab2 <- "count"
+            stat.labcalm <- function(x) round(x, 0)
+        }
+    }
+    if (is.list(statistic)) {
+        stat.fun <- statistic$fun
+        stat.unit <- statistic$unit
+        stat.scale <- statistic$scale
+        stat.lab <- statistic$lab
+        stat.fun2 <- statistic$fun2
+        stat.lab2 <- statistic$lab2
+        stat.labcalm <- statistic$labcalm
+    }
+    vars <- c(wd, ws)
+    diff <- FALSE
+    rm.neg <- TRUE
+    if (!is.na(ws2) & !is.na(wd2)) {
+        vars <- c(vars, ws2, wd2)
+        diff <- TRUE
+        rm.neg <- FALSE
+        mydata$ws <- mydata[, ws2] - mydata[, ws]
+        mydata$wd <- mydata[, wd2] - mydata[, wd]
+        id <- which(mydata$wd < 0)
+        if (length(id) > 0) 
+            mydata$wd[id] <- mydata$wd[id] + 360
+        pollutant <- "ws"
+        key.footer <- "ws"
+        wd <- "wd"
+        ws <- "ws"
+        vars <- c("ws", "wd")
+        if (missing(angle)) 
+            angle <- 10
+        if (missing(offset)) 
+            offset <- 20
+        if (is.na(breaks[1])) {
+            max.br <- max(ceiling(abs(c(min(mydata$ws, na.rm = TRUE), 
+                max(mydata$ws, na.rm = TRUE)))))
+            breaks <- c(-1 * max.br, 0, max.br)
+        }
+        if (missing(cols)) 
+            cols <- c("lightskyblue", "tomato")
+        seg <- 1
+    }
+    if (any(type %in% openair:::dateTypes)) 
+        vars <- c(vars, "date")
+    if (!is.null(pollutant)) 
+        vars <- c(vars, pollutant)
+    mydata <- openair:::checkPrep(mydata, vars, type, remove.calm = FALSE, 
+        remove.neg = rm.neg)
+    mydata <- na.omit(mydata)
+    if (is.null(pollutant)) 
+        pollutant <- ws
+    mydata$x <- mydata[, pollutant]
+    mydata[, wd] <- angle * ceiling(mydata[, wd]/angle - 0.5)
+    mydata[, wd][mydata[, wd] == 0] <- 360
+    mydata[, wd][mydata[, ws] == 0] <- -999
+    if (length(breaks) == 1) 
+        breaks <- 0:(breaks - 1) * ws.int
+    if (max(breaks) < max(mydata$x, na.rm = TRUE)) 
+        breaks <- c(breaks, max(mydata$x, na.rm = TRUE))
+    if (min(breaks) > min(mydata$x, na.rm = TRUE)) 
+        warning("Some values are below minimum break.")
+    breaks <- unique(breaks)
+    mydata$x <- cut(mydata$x, breaks = breaks, include.lowest = FALSE, 
+        dig.lab = dig.lab)
+    theLabels <- gsub("[(]|[)]|[[]|[]]", "", levels(mydata$x))
+    theLabels <- gsub("[,]", " to ", theLabels)
+    prepare.grid <- function(mydata) {
+        if (all(is.na(mydata$x))) 
+            return()
+        levels(mydata$x) <- c(paste("x", 1:length(theLabels), 
+            sep = ""))
+        all <- stat.fun(mydata[, wd])
+        calm <- mydata[mydata[, wd] == -999, ][, pollutant]
+        mydata <- mydata[mydata[, wd] != -999, ]
+        calm <- stat.fun(calm)
+        weights <- tapply(mydata[, pollutant], list(mydata[, 
+            wd], mydata$x), stat.fun)
+        if (stat.scale == "all") {
+            calm <- calm/all
+            weights <- weights/all
+        }
+        if (stat.scale == "panel") {
+            temp <- stat.fun(stat.fun(weights)) + calm
+            calm <- calm/temp
+            weights <- weights/temp
+        }
+        weights[is.na(weights)] <- 0
+        weights <- t(apply(weights, 1, cumsum))
+        if (stat.scale == "all" | stat.scale == "panel") {
+            weights <- weights * 100
+            calm <- calm * 100
+        }
+        panel.fun <- stat.fun2(mydata[, pollutant])
+        u <- mean(sin(2 * pi * mydata[, wd]/360))
+        v <- mean(cos(2 * pi * mydata[, wd]/360))
+        mean.wd <- atan2(u, v) * 360/2/pi
+        if (all(is.na(mean.wd))) {
+            mean.wd <- NA
+        }
+        else {
+            if (mean.wd < 0) 
+                mean.wd <- mean.wd + 360
+            if (mean.wd > 180) 
+                mean.wd <- mean.wd - 360
+        }
+        weights <- cbind(data.frame(weights), wd = as.numeric(row.names(weights)), 
+            calm = calm, panel.fun = panel.fun, mean.wd = mean.wd)
+        weights
+    }
+    if (paddle) {
+        poly <- function(wd, len1, len2, width, colour, x.off = 0, 
+            y.off = 0) {
+            theta <- wd * pi/180
+            len1 <- len1 + off.set
+            len2 <- len2 + off.set
+            x1 <- len1 * sin(theta) - width * cos(theta) + x.off
+            x2 <- len1 * sin(theta) + width * cos(theta) + x.off
+            x3 <- len2 * sin(theta) - width * cos(theta) + x.off
+            x4 <- len2 * sin(theta) + width * cos(theta) + x.off
+            y1 <- len1 * cos(theta) + width * sin(theta) + y.off
+            y2 <- len1 * cos(theta) - width * sin(theta) + y.off
+            y3 <- len2 * cos(theta) + width * sin(theta) + y.off
+            y4 <- len2 * cos(theta) - width * sin(theta) + y.off
+            lpolygon(c(x1, x2, x4, x3), c(y1, y2, y4, y3), col = colour, 
+                border = border)
+        }
+    }
+    else {
+        poly <- function(wd, len1, len2, width, colour, x.off = 0, 
+            y.off = 0) {
+            len1 <- len1 + off.set
+            len2 <- len2 + off.set
+            theta <- seq((wd - seg * angle/2), (wd + seg * angle/2), 
+                length.out = (angle - 2) * 10)
+            theta <- ifelse(theta < 1, 360 - theta, theta)
+            theta <- theta * pi/180
+            x1 <- len1 * sin(theta) + x.off
+            x2 <- rev(len2 * sin(theta) + x.off)
+            y1 <- len1 * cos(theta) + x.off
+            y2 <- rev(len2 * cos(theta) + x.off)
+            lpolygon(c(x1, x2), c(y1, y2), col = colour, border = border)
+        }
+    }
+    mydata <- cutData(mydata, type, ...)
+    results.grid <- ddply(mydata, type, prepare.grid)
+    results.grid$calm <- stat.labcalm(results.grid$calm)
+    results.grid$mean.wd <- stat.labcalm(results.grid$mean.wd)
+    strip.dat <- openair:::strip.fun(results.grid, type, auto.text)
+    strip <- strip.dat[[1]]
+    strip.left <- strip.dat[[2]]
+    pol.name <- strip.dat[[3]]
+    if (length(theLabels) < length(cols)) {
+        col <- cols[1:length(theLabels)]
+    }
+    else {
+        col <- openColours(cols, length(theLabels))
+    }
+    max.freq <- max(results.grid[, (length(type) + 1):(length(theLabels) + 
+        length(type))], na.rm = TRUE)
+    off.set <- max.freq * (offset/100)
+    box.widths <- seq(0.002^0.25, 0.016^0.25, length.out = length(theLabels))^4
+    box.widths <- box.widths * max.freq * angle/5
+    legend <- list(col = col, space = key.position, auto.text = auto.text, 
+        labels = theLabels, footer = key.footer, header = key.header, 
+        height = 0.6, width = 1.5, fit = "scale", plot.style = if (paddle) "paddle" else "other")
+    legend <- openair:::makeOpenKeyLegend(key, legend, "windRose")
+    temp <- paste(type, collapse = "+")
+    myform <- formula(paste("x1 ~ wd | ", temp, sep = ""))
+    mymax <- 2 * max.freq
+    myby <- if (is.null(grid.line)) 
+        pretty(c(0, mymax), 10)[2]
+    else grid.line
+    if (myby/mymax > 0.9) 
+        myby <- mymax * 0.9
+    xyplot.args <- list(x = myform, xlim = 1.03 * c(-max.freq - 
+        off.set, max.freq + off.set), ylim = 1.03 * c(-max.freq - 
+        off.set, max.freq + off.set), data = results.grid, type = "n", 
+        sub = stat.lab, strip = strip, strip.left = strip.left, 
+        as.table = TRUE, aspect = 1, par.strip.text = list(cex = 0.8), 
+        scales = list(draw = FALSE), panel = function(x, y, subscripts, 
+            ...) {
+            panel.xyplot(x, y, ...)
+            angles <- seq(0, 2 * pi, length = 360)
+            sapply(seq(off.set, mymax, by = myby), function(x) llines(x * 
+                sin(angles), x * cos(angles), col = "grey85", 
+                lwd = 1))
+            subdata <- results.grid[subscripts, ]
+            upper <- max.freq + off.set
+            larrows(-upper, 0, upper, 0, code = 3, length = 0.1)
+            larrows(0, -upper, 0, upper, code = 3, length = 0.1)
+            ltext(upper * -1 * 0.95, 0.07 * upper, "W", cex = 0.7)
+            ltext(0.07 * upper, upper * -1 * 0.95, "S", cex = 0.7)
+            ltext(0.07 * upper, upper * 0.95, "N", cex = 0.7)
+            ltext(upper * 0.95, 0.07 * upper, "E", cex = 0.7)
+            if (nrow(subdata) > 0) {
+                for (i in 1:nrow(subdata)) {
+                  with(subdata, {
+                    for (j in 1:length(theLabels)) {
+                      if (j == 1) {
+                        temp <- "poly(wd[i], 0, x1[i], width * box.widths[1], col[1])"
+                      } else {
+                        temp <- paste("poly(wd[i], x", j - 1, 
+                          "[i], x", j, "[i], width * box.widths[", 
+                          j, "], col[", j, "])", sep = "")
+                      }
+                      eval(parse(text = temp))
+                    }
+                  })
+                }
+            }
+            ltext(seq((myby + off.set), mymax, myby) * sin(pi/4), 
+                seq((myby + off.set), mymax, myby) * cos(pi/4), 
+                paste(seq(myby, mymax, by = myby), stat.unit, 
+                  sep = ""), cex = 0.7)
+            if (annotate) if (statistic != "prop.mean") {
+                if (!diff) {
+                  ltext(max.freq + off.set, -max.freq - off.set, 
+                    label = paste(stat.lab2, " = ", subdata$panel.fun[1], 
+                      "\ncalm = ", subdata$calm[1], stat.unit, 
+                      sep = ""), adj = c(1, 0), cex = 0.7, col = calm.col)
+                }
+                if (diff) {
+                  ltext(max.freq + off.set, -max.freq - off.set, 
+                    label = paste("mean ws = ", round(subdata$panel.fun[1], 
+                      1), "\nmean wd = ", round(subdata$mean.wd[1], 
+                      1), sep = ""), adj = c(1, 0), cex = 0.7, 
+                    col = calm.col)
+                }
+            } else {
+                ltext(max.freq + off.set, -max.freq - off.set, 
+                  label = paste(stat.lab2, " = ", subdata$panel.fun[1], 
+                    stat.unit, sep = ""), adj = c(1, 0), cex = 0.7, 
+                  col = calm.col)
+            }
+        }, legend = legend)
+    xyplot.args <- openair:::listUpdate(xyplot.args, extra.args)
+    plt <- do.call(xyplot, xyplot.args)
+    if (length(type) == 1) 
+        plot(plt)
+    else plot(useOuterStrips(plt, strip = strip, strip.left = strip.left))
+    newdata <- results.grid
+    output <- list(plot = plt, data = newdata, call = match.call())
+    class(output) <- "openair"
+    invisible(output)
+} windRose.2 stat.lab <- "Frequency of counts by wind direction (%)" stat.lab <- ""
+-------------------------------------------------------------------------------------------------------
+par(mar=c(1,1,1,1)); 
+layout(matrix(c(0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,
+                1,1,1,1,6,6,0, 
+                1,2,2,5,5,6,0, 
+                1,2,2,1,0,0,0, 
+                1,1,1,3,0,0,0, 
+                0,0,0,0,3,0,0, 
+                0,0,0,0,0,3,4, 
+                0,0,0,0,0,4,4), nrow=9, byrow=TRUE)); 
+
+pie(x=c(0.4,0.3,0.2,0.1), labels = NA); 
+pie(x=c(0.4,0.3,0.2,0.1), labels = NA); 
+
+plot(x=1, y=1, type='n', axes = FALSE, xlim = c(0,100), ylim = c(0,100))
+arrows(x0=0, y0=100, x1 = 80, y1 = 20, length=0.25)
+
+pie(x=c(0.4,0.3,0.2,0.1), labels = NA); 
+
+plot(x=1, y=1, type='n', axes = FALSE, xlim = c(0,100), ylim = c(0,100))
+arrows(x0=0, y0=0, x1 = 80, y1 = 90)
+
+pie(x=c(0.4,0.3,0.2,0.1), labels = NA); 
+-------------------------------------------------------------------------------------------------------
+# Make a fake dataset since it is inconvenient to copy & paste the data you show
+set.seed(13)
+False <- rnorm(10, mean=50, sd=10)
+True <- rnorm(10, mean=50, sd=10)
+MotifId <- letters[1:10]
+Dataset <- data.frame(False, True, MotifId) Dataset$stderr <- 7 # This will recycle to the number of rows of Dataset arrow plot(Dataset$True,Dataset$False, 
+     xlim=c(0,100), ylim=c(0,100), 
+     main="Average % of disorder", 
+     xlab="True", ylab="False", 
+     pch=19,col= "blue")
+text(Dataset$True,Dataset$False, 
+     labels=Dataset$MotifId, 
+     cex= 0.7, pos=3)
+abline(0,1)
+arrows(x0=Dataset$True, y0=Dataset$False - Dataset$stderr, x1=Dataset$True, y1=Dataset$False + Dataset$stderr, angle=90, code=3, length=0.05) 
+ggplot2 require(ggplot2)
+# Build the plot from layers 
+p <- ggplot(Dataset, aes(x=True, y=False, label=MotifId)) + 
+       geom_point() + 
+       geom_text(, vjust=1, hjust=1) +
+       geom_errorbar(aes(ymin=False-stderr, ymax=False+stderr), width=1) +
+       geom_abline(slope=1, intercept=0) +
+       xlim(c(0, 100)) +
+       ylim(c(0, 100)) +
+       ggtitle("Average % of disorder") +
+       theme_bw()
+print(p)
+-------------------------------------------------------------------------------------------------------
+x <- 1:19
+y <- 19:1
+zeros <- (1:19)*0
+plot(y~x)
+arrows(x0=zeros,y0=zeros,x1=x*2,y1=y*2,col=1:19)
+-------------------------------------------------------------------------------------------------------
+text text(x = 1.5, y = 73, 'p = 0.03') arrows segments arrows(1, 70, 2, length = 2, angle = 90, code = 3)
+-------------------------------------------------------------------------------------------------------
+gaoptim eurodistmat = as.matrix(eurodist)
+
+ # Fitness function (we'll perform a maximization, so invert it)
+ distance = function(sq)
+ {
+   sq = c(sq, sq[1])
+   sq2 <- embed(sq, 2)
+   1/sum(eurodistmat[cbind(sq2[,2], sq2[,1])])
+ }
+
+ loc = -cmdscale(eurodist, add = TRUE)$points
+ x = loc[, 1]
+ y = loc[, 2]
+ n = nrow(eurodistmat)
+
+ set.seed(1)
+
+ # solving code
+ require(gaoptim)
+ ga2 = GAPerm(distance, n, popSize = 100, mutRate = 0.3)
+ ga2$evolve(200)
+ best = ga2$bestIndividual()
+ # solving code
+
+ # just transform and plot the results
+ best = c(best, best[1])
+ best.dist = 1/max(ga2$bestFit())
+ res = loc[best, ]
+ i = 1:n
+
+ plot(x, y, type = 'n', axes = FALSE, ylab = '', xlab = '')
+ title ('Euro tour: TSP with 21 cities')
+ mtext(paste('Best distance found:', best.dist))
+ arrows(res[i, 1], res[i, 2], res[i + 1, 1], res[i + 1, 2], col = 'red', angle = 10)
+ text(x, y, labels(eurodist), cex = 0.8, col = 'gray20')
+-------------------------------------------------------------------------------------------------------
+data.table D <- data.table(d)
+MaxDate <- D[, max(date)] + 10
+MinDate <- D[, min(date)]
+D2 <- D[, list( date, firstdate = min(date)), by = id]
+D2[, plot(date, id, type='n', bty='n',axes=FALSE, xlab = "", ylab ="")]
+D2[date!=firstdate, points(date, id, pch =4)]
+D2[date==firstdate, points(date, id)]
+D2[date==firstdate, arrows(x0=date, y0=as.numeric(id), x1=MaxDate, length=0.1)]
+abline(v=MaxDate - 5)
+abline(v=MinDate)
+axis(side= 2, tick = FALSE, at=D[, unique(id)], labels=D[, paste0("ID = ",  as.character(unique(id)))], las=2)
+axis(side = 1, tick= FALSE, at=c(MinDate, MaxDate), labels = strftime(c(MinDate, MaxDate),format="Week %W, %Y") )
+-------------------------------------------------------------------------------------------------------
+names=data$method
+x = 1:13*2-1
+CI.up = as.numeric(data$mean)+as.numeric(data$ci)
+CI.dn = as.numeric(data$mean)-as.numeric(data$ci)
+plot(data$mean~x, cex=1.5,xaxt='n',ylim=c(0.3,0.40), xlab='',ylab='lalala!', main='blahblahblah',col='blue',pch=16)
+axis(1, at=x, labels=names)
+arrows(x,CI.dn,x,CI.up,code=3,length=0.2,angle=90,col='red')
+legend("bottomleft",paste(names,": S.E=",data$se),ncol=6,text.width=1)
+-------------------------------------------------------------------------------------------------------
+barplot x <- barplot() x <- barplot(result$modularity, ...)
+arrows(x,CI.dn,x,CI.up,code=3,length=0.06,angle=90,col='black')
+-------------------------------------------------------------------------------------------------------
+with(dat, plot(x=V1, y=V5, ylim=c(0,1) ,type='n',
+      xaxt="n", ylab="Allele Frequency", xlab="Genomic Location"))
+with(dat, axis(1, V1,V1, cex.axis=0.7)   )
+with( dat, arrows(x0=V1,x1=V1+10, y0=V4, y1=V5) ) ?arrows
+-------------------------------------------------------------------------------------------------------
+pre = data.frame(DateTime = as.POSIXct(c("2013-01-27 09:00:00", "2013-01-27 10:00:00", 
+                                     "2013-01-27 11:00:00", "2013-01-27 12:00:00", 
+                                     "2013-01-27 13:00:00")),
+            t.ws = c(32.7, 35.5, 37.1, 37.6, 38.7),
+            mean.tort = c(32.4, 34.9, 35.1, 36.8, 37.7),
+            se.tort = c(0.825, 0.84, 0.21, 0.228, 0.28)) require(lattice)
+
+xyplot(mean.tort+t.ws~DateTime, pre,
+   main="Pre-Translocation",
+   xlab=list(label="Date and Time"), 
+   ylab=list(label="Temperature (°C)"),
+   scales = list(tck = c(1, 0),
+                 x=list(cex=0.8, rot=45, tick.number=40),
+                 y=list(cex=0.8, tick.number=8, limits=c(29,43))),
+   key=list(text=list(c("Tortoise","Ambient")), 
+            lines=list(col=c("red", "blue"), 
+                       type="l"), corner=c(0.5,0.92)),
+   lx = pre$mean.tort - pre$se.tort, ux = pre$mean.tort + pre$se.tort,
+   panel = function (x,y, lx, ux,  ...){
+     panel.xyplot(x,y, type = "b", col=c("red", "blue"), ...)
+     panel.segments(x0 = x, x1 = x, y0 = lx, y1 = ux, col = "red", ...)
+   }
+) panel.arrows()
+-------------------------------------------------------------------------------------------------------
+lengths <- sample(1:10, 20, repl=TRUE)
+x=cumsum(lengths*c(1,0,-1,0))
+y=cumsum(lengths*c(0,1,0,-1))
+cbind(x,y)
+      x  y
+ [1,] 9  0
+ [2,] 9  5
+ [3,] 0  5
+ [4,] 0 -4
+ [5,] 8 -4
+ [6,] 8  1
+ [7,] 0  1
+ [8,] 0 -6
+ [9,] 8 -6
+[10,] 8 -5
+[11,] 3 -5
+[12,] 3 -8
+[13,] 7 -8
+[14,] 7 -1
+[15,] 3 -1
+[16,] 3 -3
+[17,] 6 -3
+[18,] 6  4
+[19,] 1  4
+[20,] 1 -4 plot(cbind(x,y))
+arrows(cbind(x,y)[-20,1],cbind(x,y)[-20,2], cbind(x,y)[-1,1], cbind(x,y)[-1,2] )
+-------------------------------------------------------------------------------------------------------
+csa <- function(x1,y1,x2,y2,first.col,second.col, ...) {
+    cols <- colorRampPalette( c(first.col,second.col) )(250)
+    x <- approx(c(0,1),c(x1,x2), xout=seq(0,1,length.out=251))$y
+    y <- approx(c(0,1),c(y1,y2), xout=seq(0,1,length.out=251))$y
+
+    arrows(x[250],y[250],x[251],y[251], col=cols[250], ...)
+    segments(x[-251],y[-251],x[-1],y[-1],col=cols, ...)
+
+}
+
+
+color.scale.arrow <- Vectorize(csa, c('x1','y1','x2','y2') )
+
+# Create sample data 2
+x <- c(1,3,5,3,2,1,6,2)
+y <- c(2,5,3,7,2,1,5,6)
+
+x1 <- c(1,3,5,3)
+y1 <- c(2,5,3,7)
+x2 <- c(2,1,6,2)
+y2 <- c(2,1,5,6)
+
+# Plot sample data 2
+plot(x,y, main='')
+color.scale.arrow(x1,y1,x2,y2,'red','blue',lwd=2)
+-------------------------------------------------------------------------------------------------------
+>YearMonth = c(200506,200509) 
+
+>dt = as.POSIXct(strptime(paste0(YearMonth, 15), "%Y%m%d"))
+>z = rep(0, length(dt))
+>y = rep(c(-1,1), out=length(dt))
+>plot(dt,y, axes=FALSE, ylab="", xlim=c(min(dt)-10e6, max(dt)+10e6), ylim=c(-2,2), pch=15, col="darkblue", xlab="Date")
+>arrows(x0=dt,y0= z, x1=dt, y1=y, length=0, angle=30, col="blue")
+>arrows(min(dt), 0, max(dt), length=0, col="blue")
+>text(dt, y*1.5, c("Ben Franklin arose\nfrom the dead", "Atlantis found"), adj=1)
+>axis.POSIXct(1, dt, format="%y/%m")
+>dt
+[1] "2005-06-15 EDT" "2005-09-15 EDT"
+-------------------------------------------------------------------------------------------------------

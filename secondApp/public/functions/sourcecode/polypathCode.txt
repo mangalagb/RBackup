@@ -1,0 +1,64 @@
+polypath #function to extract coordinates from shapefile (by Paul Hiemstra)
+allcoordinates_lapply = function(x) { 
+    polys = x@polygons 
+    return(do.call("rbind", lapply(polys, function(pp) { 
+           do.call("rbind", lapply(pp@Polygons, coordinates)) 
+           }))) 
+} 
+q = allcoordinates_lapply(shapefile)
+
+#extract subset of coordinates, otherwise strange line connections occur...
+lat = q[110:600,1]
+long = q[110:600,2]
+
+#define ranges for polypath
+xrange <- range(lat, na.rm=TRUE)
+yrange <- range(long, na.rm=TRUE)
+xbox <- xrange + c(-20000, 20000)
+ybox <- yrange + c(-20000, 20000)
+
+#plot your stuff
+plot(shapefile, lwd=2)
+image(fld, axes=F, add=T)
+contour(fld, add=T)
+#and here is the magic 
+polypath(c(lat, NA, c(xbox, rev(xbox))),
+         c(long, NA, rep(ybox, each=2)),
+         col="white", rule="evenodd")
+-------------------------------------------------------------------------------------------------------
+library(maps)
+image(x=-90:-75, y = 25:40, z = outer(1:15, 1:15, "+"), 
+      xlab = "lon", ylab = "lat")
+map("state", add = TRUE)
+
+library(grid)
+outline <- map("usa", plot=FALSE) # returns a list of x/y coords
+xrange <- range(outline$x, na.rm=TRUE) # get bounding box
+yrange <- range(outline$y, na.rm=TRUE)
+xbox <- xrange + c(-2, 2)
+ybox <- yrange + c(-2, 2)
+# create the grid path in the current device
+polypath(c(outline$x, NA, c(xbox, rev(xbox))),
+         c(outline$y, NA, rep(ybox, each=2)),
+         col="light blue", rule="evenodd") grid
+-------------------------------------------------------------------------------------------------------
+library(maps)
+library(mapdata)
+
+image(x=110:155, y =-40:-10, z = outer(1:45, 1:30, "+"),
+  xlab = "lon", ylab = "lat") outline <- map("worldHires", regions="Australia", exact=TRUE, plot=FALSE) # returns a list of x/y coords
+xrange <- range(outline$x, na.rm=TRUE) # get bounding box
+yrange <- range(outline$y, na.rm=TRUE)
+xbox <- xrange + c(-2, 2)
+ybox <- yrange + c(-2, 2) subset <- !is.na(outline$x) # create the grid path in the current device
+polypath(c(outline$x[subset], NA, c(xbox, rev(xbox))),c(outline$y[subset], NA, rep(ybox, each=2)),col="light blue", rule="evenodd")
+-------------------------------------------------------------------------------------------------------
+require(maptools)
+require(classInt) cols <- paste0( cols, "20")  # as suggested in my earlier comment
+ plot(map)
+ plot( zip , col = cols , axes=F , add=TRUE)
+#Errorx = mcrds[, 1], y = mcrds[, 2], border = border, col = col,  : 
+#  invalid color name 'NA20'
+ is.na(cols) <- grepl("NA", cols)
+ plot( zip , col = cols , axes=F , add=TRUE)
+-------------------------------------------------------------------------------------------------------

@@ -1,0 +1,985 @@
+
+-------------------------------------------------------------------------------------------------------
+df data <- tapply(df$total_dist, list(df$groupname,df$bin), sum)
+
+barplot(data,beside=T,col=c("#ee7700","#3333ff")
+,main="European Parliament Elections",xlab="Group",ylab="Seats")
+
+legend(locator(1),rownames(data),fill=c("#ee7700","#3333ff")) library(ggplot2)
+qplot(factor(bin),data=df,geom="bar",fill=groupname,weight=total_dist,position="dodge",
+main = "European Parliament Elections", xlab="Group",ylab="Seats")
+-------------------------------------------------------------------------------------------------------
+locator() system
+-------------------------------------------------------------------------------------------------------
+library(maps)
+    p <- matrix(c(50, 50, 80, 100, 70, 40, 25, 60), ncol=2)     
+    plot(p, pch = 16, col = "red", cex = 3, xlim = range(p[,1]) + c(-10,10), ylim = range(p[,2]) + c(-5, 5))
+    map(add = TRUE)
+    #click until happy, right-click "stop" to finish
+    p <- locator(type = "l")
+    map()
+    polygon(cbind(p$x, p$y), col = "blue")
+-------------------------------------------------------------------------------------------------------
+locator() text() y <- rnorm(100, 10)
+y2 <- rnorm(100, 20)
+x <- 1:100
+
+plot(x, y, type = "n", ylim = c(0, 40), xlim = c(0, 120))
+lines(x, y)
+lines(x, y2, col = "red")
+text(locator(), labels = c("red line", "black line)"))
+-------------------------------------------------------------------------------------------------------
+text(x=rep(max(x)+3, 2), y=c(mean(y), mean(y2)), pos=4, labels=c('black line', 'red line'))
+-------------------------------------------------------------------------------------------------------
+library(ReadImages) #Load package
+mygraph <- read.jpeg('plot.jpg') #Import image
+plot(mygraph) # Plot the image
+calpoints <- locator(n=4,type='p',pch=4,col='blue',lwd=2) # Calibrate the plot by selecting known coordinates
+data <- locator(type='p',pch=1,col='red',lwd=1.2,cex=1.2) # Collect the data points in a dataframe
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+install.packages("gWidgetsWWW2", repos="http://R-Forge.R-project.org") load_app("tic-tac-toe.r") w <- gwindow("Tic-Tac-Toe")
+sb <- gstatusbar("Powered by gWidgetsWWW2 and Rook", cont=w)
+ghtml("Tic-Tac-Toe, three in a row", cont=w)
+
+
+## sizing
+margin <- 10
+sz <- 130
+width <- height <- 3*sz + 2 * margin
+
+state <- matrix(character(9), nrow=3)
+x_move <- TRUE
+sym <- c("o", "x")
+
+f <- tempfile()
+cnv <- gcanvas(f, width=width, height=height, cont=w)
+
+
+
+make_board <- function() {
+  ## make board
+  for(i in seq(margin + sz, margin + 2*sz, by=sz)) {
+    cnv$lines(c(margin, width-margin), c(i, i))
+    cnv$lines(c(i, i), c(margin, width-margin))
+  }
+}
+
+draw_x <- function(i, j) {
+  delta <- sz/10
+  cnv$lines(margin + sz *c(i-1, i) + delta*c(1,-1),
+            margin + sz *c(j-1, j) + delta*c(1,-1))
+  cnv$lines(margin + sz *c(i-1, i) + delta*c(1,-1),
+            margin + sz *c(j, j-1) + delta*c(-1,1))
+
+}
+
+draw_o <- function(i, j) {
+  cnv$circle(margin + (i-1/2)*sz, margin + (j-1/2)*sz, r = (3/8)*sz)
+}
+
+notify_winner <- function(mark) {
+  if(mark == "x") {
+    svalue(sb) <- "Congrats, x won"
+  } else {
+    svalue(sb) <- "Congrats, o won"
+  }
+
+}
+
+check_winner <- function() {
+  ## x
+  is_winner <- function(mark) {
+    any(colSums(state == mark) == 3)  ||
+    any(rowSums(state == mark) == 3) ||
+    sum((state == mark)[c(1,5,9)]) == 3 ||
+    sum((state == mark)[c(3,5,7)]) == 3
+  }
+  if(is_winner("x")) {
+    notify_winner("x")
+    removeHandler(cnv, cbid)
+    return(TRUE)
+  } else if(is_winner("o")) {
+    notify_winner("o")
+    removeHandler(cnv, cbid)    
+    return(TRUE)
+  }
+  return(FALSE)
+}
+
+
+
+cbid <- addHandlerClicked(cnv, handler=function(h,...) {
+  i <- 1 + (h$X - margin) %/% sz
+  j <- 1 + (h$Y - margin) %/% sz
+
+  if(i %in% 1:3 && j %in% 1:3) {
+    if(state[i,j] == "") {
+      state[i,j] <<- sym[1 + x_move]
+      if(x_move) {
+        draw_x(i,j)
+      } else {
+        draw_o(i,j)
+      }
+      x_move <<- !x_move
+      if(!check_winner())
+        svalue(sb) <- "Click to move"
+    } else {
+      svalue(sb) <- "Already selected that cell"
+    }
+  }
+
+})
+
+
+## Start
+make_board()
+svalue(sb) <- "Click to  move"
+-------------------------------------------------------------------------------------------------------
+rgeos vdata <- list(x = 1:nrow(volcano), y = 1:ncol(volcano), z = volcano)
+
+## raw polygon data created using image(vdata); xy <- locator()
+
+xy <- structure(list(x = c(43.4965355534823, 41.7658494766076, 36.2591210501883, 
+25.560334393145, 13.7602020508178, 18.7949251835441, 29.179041644792, 
+40.6645037913237, 44.2832110429707, 47.272577903027, 47.5872480988224
+), y = c(30.0641086410103, 34.1278207016757, 37.6989616034726, 
+40.900674136118, 32.7732500147872, 27.4781100569505, 22.5523984682652, 
+22.7986840476995, 24.5226831037393, 29.3252519027075, 33.8815351222414
+)), .Names = c("x", "y"))
+
+## close the polygon
+coords <- cbind(xy$x, xy$y)
+coords <- rbind(coords, coords[1,])
+
+library(sp)
+
+## create a Spatial polygons object
+poly <- SpatialPolygons(list(Polygons(list(Polygon(coords, hole = FALSE)), "1")))
+
+
+## create a contour line that cuts the polygon at height 171
+cl <- contourLines(vdata, levels = 171)
+
+## for ContourLines2SLDF
+library(maptools)
+
+clines <- ContourLines2SLDF(cl) library(rgeos)
+lpi <- gIntersection(poly, clines)
+
+blpi <- gBuffer(lpi, width = 0.000001)
+
+dpi <- gDifference(poly, blpi) par(mfrow = c(2,1))
+
+image(vdata)
+plot(poly, add = TRUE)
+
+plot(SpatialPolygons(list(Polygons(list(dpi@polygons[[1]]@Polygons[[1]]), "1"))), add = TRUE, col = "lightblue")
+
+image(vdata)
+plot(poly, add = TRUE)
+cl <- contourLines(vdata, levels = 171)
+
+plot(SpatialPolygons(list(Polygons(list(dpi@polygons[[1]]@Polygons[[2]]), "2"))), add = TRUE, col = "lightgreen")
+-------------------------------------------------------------------------------------------------------
+for (i in 1:5){
+    plot(1:i)
+    locator(1)
+}
+-------------------------------------------------------------------------------------------------------
+locator() repeat {
+  click.loc <- locator(1)
+  if(!is.null(click.loc)) abline(v=click.loc$x)
+  else break
+} abline(h=click.loc$y)
+-------------------------------------------------------------------------------------------------------
+locator() plot(cars)
+xy <- locator(n=2)
+lines(xy, col="red", lwd=5)
+lm(y~x, xy)
+abline(coef(lm(y~x, xy)))
+coef(lm(y~x, xy))
+(Intercept)           x 
+  33.142094    1.529687 lm abline(coef(lm(dist~speed, cars)), col="blue") abline lm locator ?locator lm loess
+-------------------------------------------------------------------------------------------------------
+plot(1:10)                    # simple plot
+legend("bottomright", "foo")  # 'foo' in bottom-right corner locator() legend()
+-------------------------------------------------------------------------------------------------------
+# Compare MPG distributions for cars with 
+# 4,6, or 8 cylinders
+library(sm)
+attach(mtcars)
+
+# create value labels 
+cyl.f <- factor(cyl, levels= c(4,6,8),
+    labels = c("4 cylinder", "6 cylinder", "8 cylinder")) 
+
+# plot densities 
+sm.density.compare(mpg, cyl, xlab="Miles Per Gallon")
+title(main="MPG Distribution by Car Cylinders")
+
+# add legend via mouse click
+colfill<-c(2:(2+length(levels(cyl.f)))) 
+legend(locator(1), levels(cyl.f), fill=colfill)
+-------------------------------------------------------------------------------------------------------
+quartz() # or maybe windows() in windows
+for (i in 1:5) {plot(i, i); locator(1)}
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+dev.list()
+#quartz    X11 quartz    X11    X11 
+#     2      3      4      5      6 
+dev.set(3)
+#X11 
+#  3 x11() ; first.ID <- dev.cur()
+plot(data)
+
+loc <- locator(n=1)
+if(loc$x > 2) {
+  x11() ; second.ID <- dev.cur()
+  plot(c(1,2,3),c(5,6,7))
+}
+dev.set(first.ID)
+loc <- locator(n=1)
+if(loc$x > 2) {
+  x11() ; third.ID <- dev.cur()
+  plot(c(4,5,6),c(5,6,7))
+}
+-------------------------------------------------------------------------------------------------------
+zoomChart() zooom() zoomChart() reChart() invisible(chob) chob zooom() zoomChart() chob zoomChart() zooom() zooom zooom2 require(quantmod)
+dump("zooom", file="zooom2.R") get.chob() quantmod:::get.chob() zooom zooom2 namespace:quantmod zoomChart() chob chob invisible(chob) zooom2 <-
+function (n = 1, eps = 2) 
+{
+for (i in 1:n) {
+    cat("select left and right extremes by clicking the chart\n")
+    points <- locator(2)
+    if (abs(diff(points$x)) < eps) {
+    zoomChart()
+    }
+    else {
+    usr <- par("usr")
+    xdata <- quantmod:::get.chob()[[2]]@xdata
+    xsubset <- quantmod:::get.chob()[[2]]@xsubset
+    sq <- floor(seq(usr[1], usr[2], 1))
+    st <- which(floor(points$x[1]) == sq)/length(sq) * 
+        NROW(xdata[xsubset])
+    en <- which(floor(points$x[2]) == sq)/length(sq) * 
+        NROW(xdata[xsubset])
+    sorted <- sort(c(st, en))
+    st <- sorted[1]
+    en <- sorted[2] * 1.05
+    chob <- zoomChart(paste(index(xdata[xsubset])[max(1, floor(st), 
+        na.rm = TRUE)], index(xdata[xsubset])[min(ceiling(en), 
+        NROW(xdata[xsubset]), na.rm = TRUE)], sep = "::"))
+    }
+}
+cat("done\n")
+invisible(chob)
+
+} data(sample_matrix)
+  chartSeries(sample_matrix)
+  d <- zooom2()
+  # Click to interactively zoom in
+
+  # extract the data visible in the selected region
+  d_sub <- d@xdata[d@xsubset,]
+  head(d_sub)
+#                Open     High      Low    Close
+# 2007-03-28 48.33090 48.53595 48.33090 48.53595
+# 2007-03-29 48.59236 48.69988 48.57432 48.69988
+# 2007-03-30 48.74562 49.00218 48.74562 48.93546
+# 2007-03-31 48.95616 49.09728 48.95616 48.97490
+# 2007-04-01 48.94407 48.97816 48.80962 48.87032
+# 2007-04-02 48.90488 49.08400 48.90488 49.06316 quantmod
+-------------------------------------------------------------------------------------------------------
+library(grid)
+ll = replicate(2, grid.locator())
+g = grid.segments(ll[,1]$x, ll[,1]$y, ll[,2]$x, ll[,2]$y, 
+      name="mysegment", gp=gpar(col="pink", lwd=5))
+grid.remove("mysegment")
+-------------------------------------------------------------------------------------------------------
+#!/usr/bin/env Rscript
+
+X11()
+with(mtcars, plot(mpg, hp))
+locator(1) windows()
+-------------------------------------------------------------------------------------------------------
+aggregate() venneuler plot locator() venneuler() venneuler library(venneuler)
+
+## Modify the "factor" column, by renaming it and converting
+## it to a character vector.
+levels(data$factor) <- c("a", "b", "c")
+data$factor <- as.character(data$factor)
+
+## FUN is an anonymous function that determines which letters are present
+## 2 or more times in the cluster and then pastes them together into 
+## strings of a form that venneuler() expects.
+##
+inter <- aggregate(factor ~ cluster, data=data,
+                   FUN = function(X) {
+                       tab <- table(X)
+                       names <- names(tab[tab>=2])
+                       paste(sort(names), collapse="&")
+                   })            
+## Count how many clusters contain each combination of letters
+counts <- table(inter$factor)
+counts <- counts[names(counts)!=""]  # To remove groups with <2 of any letter
+#  a   a&b a&b&c   a&c     b   b&c     c 
+# 19    13    12    14    13     9    12 
+
+## Convert to proportions for venneuler()
+ps <- counts/sum(counts)
+
+## Calculate the Venn diagram
+vd <- venneuler(c(a=ps[["a"]], b = ps[["b"]], c = ps[["c"]],
+                  "a&b" = ps[["a&b"]],
+                  "a&c" = ps[["a&c"]],
+                  "b&c" = ps[["b&c"]],
+                  "a&b&c" = ps[["a&b&c"]]))
+## Plot it!
+plot(vd) "factor-a" "a" counts ps vennCounts() vennDiagram() limma venneuler data$factor library(limma)
+
+out <- aggregate(factor ~ cluster, data=data, FUN=table)
+out <- cbind(out[1], data.frame(out[2][[1]]))
+
+counts <- vennCounts(out[, -1] >= 2)
+vennDiagram(counts, names = c("Factor A", "Factor B", "Factor C"),
+            cex = 1, counts.col = "red")
+-------------------------------------------------------------------------------------------------------
+locator() locator dev.set(0) data <- data.frame(x=c(1,2,3,4,5),y=c(1,2,3,4,5))
+plot(data)
+
+loc <- locator(n=1)
+if(loc$x > 2) {
+        x11()
+        plot(c(1,2,3),c(5,6,7))
+}
+
+dev.set(0)
+
+loc <- locator(n=1)
+if(loc$x > 2) {
+        x11()
+        plot(c(4,5,6),c(5,6,7))
+} dev.set(0)
+-------------------------------------------------------------------------------------------------------
+my.identify <- function(data)
+ {
+      require('sp')  ## Call to load the sp package for use in stand alone function
+      # allows you to create a polygon by clicking on map
+      region = locator(type = "o")
+      n = length(region$x)
+      p = Polygon(cbind(region$x, region$y)[c(1:n,1),])
+      ps = Polygons(list(p), ID="region")
+      sps = SpatialPolygons(list(ps))
+
+
+      # returns all data that overlaps new polygon sps
+      a=data[!is.na(overlay(data,sps)),]
+
+      return(a)
+ }
+-------------------------------------------------------------------------------------------------------
+overlay over Spatial* xy <- data.frame(x = runif(40, min = -200, max = 200),
+    y = runif(40, min = -200, max = 200))
+plot(xy)
+my.identify <- function(data) {
+    # allows you to create a polygon by clicking on map 
+    region = locator(type = "o")  
+    n = length(region$x)
+    p = Polygon(cbind(region$x, region$y)[c(1:n,1),])
+    ps = Polygons(list(p), ID="region")
+    sps = SpatialPolygons(list(ps))
+
+    # returns all data that overlaps new polygon sps
+    a=data[!is.na(over(SpatialPoints(data),sps)),]
+    return(a)
+}
+ident <- my.identify(xy)
+points(ident, pch = 16)
+-------------------------------------------------------------------------------------------------------
+locator() plot(1:4)
+df <- data.frame(locator())
+## Now, on the plotting device:
+## 
+##     (1) "Left-click" on each of the four points
+##     (2) "Right-click --> Stop" to return to the command-line
+
+## The object that is returned, and assigned to df will look
+## something like the following
+df
+         x        y
+1 1.008072 1.032795
+2 2.011049 2.002365
+3 3.004381 2.995299
+4 3.997714 4.011595 locator() barplot(VADeaths)
+text(locator(1), "I clicked here", col="red")
+-------------------------------------------------------------------------------------------------------
+require(maps)
+require(grid)
+NY <- ggplot(ny, aes(long, lat, group=group)) +  geom_polygon(colour='black', fill=NA)
+ grid.locator("npc")
+# clicked in middle of NY State:
+
+#$x
+#[1] 0.493649231346082npc
+#
+#$y
+#[1] 0.556430446194226npc
+ range(NY$data$long)
+#[1] -79.76718 -71.87756
+ range(NY$data$lat)
+#[1] 40.48520 45.01157
+ locatedX <- min(NY$data$long) + 0.493649231346082*diff(range(NY$data$long))
+ locatedX
+#[1] -75.87247
+locatedY <- min(NY$data$lat) +  0.556430446194226*diff(range(NY$data$lat))
+locatedY
+#[1] 43.00381
+-------------------------------------------------------------------------------------------------------
+scale_x_continuous(expand=c(0,0)) + scale_y_continuous(expand=c(0,0)) seekViewport("panel-3-4") grid.locator()
+-------------------------------------------------------------------------------------------------------
+require(maps); require(ggplot2); require(grid)
+
+ny <- map_data('county', 'new york')
+
+NY1 <- ggplot(ny, aes(long, lat)) +  
+          geom_polygon(aes(group=group), colour='black', fill=NA) +
+          coord_map() + geom_point(aes(c(-78, -73), c(41, 40.855), 
+          colour=c("blue", "red"))) + opts(legend.position = "none") 
+
+NY <- NY1 + scale_x_continuous(expand=c(0,0)) + 
+          scale_y_continuous(expand=c(0,0))
+          #the scale x and y have to be added to the plot
+
+NY 
+
+ggmap.loc <- function(object){
+    x <- grid.ls()[[1]][grep("panel-", grid.ls()[[1]])] #locate the panel
+    seekViewport(x)
+    y <-  as.numeric(grid.locator("npc"))
+    locatedX <- min(object$data$long) + y[1]*diff(range(object$data$long))
+    locatedy <- min(object$data$lat) + y[2]*diff(range(object$data$lat))
+    return(c(locatedX, locatedy))
+}
+
+ggmap.loc(NY)
+-------------------------------------------------------------------------------------------------------
+gglocator <- function(n = 1, object = last_plot(), 
+    message = FALSE, xexpand = c(.05,0), yexpand = c(.05, 0)){ 
+
+  #compliments of David Kahle
+  if(n > 1){
+    df <- NULL
+    for(k in 1:n){
+      df <- rbind(df, gglocator(object = object, message = message, 
+        xexpand = xexpand, yexpand = yexpand))
+    }
+    return(df)
+  }
+
+  x <- grid.ls(print = message)[[1]]
+  x <- x[ grep("panel-", grid.ls(print=message)[[1]]) ] #locate the panel
+  seekViewport(x)
+  loc <-  as.numeric(grid.locator("npc"))
+
+  xrng <- with(object, range(data[,deparse(mapping$x)]))
+  yrng <- with(object, range(data[,deparse(mapping$y)]))    
+
+  xrng <- expand_range(range = xrng, mul = xexpand[1], add = xexpand[2])
+  yrng <- expand_range(range = yrng, mul = yexpand[1], add = yexpand[2])    
+
+  point <- data.frame(xrng[1] + loc[1]*diff(xrng), yrng[1] + loc[2]*diff(yrng))
+  names(point) <- with(object, c(deparse(mapping$x), deparse(mapping$y)))
+  point
+}
+
+#Example 1
+require(maps); library(ggplot2); require(grid)
+county_df <- map_data('county')  #mappings of counties by state
+ny <- subset(county_df, region=="new york")   #subset just for NYS
+ny$county <- ny$subregion
+
+
+NY <- ggplot(ny, aes(long, lat)) +  
+          geom_polygon(aes(group=group), colour='black', fill=NA) +
+          coord_map() + geom_point(aes(c(-78, -73), c(41, 40.855), 
+          colour=c("blue", "red"))) + opts(legend.position = "none") 
+
+
+NY 
+gglocator(2)
+
+#Example 2
+df <- data.frame(xvar = 2:10, yvar = 2:10)
+ggplot(df, aes(xvar, yvar)) + geom_point() + geom_point(aes(x = 3, y = 6))
+gglocator() gglocator
+-------------------------------------------------------------------------------------------------------
+densify <- function(xy,n=5){
+  ## densify a 2-col matrix
+  cbind(dens(xy[,1],n=n),dens(xy[,2],n=n))
+}
+
+dens <- function(x,n=5){
+  ## densify a vector
+  out = rep(NA,1+(length(x)-1)*(n+1))
+  ss = seq(1,length(out),by=(n+1))
+  out[ss]=x
+  for(s in 1:(length(x)-1)){
+    out[(1+ss[s]):(ss[s+1]-1)]=seq(x[s],x[s+1],len=(n+2))[-c(1,n+2)]
+  }
+  out
+} simplecentre <- function(xyP,dense){
+require(deldir)
+require(splancs)
+require(igraph)
+require(rgeos)
+
+### optionally add extra points
+if(!missing(dense)){
+  xy = densify(xyP,dense)
+} else {
+  xy = xyP
+}
+
+### compute triangulation
+d=deldir(xy[,1],xy[,2])
+
+### find midpoints of triangle sides
+mids=cbind((d$delsgs[,'x1']+d$delsgs[,'x2'])/2,
+  (d$delsgs[,'y1']+d$delsgs[,'y2'])/2)
+
+### get points that are inside the polygon 
+sr = SpatialPolygons(list(Polygons(list(Polygon(xyP)),ID=1)))
+ins = over(SpatialPoints(mids),sr)
+
+### select the points
+pts = mids[!is.na(ins),]
+
+dPoly = gDistance(as(sr,"SpatialLines"),SpatialPoints(pts),byid=TRUE)
+pts = pts[dPoly > max(dPoly/1.5),]
+
+### now build a minimum spanning tree weighted on the distance
+G = graph.adjacency(as.matrix(dist(pts)),weighted=TRUE,mode="upper")
+T = minimum.spanning.tree(G,weighted=TRUE)
+
+### get a diameter
+path = get.diameter(T)
+
+if(length(path)!=vcount(T)){
+  stop("Path not linear - try increasing dens parameter")
+}
+
+### path should be the sequence of points in order
+list(pts=pts[path+1,],tree=T)
+
+} s = capture()
+ p = gBuffer(s,width=0.2)
+ plot(p,col="#cdeaff")
+ plot(s,add=TRUE,lwd=3,col="red")
+ scp = simplecentre(onering(p))
+ lines(scp$pts,col="white") onering=function(p){p@polygons[[1]]@Polygons[[1]]@coords} capture = function(){p=locator(type="l")
+            SpatialLines(list(Lines(list(Line(cbind(p$x,p$y))),ID=1)))}
+-------------------------------------------------------------------------------------------------------
+gDistance rgeos SpatialLines/DataFrame SpatialPoints/DataFrame require(rgeos)
+## untested code
+shortest.dists <- numeric(nrow(sp.pts))
+for (i in seq_len(nrow(sp.pts)) {
+    shortest.dists[i] <- gDistance(sp.pts[i,], sp.lns)
+} sp.pts sp.lns sp.pts sp.lns gDistance spDistsN1 sp longlat = TRUE library(maptools)
+
+## simple global data set, which we coerce to Lines
+data(wrld_simpl)
+
+wrld_lines <- as(wrld_simpl, "SpatialLinesDataFrame")
+
+## get every coordinate as a simple matrix (scary but quick)
+wrld_coords <- do.call("rbind", lapply(wrld_lines@lines, function(x1) do.call("rbind", lapply(x1@Lines, function(x2) x2@coords[-nrow(x2@coords), ])))) ## no out of bounds clicking . . .
+par(mar = c(0, 0, 0, 0), xaxs = "i", yaxs = "i") 
+
+plot(wrld_lines, asp = "")
+
+n <- 5
+
+for (i in seq_len(n)) {
+xy <- matrix(unlist(locator(1)), ncol = 2)
+    all.dists <- spDistsN1(wrld_coords, xy, longlat = TRUE)
+    min.index <- which.min(all.dists)
+    points(xy, pch = "X")
+lines(rbind(xy, wrld_coords[min.index, , drop = FALSE]), col = "green", lwd = 2)
+}
+-------------------------------------------------------------------------------------------------------
+library(playwith)
+playwith(chart_Series(...)) rpanel iplot
+rggobi identify(x, y, labels=row.names(mydata))
+coords <- locator(type="l")
+coords
+-------------------------------------------------------------------------------------------------------
+grid ggplot2 library(ggplot2)
+library(grid)
+
+x <- 1:10  
+y <- x^3 
+qplot(x, y) 
+
+downViewport('panel-3-4')
+pushViewport(dataViewport(x,y))
+
+tmp <- grid.locator('in')
+tmp.n <- as.numeric(tmp)
+tmp2.x <- as.numeric(convertX( unit(x,'native'), 'in' ))
+tmp2.y <- as.numeric(convertY( unit(y,'native'), 'in' ))
+
+w <- which.min( (tmp2.x-tmp.n[1])^2 + (tmp2.y-tmp.n[2])^2 )
+grid.text(w, tmp$x, tmp$y ) w grid.text letters[w]
+-------------------------------------------------------------------------------------------------------
+ggplot2 ggmap get_map() ggmap() gglocator() locator() lon lat zoom library(ggplot2)
+library(ggmap)
+library(grid)
+
+nri = get_map(location = c(lon = 147.165, lat = -9.410), zoom = 18, maptype = 'satellite')
+
+(NRImap = ggmap(nri, extent = "device") + 
+  annotate('segment', x = 147.1656, xend = 147.1649, y = -9.41025, yend = -9.4096,
+    colour = 'white', arrow = arrow(length = unit(0.25,"cm")), size = 1) +
+  annotate('text', x = 147.1656, y = -9.41031, label = 'Conference Centre',
+    colour = 'white', size = 6) +
+  opts(plot.margin = unit(c(1.5, 0, 0, 0), "lines")) + 
+  opts(title = 'National Research Institute',
+       plot.title = theme_text(colour = "Blue", vjust = 2, size = 20)))
+
+# gglocator()
+-------------------------------------------------------------------------------------------------------
+play3d(function(time) {Sys.sleep(0.01); list()} ) locator() locator(1)
+-------------------------------------------------------------------------------------------------------
+locator plot(1:10)
+point <- locator(1)
+# now click somewhere on the plot
+
+point
+$x
+[1] 8.010256
+
+$y
+[1] 7.980781
+-------------------------------------------------------------------------------------------------------
+dynmodfunc <- function() {
+    plot(0:1,0:1,ann=FALSE,type='n')
+    mypoints <- matrix(ncol=2, nrow=0)
+    while( length(p <- locator(1, type='p', col='red')) ) {
+        mypoints <- rbind(mypoints, unlist(p))
+        plot(mypoints, col='red', ann=FALSE, xlim=0:1, ylim=0:1)
+        if(nrow(mypoints)>1) {
+            xspline(mypoints, shape=-1)
+        }
+    }
+    mypoints
+}
+
+(out <- dynmodfunc()) shape xspline matrix2mathematica <- function(x) {
+    paste0( '{', 
+        paste0( '{', x[,1], ', ', x[,2], '}', collapse=', '),
+    '}')
+}
+
+cat( matrix2mathematica(out))
+-------------------------------------------------------------------------------------------------------
+mx=12
+ my=12
+ par(mar = c(mx,my, 4, 2) + 0.1)
+ plot(c(1,4),c(1,4),type="n",main="title",xlab="site.x",ylab="ylab")
+ rect(xleft,ybottom,xright,ytop,col=c("blue","red","green"))
+ text(par()$usr[1]-0.5,y.label.position,y.label,xpd=TRUE,adj=1)
+ text(y=par()$usr[3]-0.5,x=x.label.position,x.label,xpd=TRUE,adj=1,srt=90) mx my xpd=TRUE par(xpd=TRUE)
+ legend(locator(1),legend=c("Species A","Species B","Species C"),
+                             fill=c("blue", "red", "green")) locator(1) list(x=-0.7,y=0.6) ggplot
+-------------------------------------------------------------------------------------------------------
+x<- read.table(text="Date Price1 Price2 NA.
+ 28.08.1987  18.30  19.44 1.24
+ 31.08.1987  18.65  19.75 1.12", sep="", header=TRUE)
+x$Date <- as.Date(x$Date, "%d.%m.%Y")
+
+plot(x$Date, x$NA.) # If we're trying to find the actual coordinates of some points on the plot
+# here is what we find:
+locator() 
+$x
+[1] 6449.495 6448.035 6450.967
+
+$y
+[1] 1.182379 1.186610 1.182908
+
+# The x axis is running from 6448 to 6451 and here is the reason:
+
+x$Date # Here is your date vector
+[1] "1987-08-28" "1987-08-31"
+as.numeric(x$Date) # And here it is converted in numerics
+[1] 6448 6451 # Hence the values found on the plot with locator.
+
+# The default origin for dates is the first of January, 1970
+# 6448 is the number of days from that date to the 28th of August 1987.
+
+# But you can still use regression tools:
+lm(NA.~Date, data=x)->lmx
+abline(lmx)  # YOu don't actually need to break your lm object into its coefficients, abline recognize lm objects. # And the same works with package zoo
+library(zoo)
+x<- read.table(text="Date Price1 Price2 NA.
+ 28.08.1987  18.30  19.44 1.24
+ 31.08.1987  18.65  19.77 1.12
+ 01.09.1987  18.65  19.75 1.10", sep="", header=TRUE)
+x$Date <- as.Date(x$Date, "%d.%m.%Y")
+SPRC<-zoo(x$NA.,x$Date)
+SPRC2<-lag(SPRC, -1)
+SPRC<-SPRC[2:length(SPRC)]
+LMO<-lm(SPRC ~ SPRC2)
+plot(SPRC)
+abline(LMO)
+-------------------------------------------------------------------------------------------------------
+locator(1) > locator(1)
+$x
+[1] 1.365533
+
+$y
+[1] 2.25695 > locs <- locator(2)
+> locs
+$x
+[1] 1.265845 1.587567
+
+$y
+[1] 2.604642 2.267028 locs with(locs, arrows(x0=x[1], x1=x[2], y0=y[1], y1= y[2], code=1))
+-------------------------------------------------------------------------------------------------------
+locator <- function(...) {
+    assign('.last.plot', recordPlot(), envir=.GlobalEnv)
+    graphics::locator(...)
+}
+
+undo <- function()
+   if (exists('.last.plot')) replayPlot(.last.plot)
+
+plot(1:3)
+text(locator(1),labels="oops wrong spot...remove me",cex=1,font=1)
+undo()
+-------------------------------------------------------------------------------------------------------
+locator type='l' xspline boxplot(count ~ spray, data = InsectSprays, col = "lightgray")
+tmp <- locator(type='l')  # click on plot around box of interest
+boxplot(count ~ spray, data = InsectSprays, col = "lightgray")
+xspline(tmp, open=FALSE, border='red', lwd=3)
+-------------------------------------------------------------------------------------------------------
+splom() library(grid) trellis.focus()
+names(iris)[round(unlist(grid.locator()))] trellis.unfocus() names(.)[.]
+-------------------------------------------------------------------------------------------------------
+# Compare MPG distributions for cars with 
+# 4,6, or 8 cylinders
+library(sm)
+attach(mtcars)
+
+# create value labels 
+cyl.f <- factor(cyl, levels= c(4,6,8),
+  labels = c("4 cylinder", "6 cylinder", "8 cylinder")) 
+
+# plot densities 
+sm.density.compare(mpg, cyl, xlab="Miles Per Gallon")
+title(main="MPG Distribution by Car Cylinders")
+
+# add legend via mouse click
+colfill<-c(2:(2+length(levels(cyl.f)))) 
+legend(locator(1), levels(cyl.f), fill=colfill)
+-------------------------------------------------------------------------------------------------------
+n2mfrow() > n2mfrow(2)
+[1] 2 1 rev() > rev(n2mfrow(3))
+[1] 1 3 n2mfrow() t(sapply(2:16, function(x) rev(n2mfrow(x))))
+
+> t(sapply(2:16, function(x) rev(n2mfrow(x))))
+      [,1] [,2]
+ [1,]    1    2
+ [2,]    1    3
+ [3,]    2    2
+ [4,]    2    3
+ [5,]    2    3
+ [6,]    3    3
+ [7,]    3    3
+ [8,]    3    3
+ [9,]    3    4
+[10,]    3    4
+[11,]    3    4
+[12,]    4    4
+[13,]    4    4
+[14,]    4    4
+[15,]    4    4 for(i in numplots) i devAskNewPage(ask = TRUE) np <- 18 ## number of plots
+rc <- ifelse(np > 16, 16, np)
+op <- par(mfrow = rev(n2mfrow(rc)))
+for(i in seq_len(np)) {
+  if(i == 2) {
+    devAskNewPage(ask = TRUE)
+  }
+  plot(1:10)
+}
+par(op)
+devAskNewPage(ask = FALSE) locator(1) np <- 18 ## number of plots
+rc <- ifelse(np > 16, 16, np)
+op <- par(mfrow = rev(n2mfrow(rc)))
+for(i in seq_len(np)) {
+  if((i %% 16) + 1 == 2 && i > 1) {
+    message("Page filled. Click on device to continue...")
+    locator(1)
+  }
+  plot(1:10)
+}
+par(op)
+-------------------------------------------------------------------------------------------------------
+locator() locator() plot(1:100) coords <- locator() Stop .. Stop Locator coords
+$x
+[1] 30.26407
+$y
+[1] 81.66773 text(x=30.26407, y=81.66773,label="This label appears where I clicked") text(x=coords$x, y=coords$y,label="This label appears where I clicked") text pos=4 text(x=30,y=80,pos=4,label = "hello") legend() ggplot2 ggplot2
+-------------------------------------------------------------------------------------------------------
+xpd par(mfrow=c(2,2), xpd=TRUE)
+barplot(tN, col = 2:3)
+barplot(tN, col = 2:3)
+barplot(tN, col = 2:3)
+barplot(tN, col = 2:3)
+legend(-4.5, 56,  c("A", "B"), col=2:3,lwd=1) locator()
+-------------------------------------------------------------------------------------------------------
+locator {graphics} ?locator
+
+legend(locator(1), border=FALSE, fill=FALSE, "try the position")
+-------------------------------------------------------------------------------------------------------
+dynmodfunc <- function() {
+    plot(0:1,0:1,ann=FALSE,type='n')
+    mypoints <- matrix(ncol=2, nrow=0)
+    while( length(p <- locator(1, type='p', col='red')) ) {
+        mypoints <- rbind(mypoints, unlist(p))
+        plot(mypoints, col='red', ann=FALSE, xlim=0:1, ylim=0:1)
+        if(nrow(mypoints)>1) {
+            xspline(mypoints, shape=-1)
+        }
+    }
+    mypoints
+}
+
+(out <- dynmodfunc()) adjm<-t(matrix(c(0,0,0,0,1,1,0, 0,0,0,0,1,1,0, 0,0,0,0,1,1,0, 0,0,0,0,1,1,0, 0,0,0,0,0,0,0, 0,0,0,0,0,0,0, 1,1,1,1,0,0,0),nrow=7,ncol=7)); g1<-graph.adjacency(adjm); plot(g1) > out
+             x          y
+[1,] 0.5082585 1.03551763
+[2,] 0.1067841 0.59191675
+[3,] 0.3818711 0.59358184
+[4,] 0.6380311 0.58883584
+[5,] 0.8787300 0.58464820
+[6,] 0.3417308 0.09010765
+[7,] 0.6614686 0.07504212
+> str(out);dput(out)
+ num [1:7, 1:2] 0.508 0.107 0.382 0.638 0.879 ...
+ - attr(*, "dimnames")=List of 2
+  ..$ : NULL
+  ..$ : chr [1:2] "x" "y"
+structure(c(0.508258492696219, 0.106784127536735, 0.381871061286441, 
+0.63803114223351, 0.878729976271015, 0.341730770349654, 0.661468641881514, 
+1.03551763062279, 0.591916752784156, 0.593581838904923, 0.588835844931958, 
+0.584648203191106, 0.0901076547476853, 0.0750421150561933), .Dim = c(7L, 
+2L), .Dimnames = list(NULL, c("x", "y"))) ajdm coords > library(igraph); 
+> coords<-structure(c(0.508258492696219, 0.106784127536735, 0.381871061286441, 0.63803114223351, 0.878729976271015, 0.341730770349654, 0.661468641881514, 1.03551763062279, 0.591916752784156, 0.593581838904923, 0.588835844931958, 0.584648203191106, 0.0901076547476853, 0.0750421150561933), .Dim = c(7L, 2L), .Dimnames = list(NULL, c("x", "y")))
+> adjm<-t(matrix(c(0,0,0,0,1,1,0,   0,0,0,0,1,1,0,   0,0,0,0,1,1,0,   0,0,0,0,1,1,0,   0,0,0,0,0,0,0,    0,0,0,0,0,0,0,   1,1,1,1,0,0,0),nrow=7,ncol=7)); g1<-graph.adjacency(adjm); plot(g1)
+-------------------------------------------------------------------------------------------------------
+x11()
+plot(1:10)
+locator(1)
+-------------------------------------------------------------------------------------------------------
+locator() ?locator()
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+orditkplot() ordispider() ordispider() require("vegan")
+data(dune)
+data(dune.env)
+
+mod <- decorana(dune)
+
+plot(mod, display = "sites", type = "n")
+
+## colour & shape according to Management
+col <- c("red","orange","forestgreen","navy")
+pch <- 1:4
+## add the points
+with(dune.env,
+     points(mod, display = "sites", col = col[Management],
+            pch = pch[Management]))
+## add a legend
+legend("topright",
+       legend = with(dune.env, levels(Management)),
+       col = col, pch = pch, title = "Management",
+       bty = "n") locator() plot(mod, display = "sites", type = "p")
+with(dune.env, ordispider(mod, groups = Management, col = "red"))
+## select 4 locations
+coords <- locator(with(dune.env, length(levels(Management))))
+
+## now you have to click on the plot where you want the labels
+## automagically finishes after you click the 4th label in this case
+
+## draw labels
+text(coords, labels = with(dune.env, levels(Management)))
+-------------------------------------------------------------------------------------------------------
+bquote .() legend(locator(1), legend= bquote("Linear model: "* R^2*.(ps)), 
+        text.col= "red",cex=1,bty="n") paste legend(locator(1), expression(Linear~model*":"~ R^2 == 0.1234),
+    text.col= "black",cex=1,bty="n")
+-------------------------------------------------------------------------------------------------------
+heatmap.2 pos2 <- locator() #will return plotting coordinates after doing this:
+  # Shift focus to the graphics window by clicking on an edge 
+  # Left-Click once where you want the first label to be centered
+  # Left-click again on the point where you want the last label centered
+  # Right-Click, then return focus to the console session window
+
+ pos2 <- structure(list(x = c(0.27149971320082, 0.858971646016485), 
+                        y = c(0.861365598392473, 0.857450478257082)),
+                       .Names = c("x", "y"))
+
+  text(x=seq(pos2$x[1], pos2$x[2], len=5), y=rep(pos2$y[1],5)  ,
+       srt=50, xpd=TRUE, adj = 0,
+       labels=c("Sept 2008","March 2010","Sept 2010",
+                "March 2011","Sept 2011") ) xpd heatmap.2
+-------------------------------------------------------------------------------------------------------
+pos=pos1[i] port.label( pos1= 1 ) i=2 pos1[i] NA pos1 port.label <- function (pos1, cex1 = 0.6, offset1 = 0.2, col1 = "deeppink") {
+  port.file<-read.csv("V:/Science/Finalised Map Files/Ports.csv")
+  Lon <- port.file$Lon
+  Lat <- port.file$Lat
+  Lab <- paste(port.file$Lab) 
+  a <- locator()
+  ay <- unlist(a[2])
+  aylab <- sapply (ay, function (x) which.min (abs (x - Lat)))
+  text( x= Lon[aylab], y= Lat[aylab], labels= Lab[aylab], 
+        pos= pos1, cex= cex1, offset= offset1, col= col1 )
+}
+-------------------------------------------------------------------------------------------------------
+x <- 1:10 ; y <- x ^ 2
+plot(x, y) 
+legend( locator(1), c("label 1", "label 2", "label 3"), lty=c(1,2,0),pch=c("  C"))
+-------------------------------------------------------------------------------------------------------
+set.seed(9)
+df <- data.frame(x = rnorm(10), y = rnorm(10))
+plot(df)
+
+abline(v = 0.5, h = 1.2, col = "red") # 'original' crosshairs
+while (T) {
+  loc <- locator(1) # click location in plot, then ESC
+  plot(df) # clear 'original' crosshairs
+  abline(h = loc$y, v = loc$x, col = "green") # crosshairs at new position
+}
+-------------------------------------------------------------------------------------------------------
+getMethod("click", signature="Raster") myClick <- function(x, n = Inf, id = FALSE, xy = FALSE, cell = FALSE, 
+                    type = "n", show = TRUE, ...) {
+    i <- 0
+    n <- max(n, 1)
+    while (i < n) {
+        i <- i + 1
+        loc <- locator(1, type, ...)
+        xyCoords <- cbind(x = loc$x, y = loc$y)
+        cells <- na.omit(cellFromXY(x, xyCoords))
+        if (length(cells) == 0)
+              break
+        value <- extract(x, cells)
+        text(xyCoords, labels = value)
+    }
+}
+
+## Try it out
+myClick(r, n=4)
+-------------------------------------------------------------------------------------------------------

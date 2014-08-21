@@ -1,0 +1,12 @@
+?coplot ## Tonga Trench Earthquakes
+coplot(lat ~ long | depth, data = quakes) ?coplot xlab ylab "Given : " coplot(lat ~ long | depth, data = quakes, xlab = c("Longitude", "Depth"),ylab = "Latitude")
+-------------------------------------------------------------------------------------------------------
+rows=1 # determine how many levels in var3
+num <- length(unique(dtb$var3))
+
+# plot in one row using all levels of var3
+coplot(var1 ~ var2 | var3, data=dtb,number=num, overlap=.1, col=rainbow(num), type="o",cex=2,pch=as.character(),rows=1)                                          # as.character not required 
+                                                 # due to "T" # plot in two rows
+
+                                                 # due to "T"
+-------------------------------------------------------------------------------------------------------

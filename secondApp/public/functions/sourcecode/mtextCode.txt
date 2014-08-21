@@ -1,0 +1,3176 @@
+par(mfrow=c(2,2))
+for( i in 1:4 ) plot(1:10)
+mtext("Title",side=3,outer=TRUE,padj=3) par(mfrow=c(2,2))
+for( i in 1:4 ) plot(1:10)
+par(mfrow=c(1,1),mar=rep(0,4),oma=rep(0,4))
+plot.window(0:1,0:1)
+text(.5,.98,"Title")
+-------------------------------------------------------------------------------------------------------
+mtext() par(oma=c(...)) oldpar <- par(oma=c(0,0,2,0), mar=c(3,3,3,1), mfrow=c(1,2))
+plot(cumsum(rnorm(1:100)), main="First plot", type='l')
+plot(cumsum(rnorm(1:100)), main="Second plot", type='l')
+mtext("Overall title", outer=TRUE, cex=1.5)
+par(oldpar)
+-------------------------------------------------------------------------------------------------------
+mtext outer set.seed(42)
+oldpar <- par(mfrow=c(1,2), mar=c(3,3,1,1), oma=c(0,0,3,1))  ## oma creates space 
+plot(cumsum(rnorm(100)), type='l', main="Plot A")
+plot(cumsum(rnorm(100)), type='l', main="Plot B")
+mtext("Now isn't this random", side=3, line=1, outer=TRUE, cex=2, font=2)
+par(oldpar)
+-------------------------------------------------------------------------------------------------------
+rawData <- read.csv("solar.csv", na.strings="-")
+data <- ts(t(as.matrix(rawData[,2:13])), names=rawData[,1], start=1996)
+
+inkblot <- function(series, col=NULL, min.height=40, col.value=24, col.category=17, ...) {  
+  # assumes non-negative values  
+  # assumes that series is multivariate series  
+  # assumes that series names are set, i.e. colnames(series) != NULL  
+
+  x <- as.vector(time(series))  
+  if(length(col)==0){  
+    col <- rainbow(dim(series)[2])  
+  }  
+
+  ytotal <- 0  
+  for(category in colnames(series)) {  
+    y <- series[, category]
+    y <- y[!is.na(y)]
+    ytotal <- ytotal + max(y, min.height)  
+  }  
+
+  oldpar = par(no.readonly = TRUE)   
+  par(mar=c(2,3,0,10)+0.1, cex=0.7)  
+
+  plot(x, 1:length(x), type="n", ylim=c(0,1)*ytotal, yaxt="n", xaxt="n", bty="n", ylab="", xlab="", ...) 
+  axis(side=1, at=x)  
+
+  catNumber <- 1  
+  offset <- 0  
+  for(category in rev(colnames(series))) {  
+    print(paste("working on: ", category))
+    y <- 0.5 * as.vector(series[,category])  
+    offset <- offset + max(max(abs(y[!is.na(y)])), 0.5*min.height)  
+    print(paste("offset= ", str(offset)))
+    polygon(c(x, rev(x)), c(offset+y, offset-rev(y)), col=col[catNumber], border=NA)  
+    mtext(text=y[1], side=2, at=offset, las=2, cex=0.7, col=col.value)  
+    mtext(text=y[length(y)], side=4, line=-1, at=offset, las=2, cex=0.7, col=col.value)  
+    mtext(text=category, side=4, line=2, at=offset, las=2, cex=0.7, col=col.category)  
+    offset <- offset + max(max(abs(y[!is.na(y)])), 0.5*min.height)  
+    catNumber <- catNumber + 1   
+  }  
+}  
+
+
+inkblot(data)
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+mtext(text= c("(1)", "(2)", "(3)", "(4)", "(5)", "(9)"),side = 1, line = 2, outer = FALSE, at = c(2, 4.5, 7, 9.5, 12, 14.5))
+-------------------------------------------------------------------------------------------------------
+par ylab = "" mtext xx <- 1:20
+yy <- 55 + 50 * xx - 3 * xx ^ 2
+
+plot(x = xx, y = yy, type = "l", ylab="")
+mtext("yy", side = 3, at = -1) newplot <- function(xx, yy) {
+  plot(x = xx, y = yy, type = "l", ylab="")
+  mtext(deparse(substitute(yy)), side = 3,
+    at = - sum(range(xx)) / range(xx)[2])
+}
+-------------------------------------------------------------------------------------------------------
+#Generate the data for the four graphs
+x <- seq(1, 50, 1)
+y1 <- 10*rnorm(50)
+y2 <- 100*rnorm(50)
+y3 <- 1000*rnorm(50)
+y4 <- 10000*rnorm(50)
+
+#Set up the plot area so that multiple graphs can be crammed together
+par(pty="m", plt=c(0.1, 1, 0, 1), omd=c(0.1,0.9,0.1,0.9))
+
+#Set the area up for 4 plots
+par(mfrow = c(4, 1))
+
+#Plot the top graph with nothing in it =========================
+plot(x, y1, xlim=range(x), type="n", xaxt="n", yaxt="n", main="", xlab="", ylab="")
+mtext("Four Y Plots With the Same X", 3, line=1, cex=1.5)
+
+#Store the x-axis data of the top plot so it can be used on the other graphs
+pardat<-par()
+xaxisdat<-seq(pardat$xaxp[1],pardat$xaxp[2],(pardat$xaxp[2]-pardat$xaxp[1])/pardat$xaxp[3])
+
+#Get the y-axis data and add the lines and label
+yaxisdat<-seq(pardat$yaxp[1],pardat$yaxp[2],(pardat$yaxp[2]-pardat$yaxp[1])/pardat$yaxp[3])
+axis(2, at=yaxisdat, las=2, padj=0.5, cex.axis=0.8, hadj=0.5, tcl=-0.3)
+abline(v=xaxisdat, col="lightgray")
+abline(h=yaxisdat, col="lightgray")
+mtext("y1", 2, line=2.3)
+lines(x, y1, col="red")
+
+#Plot the 2nd graph with nothing ================================
+plot(x, y2, xlim=range(x), type="n", xaxt="n", yaxt="n", main="", xlab="", ylab="")
+
+#Get the y-axis data and add the lines and label
+pardat<-par()
+yaxisdat<-seq(pardat$yaxp[1],pardat$yaxp[2],(pardat$yaxp[2]-pardat$yaxp[1])/pardat$yaxp[3])
+axis(2, at=yaxisdat, las=2, padj=0.5, cex.axis=0.8, hadj=0.5, tcl=-0.3)
+abline(v=xaxisdat, col="lightgray")
+abline(h=yaxisdat, col="lightgray")
+mtext("y2", 2, line=2.3)
+lines(x, y2, col="blue")
+
+#Plot the 3rd graph with nothing =================================
+plot(x, y3, xlim=range(x), type="n", xaxt="n", yaxt="n", main="", xlab="", ylab="")
+
+#Get the y-axis data and add the lines and label
+pardat<-par()
+yaxisdat<-seq(pardat$yaxp[1],pardat$yaxp[2],(pardat$yaxp[2]-pardat$yaxp[1])/pardat$yaxp[3])
+axis(2, at=yaxisdat, las=2, padj=0.5, cex.axis=0.8, hadj=0.5, tcl=-0.3)
+abline(v=xaxisdat, col="lightgray")
+abline(h=yaxisdat, col="lightgray")
+mtext("y3", 2, line=2.3)
+lines(x, y3, col="green")
+
+#Plot the 4th graph with nothing =================================
+plot(x, y4, xlim=range(x), type="n", xaxt="n", yaxt="n", main="", xlab="", ylab="")
+
+#Get the y-axis data and add the lines and label
+pardat<-par()
+yaxisdat<-seq(pardat$yaxp[1],pardat$yaxp[2],(pardat$yaxp[2]-pardat$yaxp[1])/pardat$yaxp[3])
+axis(2, at=yaxisdat, las=2, padj=0.5, cex.axis=0.8, hadj=0.5, tcl=-0.3)
+abline(v=xaxisdat, col="lightgray")
+abline(h=yaxisdat, col="lightgray")
+mtext("y4", 2, line=2.3)
+lines(x, y4, col="darkgray")
+
+#Plot the X axis =================================================
+axis(1, at=xaxisdat, padj=-1.4, cex.axis=0.9, hadj=0.5, tcl=-0.3)
+mtext("X Variable", 1, line=1.5)
+-------------------------------------------------------------------------------------------------------
+#Build the data
+ t <- 1:1000
+ x1 <- 100 * sin(0.01 * t)
+ x2 <- 200 * cos(0.04 * t)
+
+ #Set up the plot area for two "crammed" plots
+ par(pty="m", plt=c(0.1, 1, 0, 1), omd=c(0.1,0.9,0.1,0.9))
+ par(mfrow = c(2, 1))
+
+ #Plot x1 and x2 together
+ plot(t, x1, type="l", ylim = 1.5 * range(x1, x2), xaxt="n", xlab="", ylab="", main="", col="blue", las=2)
+ lines(t, x2, lwd=1, col="red")
+ mtext(side=2, "Top Plot", line=5.3, cex=0.8)
+ mtext(side=2, "(units)", line=4, cex=0.8)
+ grid()
+ mtext(side=3, "2 Plots Crammed Together", line=1.5, cex=1.2)
+ legend("topright", legend=c("100 * sin(0.01 * t)", "200 * cos(0.4 * t)"), bg="white", lwd=c(1, 1), col=c("blue", "red"), cex=0.9)
+
+ #Place the 1st x-axis
+ axis(side = 1, col="blue", col.axis="blue")
+ linloc <- par()$usr[3]
+ abline(h=linloc, col="blue")
+ mtext(side=1, "First X-Axis", line=2.5, cex=0.8, col="blue")
+
+ #Place the fake 2nd x-axis
+ xaxis2 <- 1:10
+ par(plt=c(0.1,1,0.6,1))
+ plot(xaxis2, type="n", xaxt="n", xlab="", yaxt="n", ylab="", xlim=range(xaxis2), bty="n")
+ axis(side = 1, col="red", col.axis="red")
+ linloc <- par()$usr[3]
+ abline(h=linloc, col="red")
+ mtext(side=1, "Second X-Axis", line=2.5, cex=0.8, col="red")
+-------------------------------------------------------------------------------------------------------
+#Generate the data
+ list<-exp(seq(log(600), log(225000), length.out=10))
+ g_range=range(0,list)
+
+ #Setup the plotting area and plot it
+ par(plt=c(0.2, 0.9, 0.2, 0.9))
+ plot(list, axes=FALSE, xlab="", ylab="")
+
+ #Plot the x-axis
+ axis(1)
+ mtext("Index", side=1, line=2)
+
+ #Plot the y-axis     
+ axis(2, las=2)
+ mtext("Total", side=2, line=5)
+-------------------------------------------------------------------------------------------------------
+mtext() op <- par(oma = c(2,0,0,0))
+layout(matrix(1:4, ncol = 2))
+plot(1:10)
+plot(1:10)
+plot(1:10)
+plot(1:10)
+mtext(side = 1, text = "Page 1", outer = TRUE)
+layout(1)
+par(op) > mtext(side = 1, text = "Page 1")
+Error in mtext(side = 1, text = "Page 1") : 
+  plot.new has not been called yet require(ggplot2)
+p1 <- ggplot(data.frame(X = 1:10, Y = runif(10)), aes(x = X, y = Y)) + 
+        geom_point()
+vplayout <- function(x, y) {
+    viewport(layout.pos.row = x, layout.pos.col = y)
+}
+grid.newpage()
+pushViewport(viewport(layout = grid.layout(2, 2)))
+print(p1, vp = vplayout(1,1))
+print(p1, vp = vplayout(1,2))
+print(p1, vp = vplayout(2,1))
+print(p1, vp = vplayout(2,2))
+mtext(side = 1, text = "Page 1")
+-------------------------------------------------------------------------------------------------------
+errbar() x x x require(Hmisc)
+
+## Your example data
+set.seed(1)
+x <- 1:10
+y <- x + rnorm(10)
+delta <- runif(10)
+
+## Make some data vanish
+x[c(5,6)] <- NA
+
+## Create an index for non-missing observations in `x`
+i <- which(!is.na(x))
+
+errbar(x[i], y[i], y[i] + delta[i], y[i] - delta[i], type = "b") require(Hmisc)
+
+## Your example data
+set.seed(1)
+# `x` should not contain missing values, and is not your platenames vector
+x <- 1:10 
+y <- x + rnorm(10)
+delta <- runif(10)
+# xticks represents your platenames vector with missing values
+xticks <- c(1, 2, 3, 4, NA, NA, 7, 8, 9, 10)
+
+errbar(x, y, y + delta, y - delta, type = "b")
+axis(1, at = xticks, labels = xticks) mtext() errbar(x, y, y + delta, y - delta, type = "b")
+mtext(text = xticks, side = 3, line = 2, at = xticks) side line ?mtext
+-------------------------------------------------------------------------------------------------------
+> dput(redata)
+structure(c(1093L, 1182L, 1299L, 1372L, 1319L, 1362L, 1239L, 
+1162L, 1059L, 921L, 815L, 720L, 835L, 853L, 1034L, 1030L, 1240L, 
+1388L, 1429L, 1319L, 1231L, 1184L, 1076L, 825L, 991L, 1093L, 
+854L, 808L, 1079L, 1092L, 1220L, 1251L, 1130L, 1131L, 1052L, 
+951L, 950L, 1006L, 1112L, 1119L, 1250L, 1322L, 1347L, 1310L, 
+1215L, 1128L, 1035L, 992L, 1079L, 1018L, 1112L, 1224L, 1323L, 
+1344L, 1326L, 1267L, 1171L, 1075L, 916L, 932L, 888L, 904L, 939L, 
+1018L, 1140L, 1174L, 1285L, 1311L, 1298L, 1231L, 1091L, 1088L, 
+991L, 1028L, 1177L, 1322L, 1322L, 1398L, 1389L, 1174L, 1196L, 
+1115L, 756L, 496L, 693L, 673L, 748L, 777L, 820L, 948L, 966L, 
+1027L, 960L, 865L, 767L, 675L, 765L, 732L, 613L, 632L, 659L, 
+705L, 684L, 734L, 715L, 626L, 551L, 487L, 500L, 536L, 575L, 595L, 
+736L, 798L, 832L, 797L, 792L, 726L, 650L, 584L, 567L, 524L, 574L, 
+571L, 591L, 657L, 699L, 756L, 867L, 795L, 760L, 685L, 609L, 588L, 
+521L, 581L, 614L, 623L, 668L, 702L, 777L, 697L, 647L, 562L, 523L, 
+508L, 493L, 504L, 534L, 586L, 621L, 620L, 636L, 600L, 549L, 557L
+), .Dim = 12:13, .Dimnames = list(c("Jan", "Feb", "Mar", "Apr", 
+"May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"), c("X1993", 
+"X1994", "X1995", "X1996", "X1997", "X1998", "X1999", "X2000", 
+"X2001", "X2002", "X2003", "X2004", "X2005"))) monthnames <- c(
+"Jan",
+"Feb",
+"Mar",
+"Apr",
+"May",
+"Jun",
+"Jul",
+"Aug",
+"Sep",
+"Oct",
+"Nov",
+"Dec"
+)
+
+
+# size of window
+windows(w=6,h=3)
+
+# margins
+par(
+mar=c(5.1,5.1,2.1,2.1),
+cex.axis=0.7
+)
+
+# set up plot with the number of categories and the y limits 
+# yaxs="i" sets the yaxis as having no separation from the corner point
+
+ylimlp <-  c(0,max(redata))*1.06
+plot(1:156, type="n", xaxt="n", ylim=ylimlp, ann=FALSE, yaxs="i", xaxs="i", bty="l", las="1")
+
+abline(v=seq(13,156,13),lty=1,col="grey")
+
+title(xlab="Month", col.lab=rgb(0,0,0), font.lab=2, cex.lab=0.75)
+title(ylab="Listings", col.lab=rgb(0,0,0), font.lab=2, cex.lab=0.75)
+
+lines(redata[1,],type="l",pch=NA,lwd=1,col="grey")
+lines(c(rep(NA,13*1),redata[2,]),type="l",pch=NA,lwd=1,col="grey")
+lines(c(rep(NA,13*2),redata[3,]),type="l",pch=NA,lwd=1,col="grey")
+lines(c(rep(NA,13*3),redata[4,]),type="l",pch=NA,lwd=1,col="grey")
+lines(c(rep(NA,13*4),redata[5,]),type="l",pch=NA,lwd=1,col="grey")
+lines(c(rep(NA,13*5),redata[6,]),type="l",pch=NA,lwd=1,col="grey")
+lines(c(rep(NA,13*6),redata[7,]),type="l",pch=NA,lwd=1,col="grey")
+lines(c(rep(NA,13*7),redata[8,]),type="l",pch=NA,lwd=1,col="grey")
+lines(c(rep(NA,13*8),redata[9,]),type="l",pch=NA,lwd=1,col="grey")
+lines(c(rep(NA,13*9),redata[10,]),type="l",pch=NA,lwd=1,col="grey")
+lines(c(rep(NA,13*10),redata[11,]),type="l",pch=NA,lwd=1,col="grey")
+lines(c(rep(NA,13*11),redata[12,]),type="l",pch=NA,lwd=1,col="grey")
+
+redatamonthmean <- apply(redata,1,mean)
+
+lines(rep(redatamonthmean[1],13),type="l",pch=NA,lwd=1,col="black")
+lines(c(rep(NA,13*1),rep(redatamonthmean[2],13)),type="l",pch=NA,lwd=1,col="black")
+lines(c(rep(NA,13*2),rep(redatamonthmean[3],13)),type="l",pch=NA,lwd=1,col="black")
+lines(c(rep(NA,13*3),rep(redatamonthmean[4],13)),type="l",pch=NA,lwd=1,col="black")
+lines(c(rep(NA,13*4),rep(redatamonthmean[5],13)),type="l",pch=NA,lwd=1,col="black")
+lines(c(rep(NA,13*5),rep(redatamonthmean[6],13)),type="l",pch=NA,lwd=1,col="black")
+lines(c(rep(NA,13*6),rep(redatamonthmean[7],13)),type="l",pch=NA,lwd=1,col="black")
+lines(c(rep(NA,13*7),rep(redatamonthmean[8],13)),type="l",pch=NA,lwd=1,col="black")
+lines(c(rep(NA,13*8),rep(redatamonthmean[9],13)),type="l",pch=NA,lwd=1,col="black")
+lines(c(rep(NA,13*9),rep(redatamonthmean[10],13)),type="l",pch=NA,lwd=1,col="black")
+lines(c(rep(NA,13*10),rep(redatamonthmean[11],13)),type="l",pch=NA,lwd=1,col="black")
+lines(c(rep(NA,13*11),rep(redatamonthmean[12],13)),type="l",pch=NA,lwd=1,col="black")
+
+mtext(monthnames[1], side=1, cex=0.7, at=6.5)
+mtext(monthnames[2], side=1, cex=0.7, at=6.5*3)
+mtext(monthnames[3], side=1, cex=0.7, at=6.5*5)
+mtext(monthnames[4], side=1, cex=0.7, at=6.5*7)
+mtext(monthnames[5], side=1, cex=0.7, at=6.5*9)
+mtext(monthnames[6], side=1, cex=0.7, at=6.5*11)
+mtext(monthnames[7], side=1, cex=0.7, at=6.5*13)
+mtext(monthnames[8], side=1, cex=0.7, at=6.5*15)
+mtext(monthnames[9], side=1, cex=0.7, at=6.5*17)
+mtext(monthnames[10], side=1, cex=0.7, at=6.5*19)
+mtext(monthnames[11], side=1, cex=0.7, at=6.5*21)
+mtext(monthnames[12], side=1, cex=0.7, at=6.5*23)
+-------------------------------------------------------------------------------------------------------
+library(sfsmisc)
+
+#Generate the data
+x <- 1:100000
+y <- 1:100000
+
+#Setup the plot area
+par(pty="m", plt=c(0.1, 1, 0.1, 1), omd=c(0.1,0.9,0.1,0.9))
+
+#Plot a blank graph without completing the x or y axis
+plot(x, y, type = "n", xaxt = "n", yaxt="n", xlab="", ylab="", log = "x", col="blue")
+mtext(side=3, text="Test Plot", line=1.2, cex=1.5)
+
+#Complete the x axis
+eaxis(1, padj=-0.5, cex.axis=0.8)
+mtext(side=1, text="x", line=2.5)
+
+#Complete the y axis and add the grid
+aty <- seq(par("yaxp")[1], par("yaxp")[2], (par("yaxp")[2] - par("yaxp")[1])/par("yaxp")[3])
+axis(2, at=aty, labels=format(aty, scientific=FALSE), hadj=0.9, cex.axis=0.8, las=2)
+mtext(side=2, text="y", line=4.5)
+grid()
+
+#Add the line last so it will be on top of the grid
+lines(x, y, col="blue")
+-------------------------------------------------------------------------------------------------------
+generate.data <- function(rate=.3, dim=c(25,25)) {
+  tmp <- rep(".", prod(dim))
+  tmp[sample(1:prod(dim), ceiling(prod(dim)*rate))] <- "S"
+  m <- matrix(tmp, nr=dim[1], nc=dim[2])
+  return(m)
+} x <- generate.data()
+rownames(x) <- colnames(x) <- 1:25
+capture.output(as.table(x), file="res.txt") res.txt make.table <- function(x, labels=NULL) {
+  # x = matrix
+  # labels = list of labels for x and y
+  coord.xy <- expand.grid(x=1:nrow(x), y=1:ncol(x))
+  opar <- par(mar=rep(1,4), las=1)
+  plot.new() 
+  plot.window(xlim=c(0, ncol(x)), ylim=c(0, nrow(x)))
+  text(coord.xy$x, coord.xy$y, c(x), adj=c(0,1)) 
+  if (!is.null(labels)) {
+    mtext(labels[[1]], side=3, line=-1, at=seq(1, ncol(x)), cex=.8)
+    mtext(labels[[2]], side=2, line=-1, at=seq(1, nrow(x)), cex=.8, padj=1)
+  }
+  par(opar)
+} make.table(x, list(1:25, 1:25))
+-------------------------------------------------------------------------------------------------------
+help(survplot) require(rms)
+n <- 1000
+set.seed(731)
+age <- 50 + 12*rnorm(n)
+label(age) <- "Age"
+sex <- factor(sample(c('male','female'), n, TRUE))
+cens <- 15*runif(n)
+h <- .02*exp(.04*(age-50)+.8*(sex=='female'))
+dt <- -log(runif(n))/h
+label(dt) <- 'Follow-up Time'
+e <- ifelse(dt <= cens,1,0)
+dt <- pmin(dt, cens)
+units(dt) <- "Year"
+dd <- datadist(age, sex)
+options(datadist='dd')
+S <- Surv(dt,e)
+
+# When age is in the model by itself and we predict at the mean age,
+# approximate confidence intervals are ok
+
+survplot(f, age=mean(age), conf.int=.95, 
+               n.risk=TRUE, adj.n.risk=.75, y.n.risk=-0.15,
+               xlab="")
+title(main="Simulated Survival Plot Demonstrating Annotation of N-at-risk")
+mtext("Follow-up Years", side=1, line=2)
+-------------------------------------------------------------------------------------------------------
+mtext(text=myLab, las=1,side=2,outer = FALSE,at=c(1:3))
+-------------------------------------------------------------------------------------------------------
+set.seed(1)
+t1 = rnorm(10); t2 = rnorm(10, 2)
+t1_g2 = rnorm(10, 4);t2_g2 = rnorm(10)
+
+##Don't print the axes labels
+par(ann=FALSE)
+
+##Plot first set of data.
+##Need to check for sensible ranges
+##Use the jitter function to spread data out.
+plot(jitter(rep(0,10),amount=0.2), t1,
+     xlim=range(-0.5,3.5), ylim=range(-3,8),
+     axes=FALSE,frame.plot=TRUE)
+points(jitter(rep(1,10), amount=0.2), t1_g2, col=2)
+points(jitter(rep(2,10), amount=0.2), t2)
+points(jitter(rep(3,10), amount=0.2), t2_g2, col=2)
+
+##Add in the y-axis
+axis(2, seq(-4,8,by=2))
+
+##Add in the x-axis labels
+mtext("Treatment 1", side = 1, at=0.5)
+mtext("Treatment 2", side = 1, at=2.5)
+
+##Add in the means
+segments(-0.25, mean(t1), 0.25, mean(t1))
+segments(0.75, mean(t1_g2), 1.25, mean(t1_g2))
+segments(1.75, mean(t2), 2.25, mean(t2))
+segments(2.75, mean(t2_g2), 3.25, mean(t2_g2))
+
+##Add in the legend
+legend(0, 8, c("Group 1", "Group 2"), col=1:2, pch=1)
+-------------------------------------------------------------------------------------------------------
+cal <- function(month, year) {
+
+        if(!require(chron)) stop('Unable to load chron package')
+
+     if(missing(year) && missing(month)) {
+         tmp <- month.day.year(Sys.Date())
+         year <- tmp$year
+         month <- tmp$month
+     }
+
+
+    if(missing(year) || missing(month)){  # year calendar
+        if(missing(year)) year <- month
+        par(mfrow=c(4,3))
+        tmp <- seq.dates( from=julian(1,1,year), to=julian(12,31,year) )
+        tmp2 <- month.day.year(tmp)
+        wd <- do.call(day.of.week, tmp2)
+        par(mar=c(1.5,1.5,2.5,1.5))
+        for(i in 1:12){
+            w <- tmp2$month == i
+            cs <- cumsum(wd[w]==0)
+            if(cs[1] > 0) cs <- cs - 1
+            nr <- max( cs ) + 1
+            plot.new()
+            plot.window( xlim=c(0,6), ylim=c(0,nr+1) )
+            text( wd[w], nr - cs -0.5 , tmp2$day[w] )
+            title( main=month.name[i] )
+            text( 0:6, nr+0.5, c('S','M','T','W','T','F','S') )
+        }
+
+    } else {  # month calendar
+
+        ld <- seq.dates( from=julian(month,1,year), length=2, by='months')[2]-1
+        days <- seq.dates( from=julian(month,1,year), to=ld)
+        tmp <- month.day.year(days)
+        wd <- do.call(day.of.week, tmp)
+        cs <- cumsum(wd == 0)
+        if(cs[1] > 0) cs <- cs - 1
+        nr <- max(cs) + 1
+        par(oma=c(0.1,0.1,4.6,0.1))
+        par(mfrow=c(nr,7))
+        par(mar=c(0,0,0,0))
+        for(i in seq_len(wd[1])){ 
+            plot.new()
+            #box()
+        }
+        day.name <- c('Sun','Mon','Tues','Wed','Thur','Fri','Sat')
+        for(i in tmp$day){
+            plot.new()
+            box()
+            text(0,1, i, adj=c(0,1))
+            if(i < 8) mtext( day.name[wd[i]+1], line=0.5,at=grconvertX(0.5,to='ndc'), outer=TRUE ) 
+        }
+        mtext(month.name[month], line=2.5, at=0.5, cex=1.75, outer=TRUE)
+        #box('inner') #optional 
+    }
+} par(mfg=c(r,c)) updateusr subplot TeachingDemos cal(10,2011)
+par(mfg=c(3,2))  # monday oct 10
+text(.5,.5, 'Some\nText', cex=2)
+
+par(mfg=c(2,3)) #Tues oct 4
+text(1,1, 'Top Right', adj=c(1,1))
+
+par(mfg=c(2,4)) # Wed oct 5
+text(0,0, 'Bottom Left', adj=c(0,0))
+
+par(mfg=c(6,2)) # oct 31
+tmp.x <- runif(25)
+tmp.y <- rnorm(25,tmp.x,.1)
+par(usr=c( range(tmp.x), range(tmp.y) ) )
+points(tmp.x,tmp.y)
+-------------------------------------------------------------------------------------------------------
+par pdf set.seed(1)
+n.obs       <- 390
+vol.min     <- .20/sqrt(252 * 390)
+eps         <- rnorm(n = n.obs, sd = vol.min)
+              # add space to LHS of plot
+pdf("~/myplot.pdf", width=5.05, height=3.8)
+mar.default <- c(5,4,4,2) + 0.1
+par(mar = mar.default + c(0, 4, 0, 0)) 
+plot(eps,  main  =  "Hello  World!", las=1, ylab="") # suppress the y-axis label
+mtext(text="eps", side=2, line=4, las=1)   
+dev.off()
+-------------------------------------------------------------------------------------------------------
+mtext(text="eps", side=3, at=usrcoord.x.left-0.075*diff(range(par("usr")[1:2]) )) mtext(text="eps", side=3, at=usrcoord.x.left-0.1*diff(range(par("usr")[1:2]) ))
+-------------------------------------------------------------------------------------------------------
+substitute lambda <- 4
+ plot(1:10,1:10)
+
+      line=2.25,cex=2) qplot(1:10, 1:10) + opts(title=substitute(paste(d*bolditalic(x)[italic(t)] == 
+                        alpha*(theta - bolditalic(x)[italic(t)] )*d*italic(t) + 
+                         lambda * d * italic(B)[italic(t)] ), list(lambda=lambda)), 
+                       line=2.25,cex=2)
+-------------------------------------------------------------------------------------------------------
+line axis() mtext() # Plot and first axis:
+plot(1:10,1:10,bty="n",col="red",pch=16,axes=FALSE,xlab="",ylab="")
+axis(2,0:11,las=1)
+axis(1,0:11,line=1,col="red",col.ticks="red",col.axis="red")
+mtext("Label 1",1,line=1,at=0.2,col="red")
+
+# Secondary points and axis:
+points(rnorm(10,50,20)/10, rnorm(10,5,2),pch=16, col="blue" )
+axis(1,0:11,labels=0:11*10,line=3,col="blue",col.ticks="blue",col.axis="blue")
+mtext("Label 2",1,line=3,at=0.2,col="blue")
+-------------------------------------------------------------------------------------------------------
+par()$cex x <- 1:5
+y1 <- rnorm(5)
+y2 <- rnorm(5,20)
+
+par(mfrow = c(3, 3), mar=c(5,4,4,5)+.1)
+plot(x,y1,type="l",col="red")
+par(new=TRUE)
+plot(x, y2,,type="l",col="blue",xaxt="n",yaxt="n",xlab="",ylab="")
+axis(4)
+mtext("y2",side=4,line=3, cex=par()$cex)
+-------------------------------------------------------------------------------------------------------
+type.c <- c("debit", "debit", "credit")
+type.f <- factor(type.c) storage.mode(type.c)
+# [1] "character"
+storage.mode(type.f)
+# [1] "integer" levels(type.f)
+ # [1] "credit" "debit" str(type.f)
+# Factor w/ 2 levels "credit","debit": 2 2 1 dc <- c("debit", "credit")
+N <- 300
+
+# lets store the calculations as a matrix
+# col1 = n
+# col2 = sizeof(character)
+# col3 = sizeof(factors)
+res <- matrix(ncol=3, nrow=N)
+
+for (i in c(1:N)) {
+  type.c <- sample(dc, i, replace=T)
+  type.f <- factor(type.c)
+  res[i, 1] <- i
+  res[i, 2] <- object.size(type.c)
+  res[i, 3] <- object.size(type.f)
+  cat('N=', i, '  object.size(type.c)=',object.size(type.c), '  object.size(type.f)=',object.size(type.f), '\n')
+}
+plot(res[,1], res[,2], col='blue', type='l', xlab='Number of items in type.x', ylab='bytes of storage')
+lines(res[,1], res[,3], col='red')
+mtext('blue for character; red for factor')
+
+cat('Threshold at:', min(which(res[,2]>res[,3])), '\n')
+-------------------------------------------------------------------------------------------------------
+oma mtext op <- par(
+  oma=c(0,0,3,0),# Room for the title and legend
+  mfrow=c(2,2)
+)
+for(i in 1:4) {
+  plot( cumsum(rnorm(100)), type="l", lwd=3,
+  col=c("navy","orange")[ 1+i%%2 ], 
+  las=1, ylab="Value",
+  main=paste("Random data", i) )
+}
+par(op) # Leave the last plot
+mtext("Main title", line=2, font=2, cex=1.2)
+op <- par(usr=c(0,1,0,1), # Reset the coordinates
+          xpd=NA)         # Allow plotting outside the plot region
+legend(-.1,1.15, # Find suitable coordinates by trial and error
+  c("one", "two"), lty=1, lwd=3, col=c("navy", "orange"), box.col=NA)
+-------------------------------------------------------------------------------------------------------
+##The numbers next to the tick marks
+par(las=3)
+plot(x=1:10, y=1:10, xlab="")
+
+##The x-axis label
+mtext("sfdf", 1, las=3, adj=3)
+-------------------------------------------------------------------------------------------------------
+plot(1:10, ann = FALSE)
+ mtext(side = 2, text = "Y Axis", line = 3)
+ mtext(side = 2, text = "and something extra", line = 2) set.seed(124)
+data1 = data.frame(x=1:10,y=rnorm(10,1))
+
+colnames(data1) = c("X", "Y") 
+theme = theme_set(theme_bw()) 
+
+# atop is the function to use in order to get two lines  
+
+ xlab = expression(atop(paste("x Axis"),
+            "More text"))
+ ylab = expression(atop(paste("y Axis"),
+                "Two lines"))
+
+
+
+
+  ggplot(data1, aes(x = X, y = Y))+
+            geom_point(shape = 1, color ="black") +
+                 xlab(xlab) +  
+                 ylab(ylab)
+
+
+#And adjust the margins with opts.
+-------------------------------------------------------------------------------------------------------
+x <- c("yes", "no", "maybe", "no", "no", "yes")
+y <- c("red", "blue", "green", "green", "orange")
+list.xy <- list(x=x, y=y)
+
+WORD.C <- function(WORDS){
+  require(wordcloud)
+
+  L2 <- lapply(WORDS, function(x) as.data.frame(table(x), stringsAsFactors = FALSE))
+
+  # Takes a dataframe and the text you want to display
+  FUN <- function(X, text){
+    windows() 
+    wordcloud(X[, 1], X[, 2], min.freq=1)
+    mtext(text, 3, padj=-4.5, col="red")  #what I'm trying that isn't working
+  }
+
+  # Now creates the sequence 1,...,length(L2)
+  # Loops over that and then create an anonymous function
+  # to send in the information you want to use.
+  lapply(seq_along(L2), function(i){FUN(L2[[i]], names(L2)[i])})
+
+  # Since you asked about loops
+  # you could use i in seq_along(L2) 
+  # instead of 1:length(L2) if you wanted to
+  #for(i in 1:length(L2)){
+  #  FUN(L2[[i]], names(L2)[i])
+  #}
+}
+
+WORD.C(list.xy)
+-------------------------------------------------------------------------------------------------------
+axis(1, 1:nc, labels = labCol, las = 2, line = -0.5, tick = 0, 
+    cex.axis = cexCol)
+if (!is.null(xlab)) 
+    mtext(xlab, side = 1, line = margins[1] - 1.25)
+axis(4, iy, labels = labRow, las = 2, line = -0.5, tick = 0, 
+    cex.axis = cexRow)
+if (!is.null(ylab)) 
+    mtext(ylab, side = 4, line = margins[2] - 1.25)
+-------------------------------------------------------------------------------------------------------
+mtext(substitute(sigma[v] == a *","~ rho == b, list(a=y,b=z))) ~ * *
+-------------------------------------------------------------------------------------------------------
+par(mar = c(10,4,4,2) + 0.1)
+plot(1:3,1:3,axes = FALSE,xlab = "")
+axis(1,1:3,labels = FALSE)
+mtext(c('2000','2001','2002'),side = 1,line = 1,at = 1:3,col = "red")
+mtext(c('2010','2011','2012'),side = 1,line = 2,at = 1:3,col = "blue")
+mtext(c('2000','2001','2002'),side = 1,line = 3,at = 1:3,col = "red")
+mtext(c('2010','2011','2012'),side = 1,line = 4,at = 1:3,col = "blue")
+axis(2) mar mtext axis labels c("2000\n2010\n2020","2001\n2011\n2021","2002\n2012\n2022") padj
+-------------------------------------------------------------------------------------------------------
+par(new=TRUE) ## Set up data
+line.x <- 2:10
+bar.x <- 2:10
+bar.y <- seq(3,7,by=0.5)+rnorm(9)
+bar.x <- 1:15
+bar.x <- 2:10
+line.x <- 1:15
+line.y <- rev(60:74)+rnorm(15)
+x.range <- range(bar.x, line.x)
+
+## Plot the data
+par(mar=c(5,4,4,4)+0.1)    ## Make enough room for both labels
+plot(y=bar.y, x=bar.x, type='h', lwd=25, lend=4, xlim=x.range, xlab="Sequence", ylab="", main="Plot with two ordinates - points and lines")
+par(new=TRUE)
+plot(y=line.y, x=line.x, col='red', type='l', xlim=x.range, axes=FALSE, xlab='', ylab='')
+
+## Set up the axes and labels
+axis(side=4, col='red', labels=FALSE)
+at = axTicks(4)
+mtext(side = 4, text = at, at = at, col = "red", line = 1) 
+## Add x-axis labels; this allows customization of the how far out labels are
+mtext(text='Descending values', side=4, line=2, col='red')
+mtext(text='Ascending values', side=2, line=2)
+-------------------------------------------------------------------------------------------------------
+dev.new() pdf xlims<-c(1,24)
+ylims<-c(-2,2)
+
+pdf(file='test1march.pdf', width=3.33,height=4)
+plot(NULL,NULL,xlim=xlims,ylim=ylims,axes=FALSE, ann=FALSE)     
+axis(1, at=c(0,4,8,12,16,20,24),cex.axis=0.7,mgp=c(3, .3, 0))
+axis(2, las=1,cex.axis=0.7,at=c(-2,-1,0,1,2), mgp=c(3, .7, 0))
+mtext(side = 1, text =expression('Hour'), line = 1,font=15)
+mtext(side = 2, text = expression(paste('NEE ', m^-2,s^-1)), line = 1.5,font=15)
+abline(0, 2/24)  # should give a diagonal line
+box()
+dev.off()
+-------------------------------------------------------------------------------------------------------
+text() dfrm <- data.frame(y=rnorm(100, mean=10), x=gl(4, 25))
+dfrm$y[dfrm$x==2] <- dfrm$y[dfrm$x==2]+2
+boxplot(y ~ x, data=dfrm, ylim=c(min(dfrm$y)-.5, max(dfrm$y)+.5))
+text(x=2, y=max(dfrm$y[dfrm$x==2]), "*", pos=3, cex=1.2) x=2 mtext mtext("*", side=3, line=0, at=2, cex=1.2)
+-------------------------------------------------------------------------------------------------------
+y y2 # do first plot. Don't draw axis (we'll do it later)
+plot(y~x,data=t,axes=F,ylab='y')
+# draw y axis (see ?axis, 1=bottom, 2=left, 3=top, 4=right)
+axis(2,pretty(range(t$y)))
+
+# tell R to draw over the first plot
+par(new=T)
+
+# do second plot. 
+plot(y2~x,data=t,axes=F,ylab="")
+# draw second axis on the right
+axis(4,pretty(range(t$y2)),ylab='y2')
+
+# draw x axis on the bottom
+axis(1,pretty(range(t$x)))
+
+# draw the box if you want
+box() axis(2,pretty(range(t$y))) pretty par(new=T) y2 x y2 y2 x y2 y par(mar=c(top,left,bottom,right)) ?par c(5,4,4,2)+.1 # get the current margins (top, left, bottom, right)
+m <- par('mar')
+# make sure the right margin is the same as the left.
+m[4]<-m[2]
+# set the new margins
+par(mar=m)
+
+# .... perform plotting as above. mtext mtext('y2',4,line=2) 'y2' line=2 # margin
+m <- par('mar')
+m[4] <- m[2]
+par(mar=m)
+
+# plotting
+plot(y~x,data=t,axes=F,ylab='y')
+axis(2,pretty(range(t$y)))
+par(new=T)
+plot(y2~x,data=t,axes=F,ylab="")
+axis(4,pretty(range(t$y2)),ylab='y2')
+axis(1,pretty(range(t$x)))
+box()
+
+# right-hand ylabel
+mtext('y2',4,line=2)
+-------------------------------------------------------------------------------------------------------
+pairs2 <- 
+  function (x, labels, panel = points, ..., lower.panel = panel, 
+            upper.panel = panel, diag.panel = NULL, text.panel = textPanel, 
+            label.pos = 0.5 + has.diag/3, cex.labels = NULL, font.labels = 1, 
+            row1attop = TRUE, gap = 1) 
+  {
+    textPanel <- function(x = 0.5, y = 0.5, txt, cex, font) text(x, 
+                                                                 y, txt, cex = cex, font = font)
+    localAxis <- function(side, x, y, xpd, bg, col = NULL, main, 
+                          oma, ...) {
+      if (side%%2 == 1) 
+        Axis(x, side = side, xpd = NA, ...)
+      else Axis(y, side = side, xpd = NA, ...)
+    }
+    localPlot <- function(..., main, oma, font.main, cex.main) plot(...)
+    localLowerPanel <- function(..., main, oma, font.main, cex.main) lower.panel(...)
+    localUpperPanel <- function(..., main, oma, font.main, cex.main) upper.panel(...)
+    localDiagPanel <- function(..., main, oma, font.main, cex.main) diag.panel(...)
+    dots <- list(...)
+    nmdots <- names(dots)
+    if (!is.matrix(x)) {
+      x <- as.data.frame(x)
+      for (i in seq_along(names(x))) {
+        if (is.factor(x[[i]]) || is.logical(x[[i]])) 
+          x[[i]] <- as.numeric(x[[i]])
+        if (!is.numeric(unclass(x[[i]]))) 
+          stop("non-numeric argument to 'pairs'")
+      }
+    }
+    else if (!is.numeric(x)) 
+      stop("non-numeric argument to 'pairs'")
+    panel <- match.fun(panel)
+    if ((has.lower <- !is.null(lower.panel)) && !missing(lower.panel)) 
+      lower.panel <- match.fun(lower.panel)
+    if ((has.upper <- !is.null(upper.panel)) && !missing(upper.panel)) 
+      upper.panel <- match.fun(upper.panel)
+    if ((has.diag <- !is.null(diag.panel)) && !missing(diag.panel)) 
+      diag.panel <- match.fun(diag.panel)
+    if (row1attop) {
+      tmp <- lower.panel
+      lower.panel <- upper.panel
+      upper.panel <- tmp
+      tmp <- has.lower
+      has.lower <- has.upper
+      has.upper <- tmp
+    }
+    nc <- ncol(x)
+    if (nc < 2) 
+      stop("only one column in the argument to 'pairs'")
+    has.labs <- TRUE
+    if (missing(labels)) {
+      labels <- colnames(x)
+      if (is.null(labels)) 
+        labels <- paste("var", 1L:nc)
+    }
+    else if (is.null(labels)) 
+      has.labs <- FALSE
+    oma <- if ("oma" %in% nmdots) 
+      dots$oma
+    else NULL
+    main <- if ("main" %in% nmdots) 
+      dots$main
+    else NULL
+    if (is.null(oma)) {
+      oma <- c(4, 4, 4, 4)
+      if (!is.null(main)) 
+        oma[3L] <- 6
+    }
+    opar <- par(mfrow = c(nc, nc), mar = rep.int(gap/2, 4), oma = oma)
+    on.exit(par(opar))
+    dev.hold()
+    on.exit(dev.flush(), add = TRUE)
+    for (i in if (row1attop) 
+      1L:nc
+         else nc:1L) for (j in 1L:nc) {
+           localPlot(x[, j], x[, i], xlab = "", ylab = "", axes = FALSE, 
+                     type = "n", ...)
+           if (i == j || (i < j && has.lower) || (i > j && has.upper)) {
+             box()
+             # edited here...
+             #           if (i == 1 && (!(j%%2) || !has.upper || !has.lower)) 
+             #           localAxis(1 + 2 * row1attop, x[, j], x[, i], 
+             #                       ...)
+             # draw x-axis
+             if (i == nc & j != nc) 
+               localAxis(1, x[, j], x[, i], 
+                         ...)
+             # draw y-axis
+             if (j == 1 & i != 1) 
+               localAxis(2, x[, j], x[, i], ...)
+             #           if (j == nc && (i%%2 || !has.upper || !has.lower)) 
+             #             localAxis(4, x[, j], x[, i], ...)
+             mfg <- par("mfg")
+             if (i == j) {
+               if (has.diag) 
+                 localDiagPanel(as.vector(x[, i]), ...)
+               if (has.labs) {
+                 par(usr = c(0, 1, 0, 1))
+                 if (is.null(cex.labels)) {
+                   l.wid <- strwidth(labels, "user")
+                   cex.labels <- max(0.8, min(2, 0.9/max(l.wid)))
+                 }
+                 text.panel(0.5, label.pos, labels[i], cex = cex.labels, 
+                            font = font.labels)
+               }
+             }
+             else if (i < j) 
+               localLowerPanel(as.vector(x[, j]), as.vector(x[, 
+                                                              i]), ...)
+             else localUpperPanel(as.vector(x[, j]), as.vector(x[, 
+                                                                 i]), ...)
+             if (any(par("mfg") != mfg)) 
+               stop("the 'panel' function made a new plot")
+           }
+           else par(new = FALSE)
+         }
+    if (!is.null(main)) {
+      font.main <- if ("font.main" %in% nmdots) 
+        dots$font.main
+      else par("font.main")
+      cex.main <- if ("cex.main" %in% nmdots) 
+        dots$cex.main
+      else par("cex.main")
+      mtext(main, 3, 3, TRUE, 0.5, cex = cex.main, font = font.main)
+    }
+    invisible(NULL)
+  }
+data(iris)
+pairs2(iris[1:4], main = "Anderson's Iris Data -- 3 species",pch = 21, bg = c("red", "green3", "blue")[unclass(iris$Species)])
+-------------------------------------------------------------------------------------------------------
+mtext out <- barplot(vals,axes = FALSE)
+axis(2)
+mtext(1:4,side = 1,at = out,cex = 0.5) barplot
+-------------------------------------------------------------------------------------------------------
+for if (i == 1 & j == 2){
+   mtext("This title should be centered according to the plot matrix", side=3,line=2, outer=FALSE, adj=0.5, at=0.5)
+} outer = FALSE d <- 4
+d2 <- d*d
+layout.mat <- matrix(1:d2, byrow=TRUE, ncol=d) # plot matrix
+layout.mat <- cbind(layout.mat, rep(0, d)) # space
+layout.mat <- cbind(layout.mat, rep(d2+1, d)) # column on the right side
+layout.mat <- rbind(c(rep(18,d),0,0),layout.mat) #Add row on top
+wspace <- 6*par("csi")*2.54 # width of the space in character height in cm
+wside <- 3*par("csi")*2.54 # width of the right side in character height in cm
+#Note adjustments to heights
+layout(layout.mat, respect=TRUE, widths=c(rep(1, d), lcm(wspace), lcm(wside)),
+       heights = c(0.25,rep(1,nrow(layout.mat)-1)))
+layout.show(d2+1)
+par(mar=rep(0, 4), oma=c(4,4,6,4))
+for(i in 1:d){
+    for(j in 1:d){
+        plot.new()
+        plot.window(xlim=c(0,1), ylim=c(0,1))
+        ll <- par("usr")
+        rect(ll[1], ll[3], ll[2], ll[4])
+        text(0.5, 0.5, paste("i=",i,", j=",j,sep=""), cex=1.4)
+    }
+}
+plot.new()
+plot.window(xlim=c(0,1), ylim=c(0,1))
+ll <- par("usr")
+rect(ll[1], ll[3], ll[2], ll[4])
+text(0.5, 0.5, "side", cex=1.4)
+
+## title
+plot.new()
+plot.window(xlim=c(0,1), ylim=c(0,1))
+ll <- par("usr")
+#rect(ll[1], ll[3], ll[2], ll[4])
+text(0.5, 0.5, "top", cex=1.4)
+-------------------------------------------------------------------------------------------------------
+years <- seq(1975,1989,2)
+db <- data.frame(Dallas=c( 25, 28, 27, 29, 31, 33, 35, 37),
+ Houston=c( 33, 38, 43, 48, 53, 58, 63, 68),
+ Lubbock=c( 28, 29, 31, 33, 35, 37, 39, 41),
+ Austin= c(22, 24, 26, 28, 30, 32, 34, 36),
+ San_Antonio= c(31, 32, 33, 34, 35, 36, 37, 38)
+)
+db <- as.matrix(db)
+
+#plot
+layout(matrix(c(1,2), nrow=1, ncol=2), widths=c(4,1), heights=c(4))
+layout.show(2)
+par(mar=c(5,5,1,1))
+image(x=years, z=db, yaxt="n")
+axis(2, at=seq(0,1,,dim(db)[2]), labels=colnames(db))
+#image.scale from http://menugget.blogspot.de/2011/08/adding-scale-to-image-plot.html
+par(mar=c(5,0,1,5))
+image.scale(db, horiz=FALSE, yaxt="n", xaxt="n", xlab="", ylab="")
+axis(4)
+mtext("temp", side=4, line=2)
+box()
+-------------------------------------------------------------------------------------------------------
+par(mfrow = c(2,1), mar = c(4,4,1,1), oma=c(2,2,2,2))
+stuff <- c("ed", "bla")
+cols <- c("red", "blue")
+for(i in 1:length(stuff)) {
+x <- rnorm(10,3,2)
+y <- seq(1,10)
+plot(x,y, type = "o", col = cols[i], xlab = paste("stuff about", stuff[i]))}
+legend("bottomright", legend = stuff, col = cols, lwd = 1, bty = "n")
+par(mfrow=c(1,1))
+title(main = "ed & bla", outer = T)
+mtext("This is a plot", 3, line=0.5, adj=1.0, cex=1, outer=TRUE)
+-------------------------------------------------------------------------------------------------------
+minor.ticks.axis <- function(ax,n,t.ratio=0.5,mn,mx,...){
+
+  lims <- par("usr")
+  if(ax %in%c(1,3)) lims <- lims[1:2] else lims[3:4]
+
+  major.ticks <- pretty(lims,n=5)
+  if(missing(mn)) mn <- min(major.ticks)
+  if(missing(mx)) mx <- max(major.ticks)
+
+  major.ticks <- major.ticks[major.ticks >= mn & major.ticks <= mx]
+
+  labels <- sapply(major.ticks,function(i)
+    as.expression(bquote(10^ .(i)))
+                   )
+  axis(ax,at=major.ticks,labels=labels,...)
+
+  n <- n+2
+  minors <- log10(pretty(10^major.ticks[1:2],n))-major.ticks[1]
+  minors <- minors[-c(1,n)]
+
+  minor.ticks = c(outer(minors,major.ticks,`+`))
+  minor.ticks <- minor.ticks[minor.ticks > mn & minor.ticks < mx]
+
+
+  axis(ax,at=minor.ticks,tcl=par("tcl")*t.ratio,labels=FALSE)
+
+} x <- 1:8
+y <- 10^(sort(runif(8, 1, 10), decreasing = TRUE)) plot(x, log10(y), # function to plot
+xlab="",          # suppress x labels
+type = 'l',       # specify line graph
+xlim = c(min(x), (max(x)*1.3)),  # extend axis limits to give space for text annotation
+ylim = c(0, max(log10(y))),      # ditto
+axes = FALSE)    # suppress both axes minor.ticks.axis(2, 9, mn=0, mx=10, las=1) axis(3) mtext("x", side = 3, line = 2) text(max(x), min(log10(y)), "Example", pos = 1)
+-------------------------------------------------------------------------------------------------------
+read.csv read.table quartz=(title...) quartz(title=...) plot() attach lines curve abline glm lm() family=binomial family=gaussian dat <- read.csv("/Path/PopulationGrowth.csv")
+with(dat,plot(Year,CentralOakland,xlab="Year",ylab="Population",
+  main="Central Oakland Population vs. Year"))
+g <- lm(CentralOakland~Year,data=dat)
+abline(g)
+## OR
+yearvec <- seq(min(Year),max(Year),length=51)
+lines(yearvec,predict(g,newdata=data.frame(Year=yearvec),type="response")) ## from http://en.wikipedia.org/wiki/Oakland,_California
+dat <- structure(list(year = c(1860L, 1870L, 1880L, 1890L, 1900L, 1910L, 
+1920L, 1930L, 1940L, 1950L, 1960L, 1970L, 1980L, 1990L, 2000L, 
+2010L), pop = c(1543L, 10500L, 34555L, 48682L, 66960L, 150174L, 
+216261L, 284063L, 302163L, 384575L, 367548L, 361561L, 339337L, 
+372242L, 399484L, 390724L)), .Names = c("year", "pop"), 
+  class = "data.frame", row.names = c(NA,-16L)) ## SSlogis() is a "self-starting" logistic
+m1 <- nls(pop~SSlogis(year,asym,xmid,scal),
+          data=dat) par(las=1,bty="l",mar=c(5,6,2,2)+0.1)  ## graphics tweaks
+with(dat,plot(pop~year,ylab=""))
+## add y-label separately 
+mtext("population",side=2,las=0,line=4)
+yearvec <- 1860:2010
+lines(yearvec,predict(m1,newdata=data.frame(year=yearvec)))
+-------------------------------------------------------------------------------------------------------
+# generate some fake points
+x <- rnorm(100)
+y <- rnorm(100)
+
+# positions of the lines
+vert = 0.5
+horiz = 1.3 # compute the limits, in order for the lines to be centered
+# REM we add a small fraction (here 10%) to leave some empty space, 
+# available to plot the values inside the frame (useful for one the solutions, see below)
+xlim = vert + c(-1.1, 1.1) * max(abs(x-vert))
+ylim = horiz + c(-1.1, 1.1) * max(abs(y-horiz))
+
+# do the main plotting
+plot(x, y, xlim=xlim, ylim=ylim)
+abline(h=horiz, v=vert) line mtext(c(vert, horiz), side=c(1,2)) text(x=vert, y=ylim[1], labels=vert, adj=c(1.1,1), col='blue')
+text(x=xlim[1], y=horiz, labels=horiz, adj=c(0.9,-0.1), col='blue')
+-------------------------------------------------------------------------------------------------------
+par("mar")
+par(mar = c(par("mar")[1:3], 5.1))
+
+plot(x,y, type="n", lwd=4, ylab="", xlab="threshold", xaxt="n",yaxt="n")
+
+axis(1,lwd=4)
+axis(2,lwd=4)
+
+points(x, y, col="red", cex=2, pch=19)
+abline(h=w, col="red", lwd=4)
+
+par("usr")
+par(usr = c(par("usr")[1:2], 80,90))
+
+axis(4, lwd=4)
+points(x, z, col="blue", cex=2, pch=19)
+points(x, z, type="l", lwd=4)
+abline(h=v, col="blue", lwd=4)
+
+mtext("Your text", side = 4, col = "blue",line=3)
+mtext("seconds", side = 2, col = "red",line=3)
+-------------------------------------------------------------------------------------------------------
+plot(rnorm(99), bty="n", axes=FALSE, xlab="", ylab="")
+box(col="dodgerblue")
+axis(1, col="dodgerblue", col.ticks="green", col.axis="orange", cex.axis=2)
+axis(2, col="dodgerblue", col.ticks="green", col.axis="orange", cex.axis=0.8)
+mtext("Index", side=1, line=3, col="red", cex=2)
+mtext("Value", side=2, line=3, col="purple", cex=0.8)
+-------------------------------------------------------------------------------------------------------
+par(mar=c(5,4.5,4,7))
+ image(sample, col=rainbow(25), axes=F)  #redblue() doesn't work on my computer.
+ axis(2)
+ axis(1, at=seq(0,0.8,0.2), labels=rownames(sample))
+ image.plot(sample, legend.only=T) sample = cor(matrix(rnorm(400), nrow=20))
+ image(cor(matrix(rnorm(400), nrow=20)), axes=F)
+ mtext(text=c(paste("country",1:21)), side=2, line=0.3, at=seq(0,1,0.05), las=1, cex=0.8)
+ mtext(text=c(paste("country",1:21)), side=1, line=0.3, at=seq(0,1,0.05), las=2, cex=0.8)
+ image.plot(sample, legend.only=T)
+-------------------------------------------------------------------------------------------------------
+par(mfrow layout par( oma=c(5,4,4,1)+0.1, mar=c(0,0,0,0) )
+layout( matrix( 1:3, nrow=1 ) )
+for( i in levels(iris$Species) ) {
+    with( iris[ iris$Species==i, ], {
+        plot(Sepal.Width, Sepal.Length, ann=FALSE, xaxt='n', yaxt='n',
+            ylim=range(iris$Sepal.Length))
+        axis(1, outer=TRUE)
+        mtext(side=3, i ) }
+    )
+}
+axis(2, outer=TRUE)
+-------------------------------------------------------------------------------------------------------
+mtext outer=TRUE mtext('Results2', side=1, line=-2, outer=TRUE) mtext('Results1', side=3, line=-20, outer=TRUE)
+-------------------------------------------------------------------------------------------------------
+pointsize Cairo(width = 7, height = 7, pointsize = 8, 
+      surface = c("screen", "png", "pdf", "ps", "svg"), 
+      filename = Cairo_pdf(filename, width = 7, height = 7, pointsize = 10)
+Cairo_ps(filename, width = 7, height = 7, pointsize = 10)
+Cairo_svg(filename, width = 7, height = 7, pointsize = 10)
+Cairo_png(filename, width = 7, height = 7, pointsize = 10) pointsize Cairo_png("test.png", 4, 4, pointsize = 8)
+par(bg = "red")
+plot.new()
+for (x in 1:30) mtext(format(x), line = -x, outer = TRUE, adj = 0, col = "white")
+dev.off()
+-------------------------------------------------------------------------------------------------------
+text adj (x,y) text FUN <- function(n) {
+    plot.new()   
+    mtext("better?", side = 3, cex=1.5, adj = 0, padj = 1, col = "red") 
+    wrong <- letters[1:n]
+    text(0, .8, paste(wrong, collapse = "\n"), offset=.3, cex=1.5, adj=c(0,1))
+} adj=c(0,1) [0,1] mtext padj=1 adj FUN2 <- function(n) {
+    plot.new()   
+    mtext("better?", side = 3, cex=1.5, adj = 0, padj = 1, col = "red") 
+    wrong <- letters[1:n]
+    mtext(paste(wrong, collapse = "\n"), side = 3, cex=1.5,
+        adj = 0, padj = 1) # adj=1 means text on right side instead of left.
+}
+-------------------------------------------------------------------------------------------------------
+text() mtext()
+-------------------------------------------------------------------------------------------------------
+par ?par dev.new( width= 16, height= 7 )
+## set outer margins
+par( mar=c(5, 4, 4, 4), cex= 0.9 )
+plot( 1:100, type="n", xlab = "", ylab = "", axes = F, las = 2, cex = 0.7 )
+axis( 4, at = c ( 0, 30, 60, 90, 120, 150, 180 ), labels = c( "0", "30", "60", "90", "120", "150", "180" ), las = 0, cex.axis = .8,col.lab = "gray80",
+tck = 0.01 )
+rect( 153, -5.5, 169, 185, col = "gray80", border = NA)
+rect( 246, -5.5, 272, 185, col = "gray80", border = NA)
+lines( 1:200, col = "gray20" )
+#text("Moon phase (º)", 330, 90, cex = .9 )
+mtext(side = 4, text = "Moon phase (º)", line = 2, cex = .9 )
+
+
+par( new = T )
+plot( 1:220, type = "n", lwd= 1.2, xlab= "", ylab= "Photoperiod (h)", axes = F, cex = .8, col.lab = "red" )
+axis( side= 1, at = c ( 1, 20, 51, 82, 112, 143, 173, 204, 235, 264, 295, 324 ), labels = c ( "12 Jun'07", "1 Jul'07", "1 Aug'07", "1 Sep'07", "1 Oct'07", "1 Nov'07", "1 Dec'07", "1 Jan'08", "1 Feb'08", "1 Mar'08", "1 Apr'08", "30 Apr'08" ), las = 2, cex.axis = .75 )
+axis ( side = 2, at = c( 12, 13, 14, 15, 16 ), labels = c( "12", "13", "14", "15", "16" ), cex.axis = .8, las = 2)
+box()
+-------------------------------------------------------------------------------------------------------
+oma mtext postscript("test.eps")
+y <- rnorm(100)
+x <- rnorm(100)
+
+par(mfrow=c(6,4),mar=c(1,1,1,1), oma=c(3,1,0,0))
+
+for(i in 1:((6*4)))
+{
+    if(i <= (6*4)-4)
+    {
+    plot(y,x,xlab="",xaxt="n")
+    }
+    if(i > (6*4)-4)
+    {
+    plot(y,x,xlab="")
+    mtext("HELLO", 1, 2.5)
+    }
+}
+dev.off()
+-------------------------------------------------------------------------------------------------------
+par(oma=...) mtext(..., outer=TRUE) par(mfrow=c(2,2), oma=c(3,3,4,0), mar=c(4,2,1,1), las=1, cex=0.7)
+plot(1:10, type="l", xlab="A", ylab="")
+plot(10:1, type ="l", xlab="B", ylab="")
+plot(1:10, type="l", xlab="C", ylab="")
+plot(1:2, type="l", xlab="D", ylab="")
+mtext("X-label", 1, 1, outer=TRUE)
+mtext("Y-label", 2, 1, outer=TRUE, las=0)
+mtext("Title", 3, 1, outer=TRUE, cex=2) 1:10 c(1:10) par par
+-------------------------------------------------------------------------------------------------------
+xlab="", ylab="" mtext mtext("xlab-move me above plot", side=1, line=1) side=1 side=2 line par(mgp=c(axis.title.position, axis.label.position, axis.line.position))
+-------------------------------------------------------------------------------------------------------
+par(oma=c(3,3,0,0)) par(mar=...) scatterhist = function(x, y, xlab="", ylab=""){
+    zones=matrix(c(2,0,1,3), ncol=2, byrow=TRUE)
+    layout(zones, widths=c(4/5,1/5), heights=c(1/5,4/5))
+    par(oma=c(3,3,0,0))
+
+    xhist = hist(x, plot=F, breaks=10)
+    yhist = hist(y, plot=F, breaks=10)
+    top = max(c(xhist$counts, yhist$counts))
+
+    par(mar=c(3,3,1,1))
+    plot(x, y)
+
+    par(mar=c(0,3,1,1))
+    barplot(xhist$counts, axes=FALSE, ylim=c(0, top), space=0)
+
+    par(mar=c(3,0,1,1))
+    barplot(yhist$counts, axes=FALSE, xlim=c(0, top), space=0, horiz=TRUE)
+
+    mtext(xlab, side=1, line=1, outer=TRUE, adj=0, at=.8 * (mean(x)-min(x))/(max(x)-min(x)))
+    mtext(ylab, side=2, line=1, outer=TRUE, adj=0, at=.8 * (mean(y)-min(y))/(max(y)-min(y)))
+    }
+-------------------------------------------------------------------------------------------------------
+mtext par(mfrow=c(1,2)) # 1X2 graphs
+par(oma=c(0,0,5,0))  # top has 5 lines of space 
+par(mar=c(4,4,2,1)+.1)  # margin lines
+par(pin=c(1.9,1.9))  # plot areas for graphs
+
+# plot 1
+plot(rnorm(n=20),col="olivedrab",pch=19,ylim=c(-2.0,2.0),xlim=c(0,20),ylab="",xlab="")
+mtext("Observation No.",side=1,line=3)
+mtext("Random variate",side=2,line=3)
+mtext("Olivedrab Plot",side=3,line=2,cex=1.5)
+
+# plot 2
+plot(rnorm(n=20),col="olivedrab2",pch=19,ylim=c(-2.0,2.0),xlim=c(0,20),ylab="",xlab="")
+mtext("Observation No.",side=1,line=3)
+mtext("Random variate",side=2,line=3)
+mtext("Olivedrab Plot",side=3,line=2,cex=1.5)
+
+mtext("Army Olive Drab Plots",side=3,line=-3,cex=2,outer=TRUE)
+-------------------------------------------------------------------------------------------------------
+gap.plot() ylim c(0, 500) c(0, 250) ## made up data
+GRO.Controls <- c(25, 40:50, 60, 150)
+GRO.Breast <- c(70, 80:90, 110, 500)
+
+##Scatter plot for both groups
+library(plotrix)
+gap.plot(jitter(rep(0,length(GRO.Controls)),amount = 0.2), GRO.Controls,
+         gap = c(175,425), xtics = -2, # no xtics visible
+         ytics = seq(0, 500, by = 50),
+         xlim = c(-0.5, 1.5), ylim = c(0, 250), 
+         xlab = "", ylab = "Concentrations (pg/ml)", main = "GRO(P=0.0010)")
+gap.plot(jitter(rep(1,length(GRO.Breast)),amount = 0.2), GRO.Breast,
+         gap = c(175, 425), col = "blue", add = TRUE)
+
+##Adds x- variable (groups) labels
+mtext("Controls", side = 1, at= 0.0)
+mtext("Breast Cancer", side = 1, at= 1.0)
+
+##Adds median lines for each group
+segments(-0.25, median(GRO.Controls), 0.25, median(GRO.Controls), lwd = 2.0)
+segments(0.75, median(GRO.Breast), 1.25, median(GRO.Breast), lwd = 2.0, 
+    col = "blue")
+-------------------------------------------------------------------------------------------------------
+mtext(text=expression(paste(10^bold("4"), " points")), side=1, font=2, line=3) paste mtext(text=expression(10^bold("4")~points), side=1, font=2, line=3)
+-------------------------------------------------------------------------------------------------------
+cex 1 par(mfrow=c(3,2), mar=c(.5,4,4,0.5)+0.1, cex=1) oma par(mar=...) plot ann=FALSE las=1 par(mfrow=c(3,2), oma=c(4.5, 4, 4, 2.5), mar=rep(.1, 4), cex=1, las=1)
+plot(x=rnorm(10), y=rnorm(10), ann=FALSE, xaxt="n")
+plot(x=rnorm(10), y=rnorm(10), ann=FALSE, xaxt="n", yaxt="n")
+plot(x=rnorm(10), y=rnorm(10), ann=FALSE, xaxt="n")
+plot(x=rnorm(10), y=rnorm(10), ann=FALSE, xaxt="n", yaxt="n")
+plot(x=rnorm(10), y=rnorm(10), ann=FALSE)
+plot(x=rnorm(10), y=rnorm(10), ann=FALSE, yaxt="n")
+title("My plot", outer=TRUE)
+mtext("X-axis label", 1, 3, outer=TRUE)
+mtext("Y-axis label", 2, 3, outer=TRUE, las=0)
+-------------------------------------------------------------------------------------------------------
+library(dynlm)
+set.seed(771104)
+x <- 5 + seq(1, 10, len=100) + rnorm(100)
+y <- x + rnorm(100)
+model <- dynlm(x ~ y)
+
+par(oma=c(1,1,1,2))
+plotModel(x, model) # works with models which accept 'predict' and 'residuals' plotModel plotModel =  function(x, model) {
+  ymodel1 = range(x, fitted(model), na.rm=TRUE)
+  ymodel2 = c(2*ymodel1[1]-ymodel1[2], ymodel1[2])
+  yres1   = range(residuals(model), na.rm=TRUE)
+  yres2   = c(yres1[1], 2*yres1[2]-yres1[1])
+  plot(x, type="l", col="red", lwd=2, ylim=ymodel2, axes=FALSE,
+       ylab="", xlab="")
+  axis(1)
+  mtext("residuals", 1, adj=0.5, line=2.5)
+  axis(2, at=pretty(ymodel1))
+  mtext("observed/modeled", 2, adj=0.75, line=2.5)
+  lines(fitted(model), col="green", lwd=2)
+  par(new=TRUE)
+  plot(residuals(model), col="blue", type="l", ylim=yres2, axes=FALSE, 
+       ylab="", xlab="")
+  axis(4, at=pretty(yres1))
+  mtext("residuals", 4, adj=0.25, line=2.5)
+  abline(h=quantile(residuals(model), probs=c(0.1,0.9)), lty=2, col="gray")
+  abline(h=0)
+  box()  
+}
+-------------------------------------------------------------------------------------------------------
+graphics # Faking the data, since you didn't provide any
+Gene <- data.frame(matrix(rweibull(100*4, 1), 100))
+names(Gene) <- paste0("Ind", 1:4)
+Gene <- rep(list(Gene), 4)
+
+# Setup the panels
+layout(t(1:4))
+par(oma=c(2, 4, 4, 0), mar=rep(1, 4), cex=1)
+# `mar` controls the space around each boxplot group
+
+# Calculating the range so that the panels are comparable
+my.ylim <- c(min(sapply(Gene, min)), max(sapply(Gene, max)))
+
+# Plot all the boxes
+for(i in 1:length(Gene)){
+    boxplot(Gene[[i]], ylim=my.ylim, axes=FALSE)
+    mtext(paste("Gene", i), 1, 0)
+    if(i == 1){
+        axis(2, las=1)
+        mtext("Expression or what you have", 2, 3)
+    }
+}
+title("Look at all my genes!", outer=TRUE) Gene[[i]] get(paste0("Gene", i)) my.ylim <- ... min(c(min(Gene1), min(Gene2) ...
+-------------------------------------------------------------------------------------------------------
+else mtext(side = 1, "Value", line = 2) if (key) {
+        par(mar = c(5, 4, 2, 1), cex = 0.75)
+        tmpbreaks <- breaks
+        if (symkey) {
+            max.raw <- max(abs(c(x, breaks)), na.rm = TRUE)
+            min.raw <- -max.raw
+            tmpbreaks[1] <- -max(abs(x), na.rm = TRUE)
+            tmpbreaks[length(tmpbreaks)] <- max(abs(x), na.rm = TRUE)
+        }
+        else {
+            min.raw <- min(x, na.rm = TRUE)
+            max.raw <- max(x, na.rm = TRUE)
+        }
+        z <- seq(min.raw, max.raw, length = length(col))
+        image(z = matrix(z, ncol = 1), col = col, breaks = tmpbreaks, 
+            xaxt = "n", yaxt = "n")
+        par(usr = c(0, 1, 0, 1))
+        lv <- pretty(breaks)
+        xv <- scale01(as.numeric(lv), min.raw, max.raw)
+        axis(1, at = xv, labels = lv)
+        if (scale == "row") 
+            mtext(side = 1, "Row Z-Score", line = 2)
+        else if (scale == "column") 
+            mtext(side = 1, "Column Z-Score", line = 2)
+        else mtext(side = 1, "Value", line = 2)
+ .... lots more code below heatmap.2 heatmap.2 <-
+-------------------------------------------------------------------------------------------------------
+d1 d28 # Get the submatrices
+I <- unlist(lapply(0:6, function(a) a:6))
+J <- rep(0:6, 7:1)
+d2 <- mapply(function(i,j) d[1:6+6*i, 1:6+6*j], I, J, SIMPLIFY=FALSE)
+
+# Setup the layout and add an outer margin for the title and axis labels
+layout(matrix(c(1:28, 0, 0), 5, 6))
+par(oma=c(3,3,3,1), mar=c(2,2,1,1))
+
+# Plot all the matrices oriented the same way they appear in text
+# i.e. the first (vertical) dimension is plotted along the Y-axis
+for(k in 1:length(d2)){
+    x <- 1:6+6*J[k]
+    y <- 1:6+6*I[k]
+
+    # Heatmap & grid
+    image(x, y, t(d2[[k]][nrow(d2[[k]]):1,]), las=1, axes=FALSE,
+          breaks=c(-1e10, -5.45, -4.65, 4.65, 5.45, 1e10),
+          col=c("red","orange","white","orange","red"))
+    xg <- apply(!is.na(d2[[k]]), 2, sum)
+    yg <- rev(apply(!is.na(d2[[k]]), 1, sum))
+    segments(c(x[1]-1, x)+.5, min(y)-.5,
+             c(x[1]-1, x)+.5, min(y)+c(6, yg)-.5, xpd=TRUE)
+    segments(min(x)-.5,         c(y[1]-1, y)+.5,
+             min(x)+c(6,xg)-.5, c(y[1]-1, y)+.5, xpd=TRUE)
+
+    # X & Y-axis values
+    mtext(x, 1, .1, at=x, cex=.5)
+    mtext(rev(y), 2, .2, at=y, las=1, cex=.5)
+
+    # Values of each cell
+    text(rep(x, each=6), rep(rev(y), 6),
+     sub("NA", "", sprintf("%.2f", d2[[k]])), cex=.3)
+}
+
+# Add title and axis labels
+title("All 28 submatrices", outer=TRUE)
+mtext("Columns", outer=TRUE, 1, 1)
+mtext("Rows", outer=TRUE, 2, 1) xpd segments
+-------------------------------------------------------------------------------------------------------
+col.axis # there were four long pages of code before this section:
+
+axis(1, 1:nc, labels = labCol, las = 2, line = -0.5, tick = 0, # original line
+        col.axis="green",   # added argument
+        cex.axis = cexCol)
+if (!is.null(xlab)) 
+        mtext(xlab, side = 1, line = margins[1] - 1.25)
+axis(4, iy, labels = labRow, las = 2, line = -0.5, tick = 0, # original line
+        col.axis="green",   # added argument
+        cex.axis = cexRow)
+-------------------------------------------------------------------------------------------------------
+dat <- read.table(textConnection("row.names   Collection_date temprature  col_yr  col_mnth
+  1   1   4-Aug-04    27  2004    8
+  2   2   9-Aug-04    26  2004    8
+  3   3   4-Aug-04    27  2004    8
+  4   4   9-Aug-04    26  2004    8
+  5   5   9-Aug-04    26  2004    8
+  6   6   9-Aug-04    26  2004    8
+  1031 1031   6-Aug-06    32    2006    8")) dat$Collection_date <- strptime(dat$Collection_date,"%d-%b-%y") ax_month <- seq(min(dat$Collection_date),max(dat$Collection_date),"month")
+ax_year <- seq(min(dat$Collection_date),max(dat$Collection_date),"year") plot(NA, xaxt="n",type="n", ylab="Temperature", xlab=NA,
+     xlim=range(seq_along(ax_month)), ylim=range(dat$temprature))
+axis(3,at=seq_along(ax_month), labels=format(ax_month,"%m"))
+mtext(format(ax_year,"%Y"), side=3, line=3, at=seq(1,length(ax_month), by=12)) for(i in seq_along(ax_month)){
+    sub_dat <- dat[format(dat$Collection_date, "%m-%Y") == format(ax_month[i], "%m-%Y"),]
+    boxplot(sub_dat$temprature, add=TRUE, axes=FALSE, at=i)
+    }
+-------------------------------------------------------------------------------------------------------
+VerticalHist <- function(x, xscale = NULL, xwidth, hist,
+                         fillCol = "gray80", lineCol = "gray40") {
+    ## x (required) is the x position to draw the histogram
+    ## xscale (optional) is the "height" of the tallest bar (horizontally),
+    ##   it has sensible default behavior
+    ## xwidth (required) is the horizontal spacing between histograms
+    ## hist (required) is an object of type "histogram"
+    ##    (or a list / df with $breaks and $density)
+    ## fillCol and lineCol... exactly what you think.
+    binWidth <- hist$breaks[2] - hist$breaks[1]
+    if (is.null(xscale)) xscale <- xwidth * 0.90 / max(hist$density)
+    n <- length(hist$density)
+    x.l <- rep(x, n)
+    x.r <- x.l + hist$density * xscale
+    y.b <- hist$breaks[1:n]
+    y.t <- hist$breaks[2:(n + 1)]
+
+    rect(xleft = x.l, ybottom = y.b, xright = x.r, ytop = y.t,
+         col = fillCol, border = lineCol)
+}
+
+
+
+## Usage example
+require(plyr) ## Just needed for the round_any() in this example
+n <- 1000
+numberOfHists <- 4
+data <- data.frame(ReleaseDOY = rnorm(n, 110, 20),
+                   bin = as.factor(rep(c(1, 2, 3, 4), n / 4)))
+binWidth <- 1
+binStarts <- c(1, 2, 3, 4)
+binMids <- binStarts + binWidth / 2
+axisCol <- "gray80"
+
+## Data handling
+DOYrange <- range(data$ReleaseDOY)
+DOYrange <- c(round_any(DOYrange[1], 15, floor),
+                      round_any(DOYrange[2], 15, ceiling))
+
+## Get the histogram obects
+histList <- with(data, tapply(ReleaseDOY, bin, hist, plot = FALSE,
+    breaks = seq(DOYrange[1], DOYrange[2], by = 5)))
+DOYmean <- with(data, tapply(ReleaseDOY, bin, mean))
+
+## Plotting
+par(mar = c(5, 5, 1, 1) + .1)
+plot(c(0, 5), DOYrange, type = "n",
+     ann = FALSE, axes = FALSE, xaxs = "i", yaxs = "i")
+
+axis(1, cex.axis = 1.2, col = axisCol)
+mtext(side = 1, outer = F, line = 3, "Length at tagging (mm)",
+      cex = 1.2)
+axis(2, cex.axis = 1.2, las = 1, line = -.7, col = "white",
+    at = c(75, 107, 138, 169),
+    labels = c("March", "April", "May", "June"), tck = 0)
+mtext(side = 2, outer = F, line = 3.5, "Date tagged", cex = 1.2)
+box(bty = "L", col = axisCol)
+
+## Gridlines
+abline(h = c(60, 92, 123, 154, 184), col = "gray80")
+
+biggestDensity <- max(unlist(lapply(histList, function(h){max(h[[4]])})))
+xscale <- binWidth * .9 / biggestDensity
+
+## Plot the histograms
+for (lengthBin in 1:numberOfHists) {
+    VerticalHist(binStarts[lengthBin], xscale = xscale,
+                         xwidth = binWidth, histList[[lengthBin]])
+    }
+-------------------------------------------------------------------------------------------------------
+layout(matrix(1:2,nrow=1),widths=c(0.8,0.2))
+colfunc <- colorRampPalette(c("white","black"))
+
+par(mar=c(5.1,4.1,4.1,2.1))
+plot(1:10,ann=FALSE,type="n")
+grid()
+points(1:10,col=colfunc(10),pch=19,cex=1.5)
+
+xl <- 1
+yb <- 1
+xr <- 1.5
+yt <- 2
+
+par(mar=c(5.1,0.5,4.1,0.5))
+plot(NA,type="n",ann=FALSE,xlim=c(1,2),ylim=c(1,2),xaxt="n",yaxt="n",bty="n")
+rect(
+     xl,
+     head(seq(yb,yt,(yt-yb)/10),-1),
+     xr,
+     tail(seq(yb,yt,(yt-yb)/10),-1),
+     col=colfunc(10)
+    )
+
+mtext(1:10,side=2,at=tail(seq(yb,yt,(yt-yb)/10),-1)-0.05,las=2,cex=0.7)
+-------------------------------------------------------------------------------------------------------
+ab ab xts xtsExtra xtsExtra library(xts)
+
+ab=structure(c(-1, 0.579760106421202, -0.693649703427259, 0.0960078627769613, 
+           0.829770469089809, -0.804276208608663, 0.72574639798749, 0.977165659135716, 
+           -0.880178529686181, -0.662078620277974, -1, 2.35268982675599, 
+           -0.673979231663719, 0.0673890875594205, 1.46584597734824, 0.38403707067242, 
+           -1.53638088345349, 0.868743976582955, -1.8394614923913, 0.246736581314485), .Dim = c(10L, 2L), .Dimnames = list(NULL, c("a", "b")), index = structure(c(1354683600, 
+          1354770000, 1354856400, 1354942800, 1355029200, 1355115600, 1355202000, 
+          1355288400, 1355374800, 1355461200), tzone = "", tclass = "Date"), class = c("xts", 
+          "zoo"), .indexCLASS = "Date", .indexTZ = "", tclass = "Date", tzone = "")
+
+#Set up the plot area so that multiple graphs can be crammed together
+#In the "par()" statement below, the "mar=c(0.3, 0, 0, 0)" part is used to change
+#the spacing between the graphs.   "mar=c(0, 0, 0, 0)" is zero spacing.
+par(pty="m", plt=c(0.1, 0.9, 0.1, 0.9), omd=c(0.1, 0.9, 0.2, 0.9), mar=c(0.3, 0, 0, 0))
+
+#Set the area up for 2 plots
+par(mfrow = c(2, 1))
+
+#Build the x values so that plot() can be used, allowing more control over the format
+xval <- index(ab)
+
+#Plot the top graph with nothing in it =========================
+plot(x=xval, y=ab$a, type="n", xaxt="n", yaxt="n", main="", xlab="", ylab="")
+mtext(text="ab", side=3, font=2, line=0.5, cex=1.5)
+
+#Store the x-axis data of the top plot so it can be used on the other graphs
+pardat <- par()
+
+#Layout the x axis tick marks
+xaxisdat <- index(ab)
+
+#If you want the default plot tick mark locations, un-comment the following calculation
+#xaxisdat <- seq(pardat$xaxp[1], pardat$xaxp[2], (pardat$xaxp[2]-pardat$xaxp[1])/pardat$xaxp[3])
+
+#Get the y-axis data and add the lines and label
+yaxisdat <- seq(pardat$yaxp[1], pardat$yaxp[2], (pardat$yaxp[2]-pardat$yaxp[1])/pardat$yaxp[3])
+axis(side=2, at=yaxisdat, las=2, padj=0.5, cex.axis=0.8, hadj=0.5, tcl=-0.3)
+abline(v=xaxisdat, col="lightgray")
+abline(h=yaxisdat, col="lightgray")
+mtext(text="ab$a", side=2, line=2.3)
+lines(x=xval, y=ab$a, col="red")
+box() #Draw an outline to make sure that any overlapping abline(v)'s or abline(h)'s are covered
+
+#Plot the 2nd graph with nothing in it ================================
+plot(x=xval, y=ab$b,  type="n", xaxt="n", yaxt="n", main="", xlab="", ylab="")
+
+#Get the y-axis data and add the lines and label
+pardat <- par()
+yaxisdat <- seq(pardat$yaxp[1], pardat$yaxp[2], (pardat$yaxp[2]-pardat$yaxp[1])/pardat$yaxp[3])
+axis(side=2, at=yaxisdat, las=2, padj=0.5, cex.axis=0.8, hadj=0.5, tcl=-0.3)
+abline(v=xaxisdat, col="lightgray")
+abline(h=yaxisdat, col="lightgray")
+mtext(text="ab$b", side=2, line=2.3)
+lines(x=xval, y=ab$b, col="blue")
+box() #Draw an outline to make sure that any overlapping abline(v)'s or abline(h)'s are covered
+
+#Plot the X axis =================================================
+axis(side=1, label=format(as.Date(xaxisdat), "%b %d\n%Y\n") , at=xaxisdat, padj=0.4, cex.axis=0.8, hadj=0.5, tcl=-0.3)
+mtext(text="Date", side=1, line=2.5)
+-------------------------------------------------------------------------------------------------------
+mtext() image.plot() title() image.plot(x,y,z) title("") mtext("Title",side=3)
+-------------------------------------------------------------------------------------------------------
+xaxt="n" Freq_ <- seq(1.56, 35.1, by = 1.95)
+Mean_ipsi <- (0.01 * Freq_)
+ProbF <- 0.0
+
+#First Version  
+plot(x = Freq_, y = Mean_ipsi, 
+     pch = 20,
+     ylim = c(-0.5, .9),
+     col = 1 + (ProbF < .05) + (ProbF < .01),
+     xaxt = 'n',
+     xlab = "Frequency (MHz)", ylab = "z-in minus z-out",
+     main = "Temporal, Engle 1, Epi, subjectwise",
+     yaxt = 'n')
+mtext(text = seq(1.56, 35.1, by = 1.95),
+      side = 1, at = seq(1.56, 35.1, by = 1.95), cex = .5,line = 0.25)
+axis(1, at = Freq_, tick = TRUE, labels = NA)
+
+#=============================================
+
+#Second Version
+plot(x = Freq_, y = Mean_ipsi, 
+     pch = 20,
+     ylim = c(-0.5, .9),
+     col = "red",
+     xlab = "Frequency (MHz)", ylab = "z-in minus z-out",
+     main = "Temporal, Engle 1, Epi, subjectwise 
+     \n p values for difference between ipsi and contra",
+     yaxt = 'n', type = 'o')  ##### <----- add xaxt="n" here #####
+mtext(text = seq(1.56, 35.1, by = 1.95),
+      side = 1, at = seq(1.56, 35.1, by = 1.95),
+      cex = .5,line = 0.25)
+axis(1, at = Freq_, tick = TRUE, labels = NA)
+-------------------------------------------------------------------------------------------------------
+cairo_pdf() mydata = matrix( c( 2:6, c( 2,4,2,6,3 ) ), nrow= 2 )
+mylabs = c( "木材", "表", "笔", "垃圾桶", "杯" )
+cairo_pdf("Report_chinese.pdf")
+barplot( mydata, beside=T, horiz= "T", names.arg= mylabs, las= 1, col= c( "red", "blue" ) )
+dev.off() Cairo library(Cairo)
+CairoFonts(regular="AR PL UKai CN:Book", bold="Century Schoolbook L:Italic")
+CairoPDF("Report_chinese.pdf")
+barplot( mydata, beside=T, horiz= "T", names.arg= mylabs, las= 1, col= c( "red", "blue" ) )
+mtext("This is the title", side=3, line=1, font=2)
+dev.off() CairoFonts() bold= font=2 mtext() font ?par CairoFonts() CairoFonts(regular="AR PL UKai CN:Book")
+CairoPDF("Report_chinese.pdf")
+barplot( mydata, beside=T, horiz= "T", names.arg= mylabs, las= 1, col= c( "red", "blue" ) )
+CairoFonts(regular="Century Schoolbook L:Italic")
+mtext("This is the title", side=3, line=1) #implicit argument: font=1
+dev.off()
+-------------------------------------------------------------------------------------------------------
+ifelse for (i in 1:6){
+    plot(dat[,i],xlab = ifelse(i %% 2 == 0,"","Day of year",col = "black",
+         ylab = ifelse(i %% 2 == 0,"",expression(paste("Temperature ",degree,"C"))) mtext outer=TRUE mtext("Day of Year", side=1, padj=-2, outer=TRUE)
+mtext("Temperature", side=2, padj=2, outer=TRUE)
+-------------------------------------------------------------------------------------------------------
+layout.fruchterman.reingold() library(igraph)
+
+g = barabasi.game(355, directed=FALSE)
+
+png("plot1.png", height=6, width=12, units="in", res=200)
+par(mfrow=c(1, 2))
+
+plot.igraph(g,vertex.size=3,vertex.label=NA,
+    layout=layout.fruchterman.reingold(g, niter=10000))
+mtext("layout.fruchterman.reingold, area = vcount^2", side=1)
+
+plot.igraph(g,vertex.size=3,vertex.label=NA,
+    layout=layout.fruchterman.reingold(g, niter=10000, area=30*vcount(g)^2))
+mtext("layout.fruchterman.reingold, area = 30 * vcount^2", side=1)
+
+dev.off()
+-------------------------------------------------------------------------------------------------------
+mtext plot(1:10, main=bquote(paste("C=", .(CVal))))
+mtext(bquote(paste(sum(xi), "=", .(SumEpsVal) )),side=3,line=0)
+-------------------------------------------------------------------------------------------------------
+Control characters (e.g. \n) are not interpreted in character strings in plotmath, 
+  unlike normal plotting. Lines <- list(bquote(paste("C=", .(CVal))),
+              bquote(paste(sum(xi), "=", .(SumEpsVal)))) mtext(do.call(expression, Lines),side=3,line=0:1)
+-------------------------------------------------------------------------------------------------------
+interp akima age2100 <- read.table("temp.csv",header=TRUE,sep=",")
+
+x <- age2100$x
+y <- age2100$y
+z <- age2100$z
+
+require(akima)
+
+fld <- interp(x,y,z)
+
+par(mar=c(5,5,1,1))
+filled.contour(fld) image image.scale source("image.scale.R") # http://menugget.blogspot.de/2011/08/adding-scale-to-image-plot.html
+
+x11(width=5, height=6)
+layout(matrix(c(1,2), nrow=1, ncol=2), widths=c(4,1), height=6, respect=TRUE)
+layout.show(2)
+
+par(mar=c(4,4,1,1))
+image(fld)
+contour(fld, add=TRUE)
+points(age2100$x,age2100$y, pch=".", cex=2)
+
+par(mar=c(4,0,1,4))
+image.scale(fld$z, xlab="", ylab="", xaxt="n", yaxt="n", horiz=FALSE)
+box()
+axis(4)
+mtext("text", side=4, line=2.5)
+-------------------------------------------------------------------------------------------------------
+hist freq=FALSE breaks set.seed(1)
+f1 <- rnorm(100, mean=0, sd=1)
+f2 <- rnorm(100, mean=3, sd=3)
+f3 <- rnorm(100, mean=4, sd=1)
+f4 <- rnorm(100, mean=7, sd=3)
+
+breaks <- pretty(c(f1, f2, f3, f4), n=20)
+x11(width=4, height=8)
+op <- par(mfcol=c(4,1))
+hist(f1, freq=FALSE, breaks=breaks)
+hist(f2, freq=FALSE, breaks=breaks)
+hist(f3, freq=FALSE, breaks=breaks)
+hist(f4, freq=FALSE, breaks=breaks)
+par(op) t set.seed(1)
+
+N <- 100
+M <- 7
+MEAN <- c(1:M)
+SD <- MEAN*0.2+1
+RES <- list()
+
+for(i in seq(M)){
+    RES[[i]] <- rnorm(N, mean=MEAN[[i]], sd=SD[[i]])
+}
+
+
+breaks <- pretty(unlist(RES), n=20)
+x11(width=4, height=10)
+op <- par(mfcol=c(M,1), mar=c(1,3,0,0), oma=c(3,2,1,1))
+for(i in seq(M)){
+    h1 <- hist(RES[[i]], breaks=breaks, plot=FALSE)
+    plot(h1$mids, h1$densit, t="n", xlab="", ylab="", xaxt="n")
+    grid()
+    lines(h1$mids, h1$densit, t="S")
+    text(par()$usr[1], par()$usr[3]+(par()$usr[4]-par()$usr[3])*0.9, labels=paste("t", i), pos=4)
+    if(i == M){
+        axis(1)
+    } else {
+        axis(1, labels=FALSE)
+    }
+}
+mtext("Density", outer=TRUE, side=2, line=0)
+par(op)
+-------------------------------------------------------------------------------------------------------
+ann=F mtext x <- 1:2
+ y <- runif(2, 0, 100)
+ par(mar=c(4, 4, 2, 4))
+ plot(x, y, type="l", xlim=c(0.5, 2.5), ylim=c(-10, 110),
+       axes=TRUE, ann=FALSE) mtext("!udp && !src x.x.x.x ", side=1, line=2) barplot(VADeaths[1:2,], angle = c(45, 135),
+         density = 20, col = "grey",
+         names=c("!src x.x.x.x", "!TCP", "!udp && !src x.x.x.x", "UF"),
+         horiz=FALSE)
+-------------------------------------------------------------------------------------------------------
+require(tikzDevice)
+
+
+setwd("/Path/To/LaTeX/Files/")
+
+#Names of LaTeX symbols
+syms <- c('alpha', 'theta', 'tau', 'beta', 'vartheta', 'pi', 'upsilon', 'gamma', 'varpi', 'phi', 'delta', 'kappa', 'rho', 'varphi', 'epsilon', 'lambda', 'varrho', 'chi', 'varepsilon', 'mu', 'sigma', 'psi', 'zeta', 'nu', 'varsigma', 'omega', 'eta', 'xi', 'Gamma', 'Lambda', 'Sigma', 'Psi', 'Delta', 'Xi', 'Upsilon', 'Omega', 'Theta', 'Pi', 'Phi')
+len <- length(syms)
+
+# random colors (red, green, blue)
+r <- round(runif(len), 2)
+g <- round(runif(len), 2)
+b <- round(runif(len), 2)
+
+# calculate dummy data points
+x <- runif(50,1,10)
+y <- x + rnorm(length(x))
+fit <- lm(y ~ x)
+rsq <- summary(fit)$r.squared
+rsq <- signif(rsq,4)
+
+# plot the result, will create symbol-regression.tex in the working
+# directory the first time this is run it may take a long time because the
+# process of calulating string widths for proper placement is
+# computationally intensive, the results will get cached for the current R
+# session or will get permenantly cached if you set
+# options( tikzMetricsDictionary='/path/to/dictionary' ) which will be
+# created if it does not exist.  Also if the flag standAlone is not set to
+# TRUE then a file is created which can be included with \include{}
+
+tikz('symbolr.tex', width = 4,height = 4,pointsize = 12)
+
+# The syntax is mar=c(bottom, left, top, right).
+par(mar=c(2,2,2,2))
+# plot the box and the regression line
+plot(x, y, type='n', xlab='', ylab='')
+box()
+abline(fit)
+
+# add the latex symbols as points
+text(x, y, paste('\\color[rgb]{',r,',',g,',',b,'}{$\\',syms,'$}',sep=''))
+# Display the correlation coefficient
+mtext(paste("Linear model: $R^{2}=",rsq,"$" ),line=0.5)
+# and the equation of the line
+legend('bottom', legend = paste("$y = ", round(coef(fit)[2],3),'x +', round(coef(fit)[1],3), '$',  sep=''), bty= 'n')
+
+# Close the device
+dev.off()
+-------------------------------------------------------------------------------------------------------
+base ggplot2 bandline<-function(x, low.col, high.col, axis=TRUE){
+    l <- max(unlist(lapply(x, length)), na.r=TRUE)
+    r <- range(unlist(x), na.rm=TRUE)
+    par(mfcol=c(length(x), 1))
+    for(i in 1:length(x)){
+        y <- boxplot.stats(x[[i]])
+        ifelse(i==1, par(mar=c(0,3,3,3)), 
+                     ifelse(i==length(x), par(mar=c(3,3,0,3)), 
+                                          par(mar=c(0,3,0,3))))
+        plot(NA, axes=F, bty="n", xlim=c(1,l), ylim=r, xaxs="i")
+        rect(1,y$stats[2], l, y$stats[1], col="grey80", border=NA)
+        rect(1,y$stats[4], l, y$stats[2], col="grey60", border=NA)
+        rect(1,y$stats[5], l, y$stats[4], col="grey40", border=NA)
+        abline(h=y$stats[3],col="white", lwd=2)
+        lines(seq_along(x[[i]]), x[[i]])
+        zhigh <- zlow <- x[[i]]
+        zhigh[zhigh<=y$stats[5]]<-NA
+        zlow[zlow>=y$stats[1]]<-NA
+        points(seq_along(x[[i]]), zlow, bg=low.col, pch=21,cex=2)
+        points(seq_along(x[[i]]), zhigh, bg=high.col, pch=21, cex=2)
+        if(axis==TRUE){
+            axis(2, at=pretty(x[[i]]), las=2)
+            ifelse(i==1, axis(3, at=seq_len(l)), 
+                         ifelse(i==length(x),axis(1, at=seq_len(l)),""))
+            }
+        mtext(names(x)[i], side=4, srt=270, line=1)
+    }
+} set.seed(1)
+dat<-list(a=rnorm(100), b=rnorm(100), c=rnorm(100), d=rnorm(100))
+bandline(dat, "black", "white", axis=FALSE)
+-------------------------------------------------------------------------------------------------------
+line par(mfrow = c(2, 2))
+plot(iris$Petal.Length, iris$Petal.Width)
+plot(iris$Sepal.Length, iris$Petal.Width)
+plot(iris$Sepal.Width, iris$Petal.Width)
+plot(iris$Sepal.Length, iris$Petal.Width)
+mtext("My 'Title' in a strange place", side = 3, line = -21, outer = TRUE) mtext side = 3 line = -21 outer = TRUE mtext("My 'Title' in a strange place", side = 3, line = -2, outer = TRUE)
+-------------------------------------------------------------------------------------------------------
+x <- rnorm(1000, mean=3, sd=2)
+y <- rnorm(500, mean=3.5, sd=3)
+
+dx <- density(x)
+dy <- density(y)
+
+plot.new()
+plot.window(xlim=range(c(dx$x, dy$x)), ylim=range(c(dx$y, dy$y)))
+with(dx, lines(x, y))
+with(dy, lines(x, y, lty=2))
+axis(1)
+axis(2)
+legend(topright, lty=1:2, c('x', 'y'))
+mtext(side=1, line=2, 'Observed values')
+mtext(side=2, line=2, 'Estimated probability mass')
+title('Smoothed Density Estimates for 2-sample experiment')
+-------------------------------------------------------------------------------------------------------
+x <- 1:10
+y <- c(1, 3, 5, 6, 2, 7, 11, 3, 2, 13)
+z <- runif(10, min=1000, max=10000) 
+
+par(mar = c(5, 4, 4, 4) + 0.3) 
+barplot(y, col=rainbow(length(x)))
+par(new = TRUE)
+plot(x, z, type = "l", axes = FALSE, bty = "n", xlab = "", ylab = "")
+axis(side=4, at = pretty(range(z)))
+mtext("z", side=4, line=3)
+
+library(plotrix)
+twoord.plot(x,y,x,z,
+    xlab="x",
+    ylab="y",
+    rylab="z",
+    main="Main",
+    type=c("bar","l"),lcol=rainbow(length(x)),rcol=4)
+-------------------------------------------------------------------------------------------------------
+mtext() cex= main= barplot() mtext() xlab= sub= line= par(mar=..) x<-sample(letters[1:14],300,replace=TRUE)
+par(mar=c(9,3,5,2))    
+barplot(table(x),
+        names.arg=paste0("very_long_",1:14),las=2, 
+        col = c("red2","darkorange3"))
+mtext(side=3,"Title1",line=2,cex=2)
+mtext(side=3,"subtitle",line=1,cex=1.5)
+
+mtext(side=1,"overlapping text1",line=6)
+mtext(side=1,"overlapping text2",line=7)
+-------------------------------------------------------------------------------------------------------
+plot.lm
+ # snipping the rather long output top and bottom and showing hte relevant section
+ if (show[2L]) {
+    ylim <- range(rs, na.rm = TRUE)
+    ylim[2L] <- ylim[2L] + diff(ylim) * 0.075
+    dev.hold()
+    qq <- qqnorm(rs, main = main, ylab = ylab23, ylim = ylim, 
+        ...)
+    if (qqline) 
+        qqline(rs, lty = 3, col = "gray50")
+    if (one.fig) 
+        title(sub = sub.caption, ...)
+    mtext(getCaption(2), 3, 0.25, cex = cex.caption)
+    if (id.n > 0) 
+        text.id(qq$x[show.rs], qq$y[show.rs], show.rs)
+    dev.flush()
+-------------------------------------------------------------------------------------------------------
+mtext plot(0,xlab='')
+Lines <- list(bquote(paste(assay," AC50 (",mu,"M)",sep="")))
+mtext(do.call(expression, Lines),side=1,line=3) plot(0,xlab='')
+Lines <- bquote(paste(.(assay)," AC50 (",mu,"M)",sep=""))
+mtext(Lines,side=1,line=3)
+-------------------------------------------------------------------------------------------------------
+mtext par(bg="lightyellow", mar=c(2,2,2,2))
+ layout(matrix(c(rep(1,12),2:13),nrow=2,byrow=T))
+
+ replicate(13,
+           {  plot(x=1:5,y=cumsum(1:5),type="l",xaxt="n",yaxt="n",ann=FALSE)
+              mtext(text='TEST',side=1,line=1)
+              mtext(text='dsads',side=2,line=1)
+
+              }) par(bg="lightyellow", mar=c(2,2,2,0))
+ layout(matrix(c(rep(1,12),2:13),nrow=2,byrow=T))
+ for(i in 1:13){  
+              if (i %in% 1:2){
+                plot(x=1:5,y=cumsum(1:5),type="l",xaxt="n",yaxt="n",ann=FALSE)
+                  mtext(text='TEST',side=1,line=1)
+                  mtext(text='dsads',side=2,line=1)
+              }else{
+                par( mar=c(2,0,2,0))
+                plot(x=1:5,y=cumsum(1:5),type="l",xaxt="n",yaxt="n",ann=FALSE)
+              }
+          }
+-------------------------------------------------------------------------------------------------------
+lines par( mar=c(5,4,4,5)+.1 )
+boxplot( t( matrix( rnorm( 100 ), nrow=10 )), xlab="Var1", ylab="Var2")
+lines( 1:10, runif(10,min=-2, max=3), type='b', col='blue', pch=15 )
+axis(4)
+mtext("Var3", side=4, line=3 )
+-------------------------------------------------------------------------------------------------------
+charlie bravo rownames myrf = randomForest(alpha~bravo+charlie, data = mydata, importance = TRUE)
+#add white spaces at the end of the rownames
+rownames(myrf$importance)<-paste(rownames(myrf$importance), "   ") 
+varImpPlot(myrf, type = 2) dotchart dotchart 
+mtext(labs, side = 2, line = loffset, at = y, **adj = 0**, col = color, las = 2, cex = cex, ...) dotchart dotchart 
+mtext(labs, side = 2, line = loffset, at = y, adj = adjust_ylab, col = color, as = 2, cex = cex, ...) adjust_ylab dotchartHack varImpPlot dotchart dotchartHack adjust_ylab=adjust_ylab varImpPlotHack adjust_ylab charlie bravo adjust_ylab myrf = randomForest(alpha~bravo+charlie, data = mydata, importance = TRUE) 
+ varImpPlotHack(myrf, type = 2,adjust_ylab=0.5) ?par
+-------------------------------------------------------------------------------------------------------
+plotmath mtext bquote Lines <- list(bquote(paste( "Plot of " , phi , " of: "  , .(lab))),
+              bquote(paste("Functional form: " , .(form)))
+
+mtext(do.call(expression, Lines),side=3,line=1:0)
+-------------------------------------------------------------------------------------------------------
+mtext axis axis col.axis #    axis(1, 1:nc, labels = labCol, las = 2, line = -0.5, tick = 0, 
+#        cex.axis = cexCol )
+mtext(side = 1, text = labCol, at = 1:nc, las = 2, line = 0.5,col = ClabColor, cex = cexCol)
+
+
+#    axis(4, iy, labels = labRow, las = 2, line = -0.5, tick = 0, 
+#        cex.axis = cexRow )
+mtext(side = 4, text = labRow, at = iy, las = 2, line = 0.5,col = RlabColor, cex = cexCol) ClabColor = "black", RlabColor = "black"
+-------------------------------------------------------------------------------------------------------
+xaxt='n', ann=FALSE axis(...) mtext() x <- seq(0.5, 0.9, length = 200)
+y <- dnorm(x,0.7,0.0458)
+plot(x, y, type="l", xaxt='n', ann=FALSE)
+axis(1, at=c(0.7, 0.8))
+mtext("my_x_lab", 1, at=0.9, line=2)
+-------------------------------------------------------------------------------------------------------
+plot(x, y, type="l",  yaxt="n",ann=FALSE,bty="n", xaxt="n")
+axis(1, at=c(0.5, 0.6, 0.7, 0.8, 0.9), labels=c("", "", 0.7, 0.8, 0.9) )
+mtext("Proportions", 1, at=0.9, line=2)
+-------------------------------------------------------------------------------------------------------
+axis() line= line=4 plot() par(mar=...)) par(mar=c(8,3,3,3))
+x <- seq(0.5, 0.9, length = 400)
+y <- dnorm(x,0.7,0.0458)
+plot(x, y, type="l",  yaxt="n",ann=FALSE,bty="n", xaxt="n")
+#First x axis
+axis(1, at=seq(0.5,0.9,by=0.1), labels=c("","",0.7, 0.8, 0.9) )
+mtext("Proportions", 1, at=0.9, line=2)
+#Second x axis 
+axis(1, line=4,at=seq(0.5,0.9,by=0.1), labels=c("","",0, 2.18, 3) )
+mtext("z score", 1, at=0.9, line=6)
+-------------------------------------------------------------------------------------------------------
+par(cex.lab=2) set.seed(123)
+foo <- data.frame(X = rnorm(10), Y = rnorm(10))
+plot(Y ~ X, data=foo,
+     yaxt="n", ylab="", 
+     xlab="Regular boring x", 
+     pch=16,
+     col="darkblue")
+axis(2,cex.axis=1.2)
+mtext("Awesome Y variable", side=2, line=2.2, cex=2) line=
+-------------------------------------------------------------------------------------------------------
+plot(0,0, type='n', xaxt='n', yaxt='n', xlab='', ylab='', bty='n')  # make an empty plot
+mtext("Whatever you want in the margin", side=mySide)
+par(new=T)
+image.plot(…)   # fill in your image plot here
+-------------------------------------------------------------------------------------------------------
+mtext("even longer test of overplotting to see if it extends across the plots" , line=-1, col="red")
+?mtext mtext mtext text xpd=TRUE text par() text
+-------------------------------------------------------------------------------------------------------
+mtext op <- par(mar = c(5,4,4,4) + 0.1)
+plot(1:10, ylab = "ylabel")
+axis(side = 4)
+mtext("ylabel 2", side = 4, line = 3, cex = par("cex.lab"))
+par(op)
+-------------------------------------------------------------------------------------------------------
+par(new=TRUE) (axes=FALSE) data <- matrix(rnorm(4*100),ncol=4)
+ par(mar=c(5, 6, 2, 4))
+ plot(1:100,data[,3], lwd=3, col="green", ann=FALSE, las=2,type='l')
+ mtext("I am at left", side=2, line=3.5)
+ par(new=TRUE)
+ plot(1:100,data[,2], ann=FALSE, axes=FALSE,col='red',type='l')
+ mtext("I am at right)", side=4, line=2)
+ title("Using par(new=TRUE) \n same X and different or not Y axis ")
+ axis(4)
+-------------------------------------------------------------------------------------------------------
+ry <- c(0.1,0.2,0.3,0.4,0.5)
+ly <- c(15,35,65,75,80)
+x <- 1:5
+xlabs <- c("A","B","C","D","E")
+barplot(ly, xaxt="n", yaxt="n", xlab="xLabel", ylab="lyLabel", ylim=c(0,100))
+axis(2, seq(0,100,by=5), seq(0,100,by=5), las=2) # you can adjust positions of ly labels
+par(new=TRUE)
+plot(ry~x, xaxt="n", yaxt="n", xlab="", ylab="", ylim=c(0,1))
+axis(1, 1:5, xlabs)
+axis(4, 1:10/10, 1:10/10, las=2) # you can adjust positions of ry labels
+mtext("ryLabel", 4, line=2)
+-------------------------------------------------------------------------------------------------------
+png mean=100; sd=15
+lb=80; ub=120
+
+x <- seq(-4,4,length=100)*sd + mean
+hx <- dnorm(x,mean,sd)
+
+# load package and an image
+library(png)
+ima <- readPNG("Red_Hot_Sun.PNG")
+
+# plot an empty plot with your labels, etc.
+plot(1,xlim=c(min(x),max(x)), type="n", xlab="IQ Values", ylab="Density",
+  main="Normal Distribution", axes=FALSE)
+# put in the image
+lim <- par()
+rasterImage(ima, lim$usr[1], lim$usr[3], lim$usr[2], lim$usr[4])
+
+# add your plot
+par(new=TRUE)
+plot(x, hx, xlim=c(min(x),max(x)), type="l", xlab="", ylab="", axes=FALSE)
+i <- x >= lb & x <= ub
+lines(x, hx)
+# add a polygon to cover the background above plot
+polygon(c(x,180,180,20,20), c(hx,0,1,1,0), col="white")
+# add polygons to cover the areas under the plot you don't want visible
+polygon(c(-20,-20,x[x<=lb],lb), c(-10,min(hx),hx[x<=lb],-10), col="white")
+polygon(c(ub,x[x>=ub],200,200), c(-1,hx[x>=ub],min(hx),-1), col="white")
+
+# add your extra text
+area <- pnorm(ub, mean, sd) - pnorm(lb, mean, sd)
+result <- paste("P(",lb,"< IQ <",ub,") =",
+   signif(area, digits=3))
+mtext(result,2)
+-------------------------------------------------------------------------------------------------------
+las=2 barplot() axis() mtext axis mtext("0.95",2,.5,at=.95,las=2,cex=.75)
+-------------------------------------------------------------------------------------------------------
+approx() df library(lubridate)
+# date/time as class POSIXct
+df$DT2 <- ymd_hm(df$DT)
+
+# create a new data frame, everyhour, with every hour between the first and the last in df
+everyhour <- data.frame(DT2=seq(ceiling_date(min(df$DT2), "hour"), floor_date(max(df$DT2), "hour"), 3600), FORHIST=TRUE)
+
+# merge the observed data with the everyhour data
+df2 <- merge(df, everyhour, all=TRUE)
+# set missing FORHIST to FALSE
+df2$FORHIST[is.na(df2$FORHIST)] <- FALSE
+# define year
+df2$YEAR <- year(df2$DT2)
+# estimate speed for everyhour
+df2$estSPEED <- approx(x=df2$DT2, y=df2$SPEED, xout=df2$DT2, method="linear")$y
+
+# plot annual histograms of hourly speeds
+suy <- sort(unique(df2$YEAR))
+par(mfrow=n2mfrow(length(suy)), mar=c(3, 3, 2, 1), oma=c(2, 2, 0, 0))
+for(i in seq(suy)) {
+    sel <- df2$YEAR==suy[i] & df2$FORHIST==TRUE
+    hist(df2$estSPEED[sel], xlab="", ylab="", main=suy[i])
+    }
+mtext("Speed", side=1, outer=TRUE)
+mtext("Frequency", side=2, outer=TRUE)
+-------------------------------------------------------------------------------------------------------
+mtext }
+  }
+  mtext('axisY',2)
+  mtext('axisx',3)   ## since your barplot can hide the text I put the x axis label in the top
+}
+-------------------------------------------------------------------------------------------------------
+axis(side=3, col="black", at=cobs10$day, labels=cobs10$gdd) pretty at <- pretty(cobs10$day)
+at
+# [1]   0 100 200 300 400 lbl <- which(cobs10$day %in% at)
+lbl
+# [1] 100 200 300
+lbl <- c(0, cobs10$gdd[lbl]
+
+axis(side=3, at=at[-5], labels=lbl) cobs10 <- read.table('cobs10.txt',as.is=TRUE)
+cobs10$date <- as.Date(cobs10$date)
+plot(temp ~ date, data=cobs10, type='l') par(mfrow=c(3,1), mar=c(0.6, 5.1, 0, 0.6), oma=c(5.1, 0, 1, 0))
+plot(temp ~ date, data=cobs10, type='l', ylab='Temperatur (C)')
+plot(precip ~ date, data=cobs10, type='l', ylab='Precipitation (cm)')
+plot(gdd ~ date, data=cobs10, type='l', ylab='Thermal units') par(mfrow=c(3,1), mar=c(0.6, 5.1, 0, 0.6), oma=c(5.1, 0, 1, 0))
+plot(temp ~ date, data=cobs10, type='l', xaxt='n', ylab='Temperatur (C)')
+plot(precip ~ date, data=cobs10, type='l', xaxt='n', ylab='Precipitation (cm)')
+plot(gdd ~ date, data=cobs10, type='l', xaxt='n', ylab='Thermal units')
+
+ticks <- seq(from=min(cobs10$date), by='2 months', length=7)
+lbl <- strftime(ticks, '%b')
+axis(side=1, outer=TRUE, at=ticks, labels=lbl)
+mtext('2010', side=1, outer=TRUE, line=3, cex=0.67) lbl <- c(0, 2, 200, 1000, 2000, 3000, 4000)
+thermals <-  splinefun(cobs10$gdd, cobs10$date)  # thermals is a function that returns the date (as an integer) for a requested value
+thermals(lbl)
+## [1] 14649.00 14686.79 14709.55 14761.28 14806.04 14847.68 14908.45
+ticks <- as.Date(thermals(lbl), origin='1970-01-01') # remember to specify an origin when converting an integer to a Date. par(mfrow=c(2,1), mar=c(0.6, 5.1, 0, 0.6), oma=c(5.1, 0, 4, 0))
+plot(temp ~ date, data=cobs10, type='l', xaxt='n', ylab='Temperatur (C)')
+plot(precip ~ date, data=cobs10, type='l', xaxt='n', ylab='Precipitation (cm)')
+
+usr <- par('usr')
+x.pos <- (usr[2]+usr[1])/2
+
+ticks <- seq(from=min(cobs10$date), by='2 months', length=7)
+lbl <- strftime(ticks, '%b')
+axis(side=1, outer=TRUE, at=ticks, labels=lbl)
+mtext('2010', side=1, at=x.pos, line=3)
+
+lbl <- c(0, 2, 200, 1000, 2000, 3000, 4000)
+thermals <-  splinefun(cobs10$gdd, cobs10$date)  # thermals is a function that returns the date (as an integer) for a requested value
+ticks <- as.Date(thermals(lbl), origin='1970-01-01') # remember to specify an origin when converting an integer to a Date.
+axis(side=3, outer=TRUE, at=ticks, labels=lbl)
+mtext('Thermal units', side=3, line=15, at=x.pos) mtext line
+-------------------------------------------------------------------------------------------------------
+error.bars<-function(Response,x1,x2,label.x,label.y) }   
+ mtext(label.y,2)  
+ mtext(label.x,3)  
+} error.bars(data1,data2,data3,"x-axis","y-axis")
+-------------------------------------------------------------------------------------------------------
+par(mar=c(3,5,3,5))
+plot(NA, xlim=c(.5,3.5), ylim=c(0, max(d$upper[1:2])), bty="l", xaxt="n", xlab="",ylab="Mean")
+points(d$mean[1:2], pch=19)
+segments(1,d$mean[1],5,d$mean[1],lty=2)
+segments(2,d$mean[2],5,d$mean[2],lty=2)
+axis(1, 1:3, d$what)
+segments(1:2,d$lower[1:2],1:2,d$upper[1:2])
+axis(4, seq((d$mean[1]-30),(d$mean[1]+50),by=10), seq(-30,50,by=10), las=1)
+points(3,d$mean[1]+d$mean[3],pch=17, cex=1.5)
+segments(3,d$lower[3]+d$lower[2],3,d$lower[3]+d$upper[2], lwd=2)
+mtext("Difference", side=4, at=d$mean[1], line=3)
+-------------------------------------------------------------------------------------------------------
+Group=c("G1","G1","G1","G1","G2","G2","G2","G2","G3","G3","G3","G3")
+set.seed(0)
+Vals=c(runif(4),runif(4)+0.7,runif(4)-0.7)
+data=data.frame(Group)
+data=cbind(data, Vals)  
+library(multcompView)
+xzx <-multcompBoxplot(Vals~Group,data=data,sortFn=median,  decreasing=FALSE,    
+                      horizontal=FALSE,
+                      plotList=list(
+                        boxplot=list(fig=c(0,  1,  0,  1),  las=3,
+                                     cex.axis=1.5),                      
+                        multcompLetters=list(
+                          fig=c(0.87,  0.97,  0.115,  0.923), #0.1108, 0.9432 Top of     
+                          #page 18 manual for very convoluted explanation (c(y bottom, y top,x L, x R))
+                      type='Letters') ) )
+mtext(side = 2, "Response", line = 2.3, cex=1.5)
+-------------------------------------------------------------------------------------------------------
+ll <- lapply(LETTERS[1:4],function(let){
+  dat.let <- dat[,grepl(let,colnames(dat))]
+  dd <- reshape(dat.let,direction ='long',
+                v.names=c('TimeVariable','Variable'),
+                varying=1:6)
+  dd$time <- factor(dd$time)
+  dd$Type <- let
+  dd
+}
+) head(ll[[1]])
+ time TimeVariable Variable id Type
+1.1    1            0        0  1    A
+2.1    1            0        5  2    A
+3.1    1            8      110  3    A
+4.1    1           16        0  4    A
+5.1    1           NA       NA  5    A
+6.1    1           NA       NA  6    A layout(matrix(1:4, 2, 2, byrow = TRUE))
+lapply(ll,function(data){
+  label1=c(0,100,200,300)
+  Type <- unique(dat$Type)
+  dat <- subset(data,time==2)
+  x.mm <- max(dat$Variable,na.rm=TRUE)
+  plot(dat$TimeVariable,dat$Variable,axes=FALSE,ylab="",xlab="",xlim=c(0,x.mm),
+       ylim=c(0,2.4),xaxs="i",yaxs="i",pch=19)
+  dat <- subset(data,time==2)
+  lines(dat$TimeVariable,dat$Variable)
+  axis(2,tick=T,at=seq(0.0,2.4,by=0.6),label= seq(0.0,2.4,by=0.6))
+  axis(1,tick=T,at=seq(0,x.mm,by=6),label=seq(0,x.mm,by=6))
+  mtext(Type,side=1,outer=F,line=-10,adj=0.8)
+  minor.tick(nx=5,ny=5)
+  par(new=TRUE)
+  dat <- subset(data,time==1)
+  plot(dat$TimeVariable,dat$Variable,axes=FALSE,xlab="",ylab="",type="l",
+       ylim=c(800,0),xaxs="i",yaxs="i")
+  axis(3,xlim=c(0,24),tick=TRUE,at= seq(0,24,by=6),label=seq(0,24,by=6),col.axis="violetred4",col="violetred4")
+  axis(4,tick=TRUE,at= label1,label=label1,col.axis="violetred4",col="violetred4")
+  polygon(dat$TimeVariable,dat$Variable,col='violetred4',border=NA)
+}) `ggplot2 facet_wrap ## transform your data to a data.frame
+ dat.l <- do.call(rbind,ll)
+ library(ggplot2)
+ ggplot(subset(dat.l,time !=1)) +
+  geom_line(aes(x=TimeVariable,y=Variable,group=time,color=time))+
+  geom_polygon(data=subset(dat.l,time ==1),
+              aes(x=TimeVariable,y=60-Variable/10,fill=Type))+
+  geom_line(data=subset(dat.l,time ==1),
+               aes(x=TimeVariable,y=Variable,fill=Type))+
+  facet_wrap(~Type,scales='free')
+-------------------------------------------------------------------------------------------------------
+data <- read.csv("stackfig1_2.csv")
+library(Hmisc)
+
+label1=c(0,100,200,300)
+plot(data$TimeVariable2C,data$Variable2C,axes=FALSE,ylab="",xlab="",xlim=c(0,24),
+     ylim=c(0,2.4),xaxs="i",yaxs="i",pch=19)
+lines(data$TimeVariable3C,data$Variable3C)
+axis(2,tick=T,at=seq(0.0,2.4,by=0.6),label= seq(0.0,2.4,by=0.6))
+axis(1,tick=T,at=seq(0,24,by=6),label=seq(0,24,by=6))
+mtext("(C)",side=1,outer=F,line=-10,adj=0.8)
+minor.tick(nx=5,ny=5)
+
+par(new=TRUE)
+plot(data$TimeVariable1C,data$Variable1C,axes=FALSE,xlab="",ylab="",type="l",
+     ylim=c(800,0),xaxs="i",yaxs="i")
+axis(3,xlim=c(0,24),tick=TRUE,at= seq(0,24,by=6),label=seq(0,24,by=6),col.axis="violetred4",col="violetred4")
+axis(4,tick=TRUE,at= label1,label=label1,col.axis="violetred4",col="violetred4")
+polygon(data$TimeVariable1C,data$Variable1C,col='violetred4',border=NA)
+
+
+legend("top", legend = c("Variable A","Variable B","Variable C"), col = c("black","violetred4","black"),
+       ncol = 2, lwd =c("","",2),pch=c(19,15,NA),cex=1) cex
+-------------------------------------------------------------------------------------------------------
+?plot ?abline ?text d <- data.frame(Name=LETTERS, Odds_Ratio_log2=runif(26, -8, 8), 
+                p_value=runif(26))
+plot(d$Odds_Ratio_log2, d$p_value, pch=20, xlim=c(-8, 8), ylim=c(0, 1),
+     axes=F, xlab='', ylab='', yaxs='i')
+abline(v=0, lwd=3)
+axis(3, lwd=3, at=seq(-8, 8, 1), cex.axis=0.8, lwd.ticks=1)
+mtext('Odds (Log2)', 3, line=2.5)
+text(d$Odds_Ratio_log2, d$p_value, d$Name, pos=4, cex=0.7) yaxs='i' plot axes=F ?axis mtext ylab '' plot mtext('p-value', 2) segments text segments(-0.1, seq(0, 1, 0.1), 0, seq(0, 1, 0.1), lwd=2)
+text(rep(0, 10), seq(0, 1, 0.1), seq(0, 1, 0.1), cex=0.7, pos=2) opar <- par(no.readonly = TRUE)
+d <- data.frame(Name=LETTERS, Odds_Ratio_log2=runif(26, -8, 8), 
+                p_value=runif(26))
+plot(d$Odds_Ratio_log2, d$p_value, pch=20, xlim=c(-8, 8), ylim=c(0, 1),
+     axes=F, xlab='', ylab='', yaxs='i', col='gray20')
+abline(v=0, lwd=3)
+axis(3, lwd=3, at=seq(-8, 8, 1), cex.axis=0.8, lwd.ticks=1)
+mtext('Odds (Log2)', 3, line=2.5)
+text(d$Odds_Ratio_log2, d$p_value, d$Name, pos=4, offset=0.3, cex=0.7)
+
+par(xpd=NA)
+segments(-0.1, seq(0.1, 0.9, 0.1), 0, seq(0.1, 0.9, 0.1), lwd=2)
+text(rep(0, 10), seq(0.1, 0.9, 0.1), seq(0.1, 0.9, 0.1), 
+     cex=0.7, pos=2, offset=0.3)
+par(opar)
+-------------------------------------------------------------------------------------------------------
+ylim scorecard_means_tab endorsement_means_tab x <- seq(1, 6)
+y <- matrix(sample(rnorm(100), 48), ncol=6, nrow=8)
+ylabs <- rep(c("Strongly Approve", "Approve", "Disapprove", "Strongly Disapprove"), rep(2, 4))
+xlabs <- rep(c("Approval", "Vote Choice"), 4)
+par(mfrow=c(4, 2), mar=c(1, 1, 1, 1), oma=c(2, 4, 2, 1))
+for(i in seq(dim(y)[1])) {
+    if(i < 6.5) {
+        plot(x, y[i, ], xaxt='n', xlab='', ylab='', bty="n", col="blue", pch=19, cex=0.6)
+        } else {
+        plot(x, y[i, ], xlab='', ylab='', bty="n", col="blue", pch=19, cex=0.6)
+        }
+    if(i < 2.5) mtext(xlabs[i], side=3, line=1)
+    if(i %in% c(1, 3, 5, 7)) mtext(ylabs[i], side=2, line=3)
+    }
+-------------------------------------------------------------------------------------------------------
+par("usr") xaxs="i" xlim par(mar=c(5,5,2,5)) # change margins
+x = barplot(Sales, ylim=c(0,1000)) # barplot, keep middle points of bars
+mtext("Sales", 2, line=3) # first y-axis label
+xlim = par("usr")[1:2] # get xlim from plot
+par(new=TRUE) 
+plot.new() # new plot
+plot.window(xlim=xlim, ylim=c(0,1), xaxs="i", yaxs="i") # new plot area, same xlim
+lines(x,Change,type="b") # the lines in the middle points
+axis(4) # secondary y-axis
+mtext("Change", 4, line=3) # secondary y-axis label
+box()
+-------------------------------------------------------------------------------------------------------
+scales library(scales)
+x <- 10 ^ (1:10)
+scientific_format(1)(x)
+[1] "1e+01" "1e+02" "1e+03" "1e+04" "1e+05" "1e+06" "1e+07" "1e+08" "1e+09" "1e+10" ggplot2 library(ggplot2)
+dat <- data.frame(x  = c(102, 258, 2314),                                                                     
+                  y  = c(482563, 922167, 4462665))
+
+qplot(data=dat,x=x,y=y) + 
+  scale_y_continuous(label=scientific_format(digits=1))+ 
+  theme(axis.text.y =element_text(size=50)) axis mtext y <- c(102, 258, 2314)                                                                         
+x <- c(482563, 922167, 4462665)
+plot(x,y,ylab='',yaxt='n')
+mtext(expression(10^3),adj=0,padj=-1,outer=FALSE)
+axis(side=2,at=y,labels=round(y/1000,2))
+-------------------------------------------------------------------------------------------------------
+xx <- rnorm(30, mean=5, sd=4) # some random numbers
+yy <- xx + rnorm(30, mean=2, sd=3.5) # add noise to those random numbers
+png("plot.png") # open a png device
+plot(xx, yy) 
+xy.cor <- cor.test(xx, yy) # run the correlation test
+# print the test results to the plot margins
+mtext(paste("R squared =", xy.cor$cor, "p value =", xy.cor$p.value), side=3)
+dev.off() # close the png device
+-------------------------------------------------------------------------------------------------------
+plot.title plot.axes key.title key.axes ?filled.contour ...: additional graphical parameters, currently only passed to
+      ‘title()’. x=1:10
+y=1:10
+z=array(rnorm(100),dim=c(10,10))
+
+filled.contour(x,y,z,las=0,
+  plot.axes={
+              axis(1,cex.axis=2)
+              axis(2,cex.axis=2)
+            },
+  plot.title={
+              title(xlab="x",cex.lab=2)
+              mtext("y",2,cex=2,line=3,las=1)
+  }
+)
+-------------------------------------------------------------------------------------------------------
+mtext(expression(paste("Cu"^"2+","at EC50",sep="")))
+-------------------------------------------------------------------------------------------------------
+expression mtext(expression(paste( plain("Cu") ^ plain("2+"), plain(" at EC50") )), side=2, line = 4, padj=1, at=30, cex=1.2)
+-------------------------------------------------------------------------------------------------------
+vertlines labels mtext() vertlines <- c(40, 80, 120, 140, 160, 180)
+labels <- letters[1:7]
+
+labelx <- diff(c(1, vertlines, 200))/2 + c(1, vertlines)
+mtext(labels, at=labelx, side=1, line=4)
+-------------------------------------------------------------------------------------------------------
+mtext bquote alpha = rnorm(1e3)
+hist(alpha,cex.main=2,cex.axis=1.2,cex.lab=1.2,main=NULL )
+
+title <- list( bquote( paste( "Histogram of " , hat(mu) ) ) ,
+               bquote( paste( "Bootstrap samples, Allianz" ) ) )
+
+
+mtext(do.call(expression, title ),side=3, line = c(1,-1) , cex = 2 ) title title <- as.list(expression(paste("Histogram of " , hat(mu)), "Bootstrap samples, Allianz"))
+-------------------------------------------------------------------------------------------------------
+?plotmath
+?points # to which plotmath sends you for mapping of 'symbol' characters
+
+# And I do not like the plotmath-paste function, 
+# so translated to 'pure' expressions.
+# The number arguments to symbol are numbers in octal.
+
+plot(1, 1, pch = "")
+text(1, 1.2, 
+       expression(low ~italic(P)*"("*italic(p)~
+                                   symbol("\332")~ italic(q)* 
+                                  "), -1 SD"), 
+       cex = 1.2)
+text(1, 0.8, 
+   expression(low~italic(P)* 
+               "("*symbol("\330")*italic(p)~symbol("\331")~ italic(q)*
+               "), -1 SD"),
+    cex = 1.2 ) > as.octmode(216)
+[1] "330"
+
+TestChars <- function(sign = 1, font = 1, ...)
+{
+   MB <- l10n_info()$MBCS
+   r <- if(font == 5) { sign <- 1; c(32:126, 160:254)
+       } else if(MB) 32:126 else 32:255
+   if (sign == -1) r <- c(32:126, 160:255)
+   par(pty = "s")
+   plot(c(-1,16), c(-1,16), type = "n", xlab = "", ylab = "",
+        xaxs = "i", yaxs = "i",
+        main = "Symbol Font, Decimal Indices")
+   grid(17, 17, lty = 1) ; mtext(paste("MBCS:", MB))
+   for(i in r) try(points(i%%16, i%/%16, pch = sign*i, font = font,...))
+
+   for(i in r) try(text(x=i%%16, y=(i%/%16)-0.4, i, cex=0.5 , font = font,...))
+}
+
+TestChars(font = 5)
+-------------------------------------------------------------------------------------------------------
+mtext()
+-------------------------------------------------------------------------------------------------------
+plot(NA,NA,type="n",xaxt="n", lwd=linewidth, xlim=c(1,24), xlab="", ylab="",ylim=c(-300,500))
+axis(side = 4, tck = .05, **lwd=0, lwd.ticks=1**, line = 0, labels = NA, col= cols_border[1], col.axis = cols_black)
+axis(side = 4, lwd = 0, line = -4.5, las = 1, cex.axis=axis_fontsize, col= cols_border[1], col.axis = cols_black)
+mtext("Light deviations (lum/sec)",side=4, padj=-2.5, cex=title_fontsize, col="black")
+-------------------------------------------------------------------------------------------------------
+text() xpd = TRUE mtext() grid = structure(c(1:20),.Dim = c(4,5))
+labs = c("A","B","C","D","E")
+redlabs = c("B","D")
+colorlist = c("black","red")
+# one of many ways to generate the color labels
+axiscolor = colorlist[labs %in% redlabs +1 ]
+
+image(1:4,1:5,grid,axes=FALSE, xlab="", ylab = "")
+axis(2,at=1:length(labs),labels=FALSE)
+
+# This would work for sideways labels
+# mtext(text=labs, side=2,at=1:length(labs),col=axiscolor,adj=.5)
+text(labels=labs, col=axiscolor, x=rep(.45,length(labs)),y=1:length(labs), srt = 0, pos = 2, xpd = TRUE)
+-------------------------------------------------------------------------------------------------------
+# plot with suppressed x axis
+# xaxt = "n"  (see ?par)
+plot(Counts ~ Time, data = df, type = "l", xaxt = "n")
+
+# add a new x axis, using 'axis' function
+#  with own specifications
+# argument 'at': "the points at which tick-marks are to be drawn"
+# make a sequence of numbers where the tick-marks is to be places using 'seq'
+# from 0 to max Time with increments ('by') of 200 000. 
+at <- seq(from = 0, to = max(df$Time), by = 200000)
+
+# argument 'side': specifies which side of the plot the axis is to be drawn on.
+# 1 = x axis
+
+# argument 'labels'
+# "If labels is not specified, the numeric values supplied or calculated for 'at'
+# are converted to character strings as if they were a numeric vector printed
+# but note: "The code tries hard not to draw overlapping tick labels,
+# and so will omit labels where they would abut or overlap previously drawn labels"
+
+axis(side = 1, at = at)
+
+# to make the labels fit, one can use the 'las' argument
+# "numeric in {0,1,2,3}; the style of axis labels"
+# where 2: always perpendicular to the axis
+
+plot(Counts ~ Time, data = df, type = "l", xaxt = "n", xlab = "")
+axis(side = 1, at = at, las = 2, hadj = 0.9)
+mtext(text = "Time", side = 1, line = 4)
+-------------------------------------------------------------------------------------------------------
+chart_Series mar oma mtext sub title line chart_Series name = NULL ?chart_Series par(oma = c(5, 0, 0, 0))
+chart_Series(SPY, name = NULL)
+
+title("S&P Index", cex.main = 2, font.main = 4, col.main = "blue")
+
+mtext(text = "text1\n\text2\ntext3",side = 1, line = 9, cex = 0.75, font = 3, col = "red")
+-------------------------------------------------------------------------------------------------------
+chartSeries cspy <- chart_Series(SPY, name = NULL)
+cspy$Env$actions[[4]] <- NULL
+cspy cs$Env$name <- name
+    text.exp <- c(expression(text(1 - 1/3, 0.5, name, font = 2, 
+        col = "#444444", offset = 0, cex = 1.1, pos = 4)), 
+                  expression(text(NROW(xdata[xsubset]), 
+        0.5, paste(start(xdata[xsubset]), end(xdata[xsubset]), 
+            sep = " / "), col = 1, adj = c(0, 0), pos = 2)))
+    cs$add(text.exp, env = cs$Env, expr = TRUE) cspy$Env$actions chart_Series(SPY, name = NULL) png("out.png")
+ myoma <- par("oma")
+ myoma[1] <- 3
+ par("oma" =myoma)
+ cspy
+ title("S&P Index",  cex.main = 2,  font.main= 4, col.main= "blue")
+   mtext(text= "text1\ntext2\ntext3", side=1, cex = 0.75, font = 3, col = "red",line=7)
+ dev.off()
+-------------------------------------------------------------------------------------------------------
+gaoptim eurodistmat = as.matrix(eurodist)
+
+ # Fitness function (we'll perform a maximization, so invert it)
+ distance = function(sq)
+ {
+   sq = c(sq, sq[1])
+   sq2 <- embed(sq, 2)
+   1/sum(eurodistmat[cbind(sq2[,2], sq2[,1])])
+ }
+
+ loc = -cmdscale(eurodist, add = TRUE)$points
+ x = loc[, 1]
+ y = loc[, 2]
+ n = nrow(eurodistmat)
+
+ set.seed(1)
+
+ # solving code
+ require(gaoptim)
+ ga2 = GAPerm(distance, n, popSize = 100, mutRate = 0.3)
+ ga2$evolve(200)
+ best = ga2$bestIndividual()
+ # solving code
+
+ # just transform and plot the results
+ best = c(best, best[1])
+ best.dist = 1/max(ga2$bestFit())
+ res = loc[best, ]
+ i = 1:n
+
+ plot(x, y, type = 'n', axes = FALSE, ylab = '', xlab = '')
+ title ('Euro tour: TSP with 21 cities')
+ mtext(paste('Best distance found:', best.dist))
+ arrows(res[i, 1], res[i, 2], res[i + 1, 1], res[i + 1, 2], col = 'red', angle = 10)
+ text(x, y, labels(eurodist), cex = 0.8, col = 'gray20')
+-------------------------------------------------------------------------------------------------------
+mtext(bquote( plain("My Title(")* hat(X) == .(m) * plain(")")), 
+       side=3,  cex = 1, at=14)
+-------------------------------------------------------------------------------------------------------
+windows()
+  par(mai=c(1, 1, 0.5, 0))
+  plot(1:5, 1:5, xlab='Nonsense', ylab='A string followed by\n')
+  mtext(expression(this[stuff]), side=2, line=2.5)
+-------------------------------------------------------------------------------------------------------
+if if(!is.na(newcor[2])) mtext(.....)
+-------------------------------------------------------------------------------------------------------
+bquote() plotmath symbols a <- rnorm(100)
+hist(a, main="A")
+mean.a <- round(mean(a))
+sd.a <- round(sd(a))
+mtext(bquote(mu== ~.(mean.a) ~ sigma== ~.(sd.a))) plotmath Lines <- list(bquote(mu== ~.(mean.a)),
+              bquote(sigma== ~.(sd.a)))
+mtext(do.call(expression, Lines),side=3,line=0.5:-0.5)
+-------------------------------------------------------------------------------------------------------
+par(oma=...) ann=FALSE mtext(..., outer=TRUE) layout(matrix(1:2,ncol=1),widths=1,heights=c(2,2),respect=FALSE)
+par(mar = rep(0, 4), oma=c(4, 4, 4, 2), las=1)
+plot(rnorm(100), type='l', ann=FALSE, xaxt='n')
+plot(rnorm(100), type='l', ann=FALSE)
+
+title("Hi", outer=TRUE)
+mtext("x-axis", 1, 3, outer=TRUE)
+mtext("y-axis", 2, 3, outer=TRUE, las=0) las
+-------------------------------------------------------------------------------------------------------
+page(twoord.plot) twoord.plot plot axes FALSE axis xaxt axis(1, ... **cex** = axilsab.cex cex axis cex.axis axilslab.cex mtext mtext(axat, 2... cex = axislab.cex cex mtext twoord.plot2 cex cex.axis axis(1... twoord.plot2 axis(1,... **cex.axis** = axislab.cex) x_axislab.cex twoord.plot page(twoord.plot) twoord.plot2 twoord.plot2 <- #function (lx, ly, rx, ry, data = NULL, xlim = NULL, lylim = NULL, 
+    #rylim = NULL, mar = c(5, 4, 4, 4), lcol = 1, rcol = 2, xlab = "", 
+    #ylab = "", rylab = "", lpch = 1, rpch = 2, type = "b", xtickpos = NULL, 
+    #xticklab = NULL, halfwidth = 0.4, axislab.cex = 1, 
+   **x_axislab.cex = 1**, # do.first = NULL, 
+   # ...)  #add argument `x_axislab.cex = 1` in the arguments of the original `twoord.plot`
+#{
+ #   if (!is.null(data)) {
+ #       ly <- unlist(data[ly])
+
+ #...everything else...
+
+ #if (is.null(xticklab)) 
+       axis(1, **cex.axis = x_axislab.cex**) #change here. it was **cex = axislab.cex**
+  #  else {
+ #if (is.null(xtickpos)) 
+ #xtickpos <- 1:length(xticklab)
+ #  if (is.null(xticklab)) 
+  #     xticklab <- xtickpos
+    axis(1, at = xtickpos, labels = xticklab, **cex.axis = x_axislab.cex**) #change here. it was **cex = axislab.cex**
+
+ #.....everything else... R twoord.plot2(...other arguments..., x_axislab.cex = 0.8)
+-------------------------------------------------------------------------------------------------------
+library(rworldmap)
+newmap <- getMap(resolution = "coarse") #'low' or even 'coarse' resolution map may be sufficient
+
+#example data for 2 years 6 months each
+month <- c(1:6,1:6)
+year <- c(rep(2012,6),rep(2013,6))
+lon <- c(120:131)
+lat <- c(-35:-24)
+p1 <- data.frame(month=month,year=year,lon=lon,lat=lat)
+
+months <- unique(p1$month)
+years <- unique(p1$year)
+
+oldPar <- par(mar=c(2, 0, 0, 2)) #margins top,bottom,left,right
+
+#use layout to create multiple panels including space at top for a title
+nPanels <- layout( cbind(c(0,1:6),c(0,7:12))
+                   , heights=c(lcm(1),rep(1,6))
+                   , respect=F )
+
+
+for( yrNum in 1:length(years) )
+{
+  yr <- years[yrNum]
+  for( moNum in 1:length(months) )
+  {
+    mo <- months[moNum]
+
+    cat(yr,mo,"\n")
+
+    plot(newmap, xlim = c(110, 155), ylim = c(-35, -20), asp = 1)
+    mtext( paste(yr,"month",mo), cex=0.7) #add titile to subplot
+
+    pMoYr <- p1[ p1$year==yr & p1$month==mo, ]
+
+    points(pMoYr$lon, pMoYr$lat, col = "red", cex = 3)
+  }
+}
+
+mtext("rworldmap layout demo",outer=TRUE,line=-2)
+
+par(oldPar)
+-------------------------------------------------------------------------------------------------------
+#Your data
+formdate <- read.table(text="
+ISO3\tCountry\tFormation Date
+DZA\tAlgeria\t07-03-1962
+AGO\tAngola\t11-11-1975
+BWA\tBotswana\t09-30-1966
+CMR\tCameroon\t01-01-1960
+BGD\tBangladesh\t03-26-1971
+IND\tIndia\t08-15-1947
+ISR\tIsrael\t05-14-1948
+LOS\tLaos\t10-22-1953
+MYS\tMalaysia\t09-16-1963
+SGP\tSingapore\t08-09-1965"
+,sep="\t",header=TRUE)
+
+#just using year as a first step
+formdate$Formation.Year<-year(formdate$Formation.Date)
+
+#sPDF <- joinCountryData2Map( formdate, joinCode="ISO3", nameJoinColumn="ISO3")
+#joining by country name works better because of incorrect ISO3 code for Laos in the data
+sPDF <- joinCountryData2Map( formdate, joinCode="NAME", nameJoinColumn="Country")
+
+#Using defaults, change catMethod, numCats & colourPalette to change map appearance
+mapCountryData(sPDF, nameColumnToPlot="Formation.Year") #I've used these breaks that work with your sample data, 
+#simply cahnge to work with full dataset
+yearBreak1 <- 1960
+yearBreak2 <- 1970
+
+oldPar <- par(mar=c(0.7, 0, 0, 0)) #set margins for subplots top,bottom,left,right
+#use layout to set up 3 panels
+nPanels <- layout( cbind(c(0,1:3))
+                   , heights=c(lcm(0.5),c(1,1,1))
+                   , respect=F )
+
+#add a constant column to allow plotting all countries the same colour 
+formdate$constant <- 1
+
+#subet data by yearBreaks
+dF1 <- formdate[ formdate$Formation.Year <= yearBreak1, ]  
+dF2 <- formdate[ formdate$Formation.Year > yearBreak1 & formdate$Formation.Year <= yearBreak2, ]                          
+dF3 <- formdate[ formdate$Formation.Year > yearBreak2, ]                          
+
+#join to a map
+sPDF1 <- joinCountryData2Map( dF1, joinCode="NAME", nameJoinColumn="Country")
+sPDF2 <- joinCountryData2Map( dF2, joinCode="NAME", nameJoinColumn="Country")
+sPDF3 <- joinCountryData2Map( dF3, joinCode="NAME", nameJoinColumn="Country")
+
+#plot & add titles
+mapCountryData(sPDF1, nameColumnToPlot="constant", catMethod='categorical', addLegend=FALSE, mapTitle="" )
+mtext(paste("<=",yearBreak1))
+mapCountryData(sPDF2, nameColumnToPlot="constant", catMethod='categorical', addLegend=FALSE, mapTitle="" )
+mtext(paste(">",yearBreak1,"& <=",yearBreak1))
+mapCountryData(sPDF3, nameColumnToPlot="constant", catMethod='categorical', addLegend=FALSE, mapTitle="" )     
+mtext(paste(">",yearBreak2))
+-------------------------------------------------------------------------------------------------------
+mtext mtext("text", side = 4, at = q1[30], las = 1)
+-------------------------------------------------------------------------------------------------------
+mtext ##Look at the help page for further details    
+mtext("A", 2, adj=1, line=2)
+
+##To rotate "A", try
+mtext("A", 2, adj=5, las=1, padj=-22)
+-------------------------------------------------------------------------------------------------------
+griddg Tps xvals <- seq(-10, 4, len=20)
+yvals <- seq(49, 63, len=20)
+griddf <- expand.grid(lon=xvals, lat=yvals)
+griddg <- predict(fit, x=as.matrix(griddf) )
+
+dat2 <- cbind(griddf, mm=griddg)
+head(dat2)
+fit <- Tps(cbind(dat2$lon, dat2$lat), dat2$mm, scale.type="unscaled")
+surface (fit, nx=100, ny=100)
+world(add=TRUE) Tps #option 2
+source("matrix.poly.r") #http://menugget.blogspot.de/2012/04/create-polygons-from-matrix.html
+source("val2col.R") # http://menugget.blogspot.de/2011/09/converting-values-to-color-levels.html
+source("image.scale.R") # http://menugget.blogspot.de/2011/08/adding-scale-to-image-plot.html
+
+#new grid and predition
+xvals <- seq(-10, 4, len=100)
+yvals <- seq(49, 63, len=100)
+griddf <- expand.grid(lon=xvals, lat=yvals)
+griddg <- predict(fit, x=as.matrix(griddf) )
+
+#make polygons for new grid, calculate color levels
+mat <- matrix(griddg, nrow=length(xvals), ncol=length(yvals))
+poly <- matrix.poly(xvals, yvals, z=mat, n=seq(mat))
+pal <- colorRampPalette(c("blue", "cyan", "yellow", "red"))
+COL <- val2col(mat, col=pal(100))
+
+#required packages
+library(maps)
+library(mapproj)
+
+#plot
+png("tmp.png", width=5, height=4, res=400, units="in")
+layout(matrix(1:2, nrow=1, ncol=2), widths=c(4,1), heights=4)
+par(mar=c(1,1,1,1))
+map("world", proj="stereographic", orient=c(mean(yvals),mean(xvals),0), par=NULL, t="n", xlim=range(xvals), ylim=range(yvals))
+for(i in seq(poly)){
+ polygon(mapproject(poly[[i]]), col=COL[i], border=COL[i], lwd=0.3)
+}
+map("world", proj="stereographic", orient=c(mean(yvals),mean(xvals),0), par=NULL, add=T)
+map.grid(col=rgb(0,0,0,0.5), labels=F)
+box()
+
+par(mar=c(5,0,5,4))
+image.scale(mat, col=pal(100), horiz=FALSE, axes=FALSE, xlab="", ylab="")
+axis(4)
+mtext("mm", side=4, line=2.5)
+box()
+
+dev.off()
+-------------------------------------------------------------------------------------------------------
+outer=TRUE outer=FALSE outer = FALSE
+
+line = -2
+cex = 2
+adj  = 0.025
+
+par(mfrow=c(3,1))
+plot(rnorm(100),col="red")
+title(outer=outer,adj=adj,main="A",cex.main=cex,col="black",font=2,line=line)
+plot(rnorm(100),col="blue")
+title(outer=outer,adj=adj,main="B",cex.main=cex,col="black",font=2,line=line)
+plot(rnorm(100),col="green")
+title(outer=outer,adj=adj,main="C",cex.main=cex,col="black",font=2,line=line) mtext title line = 6
+cex = 2
+las = 2
+
+par(mfrow=c(3,1), oma=c(1,6,1,1))
+
+plot(rnorm(100),col="red")
+mtext("A", side=2, line=line, cex=cex, las=las)
+plot(rnorm(100),col="blue")
+mtext("B", side=2, line=line, cex=cex, las=las)
+plot(rnorm(100),col="green")
+mtext("C", side=2, line=line, cex=cex, las=las)
+-------------------------------------------------------------------------------------------------------
+chart.TimeSeries cex.main cex.lab title par par() main="" las library(PerformanceAnalytics)
+data(managers)
+par(mar=c(1,4,4,2)) # c(bottom, left, top, right)
+chart.CumReturns(managers[,1:3],geometric=TRUE,wealth.index=TRUE,main="",xlab="",col=bluefocus,cex.axis=0.8,cex.lab=0.6,las=1)
+par(xpd=NA)
+legend(legend=paste(paste(c("Performance indexiert"),"1")),cex=0.7, col=bluefocus,lty=1, lwd=2, bty="n", 
+text.col="black", ncol=1, "bottom", inset = c(0.0, -.20))
+text_note=c(paste("Quelle: Bloomberg,", "letzter Datenpunkt:", "last(data$date)"))
+mtext(text_note ,cex=0.4,col="grey",side = 1, line = 4, outer = FALSE,padj=0,adj=1)
+-------------------------------------------------------------------------------------------------------
+library(rworldmap)
+library(WDI) # WORLD BANK INDICATORS
+
+## lines of either type may obscure more than they add
+##**choose line option here
+addLines <- 'gc' #'none''straight' 'gc'
+if ( addLines == 'gc' ) library(geosphere)
+
+# setting background colours
+oceanCol = rgb(7,0,30,maxColorValue=255) 
+landCol = oceanCol 
+
+#produces a list of indicator IDs and names as a matrix
+indicatorList <- WDIsearch('aid flows')
+
+#setting up a world map shaped plot window
+#*beware this is windows specific
+mapDevice('windows',width=10,height=4.5)
+
+
+year <- 2000
+#for(indNum in 1:2)
+for(indNum in 1:nrow(indicatorList))
+{
+  indID <- indicatorList[indNum][1]
+  donorISO3 <- substr(indID,start=8,stop=10)
+
+  dFdonor <- WDI(indicator=indID,start=year,end=year)
+  #divide by 10^6 for million dollars
+  dFdonor[indID] <- dFdonor[indID] * 1/10^6
+
+  sPDFdonor <- joinCountryData2Map(dFdonor,nameJoinColumn='country',joinCode='NAME')
+  #take out Antarctica
+  sPDFdonor <- sPDFdonor[-which(row.names(sPDFdonor)=='Antarctica'),]
+
+  legendTitle=paste("aid flow from",donorISO3,year,"(millions US$)") 
+  mapBubbles(sPDFdonor, nameZSize=indID, plotZeroVals=FALSE, legendHoriz=TRUE, legendPos="bottom", fill=FALSE, legendTitle=legendTitle, oceanCol=oceanCol, landCol=landCol,borderCol=rgb(50,50,50,maxColorValue=255),lwd=0.5,lwdSymbols=1)
+  #removed because not working , main=paste('donor', donorISO3,year)
+
+  #now can I plot lines from the centroid of the donor to the centroids of the recipients
+  xDonor <- sPDFdonor$LON[ which(sPDFdonor$ISO3==donorISO3) ]
+  yDonor <- sPDFdonor$LAT[ which(sPDFdonor$ISO3==donorISO3) ] 
+  xRecips <- sPDFdonor$LON[ which(sPDFdonor[[indID]] > 0) ]
+  yRecips <- sPDFdonor$LAT[ which(sPDFdonor[[indID]] > 0) ]
+  amountRecips <- sPDFdonor[[indID]][ which(sPDFdonor[[indID]] > 0) ]
+
+
+  ## straight lines
+  if ( addLines == 'straight' )
+  {
+    for(line in 1:length(xRecips))
+    {  
+       #col <- 'blue'
+       #i could modify the colour of the lines by the size of the donation
+       #col=rgb(1,1,1,alpha=amountRecips[line]/max(amountRecips))
+       #moving up lower values
+       col=rgb(1,1,0,alpha=sqrt(amountRecips[line])/sqrt(max(amountRecips)))
+       lines(x=c(xDonor,xRecips[line]),y=c(yDonor,yRecips[line]),col=col, lty="dotted", lwd=0.5)   #lty = "dashed", "dotted", "dotdash", "longdash", lwd some devices support <1
+    }
+  }
+
+  ## great circle lines
+  ## don't work well when donor not centred in the map
+  ## also the loop fails at CEC & TOT because not ISO3 codes
+  if ( addLines == 'gc' & donorISO3 != "CEC" & donorISO3 != "TOT" )
+  {  
+    for(line in 1:length(xRecips))
+    {
+      #gC <- gcIntermediate(c(xDonor,yDonor),c(xRecips[line],yRecips[line]), n=50, breakAtDateLine=TRUE)
+      #30/10/13 lines command failed with Error in xy.coords(x, y) : 
+      #'x' is a list, but does not have components 'x' and 'y'
+      #adding sp=TRUE solved
+      gC <- gcIntermediate(c(xDonor,yDonor),c(xRecips[line],yRecips[line]), n=50, breakAtDateLine=TRUE, sp=TRUE)
+
+      #i could modify the colour of the lines by the size of the donation
+      #col=rgb(1,1,1,alpha=amountRecips[line]/max(amountRecips))
+      #moving up lower values
+      col=rgb(1,1,0,alpha=sqrt(amountRecips[line])/sqrt(max(amountRecips)))
+
+      lines(gC,col=col,lwd=0.5)
+    }
+  }  
+
+  #adding coasts in blue looks nice but may distract
+  data(coastsCoarse)
+  plot(coastsCoarse,add=TRUE,col='blue')
+
+  #repeating mapBubbles with add=T to go on top of the lines
+  mapBubbles(sPDFdonor, nameZSize=indID, plotZeroVals=FALSE, fill=FALSE, addLegend=FALSE, add=TRUE, ,lwd=2)
+  #removed because not working : , main=paste('donor', donorISO3,year)
+
+  #looking at adding country labels
+  text(xRecips,yRecips,sPDFdonor$NAME[ which(sPDFdonor[[indID]] > 0) ],col=rgb(1,1,1,alpha=0.3),cex=0.6,pos=4) #pos=4 right (1=b,2=l,3=ab)
+
+  #add a title 
+  nameDonor <- sPDFdonor$NAME[ which(sPDFdonor$ISO3==donorISO3) ]
+  mtext(paste("Aid flow from",nameDonor,year), cex = 1.8, line=-0.8)
+
+  #savePlot(paste("C:\\rProjects\\aidVisCompetition2012\\Rplots\\greatCircles\\wdiAidFlowLinesDonor",donorISO3,year,sep=''),type='png')
+  #savePlot(paste("C:\\rProjects\\aidVisCompetition2012\\Rplots\\greatCircles\\wdiAidFlowLinesDonor",donorISO3,year,sep=''),type='pdf')
+
+} #end of indNum loop
+-------------------------------------------------------------------------------------------------------
+df xaxt = "n" gap.barplot ?par xaxt: A character which specifies the x axis type. Specifying "n" suppresses plotting of the axis. axis labels at tick = FALSE mtext library(plotrix)
+par(mar=c(6,6,5,2))
+
+gap.barplot(df$Conc, gap = c(200,1000),
+            xlab = "Samples", ylab ="", main = "C in X and Y", las = 2,
+            xlim = c(0, 4), ytics = c(0, 1000, 1500, 5100), cex.lab = 1.5,
+            xaxt = "n")
+
+axis(side = 1, at = seq_along(df$Sample), labels = df$Sample, tick = FALSE)
+mtext("C Concentration (pg/mL)", side = 2, line = 4)
+-------------------------------------------------------------------------------------------------------
+barplot(hmatrix, beside = TRUE, horiz = TRUE, xlab = "Volume", ylab = "")
+axis(side = 2, at = seq_along(hmatrix) + 0.5, labels = vol$Adjusted, las = 2)
+mtext(text = "Price", side = 2, line = 4)
+-------------------------------------------------------------------------------------------------------
+mtext("(c)",side=3,line=-1.5, 
+             at=par("usr")[1]+0.05*diff(par("usr")[1:2]),
+             cex=1.2)
+-------------------------------------------------------------------------------------------------------
+mydf <- data.frame(
+    SubgroupH=c('Age',NA,NA,'Sex',NA,NA),
+    Subgroup=c(NA,'<70','>70',NA,'Male','Female'),
+    NoOfPatients=c(NA,2815,1935,NA,3843,908),
+    HazardRatio=c(NA,0.97,0.86,NA,0.93,0.81),
+    HazardLower=c(NA,0.77,0.69,NA,0.78,0.59),
+    HazardUpper=c(NA,1.22,1.07,NA,1.12,1.12),
+    Pvalue=c(NA,0.77,0.17,NA,0.47,0.21),
+    PvalueI=c(0.46,NA,NA,0.46,NA,NA),
+    stringsAsFactors=FALSE
+) #png('temp.png', width=8, height=4, units='in', res=400)
+rowseq <- seq(nrow(mydf),1)
+par(mai=c(1,0,0,0))
+plot(mydf$HazardRatio, rowseq, pch=15,
+    xlim=c(-10,12), ylim=c(0,7),
+    xlab='', ylab='', yaxt='n', xaxt='n',
+    bty='n')
+axis(1, seq(-2,2,by=.4), cex.axis=.5)
+
+segments(1,-1,1,6.25, lty=3)
+segments(mydf$HazardLower, rowseq, mydf$HazardUpper, rowseq)
+
+mtext('Off-Pump\nCABG Better',1, line=2.5, at=0, cex=.5, font=2)
+mtext('On-Pump\nCABG Better',1.5, line=2.5, at=2, cex=.5, font=2)
+
+text(-8,6.5, "Subgroup", cex=.75, font=2, pos=4)
+t1h <- ifelse(!is.na(mydf$SubgroupH), mydf$SubgroupH, '')
+text(-8,rowseq, t1h, cex=.75, pos=4, font=3)
+t1 <- ifelse(!is.na(mydf$Subgroup), mydf$Subgroup, '')
+text(-7.5,rowseq, t1, cex=.75, pos=4)
+
+text(-5,6.5, "No. of\nPatients", cex=.75, font=2, pos=4)
+t2 <- ifelse(!is.na(mydf$NoOfPatients), format(mydf$NoOfPatients,big.mark=","), '')
+text(-3, rowseq, t2, cex=.75, pos=2)
+
+text(-1,6.5, "Hazard Ratio (95%)", cex=.75, font=2, pos=4)
+t3 <- ifelse(!is.na(mydf$HazardRatio), with(mydf, paste(HazardRatio,' (',HazardLower,'-',HazardUpper,')',sep='')), '')
+text(3,rowseq, t3, cex=.75, pos=4)
+
+text(7.5,6.5, "P Value", cex=.75, font=2, pos=4)
+t4 <- ifelse(!is.na(mydf$Pvalue), mydf$Pvalue, '')
+text(7.5,rowseq, t4, cex=.75, pos=4)
+
+text(10,6.5, "P Value for\nInteraction", cex=.75, font=2, pos=4)
+t5 <- ifelse(!is.na(mydf$PvalueI), mydf$PvalueI, '')
+text(10,rowseq, t5, cex=.75, pos=4)
+#dev.off()
+-------------------------------------------------------------------------------------------------------
+legend(x = 0.25, y = 35, c("seed match", "background"), bty="n", lty=c(1,1), col=c("red","black"), cex=0.8, inset=0)
+-------------------------------------------------------------------------------------------------------
+N[mu, sd/sqrt(n)] mu sd n data N[37,45] means sd(mean) ~ sd(data)/sqrt(25) data  <- data.frame(sample=rep(1:100,each=25),x = rnorm(2500,mean=37,sd=45))
+means <- aggregate(data$x,by=list(data$sample),mean)
+#plot histoggrams
+par(mfrow=c(1,2))
+hist(data$x,main="",sub="Histogram of Underlying Data",xlim=c(-150,200))
+hist(means$x,main="",sub="Histogram of Means", xlim=c(-150,200))
+mtext("Underlying Data ~ N[37,45]",outer=T,line=-3)
+c(sd.data=sd(data$x), sd.means=sd(means$x))
+sd.data  sd.means 
+43.548570  7.184518 sd(mean) ~ sd(data)/sqrt(25) data  <- data.frame(sample=rep(1:100,each=25),x = runif(2500,min=-150, max=200))
+means <- aggregate(data$x,by=list(data$sample),mean)
+#plot histoggrams
+par(mfrow=c(1,2))
+hist(data$x,main="",sub="Histogram of Underlying Data",xlim=c(-150,200))
+hist(means$x,main="",sub="Histogram of Means", xlim=c(-150,200))
+mtext("Underlying Data ~ U[-150,200]",outer=T,line=-3)
+c(sd.data=sd(data$x), sd.means=sd(means$x))
+sd.data sd.means 
+99.7800  18.8176
+-------------------------------------------------------------------------------------------------------
+library(ape)
+
+heatmap.phylo <- function(x, Rowp, Colp, breaks, col, denscol="cyan", respect=F, ...){
+    # x numeric matrix
+    # Rowp: phylogenetic tree (class phylo) to be used in rows
+    # Colp: phylogenetic tree (class phylo) to be used in columns
+    # ... additional arguments to be passed to image function
+
+    scale01 <- function(x, low = min(x), high = max(x)) {
+        x <- (x - low)/(high - low)
+        x
+    }
+
+    col.tip <- Colp$tip
+    n.col <- 1
+    if (is.null(col.tip)) {
+        n.col <- length(Colp)
+        col.tip <- unlist(lapply(Colp, function(t) t$tip))
+        col.lengths <- unlist(lapply(Colp, function(t) length(t$tip)))
+        col.fraction <- col.lengths / sum(col.lengths)
+        col.heights <- unlist(lapply(Colp, function(t) max(node.depth.edgelength(t))))
+        col.max_height <- max(col.heights)
+    }
+
+    row.tip <- Rowp$tip
+    n.row <- 1
+    if (is.null(row.tip)) {
+        n.row <- length(Rowp)
+        row.tip <- unlist(lapply(Rowp, function(t) t$tip))
+        row.lengths <- unlist(lapply(Rowp, function(t) length(t$tip)))
+        row.fraction <- row.lengths / sum(row.lengths)
+        row.heights <- unlist(lapply(Rowp, function(t) max(node.depth.edgelength(t))))
+        row.max_height <- max(row.heights)
+    }
+
+    cexRow <- min(1, 0.2 + 1/log10(n.row))
+    cexCol <- min(1, 0.2 + 1/log10(n.col))
+
+    x <- x[row.tip, col.tip]
+    xl <- c(0.5, ncol(x)+0.5)
+    yl <- c(0.5, nrow(x)+0.5)
+
+    screen_matrix <- matrix( c(
+        0,1,4,5,
+        1,4,4,5,
+        0,1,1,4,
+        1,4,1,4,
+        1,4,0,1,
+        4,5,1,4
+    ) / 5, byrow=T, ncol=4 )
+
+    if (respect) {
+        r <- grconvertX(1, from = "inches", to = "ndc") / grconvertY(1, from = "inches", to = "ndc")
+        if (r < 1) {
+            screen_matrix <- screen_matrix * matrix( c(r,r,1,1), nrow=6, ncol=4, byrow=T)
+        } else {
+            screen_matrix <- screen_matrix * matrix( c(1,1,1/r,1/r), nrow=6, ncol=4, byrow=T)
+        }
+    }
+
+
+    split.screen( screen_matrix )
+
+    screen(2)
+    par(mar=rep(0,4))
+
+    if (n.col == 1) {
+        plot(Colp, direction="downwards", show.tip.label=FALSE,xaxs="i", x.lim=xl)
+    } else {
+        screens <- split.screen( as.matrix(data.frame( left=cumsum(col.fraction)-col.fraction, right=cumsum(col.fraction), bottom=0, top=1)))
+        for (i in 1:n.col) {
+            screen(screens[i])
+            plot(Colp[[i]], direction="downwards", show.tip.label=FALSE,xaxs="i", x.lim=c(0.5,0.5+col.lengths[i]), y.lim=-col.max_height+col.heights[i]+c(0,col.max_height))
+        }
+    }
+
+    screen(3)
+    par(mar=rep(0,4))
+
+    if (n.col == 1) {
+        plot(Rowp, direction="rightwards", show.tip.label=FALSE,yaxs="i", y.lim=yl)
+    } else {
+        screens <- split.screen( as.matrix(data.frame( left=0, right=1, bottom=cumsum(row.fraction)-row.fraction, top=cumsum(row.fraction))) )
+        for (i in 1:n.col) {
+            screen(screens[i])
+            plot(Rowp[[i]], direction="rightwards", show.tip.label=FALSE,yaxs="i", x.lim=c(0,row.max_height), y.lim=c(0.5,0.5+row.lengths[i]))
+        }
+    }
+
+
+    screen(4)
+    par(mar=rep(0,4), xpd=TRUE)
+    image((1:nrow(x))-0.5, (1:ncol(x))-0.5, x, xaxs="i", yaxs="i", axes=FALSE, xlab="",ylab="", breaks=breaks, col=col, ...)
+
+    screen(6)
+    par(mar=rep(0,4))
+    plot(NA, axes=FALSE, ylab="", xlab="", yaxs="i", xlim=c(0,2), ylim=yl)
+    text(rep(0,nrow(x)),1:nrow(x),row.tip, pos=4, cex=cexCol)
+
+    screen(5)
+    par(mar=rep(0,4))
+    plot(NA, axes=FALSE, ylab="", xlab="", xaxs="i", ylim=c(0,2), xlim=xl)
+    text(1:ncol(x),rep(2,ncol(x)),col.tip, srt=90, adj=c(1,0.5), cex=cexRow)
+
+    screen(1)
+    par(mar = c(2, 2, 1, 1), cex = 0.75)
+
+    symkey <- T
+    tmpbreaks <- breaks
+    if (symkey) {
+        max.raw <- max(abs(c(x, breaks)), na.rm = TRUE)
+        min.raw <- -max.raw
+        tmpbreaks[1] <- -max(abs(x), na.rm = TRUE)
+        tmpbreaks[length(tmpbreaks)] <- max(abs(x), na.rm = TRUE)
+    } else {
+        min.raw <- min(x, na.rm = TRUE)
+        max.raw <- max(x, na.rm = TRUE)
+    }
+    z <- seq(min.raw, max.raw, length = length(col))
+
+    image(z = matrix(z, ncol = 1), col = col, breaks = tmpbreaks, 
+          xaxt = "n", yaxt = "n")
+    par(usr = c(0, 1, 0, 1))
+    lv <- pretty(breaks)
+    xv <- scale01(as.numeric(lv), min.raw, max.raw)
+    axis(1, at = xv, labels = lv)
+
+    h <- hist(x, plot = FALSE, breaks = breaks)
+    hx <- scale01(breaks, min.raw, max.raw)
+    hy <- c(h$counts, h$counts[length(h$counts)])
+    lines(hx, hy/max(hy) * 0.95, lwd = 1, type = "s", 
+          col = denscol)
+    axis(2, at = pretty(hy)/max(hy) * 0.95, pretty(hy))
+    par(cex = 0.5)
+    mtext(side = 2, "Count", line = 2)
+
+    close.screen(all.screens = T)
+
+}
+
+tree <- read.tree(text = "(A:1,B:1);((C:1,D:2):2,E:1);((F:1,G:1,H:2):5,((I:1,J:2):2,K:1):1);", comment.char="")
+N <- sum(unlist(lapply(tree, function(t) length(t$tip))))
+
+set.seed(42)
+m <- cor(matrix(rnorm(N*N), nrow=N))
+rownames(m) <- colnames(m) <- LETTERS[1:N]
+heatmap.phylo(m, tree, tree, col=bluered(10), breaks=seq(-1,1,length.out=11), respect=T)
+-------------------------------------------------------------------------------------------------------
+cex hist() cex.axis cex.lab cex axis() cex.axis hist() mtext() cex cex=2/3 pointsize pdf()
+-------------------------------------------------------------------------------------------------------
+plotmath mtext plot(1,1)
+exp <- 2
+Lines <- list(bquote("first line"),bquote("second line x"^2))
+mtext(do.call(expression, Lines),side=3,line=1:0)
+-------------------------------------------------------------------------------------------------------
+plain() * ~ ~~ mtext(main=bquote(plain("Observation at pH ") ~ .(pH) ~~ plain(" [") *  mu * plain("M]"))) ?plain Mathematical Annotation in R
+-------------------------------------------------------------------------------------------------------
+scatterplot3d(A,D,B, xlab=expression(paste(x[a],"-",x[b])), 
+                      ylab="", 
+                      zlab=expression(sigma^2))
+mtext( expression(x[a]), side=4,las=2,padj=18, line=-4)
+-------------------------------------------------------------------------------------------------------
+image.plot fields image.plot image graphics library(grid)
+x=1:10
+y=1:10
+z=matrix(-50:49,10,10)
+
+layout(matrix(c(1,2),ncol=2), widths=c(2,1))         
+par(mar=c(5,3,5,3))
+image(x,y,z,yaxt="n",xaxt="n", ylab="", xlab="",col=heat.colors(50)) 
+cap <- grid.cap()
+grid.newpage()
+grid.raster(cap, x=unit(0.6,'npc'), #You can modify that if the plot 
+            y=unit(0.5,'npc'),      #ends up outside the figure area
+            vp=viewport(angle=36))
+mtext("Some fancy title",side=3,cex=1.5,line=2) #Plot your title
+par(mar=c(5,8,5,3))
+plot(NA,ax=F,ann=F,type="n",xlim=c(0,1),ylim=c(0,50),yaxs="i")
+for(i in 1:50)rect(0,i-1,1,i,col=heat.colors(50)[i],border=NA)
+box()
+axis(4,las=2,at=seq(0,50,by=10),labels=seq(-50,50,by=20))
+-------------------------------------------------------------------------------------------------------
+mtext mydata <- data.frame(a=c(1:5),b=c(6:10),c=c(11:15),d=c(16:20))
+plot <- stripchart(mydata, method="jitter", vertical=T,main='plot',pch=19)
+mtext(c('a+b','c+d'),side=1,line=3,at=c(1.5,3.5)) line at mydata <- data.frame(a=c(1:5),b=c(6:10),c=c(11:15),d=c(16:20))
+plot <- stripchart(mydata, method="jitter", vertical=T, main='plot',pch=19, 
+                   at=c(1,2,4,5),xlim=c(0,6))
+mtext(c('a+b','c+d'),1,line=3,at=c(1.5,4.5)) at stripchart xlim mtext
+-------------------------------------------------------------------------------------------------------
+adj plot(1)
+mtext("ATC, ",col='black',line=2,adj=0.4)
+mtext("AVC, ",col='blue',line=2,adj=0.45)
+mtext("AFC, ",col='red',line=2,adj=0.5)
+mtext("MC",col='green',line=2,adj=0.54)
+-------------------------------------------------------------------------------------------------------
+graphics species species = unique(carbon2$Species) # c("Acru", "Arte", ...)
+bin.name = c("Acer rubrum", "Arundinaria tecta", "Clethra alnifolia",
+             "Eupatorium rotundifolium", "Gaylussacia frondosa", 
+             "Ilex glabra", "Lyonia lucida", "Oxydendrum arboreum",
+             "Persea palustris")
+
+sites = c(7,8) # sites to use
+color = c("blue", "green") # colors for each site
+
+fit.bio = list() # list to save all models
+
+par(mfrow=c(3,3), cex=.3) 
+
+for(isp in seq_along(species)) {
+
+  sp.data = carbon2[carbon2$Species==species[isp], ] 
+
+  fit.bio[[isp]] <- lm(LogRecBio ~ LogPreBiomass, data=sp.data)
+
+  sp.label     = paste(letters[isp], ") ", bin.name[isp], sep="")
+  sp.r.squared = paste("R²", "=", round(summary(fit.bio[[isp]])$adj.r.squared, 3))
+  plot(LogRecBio ~ LogPreBiomass, data=sp.data, 
+       font.lab=2,font.main=2, font.sub=3, ylim=c(-5,4),
+       mgp=c(2.5,1,0), cex.lab=2, cex.main=1.5, 
+       axes=FALSE, lwd=1.5, cex=2.5, ann=FALSE)
+
+  for(isite in seq_along(sites)) {
+    # loop for each selected site
+    site.data  = sp.data[sp.data$site==sites[isite], ]
+    site.model = lm(LogRecBio ~ LogPreBiomass, data=site.data)
+    abline(site.model, lwd=2, col=color[isite])
+
+  }
+
+  abline(fit.bio[[isp]], lwd=2, col='red') # all data
+
+  axis(1,at=c(-2,-1,0,1,2,3,4),font=2,cex.axis=3)
+  axis(2,at=c(-5,-4,-3,-2,-1,0,1,2),font=2,cex.axis=3)
+  box()
+
+  mtext(sp.label, 3, line=-2.5, adj=0.05, font=3, cex=0.75)
+  mtext(sp.r.squared, 3, line=-2.5, adj=0.95, cex=0.75)
+
+}
+-------------------------------------------------------------------------------------------------------
+df2 <- t(as.matrix(df))
+bp <- barplot(df2,beside=TRUE,col=1:6)
+mtext(rownames(df2),1,at=bp) line= las=1 barplot df2 <- t(as.matrix(df))
+bp <- barplot(df2,beside=TRUE,col=1:6,axisnames=FALSE,las=1)
+mtext(rownames(df2),1,at=bp,line=0.6)
+mtext(colnames(df2),1,at=colMeans(bp),line=2)
+-------------------------------------------------------------------------------------------------------
+paste mtext(paste(capture.output(quantile(X, c(.95))), collapse = "\n")) X <- 1:10
+frame()
+mtext(paste(capture.output(quantile(X, c(.95))), collapse = "\n"))
+-------------------------------------------------------------------------------------------------------
+textstyle plot(1,1,main=expression(
+  atop(textstyle("a"),
+    atop(textstyle("b"),
+         textstyle("c")
+    )
+  )
+)) mtext plot(1,1)
+mtext(expression(bold("Fig. 3. Total yearly diffuse attenuation coefficient")), line=3)
+mtext(expression(bold("at 490 nm (K"[d]*") and chlorophyll concentration")), line=1.9)
+mtext(expression(bold("at 3 coral reef sites between 2003 and 2012")), line=1) line=1.9
+-------------------------------------------------------------------------------------------------------

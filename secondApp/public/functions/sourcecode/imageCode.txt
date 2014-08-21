@@ -1,0 +1,4376 @@
+library(fields) # for tim.colors
+library(caTools) # for write.gif
+m = 400 # grid size
+C = complex( real=rep(seq(-1.8,0.6, length.out=m), each=m ), imag=rep(seq(-1.2,1.2, length.out=m), m ) )
+C = matrix(C,m,m)
+
+Z = 0
+X = array(0, c(m,m,20))
+for (k in 1:20) {
+Z = Z^2+C
+X[,,k] = exp(-abs(Z))
+}
+
+image(X[,,k], col=tim.colors(256)) # show final image in R
+write.gif(X, “Mandelbrot.gif”, col=tim.colors(256), delay=100)
+-------------------------------------------------------------------------------------------------------
+file.exists() save() save.image() SafeSave <- function( ..., file=stop("'file' must be specified"), overwrite=FALSE, save.fun=save) {
+  if ( file.exists(file) & !overwrite ) stop("'file' already exists")
+  save.fun(..., file=file)
+} source()
+-------------------------------------------------------------------------------------------------------
+file.exists() save save <- function( ..., file=stop("'file' must be specified"), overwrite=FALSE ) {
+  if ( file.exists(file) & !overwrite ) stop("'file' already exists")
+  base::save(..., file=file)
+} save.image()
+-------------------------------------------------------------------------------------------------------
+save() save.image()
+-------------------------------------------------------------------------------------------------------
+widget_name[] library(gWidgets)
+library(gWidgetstcltk)
+
+get_list_content <- function() ls(envir = globalenv())  # or whatever
+
+win <- gwindow()
+grp <- ggroup(container = win)
+ddl <- gdroplist(get_list_content(), container = grp)
+refresh <- gimage("refresh", 
+  dirname   = "stock",
+  container = grp,
+  handler   = function(h, ...) ddl[] <- get_list_content()   
+) win <- gwindow()
+rb <- gradio(1:10, cont = win)
+rb[] <- 2:11     # OK
+rb[] <- 1:5      # Throws an error; can't change length.
+-------------------------------------------------------------------------------------------------------
+save.image() q()
+-------------------------------------------------------------------------------------------------------
+image heatmap nba <- read.csv("http://datasets.flowingdata.com/ppg2008.csv")
+
+dst <- dist(nba[1:20, -1],)
+dst <- data.matrix(dst)
+
+dim <- ncol(dst)
+
+image(1:dim, 1:dim, dst, axes = FALSE)
+
+axis(1, 1:dim, nba[1:20,1], cex.axis = 0.5)
+axis(2, 1:dim, nba[1:20,1], cex.axis = 0.5)
+
+for (i in 1:dim)
+    {
+    for (j in 1:dim)
+        {
+        txt <- sprintf("%0.1f", dst[i,j])
+        text(i, j, txt, cex=0.5)
+        }
+    }
+-------------------------------------------------------------------------------------------------------
+# create the matrix
+A = matrix(data=r1, nrow=1, ncol=8)
+
+# populate it with random data
+for (i in seq(0, 200, 1)){r1 = sample(0:1, 8, replace=TRUE); A = rbind(A, r1)}
+
+# now plot it
+image(z=A, ann=F, axes=F, col=topo.colors(12))
+-------------------------------------------------------------------------------------------------------
+save.image() source() save.image() setwd() load(".Rdata") save.image()
+-------------------------------------------------------------------------------------------------------
+.First .Last graphics.off() .Last <- function() {
+    graphics.off()
+    save.image()  # optionally, you can define specific file/folder
+    system(paste("cowsay", "Goodbye @ ", date()))  # if you're running GNU/Linux ___________________________________ 
+< Goodbye @ Wed Aug 4 22:49:46 2010 >
+ ----------------------------------- 
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+-------------------------------------------------------------------------------------------------------
+save.image() load()
+-------------------------------------------------------------------------------------------------------
+getwd() dir() save.image(file="filename.RData") fn <- paste("Wspace",Sys.Date(),sep="")
+nfiles <- length(grep(paste(fn,".*.RData",sep=""),dir()))
+fn <- paste(fn,"_",nfiles+1,".RData",sep="")
+options(save.image.defaults=list(file=fn)) save.image()
+-------------------------------------------------------------------------------------------------------
+image(m1>m2)
+-------------------------------------------------------------------------------------------------------
+par(mfrow = c(1, 3))
+image(m1, zlim = c(-1, 1))
+contour(m1 - m2, add = TRUE)
+image(m2, zlim = c(-1, 1))
+contour(m1 - m2, add = TRUE)
+image(m1 - m2, zlim = c(0, 1))
+contour(m1 - m2, add = TRUE)
+-------------------------------------------------------------------------------------------------------
+computeHotspots = function(xyz, thresh, minsize=1, margin=1){
+### given a list(x,y,z), return a data frame where each row
+### is a (xmin,xmax,ymin,ymax) of bounding box of a contiguous area
+### over the given threshhold.
+### or approximately. lets use the clustering tools in R...
+
+  overs <- which(xyz$z>thresh,arr.ind=T)
+
+  if(length(overs)==0){
+    ## found no hotspots
+    return(NULL)
+  }
+
+  if(length(overs)==2){
+    ## found one hotspot
+    xRange <- cbind(xyz$x[overs[,1]],xyz$x[overs[,1]])
+    yRange <- cbind(xyz$y[overs[,2]],xyz$y[overs[,2]])
+  }else{
+
+    oTree <- hclust(dist(overs),method="single")
+    oCut <- cutree(oTree,h=10)
+
+    oXYc <- data.frame(x=xyz$x[overs[,1]],y=xyz$y[overs[,2]],oCut)
+
+    xRange <- do.call("rbind",tapply(oXYc[,1],oCut,range))
+    yRange <- do.call("rbind",tapply(oXYc[,2],oCut,range))
+
+  }
+
+### add user-margins
+ xRange[,1] <- xRange[,1]-margin
+ xRange[,2] <- xRange[,2]+margin
+ yRange[,1] <- yRange[,1]-margin
+ yRange[,2] <- yRange[,2]+margin
+
+## put it all together
+ xr <- apply(xRange,1,diff)
+ xm <- apply(xRange,1,mean)
+ xRange[xr<minsize,1] <- xm[xr<minsize]-(minsize/2)
+ xRange[xr<minsize,2] <- xm[xr<minsize]+(minsize/2)
+
+ yr <- apply(yRange,1,diff)
+ ym <- apply(yRange,1,mean)
+ yRange[yr<minsize,1] <- ym[yr<minsize]-(minsize/2)
+ yRange[yr<minsize,2] <- ym[yr<minsize]+(minsize/2)
+
+  cbind(xRange,yRange)
+
+} x=1:23
+y=7:34
+m1=list(x=x,y=y,z=outer(x,y,function(x,y){sin(x/3)*cos(y/3)}))
+image(m1)
+hs = computeHotspots(m1,0.95) > hs
+  [,1] [,2] [,3] [,4]
+1   13   15    8   11
+2    3    6   17   20
+3   22   24   18   20
+4   13   16   27   30 image(m1)
+rect(hs[,1],hs[,3],hs[,2],hs[,4]) image(list(x=m1$x,y=m1$y,z=m1$z>0.95))
+rect(hs[,1],hs[,3],hs[,2],hs[,4])
+-------------------------------------------------------------------------------------------------------
+m <- matrix(1:30, ncol=6)
+colnames(m) <- paste("C", 1:6, sep="")
+rownames(m) <- paste("R", 1:5, sep="")
+m
+
+image(1:ncol(m), 1:nrow(m), t(m), col = terrain.colors(60), axes = FALSE)
+axis(1, 1:ncol(m), colnames(m))
+axis(2, 1:nrow(m), rownames(m))
+for (x in 1:ncol(m))
+  for (y in 1:nrow(m))
+    text(x, y, m[y,x])
+-------------------------------------------------------------------------------------------------------
+raster library(raster)
+test.image <- matrix(c(1, 0, 1, 0, 0, 1, 0, 1), ncol = 4, byrow = TRUE)
+plot(raster(test.image))
+
+png("test.png")
+image(test.image, axes = FALSE)
+dev.off()
+-------------------------------------------------------------------------------------------------------
+colorRampPalette a<-colorRampPalette(c("white","steelblue"))
+plot_colours<-a(n) n n=6 n<-6
+a(n) [1] "#FFFFFF" "#DAE6F0" "#B4CDE1" "#90B3D2" "#6A9BC3" "#4682B4" image(1:n,1,as.matrix(1:n),col=a(n))
+-------------------------------------------------------------------------------------------------------
+x <- 10*(1:nrow(volcano))
+ y <- 10*(1:ncol(volcano))
+ image(x, y, volcano, col = terrain.colors( length(seq(90, 200, by = 5))-1), axes = FALSE, breaks= seq(90, 200, by = 5) )
+ axis(1, at = seq(100, 800, by = 100))
+ axis(2, at = seq(100, 600, by = 100))
+ box()
+ title(main = "Maunga Whau Volcano", font.main = 4)
+
+
+
+ x <- 10*(1:nrow(volcano))
+ y <- 10*(1:ncol(volcano))
+ image(x, y, volcano, col = terrain.colors( length(seq(150, 200, by = 5))-1), axes = FALSE, breaks= seq(150, 200, by = 5) )
+ axis(1, at = seq(100, 800, by = 100))
+ axis(2, at = seq(100, 600, by = 100))
+ box()
+ title(main = "Maunga Whau Volcano Restricted to elevations above 150", font.main = 4)
+-------------------------------------------------------------------------------------------------------
+dims <- dim(seqMyMap$myTile)
+    image(x = seq(minX, maxX, length = dims[1]), y = seq(minY, maxY, length = dims[2]), z =  seqMyMap$myTile,col=attr(MyMap$myTile,"COL"),add=TRUE)
+-------------------------------------------------------------------------------------------------------
+save.image() ls() load(".RData")
+-------------------------------------------------------------------------------------------------------
+# SQL connection
+source("lib/connect.R")
+
+dbQuery <- "SELECT * FROM mytable"
+mydata <- dbGetQuery(con,dbQuery)
+system.time(dbGetQuery(con,dbQuery))
+# returns
+#user  system elapsed 
+# 0.999   0.213   1.715 
+
+save.image(file="speedtest.Rdata")
+system.time(load("speedtest.Rdata"))
+#user  system elapsed 
+#0.348   0.006   0.358
+-------------------------------------------------------------------------------------------------------
+seriation set.seed(1)
+dat <- data.frame(A = c(rnorm(10, 2), rnorm(10, -2), rnorm(10, -2)),
+                  B = c(rnorm(10, 0), rnorm(10, 5), rnorm(10, -2)),
+                  C = c(rnorm(10, 0), rnorm(10, 0), rnorm(10, -10)))
+
+## randomise the rows
+dat <- dat[sample(nrow(dat)),]
+clus <- kmeans(scale(dat, scale = FALSE), centers = 3, iter.max = 50,
+               nstart = 10)
+
+## means of n points in each cluster
+mns <- sapply(split(dat, clus$cluster), function(x) mean(unlist(x)))
+
+## order the data by cluster with clusters ordered by `mns`, low to high
+dat2 <- dat[order(order(mns)[clus$cluster]), ]
+
+## heatmaps
+## original first, then reordered:
+layout(matrix(1:2, ncol = 2))
+image(1:3, 1:30, t(data.matrix(dat)), ylab = "Observations", 
+      xlab = "Variables", xaxt = "n", main = "Original")
+axis(1, at = 1:3)
+image(1:3, 1:30, t(data.matrix(dat2)), ylab = "Observations", 
+      xlab = "Variables", xaxt = "n", main = "Reordered")
+axis(1, at = 1:3)
+layout(1)
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+read.jpeg() rimage anImage <- read.jpeg("anImage.jpeg")
+plot(anImage)
+points(my.x,my.y,col="red")
+... ?par readPNG png readPNG rasterImage img <- readPNG(system.file("img", "Rlogo.png", package="png"))
+r = as.raster(img[,,1:3])
+r[img[,,4] == 0] = "white"
+
+plot(1:2,type="n")
+rasterImage(r,1,1,2,2) read.gif caTools Gif <- read.gif("http://www.openbsd.org/art/puffy/ppuf600X544.gif")
+
+n <- dim(Gif$image)
+image(t(Gif$image)[n[2]:1,n[1]:1],col=Gif$col,axes=F) image(t(Gif$image)[n[2]:1,n[1]:1],col=Gif$col,axes=F)
+op <- par(new=T)
+plot(1:100,new=T)
+par(op)
+-------------------------------------------------------------------------------------------------------
+splancs data(bodmin)
+plot(bodmin$poly,asp=1,type="n")
+image(kernel2d(as.points(bodmin),bodmin$poly, h0=2,nx=100,ny=100),
+        add=TRUE, col=terrain.colors(20))
+pointmap(as.points(bodmin),add=TRUE)
+polymap(bodmin$poly,add=TRUE)
+bodmin.xy<-coordinates(bodmin[1:2])
+apply(bodmin$poly,2,range)
+grd1<-GridTopology(cellcentre.offset=c(-5.2,-11.5),cellsize=c(0.2,0.2),cells.dim=c(100,100))
+k100<-spkernel2d(bodmin.xy,bodmin$poly,h0=1,grd1)
+k150<-spkernel2d(bodmin.xy,bodmin$poly,h0=1.5,grd1)
+k200<-spkernel2d(bodmin.xy,bodmin$poly,h0=2,grd1)
+k250<-spkernel2d(bodmin.xy,bodmin$poly,h0=2.5,grd1)
+if(.sp_lt_0.9()){
+    df<-AttributeList(list(k100=k100,k150=k150,k200=k200,k250=k250))
+} else{
+    df<-data.frame(k100=k100,k150=k150,k200=k200,k250=k250)
+}
+kernels<-SpatialGridDataFrame(grd1,data=df)
+spplot(kernels,checkEmptyRC=FALSE,col.regions=terrain.colors(16),cuts=15) kern.obj <- structure(c(-161.913250909479, 154.013482116162, 31.6474639061300, 
+17.7340639366637, -102.170823111156, 17.6809699563749, 90.505728795223, 
+143.854796792441, -70.1806511117134, 230.600354761065, 133.500211485414, 
+-225.74140063979, 220.599384351733, -55.5956512970632, 128.631103577179, 
+-36.9382693513206, 86.1151116370548, -67.9572171234925, 138.313636950703, 
+59.4122360493993, -128.418347257186, 28.4313444162254, -253.438542232118, 
+-2.62936998134802, 96.6705573949275, 126.350347596454, -76.3053490233138, 
+-98.1667749493097, -132.615954657406, -239.003804126569, -32.052834858324, 
+152.055005227299, -171.132473363859, -96.0272921226682, -91.4859761718545, 
+172.662664785850, 92.3258005260648, -9.33884441249779, -24.4260189034222, 
+-171.435971200881, 84.9052731383744, -171.768339197942, -13.5871193263486, 
+-51.839925496188, -193.00283491136, 57.1126055897217, -40.890549093622, 
+83.600134171797, 6.66515671609591, -261.487889322599, 138.624659821426, 
+158.911075756538, 111.598989561161, 62.6150728399137, -155.366548557697, 
+95.9501552130317, -32.0820888905296, -85.4929337702259, -178.010310820340, 
+100.526315864149, -190.431234842843, 223.959168312304, -10.693030515916, 
+-155.820490522984, 87.7527496146106, 293.991051801515, -69.1568338969259, 
+77.0440461941863, -137.088789092018, -284.434533670747, -52.9437134391306, 
+129.855822783810, 147.208098412254, -144.394565933009, 11.1193096498363, 
+-26.6883210946328, 36.3402764034715, -27.5111672678245, 161.017920279498, 
+133.961438546933, -139.924061267615, -194.861248844460, -138.902485043792, 
+-59.6746738747854, -193.856125217724, 58.9319665388044, -151.870347293954, 
+185.500357832384, 77.8198201646078, 217.406148533358, 125.978806993972, 
+-96.8970637852723, 85.2079461295587, -71.5845844358825, 90.0263897196243, 
+-3.85398693321446, -233.945188963933, -252.371240484100, -152.282817449886, 
+-175.448833834566, 74.8285138048232, 218.884530197829, -65.9526397939771, 
+113.776709279045, -69.4176647812128, -196.919950610027, 268.779812799767, 
+119.294722331688, 272.239590017125, -161.720151454210, -16.8415614869446, 
+-13.6117741931230, -96.0124779492617, 157.184316962957, 188.061125110835, 
+-214.437550725415, 121.667246008292, 89.747676299885, -4.44232751615345, 
+-106.699166027829, -261.718519963324, -42.1719799283892, -78.4863225650042, 
+204.811030067503, 265.774235548452, 38.5583057999611, -239.476124290377, 
+231.875250348821, 135.243163537234, -42.7497774828225, -59.7301519475877, 
+-2.99901310354471, -240.498538082466, -109.713196987286, 172.524304641411, 
+113.648047484457, -221.150079695508, 131.948393024504, 62.1528406161815, 
+-8.31053741276264, -76.1619768105447, 157.933613704517, -42.225355328992, 
+208.729289704934, 10.0781018380076, 98.7709498498589, -74.8700814787298, 
+-215.313404565677, -87.6694556325674, -139.495075587183, -28.3679623156786, 
+-76.2799751479179, -138.629644783214, -164.171522296965, 16.3864661939442, 
+-109.221789333969, -49.0070185158402, -23.0688956100494, 54.3438952881843, 
+-145.427243504673, -18.4494345914572, 14.391646720469, -200.727640092373, 
+187.278914311901, -75.3078812733293, 4.16369824670255, -191.299003595486, 
+169.710802193731, -103.791763912886, 32.9403738956898, -91.6615933645517, 
+-222.505887318403, 49.3231621105224, -151.363900210708, -23.9421324804425, 
+-207.101033208892, 169.309269497171, -250.131661305204, 11.1456824932247, 
+-193.683278560638, -66.6569401044399, -139.672750141472, -115.024601574987, 
+-198.41345124878, -205.971520487219, 104.227339709178, 162.442225730047, 
+-167.216443363577, -100.033209286630, 152.823372976854, -191.260906308889, 
+-234.539421927184, 213.049413822591, 130.761165590957, -234.716210095212, 
+6.07512393034995, -49.286244995892, -56.5862323623151, -50.971424812451, 
+-168.812829069793), .Dim = c(100L, 2L), .Dimnames = list(NULL, 
+    c("x", "y")))
+
+circpol <- structure(c(37.674311717588, 75.1999401385825, 112.428788751435, 
+149.213932298913, 185.410196624968, 220.874731610807, 255.467574939044, 
+289.052204461029, 321.496076987398, 352.671151375484, 382.454393849214, 
+410.728263557213, 437.381176452847, 462.307945665474, 485.410196624968, 
+506.596755301209, 525.784008026318, 542.896231479612, 557.865891532951, 
+570.633909777092, 581.149896677179, 589.372350437213, 595.268820788687, 
+598.816037056963, 600, 598.816037056963, 595.268820788687, 589.372350437213, 
+581.149896677179, 570.633909777092, 557.865891532951, 542.896231479612, 
+525.784008026318, 506.596755301209, 485.410196624968, 462.307945665474, 
+437.381176452847, 410.728263557213, 382.454393849214, 352.671151375484, 
+321.496076987398, 289.052204461029, 255.467574939043, 220.874731610807, 
+185.410196624968, 149.213932298913, 112.428788751435, 75.1999401385824, 
+37.6743117175879, -1.92977144680695e-13, -37.674311717588, -75.1999401385826, 
+-112.428788751435, -149.213932298913, -185.410196624969, -220.874731610807, 
+-255.467574939044, -289.052204461029, -321.496076987398, -352.671151375484, 
+-382.454393849214, -410.728263557213, -437.381176452847, -462.307945665474, 
+-485.410196624968, -506.596755301209, -525.784008026318, -542.896231479612, 
+-557.865891532951, -570.633909777092, -581.149896677179, -589.372350437213, 
+-595.268820788687, -598.816037056963, -600, -598.816037056963, 
+-595.268820788687, -589.372350437213, -581.149896677179, -570.633909777092, 
+-557.865891532951, -542.896231479612, -525.784008026318, -506.596755301209, 
+-485.410196624968, -462.307945665473, -437.381176452847, -410.728263557213, 
+-382.454393849214, -352.671151375484, -321.496076987398, -289.052204461029, 
+-255.467574939043, -220.874731610807, -185.410196624968, -149.213932298913, 
+-112.428788751435, -75.1999401385823, -37.6743117175880, -1.46952762458685e-13, 
+37.674311717588, 598.816037056963, 595.268820788687, 589.372350437213, 
+581.149896677179, 570.633909777092, 557.865891532951, 542.896231479612, 
+525.784008026318, 506.596755301209, 485.410196624968, 462.307945665473, 
+437.381176452847, 410.728263557213, 382.454393849214, 352.671151375484, 
+321.496076987398, 289.052204461029, 255.467574939044, 220.874731610807, 
+185.410196624968, 149.213932298913, 112.428788751435, 75.1999401385825, 
+37.674311717588, -9.64885723403475e-14, -37.6743117175880, -75.1999401385826, 
+-112.428788751435, -149.213932298913, -185.410196624969, -220.874731610807, 
+-255.467574939044, -289.052204461029, -321.496076987398, -352.671151375484, 
+-382.454393849214, -410.728263557213, -437.381176452847, -462.307945665474, 
+-485.410196624968, -506.596755301209, -525.784008026318, -542.896231479612, 
+-557.865891532951, -570.633909777092, -581.149896677179, -589.372350437213, 
+-595.268820788687, -598.816037056963, -600, -598.816037056963, 
+-595.268820788687, -589.372350437213, -581.149896677179, -570.633909777092, 
+-557.865891532951, -542.896231479612, -525.784008026318, -506.596755301209, 
+-485.410196624968, -462.307945665473, -437.381176452847, -410.728263557213, 
+-382.454393849214, -352.671151375484, -321.496076987398, -289.052204461029, 
+-255.467574939043, -220.874731610807, -185.410196624969, -149.213932298913, 
+-112.428788751435, -75.1999401385822, -37.6743117175879, -1.10214571844014e-13, 
+37.6743117175882, 75.1999401385825, 112.428788751435, 149.213932298913, 
+185.410196624968, 220.874731610807, 255.467574939044, 289.052204461029, 
+321.496076987398, 352.671151375484, 382.454393849214, 410.728263557213, 
+437.381176452847, 462.307945665474, 485.410196624969, 506.596755301209, 
+525.784008026318, 542.896231479612, 557.865891532951, 570.633909777092, 
+581.149896677179, 589.372350437213, 595.268820788687, 598.816037056963, 
+600, 598.816037056963), .Dim = c(101L, 2L), .Dimnames = list(
+    NULL, c("x", "y")))
+
+grd <- GridTopology(cellcentre.offset = c(-600, -600), cellsize = c(1, 1), cells.dim = c(1200, 1200))
+obj <- kernel2d(pts = kern.obj, poly = circpol, h0 = 100, nx = 600, ny = 600, kernel='quartic')
+
+plot(kern.obj[, "x"], kern.obj[, "y"], xlim = c(-600, 600), ylim = c(-600, 600))
+image(obj, add = TRUE, col = terrain.colors(20))
+-------------------------------------------------------------------------------------------------------
+cleanup=function(filename="C:/mymainR.RData"){  
+library(R.oo)  
+# create a dataframe listing all personal objects
+everything=ll(envir=1)
+#get the objects that are not functions
+nonfunction=as.vector(everything[everything$data.class!="function",1])
+#nonfunction objects that do not begin with a capital letter should be deleted
+trash=nonfunction[grep('[[:lower:]]{1}',nonfunction)]
+remove(list=trash,pos=1)
+#save the R environment
+save.image(filename)
+print(paste("New, CLEAN R environment saved in",filename))
+}
+-------------------------------------------------------------------------------------------------------
+cor data <- data.frame(q1=sample(1:5, 15, rep=1), 
+          q2=sample(1:5, 15, rep=1), 
+          q3=sample(1:5, 15, rep=1), 
+          q4=sample(1:5, 15, rep=1), 
+          q5=sample(1:5, 15, rep=1), 
+          q6=sample(1:5, 15, rep=1), 
+          q7=sample(1:5, 15, rep=1), 
+          q8=sample(1:5, 15, rep=1), 
+          q9=sample(1:5, 15, rep=1), 
+          q10=sample(1:5, 15, rep=1))
+
+print(cor(data)) image(cor(data), x=1:10, y=1:10, zlim=c(-1,1)) corrs <- cor(data)
+print(corrs[2, 5:10]) # or corrs[5:10, 2], the correlation matrix is symmetric
+-------------------------------------------------------------------------------------------------------
+image() mat <- matrix(c(.13, .00004, 0, 0, 0, 
+                .04, .13, .008, 0, 0,
+                .01, .007, .16, .02, .0004,
+                .004, .025, .070, .14, .01,
+                .001, .007, .028, .028, .12), nrow=5)
+image(mat, col = rev(heat.colors(12)))
+-------------------------------------------------------------------------------------------------------
+save.image()
+-------------------------------------------------------------------------------------------------------
+m = matrix(runif(100),10,10)
+image(m)
+-------------------------------------------------------------------------------------------------------
+require(MASS)
+set.seed(1)
+dat <- data.frame(mvrnorm(100, mu = c(2,6,3), 
+                          Sigma = matrix(c(10,   2,   4,
+                                            2,   3, 0.5,
+                                            4, 0.5,   2), ncol = 3))) dij <- dist(scale(dat, center = TRUE, scale = TRUE)) clust <- hclust(dij, method = "average") ord <- order(cutree(clust, k = 3)) coph <- cophenetic(clust) layout(matrix(1:4, ncol = 2))
+image(as.matrix(dij)[ord, ord], main = "Original distances")
+image(as.matrix(coph)[ord, ord], main = "Cophenetic distances")
+image((as.matrix(coph) - as.matrix(dij))[ord, ord], 
+      main = "Cophenetic - Original")
+plot(coph ~ dij, ylab = "Cophenetic distances", xlab = "Original distances",
+     main = "Shepard Plot")
+abline(0,1, col = "red")
+box()
+layout(1)
+-------------------------------------------------------------------------------------------------------
+par(mar = rep(0, 4)) m = matrix(runif(100),10,10)
+image(m, axes = FALSE, col = grey(seq(0, 1, length = 256))) png("simpleIm.png")
+par(mar = rep(0, 4))
+image(m, axes = FALSE, col = grey(seq(0, 1, length = 256)))
+dev.off() image.default(x, y, z, ...) x y x <- seq(0, 1, length = nrow(m))
+y <- seq(0, 1, length = ncol(m))
+image(x, y, m, col = grey(seq(0, 1, length = 256))) x <- seq(0, 1, length = nrow(m) + 1)
+y <- seq(0, 1, length = ncol(m) + 1)
+image(x, y, m, col = grey(seq(0, 1, length = 256))) useRaster rasterImage image rect
+-------------------------------------------------------------------------------------------------------
+plt ?par ‘plt’ A vector of the form ‘c(x1, x2, y1, y2)’ giving the
+      coordinates of the plot region as fractions of the current
+      figure region. par(plt=c(1, 1, 1, 1)) op <- par(mar = rep(0, 4))
+plot(1:10)
+par(op) oma plt > par("plt")
+[1] 0.1173174 0.9399106 0.1457273 0.8828467
+> op <- par(mar = rep(0, 4))
+> par("plt")
+[1] 0 1 0 1
+> par(op)
+> par("plt")
+[1] 0.1173174 0.9399106 0.1457273 0.8828467 x y xaxs yaxs ?par set.seed(1)
+dat <- matrix(rnorm(100*100), ncol = 100, nrow = 100)
+
+layout(matrix(1:2, ncol = 2))
+image(dat)
+op <- par(mar = rep(0, 4))
+image(dat)
+par(op)
+layout(1)
+-------------------------------------------------------------------------------------------------------
+heatmap dat ## basic command: 66 seconds
+t0 <- system.time(heatmap(dat))
+## don't reorder rows & columns: 43 seconds
+t1 <- system.time(heatmap(dat,Rowv=NA))
+## remove most fancy stuff (from ?heatmap): 14 seconds
+t2 <- system.time( heatmap(dat, Rowv = NA, Colv = NA, scale="column",
+             main = "heatmap(*, NA, NA) ~= image(t(x))"))
+## image only: 13 seconds
+t3  <- system.time(image(dat))
+## image using raster capability in R 2.13.0: 1.2 seconds
+t4 <- system.time(image(dat,useRaster=TRUE))
+-------------------------------------------------------------------------------------------------------
+Rowv Colv NA heatmap(as.matrix(df)[order(k$cluster),],Rowv=NA,Colv=NA,scale="none",labRow=NA) image() image myHeatmap <- function(x,ord,xlab="",ylab="",main="My Heatmap",
+                      col=heat.colors(5), ...){
+    op <- par(mar=c(3,0,2,0)+0.1)
+    on.exit(par(op))
+    nc <- NCOL(x)
+    nr <- NROW(x)
+    labCol <- names(x)
+
+    x <- t(x[ord,])
+    image(1L:nc, 1L:nr, x, xlim = 0.5 + c(0, nc), ylim = 0.5 +
+        c(0, nr), axes = FALSE, xlab=xlab, ylab=ylab, main=main,
+        col=col,...)
+
+    axis(1, 1L:nc, labels = labCol, las = 2, line = -0.5, tick = 0)
+    axis(2, 1L:nr, labels = NA, las = 2, line = -0.5, tick = 0)
+}
+
+library(RColorBrewer)
+myHeatmap(df,order(k$cluster),col=brewer.pal(5,"BuGn")) RColorBrewer
+-------------------------------------------------------------------------------------------------------
+df2<-df
+df2$y<-50-df2$y #reverse oredr
+image(df2,col=heat.colors(256),yaxt="n") #avoid y axis
+axis(2, at=c(0,10,20,30,40,50), labels=c(50,40,30,20,10,0)) #draw y axis manually
+-------------------------------------------------------------------------------------------------------
+rgeos vdata <- list(x = 1:nrow(volcano), y = 1:ncol(volcano), z = volcano)
+
+## raw polygon data created using image(vdata); xy <- locator()
+
+xy <- structure(list(x = c(43.4965355534823, 41.7658494766076, 36.2591210501883, 
+25.560334393145, 13.7602020508178, 18.7949251835441, 29.179041644792, 
+40.6645037913237, 44.2832110429707, 47.272577903027, 47.5872480988224
+), y = c(30.0641086410103, 34.1278207016757, 37.6989616034726, 
+40.900674136118, 32.7732500147872, 27.4781100569505, 22.5523984682652, 
+22.7986840476995, 24.5226831037393, 29.3252519027075, 33.8815351222414
+)), .Names = c("x", "y"))
+
+## close the polygon
+coords <- cbind(xy$x, xy$y)
+coords <- rbind(coords, coords[1,])
+
+library(sp)
+
+## create a Spatial polygons object
+poly <- SpatialPolygons(list(Polygons(list(Polygon(coords, hole = FALSE)), "1")))
+
+
+## create a contour line that cuts the polygon at height 171
+cl <- contourLines(vdata, levels = 171)
+
+## for ContourLines2SLDF
+library(maptools)
+
+clines <- ContourLines2SLDF(cl) library(rgeos)
+lpi <- gIntersection(poly, clines)
+
+blpi <- gBuffer(lpi, width = 0.000001)
+
+dpi <- gDifference(poly, blpi) par(mfrow = c(2,1))
+
+image(vdata)
+plot(poly, add = TRUE)
+
+plot(SpatialPolygons(list(Polygons(list(dpi@polygons[[1]]@Polygons[[1]]), "1"))), add = TRUE, col = "lightblue")
+
+image(vdata)
+plot(poly, add = TRUE)
+cl <- contourLines(vdata, levels = 171)
+
+plot(SpatialPolygons(list(Polygons(list(dpi@polygons[[1]]@Polygons[[2]]), "2"))), add = TRUE, col = "lightgreen")
+-------------------------------------------------------------------------------------------------------
+library(gstat)
+x <- seq(1,50,length=50)
+y <- seq(1,50,length=50)
+z <- rnorm(1000)
+df <- data.frame(x=x,y=y,z=z) image(df,col=heat.colors(256), ylim = rev(range(y)))
+-------------------------------------------------------------------------------------------------------
+side <- 100
+my.zero <- matrix(sample(c(0,1), side^2, replace = TRUE), side)
+image(my.zero) prob sample side <- 100
+my.zero <- matrix(sample(c(0,1), side^2, replace = TRUE, prob = c(0.8, 2)), side)
+image(my.zero) y <- rnorm(10000, 1, 2)
+y <- matrix(ifelse(y > 0, 1, 0), ncol = 100)
+image(y, col = c("white", "black"))
+-------------------------------------------------------------------------------------------------------
+(x,y,z) akima data library(akima)
+im <- with(data,interp(x,y,z))
+with(im,image(x,y,z)) image akima::interp x y > formals(akima::interp)[c("xo","yo")]
+$xo
+seq(min(x), max(x), length = 40)
+
+$yo
+seq(min(y), max(y), length = 40) xo yo akima::interp
+-------------------------------------------------------------------------------------------------------
+?image M <- matrix(runif(100),10,10)
+M[lower.tri(M)] <- NA
+image(1:10,1:10,M) ?heatmap gplots ?heatmap.2 ggplot2 geom_tile
+-------------------------------------------------------------------------------------------------------
+image(t(m[nrow(m):1,] ), axes=FALSE, zlim=c(-4,4), col=rainbow(21))
+-------------------------------------------------------------------------------------------------------
+fg fg %2 save.image()
+-------------------------------------------------------------------------------------------------------
+image() ?image heatmap image() image(volcano,col = terrain.colors(30))
+heatmap(volcano,col = terrain.colors(30)) read.table()
+-------------------------------------------------------------------------------------------------------
+library(Cairo)
+library(png)
+library(ggplot2)
+
+Cairo(file='/dev/null')
+
+qplot(rnorm(5000)) # your plot
+
+# hidden stuff in Cairo
+i = Cairo:::.image(dev.cur())
+r = Cairo:::.ptr.to.raw(i$ref, 0, i$width * i$height * 4)
+dim(r) = c(4, i$width, i$height) # RGBA planes
+# have to swap the red & blue components for some reason
+r[c(1,3),,] = r[c(3,1),,]
+# now use the png library
+p = writePNG(r, raw()) # raw PNG bytes
+-------------------------------------------------------------------------------------------------------
+raster SpatialGridDataFrame readGDAL raster() plot3D library(rgdal)
+library(rasterVis)
+
+r <- raster(system.file("pictures/cea.tif", package = "rgdal")[1])
+plot3D(r) library(rgdal)
+library(raster)
+library(rgl)
+
+## read the file with raster 
+
+r <- raster(system.file("external/test.ag", package="sp")[1])
+
+## just use simple persp plot
+persp(r)
+
+## convert to sp's SpatialGridDataFrame (or use readGDAL directly)
+## (for very large rasters this could be prohibitive in terms of memory)
+sgdf <- as(r, "SpatialGridDataFrame")
+
+## convert to R's image() format, a list with x,y vector and z matrix
+
+x <- as.image.SpatialGridDataFrame(sgdf)
+
+## plot with rgl, ugly but see ?surface3d for colour options etc.
+surface3d(x$x, x$y, x$z)
+-------------------------------------------------------------------------------------------------------
+image z = c(5,4,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,4,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+2,0,0,0,2,0,0,0,0,0,
+1,0,0,0,0,2,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0)
+
+z = matrix(z, ncol=10)
+colnames(z) = c("a","b","c","d","e","f","g","h","i", "j")
+rownames(z) = c("a","b","c","d","e","f","g","h","i", "j")
+
+##To get the correct image plot rotation
+##We need to flip the plot
+image(z[,ncol(z):1], axes=FALSE)
+
+##Add in the y-axis labels. Similar idea for x-axis.
+axis(2, at = seq(0, 1, length=length(colnames(z))), labels=colnames(z)) heatmap heatmap(t(z)[ncol(z):1,], Rowv=NA,
+               Colv=NA, col = heat.colors(256))
+-------------------------------------------------------------------------------------------------------
+?rasterImage image useRaster = TRUE my.func <- function(x, y) x %*% t(y)
+pdf(file="image.pdf")
+image(my.func(seq(-10,10,,500), seq(-5,15,,500)), col=heat.colors(100))
+dev.off()
+
+pdf(file="rasterImage.pdf")
+image(my.func(seq(-10,10,,500), seq(-5,15,,500)), col=heat.colors(100), useRaster = TRUE)
+dev.off()
+
+file.info("image.pdf")$size
+
+file.info("rasterImage.pdf")$size
+-------------------------------------------------------------------------------------------------------
+heatmap() image() R> set.seed(42)
+R> X <- matrix(rnorm(100*20), nrow=100)
+R> XC <- cor(X)
+R> image(XC)        # color range could do with improvements here chart.Correlation()
+-------------------------------------------------------------------------------------------------------
+par axes = FALSE png("~/Desktop/so/heatmap.png",w=400,h=400)
+par(mar = c(0,0,0,0))
+require(grDevices) # for colours
+x <- y <- seq(-4*pi, 4*pi, len=27)
+r <- sqrt(outer(x^2, y^2, "+"))
+image(z = z <- cos(r^2)*exp(-r/6), col=gray((0:32)/32),axes = FALSE)
+dev.off() ?image
+-------------------------------------------------------------------------------------------------------
+load("....Rdata") dat <- read.csv("new_data.csv", ...) save.image("....Rdata")
+-------------------------------------------------------------------------------------------------------
+x = 1:ncol(pval)
+y = 1:nrow(pval)
+
+# Colored backgrounds
+dev.new(width=4, height=4)
+image(x, y, t(as.matrix(pval)),
+  col = c('red', 'yellow', 'red'),
+  breaks = c(0, 0.3, 0.7, 1),
+  xaxt='n', 
+  yaxt='n', 
+  ylim=c(max(y)+0.5, min(y)-0.5), 
+  xlab='', 
+  ylab='')
+centers = expand.grid(y, x)
+text(centers[,2], centers[,1], unlist(gen)) # Colored text
+dev.new(width=4, height=4)
+image(x,y, matrix(0, length(x), length(y)),
+  col='white',
+  xaxt='n', 
+  yaxt='n', 
+  ylim=c(max(y)+0.5, min(y)-0.5), 
+  xlab='', 
+  ylab='')
+pvals = unlist(pval)
+cols = rep('red', length(pvals))
+cols[pvals>0.3 & pvals<=0.7] = 'yellow'
+text(centers[,2], centers[,1], unlist(gen), col=cols)
+grid(length(x),length(y))
+-------------------------------------------------------------------------------------------------------
+fields Tps require(fields)
+
+dev.new(width=6, height=6)
+set.panel(2,2)
+
+# Plot x,y
+plot(mat1)
+
+# Model z = f(x,y) with splines
+fit = Tps(mat1, z)
+pred = predict.surface(fit)
+
+# Plot fit
+image(pred)
+surface(pred)
+
+# Plot standard error of fit 
+xg = make.surface.grid(list(pred$x, pred$y))
+pred.se = predict.se(fit, xg)
+
+surface(as.surface(xg, pred.se))
+-------------------------------------------------------------------------------------------------------
+biglm bigmemory ff speedglm image() segue foreach glmnet glmnet tempdir
+-------------------------------------------------------------------------------------------------------
+t() a <- matrix(1:16, 4, 4)
+image(t(a))
+image(t(a[4:1,]))
+-------------------------------------------------------------------------------------------------------
+# Simulate some data
+set.seed(12345)
+n.var = 400
+n.obs = 200
+data  = matrix(rnorm(n.var*n.obs), nrow=n.obs)
+
+# Summarize data
+breaks = seq(min(data), max(data), length.out=51)
+histdata = apply(data, 2, function(x) hist(x, plot=F, breaks=breaks)$counts)
+
+# Plot
+dev.new(width=4, height=4)
+image(1:n.var, breaks, t(histdata), xlab='Variable Index', ylab='Histogram Bin') hclust heatmap
+-------------------------------------------------------------------------------------------------------
+pupilplot <- function (wf, cp = NULL, col = topo.colors(256), addContours = FALSE, 
+cscale = TRUE, ...) 
+ {
+     if (cscale) {
+         mar.orig <- (par.orig <- par(c("mar", "las", "mfrow")))$mar
+        on.exit(par(par.orig))
+        w <- (3 + mar.orig[2]) * par("csi") * 2.54
+        layout(matrix(c(2, 1), ncol = 2), widths = c(1, lcm(w)))
+        par(las = 1)
+        mar <- mar.orig
+        mar[4] <- mar[2]
+        mar[2] <- 1
+        par(mar = mar) 
+    thelist <- list(...)  
+    findz <- which(names(thelist) == 'zlim')  
+    if (length(findz) > 0 ) {   
+        zlim <- thelist$zlim  
+        }else{  
+                zlim <- range(wf, finite = TRUE) #the original line  
+        } 
+ # end of my hack  
+        levels <- seq(zlim[1], zlim[2], length = length(col))
+        plot.new()
+        plot.window(xlim = c(0, 1), ylim = range(levels), xaxs = "i", yaxs = "i")
+        rect(0, levels[-length(levels)], 1, levels[-1], col = col,  density = NA)
+        axis(4)
+         box()
+        mar <- mar.orig
+        mar[4] <- 0
+        par(mar = mar)
+    }
+    if (is.null(cp)) {
+        axis1 <- 1:nrow(wf)
+        axis2 <- 1:ncol(wf)
+    }
+    else {
+         axis1 <- ((1:nrow(wf)) - cp$xc)/cp$rx
+        axis2 <- ((1:ncol(wf)) - cp$yc)/cp$ry
+    }
+    image(axis1, axis2, wf, col = col, asp = 1, xlab = "X", ylab = "Y",  ...)
+     if (addContours) 
+        contour(axis1, axis2, wf, add = TRUE)
+}
+-------------------------------------------------------------------------------------------------------
+image findMethods("plot")    #  prints out a long list of methods
+   ......
+ $`pixmap#ANY
+   ......
+      image(x = X, y = Y, z = t(x@index[nrow(x@index):1, , 
+        drop = FALSE]), col = x@col, xlab = xlab, ylab = ylab, 
+        axes = axes, asp = asp, ...) Save as.. capabilities()
+-------------------------------------------------------------------------------------------------------
+image d <- as.matrix(read.table("http://dl.dropbox.com/u/2505196/postH.dat"))    
+image(x=1:35, y=1:35, as.matrix(d), breaks=c(min(d), -5.45, 5.45, max(d)), 
+      col=c("grey", "white", "black")) d[upper.tri(d)] <- NA na.rm=TRUE min max
+-------------------------------------------------------------------------------------------------------
+attach("al.rda")
+ls("file:al.rda") search()
+ls(pos=2)
+-------------------------------------------------------------------------------------------------------
+m2 <- m
+ m2[] <- c("yellow", "blue","green")[match(m, c("A","B","C"))]
+ m2
+#------------
+ [,1]     [,2]   
+[1,] "yellow" "blue" 
+[2,] "yellow" "green"
+[3,] "blue"   "green"
+[4,] "blue"   "blue" 
+#------------
+plot(row(m2), col(m2), col=m2, pch=18, cex=4) image m2[] <- match(m, c("A","B","C"))
+mode(m2) <- "numeric"
+m2
+image(1:nrow(m2), 1:ncol(m2), m2, col=c("yellow", "blue","green"))
+-------------------------------------------------------------------------------------------------------
+system("Rscript -e 'Sweave(\"test.Rnw\");save.image(file=\"mySweaveEnv.Rda\")'")
+-------------------------------------------------------------------------------------------------------
+# Sample data
+n <- 230
+m <- 100
+dates <- seq.Date( from=Sys.Date(), length=n, by="day" )
+flow <- rnorm(n)
+names(flow) <- as.character(dates)
+temperatures <- array( rlnorm(n*m*m), dim=c(n,m,m) )
+dimnames( temperatures ) <- list(
+  time = as.character( dates ),
+  longitude = NULL,
+  latitude = NULL
+) u apply correlations <- apply( 
+  temperatures, 
+  2:3, 
+  function (u) cor(u, flow) 
+)
+image(correlations)
+-------------------------------------------------------------------------------------------------------
+my.colors = colorRampPalette(c("light green", "yellow", "orange", "red"))
+z=matrix(1:100,nrow=1)
+x=1
+y=seq(3,2345,len=100) # supposing 3 and 2345 are the range of your data
+image(x,y,z,col=my.colors(100),axes=FALSE,xlab="",ylab="")
+axis(2)
+-------------------------------------------------------------------------------------------------------
+lattice raster rasterVis vectorplot() spplot() levelplot() base graphics plot() "RasterLayer" levelplot() require(raster)
+require(rasterVis)
+
+## Create a raster and a SpatialPoints object.
+r <- raster()
+r[] <- 1:ncell(r)
+SP <- spsample(Spatial(bbox=bbox(r)), 10, type="random")
+
+## Then plot them    
+levelplot(r, col.regions = rev(terrain.colors(255)), cuts=254, margin=FALSE) +
+layer(sp.points(SP, col = "red"))
+
+## Or use this, which produces the same plot.
+# spplot(r, scales = list(draw=TRUE), 
+#        col.regions = rev(terrain.colors(255)), cuts=254) +
+# layer(sp.points(SP, col = "red")) SpatialPoints ## A function to test whether points fall within a raster's extent
+inExtent <- function(SP_obj, r_obj) {
+    crds <- SP_obj@coord
+    ext  <- extent(r_obj)
+    crds[,1] >= ext@xmin  &  crds[,1] <= ext@xmax &
+    crds[,2] >= ext@ymin  &  crds[,2] <= ext@ymax
+}
+## Remove any points in SP that don't fall within the extent of the raster 'r'
+SP <- SP[inExtent(SP, r), ] plot(r) plot raster rasterImage() image() useRaster plot() useRaster=TRUE ## Chain of functions dispatched by `plot(r, useRaster=TRUE)`
+getMethod("plot", c("RasterLayer", "missing"))
+raster:::.plotraster2
+raster:::.rasterImagePlot
+
+## Call within .rasterImagePlot() that sets up the plotting region
+plot(NA, NA, xlim = e[1:2], ylim = e[3:4], type = "n",
+           , xaxs = "i", yaxs = "i", asp = asp, ...)
+
+## Example showing why the above call produces the 'wrong' y-axis limits
+plot(c(-180,180), c(-90,90), 
+     xlim = c(-180,180), ylim = c(-90,90), pch = 16,
+     asp = 1,
+     main = "plot(r, useRaster=TRUE) -> \nincorrect y-axis limits") useRaster=FALSE ## Chain of functions dispatched by `plot(r, useRaster=FALSE)`
+getMethod("plot", c("RasterLayer", "missing"))
+raster:::.plotraster2
+raster:::.imageplot
+image.default
+
+## Call within image.default() that sets up the plotting region
+plot(NA, NA, xlim = xlim, ylim = ylim, type = "n", xaxs = xaxs, 
+     yaxs = yaxs, xlab = xlab, ylab = ylab, ...)
+
+## Example showing that the above call produces the wrong aspect ratio
+plot(c(-180,180), c(-90,90), 
+     xlim = c(-180,180), ylim = c(-90,90), pch = 16,
+     main = "plot(r,useRaster=FALSE) -> \nincorrect aspect ratio")
+-------------------------------------------------------------------------------------------------------
+plot() Raster* image(temp_var, axes=FALSE, xlab="", ylab="") layout(matrix(c(1,1,1,1,1,2,2), 7, 1))
+par(mar=c(0,0,0,0))
+image(temp_var, axes=FALSE, xlab="", ylab="")
+plot(c(0,1), c(0,1), type="n", xlab="", ylab="", axes=FALSE)
+legend(0.1,0.9, legend=c(1:5), fill=rainbow(5), horiz=TRUE)
+-------------------------------------------------------------------------------------------------------
+Unable to allocate bitmap png("a.png", width = 3000, height = 3000)
+image(matrix(rnorm(3000*3000), 3000), useRaster = TRUE)
+dev.off()
+-------------------------------------------------------------------------------------------------------
+outer # Allowable pairs form a graph
+p <- outer(
+  1:17, 1:17, 
+  function(u,v) round(sqrt(u + v),6) == floor(sqrt(u+v)) ) 
+)
+rownames(p) <- colnames(p) <- 1:17
+image(p, col=c(0,1)) 
+
+# Read the solution on the plot
+library(igraph)
+g <- graph.adjacency(p, "undirected")
+V(g)$label <- V(g)$name 
+plot(g, layout=layout.fruchterman.reingold)
+-------------------------------------------------------------------------------------------------------
+image() col image(as.matrix(myVar))
+-------------------------------------------------------------------------------------------------------
+years <- seq(1975,1989,2)
+db <- data.frame(Dallas=c( 25, 28, 27, 29, 31, 33, 35, 37),
+ Houston=c( 33, 38, 43, 48, 53, 58, 63, 68),
+ Lubbock=c( 28, 29, 31, 33, 35, 37, 39, 41),
+ Austin= c(22, 24, 26, 28, 30, 32, 34, 36),
+ San_Antonio= c(31, 32, 33, 34, 35, 36, 37, 38)
+)
+db <- as.matrix(db)
+
+#plot
+layout(matrix(c(1,2), nrow=1, ncol=2), widths=c(4,1), heights=c(4))
+layout.show(2)
+par(mar=c(5,5,1,1))
+image(x=years, z=db, yaxt="n")
+axis(2, at=seq(0,1,,dim(db)[2]), labels=colnames(db))
+#image.scale from http://menugget.blogspot.de/2011/08/adding-scale-to-image-plot.html
+par(mar=c(5,0,1,5))
+image.scale(db, horiz=FALSE, yaxt="n", xaxt="n", xlab="", ylab="")
+axis(4)
+mtext("temp", side=4, line=2)
+box()
+-------------------------------------------------------------------------------------------------------
+rasterImage tmp <- as.raster(  rev(c('#00ff00','#0000ff')[df$taxid]) ) 
+par(xpd=NA)
+rasterImage( tmp, 3, 0.5, 3.1, 4.5, interpolate=FALSE) x= x= add=TRUE z2 <- cbind(z, NA, NA)
+image(x=c(1:3,3.05, 3.1), y=1:nr, z=t(z2), axes=FALSE)
+
+z3 <- cbind(NA,NA,NA, as.numeric(df$taxid))
+image(x=c(1:3,3.05, 3.1), y=1:nr, z=t(z3), add=TRUE, col=c('#00ff00','#0000ff'))
+-------------------------------------------------------------------------------------------------------
+image add=TRUE A <- t(volcano)[ncol(volcano):1,]
+B <- (A>160) * rnorm(prod(dim(A)) )
+
+B[ A < 120 ] <- NA  # show some complete transparency
+
+image(A, col=grey( seq(0,1,length.out=12) ) )  # initial plot
+hc <- sub('FF$','77',heat.colors(12)) # convert heat colors to have an alpha
+image(B, add=TRUE, col=hc)  # overlay the new plot
+-------------------------------------------------------------------------------------------------------
+set.seed(1)
+n=50
+x <- sample(seq(100), n)
+y <- sample(seq(100), n)
+z <- runif(n)
+cbind(x,y,z)
+
+library(Matrix)
+s.mat <- sparseMatrix(i=x, j=y, x=z)
+dim(s.mat)
+image(s.mat)
+
+#convert to a class matrix if needed
+mat <- as.matrix(s.mat)
+mat[which(mat==0)] <- NaN
+-------------------------------------------------------------------------------------------------------
+m = Matrix(1:9, 3)
+library(latticeExtra)
+image(m) + layer(panel.levelplot(1:2,1:2,1:2,1:2, col.regions="red")) levelplot(as.matrix(m), col.regions=c(rep("red", 6), "blue", "green", "yellow"), at=1:9) image(m, col.regions = c(rep("red", 6), "blue", "green", "yellow"), at=1:9)
+-------------------------------------------------------------------------------------------------------
+set.seed(1)
+z <- matrix(rnorm(100), 10,10)
+image(z)
+
+z2 <- z*NaN
+z2[order(z)[1:5]] <- 1
+image(z2, add=TRUE, col=4)
+-------------------------------------------------------------------------------------------------------
+?image dat <- data.matrix(data.frame(Germany = c(0,1,0), Italy = c(1,0,0)))
+rownames(dat) <- c("Rain","Hail","Sunny") image(z = dat, col = c("white","red")) op <- par(mar = c(5,5,4,2) + 0.1)
+image(z = dat, col = c("white","red"), axes = FALSE)
+axis(side = 1, labels = rownames(dat), 
+     at = seq(0, by = 0.5, length.out = nrow(dat)))
+axis(side = 2, labels = colnames(dat), at = c(0,1), las = 1)
+box()
+par(op) dat image(z = t(dat), ....) axis() side 2 1 las = 1 op <- par(mar = c(5,5,4,2) + 0.1)
+image(z = t(dat2), col = c("white","red"), axes = FALSE)
+axis(side = 2, labels = rownames(dat2), 
+     at = seq(0, by = 0.5, length.out = nrow(dat2)), las = 1)
+axis(side = 1, labels = colnames(dat2), at = c(0,1))
+box()
+par(op)
+-------------------------------------------------------------------------------------------------------
+set.seed(1)
+x <- matrix(rnorm(20), nrow=5, ncol=4)
+y <- matrix(rnorm(15), nrow=5, ncol=3)
+COR <- cor(x,y)
+COR
+image(x=seq(dim(x)[2]), y=seq(dim(y)[2]), z=COR, xlab="x column", ylab="y column")
+text(expand.grid(x=seq(dim(x)[2]), y=seq(dim(y)[2])), labels=round(c(COR),2))
+-------------------------------------------------------------------------------------------------------
+par(mar=c(5,4.5,4,7))
+ image(sample, col=rainbow(25), axes=F)  #redblue() doesn't work on my computer.
+ axis(2)
+ axis(1, at=seq(0,0.8,0.2), labels=rownames(sample))
+ image.plot(sample, legend.only=T) sample = cor(matrix(rnorm(400), nrow=20))
+ image(cor(matrix(rnorm(400), nrow=20)), axes=F)
+ mtext(text=c(paste("country",1:21)), side=2, line=0.3, at=seq(0,1,0.05), las=1, cex=0.8)
+ mtext(text=c(paste("country",1:21)), side=1, line=0.3, at=seq(0,1,0.05), las=2, cex=0.8)
+ image.plot(sample, legend.only=T)
+-------------------------------------------------------------------------------------------------------
+image() axes = FALSE set.seed(42)
+X <- as.POSIXct(1:100, origin = "1970-1-1")
+Z <- matrix(rnorm(100*100), 100)
+image(x = X, z = Z, axes = FALSE)
+axis(side = 2)
+axis.POSIXct(side = 1, x = X)
+box() Axis() image(x = X, z = Z, axes = FALSE)
+axis(side = 2)
+Axis(x = X, side = 1)
+box() Image <- function(x = seq(0, 1, length.out = nrow(z)),
+                  y = seq(0, 1, length.out = ncol(z)),
+                  z, ...) {
+    image(x = X, z = Z, ..., axes = FALSE)
+    Axis(x = y, side = 2, ...)
+    Axis(x = X, side = 1, ...)
+    box()
+} Axis() x y image() Image() image() x image.default() x image.default() ?Startup
+-------------------------------------------------------------------------------------------------------
+xmat.new <- xmat
+xmat.new[!((row(xmat) + col(xmat) <= 15) & xmat==0)] <- NA
+image(xmat.new,col="blue") add=TRUE xmat.new <- xmat
+xmat.new[((row(xmat) + col(xmat) <= 15) & xmat==0)] <- NA
+image(xmat.new,add=TRUE)
+-------------------------------------------------------------------------------------------------------
+PolarImageInterpolate <- function(x, y, z, outer.radius = 1, 
+            breaks, col, nlevels = 20, contours = TRUE, legend = TRUE, 
+            axes = TRUE, circle.rads = pretty(c(0,outer.radius))){
+
+        minitics <- seq(-outer.radius, outer.radius, length.out = 1000)
+        # interpolate the data
+        Interp <- akima:::interp(x = x, y = y, z = z, 
+                extrap = TRUE, 
+                xo = minitics, 
+                yo = minitics, 
+                linear = FALSE)
+        Mat <- Interp[[3]]
+
+        # mark cells outside circle as NA
+        markNA <- matrix(minitics, ncol = 1000, nrow = 1000) 
+        Mat[!sqrt(markNA ^ 2 + t(markNA) ^ 2) < outer.radius] <- NA 
+
+        # sort out colors and breaks:
+        if (!missing(breaks) & !missing(col)){
+            if (length(breaks) - length(col) != 1){
+                stop("breaks must be 1 element longer than cols")
+            }
+        }
+        if (missing(breaks) & !missing(col)){
+            breaks <- seq(min(Mat,na.rm = TRUE), max(Mat, na.rm = TRUE), length = length(col) + 1)
+            nlevels <- length(breaks) - 1
+        }
+        if (missing(col) & !missing(breaks)){
+            col <- rev(heat.colors(length(breaks) - 1))
+            nlevels <- length(breaks) - 1
+        }
+        if (missing(breaks) & missing(col)){
+            breaks <- seq(min(Mat,na.rm = TRUE), max(Mat, na.rm = TRUE), length = nlevels + 1)
+            col <- rev(heat.colors(nlevels))
+        }
+
+        # if legend desired, it goes on the right and some space is needed
+        if (legend) {
+            par(mai = c(1,1,1.5,1.5))
+        }
+
+        # begin plot
+        image(x = minitics, y = minitics, t(Mat), useRaster = TRUE, asp = 1, 
+            axes = FALSE, xlab = "", ylab = "", col = col, breaks = breaks)
+
+        # add contours if desired
+        if (contours){
+            CL <- contourLines(x = minitics, y = minitics, t(Mat), levels = breaks)
+            A <- lapply(CL, function(xy){
+                        lines(xy$x, xy$y, col = gray(.2), lwd = .5)
+                    })
+        }
+
+        # add radial axes if desired
+        if (axes){ 
+            # internals for axis markup
+            RMat <- function(radians){
+                matrix(c(cos(radians), sin(radians), -sin(radians), cos(radians)), ncol = 2)
+            }    
+
+            circle <- function(x, y, rad = 1, nvert = 500){
+                rads <- seq(0,2*pi,length.out = nvert)
+                xcoords <- cos(rads) * rad + x
+                ycoords <- sin(rads) * rad + y
+                cbind(xcoords, ycoords)
+            }
+
+            # draw circles
+            if (missing(circle.rads)){
+                circle.rads <- pretty(c(0,outer.radius))
+            }
+
+            for (i in circle.rads){
+                lines(circle(0, 0, i), col = "#66666650")
+            }
+
+            # put on radial spoke axes:
+            axis.rads <- c(0, pi / 6, pi / 3, pi / 2, 2 * pi / 3, 5 * pi / 6)
+            r.labs <- c(90, 60, 30, 0, 330, 300)
+            l.labs <- c(270, 240, 210, 180, 150, 120)
+
+            for (i in 1:length(axis.rads)){ 
+                endpoints <- zapsmall(c(RMat(axis.rads[i]) %*% matrix(c(1, 0, -1, 0) * outer.radius,ncol = 2)))
+                segments(endpoints[1], endpoints[2], endpoints[3], endpoints[4], col = "#66666650")
+                endpoints <- c(RMat(axis.rads[i]) %*% matrix(c(1.1, 0, -1.1, 0) * outer.radius, ncol = 2))
+                lab1 <- bquote(.(r.labs[i]) * degree)
+                lab2 <- bquote(.(l.labs[i]) * degree)
+                text(endpoints[1], endpoints[2], lab1, xpd = TRUE)
+                text(endpoints[3], endpoints[4], lab2, xpd = TRUE)
+            }
+            axis(2, pos = -1.2 * outer.radius, at = sort(union(circle.rads,-circle.rads)), labels = NA)
+            text( -1.21 * outer.radius, sort(union(circle.rads, -circle.rads)),sort(union(circle.rads, -circle.rads)), xpd = TRUE, pos = 2)
+        }
+
+        # add legend if desired
+        # this could be sloppy if there are lots of breaks, and that's why it's optional.
+        # another option would be to use fields:::image.plot(), using only the legend. 
+        # There's an example for how to do so in its documentation
+        if (legend){
+            ylevs <- seq(-outer.radius, outer.radius, length = nlevels + 1)
+            rect(1.2 * outer.radius, ylevs[1:(length(ylevs) - 1)], 1.3 * outer.radius, ylevs[2:length(ylevs)], col = col, border = NA, xpd = TRUE)
+            rect(1.2 * outer.radius, min(ylevs), 1.3 * outer.radius, max(ylevs), border = "#66666650", xpd = TRUE)
+            text(1.3 * outer.radius, ylevs,round(breaks, 1), pos = 4, xpd = TRUE)
+        }
+    }
+
+    # Example
+    set.seed(10)
+    x <- rnorm(20)
+    y <- rnorm(20)
+    z <- rnorm(20)
+    PolarImageInterpolate(x,y,z, breaks = seq(-2,8,by = 1)) image() # arguments:
+
+    # Mat, a matrix of z values as follows:
+    # leftmost edge of first column = 0 degrees, rightmost edge of last column = 360 degrees
+    # columns are distributed in cells equally over the range 0 to 360 degrees, like a grid prior to transform
+    # first row is innermost circle, last row is outermost circle
+
+    # outer.radius, By default everything scaled to unit circle 
+    # ppa: points per cell per arc. If your matrix is little, make it larger for a nice curve
+    # cols: color vector. default = rev(heat.colors(length(breaks)-1))
+    # breaks: manual breaks for colors. defaults to seq(min(Mat),max(Mat),length=nbreaks)
+    # nbreaks: how many color levels are desired?
+    # axes: should circular and radial axes be drawn? radial axes are drawn at 30 degree intervals only- this could be made more flexible.
+    # circle.rads: at which radii should circles be drawn? defaults to pretty(((0:ncol(Mat)) / ncol(Mat)) * outer.radius)
+
+    # TODO: add color strip legend.
+
+    PolarImagePlot <- function(Mat, outer.radius = 1, ppa = 5, cols, breaks, nbreaks = 51, axes = TRUE, circle.rads){
+
+        # the image prep
+        Mat      <- Mat[, ncol(Mat):1]
+        radii    <- ((0:ncol(Mat)) / ncol(Mat)) * outer.radius
+
+        # 5 points per arc will usually do
+        Npts     <- ppa
+        # all the angles for which a vertex is needed
+        radians  <- 2 * pi * (0:(nrow(Mat) * Npts)) / (nrow(Mat) * Npts) + pi / 2
+        # matrix where each row is the arc corresponding to a cell
+        rad.mat  <- matrix(radians[-length(radians)], ncol = Npts, byrow = TRUE)[1:nrow(Mat), ]
+        rad.mat  <- cbind(rad.mat, rad.mat[c(2:nrow(rad.mat), 1), 1])
+
+        # the x and y coords assuming radius of 1
+        y0 <- sin(rad.mat)
+        x0 <- cos(rad.mat)
+
+        # dimension markers
+        nc <- ncol(x0)
+        nr <- nrow(x0)
+        nl <- length(radii)
+
+        # make a copy for each radii, redimension in sick ways
+        x1 <- aperm( x0 %o% radii, c(1, 3, 2))
+        # the same, but coming back the other direction to close the polygon
+        x2 <- x1[, , nc:1]
+        #now stick together
+        x.array <- abind:::abind(x1[, 1:(nl - 1), ], x2[, 2:nl, ], matrix(NA, ncol = (nl - 1), nrow = nr), along = 3)
+        # final product, xcoords, is a single vector, in order, 
+        # where all the x coordinates for a cell are arranged
+        # clockwise. cells are separated by NAs- allows a single call to polygon()
+        xcoords <- aperm(x.array, c(3, 1, 2))
+        dim(xcoords) <- c(NULL)
+        # repeat for y coordinates
+        y1 <- aperm( y0 %o% radii,c(1, 3, 2))
+        y2 <- y1[, , nc:1]
+        y.array <- abind:::abind(y1[, 1:(length(radii) - 1), ], y2[, 2:length(radii), ], matrix(NA, ncol = (length(radii) - 1), nrow = nr), along = 3)
+        ycoords <- aperm(y.array, c(3, 1, 2))
+        dim(ycoords) <- c(NULL)
+
+        # sort out colors and breaks:
+        if (!missing(breaks) & !missing(cols)){
+            if (length(breaks) - length(cols) != 1){
+                stop("breaks must be 1 element longer than cols")
+            }
+        }
+        if (missing(breaks) & !missing(cols)){
+            breaks <- seq(min(Mat,na.rm = TRUE), max(Mat, na.rm = TRUE), length = length(cols) + 1)
+        }
+        if (missing(cols) & !missing(breaks)){
+            cols <- rev(heat.colors(length(breaks) - 1))
+        }
+        if (missing(breaks) & missing(cols)){
+            breaks <- seq(min(Mat,na.rm = TRUE), max(Mat, na.rm = TRUE), length = nbreaks)
+            cols <- rev(heat.colors(length(breaks) - 1))
+        }
+
+        # get a color for each cell. Ugly, but it gets them in the right order
+        cell.cols <- as.character(cut(as.vector(Mat[nrow(Mat):1,ncol(Mat):1]), breaks = breaks, labels = cols))
+
+        # start empty plot
+        plot(NULL, type = "n", ylim = c(-1, 1) * outer.radius, xlim = c(-1, 1) * outer.radius, asp = 1, axes = FALSE, xlab = "", ylab = "")
+        # draw polygons with no borders:
+        polygon(xcoords, ycoords, col = cell.cols, border = NA)
+
+        if (axes){
+
+            # a couple internals for axis markup.
+
+            RMat <- function(radians){
+                matrix(c(cos(radians), sin(radians), -sin(radians), cos(radians)), ncol = 2)
+            }
+
+            circle <- function(x, y, rad = 1, nvert = 500){
+                rads <- seq(0,2*pi,length.out = nvert)
+                xcoords <- cos(rads) * rad + x
+                ycoords <- sin(rads) * rad + y
+                cbind(xcoords, ycoords)
+            }
+            # draw circles
+            if (missing(circle.rads)){
+                circle.rads <- pretty(radii)
+            }
+            for (i in circle.rads){
+                lines(circle(0, 0, i), col = "#66666650")
+            }
+
+            # put on radial spoke axes:
+            axis.rads <- c(0, pi / 6, pi / 3, pi / 2, 2 * pi / 3, 5 * pi / 6)
+            r.labs <- c(90, 60, 30, 0, 330, 300)
+            l.labs <- c(270, 240, 210, 180, 150, 120)
+
+            for (i in 1:length(axis.rads)){ 
+                endpoints <- zapsmall(c(RMat(axis.rads[i]) %*% matrix(c(1, 0, -1, 0) * outer.radius,ncol = 2)))
+                segments(endpoints[1], endpoints[2], endpoints[3], endpoints[4], col = "#66666650")
+                endpoints <- c(RMat(axis.rads[i]) %*% matrix(c(1.1, 0, -1.1, 0) * outer.radius, ncol = 2))
+                lab1 <- bquote(.(r.labs[i]) * degree)
+                lab2 <- bquote(.(l.labs[i]) * degree)
+                text(endpoints[1], endpoints[2], lab1, xpd = TRUE)
+                text(endpoints[3], endpoints[4], lab2, xpd = TRUE)
+            }
+            axis(2, pos = -1.2 * outer.radius, at = sort(union(circle.rads,-circle.rads)))
+        }
+        invisible(list(breaks = breaks, col = cols))
+    } image() set.seed(1)
+    x <- runif(20, min = 0, max = 360)
+    y <- runif(20, min = 0, max = 40)
+    z <- rnorm(20)
+
+    Interp <- akima:::interp(x = x, y = y, z = z, 
+            extrap = TRUE, 
+            xo = seq(0, 360, length.out = 300), 
+            yo = seq(0, 40, length.out = 100), 
+            linear = FALSE)
+    Mat <- Interp[[3]]
+
+    PolarImagePlot(Mat)
+-------------------------------------------------------------------------------------------------------
+trip tripGrid SpatialGridDataFrame sp rgdal speedfilter sp tripGrid pixellate.psp trip ?trip library(trip)
+d <- data.frame(x = 1:10, y = rnorm(10), tms = Sys.time() + 1:10, id = gl(1, 5))
+coordinates(d) <- ~x+y
+tr <- trip(d, c("tms", "id"))
+g <- tripGrid(tr)
+
+pt <- coordinates(g)[which.max(g$z), ]
+image(g, col = c("transparent", heat.colors(16)))
+lines(tr, col = "black")
+points(pt[1], pt[2], pch = "+", cex = 2)
+-------------------------------------------------------------------------------------------------------
+curve2<-data.frame(x=c(4,5,5,6,6,7),
+                    y=c(2,2,1,1,2,3))
+ fillin <- function(ax, ay, bx, by, scaling= 10, steps= 100) floor(cbind(seq(from = ax, to = bx, len = steps), seq(from = ay, to = by, len = steps)) * scaling)
+ Bmat <- matrix(0, 100, 100)
+ for (i in 2:nrow(curve2)){
+ Bmat[fillin (curve2[i-1,1], curve2[i-1,2], curve2[i,1], curve2[i,2])] =1
+ }
+ Bmat.orig = Bmat
+
+ Bmat = Bmat.orig
+ #construct utility function based on 
+ #manhattan distances to closest point?
+ shift = function(mat, offset){
+ mat0 = array(0, dim = dim(mat)+2)
+ mat0[1:nrow(mat) +1+ offset[1] , 1:ncol(mat) + 1+offset[2]] = mat
+ return(mat0[1:nrow(mat) + 1, 1:ncol(mat) + 1])
+ }
+
+ for (i in 1:100){
+ Bm = (Bmat != 0)
+ Btmp1 = shift(Bm, c(1,0))
+ Btmp2 = shift(Bm, c(-1,0))
+ Btmp3 = shift(Bm, c(0,1))
+ Btmp4 = shift(Bm, c(0,-1))
+
+ Bmat = Bmat + pmax(Bm ,Btmp1, Btmp2, Btmp3, Btmp4)/i
+ }
+
+ Bmat2 = replace(Bmat, Bmat == max(Bmat), max(Bmat) + 10)
+
+ #construct and compare rasterised versions
+ getcurve = function(trans = c(0,1),  curve=data.frame(x=c(1,1,2,2,3) ,
+                    y=c(9,6,6,3,3) ), Bmat = Bmat2){
+ Amat = array(0, dim = dim(Bmat))
+ curve[,1] = curve[,1] + trans[1]
+ curve[,2] = curve[,2] * trans[2]
+ for (i in 2:nrow(curve)){
+ fillin (curve[i-1,1], curve[i-1,2], curve[i,1], curve[i,2]) -> ind
+ if (min(ind) < 1 || max(ind) > nrow(Bmat)) return( array(-1, dim= dim(Bmat)))
+ Amat[ind] =1
+ }
+ Amat = (Amat - mean(Amat))/sd(as.vector(Amat))
+ Amat
+ }
+ compcurve = function(trans = c(0,1), curve=data.frame(x=c(1,1,2,2,3) ,
+                    y=c(9,6,6,3,3) ) , Bmat = Bmat2){
+ Amat = getcurve(trans, curve, Bmat)
+ -sum(Amat * Bmat)
+ }
+ #SANN seems to work for this, but is slow. Beware of finite differencing
+ # - criterion is non-smooth! 
+ optim(c(0,1), compcurve, method = "SANN", Bmat = Bmat2) -> output
+ image(Bmat)
+ contour(getcurve(output$par), add = T)
+-------------------------------------------------------------------------------------------------------
+m = matrix(runif(100), 10, 10)
+m[sample(1:10, size = 2), sample(1:10, size = 2)] = -9999 m NA m[m == -9999] <- NA
+image(m) NA m[m %in% c(-9999, 1e30, -1)] <- NA NA
+-------------------------------------------------------------------------------------------------------
+fr <- function(x) {
+  x1 <- round( x[1] )
+  x2 <- round( x[2] )
+  value <- 100 * (x2 - x1 * x1)^2 + (1 - x1)^2
+  penalty <- (x1 - x[1])^2 + (x2 - x[2])^2
+  value + 1e3 * penalty
+}
+
+# Plot the function
+x <- seq(-3,3,length=200)
+z <- outer(x,x, Vectorize( function(u,v) fr(c(u,v)) ))
+persp(x,x,z,
+  theta = 30, phi = 30, expand = 0.5, col = "lightblue", border=NA,
+  ltheta = 120, shade = 0.75, ticktype = "detailed") library(RColorBrewer)
+image(x,x,z, las=1, useRaster=TRUE,col=brewer.pal(11,"RdYlBu"),xlab="x", ylab="y") # Minimize
+library(DEoptim)
+library(NMOF)
+library(pso)
+DEoptim(fr, c(-3,-3), c(3,3))$optim$bestmem
+psoptim(c(-2,1), fr, lower=c(-3,-3), upper=c(3,3))
+DEopt(fr, list(min=c(-3,-3), max=c(3,3)))$xbest
+PSopt(fr, list(min=c(-3,-3), max=c(3,3)))$xbest library(NMOF)
+gridSearch(fr, list(seq(-3,3), seq(-3,3)))$minlevels # Unmodified function
+f <- function(x) 
+  100 * (x[2] - x[1] * x[1])^2 + (1 - x[1])^2
+
+# Neighbour function
+# Beware: in this example, with a smaller neighbourhood, it does not converge.
+neighbour <- function(x,...)
+  x + sample(seq(-3,3), length(x), replace=TRUE)
+
+# Local search (will get stuck in local extrema)
+library(NMOF)
+LSopt(f, list(x0=c(-2,1), neighbour=neighbour))$xbest
+# Threshold Accepting
+TAopt(f, list(x0=c(-2,1), neighbour=neighbour))$xbest get_neighbour_function <- function(memory_size = 100, df=4, scale=1){
+  # Static variables
+  already_visited <- NULL
+  i <- 1
+  # Define the neighbourhood
+  values <- seq(-10,10)
+  probabilities <- dt(values/scale, df=df)
+  probabilities <- probabilities / sum(probabilities)
+  # The function itself
+  function(x,...) {
+    if( is.null(already_visited) ) {
+      already_visited <<- matrix( x, nr=length(x), nc=memory_size )
+    }
+    # Do not reuse the function for problems of a different size
+    stopifnot( nrow(already_visited) == length(x) )
+    candidate <- x
+    for(k in seq_len(memory_size)) {
+      candidate <- x + sample( values, p=probabilities, length(x), replace=TRUE )
+      if( ! any(apply(already_visited == candidate, 2, all)) )
+        break
+    }
+    if( k == memory_size ) {
+      cat("Are you sure the neighbourhood is large enough?\n")
+    } 
+    if( k > 1 ) {
+      cat("Rejected", k - 1, "candidates\n")
+    }
+    if( k != memory_size ) {
+      already_visited[,i] <<- candidate
+      i <<- (i %% memory_size) + 1
+    }
+    candidate
+  }
+} f <- function(x) {
+  result <- prod( 2 + ((x-10)/1000)^2 - cos( (x-10) / 2 ) )  
+  cat(result, " (", paste(x,collapse=","), ")\n", sep="")
+  result
+}
+plot( seq(0,1e3), Vectorize(f)( seq(0,1e3) ) )
+
+LSopt(f, list(x0=c(0,0), neighbour=get_neighbour_function()))$xbest
+TAopt(f, list(x0=c(0,0), neighbour=get_neighbour_function()))$xbest
+optim(c(0,0), f, gr=get_neighbour_function(), method="SANN")$par g <- function(x) 
+  f(x) + 1000 * sum( (x-round(x))^2 )
+DEoptim(g, c(0,0), c(1000,1000))$optim$bestmem
+-------------------------------------------------------------------------------------------------------
+save.image("Your_image_name.RData")
+-------------------------------------------------------------------------------------------------------
+library(sp)
+coordinates(x) <- c("x", "y", "z")
+gridded(x) <- TRUE
+image(x, col = terrain.colors(256), useRaster = TRUE) gridded()<- x y raster rgdal library(raster)
+?projectRaster
+
+library(rgdal)
+?project
+?spTransform sp raster
+-------------------------------------------------------------------------------------------------------
+interp akima interp library(akima)
+interp(x,y,z,xo=seq(min(x),max(x),by=0.5),yo=seq(min(y),max(y),by=0.5),extrap=FALSE,linear=TRUE) -> xygrid
+image(xygrid,breaks=seq(min(z),max(z),length=10), col=1:10)
+-------------------------------------------------------------------------------------------------------
+n <- 23000
+k <- 200
+m <- matrix( rnorm(n*k), nc=n, nr=k )
+
+image(m, useRaster=TRUE)
+-------------------------------------------------------------------------------------------------------
+N <- 2000000
+A <- sample(1:5, N, 1/5)
+B <- sample(1:5, N, 1/5)
+save.image() N <- 2000
+n <- 1000
+A.list <- vector("list", N)
+B.list <- vector("list", N)
+for (i in 1:N) {
+   A.list[[i]] <- sample(1:5, n, 1/5) 
+   B.list[[i]] <- sample(1:5, n, 1/5)
+}
+A <- unlist(A.list)
+B <- unlist(B.list)
+save.image() append N
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+ternaryplot a<- c (0.1, 0.5, 0.5, 0.6, 0.2, 0, 0, 0.004166667, 0.45) 
+b<- c (0.75,0.5,0,0.1,0.2,0.951612903,0.918103448,0.7875,0.45)
+c<- c (0.15,0,0.5,0.3,0.6,0.048387097,0.081896552,0.208333333,0.1) 
+d<- c (500,2324.90,2551.44,1244.50, 551.22,-644.20,-377.17,-100, 2493.04) 
+df<- data.frame (a, b, c)
+
+
+# First create the limit of the ternary plot:
+plot(NA,NA,xlim=c(0,1),ylim=c(0,sqrt(3)/2),asp=1,bty="n",axes=F,xlab="",ylab="")
+segments(0,0,0.5,sqrt(3)/2)
+segments(0.5,sqrt(3)/2,1,0)
+segments(1,0,0,0)
+text(0.5,(sqrt(3)/2),"c", pos=3)
+text(0,0,"a", pos=1)
+text(1,0,"b", pos=1)
+
+# The biggest difficulty in the making of a ternary plot is to transform triangular coordinates into cartesian coordinates, here is a small function to do so:
+tern2cart <- function(coord){
+    coord[1]->x
+    coord[2]->y
+    coord[3]->z
+    x+y+z -> tot
+    x/tot -> x  # First normalize the values of x, y and z
+    y/tot -> y
+    z/tot -> z
+    (2*y + z)/(2*(x+y+z)) -> x1 # Then transform into cartesian coordinates
+    sqrt(3)*z/(2*(x+y+z)) -> y1
+    return(c(x1,y1))
+    }
+
+# Apply this equation to each set of coordinates
+t(apply(df,1,tern2cart)) -> tern
+
+# Intrapolate the value to create the contour plot
+resolution <- 0.001
+require(akima)
+interp(tern[,1],tern[,2],z=d, xo=seq(0,1,by=resolution), yo=seq(0,1,by=resolution)) -> tern.grid
+
+# And then plot:
+image(tern.grid,breaks=c(-1000,0,500,1000,1500,2000,3000),col=rev(heat.colors(6)),add=T)
+contour(tern.grid,levels=c(-1000,0,500,1000,1500,2000,3000),add=T)
+points(tern,pch=19)
+-------------------------------------------------------------------------------------------------------
+#required function from www.menugget.blogspot.com
+matrix.poly <- function(x, y, z=mat, n=NULL){
+ if(missing(z)) stop("Must define matrix 'z'")
+ if(missing(n)) stop("Must define at least 1 grid location 'n'")
+ if(missing(x)) x <- seq(0,1,,dim(z)[1])
+ if(missing(y)) y <- seq(0,1,,dim(z)[2])
+ poly <- vector(mode="list", length(n))
+ for(i in seq(n)){
+  ROW <- ((n[i]-1) %% dim(z)[1]) +1
+  COL <- ((n[i]-1) %/% dim(z)[1]) +1
+
+  dist.left <- (x[ROW]-x[ROW-1])/2
+  dist.right <- (x[ROW+1]-x[ROW])/2
+  if(ROW==1) dist.left <- dist.right
+  if(ROW==dim(z)[1]) dist.right <- dist.left
+
+  dist.down <- (y[COL]-y[COL-1])/2
+  dist.up <- (y[COL+1]-y[COL])/2
+  if(COL==1) dist.down <- dist.up
+  if(COL==dim(z)[2]) dist.up <- dist.down
+
+  xs <- c(x[ROW]-dist.left, x[ROW]-dist.left, x[ROW]+dist.right, x[ROW]+dist.right)
+  ys <- c(y[COL]-dist.down, y[COL]+dist.up, y[COL]+dist.up, y[COL]-dist.down)
+  poly[[i]] <- data.frame(x=xs, y=ys)
+ }
+ return(poly)
+}
+
+#make vector of grids for hatching
+incl <- which(over==1)
+
+#make polygons for each grid for hatching
+polys <- matrix.poly(1:12, 1:6, z=over, n=incl)
+
+    #plot
+png("hatched_image.png")
+image(1:12, 1:6, data)
+for(i in seq(polys)){
+    polygon(polys[[i]], density=10, angle=45, border=NA)
+    polygon(polys[[i]], density=10, angle=-45, border=NA)
+}
+box()
+dev.off() png("hatched_image2.png")
+image(1:12, 1:6, data)
+for(i in seq(polys)){
+    xran <- range(polys[[i]]$x)
+    yran <- range(polys[[i]]$y)
+    xs <- seq(xran[1], xran[2],,5)
+    ys <- seq(yran[1], yran[2],,5)
+    grd <- expand.grid(xs,ys)
+    points(grd, pch=19, cex=0.5)
+}
+box()
+dev.off()
+-------------------------------------------------------------------------------------------------------
+## Some copy/pasteable fake data for you (dput() works nicely for pasteable real data)
+your_matrix <- cbind(runif(25, 0, 10), rep(1:5, each = 5), rep(1:5, 5), rep(1, 25))
+
+heatmap_matrix <- matrix(your_matrix[, 1], nrow = 5)
+## alternatively, if your_matrix isn't in order
+## (The reshape method in EDi's answer is a nicer alternative)
+for (i in 1:nrow(your_matrix)) {
+    heatmap_matrix[your_matrix[i, 2], you_matrix[i, 3]]
+}
+
+heatmap(heatmap_matrix) # one option
+image(z = heatmap_matrix) # another option
+require(gplots)
+heatmap.2(heatmap_matrix) # this has fancier preferences
+-------------------------------------------------------------------------------------------------------
+?image data(volcano)
+m <- volcano
+dimx <- nrow(m)
+dimy <- ncol(m)
+
+d1 <- list(x = seq(0, 1, length = dimx), y = seq(0, 1, length = dimy), z = m) image() d2 <- d1
+d2$z <- d2$z > 155 pts <- expand.grid(x = d2$x, y = d2$y)
+pts$over <- as.vector(d2$z) op <- par(mfcol = c(2, 1))
+image(d1)
+
+image(d1)
+points(pts$x[pts$over], pts$y[pts$over], cex = 0.7)
+
+par(op) pch = "."
+-------------------------------------------------------------------------------------------------------
+# Clean out your current workspace
+rm(list=ls())
+
+# Create two objects
+a = 1:10
+b = letters[1:10]
+
+# Save them to one file
+save(a, b, file="demo.RData")
+
+# Remove them from the workspace
+rm(a, b)
+ls()
+## character(0)
+
+# Re-load the data
+load("demo.RData")
+ls()
+## [1] "a" "b"
+a
+## [1]  1  2  3  4  5  6  7  8  9 10
+b
+## [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" .RData save.image() list data.frames
+-------------------------------------------------------------------------------------------------------
+sharpness tricol # Coordinates of the triangle
+tri <- rbind(sin(0:2*2/3*pi), cos(0:2*2/3*pi))
+
+# Function for calculating the color of a set of points `pt`
+# in relation to the triangle
+tricol <- function(pt, sharpness=2){
+    require(splancs)
+    RGB <- sapply(1:3, function(i){
+        a <- sweep(pt, 2, tri[,i])
+        b <- apply(tri[,-i], 1, mean) - tri[,i]
+        sharpness*((a %*% b) / sum(b^2))-sharpness+1
+    })
+    RGB[-inpip(pt,t(tri)),] <- 1    # Color points outside the triangle white
+    do.call(rgb, unname(as.data.frame(pmin(pmax(RGB, 0), 1))))
+}
+
+# Plot
+res <- 1000                         # Resolution
+xi <- seq(-1, 1, length=res)        # Axis points
+yi <- seq(-.8, 1.2, length=res)
+x <- xi[1] + cumsum(diff(xi))       # Midpoints between axis points
+y <- yi[1] + cumsum(diff(yi))
+xy <- matrix(1:(length(x)*length(y)), length(x))
+image(xi, yi, xy, col=tricol(as.matrix(expand.grid(x,y))), useRaster=TRUE)
+lines(tri[1,c(1:3,1)], tri[2,c(1:3,1)], type="l") tricol() i a pt b a b sharpness
+-------------------------------------------------------------------------------------------------------
+A <- matrix(rnorm(8000*8000),ncol = 8000)
+    print(object.size(A),units = "Mb") # 488.3 Mb
+    gc() # remove wasted mem (something I don't fully understand)
+
+    # open a plot of appropriate dimensions- scale to your case
+    plot(NULL, type = "n", xlim = c(0, 8001), ylim = c(0, 8000))
+    # add chunks of the image a bit at a time, removing waste memory at each chunk
+    for (m in 1:4){
+      for (n in 1:4){
+        image(x = (m * 2000 - 2000):(m * 2000 - 1) + .5, # pixels are centered..
+              y = (n * 2000 - 2000):(n * 2000 - 1) + .5, 
+              t(A[(m * 2000 - 1999):(m * 2000), (n * 2000 - 1999):(n * 2000)]), 
+              useRaster = TRUE, # this is key
+              add = TRUE)     
+        gc() # my naive guess is that this keeps wasted mem from building up
+      }
+    }
+-------------------------------------------------------------------------------------------------------
+image image(lons, lats, glb.data)
+library(maps)
+map(add = TRUE) map() plot.axes
+-------------------------------------------------------------------------------------------------------
+Matrix::image levelplot lattice image graphics scales ?xyplot axis image(CAex, scales=list(y=list(at=1:80))) add=TRUE
+-------------------------------------------------------------------------------------------------------
+image(x, col=c("red","blue")[1+(x>50)] ) grid(nx=100, ny=100, lty=1)
+-------------------------------------------------------------------------------------------------------
+graphics bp1 <- barplot(t(abundance[3:5, ]), width = 0.2, space = 0.7, plot = FALSE)
+bp2 <- barplot(t(abundance[1:2, ]), horiz = TRUE, width = 0.05, space = 1, plot = FALSE)
+
+
+par(fig = c(0, 0.8, 0, 0.8), new = TRUE)
+par(xaxt = "n", yaxt = "n")
+image(relationship)
+par(fig = c(0, 0.8, 0.55, 1), new = TRUE)
+barplot(t(abundance[3:5, ]), width = 0.2, space = 0.7)
+text(bp1, abundance[3:5,] - 0.5, c("Sp3", "Sp4", "Sp5"))
+par(fig = c(0.65, 1, 0, 0.8), new = TRUE)   
+barplot(t(abundance[1:2, ]), horiz = TRUE, width = 0.05, space = 1)
+text(abundance[1:2,] - 0.5, bp2, c("Sp1", "Sp2"))
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+par(mfcol=c(2,1))
+plot(seq_len(1000)*0.01, sin(2*pi*seq_len(1000)*0.01), type="l", xaxs="i")
+image(seq_len(1000)*0.01,seq_len(100)*0.1,array(runif(1000000),dim=c(1000,100)),
+    xlab="Time", ylab="Frequency", main="Spectrogram")
+-------------------------------------------------------------------------------------------------------
+par(mfcol=c(2,1))
+plot(seq_len(1000)*0.01, sin(2*pi*seq_len(1000)*0.01),
+type="l",xlab="Time",ylab="Amplitude", main="Time Series")
+plot(c(0,10), c(0,10), type="n") #Dummy plot with axis limits for our spectrogram
+image(seq_len(1000)*0.01,seq_len(100)*0.1,array(runif(1000000),dim=c(1000,100)),
+xlab="Time", ylab="Frequency", main="Spectrogram",add=TRUE)
+-------------------------------------------------------------------------------------------------------
+set.seed(101)
+npred <- nprey <- 10
+tree_predator <- rcoal(npred)
+tree_prey <- rcoal(nprey)
+
+## Simulate traits on each tree
+trait_predator <- fastBM(tree_predator)
+trait_prey <- fastBM(tree_prey) set.seed(101) > trait_predator
+         t1          t9          t4          t8          t5          t2 
+-2.30933392 -3.17387148 -0.01447305 -0.01293273 -0.25483749  1.87279355 
+         t6         t10          t3          t7 
+ 0.70646610  0.79508740  0.05293099  0.00774235 
+> trait_prey
+         t10           t7           t9           t6           t8           t1 
+ 0.849256948 -0.790261142  0.305520218 -0.182596793 -0.033589511 -0.001545289 
+          t4           t5           t3           t2 
+-0.312790794  0.475377720 -0.222128629 -0.095045954 exp(x-y) outer bmatrix <- outer(trait_predator,trait_prey,
+      function(x,y) as.numeric(exp(x-y)>1.5)) library(Matrix)
+image(Matrix(bmatrix),xlab="Prey",ylab="Predator",sub="") t2 igraph library(igraph)
+
+edges <- which(bmatrix==1,arr.ind=TRUE)  ## extract vertex numbers
+## distinguish prey (columns) from pred (rows)
+edges[,2] <- npred+edges[,2]             
+
+gg <- graph.bipartite(rep(1:0,c(npred,nprey)),
+             c(t(edges))) 
+## c(t(edges)) collapses the two-column matrix to a vector in row order ...
+## now plot ...
+plot(gg,vertex.color=rep(c("cyan","pink"),c(npred,nprey)),
+     edge.arrow.mode=">") igraph
+-------------------------------------------------------------------------------------------------------
+library(ncdf)
+# I'm assuming this is the netcdf file you are working with:
+download.file("http://dods.ipsl.jussieu.fr/gswp/Fixed/SoilDepth.nc", destfile="SoilDepth.nc")
+soil <- open.ncdf("SoilDepth.nc")
+#The way to extract a variable is as following:
+soil$var[[3]] -> var3 # here, as shown in your question, SoilDepth is the 3rd variable
+get.var.ncdf(soil, var3) -> SoilDepth
+
+dim(SoilDepth)
+[1] 15238 SoilDepth land x y x y land download.file("http://dods.ipsl.jussieu.fr/gswp/Fixed/landmask_gswp.nc", destfile="landmask.nc")
+landmask <- open.ncdf("landmask.nc")
+landmask$var[[3]] -> varland
+get.var.ncdf(landmask, varland) -> land
+sum(land==1)
+[1] 15238 # The values where stored in an expected order, hence the transpose
+land = t(land)
+land[land==1] <- SoilDepth
+land[land==0] <- NA
+land = t(land)
+image(land)
+-------------------------------------------------------------------------------------------------------
+ylim=c(1,0) image(y) NaN NA y[is.nan(y)] <- NA y land
+-------------------------------------------------------------------------------------------------------
+wd <- getwd()
+assign('.First', function(x) {
+  require('plyr') #and whatever other packages you're using
+  file.remove(".RData") #already been loaded
+  rm(".Last", pos=.GlobalEnv) #otherwise won't be able to quit R without it restarting
+  setwd(wd)
+}, pos=.GlobalEnv)
+assign(".Last", function() {
+  system("R --no-site-file --no-init-file --quiet")
+}, pos=.GlobalEnv)
+save.image() #or only save the things you want to be reloaded.
+q("no") .RData .Last .Last .First .First q("no") .RData
+-------------------------------------------------------------------------------------------------------
+im spatstat x im # Specify colors
+jet.colors <- colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan",
+                      "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000"))(40)
+# Using base R
+# Note that you might need to transpose `x` to get the orientation right
+image(t(as.matrix(x)), col=jet.colors)
+
+# Using lattice
+library(lattice)
+levelplot(as.matrix(x), aspect="fill", cuts=39, col.regions=jet.colors)
+-------------------------------------------------------------------------------------------------------
+> .Last <- function() system("R --vanilla")
+> q("no") .Last .Last wd <- getwd()
+setwd(tempdir())
+assign(".First", function() {
+  #require("yourPackage") 
+  file.remove(".RData") # already been loaded
+  rm(".Last", pos=.GlobalEnv) #otherwise, won't be able to quit R without it restarting
+  setwd(wd)
+  ## Add your code here
+  message("my code is running.\n")
+}, pos=.GlobalEnv)
+
+assign(".Last", function() {
+  system("R --no-site-file --no-environ --quiet")
+}, pos=.GlobalEnv)
+save.image() # so we can load it back when R restarts
+q("no")
+-------------------------------------------------------------------------------------------------------
+zlim=c(-2, 2) image() zlim = function(x, lim) { 
+  x[which(x < min(lim))] = min(lim)
+  x[which(x > max(lim))] = max(lim)
+  return(x)
+} heatmap.2() heatmap.2(zlim(X, c(-2,2)), ... ) heatmap.2() hclust() as.dendrogram() Rowv=... Colv=... breaks=... breaks=seq(-2,2,length.out=101) heatmap.2() col=greenred(100) breaks=...
+-------------------------------------------------------------------------------------------------------
+interp akima require(akima)
+data <- data.frame(x=c(1,1,2,2,3,4,5,6,7,7,8,9),
+                   y=c(2,4,5,1,3,8,4,8,1,1,6,9),
+                   distance=c(66,84,93,76,104,29,70,19,60,50,46,36))
+resolution <- 0.1 # you can increase the resolution by decreasing this number (warning: the resulting dataframe size increase very quickly)
+a <- interp(x=data$x, y=data$y, z=data$distance, 
+            xo=seq(min(data$x),max(data$x),by=resolution), 
+            yo=seq(min(data$y),max(data$y),by=resolution), duplicate="mean")
+image(a) #you can of course modify the color palette and the color categories. See ?image for more explanation filled.contour filled.contour(a, color.palette=heat.colors)
+-------------------------------------------------------------------------------------------------------
+mv .RData work1.RData load ("work1.RData") ls() 
+ objects() save.image()
+-------------------------------------------------------------------------------------------------------
+set.seed(1)
+a <- data.frame(1:10, 1:10)
+b <- rnorm(10) d <- structure(data.frame(b), updated=Sys.time())
+attr(d, 'updated')
+#[1] "2012-10-06 12:34:06 CDT" file.info updated <- Sys.time() 
+dir.create('~/tmp') # create a directory to save workspace in.
+save.image('~/tmp/ws1.RData')
+
+d[1, 1] <- 1 #make a change to `d`
+attr(d, "updated") <- Sys.time() # don't forget to update the `updated` attribute
+e <- b * a # add a new object
+updated <- Sys.time()
+save.image('~/tmp/ws2.RData') .GlobalEnv rm(list=ls(all=TRUE)) # clear .GlobalEnv
+w1 <- new.env()
+w2 <- new.env()
+load('~/tmp/ws1.RData', envir=w1)
+load('~/tmp/ws2.RData', envir=w2)
+
+> ls(w1)
+[1] "a"       "b"       "d"       "updated"
+> ls(w2)
+[1] "a"       "b"       "d"       "e"       "updated"
+
+> with(w1, updated)
+[1] "2012-10-06 12:34:09 CDT"
+> with(w2, updated)
+[1] "2012-10-06 12:35:02 CDT"
+
+> attr(w1$d, 'updated')
+[1] "2012-10-06 12:34:06 CDT"
+> attr(w2$d, 'updated')
+[1] "2012-10-06 12:35:02 CDT" .ls.objects > .ls.objects(pos=w1)
+              Type Size PrettySize Rows Columns
+a       data.frame  872    [1] 872   10       2
+b          numeric  168    [1] 168   10      NA
+d       data.frame 1224   [1] 1224   10       1
+updated    POSIXct  312    [1] 312    1      NA
+> .ls.objects(pos=w2)
+              Type Size PrettySize Rows Columns
+a       data.frame  872    [1] 872   10       2
+b          numeric  168    [1] 168   10      NA
+d       data.frame 1224   [1] 1224   10       1
+e       data.frame 1032   [1] 1032   10       2
+updated    POSIXct  312    [1] 312    1      NA assign myAssign <- function(x, value, ...) {
+  attr(value, "updated") <- Sys.time()
+  assign(x, value, ...)
+}
+
+> myAssign("b", w1$b[1:2], pos=w1)
+> w1$b
+[1] -0.6264538  0.1836433
+attr(,"updated")
+[1] "2012-10-06 12:44:55 CDT" updated f <- local({
+  delayedAssign('x', stop('object not found'))
+  function(v) {
+    if (!missing(v)) x <<- structure(v, updated=Sys.time())
+    x
+  }
+})
+makeActiveBinding('ab', f, .GlobalEnv)
+> ab # Error, nothing has been assigned to it yet
+Error in function (v)  : object not found
+> ab <- data.frame(1:10, y=rnorm(10))
+> attr(ab, 'updated')
+[1] "2012-10-06 12:46:53 CDT"
+> ab <- data.frame(10:1, y=rnorm(10))
+> attr(ab, 'updated')
+[1] "2012-10-06 12:47:04 CDT"
+-------------------------------------------------------------------------------------------------------
+layout() par(mar = rep(2, 4)) image(as.matrix(leg),col=cx,axes=T) par() par() par() op <- par(oma=c(5,7,1,1)) par(op)
+-------------------------------------------------------------------------------------------------------
+abline conne <- file("Landcover.bin", "rb")
+sd<- readBin(conne, integer(), size=1,  n=360*720, signed=F)
+y<-matrix(sd,ncol=360,nrow=720)
+image(y[,360:1])
+
+lats=seq(-90,90,by=30)
+longs=seq(-180,180,by=30) 
+
+trans.lats=(lats+90) / 180
+trans.longs=(longs+180) / 360
+
+abline(h=trans.lats,v=trans.longs)
+-------------------------------------------------------------------------------------------------------
+library(spatstat)
+library(sp)
+library(plotKML)
+library(maptools) x<-rnorm(100,3)
+y<-rnorm(100,3)
+plot(x,y)
+xy<-cbind(x,y)
+xy<-as.data.frame(xy) coordinates(xy)=c("x","y")
+pnts<-vect2rast(xy)
+summary(pnts) conv<-convexhull.xy(x,y)
+SpP<-as(conv,  "SpatialPolygons")
+plot(SpP)
+points(x,y)
+attr  =  data.frame(a=1,  b=1)
+SrDf  =  SpatialPolygonsDataFrame(SpP,  attr) rast <- vect2rast(SrDf,cell.size=0.085) plot(rast)
+image(rast)
+points(x,y)
+-------------------------------------------------------------------------------------------------------
+image jpeg > bigm <-matrix(sample(1:8, 65000*160, repl=TRUE),  160, 65000)
+> jpeg(filename="test.jpg")
+> image(bigm)
+> dev.off()
+quartz 
+     2
+-------------------------------------------------------------------------------------------------------
+else mtext(side = 1, "Value", line = 2) if (key) {
+        par(mar = c(5, 4, 2, 1), cex = 0.75)
+        tmpbreaks <- breaks
+        if (symkey) {
+            max.raw <- max(abs(c(x, breaks)), na.rm = TRUE)
+            min.raw <- -max.raw
+            tmpbreaks[1] <- -max(abs(x), na.rm = TRUE)
+            tmpbreaks[length(tmpbreaks)] <- max(abs(x), na.rm = TRUE)
+        }
+        else {
+            min.raw <- min(x, na.rm = TRUE)
+            max.raw <- max(x, na.rm = TRUE)
+        }
+        z <- seq(min.raw, max.raw, length = length(col))
+        image(z = matrix(z, ncol = 1), col = col, breaks = tmpbreaks, 
+            xaxt = "n", yaxt = "n")
+        par(usr = c(0, 1, 0, 1))
+        lv <- pretty(breaks)
+        xv <- scale01(as.numeric(lv), min.raw, max.raw)
+        axis(1, at = xv, labels = lv)
+        if (scale == "row") 
+            mtext(side = 1, "Row Z-Score", line = 2)
+        else if (scale == "column") 
+            mtext(side = 1, "Column Z-Score", line = 2)
+        else mtext(side = 1, "Value", line = 2)
+ .... lots more code below heatmap.2 heatmap.2 <-
+-------------------------------------------------------------------------------------------------------
+d1 d28 # Get the submatrices
+I <- unlist(lapply(0:6, function(a) a:6))
+J <- rep(0:6, 7:1)
+d2 <- mapply(function(i,j) d[1:6+6*i, 1:6+6*j], I, J, SIMPLIFY=FALSE)
+
+# Setup the layout and add an outer margin for the title and axis labels
+layout(matrix(c(1:28, 0, 0), 5, 6))
+par(oma=c(3,3,3,1), mar=c(2,2,1,1))
+
+# Plot all the matrices oriented the same way they appear in text
+# i.e. the first (vertical) dimension is plotted along the Y-axis
+for(k in 1:length(d2)){
+    x <- 1:6+6*J[k]
+    y <- 1:6+6*I[k]
+
+    # Heatmap & grid
+    image(x, y, t(d2[[k]][nrow(d2[[k]]):1,]), las=1, axes=FALSE,
+          breaks=c(-1e10, -5.45, -4.65, 4.65, 5.45, 1e10),
+          col=c("red","orange","white","orange","red"))
+    xg <- apply(!is.na(d2[[k]]), 2, sum)
+    yg <- rev(apply(!is.na(d2[[k]]), 1, sum))
+    segments(c(x[1]-1, x)+.5, min(y)-.5,
+             c(x[1]-1, x)+.5, min(y)+c(6, yg)-.5, xpd=TRUE)
+    segments(min(x)-.5,         c(y[1]-1, y)+.5,
+             min(x)+c(6,xg)-.5, c(y[1]-1, y)+.5, xpd=TRUE)
+
+    # X & Y-axis values
+    mtext(x, 1, .1, at=x, cex=.5)
+    mtext(rev(y), 2, .2, at=y, las=1, cex=.5)
+
+    # Values of each cell
+    text(rep(x, each=6), rep(rev(y), 6),
+     sub("NA", "", sprintf("%.2f", d2[[k]])), cex=.3)
+}
+
+# Add title and axis labels
+title("All 28 submatrices", outer=TRUE)
+mtext("Columns", outer=TRUE, 1, 1)
+mtext("Rows", outer=TRUE, 2, 1) xpd segments
+-------------------------------------------------------------------------------------------------------
+interp akima set.seed(1)
+x <- runif(20)
+y <- runif(20)
+z <- x^3 + sin(y)
+
+require(akima)
+F <- interp(x,y,z)
+image(F)
+points(x,y) F <- interp(x,y,z, linear=FALSE, extrap=TRUE)
+image(F)
+points(x,y)
+-------------------------------------------------------------------------------------------------------
+save.image("C:/Users/Desktop/example_candelete.RData") load("C:/Users/Desktop/example_candelete.RData")
+-------------------------------------------------------------------------------------------------------
+t() vec = runif(4096)
+vec[1:500]=0
+v = matrix(vec,nrow=height,ncol=width)
+image(v,axes = FALSE,col = grey(seq(0, 1, length = 256))) image(t(v),axes = FALSE,col = grey(seq(0, 1, length = 256))) image(t(v)[, nrow(v):1],axes = FALSE,col = grey(seq(0, 1, length = 256)))
+-------------------------------------------------------------------------------------------------------
+colorRampPalette color.palette #This is a wrapper function for colorRampPalette. It allows for the
+#definition of the number of intermediate colors between the main colors.
+#Using this option one can stretch out colors that should predominate
+#the palette spectrum. Additional arguments of colorRampPalette can also
+#be added regarding the type and bias of the subsequent interpolation.
+color.palette <- function(steps, n.steps.between=NULL, ...){
+
+ if(is.null(n.steps.between)) n.steps.between <- rep(0, (length(steps)-1))
+ if(length(n.steps.between) != length(steps)-1) stop("Must have one less n.steps.between value than steps")
+
+ fill.steps <- cumsum(rep(1, length(steps))+c(0,n.steps.between))
+ RGB <- matrix(NA, nrow=3, ncol=fill.steps[length(fill.steps)])
+ RGB[,fill.steps] <- col2rgb(steps)
+
+ for(i in which(n.steps.between>0)){
+  col.start=RGB[,fill.steps[i]]
+  col.end=RGB[,fill.steps[i+1]]
+  for(j in seq(3)){
+   vals <- seq(col.start[j], col.end[j], length.out=n.steps.between[i]+2)[2:(2+n.steps.between[i]-1)]  
+   RGB[j,(fill.steps[i]+1):(fill.steps[i+1]-1)] <- vals
+  }
+ }
+
+     new.steps <- rgb(RGB[1,], RGB[2,], RGB[3,], maxColorValue = 255)
+ pal <- colorRampPalette(new.steps, ...)
+ return(pal)
+} Z <- t(as.matrix(1:100))
+
+pal.1 <- colorRampPalette(c("blue", "cyan", "yellow", "red"), bias=1)
+pal.2 <- colorRampPalette(c("blue", "cyan", "yellow", "red"), bias=3)
+pal.3 <- color.palette(c("blue", "cyan", "yellow", "red"), n.steps.between=c(10,1,10))
+
+    x11()
+par(mfcol=c(1,3))
+image(Z, col=pal.1(100))
+image(Z, col=pal.2(100))
+image(Z, col=pal.3(100)) image
+-------------------------------------------------------------------------------------------------------
+Heatmap<-function(data.mat,main.str="heatmap"){
+
+     xx <<- 0:dim(data.mat)[1] 
+     yy <<- 0:dim(data.mat)[2] 
+     zz <<- log(data.mat+1)
+     plot.call = "image( x=xx,y=yy, z=zz,col = heat.colors(30),axes = FALSE);
+     axis(1,0.5:(dim(data.mat)[1]-0.5),
+     labels=rownames(data.mat),
+     las = 2, line = -0.5, tick = 0,cex.axis =1);
+     axis(4,0.5:(dim(data.mat)[2]-0.5),
+     labels=colnames(data.mat),
+     las = 2, line = -0.5, tick = 0,cex.axis =.8)"
+     mai.mat = matrix(c(1.5,.5,.5,1.5), ncol=4)
+     mai.prc = FALSE
+     xy.labels=list(nb_of_sequences=t(data.mat))
+     x.labels=data.frame(City=rownames(data.mat))
+     y.labels=data.frame(Order=colnames(data.mat))
+
+     imagesend(plot.call=plot.call,
+        y.pos=yy,
+        x.pos=xx,
+        mai.mat=mai.mat, mai.prc=mai.prc,
+        xy.type="image.box",
+        x.labels=x.labels,
+        y.labels=y.labels,
+        xy.labels = xy.labels,
+        image.size="500x800",
+        fname.root="exPlotImage",
+        font.size=18)
+
+  rm(xx,envir = .GlobalEnv)
+  rm(yy,envir = .GlobalEnv)
+  rm(zz,envir = .GlobalEnv)
+  return (0)
+}
+-------------------------------------------------------------------------------------------------------
+file1 file2 dir1 <- list.files("C:\\cor", "*.bin", full.names = TRUE)
+dir2 <- list.files("C:\\cor2", "*.bin", full.names = TRUE)
+file1 <- do.call(rbind,lapply(dir1, readBin  , integer() , size = 2 ,
+                                n = 360 * 720 , signed = T))
+file2 <- do.call(rbind,lapply(dir2, readBin  , integer() , size = 2 ,
+                                n = 360 * 720 , signed = T))
+results <- apply(file1, 1, function(x){ apply(file2, 1, function(X){cor(x, X)})}) results results[x,y] image(results) for results <- array(dim = c(length(file1), length(file2)))
+for(i in 1:length(file1)){
+    for(j in 1:length(file2)){
+        results[i,j]<-cor(file1[i, ], file2[j, ])
+        }
+    } dir1 <- list.files("C:\\cor", "*.bin", full.names = TRUE)
+dir2 <- list.files("C:\\cor2", "*.bin", full.names = TRUE)
+file_tot<-array(dim=c(360,720,365,2))
+for(i in 1:length(dir1)){
+    file_tot[,,i,1] <- readBin(dir1[i], integer(), size = 2 ,n = 360 * 720 , signed = T)
+    file_tot[,,i,2] <- readBin(dir2[i], integer(), size = 2 ,n = 360 * 720 , signed = T)
+    }
+results<-apply(file_tot,c(1,2),function(x){cor(x[,1],x[,2])})
+-------------------------------------------------------------------------------------------------------
+ncdf library(ncdf)
+f <- open.ncdf("LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040101.nc")
+A <- get.var.ncdf(nf,"soil_moisture_c") str(f$dim)
+List of 2
+ $ Longitude:List of 8
+  ..$ name         : chr "Longitude"
+  ..$ len          : int 1440
+  ..$ unlim        : logi FALSE
+  ..$ id           : int 1
+  ..$ dimvarid     : num 2
+  ..$ units        : chr "degrees_east"
+  ..$ vals         : num [1:1440(1d)] -180 -180 -179 -179 -179 ...
+  ..$ create_dimvar: logi TRUE
+  ..- attr(*, "class")= chr "dim.ncdf"
+ $ Latitude :List of 8
+  ..$ name         : chr "Latitude"
+  ..$ len          : int 720
+  ..$ unlim        : logi FALSE
+  ..$ id           : int 2
+  ..$ dimvarid     : num 1
+  ..$ units        : chr "degrees_north"
+  ..$ vals         : num [1:720(1d)] 89.9 89.6 89.4 89.1 88.9 ...
+  ..$ create_dimvar: logi TRUE
+  ..- attr(*, "class")= chr "dim.ncdf" f$dim$Longitude$vals -> Longitude
+ f$dim$Latitude$vals -> Latitude Latitude image Latitude <- rev(Latitude)
+ A <- A[nrow(A):1,] -32767 A[A==-32767] <- NA
+A <- t(A) image(Longitude, Latitude, A)
+library(maptools)
+data(wrld_simpl)
+plot(wrld_simpl, add = TRUE) ncfiles yourpath soil_moisture_c -32767 ncfiles
+ [1] "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040101.nc" "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040102.nc"
+ [3] "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040103.nc" "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040104.nc"
+ [5] "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040105.nc" "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040106.nc"
+ [7] "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040107.nc" "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040108.nc"
+ [9] "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040109.nc" "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040110.nc"
+[11] "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040111.nc" "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040112.nc"
+[13] "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040113.nc" "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040114.nc"
+[15] "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040115.nc" "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040116.nc"
+[17] "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040117.nc" "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040118.nc"
+[19] "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040119.nc" "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040120.nc"
+[21] "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040121.nc" "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040122.nc"
+[23] "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040123.nc" "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040124.nc"
+[25] "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040125.nc" "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040126.nc"
+[27] "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040127.nc" "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040128.nc"
+[29] "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040129.nc" "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040130.nc"
+[31] "LPRM-AMSR_E_L3_D_SOILM3_V002-20120520T173800Z_20040131.nc"
+
+yourpath
+ [1] "C:\\Users"
+
+library(ncdf)
+library(maptools)
+data(wrld_simpl)
+for(i in 1:length(ncfiles)){
+    f <- open.ncdf(paste(yourpath,ncfiles[i], sep="\\"))
+    A <- get.var.ncdf(f,"soil_moisture_c")
+    f$dim$Longitude$vals -> Longitude
+    f$dim$Latitude$vals -> Latitude
+    Latitude <- rev(Latitude)
+    A <- A[nrow(A):1,]
+    A[A==-32767] <- NA
+    A <- t(A)
+    close.ncdf(f) # this is the important part
+    png(paste(gsub("\\.nc","",ncfiles[i]), "\\.png", sep="")) # or any other device such as pdf, jpg...
+    image(Longitude, Latitude, A)
+    plot(wrld_simpl, add = TRUE)
+    dev.off()
+    }
+-------------------------------------------------------------------------------------------------------
+library(raster)
+
+## Create a SpatialLines object
+a <- c(2.1, 3.9) 
+b <- c(3.8, 4.8)
+## Method #1 -- Uses functions from the sp package.
+SL <- SpatialLines(list(Lines(list(Line(rbind(a,b))), "ab")))
+## Method #2 -- Uses readWKT() from the rgeos package. Easier to read.
+# library(rgeos)
+# string <- paste0("LINESTRING(", paste(a, b, collapse=", "), ")")
+# SL <- readWKT(string)
+
+## Create a raster object
+m <- 10
+n <- 10
+mat <- matrix(seq_len(m*n), nrow = m, ncol = n)
+r <- raster(mat, xmn = 0, xmx = n, ymn = 0, ymx = m) 
+
+## Find which cells are intersected & get coordinates of their lower-left corners
+ii <- extract(r, SL, cellnumbers=TRUE)[[1]][, "cell"]
+floor(xyFromCell(r, ii))
+#      x y
+# [1,] 2 4
+# [2,] 3 4
+# [3,] 2 3
+
+## Confirm that this is correct with a plot
+image(r)
+plot(as(rasterize(SL, r), "SpatialPolygons"), 
+     border = "darkgrey", lwd = 2, add = TRUE)
+lines(SL)
+-------------------------------------------------------------------------------------------------------
+library(grDevices)
+matr1=replicate(10, rnorm(20,mean=0.5,sd=0.1)) 
+matr2=replicate(10, rnorm(20,mean=0.5,sd=0.1))
+matrdiff=log2(matr1/matr2)
+nbcolors=1000
+colpalette=colorRampPalette(c("red","yellow","green"))(nbcolors)
+breaks = c(seq(min(matrdiff), 0, length.out=nbcolors/2), 0, 
+           seq(0,max(matrdiff), length.out=nbcolors/2))
+image(matrdiff,col=colpalette,breaks=breaks,useRaster=T)
+-------------------------------------------------------------------------------------------------------
+library(ggplot2)
+events <- data.frame(x=round(rbinom(1000,1000, 0.1)),y=round(rnorm(1000,10,3)))
+ggplot(events)
++ geom_point(aes(x=x, y=y), colour="black", alpha=0.2) hm <- table(events)
+ xhm <- as.numeric(rownames(hm))
+ yhm <- as.numeric(colnames(hm))
+ image(xhm,yhm,hm)
+-------------------------------------------------------------------------------------------------------
+par(fin=c(5,5),mar=c(0,0,0,0))
+image(1:ncol(m1), 1:nrow(m1), t(m1), axes = FALSE,xlab="",ylab="")
+
+par(fin=c(5,2.5),mar=c(0,0,0,0))
+image(1:ncol(m2), 1:nrow(m2), t(m2), axes = FALSE,xlab="",ylab="")
+-------------------------------------------------------------------------------------------------------
+ylim m1<-replicate(40, rnorm(20))     
+m2<-replicate(40, rnorm(10))
+
+image(1:ncol(m1), 1:nrow(m1), t(m1), axes=FALSE, ann=FALSE, ylim=c(0, max(sapply(list(m1,m2),nrow)) ))
+image(1:ncol(m2), 1:nrow(m2), t(m2), axes=FALSE, ann=FALSE, ylim=c(0, max(sapply(list(m1,m2),nrow)) ))
+-------------------------------------------------------------------------------------------------------
+ylim par(mfrow=c(1,2))
+
+image( 0:ncol(m1), 0:nrow(m1), t(m1), axes=FALSE, xlab='', ylab='', 
+        ylim=c(0,nrow(m1)) )
+image( 0:ncol(m2), 0:nrow(m2), t(m2), axes=FALSE, xlab='', ylab='',
+        ylim=c(0,nrow(m1)) )
+-------------------------------------------------------------------------------------------------------
+readPng <- function(pngFile) {
+  contents <- system(paste('pngtopnm',pngFile,'| pnmtoplainpnm'),intern=TRUE)
+  imgDims <- strsplit(contents[2], ' ')
+  width <- as.numeric(imgDims[[1]][1])
+  height <- as.numeric(imgDims[[1]][2])
+  rawimg <- scan(textConnection(contents),skip=3)
+  return(list(
+    x=1:width,
+    y=1:height,
+    z=matrix(rawimg,width),
+    width=width,
+    height=height))
+} image(img)
+-------------------------------------------------------------------------------------------------------
+system() system("Rscript -e 'source(\"your-script.R\")'", wait=FALSE) save.image() cat() ...
+save.image("script-output.RData")
+cat("Script completed\n\n")
+-------------------------------------------------------------------------------------------------------
+image() #using image() function
+x<-c(0, 5, 30, 80, 1000)
+y<-c(150, 2000, 2010, 3000)
+grd <- expand.grid(x=x, y=y)
+z<-matrix(grd$x*2-grd$y*3, nrow=length(x), ncol=length(y), byrow=TRUE)
+image(x=x, y=y, z=z, col=rainbow(20))
+
+#another option with z-scale
+source("image.scale.r") #http://menugget.blogspot.de/2011/08/adding-scale-to-image-plot.html
+x11(width=5, height=4)
+layout(matrix(1:2, nrow=1, ncol=2), widths=c(4,1), heights=4, respect=TRUE)
+layout.show(2)
+par(mar=c(4,4,1,1))
+image(x=x, y=y, z=z, col=rainbow(20))
+par(mar=c(4,0,1,4))
+image.scale(z, col=rainbow(20), horiz=FALSE, xlab="", ylab="", xaxt="n", yaxt="n")
+axis(4)
+box()
+-------------------------------------------------------------------------------------------------------
+ggplot2 df<-data.frame(x = rep(1:5,times=5),
+               y = rep(c("A", "B", "C", "D", "E"),each=5),
+               z= c(sort(sample(x=seq(0,1,0.1),size=5, replace=F)),
+                    sort(sample(x=seq(0,1,0.1),size=5, replace=F)),
+                    sort(sample(x=seq(0,1,0.1),size=5, replace=F)),
+                    sort(sample(x=seq(0,1,0.1),size=5, replace=F)),
+                    sort(sample(x=seq(0,1,0.1),size=5, replace=F)))) geom_tile() y z library(ggplot2)
+ggplot(df,aes(x=x,y=y,fill=z))+geom_tile()+
+  scale_x_continuous(expand = c(0, 0)) + scale_y_discrete(expand = c(0, 0)) image() z cbind() z2<-cbind(z.a,z.b,z.c,z.d,z.e)
+x2<-1:5
+y2<-1:5 z image() axis() image.plot() fields col= image.plot() par(mar=c(5,5,5,8)) #sets space for legend on right side
+image(x2,y2,z2,axes=F,col=rainbow(10))
+axis(1,at=1:5)
+axis(2,at=1:5,labels=c("A", "B", "C", "D", "E"))
+box()
+library(fields)
+image.plot(x2,y2,z2,legend.only=T,col=rainbow(10))
+-------------------------------------------------------------------------------------------------------
+interp akima age2100 <- read.table("temp.csv",header=TRUE,sep=",")
+
+x <- age2100$x
+y <- age2100$y
+z <- age2100$z
+
+require(akima)
+
+fld <- interp(x,y,z)
+
+par(mar=c(5,5,1,1))
+filled.contour(fld) image image.scale source("image.scale.R") # http://menugget.blogspot.de/2011/08/adding-scale-to-image-plot.html
+
+x11(width=5, height=6)
+layout(matrix(c(1,2), nrow=1, ncol=2), widths=c(4,1), height=6, respect=TRUE)
+layout.show(2)
+
+par(mar=c(4,4,1,1))
+image(fld)
+contour(fld, add=TRUE)
+points(age2100$x,age2100$y, pch=".", cex=2)
+
+par(mar=c(4,0,1,4))
+image.scale(fld$z, xlab="", ylab="", xaxt="n", yaxt="n", horiz=FALSE)
+box()
+axis(4)
+mtext("text", side=4, line=2.5)
+-------------------------------------------------------------------------------------------------------
+> # small version of your test set
+> dat1=list()
+> dat1$x=seq(302339.6,by=1000,len=71)
+> dat1$y=seq(5431470,by=1000,len=124)
+> dat1$z=matrix(runif(71*124),71,124)
+> str(dat1)
+List of 3
+ $ x: num [1:71] 302340 303340 304340 305340 306340 ...
+ $ y: num [1:124] 5431470 5432470 5433470 5434470 5435470 ...
+ $ z: num [1:71, 1:124] 0.765 0.79 0.185 0.461 0.421 ...
+> image(dat1,asp=1) r <-raster(
+             dat1$z,
+             xmn=range(dat1$x)[1], xmx=range(dat1$x)[2],
+             ymn=range(dat1$y)[1], ymx=range(dat1$y)[2], 
+             crs=CRS("+proj=utm +zone=11 +datum=NAD83")
+            )
+plot(r) > r=raster(dat1);plot(r) > r
+class       : RasterLayer 
+dimensions  : 124, 71, 8804  (nrow, ncol, ncell)
+resolution  : 1000, 1000  (x, y)
+extent      : 301839.6, 372839.6, 5430970, 5554970  (xmin, xmax, ymin, ymax)
+coord. ref. : NA 
+data source : in memory
+names       : layer 
+values      : 7.738103e-05, 0.9995497  (min, max)
+-------------------------------------------------------------------------------------------------------
+wav_xform.R plot.wavCMT image(data$x, data$y, imageScale(data$z, power.stretch=power.stretch), ...,
+  xlab=xlab, ylab=ylab, axes=TRUE) image(data$x, data$y, imageScale(data$z, power.stretch=power.stretch), ...,
+  xlab=xlab, ylab=ylab) ... plot image axes=TRUE axes=FALSE formal argument "axes" matched by multiple actual arguments library(wmtsa)
+sunspots.cwt <- wavCWT(sunspots)
+plot(sunspots.cwt)  # has axes
+plot(sunspots.cwt, axes=FALSE)  # does *not* have axes plot(sunspots.cwt, main="My great wavelet plot")  # change title
+plot(sunspots.cwt, xlim=c(1750, 1850))  # change x axis range
+plot(sunspots.cwt, ylim=c(0, 2))  # change y axis range
+-------------------------------------------------------------------------------------------------------
+polypath #function to extract coordinates from shapefile (by Paul Hiemstra)
+allcoordinates_lapply = function(x) { 
+    polys = x@polygons 
+    return(do.call("rbind", lapply(polys, function(pp) { 
+           do.call("rbind", lapply(pp@Polygons, coordinates)) 
+           }))) 
+} 
+q = allcoordinates_lapply(shapefile)
+
+#extract subset of coordinates, otherwise strange line connections occur...
+lat = q[110:600,1]
+long = q[110:600,2]
+
+#define ranges for polypath
+xrange <- range(lat, na.rm=TRUE)
+yrange <- range(long, na.rm=TRUE)
+xbox <- xrange + c(-20000, 20000)
+ybox <- yrange + c(-20000, 20000)
+
+#plot your stuff
+plot(shapefile, lwd=2)
+image(fld, axes=F, add=T)
+contour(fld, add=T)
+#and here is the magic 
+polypath(c(lat, NA, c(xbox, rev(xbox))),
+         c(long, NA, rep(ybox, each=2)),
+         col="white", rule="evenodd")
+-------------------------------------------------------------------------------------------------------
+## An example matrix
+(m <- matrix(1:9, ncol=3))
+#      [,1] [,2] [,3]
+# [1,]    1    4    7
+# [2,]    2    5    8
+# [3,]    3    6    9
+
+## The same matrix rotated 90 degrees clockwise
+t(m)[,nrow(m):1]
+#      [,1] [,2] [,3]
+# [1,]    3    2    1
+# [2,]    6    5    4
+# [3,]    9    8    7 image() m <- matrix(1:9, ncol=3)
+
+
+## ------- These plotting functions DO rotate a matrix --------
+
+## image()
+image(m, col=blues9)
+
+## levelplot() -- a lattice equivalent of image()
+library(lattice)    
+levelplot(m, at=(1:10)-0.5, col.regions=blues9)
+
+## Others
+contour(m)
+filled.contour(m, color=colorRampPalette(blues9))
+persp(m) 
+lattice::contourplot(m)
+lattice::wireframe(m)  ## Nicely illustrates the logic of the indexing it uses
+
+
+## ------- These plotting functions DO NOT --------
+
+## imageRaster() -- a graphical primitive used by image(), among other functions 
+plot(0:1, 0:1, type="n", xlab="", ylab="")
+rasterImage(matrix(blues9, ncol=3), 0,0,1,1, interpolate=FALSE)
+
+## grid.raster() -- imageRaster()'s counterpart in the grid graphical system
+library(grid)
+grid.raster(matrix(blues9, ncol=3), interpolate=FALSE)
+
+## plot(raster()) in raster package
+library(raster)
+plot(raster(m), col=blues9)
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+NULL image() myheat <- function(coords, v=NULL, params) {
+  colbar <- heat.colors(50)
+  colbreaks <- seq(0, 1, length=length(colbar)+1)
+  vertex.size <- 1/200 * params("vertex", "size")
+  if (length(vertex.size) != 1 && !is.null(v)) {
+    vertex.size <- vertex.size[v]
+  }
+  heat <- params("vertex", "heat")
+  if (is.list(heat) && !is.null(v)) {
+    heat <- heat[v]
+  } else if (!is.null(v)) {
+    heat <- list(heat)
+  }
+  mapply(coords[,1], coords[,2], vertex.size*2, heat,
+         FUN=function(x, y, size, int) {
+           stopifnot(is.matrix(int))
+           nc <- ncol(int); nr <- nrow(int)
+           xc <- seq(x, x+size/nc*(nc-1), length=nc)-size/nc*(nc-1)/2
+           yc <- seq(y, y+size/nr*(nr-1), length=nr)-size/nr*(nr-1)/2
+           image(xc, yc, int, add=TRUE, col=colbar, breaks=colbreaks)
+         })
+}
+
+# OK, we add the new shape now, it will be called "heat", 
+# and will have an extra vertex parameter, also called "heat". 
+# This parameter gives the heatmap intensities. The shape will 
+# clip as a square, ie. the edges will be cut at the boundary 
+# of the heatmap.
+
+add.vertex.shape("heat", clip=vertex.shapes("square")$clip, plot=myheat,
+                 parameters=list(vertex.heat=matrix(0,3,3)))
+
+# Some example data and random heatmaps
+
+g <- graph.formula(A:B -+ C:D +- E)
+randheat <- function() matrix(runif(9), 3)
+heats <- lapply(1:vcount(g), function(x) randheat())
+
+# Plot them
+
+plot(g, vertex.shape="heat", vertex.heat=heats, vertex.size=50)
+
+# You can mix various vertex shapes
+
+par(mar=c(0,0,0,0)+.1)
+plot(g, vertex.shape=c("heat", "heat", "sphere", "heat", "heat"),
+     vertex.heat=heats, vertex.size=50)
+-------------------------------------------------------------------------------------------------------
+grib2 <- grib
+grib2@bbox[1, ] <- grib2@bbox[1, ] - 360
+image(grib, col=(tim.colors(15)), attr=1, xlim=c(-360,360))
+image(grib2, add=TRUE, col=(tim.colors(15)), attr=1) xlim image(grib, col=(tim.colors(15)), attr=1, xlim=c(-270,90))
+image(grib2, add=TRUE, col=(tim.colors(15)), attr=1)
+-------------------------------------------------------------------------------------------------------
+axis(1, 1:dim(d)[2], colnames(d), las=2)
+axis(2, 1:dim(d)[2], colnames(d), las=2) image(x=seq(dim(x)[2]), y=seq(dim(y)[2]), z=COR, col=rev(heat.colors(20)), xlab="x column", ylab="y column", xaxt='n')
+-------------------------------------------------------------------------------------------------------
+df<-as.data.frame(matrix(rnorm(1300),ncol=13))
+library(reshape2)
+dflong<-melt(df)
+dflong$sample<-c(rep("group1",nrow(df)*5),rep("group2",nrow(df)*4),rep("group3",nrow(df)*4))
+library(ggplot2) library(RColorBrewer) col.g <- c(brewer.pal(9,"Greens"))[5:9] # select 5 colors from class Greens
+col.r <- c(brewer.pal(9,"Reds"))[6:9] # select 4 colors from class Reds
+col.b <- c(brewer.pal(9,"Blues"))[6:9] # select 4 colors from class Blues
+my.cols <- c(col.g,col.r,col.b) image(1:13,1,as.matrix(1:13), col=my.cols, xlab="my palette", ylab="", xaxt="n", yaxt="n", bty="n") ggplot(data=dflong,aes(variable,value,colour=variable))+geom_boxplot()+scale_colour_manual(values = my.cols) ggplot(data=dflong,aes(variable,value,fill=variable))+geom_boxplot()+scale_fill_manual(values = my.cols)
+-------------------------------------------------------------------------------------------------------
+tile.list secr::pointsInPolygon # Sample data
+x <- matrix( rnorm(20), nc = 2 )
+y <- matrix( rnorm(1000), nc=2 )
+
+# Tessellation
+library(deldir)
+d <- deldir(x[,1], x[,2])
+plot(d, wlines="tess")
+
+# Pick a cell at random 
+cell <- sample( tile.list(d), 1 )[[1]]
+points( cell$pt[1], cell$pt[2], pch=16 )
+polygon( cell$x, cell$y, lwd=3 )
+
+# Select the points inside that cell
+library(secr)
+i <- pointsInPolygon(
+  y, 
+  cbind( 
+    c(cell$x,cell$x[1]), 
+    c(cell$y,cell$y[1])
+  )
+)
+points(y[!i,], pch=".")
+points(y[i,], pch="+")
+
+# Compute a tessellation of those points
+dd <- deldir(y[i,1], y[i,2])
+plot(dd, wlines="tess", add=TRUE) distance_to_segment <- function(M, A, B) {
+  norm <- function(u) sqrt(sum(u^2))
+  lambda <- sum( (B-A) * (M-A) ) / norm(B-A)^2
+  if( lambda <= 0 ) {
+    norm(M-A)
+  } else if( lambda >= 1 ) {
+    norm(M-B)
+  } else {
+    N <- A + lambda * (B-A)
+    norm(M-N)
+  }
+}
+A <- c(-.5,0)
+B <- c(.5,.5)
+x <- seq(-1,1,length=100)
+y <- seq(-1,1,length=100)
+z <- apply(
+  expand.grid(x,y), 
+  1, 
+  function(u) distance_to_segment( u, A, B )
+)
+par(las=1)
+image(x, y, matrix(z,nr=length(x)))
+box()
+segments(A[1],A[2],B[1],B[2],lwd=3)
+
+library(secr)
+distance_to_polygon <- function(x, poly) {
+  closed_polygon <- rbind(poly, poly[1,])
+  if( pointsInPolygon( t(x), closed_polygon ) )
+    return(0)
+  d <- rep(Inf, nrow(poly))
+  for(i in 1:nrow(poly)) {
+    A <- closed_polygon[i,]
+    B <- closed_polygon[i+1,]
+    d[i] <- distance_to_segment(x,A,B)
+  }
+  min(d)
+}
+x <- matrix(rnorm(20),nc=2)
+poly <- x[chull(x),]
+x <- seq(-5,5,length=100)
+y <- seq(-5,5,length=100)
+z <- apply(
+  expand.grid(x,y), 
+  1, 
+  function(u) distance_to_polygon( u, poly )
+)
+par(las=1)
+image(x, y, matrix(z,nr=length(x)))
+box()
+polygon(poly, lwd=3) x --> lambda * x + a
+y --> lambda * y + b # Sample data 
+x <- matrix(rnorm(20),nc=2)
+x <- x[chull(x),]
+y <- matrix( c(1,2) + 5*rnorm(20), nc=2 )
+plot(y, axes=FALSE, xlab="", ylab="")
+polygon(x)
+
+# Function to minimize:
+# either the sum of the squares of the distances to the polygon, 
+# if at least one point is outside, 
+# or minus the square of the scaling factor.
+# It is not continuous, but (surprisingly) that does not seem to be a problem.
+f <- function( p ) {
+  lambda <- log( 1 + exp(p[1]) )
+  a <- p[2:3]
+  y0 <- colMeans(y)
+  transformed_points <- t( lambda * (t(y)-y0) + a )
+  distances <- apply(
+    transformed_points, 
+    1, 
+    function(u) distance_to_polygon(u, x)
+  )
+  if( all(distances == 0) ) - lambda^2
+  else                      sum( distances^2 )
+}
+# Minimize this function
+p <- optim(c(1,0,0), f)$par
+# Compute the optimal parameters
+lambda <- log( 1 + exp(p[1]) )
+a <- p[2:3]
+y0 <- colMeans(y)
+# Compute the new coordinates
+transformed_points <- t( lambda * (t(y)-y0) + a )
+# Plot them
+segments( y[,1], y[,2], transformed_points[,1], transformed_points[,2], lty=3 )
+points( transformed_points, pch=3 )
+library(deldir)
+plot( 
+  deldir( transformed_points[,1], transformed_points[,2] ), 
+  wlines="tess", add=TRUE 
+)
+-------------------------------------------------------------------------------------------------------
+m X library(animation)         # external package providing saveGIF function
+jet.colors <- colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan", "#7FFF7F", 
+                                 "yellow", "#FF7F00", "red", "#7F0000")) 
+m <- 200                # define size
+C <- complex( real=rep(seq(-1.8,0.6, length.out=m), each=m ), 
+              imag=rep(seq(-1.2,1.2, length.out=m), m ) ) 
+C <- matrix(C,m,m)       # reshape as square matrix of complex numbers
+Z <- 0                   # initialize Z to zero
+saveGIF(
+  for (k in 1:20) {        # loop with 20 iterations
+    Z <- Z^2+C             # the central difference equation  
+    image(exp(-abs(Z)),col=jet.colors(255)) # plot results
+  },"Mandelbrot2.gif"  
+)
+-------------------------------------------------------------------------------------------------------
+vector_field <- function(
+  f,  # Function describing the vector field
+  xmin=0, xmax=1, ymin=0, ymax=1,
+  width=600, height=600,
+  iterations=50,
+  epsilon=.01,
+  trace=TRUE
+) {
+  z <- matrix(runif(width*height),nr=height)
+  i_to_x <- function(i) xmin + i / width  * (xmax - xmin)
+  j_to_y <- function(j) ymin + j / height * (ymax - ymin)
+  x_to_i <- function(x) pmin( width,  pmax( 1, floor( (x-xmin)/(xmax-xmin) * width  ) ) )
+  y_to_j <- function(y) pmin( height, pmax( 1, floor( (y-ymin)/(ymax-ymin) * height ) ) )
+  i <- col(z)
+  j <- row(z)
+  x <- i_to_x(i)
+  y <- j_to_y(j)
+  res <- z
+  for(k in 1:iterations) {
+    v <- matrix( f(x, y), nc=2 )
+    x <- x+.01*v[,1]
+    y <- y+.01*v[,2]
+    i <- x_to_i(x)
+    j <- y_to_j(y)
+    res <- res + z[cbind(i,j)]
+    if(trace) {
+      cat(k, "/", iterations, "\n", sep="")
+      dev.hold()
+      image(res)
+      dev.flush()
+    }
+  }
+  if(trace) {
+    dev.hold()
+    image(res>quantile(res,.6), col=0:1)
+    dev.flush()
+  }
+  res
+}
+
+# Sample data
+van_der_Pol <- function(x,y, mu=1) c(y, mu * ( 1 - x^2 ) * y - x )
+res <- vector_field(
+  van_der_Pol,
+  xmin=-3, xmax=3, ymin=-3, ymax=3,
+  width=800, height=800,
+  iterations=50,
+  epsilon=.01
+)
+image(-res) image(res > quantile(res,.6), col=0:1) akima
+-------------------------------------------------------------------------------------------------------
+ape phylo library(ape)
+dat <- read.tree(file="your/newick/file")
+#or
+dat <- read.tree(text="((A:4.2,B:4.2):3.1,C:7.3);") dendrogram data(bird.orders) #This is already a phylo object
+hc <- as.hclust(bird.orders) #Compulsory step as as.dendrogram doesn't have a method for phylo objects.
+dend <- as.dendrogram(hc)
+plot(dend, horiz=TRUE) mat <- matrix(rnorm(23*23),nrow=23, dimnames=list(sample(bird.orders$tip, 23), sample(bird.orders$tip, 23))) #Some random data to plot ord.mat <- mat[bird.orders$tip,bird.orders$tip] heatmap heatmap(ord.mat, Rowv=dend, Colv=dend) heatmap.phylo <- function(x, Rowp, Colp, ...){
+    # x numeric matrix
+    # Rowp: phylogenetic tree (class phylo) to be used in rows
+    # Colp: phylogenetic tree (class phylo) to be used in columns
+    # ... additional arguments to be passed to image function
+    x <- x[Rowp$tip, Colp$tip]
+    xl <- c(0.5, ncol(x)+0.5)
+    yl <- c(0.5, nrow(x)+0.5)
+    layout(matrix(c(0,1,0,2,3,4,0,5,0),nrow=3, byrow=TRUE),
+                  width=c(1,3,1), height=c(1,3,1))
+    par(mar=rep(0,4))
+    plot(Colp, direction="downwards", show.tip.label=FALSE,
+               xlab="",ylab="", xaxs="i", x.lim=xl)
+    par(mar=rep(0,4))
+    plot(Rowp, direction="rightwards", show.tip.label=FALSE, 
+               xlab="",ylab="", yaxs="i", y.lim=yl)
+    par(mar=rep(0,4), xpd=TRUE)
+    image((1:nrow(x))-0.5, (1:ncol(x))-0.5, x, 
+           xaxs="i", yaxs="i", axes=FALSE, xlab="",ylab="", ...)
+    par(mar=rep(0,4))
+    plot(NA, axes=FALSE, ylab="", xlab="", yaxs="i", xlim=c(0,2), ylim=yl)
+    text(rep(0,nrow(x)),1:nrow(x),Rowp$tip, pos=4)
+    par(mar=rep(0,4))
+    plot(NA, axes=FALSE, ylab="", xlab="", xaxs="i", ylim=c(0,2), xlim=xl)
+    text(1:ncol(x),rep(2,ncol(x)),Colp$tip, srt=90, pos=2)
+    } heatmap.phylo(mat, bird.orders, bird.orders) cat("owls(((Strix_aluco:4.2,Asio_otus:4.2):3.1,Athene_noctua:7.3):6.3,Tyto_alba:13.5);",
+    file = "ex.tre", sep = "\n")
+tree.owls <- read.tree("ex.tre")
+mat2 <- matrix(rnorm(4*4),nrow=4, 
+             dimnames=list(sample(tree.owls$tip,4),sample(tree.owls$tip,4)))
+is.ultrametric(tree.owls)
+[1] FALSE
+heatmap.phylo(mat2,tree.owls,tree.owls)
+-------------------------------------------------------------------------------------------------------
+raster r <-raster(t(matrix((data=corr), ncol=720, nrow=1440)))
+r1 <- raster(t(matrix((data=over), ncol=720, nrow=1440)))
+m <- r > r1 #Compare the two rasters
+image( m , col = c("#EF8A62" , "#67A9CF" ) ) #Hexadecimal colour specification
+legend( "bottomleft" , legend = c( "Y" , "Y1") , fill = c("#EF8A62" , "#67A9CF" ) , border = "#D9D9D9" , bty = "n")
+-------------------------------------------------------------------------------------------------------
+mba.surf MBA persp data(LIDAR)
+mba.int <- mba.surf(LIDAR, 300, 300, extend=TRUE)$xyz.est
+# Two ways of imaging....
+image(mba.int, xaxs="r", yaxs="r")
+persp(mba.int, theta = 135, phi = 30, col = "green3", scale = FALSE,
+  ltheta = -120, shade = 0.75, expand = 10, border = NA, box = FALSE)
+-------------------------------------------------------------------------------------------------------
+heatmap.2 margins #1) 
+if (!missing(RowSideColors)) {
+    par(mar = c(margins[1], 0, 0, 0.5))
+    image(rbind(1:nr), col = RowSideColors[rowInd], axes = FALSE)
+
+#2)
+if (!missing(ColSideColors)) {
+    par(mar = c(0.5, 0, 0, margins[2]))
+    image(cbind(1:nc), col = ColSideColors[colInd], axes = FALSE)
+
+#3)
+par(mar = c(margins[1], 0, 0, margins[2]))
+
+#4)
+par(mar = c(margins[1], 0, 0, 0))
+
+#5)
+par(mar = c(0, 0, if (!is.null(main)) 5 else 0, margins[2]))
+
+#6
+if (key) {
+    par(mar = c(5, 4, 2, 1), cex = 0.75)
+-------------------------------------------------------------------------------------------------------
+perlin_noise <- function( 
+  n = 5,   m = 7,    # Size of the grid for the vector field
+  N = 100, M = 100   # Dimension of the image
+) {
+  # For each point on this n*m grid, choose a unit 1 vector
+  vector_field <- apply(
+    array( rnorm( 2 * n * m ), dim = c(2,n,m) ),
+    2:3,
+    function(u) u / sqrt(sum(u^2))
+  )
+  f <- function(x,y) {
+    # Find the grid cell in which the point (x,y) is
+    i <- floor(x)
+    j <- floor(y)
+    stopifnot( i >= 1 || j >= 1 || i < n || j < m )
+    # The 4 vectors, from the vector field, at the vertices of the square
+    v1 <- vector_field[,i,j]
+    v2 <- vector_field[,i+1,j]
+    v3 <- vector_field[,i,j+1]
+    v4 <- vector_field[,i+1,j+1]
+    # Vectors from the point to the vertices
+    u1 <- c(x,y) - c(i,j)
+    u2 <- c(x,y) - c(i+1,j)
+    u3 <- c(x,y) - c(i,j+1)
+    u4 <- c(x,y) - c(i+1,j+1)
+    # Scalar products
+    a1 <- sum( v1 * u1 )
+    a2 <- sum( v2 * u2 )
+    a3 <- sum( v3 * u3 )
+    a4 <- sum( v4 * u4 )
+    # Weighted average of the scalar products
+    s <- function(p) 3 * p^2 - 2 * p^3
+    p <- s( x - i )
+    q <- s( y - j )
+    b1 <- (1-p)*a1 + p*a2
+    b2 <- (1-p)*a3 + p*a4
+    (1-q) * b1 + q * b2
+  }
+  xs <- seq(from = 1, to = n, length = N+1)[-(N+1)]
+  ys <- seq(from = 1, to = m, length = M+1)[-(M+1)]
+  outer( xs, ys, Vectorize(f) )
+}
+
+image( perlin_noise() ) a <- .6
+k <- 8
+m <- perlin_noise(2,2,2^k,2^k)
+for( i in 2:k )
+  m <- m + a^i * perlin_noise(2^i,2^i,2^k,2^k)
+image(m)
+m[] <- rank(m) # Histogram equalization
+image(m)
+-------------------------------------------------------------------------------------------------------
+raster image require( raster )
+im <- brick("~/Desktop/image.jpg")
+image( im , y = 1 )
+
+# Or for a rgb coloured image...
+plotRGB( im , r=1 , g = 2 , b = 3 )
+
+# To extract values of each layer
+vals <- getValues( im )
+
+# A quicker way to get the values would be to use the as.matrix method for rasters
+vals <- as.matrix( im )
+-------------------------------------------------------------------------------------------------------
+# load a single object from an existing workspace save.image(".Rdata") save(list = ls(all=TRUE), file= ".RData") load library(ggplot2)
+c <- ggplot(mtcars, aes(factor(cyl)))
+d<-c + geom_bar(width=.5)  # create two graphs 
+c<- c + geom_bar()
+save(list=c("c","d"),file="myobjects") # save them (notice that objects are accessed as strings)
+rm(list = ls()) # remove from the memory
+load(file="myobjects") # load again c d myobjects save saveRDS save saveRDS a b myobjects library(ggplot2)
+a<-qplot(rnorm(100))
+b<-qplot(rnorm(200))
+list=ls()
+list<-list[-which(list%in%c("a","b"))] # list all variables except the one you want to save
+rm(list=list) # we're deleting all except a and b
+load(file="myobjects") # loading or unpacking objects c and d
+save(list=ls(),file="myobjects") # saving objects a,b,c,d in myobjects file save.table gridExtra save
+-------------------------------------------------------------------------------------------------------
+globalenv() globalenv() x <- 1; y <- 2 #First, create some objects
+save.image()  # save workspace to disk
+rm(list=ls()) # remove everything from workspace
+tmp.env <- new.env() # create a temporary environment
+load(".RData", envir=tmp.env) # load workspace into temporary environment
+x <- get("x", pos=tmp.env) # get the objects you need into your globalenv()
+#x <- tmp.env$x # equivalent to previous line
+rm(tmp.env) # remove the temporary environment to free up memory globalenv() tmp.env <- new.env()
+load(".RData", envir=tmp.env) # load workspace into temporary environment
+assign("z", 10, pos=tmp.env)
+#tmp.env$z <- 10 # equivalent to previous line tmp.env save save(list=ls(all.names=TRUE, pos=tmp.env), envir=tmp.env, file="test.RData")
+rm(tmp.env) z rm(list=ls(all.names=TRUE))
+load("test.RData")
+
+> ls()
+[1] "x"       "y"       "z"
+-------------------------------------------------------------------------------------------------------
+cors<-round(cor(samples),2) #correlations
+
+# make layout for plot layout
+laymat<-diag(1:5) #histograms
+laymat[upper.tri(laymat)]<-6:15 #correlations
+laymat[lower.tri(laymat)]<-16:25 #heatmaps
+
+layout(laymat) #define layout using laymat
+
+par(mar=c(2,2,2,2)) #define marginals etc.
+
+# Draw histograms, tweak arguments of hist to make nicer figures
+for(i in 1:5) 
+  hist(samples[,i],main=names(samples)[i])
+
+# Write correlations to upper diagonal part of the graph
+# Again, tweak accordingly
+for(i in 1:4)
+  for(j in (i+1):5){
+    plot(-1:1,-1:1, type = "n",xlab="",ylab="",xaxt="n",yaxt="n")
+    text(x=0,y=0,labels=paste(cors[i,j]),cex=2)
+    }
+
+# Plot heatmaps, here I use kde2d function for density estimation
+# image function for generating heatmaps
+library(MASS)
+for(i in 2:5)
+  for(j in 1:(i-1)){
+     k <- kde2d(samples[,i],samples[,j])
+     image(k,col=heat.colors(1000))
+    }
+-------------------------------------------------------------------------------------------------------
+image(matrix((data=corrs), ncol=720, nrow=1440)) library(fields)
+image.plot(matrix((data=corrs), ncol=720, nrow=1440))
+-------------------------------------------------------------------------------------------------------
+test123 <- structure(c(2,7,3,18,22,25,12,1), .Dim = c(2L,4L))  
+colors <- colorpanel(20, "green","red")  
+colbreaks <- c(seq(1,20, length=length(colors)),max(test123)) #add the last point
+image(test123, col=colors, breaks=colbreaks) max(test123) colors
+-------------------------------------------------------------------------------------------------------
+# Example data
+r <- raster( system.file("external/test.grd", package="raster") )
+r1 <- r * rnorm( ncell(r))
+
+# Make new raster
+m <- raster( r )
+
+# 3 = Yellow , 2 = "Red" , 1 = "Blue"
+values( m ) <- ifelse( abs( r[] - r1[] ) <= 0.01 , 3 , ifelse( r[] > r1[] , 1 , 2 ) )
+image( m , col = c( 1 = "Blue" , 2 = "Red" , 3 = "Yellow" ) ) value = "colour" col
+-------------------------------------------------------------------------------------------------------
+?image m <- matrix(rnorm(100), nrow=100, ncol=1)
+image(m)
+-------------------------------------------------------------------------------------------------------
+base image tableplot <- function(ret, nrow, ncol, main){
+    m <- matrix(as.integer(ret$y),nrow,ncol)
+    image(1:nrow,1:ncol,m,col=c("red","green"),axes=FALSE, xlab="",ylab="",main=main)
+    text(row(m),col(m),labels=matrix(ret$x,nrow,ncol))
+    } ret <- data.frame("x" = c("test1","test2","test3","test4"), "y" = c("success","success","failure","success"))
+tableplot(ret, 2, 2, "My tests")
+-------------------------------------------------------------------------------------------------------
+# fix the data because we're going to use it twice:
+d=sample(data)
+# plot it with X and Y coords known (note 1 larger than dimension)
+image(1:51,1:3,matrix(d,nrow=50, ncol=2),las=1)
+# add diagonal shading
+polygon(x=c(1,51,51,1),y=c(1,1,3,3),density=3,col="red")
+# replot. The NA's show through:
+image(1:51,1:3,matrix(d,nrow=50, ncol=2),las=1,add=TRUE)
+# outline the cells.
+abline(h=1:3)
+abline(v=1:51) x0=c(1:50,1:50)
+x1=x0+1
+y0=c(rep(1,50),rep(2,50))
+y1=y0+1
+image(1:51,1:3,matrix(d,nrow=50, ncol=2),las=1)
+segments(x0,y0,x1,y1,col="red",lwd=2)
+image(1:51,1:3,matrix(d,nrow=50, ncol=2),las=1,add=TRUE)
+abline(v=1:51);abline(h=1:3)
+-------------------------------------------------------------------------------------------------------
+image image(outer(seq(0.01,1,0.01),seq(0.01,1,0.01),
+            FUN=function(x,y)test$z)) raster
+-------------------------------------------------------------------------------------------------------
+s() Error in ExtractData(object, data, NULL) : 'names' attribute [1] must be the same length as the vector [0] > library(lubridate)
+> library(mgcv)
+> df <- data.frame(x=today() + 1:20, y=1:20)
+> gam(y~s(x), data=df)
+Error in ExtractData(object, data, knots) : 
+  'names' attribute [1] must be the same length as the vector [0]
+> df$xnum <- (df$x - df$x[1])/ddays(1)
+> str(df)
+'data.frame':   20 obs. of  3 variables:
+ $ x   : Date, format: "2013-04-09" "2013-04-10" "2013-04-11" "2013-04-12" ...
+ $ y   : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ xnum: num  0 1 2 3 4 5 6 7 8 9 ...
+> gam(y~s(xnum), data=df) save.image()
+-------------------------------------------------------------------------------------------------------
+contour contourLines polygon plot(datax[,1], datax[,2],axes=FALSE,ann=FALSE, type="n")
+box()
+cL <- contourLines(xp, yp, zM,nlevels = 1)
+lapply(cL,function(x)polygon(x$x,x$y,col="red"))
+points(datax[,1], datax[,2],pch = datay+1) library(splancs)
+ord <- sapply(lapply(cL,function(x)datay[inout(datax,cbind(x$x,x$y))]),
+              median) #Check what values are present in the polygon and 
+                      #take the most common one
+plot(datax[,1], datax[,2],axes=FALSE,ann=FALSE, type="n")
+box()
+lapply(cL[ord==1],function(x)polygon(x$x,x$y,col="blue"))
+lapply(cL[ord==0],function(x)polygon(x$x,x$y,col="white"))
+points(datax[,1], datax[,2],pch = datay+1) image image(xp, yp, zM, col=c("transparent","blue"))
+points(datax[,1], datax[,2],pch = datay+1)
+-------------------------------------------------------------------------------------------------------
+# Sample data
+n <- 100
+im <- matrix(0, 3*n, 3*n+1)
+x <- ( col(im) - 1.5*n ) / n
+y <- ( row(im) - 1.5*n ) / n
+im[ x^2 + y^2 <= 1 ] <- 1
+image(im)
+
+# Shift the image in one direction
+s1 <- function(z) cbind(rep(0,nrow(z)), z[,-ncol(z)] )
+s2 <- function(z) cbind(z[,-1], rep(0,nrow(z)) )
+s3 <- function(z) rbind(rep(0,ncol(z)), z[-nrow(z),] )
+s4 <- function(z) rbind(z[-1,], rep(0,ncol(z)) )
+
+# Area, perimeter and circularity
+area <- function(z) sum(z)
+perimeter <- function(z) sum( z != 0 & s1(z)*s2(z)*s3(z)*s4(z) == 0)
+circularity <- function(z) 4*pi*area(z) / perimeter(z)^2
+
+circularity(im)
+# [1] 1.241127
+
+area(im)
+# [1] 31417
+n^2*pi
+# [1] 31415.93
+
+perimeter(im)
+# [1] 564
+2*pi*n
+# [1] 628.3185 square1 <- -1 <= x & x <= 1 & -1 <= y & y <= 1
+c( perimeter(square1), area(square1) )
+# [1]   800 40401
+
+square2 <- abs(x) + abs(y) <= sqrt(2)
+c( perimeter(square2), area(square2) )
+# [1]   564 40045 edge <- function(z) z & !(s1(z)&s2(z)&s3(z)&s4(z))
+perimeter <- function(z) {
+  e <- edge(z)
+  ( 
+    # horizontal and vertical segments
+    sum( e & s1(e) ) + sum( e & s2(e) ) + sum( e & s3(e) ) + sum( e & s4(e) ) + 
+    # diagonal segments
+    sqrt(2)*( sum(e & s1(s3(e))) + sum(e & s1(s4(e))) + sum(e & s2(s3(e))) + sum(e & s2(s4(e))) )
+  ) / 2  # Each segment was counted twice, once for each end
+}
+
+perimeter(im)
+# [1] 661.7544
+c( perimeter(square1), area(square1) )
+# [1]   805.6569 40401.0000
+c( perimeter(square2), area(square2) )
+# [1]   797.6164 40045.0000
+
+circularity(im)
+# [1] 0.9015315
+circularity(square1)
+# [1] 0.7821711
+circularity(square2)
+# [1] 0.7909881
+-------------------------------------------------------------------------------------------------------
+m = matrix(rnorm(100), 10, 10)
+pdf("image.pdf")
+image(m)
+dev.off()
+-------------------------------------------------------------------------------------------------------
+library(raster)
+r <- brick(file.path(R.home(), "doc", "html", "logo.jpg"))
+pdf("a.pdf")
+plotRGB(r)
+dev.off()
+-------------------------------------------------------------------------------------------------------
+D:/data temperature.csv # set the main working directory
+setwd("D:/data")
+
+# allocate a list for temperature matrices
+list.temp.matrix = vector("list",length(list.dirs(recursive=FALSE)))
+
+# iterate through each folder and load the file
+i <- 1
+for (dir.name in list.dirs(recursive=FALSE))
+{
+    file.name <- paste0(dir.name, "/temperature.csv")
+    temp.matrix <- as.matrix(read.csv(file.name))
+
+    # update the list
+    list.temp.matrix[[i]] <- temp.matrix
+    i <- i + 1
+
+    # to avoid over-writing plots
+    x11()                                       
+    image(temp.matrix)
+}
+-------------------------------------------------------------------------------------------------------
+var # Sample data
+M <- 2736
+N <- 3648
+im <- matrix( FALSE, M, N );
+y <- as.vector(row(im))
+x <- as.vector(col(im))
+im[ abs( y - M/2 ) < M/3 & abs( x - N/2 ) < N/3 ] <- TRUE
+#image(im)
+theta <- runif(1, -pi/12, pi/12)
+xy <- cbind(x+1-N/2,y+1-M/2) %*% matrix(c( cos(theta), sin(theta), -sin(theta), cos(theta) ), 2, 2)
+#plot(xy[,1]+N/2-1, xy[,2]+M/2-1); abline(h=c(1,M),v=c(1,N))
+f <- function(u, lower, upper) pmax(lower,pmin(round(u),upper))
+im[] <- im[cbind( f(xy[,2] + M/2 - 1,1,M), f(xy[,1] + N/2 - 1,1,N) )]
+image(1:N, 1:M, t(im), asp=1)
+
+# Variance matrix of the points in the rectangle
+i <- which(im)
+V <- var(cbind( col(im)[i], row(im)[i] ))
+# Their eigenvectors
+u <- eigen(V)$vectors
+abline( M/2-N/2*u[2,1]/u[1,1], u[2,1]/u[1,1], lwd=5 )
+abline( M/2-N/2*u[2,2]/u[1,2], u[2,2]/u[1,2] )
+-------------------------------------------------------------------------------------------------------
+saveRDS(obj, "obj.rds")
+obj <- readRDS("obj.rds") save.image("my_workspace.RData")
+load("my_workspace.RData") /extdata/data/obj.rds obj <- readRDS(paste(path.package('package_name'),"/data/obj.rds"))
+# R < 3.0.0 it's .path.package, not path.package #' My Analysis Function
+#' 
+#' This function does x, y, and z. 
+#' 
+#' @param obj The name of the object...
+#' @export your_analysis_fun
+
+your_analysis_fun <- function(obj="name") {
+ obj <- readRDS(paste(path.package('package_name'),"/data/",obj,".rds"))
+ # the things you usually copy paste go here
+ # ...
+ return(results)
+}
+-------------------------------------------------------------------------------------------------------
+biOps library(biOps)
+x <- readJpeg(system.file("samples", "violet.jpg", package="biOps"))
+plot(x)
+
+r <- imgRedBand(x)
+plot(r)
+image(x[,,1])
+
+g <- imgGreenBand(x)
+plot(g)
+image(x[,,2])
+
+b <- imgBlueBand(x)
+plot(b)
+image(x[,,3]) redPal <- colorRampPalette(c("black", "red"))
+greenPal <- colorRampPalette(c("black", "green"))
+bluePal <- colorRampPalette(c("black", "blue"))
+
+x11(width=9, height=2.5)
+par(mfcol=c(1,3))
+image(x=seq(ncol(r)), y=seq(nrow(r)), z=t(r), asp=1, xaxt="n", yaxt="n", bty="n", xlab="", ylab="", main="red channel", col=redPal(256))
+image(x=seq(ncol(g)), y=seq(nrow(g)), z=t(g), asp=1, xaxt="n", yaxt="n", bty="n", xlab="", ylab="", main="green channel", col=greenPal(256))
+image(x=seq(ncol(b)), y=seq(nrow(b)), z=t(b), asp=1, xaxt="n", yaxt="n", bty="n", xlab="", ylab="", main="blue channel", col=bluePal(256))
+-------------------------------------------------------------------------------------------------------
+library(maps)
+image(x=-90:-75, y = 25:40, z = outer(1:15, 1:15, "+"), 
+      xlab = "lon", ylab = "lat")
+map("state", add = TRUE)
+
+library(grid)
+outline <- map("usa", plot=FALSE) # returns a list of x/y coords
+xrange <- range(outline$x, na.rm=TRUE) # get bounding box
+yrange <- range(outline$y, na.rm=TRUE)
+xbox <- xrange + c(-2, 2)
+ybox <- yrange + c(-2, 2)
+# create the grid path in the current device
+polypath(c(outline$x, NA, c(xbox, rev(xbox))),
+         c(outline$y, NA, rep(ybox, each=2)),
+         col="light blue", rule="evenodd") grid
+-------------------------------------------------------------------------------------------------------
+wrld_simpl library(maptools)
+library(raster)
+library(rgeos)
+
+data(wrld_simpl)
+
+x <- list(x=-90:-75, y = 25:40, z = outer(1:15, 1:15, "+"))
+
+## use raster to quickly generate the polymask
+## (but also use image2Grid to handle corner coordinates)
+r <- raster(image2Grid(x))
+p <- as(extent(r), "SpatialPolygons")
+
+wmap <- gIntersection(wrld_simpl, p)
+oceanmap <- gDifference(p, wmap)
+
+image(r)
+plot(oceanmap, add = TRUE, col = "light blue") maptools::map2SpatialPolygons
+-------------------------------------------------------------------------------------------------------
+library("ncdf")
+download.file("ftp://ftp.nodc.noaa.gov/pub/data.nodc/pathfinder/Version5.2/2000/20000107010122-NODC-L3C_GHRSST-SSTskin-AVHRR_Pathfinder-PFV5.2_NOAA14_G_2000007_night-v02.0-fv01.0.nc", destfile="sst.nc")
+data=open.ncdf("sst.nc")
+
+
+sst=get.var.ncdf(data,"sea_surface_temperature")
+lon=get.var.ncdf(data,"lon")
+lat=get.var.ncdf(data,"lat")
+
+data$dim$lon$vals -> lon
+data$dim$lat$vals -> lat
+lat <- rev(lat)
+sst <- sst[,ncol(sst):1]
+png(filename="sst2.png",width=1215,height=607,bg="white")
+image(lon, lat, sst, zlim=c(270,320), col = heat.colors(37))
+library("sp", lib.loc="/usr/lib/R/site-library")
+library("maptools", lib.loc="/usr/lib/R/site-library")
+data(wrld_simpl)
+plot(wrld_simpl, add = TRUE)
+dev.off()
+-------------------------------------------------------------------------------------------------------
+m1 <- as.matrix(read.table(text="   reg1   reg2     reg3   reg4   reg5    reg6    reg6    reg7     reg8
+1  0.2036 0.6400  -2.2647 0.5345 0.9812 -0.0390 -1.4486 -0.1340  -1.9157
+2 -0.0308 0.2991  -1.8990 0.7063 0.8807 -0.0568 -1.5150 -0.8000  -1.5115
+3 -0.0242 0.6358  -2.1675 0.8432 0.8149 -0.0955 -1.3789 -0.2266  -1.5513
+4 -0.8990 0.5613  -2.0289 0.8544 1.1060 -0.3846 -1.4800 -0.0717  -1.4325
+5 -0.6438 0.8719  -2.2708 0.6790 1.0250 -0.3035 -1.1125 -0.3746  -1.5219
+6 -0.7945 0.5943  -1.8478 0.5457 0.7989 -0.1093 -2.3242  0.2995  -1.8066",header=TRUE))
+
+m2 <- matrix(rnorm(54),nrow=6)
+
+fun <- Vectorize(function(i,j) t.test(m1[,i],m2[,j])$p.value)
+res <- outer(1:9,1:9,FUN = "fun")
+
+image(1:9,1:9,res,axes=FALSE,xlab="m1",ylab="m2")
+axis(1, at = 1:9,labels=colnames(m1))
+axis(2, at = 1:9,labels=colnames(m1)) colnames(res) <- colnames(m1)
+res <-as.data.frame(res)
+res$group <- colnames(m1)
+
+library(reshape2)
+res <- melt(res,id="group")
+
+library(ggplot2)
+p <- ggplot(res, aes(x=group, y=variable)) + 
+  geom_tile(aes(fill = value), colour =   "yellow") + 
+  scale_fill_gradient(low = "yellow", high = "red", name="p-value") +
+  geom_text(aes(label=format(value,digits=2))) +
+  labs(x="m1",y="m2")
+
+print(p)
+-------------------------------------------------------------------------------------------------------
+outer for i <- seq(from=0, to=.8, by=0.1)
+j <- seq(from=0, to=0.9, by=0.1)
+
+res <- outer(i,j,FUN=Vectorize(function(i,j) {
+  require(reldist)
+  a <-  i*(1+i^2-i^2*j)/((1+i)^2*(1+i^2)) 
+  b <-  i*(1-j)/(1+i) 
+  c <-  ((1-j)/(1+i))-i*(1+i^2-i^2*j)/((1+i)^2*(1+i^2))
+  gini(c(a,b,c))
+})
+) image image(res, breaks = c(-1000,.25,.5,1000),col = c("green","yellow","red"),
+      axes=FALSE,xlab="i",ylab="j")
+axis(1, at = seq(0,1,length.out=length(i),labels=i)
+axis(2, at = seq(0,1,length.out=length(j),labels=j)
+-------------------------------------------------------------------------------------------------------
+lastFix <- max(data$FixEnd)
+
+datamatrix <- array(0,dim=c(lastFix,36,8))
+
+for(j in seq(dim(datamatrix)[2])){ #loop for Sub
+    for(k in seq(dim(datamatrix)[3])){ #loop for Condition
+        #j=1; k=7
+        data.sub <- subset(data, Sub==j & Condition==k)
+        if(nrow(data.sub) != 0){
+            for(i in seq(nrow(data.sub))){
+                ones <- data.sub$FixStart[i]:data.sub$FixEnd[i]
+                datamatrix[ones,j,k] <- 1
+            }
+        }
+        print(paste("Sub", j, ";", "Condition", k, "is finished"))
+    }
+}
+
+#image shows that 1's have been added to Subject 1 (column) 
+image(x=seq(dim(datamatrix)[1]), y=seq(dim(datamatrix)[2]), datamatrix[,,7])
+-------------------------------------------------------------------------------------------------------
+library(raster)
+r <- raster(cp)
+image(r) cp plot(cp) SpatialPointsDataFrame
+-------------------------------------------------------------------------------------------------------
+atan a = atan(y0/x0) * 215 / (pi/2) # Load the image
+library(png)
+library(RCurl)
+d <- readPNG( getBinaryURL( "http://i.stack.imgur.com/rMR3C.png" ) )
+image(d, col=gray(0:255/255))
+
+# Origin for the polar coordinates
+x0 <- ncol(d)/2
+y0 <- nrow(d)/2
+
+# The value of pixel (i,j) in the final image 
+# comes from the pixel, in the original image, 
+# with polar coordinates (r[i],theta[i]).
+# We need a grid for the values of r and theta.
+r <- 1:ceiling(sqrt( max(x0,nrow(d))^2 + max(y0,ncol(d))^2))
+theta <- -pi/2 + seq(0,2*pi, length = 200)
+r_theta <- expand.grid(r=r, theta=theta)
+
+# Convert those polar coordinates to cartesian coordinates:
+x <- with( r_theta, x0 + r * cos(theta) )
+y <- with( r_theta, y0 + r * sin(theta) )
+# Truncate them
+x <- pmin( pmax( x, 1 ), ncol(d) )
+y <- pmin( pmax( y, 1 ), nrow(d) )
+
+# Build an empty matrix with the desired size and populate it
+r <- matrix(NA, nrow=length(r), ncol=length(theta))
+r[] <- d[cbind(x,y)]
+image(r, col=gray(0:255/255))
+-------------------------------------------------------------------------------------------------------
+image axis imagesc grImport tiff rtiff dput(mat) ?image > image(t(volcano)[ncol(volcano):1,])   # the default axes lebeling
+
+ image(t(volcano)[ncol(volcano):1,], axes=FALSE)
+ axis(1, at=seq(0,1,.1), labels= seq(0,100,10) )
+ axis(2, at=seq(0,1,.1), labels= rev( seq(0,100,10)) )
+-------------------------------------------------------------------------------------------------------
+dist dist nn <- paste0('row',1:5)
+x <- matrix(rnorm(25), nrow = 5,dimnames=list(nn))
+distObj <- dist(x)
+cols <- c("#D33F6A", "#D95260", "#DE6355", "#E27449", 
+            "#E6833D", "#E89331", "#E9A229", "#EAB12A", "#E9C037", 
+            "#E7CE4C", "#E4DC68", "#E2E6BD")
+## mandatory coercion
+distObj <- as.matrix(distObj)
+## hetamap
+image(distObj[order(nn), order(nn)], col = cols, 
+      xaxt = "n", yaxt = "n")
+## axes labels
+axis(1, at = seq(0, 1, length.out = dim(distObj)[1]), labels = nn, 
+     las = 2)
+axis(2, at = seq(0, 1, length.out = dim(distObj)[1]), labels = nn, 
+     las = 2)
+-------------------------------------------------------------------------------------------------------
+# Sample data
+library(igraph)
+g <- erdos.renyi.game(10, p=1/2) + erdos.renyi.game(10, p=1/2)
+
+# Plot the adjacency matrix
+A <- get.adjacency(g)
+image(A)
+
+# In this example, sorting the nodes by degree is not a good idea
+i <- order( degree(g) )
+image(A[i,i])
+-------------------------------------------------------------------------------------------------------
+set.seed(14)
+a<-matrix(floor(runif(21)*4)-1,nrow=7)
+col<-c("grey","white","blue","green")
+image(1:8,1:4,a,col=col) #color scale
+col<-c("red","orange","grey","lightblue","darkblue")
+#creating the dataframe for 3 example weeks
+(d<-t(matrix(c(1,1,2,3,2,3,4,
+    2,1,2,2,3,4,4,
+    5,3,2,4,5,4,5),nrow=3,byrow=TRUE)))
+df<-data.frame(day=rep(1:7,3),week=rep(1:3,each=7),werte=as.numeric(d))
+#the ggplot
+p<-ggplot(df,aes(x=day,y=max(df$week)+1-week))+
+    #tile layer
+    geom_tile(aes(fill=factor(werte))) +
+    #setting the color
+    scale_fill_manual(
+        values=col,
+        breaks=c("1","2","3","4","5"),
+        labels=c("one","two","three","four","five"))
+
+p
+-------------------------------------------------------------------------------------------------------
+V1 tapply PAmatrix # test data
+sed.seed(1104) 
+dat = data.frame(V1=17, V2=runif(200, 10, 60))
+dat$V3 = dat$V2 + runif(200, 0, 20)
+dat$V4 = dat$V3 - dat$V2
+
+  V1       V2       V3         V4
+1 17 37.25826 45.54194  8.2836734
+2 17 17.44098 22.86841  5.4274331
+3 17 49.78488 55.51627  5.7313965
+4 17 51.66640 52.54813  0.8817293
+5 17 21.84276 39.38477 17.5420079
+6 17 53.39457 54.51613  1.1215530
+
+# functions to solve the problem
+isInside = function(limits, tran) as.numeric(tran>=limits[1] & tran<=limits[2])
+PAmatrix = function(data, tran) t(apply(data, 1, isInside, tran=tran))
+
+# calculate the PA matrix
+tran17 = seq(0, 80, by=0.1)
+PA17 = PAmatrix(data=dat[,c("V2","V3")], tran=tran17)
+
+# plot the results
+image(seq(nrow(dat)), tran17, PA17, col=c("blue", "red"))
+-------------------------------------------------------------------------------------------------------
+.First .Rdata x <- 2
+save.image() .RProfile y <- try(print(x))
+print(y)
+.First <- function()
+{
+    print(x)
+    invisible(NULL)
+} x
+-------------------------------------------------------------------------------------------------------
+basedir = "C:/Users/Rdas01/Documents/FTPHome"
+inputdir = file.path(basedir,"Input")
+outdir = file.path(basedir,"Output")
+reportdir = file.path(basedir,"Report")
+
+f_Rdata = file.path(outdir,"Data.Rdata")
+f_out = file.path(outdir,"output.txt")
+
+# Do your calculations here
+
+write.csv(p,file = f_out, row.names=F)
+save.image(file = f_Rdata)
+print(f_out)
+print(f_Rdata)
+-------------------------------------------------------------------------------------------------------
+par( mar = par( "mar" ) + c( 2, 4, 0, 0 ) )
+image( x, xaxt= "n", yaxt= "n" )
+axis( 1, at=seq(0,1,length.out=ncol( x ) ), labels= colnames( x ), las= 2 )
+axis( 2, at=seq(0,1,length.out=nrow( x ) ), labels= rownames( x ), las= 2)
+-------------------------------------------------------------------------------------------------------
+panel.polygon library(maptools)
+a <- matrix(rnorm(360*180),nrow=360,ncol=180) #Some random data (=your airtemp)
+b <- readShapeSpatial("110-m_land.shp") #I used here a world map from Natural Earth. lb <- as(b, "SpatialPolygons")
+llb <- slot(lb, "polygons")
+B <- lapply(llb, slot, "Polygons") #At this point we have a list of SpatialPolygons
+coords <- matrix(nrow=0, ncol=2)
+for (i in seq_along(B)){
+    for (j in seq_along(B[[i]])) {
+        crds <- rbind(slot(B[[i]][[j]], "coords"), c(NA, NA)) #the NAs are used to separate the lines
+        coords <- rbind(coords, crds)
+        }
+    }
+coords[,1] <- coords[,1]+180 # Because here your levelplot will be ranging from 0 to 360°
+coords[,2] <- coords[,2]+90 # and 0 to 180° instead of -180 to 180 and -90 to 90 levelplot(a, panel=function(...){
+                        panel.levelplot(...)
+                        panel.polygon(coords)}) panel ?xyplot levelplot base image(seq(-180,180,by=1),seq(-90,90,by=1),a)
+plot(b, add=TRUE)
+-------------------------------------------------------------------------------------------------------
+library(RGtk2)
+w <- gwindow()
+g <- ggroup(cont=w)
+gbutton("button", cont=g)
+img <- gimage("/Users/verzani/bubble-gum-art.jpg", cont=g)
+old_cursor <- getToolkitWidget(img)$getWindow()$getCursor()
+cross <- gdkCursorNew("GDK_TCROSS")
+
+addHandler(img, "enter-notify-event", handler=function(h,...) {
+           getToolkitWidget(img)$getWindow()$setCursor(cross)
+           TRUE
+           })
+
+
+addHandler(img, "leave-notify-event", handler=function(h,...) {
+           getToolkitWidget(img)$getWindow()$setCursor(old_cursor)
+           TRUE
+           })
+-------------------------------------------------------------------------------------------------------
+#Subsetting to only the vectors I want to see in the correlation, as ordered
+insheet<-subset(insheet1,
+    select=c("Cond", "CL", "SO4", "TN", "TP", "OrthoPhos", "DO", ...., "Rural"))
+
+#Defining "high" and "low" colors
+library(colorspace)
+mycolors<-diverge_hcl(8,  h = c(8, 240), c = 80, l = c(50,100), power = 1)
+
+#Correlating them into a matrix
+sheet<-cor(insheet,use="complete.obs")
+
+#Making it!
+image(x=seq(dim(sheet)[2]), y=seq(dim(sheet)[2]), z=sheet, ann=FALSE, 
+    col=mycolors,  xlab="x column", ylab="y column", xaxt='n', yaxt='n')
+text(expand.grid(x=seq(dim(sheet)[2]), y=seq(dim(sheet)[2])),
+    labels=round(c(sheet),2), cex=0.5)
+axis(1, 1:dim(insheet2)[2], colnames(insheet2), las=2)
+axis(2, 1:dim(insheet2)[2], colnames(insheet2), las=2)
+par(mar=c(5.5, 5.5, 2, 1)) #Moves margins over to allow for axis labels
+-------------------------------------------------------------------------------------------------------
+library(maps)
+library(mapdata)
+
+image(x=110:155, y =-40:-10, z = outer(1:45, 1:30, "+"),
+  xlab = "lon", ylab = "lat") outline <- map("worldHires", regions="Australia", exact=TRUE, plot=FALSE) # returns a list of x/y coords
+xrange <- range(outline$x, na.rm=TRUE) # get bounding box
+yrange <- range(outline$y, na.rm=TRUE)
+xbox <- xrange + c(-2, 2)
+ybox <- yrange + c(-2, 2) subset <- !is.na(outline$x) # create the grid path in the current device
+polypath(c(outline$x[subset], NA, c(xbox, rev(xbox))),
+  c(outline$y[subset], NA, rep(ybox, each=2)),
+  col="light blue", rule="evenodd")
+-------------------------------------------------------------------------------------------------------
+image(as.matrix(dat[, (1:128)%%2==0])  ) #even number columns (Eastern Hemisphere) image(as.matrix(dat[, (1:128)%%2==1]) ) # odd numbers columns (Western Hemishere)
+-------------------------------------------------------------------------------------------------------
+filled contour image image.scale source("image.scale.R") # http://menugget.blogspot.de/2011/08/adding-scale-to-image-plot.html
+
+x = c(20:200/100)
+y = c(20:200/100)
+z = as.matrix(exp(x^2)) %*% exp(y^2)
+
+pal <- colorRampPalette(c('green','yellow','red'))
+breaks <- c(1:60/3,30,50,150,250,1000,3000)
+ncolors <- length(breaks)-1
+labs <- c(0.5, 1, 3,30,50,150,250,1000,3000)
+
+#x11(width=6, height=6)
+layout(matrix(1:2, nrow=1, ncol=2), widths=c(5,1), heights=c(6))
+layout.show(2)
+
+par(mar=c(5,5,1,1))
+image(x=x,y=y,z=log(z), col=pal(ncolors), breaks=log(breaks))
+box()
+
+par(mar=c(5,0,1,4))
+image.scale(log(z), col=pal(ncolors), breaks=log(breaks), horiz=FALSE, xlab="", ylab="", xaxt="n", yaxt="n")
+axis(4, at=log(labs), labels=labs)
+box()
+-------------------------------------------------------------------------------------------------------
+library(ff)
+writeBin(as.vector(volcano), "file.bin", size = 8)
+a <- ff(filename = "file.bin", readonly = TRUE, vmode = "double", dim = dim(volcano))
+image(as.ram(a))
+-------------------------------------------------------------------------------------------------------
+layout heatmap.2 ?heatmap.2 image axis library(gplots)
+
+ heatmap3 <- function(mat1){
+  image(mat1, Rowv=F, Colv=F,col=greenred(200), scale="row",
+        key=TRUE, xlab=colnames(mat1), ylab=rownames(mat1), keysize=0.8)
+  axis(1, at = seq(0, 1, length.out = dim(mat1)[1]), labels = gs, 
+       las = 2)
+  axis(2, at = seq(0, 1, length.out = dim(mat1)[1]), labels = gs, 
+       las = 2)
+  }
+nf <- layout(matrix(c(1,2,3),3,1), widths = lcm(5), heights = lcm(5), TRUE)
+heatmap3(mat1)
+heatmap3(mat2)
+heatmap3(mat3)
+-------------------------------------------------------------------------------------------------------
+intersect any library(raster)
+
+wgs84 <- "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"
+d <- raster()
+extent(d) <- extent(119.4993, 141.0993, -36.65831, -29.85831)
+res(d) <- c(0.08, 0.08)
+projection(d) <- CRS(wgs84)
+values(d) <- sample(c(NA, 1), ncell(d), replace=TRUE)
+
+b <- raster()
+extent(b) <- c(134.2456, 152.0056, -40.44268, -29.24268 )
+res(b) <- c(0.08, 0.08)
+projection(b) <- CRS(wgs84)
+values(b) <- sample(c(NA, 1), ncell(b), replace=TRUE)
+
+y <- intersect(b, d)
+
+x <- brick(resample(b, y, method = "ngb"),resample(d, y, method = "ngb"))
+x2 <- any(x, na.rm = TRUE)
+
+library(maps)
+map(regions = "australia")
+image(d, add = TRUE, col = "blue")
+image(b, add = TRUE, col = "green")
+plot(extent(y), add = TRUE)
+image(x2, add = TRUE, col = "red") area sum(values(area(x2))[which(values(x2))])
+# [1] 361407.1
+-------------------------------------------------------------------------------------------------------
+ggplot image contour persp require(mvtnorm)
+    xy <- rmvnorm(1000,c(5,10),sigma=rbind(c(3,-2),c(-2,3)))
+
+    nbins <- 20
+    x.bin <- seq(floor(min(xy[,1])), ceiling(max(xy[,1])), length=nbins)
+    y.bin <- seq(floor(min(xy[,2])), ceiling(max(xy[,2])), length=nbins)
+
+    freq <-  as.data.frame(table(findInterval(xy[,1], x.bin),findInterval(xy[,2], y.bin)))
+    freq[,1] <- as.numeric(freq[,1])
+    freq[,2] <- as.numeric(freq[,2])
+
+    freq2D <- diag(nbins)*0
+    freq2D[cbind(freq[,1], freq[,2])] <- freq[,3]
+
+    par(mfrow=c(1,2))
+    image(x.bin, y.bin, freq2D, col=topo.colors(max(freq2D)))
+    contour(x.bin, y.bin, freq2D, add=TRUE, col=rgb(1,1,1,.7))
+
+    palette(rainbow(max(freq2D)))
+    cols <- (freq2D[-1,-1] + freq2D[-1,-(nbins-1)] + freq2D[-(nbins-1),-(nbins-1)] + freq2D[-(nbins-1),-1])/4
+    persp(freq2D, col=cols) require(rgl)
+surface3d(x.bin,y.bin,freq2D/10, col="red")
+-------------------------------------------------------------------------------------------------------
+caTools write.gif() png("myPlot.png")
+plot(rnorm(1000),rnorm(1000))
+dev.off()
+library(png)
+P1 <- readPNG("myPlot.png")
+library(caTools)
+write.gif(P1,"myPlot.gif")
+showGIF <- function(fn) system(paste("display",fn))
+showGIF("myPlot.gif")
+unlink("myPlot.gif")  ## clean up ?write.gif() animation saveGIF() png("myPlot.png")
+plot(rnorm(1000),rnorm(1000))
+dev.off()
+system("convert myPlot.png myPlot.gif")
+unlink("myPlot.png") ## clean up
+showGIF("myPlot.gif")
+unlink("myPlot.gif") ## clean up ## needs ImageMagick: just for testing ...
+showGIF <- function(fn) system(paste("display",fn)) saveGIF <- function(fn,verbose=FALSE,debug=FALSE) {
+    require(png)
+    require(caTools)
+    tmpfn <- tempfile()
+    on.exit(unlink(tmpfn))
+    savePlot(tmpfn,type="png")
+    P1 <- readPNG(tmpfn)
+    dd <- dim(P1)
+    P1 <- aperm(P1,c(3,1,2),resize=TRUE)  ## P1[,1,15]
+    dim(P1) <- c(dd[3],prod(dd[1:2]))
+    P1 <- t(P1)
+    if (verbose) cat("finding unique colours ...\n")
+    P1u <- unique(P1)
+    rgbMat <- function(x) {
+        rgb(x[,1],x[,2],x[,3])
+    }
+    if (verbose) cat("creating colour index ...\n")
+    pp <- paste(P1[,1],P1[,2],P1[,3],sep=".")
+    ## make sure factor is correctly ordered
+    ind <- as.numeric(factor(pp,levels=unique(pp))) 
+    if (verbose) cat("finding colour palette ...\n")
+    if (nrow(P1u)>256) {
+        if (verbose) cat("kmeans clustering ...\n")
+        kk <- kmeans(P1u,centers=256)
+        ind <- kk$cluster[ind]
+        pal <- rgbMat(kk$centers)
+    } else {
+        pal <- rgbMat(P1u)
+    }
+    ## test:
+    if (debug) {
+        dev.new()
+        par(mar=rep(0,4))
+        image(t(matrix(ind-1,nrow=dd[1])),col=pal,axes=FALSE,ann=FALSE)
+    }
+    if (verbose) cat("writing GIF ...\n")
+    indmat <- matrix(ind-1,nrow=dd[1])
+    storage.mode(indmat) <- "integer"
+    write.gif(indmat,fn,col=as.list(pal),scale="never")
+}
+
+
+X11.options(antialias="none")
+image(matrix(1:64,nrow=8),col=rainbow(10))
+saveGIF("tmp.gif",verbose=TRUE,debug=TRUE)
+showGIF("tmp.gif")
+-------------------------------------------------------------------------------------------------------
+M2 <- M
+ print( min(M[M!=0]), digits=16)
+#[1] 2.24315836698071e-05
+ M2[M2==0] <- 0.5*min(M[M!=0])
+ image(M2)
+ image(log(M2))
+-------------------------------------------------------------------------------------------------------
+rich.colors gplots RColorBrewer "spectral" blue2green2red colorRamps require( gplots )
+barplot( rep(1,100), width = rep(2,100) , col=rich.colors(100), space = 0 , border=0, axes=FALSE)
+
+require( RColorBrewer )
+display.brewer.pal(11 , "Spectral" )
+
+require( colorRamps )
+image(matrix(1:400, 20), col = blue2green2red(400) , axes = FALSE)
+-------------------------------------------------------------------------------------------------------
+image(mat,col=c("red","green","yellow","blue","black"),breaks=c(0,0.2,0.4,0.6,0.9,1))
+-------------------------------------------------------------------------------------------------------
+image( df.gtiff , col = rep( "cornflowerblue" , ncell(df.gtiff) ) ) require( raster )
+
+#  Observe difference between a brick and a raster
+logoB <- brick(system.file("external/rlogo.grd", package="raster"))
+logoR <- raster(system.file("external/rlogo.grd", package="raster"))
+
+#  Use a brick and plotRGB to get intended colours (image uses heat.colors)
+par(mfrow=c(1,2))
+image( logoR , axes = FALSE , labels = FALSE )
+plotRGB( logoB ) #  To manually mask and colour to a single value:
+#  This file doesn't have NA values so setting e.g. plot( logoR , col = "blue" ) won't work...
+
+#  Example of cell values for background colour
+logoB[1]
+     red green blue
+[1,] 255   255  255
+
+#  Make binary mask with some threshold of 'close to white' or 'close to black' values
+newLogo <- calc( logoB , function(x) sum( x ) < 725 + 0 | sum( x ) < 50 + 0 )
+
+#  Then plot, supplying a colour for each binary level
+plot(newLogo , col = c( "white" , "cornflowerblue" ) , main = "binary mask" ) # If your file has background cells set to NA you can just plot directly setting the colour equal to number of cells in raster:
+
+require(maptools)
+r <- raster(system.file("external/test.grd", package="raster"))
+image( r , col = rep("cornflowerblue" , ncell(r)) , axes = FALSE )
+-------------------------------------------------------------------------------------------------------
+useRaster=TRUE graphics:image image(mydata, useRaster=TRUE, col={whatever})
+-------------------------------------------------------------------------------------------------------
+text mtext axis axis # original code
+grid = structure(c(1:12),.Dim = c(4,3))
+labs = c("A","B","C")
+image(1:4,1:3,grid,axes=FALSE, xlab="", ylab = "")
+axiscolors = c("black","red","black")
+
+# new code    
+Map(function(x,y,z) 
+  axis(2,at=x,col.axis=y,labels=z,lwd=0,las=1),
+  1:3,
+  axiscolors,
+  labs
+)
+axis(2,at=1:3,labels=FALSE)
+-------------------------------------------------------------------------------------------------------
+text() xpd = TRUE mtext() grid = structure(c(1:20),.Dim = c(4,5))
+labs = c("A","B","C","D","E")
+redlabs = c("B","D")
+colorlist = c("black","red")
+# one of many ways to generate the color labels
+axiscolor = colorlist[labs %in% redlabs +1 ]
+
+image(1:4,1:5,grid,axes=FALSE, xlab="", ylab = "")
+axis(2,at=1:length(labs),labels=FALSE)
+
+# This would work for sideways labels
+# mtext(text=labs, side=2,at=1:length(labs),col=axiscolor,adj=.5)
+text(labels=labs, col=axiscolor, x=rep(.45,length(labs)),y=1:length(labs), srt = 0, pos = 2, xpd = TRUE)
+-------------------------------------------------------------------------------------------------------
+downloadHandler www save.image(file='www/foo.rdata')
+-------------------------------------------------------------------------------------------------------
+save.image() .Rdata ls -alh getwd()
+-------------------------------------------------------------------------------------------------------
+my.symbols ms.image library(png)
+
+flag.list <- lapply( list.files('flags/',pattern='png$', full=TRUE), 
+    function(x) readPNG(x) )
+
+library(TeachingDemos)
+
+ms.flags <- function(ind,...) {
+
+    tmp <- array(0, dim=c(150,150,4) )
+    tmp[ 26:125, , 1:3] <- flag.list[[ind]]
+    tmp[ 26:125, , 4 ] <- 1
+
+    ms.image(tmp,...)
+}
+
+x <- rnorm(50)
+y <- rnorm(50)
+
+my.symbols(x,y, symb = ms.flags, ind=1:50, symb.plots=TRUE,
+  add=FALSE, xlim=c(-3,3), ylim=c(-3,3), inches=0.75)
+-------------------------------------------------------------------------------------------------------
+rb<-colorRampPalette(c("red","blue"))(255)
+trans<-sapply(seq(from=0,to=1,length.out=255),function(op) rgb(1,1,1,op))
+
+image(matrix(1:255,ncol=255,nrow=255),col=rb,xaxt="n",yaxt="n")
+par(new=T)
+image(t(matrix(255:1,ncol=255,nrow=255)),col=trans,xaxt="n",yaxt="n")
+-------------------------------------------------------------------------------------------------------
+pdf() width height colorstrip <- function(colors) {
+  count <- length(colors)
+  m <- matrix(1:count, count, 1)
+  par(mai=c(0.2, 2, 1, 2), cex.axis=2, ann=T, tck=-1)
+  image(m, col=colors, ylab="", axes=FALSE)
+  axis(side=3, at=seq(from=-0.165, to=1.22, by=0.332),
+       labels=letters[1:5])
+}
+
+library(igraph)
+g <- graph.ring(10)
+
+pdf("test_igraph.pdf", width=7, height=7)
+layout(matrix(c(1,2), nrow=2), heights=c(2,0.5))
+plot(g)
+colorstrip(c("red", "mediumseagreen", "yellow", "blue"))
+dev.off()
+-------------------------------------------------------------------------------------------------------
+image breaks dat <- matrix(runif(10000), ncol = 100)
+image(dat, breaks = c(0.0, 0.8, 1.0), col = c("yellow", "red")) image heatmap image
+-------------------------------------------------------------------------------------------------------
+useRaster=TRUE png("heatmap.png",w=400,h=400)
+par(mar = c(0,0,0,0))
+require(grDevices) # for colours
+x <- y <- seq(-4*pi, 4*pi, len=400)
+r <- sqrt(outer(x^2, y^2, "+"))
+z <- cos(r^2)*exp(-r/6)
+image(z, col=gray((0:32)/32), axes=FALSE, useRaster=TRUE)
+dev.off()
+-------------------------------------------------------------------------------------------------------
+library(ncdf)
+library(raster)
+library(maptools)
+source("http://dl.dropboxusercontent.com/u/3394649/R_libs/ConversionFunctions.R") #Thanks to Spacedman at  http://gis.stackexchange.com/questions/48518/how-to-re-project-ease-equal-area-scalable-earth-grid-with-a-25-km-cylindrica
+
+data(wrld_simpl)
+
+varRaster <- ConvertGrid("SMOS_File.nc", "Soil_Moisture")
+
+varRaster[varRaster < 0 ] <- NA
+varRaster <- TransformTo(varRaster)
+
+#With Plot
+plot(varRaster)
+plot(wrld_simpl, add = TRUE)
+
+#Now with 'image'
+image(varRaster, useRaster=TRUE)
+plot(wrld_simpl, add = TRUE)
+-------------------------------------------------------------------------------------------------------
+# some fake data
+n <- 5
+x <- y <- seq_len(n)
+z <- outer(x, y, "/")*rnorm(n) # create a matrix of values
+
+# color palette function
+pal <- colorRampPalette(c("green", "red"))
+
+# setup plotting regions
+layout(matrix(1:2), heights=c(0.7,0.3))
+
+# make an image of the matrix
+# ("n" turns off the axis labeling)
+image(x, y, z, xaxt="n", yaxt="n", col=pal(11), asp=1, pty="s")
+axis(1, x, letters[1:5])
+axis(2, y, letters[6:10])
+
+# add a cheap colorbar...
+cz <- pretty(range(z))
+cx <- seq_along(cz)
+image(x=cx, z=matrix(cz), xaxt="n", yaxt="n", col=pal(11))
+axis(1, cx, cz) z
+-------------------------------------------------------------------------------------------------------
+library( fields)
+    # Generating the data
+    x<- 1: 10
+    y<- 1:15
+    obj1<-list( x=x,y=y, z= outer(x,y,"+"))
+    zlim1<- range( obj1$z)
+    obj2<-list( x=x,y=y, z= outer(x^2,y,"+")*100)
+    zlim2<- range( obj2$z)
+
+    set.panel( 3,2)
+    par(oma=c(8,2,1,1)) #ADDS EXTRA SPACE AT BOTTOM OF FIGURE TO PUT LEGENDS 
+    par( mar=c(4,4,1,1))
+    ctab<- tim.colors(25)
+
+    image( obj1, zlim=zlim1, col=ctab)
+    image( obj2, zlim=zlim2, col=ctab)
+    image( obj1, zlim=zlim1, col=ctab)
+    image( obj2, zlim=zlim2, col=ctab)  
+    image( obj1, zlim=zlim1, col=ctab)
+    image( obj2, zlim=zlim2, col=ctab)
+
+    par(oma=c(4,1,2,0))
+
+    # move back to the 5 th plot ( position = 3,1) 
+    # First Legend under column 1
+    par( mfg=c(3,1)) 
+    image.plot( legend.only=TRUE, horizontal = TRUE, col=ctab, zlim =zlim1) 
+
+    # Second legend under Column 2
+    par( mfg=c(3,2)) 
+    image.plot( legend.only=TRUE, horizontal =TRUE, col=ctab, zlim =zlim2)
+-------------------------------------------------------------------------------------------------------
+data2 image(t(cbind(data1,data2+length(data1)+1)), col=c(color1, color2))
+-------------------------------------------------------------------------------------------------------
+image #matrix with the part of your data 10x10 you uploaded
+mat <- as.matrix(read.table(text = "0 0 0 0 0 0 0 0 0 0
+41 10 2 0 0 0 0 0 0 0
+75 36 20 9 4 2 1 0 0 0
+91 65 47 31 20 13 8 5 3 2
+97 78 64 47 35 25 18 12 8 5
+99 88 76 63 50 39 29 22 16 11
+99 93 85 74 63 52 42 32 25 19
+99 96 91 83 73 64 53 44 35 28
+99 98 94 88 81 72 64 54 46 37
+99 98 96 92 87 80 72 64 55 47"))
+
+#neccessary step to `image` the expected. read `?image`
+t_mat <- t(mat[ncol(mat):1,])
+
+#basic plot
+image(t_mat, col = colorRampPalette(c("blue", "red"))(10), axes = F)
+
+#creaty matrix with `NA`s and fill 
+#only the values you want to appear yellow.
+#here: say 45 to 55
+yellows <- matrix(nrow = nrow(t_mat), ncol = ncol(t_mat))
+yellows[which(t_mat > 45 & t_mat < 55)] <- t_mat[which(t_mat > 45 & t_mat < 55)] 
+
+#overlay "yellows" to basic plot
+image(yellows, col = rgb(1,1,0,1/2), add = T) legend title(main = "imageplot", xlab = "x axis", ylab = "y axis")
+legend(x = 0.6, y = 1.15, legend = c("<45", "45-55", ">55"), 
+           fill = c("blue", rgb(1,1,0,1/2), "red"), xpd = T, ncol = 3) #I guess you'll need to use `axis(1, at = seq(0,1,0.0101), labels = seq(1, 100, 1))` 
+#but I'm not sure
+axis(1, at = seq(0,1,0.11), labels = seq(1, 10, 1)) 
+axis(2, at = seq(0,1,0.11), labels = seq(1, 10, 1))
+-------------------------------------------------------------------------------------------------------
+save.image(file="myfile.RData") save(list = ls(all = TRUE),file="myfile.RData") save
+-------------------------------------------------------------------------------------------------------
+load("myfile.RData") save.image("my.file.RData") path=
+-------------------------------------------------------------------------------------------------------
+save save.image save.image(file="1.RData") save(city, country, file="1.RData")
+-------------------------------------------------------------------------------------------------------
+maps mapproject expand.grid(long,lat) library("mapproj")
+m <- map( "world", "Antarctica", plot=FALSE)
+map("world", "Antarctica", proj="conic", param=-90, fill=TRUE, col="gray")
+map.grid(m, nx=4, ny=6, col="black")
+
+front.lim <- data.frame(x=seq(-180, 180, length.out=1000),
+                        y=rep(-62, 1000))
+front.lim <- mapproject(front.lim$x, front.lim$y, projection="conic", parameters=-90)
+lines(front.lim$x, front.lim$y, col="red", lwd=2) map(add=TRUE) plot(c(-10, 45), c(30, 60), type="n", xlab="", ylab="") # image(ncdf)
+map(add=TRUE, fill=TRUE, col="gray")
+abline(v=seq(-10, 45, 7.5), lty=2)
+abline(h=seq(-30, 60, 7.5), lty=2)
+-------------------------------------------------------------------------------------------------------
+Raster image() image.plot{fields} image.plot() expand.grid maps
+-------------------------------------------------------------------------------------------------------
+> x=matrix(c(T,F,T,F,F,F,T,T,F,T,T,T,F,F,F,T),ncol=4)
+> x
+      [,1]  [,2]  [,3]  [,4]
+[1,]  TRUE FALSE FALSE FALSE
+[2,] FALSE FALSE  TRUE FALSE
+[3,]  TRUE  TRUE  TRUE FALSE
+[4,] FALSE  TRUE  TRUE  TRUE
+> image(t(x),axes=F)
+> axis(2,at=seq(0,1,(1/(nrow(x)-1))),labels=nrow(x):1)
+> axis(3,at=seq(0,1,(1/(ncol(x)-1))),labels=1:ncol(x))
+-------------------------------------------------------------------------------------------------------
+R x=seq(-107,-106,.1)
+y=seq(33,34,.1)
+coords=expand.grid(x,y)
+data1=data.frame(coords,depth=runif(nrow(coords),0,2))
+names(data1)=c('x','y','value')
+
+# get max and min values 
+xmn=min(data1[,1]); xmx=max(data1[,1])
+ymn=min(data1[,2]); ymx=max(data1[,2]) # compute interpolated raster. Note that this is not the 'spatial-temporal K function' requested in the question, as pointed out in a comment below, but a linear interpolation
+library(akima)
+akima.li <- interp(data1[,1], data1[,2], data1[,3], duplicate = "median",
+                   xo=seq(xmn,xmx, length=100),
+                   yo=seq(ymn,ymx, length=100)) # plot interpolated raster 
+image(akima.li, col = rainbow(100, alpha = 1)) # plot interpolated contour 
+contour(akima.li, nlevels = 3) # put the raster and contours together
+image(akima.li, col = rainbow(100, alpha = 1))
+contour(akima.li, nlevels = 3, add = TRUE) image(akima.li, col = gray.colors(10, start = 0, end = 0.9, gamma = 2.2, alpha = 1))
+contour(akima.li, nlevels = 3, add = TRUE) image(akima.li, col = gray.colors(10, start = 0, end = 1, gamma = 1, alpha = 1))
+contour(akima.li, nlevels = 3, add = TRUE, lty = 0)
+-------------------------------------------------------------------------------------------------------
+stkhat splancs > require(splancs)
+> xyt=matrix(runif(3000),ncol=3)
+> poly=bboxx(spoints(c(0,1,0,1)))
+> tlim=c(0,1)
+> s=seq(0,.3,len=51)[-1]
+> t=s
+> stk = stkhat(xyt[,1:2], xyt[,3], poly, tlim, s,t)
+> image(str$kst)
+> require(lattice)
+> image(x=stk$s, y=stk$t,z = stk$kst)
+-------------------------------------------------------------------------------------------------------
+dgCMatrix ngTMatrix > print(a)
+3 x 9 sparse Matrix of class "dgCMatrix"
+
+[1,] . . . . . . . . 1
+[2,] . . . . 1 . . . .
+[3,] . . . . . . 1 . .
+
+> print(b)
+3 x 9 sparse Matrix of class "ngTMatrix"
+
+[1,] . . . . . . . . |
+[2,] . . . . | . . . .
+[3,] . . . . . . | . . > print(b*1)
+3 x 9 sparse Matrix of class "dgCMatrix"
+
+[1,] . . . . . . . . 1
+[2,] . . . . 1 . . . .
+[3,] . . . . . . 1 . .
+
+> image(b*1, ylim=c(0,4)) as()
+-------------------------------------------------------------------------------------------------------
+?read.asciigrid read.asciigrid returns the grid map read; either as an object of class 
+SpatialGridDataFrame-class or, if as.image is TRUE, as list with components 
+x, y and {z}. topo image ?image image(x, y, z, zlim, xlim, ylim, col = heat.colors(12),
+      add = FALSE, xaxs = "i", yaxs = "i", xlab, ylab,
+      breaks, oldstyle = FALSE, useRaster, ...)
+-------------------------------------------------------------------------------------------------------
+colorRampPalette() "red" "blue" "green" ## Matrix from ?image
+ x <- y <- seq(-4*pi, 4*pi, len = 27)
+ r <- sqrt(outer(x^2, y^2, "+"))
+
+ ## Plot it using a palette of your choice
+ image(z = z <- cos(r^2)*exp(-r/6), 
+       col  = colorRampPalette(c("white", "red"))(64))
+-------------------------------------------------------------------------------------------------------
+# gen data
+x <- 1:30
+y <- 1:30
+hello <- matrix(0:1, nrow=30, ncol=30)
+
+# make basic plot of hello matrix
+image(  1:ncol(hello), 1:nrow(hello), 
+        t(hello), col=ifelse(t(hello)==1,"yellow","white"),
+        ylab="rows",xlab="columns"      )
+box()
+
+# now let's decide whether or not a coordinate should be plotted, 
+# depending on the value of hello for this coordinate ...
+# by cycling through each pair of coordinates and saving T/F in iffer
+iffer <- NULL
+for(i in seq_along(x)) iffer <- c( iffer, hello[ y[i] , x[i] ]==1 )
+
+# plotting of the adequate subset of points that had a hello value of 1 
+points( x[iffer] , y[iffer], col="green")
+-------------------------------------------------------------------------------------------------------
+library("EBImage")
+library("gWidgets2")
+setwd(choose.dir())
+imageinput<-file.choose()
+image<-readImage(imageinput)
+
+##defininig the color mode
+colorimage<-c(RGBmode="rgb",Greymode="gray")
+
+
+updateImage <-function (h,...) {
+image1<-((svalue(brightness)+image*svalue(contrast))^(svalue(gamma)))
+image2<-channel(image1,colorimage[svalue(colormode)])
+imageout<-writeImage(image2,"imageout.jpeg")
+svalue(img)<-"imageout.jpeg"
+}
+
+colormode <- gradio(names(colorimage), horizontal=FALSE,handler=updateImage)
+brightness<-gslider(from=-1,to=1,by=.1, value=0,handler=updateImage)
+contrast <- gslider(from=0,to=10,by=.1, value=1,handler=updateImage)
+gamma <- gslider(from=0,to=10,by=0.1, value=1,handler=updateImage)
+
+
+window <- gwindow("Image Editing")
+
+BigGroup <- ggroup(cont=window)
+group <- ggroup(horizontal=FALSE, container=BigGroup)
+tmp <- gframe("Colormode", container=group)
+add(tmp, colormode)
+tmp <- gframe("Brightness", container=group)
+add(tmp, brightness, expand=TRUE)
+tmp <- gframe("Contrast", container=group)
+add(tmp, contrast, expand=TRUE)
+tmp <- gframe("Gamma", container=group)
+add(tmp, gamma, expand=TRUE)
+img <- gimage(imageinput,container=BigGroup)
+-------------------------------------------------------------------------------------------------------
+grayimage<-channel(yourimage,"gray") Image
+  colormode: Grayscale 
+  storage.mode: double 
+  dim: X Y 
+  nb.total.frames: 1 
+  nb.render.frames: 1 nb.total.frames:3
+-------------------------------------------------------------------------------------------------------
+mapproject() maproj xy as.image() fields image.plot() library("mapproj")
+xyProj <- mapproject(x, y, projection="conic", parameters=-90)
+library("fields")
+im <- as.image(z, x=xyProj)
+image.plot(im)
+-------------------------------------------------------------------------------------------------------
+library(ape)
+
+heatmap.phylo <- function(x, Rowp, Colp, breaks, col, denscol="cyan", respect=F, ...){
+    # x numeric matrix
+    # Rowp: phylogenetic tree (class phylo) to be used in rows
+    # Colp: phylogenetic tree (class phylo) to be used in columns
+    # ... additional arguments to be passed to image function
+
+    scale01 <- function(x, low = min(x), high = max(x)) {
+        x <- (x - low)/(high - low)
+        x
+    }
+
+    col.tip <- Colp$tip
+    n.col <- 1
+    if (is.null(col.tip)) {
+        n.col <- length(Colp)
+        col.tip <- unlist(lapply(Colp, function(t) t$tip))
+        col.lengths <- unlist(lapply(Colp, function(t) length(t$tip)))
+        col.fraction <- col.lengths / sum(col.lengths)
+        col.heights <- unlist(lapply(Colp, function(t) max(node.depth.edgelength(t))))
+        col.max_height <- max(col.heights)
+    }
+
+    row.tip <- Rowp$tip
+    n.row <- 1
+    if (is.null(row.tip)) {
+        n.row <- length(Rowp)
+        row.tip <- unlist(lapply(Rowp, function(t) t$tip))
+        row.lengths <- unlist(lapply(Rowp, function(t) length(t$tip)))
+        row.fraction <- row.lengths / sum(row.lengths)
+        row.heights <- unlist(lapply(Rowp, function(t) max(node.depth.edgelength(t))))
+        row.max_height <- max(row.heights)
+    }
+
+    cexRow <- min(1, 0.2 + 1/log10(n.row))
+    cexCol <- min(1, 0.2 + 1/log10(n.col))
+
+    x <- x[row.tip, col.tip]
+    xl <- c(0.5, ncol(x)+0.5)
+    yl <- c(0.5, nrow(x)+0.5)
+
+    screen_matrix <- matrix( c(
+        0,1,4,5,
+        1,4,4,5,
+        0,1,1,4,
+        1,4,1,4,
+        1,4,0,1,
+        4,5,1,4
+    ) / 5, byrow=T, ncol=4 )
+
+    if (respect) {
+        r <- grconvertX(1, from = "inches", to = "ndc") / grconvertY(1, from = "inches", to = "ndc")
+        if (r < 1) {
+            screen_matrix <- screen_matrix * matrix( c(r,r,1,1), nrow=6, ncol=4, byrow=T)
+        } else {
+            screen_matrix <- screen_matrix * matrix( c(1,1,1/r,1/r), nrow=6, ncol=4, byrow=T)
+        }
+    }
+
+
+    split.screen( screen_matrix )
+
+    screen(2)
+    par(mar=rep(0,4))
+
+    if (n.col == 1) {
+        plot(Colp, direction="downwards", show.tip.label=FALSE,xaxs="i", x.lim=xl)
+    } else {
+        screens <- split.screen( as.matrix(data.frame( left=cumsum(col.fraction)-col.fraction, right=cumsum(col.fraction), bottom=0, top=1)))
+        for (i in 1:n.col) {
+            screen(screens[i])
+            plot(Colp[[i]], direction="downwards", show.tip.label=FALSE,xaxs="i", x.lim=c(0.5,0.5+col.lengths[i]), y.lim=-col.max_height+col.heights[i]+c(0,col.max_height))
+        }
+    }
+
+    screen(3)
+    par(mar=rep(0,4))
+
+    if (n.col == 1) {
+        plot(Rowp, direction="rightwards", show.tip.label=FALSE,yaxs="i", y.lim=yl)
+    } else {
+        screens <- split.screen( as.matrix(data.frame( left=0, right=1, bottom=cumsum(row.fraction)-row.fraction, top=cumsum(row.fraction))) )
+        for (i in 1:n.col) {
+            screen(screens[i])
+            plot(Rowp[[i]], direction="rightwards", show.tip.label=FALSE,yaxs="i", x.lim=c(0,row.max_height), y.lim=c(0.5,0.5+row.lengths[i]))
+        }
+    }
+
+
+    screen(4)
+    par(mar=rep(0,4), xpd=TRUE)
+    image((1:nrow(x))-0.5, (1:ncol(x))-0.5, x, xaxs="i", yaxs="i", axes=FALSE, xlab="",ylab="", breaks=breaks, col=col, ...)
+
+    screen(6)
+    par(mar=rep(0,4))
+    plot(NA, axes=FALSE, ylab="", xlab="", yaxs="i", xlim=c(0,2), ylim=yl)
+    text(rep(0,nrow(x)),1:nrow(x),row.tip, pos=4, cex=cexCol)
+
+    screen(5)
+    par(mar=rep(0,4))
+    plot(NA, axes=FALSE, ylab="", xlab="", xaxs="i", ylim=c(0,2), xlim=xl)
+    text(1:ncol(x),rep(2,ncol(x)),col.tip, srt=90, adj=c(1,0.5), cex=cexRow)
+
+    screen(1)
+    par(mar = c(2, 2, 1, 1), cex = 0.75)
+
+    symkey <- T
+    tmpbreaks <- breaks
+    if (symkey) {
+        max.raw <- max(abs(c(x, breaks)), na.rm = TRUE)
+        min.raw <- -max.raw
+        tmpbreaks[1] <- -max(abs(x), na.rm = TRUE)
+        tmpbreaks[length(tmpbreaks)] <- max(abs(x), na.rm = TRUE)
+    } else {
+        min.raw <- min(x, na.rm = TRUE)
+        max.raw <- max(x, na.rm = TRUE)
+    }
+    z <- seq(min.raw, max.raw, length = length(col))
+
+    image(z = matrix(z, ncol = 1), col = col, breaks = tmpbreaks, 
+          xaxt = "n", yaxt = "n")
+    par(usr = c(0, 1, 0, 1))
+    lv <- pretty(breaks)
+    xv <- scale01(as.numeric(lv), min.raw, max.raw)
+    axis(1, at = xv, labels = lv)
+
+    h <- hist(x, plot = FALSE, breaks = breaks)
+    hx <- scale01(breaks, min.raw, max.raw)
+    hy <- c(h$counts, h$counts[length(h$counts)])
+    lines(hx, hy/max(hy) * 0.95, lwd = 1, type = "s", 
+          col = denscol)
+    axis(2, at = pretty(hy)/max(hy) * 0.95, pretty(hy))
+    par(cex = 0.5)
+    mtext(side = 2, "Count", line = 2)
+
+    close.screen(all.screens = T)
+
+}
+
+tree <- read.tree(text = "(A:1,B:1);((C:1,D:2):2,E:1);((F:1,G:1,H:2):5,((I:1,J:2):2,K:1):1);", comment.char="")
+N <- sum(unlist(lapply(tree, function(t) length(t$tip))))
+
+set.seed(42)
+m <- cor(matrix(rnorm(N*N), nrow=N))
+rownames(m) <- colnames(m) <- LETTERS[1:N]
+heatmap.phylo(m, tree, tree, col=bluered(10), breaks=seq(-1,1,length.out=11), respect=T)
+-------------------------------------------------------------------------------------------------------
+ser ser[[1]] <- sort(ser[[1]]) pimage(dt, ser, colorkey = TRUE)
+-------------------------------------------------------------------------------------------------------
+image ## the input data as vector (as in the question)
+## size has to be a square number
+values <- c(0, 0, 0, 5, 0, 0,5,0,0,5,0,0,5,0,0,0)
+
+size <- sqrt(length(values))
+a <- matrix(0, nrow=size, ncol=size)
+a[lower.tri(a)] <- +1
+a[upper.tri(a)] <- -1
+image(a,col=c('red','transparent','green'),xaxt='n',yaxt='n',xlab='',ylab='')
+text(rep(seq(1,0,len=size),len=size*size),rep(seq(0,1,len=size),each=size),values)
+-------------------------------------------------------------------------------------------------------
+predict library("flexclust")
+data("Nclus")
+
+set.seed(1)
+dat <- as.data.frame(Nclus)
+ind <- sample(nrow(dat), 50)
+
+dat[["train"]] <- TRUE
+dat[["train"]][ind] <- FALSE
+
+cl1 = kcca(dat[dat[["train"]]==TRUE, 1:2], k=4, kccaFamily("kmeans"))
+cl1    
+#
+# call:
+# kcca(x = dat[dat[["train"]] == TRUE, 1:2], k = 4)
+#
+# cluster sizes:
+#
+#  1   2   3   4 
+#130 181  98  91 
+
+pred_train <- predict(cl1)
+pred_test <- predict(cl1, newdata=dat[dat[["train"]]==FALSE, 1:2])
+
+image(cl1)
+points(dat[dat[["train"]]==TRUE, 1:2], col=pred_train, pch=19, cex=0.3)
+points(dat[dat[["train"]]==FALSE, 1:2], col=pred_test, pch=22, bg="orange") stats::kmeans cluster::pam kcca as.kcca(cl, data=x)
+# kcca object of family ‘kmeans’ 
+#
+# call:
+# as.kcca(object = cl, data = x)
+#
+# cluster sizes:
+#
+#  1  2 
+#  50 50
+-------------------------------------------------------------------------------------------------------
+lat <- rev(lat) temp <- t(temp) temp.nc <- open.ncdf("~/Downloads/air.1999.nc")
+temp.nc
+[1] "file ~/Downloads/air.1999.nc has 4 dimensions:"
+[1] "lon   Size: 144"
+[1] "lat   Size: 73"
+[1] "level   Size: 12"
+[1] "time   Size: 365"
+[1] "------------------------"
+[1] "file ~/Downloads/air.1999.nc has 2 variables:"
+[1] "short air[lon,lat,level,time]  Longname:Air temperature Missval:32767"
+[1] "short head[level,time]  Longname:Missing Missval:NA" 32767 temp <- get.var.ncdf(temp.nc,"air")
+temp[temp=="32767"] <- NA temp.nc$dim$lon$vals -> lon
+temp.nc$dim$lat$vals -> lat
+temp.nc$dim$time$vals -> time
+temp.nc$dim$level$vals -> lev lat image lat <- rev(lat)
+temp <- temp[, ncol(temp):1, , ] #lat being our dimension number 2 lon <- lon -180 temp11 <- temp[ , , 1, 1] #Level is the third dimension and time the fourth.
+image(lon,lat,temp11) library(maptools)
+data(wrld_simpl)
+plot(wrld_simpl,add=TRUE)
+-------------------------------------------------------------------------------------------------------
+image.plot fields image.plot image graphics library(grid)
+x=1:10
+y=1:10
+z=matrix(-50:49,10,10)
+
+layout(matrix(c(1,2),ncol=2), widths=c(2,1))         
+par(mar=c(5,3,5,3))
+image(x,y,z,yaxt="n",xaxt="n", ylab="", xlab="",col=heat.colors(50)) 
+cap <- grid.cap()
+grid.newpage()
+grid.raster(cap, x=unit(0.6,'npc'), #You can modify that if the plot 
+            y=unit(0.5,'npc'),      #ends up outside the figure area
+            vp=viewport(angle=36))
+mtext("Some fancy title",side=3,cex=1.5,line=2) #Plot your title
+par(mar=c(5,8,5,3))
+plot(NA,ax=F,ann=F,type="n",xlim=c(0,1),ylim=c(0,50),yaxs="i")
+for(i in 1:50)rect(0,i-1,1,i,col=heat.colors(50)[i],border=NA)
+box()
+axis(4,las=2,at=seq(0,50,by=10),labels=seq(-50,50,by=20))
+-------------------------------------------------------------------------------------------------------
+library(arules) a_matrix <- matrix(
+      c(1,1,1,0,0,
+    1,1,0,0,0,
+    1,1,0,1,0,
+    0,0,1,0,1,
+    1,1,0,1,1), ncol = 5) dimnames(a_matrix) <-  list(
+    c("a","b","c","d","e"),
+    paste("Tr",c(1:5), sep = ""))
+
+a_matrix trans2 <-  as(a_matrix, "transactions")
+trans2
+inspect(trans2) a_df <- data.frame(
+    age = as.factor(c(6,8,7,6,9,5)), 
+    grade = as.factor(c(1,3,1,1,4,1))) a_df trans3 <- as(a_df, "transactions") 
+image(trans3)
+-------------------------------------------------------------------------------------------------------
+col image na.color outside.color gray white zlim my.image <- function(figData,  zlim, col, na.color='gray', outside.color='white', ...)
+{
+  newz.na <- zlim[2]+(zlim[2]-zlim[1])/length(col) # new z for NA
+  newz.outside <- zlim[2]+2*(zlim[2]-zlim[1])/length(col) # new z for values outside zlim
+
+  figData$z[which(is.na(figData$z>zlim[2]))] <- newz.na # we affect newz.outside
+  figData$z[which(figData$z<zlim[1] | figData$z>zlim[2])] <- newz.outside # same for newz.na
+
+
+  zlim[2] <- zlim[2]+2*(zlim[2]-zlim[1])/length(col) # we finally extend the z limits to include the two new values 
+
+  col <- c(col, na.color, outside.color) # we construct the new color range by including: na.color and outside.color
+
+  image(figData,  zlim=zlim, col=col, ...) # we finally call image(...)
+}
+-------------------------------------------------------------------------------------------------------
+contourLines areapl splancs help(kde2d) attach(geyser)
+
+plot(duration, waiting, xlim = c(0.5,6), ylim = c(40,100))
+f1 <- kde2d(duration, waiting, n = 50, lims = c(0.5, 6, 40, 100))
+image(f1)
+contour(f1) C8 = contourLines(f1,level=0.008)
+length(C8)
+[1] 3 C8 areapl > sapply(C8,function(ring){areapl(cbind(ring$x,ring$y))})
+[1] 14.65282 12.27329 14.75005 > sum(sapply(C8,function(ring){areapl(cbind(ring$x,ring$y))}))
+[1] 41.67617
+-------------------------------------------------------------------------------------------------------

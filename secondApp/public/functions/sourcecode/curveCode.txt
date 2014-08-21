@@ -1,0 +1,2425 @@
+curve curve(3*x+1, from=-5, to=5)
+curve(4*x+2, add=T)
+curve(x+1, add=T)
+-------------------------------------------------------------------------------------------------------
+xaxs yaxs ?par > curve(x^2)
+
+> curve(x^2, xaxs="i", yaxs="i")
+-------------------------------------------------------------------------------------------------------
+foo <- rnorm(100, mean=1, sd=2)
+hist(foo, prob=TRUE)
+curve(dnorm(x, mean=mean(foo), sd=sd(foo)), add=TRUE)
+-------------------------------------------------------------------------------------------------------
+stat_function library("ggplot2")
+eq <- function(x) {x*x}
+tmp <- data.frame(x=1:50, y=eq(1:50))
+
+# Make plot object
+p <- qplot(x, y, data=tmp, xlab="X-axis", ylab="Y-axis")
+c <- stat_function(fun=eq)
+print(p + c) curve() qplot(x, y, data=as.data.frame(curve(eq)), geom="line")
+-------------------------------------------------------------------------------------------------------
+pre.ecdf <- ecdf(pre.test)
+post.ecdf <- ecdf(post.test)
+
+r <- range(pre.test,post.test)
+curve(1-pre.ecdf(x), from=r[1], to=r[2], col="red", xlim=r)
+curve(1-post.ecdf(x), from=r[1], to=r[2], col="blue", add=TRUE) pre.ecdf <- ecdf(pre.test)
+post.ecdf <- ecdf(post.test)
+
+rx <- range(pre.test,post.test)
+ry <- max(length(pre.test),length(post.test))
+curve(length(pre.test)*(1-pre.ecdf(x)), from=rx[1], to=rx[2], col="red", xlim=rx, ylim=c(0,ry))
+curve(length(post.test)*(1-post.ecdf(x)), from=rx[1], to=rx[2], col="blue", add=TRUE)
+-------------------------------------------------------------------------------------------------------
+stat_function() curve() ..y.. curve(dbeta(x, shape1 = 2, shape2 = 2), col = "red") require(ggplot2)
+x <- seq(0, 1, len = 100)
+p <- qplot(x, geom = "blank")
+stat <- stat_function(aes(x = x, y = ..y..), fun = dbeta, colour="red", n = 100,
+                      args = list(shape1 = 2, shape2 = 2))
+p + stat
+-------------------------------------------------------------------------------------------------------
+curve(insert_function_here)
+boundsc=par("usr")
+ht=hist(A[,1],20,plot=FALSE)
+par(usr=c(boundsc[1:2],0,max(boundsc[4],max(ht$counts))))
+plot(ht,add=TRUE)
+-------------------------------------------------------------------------------------------------------
+curve(dnorm(x, 100, 15), 50, 150)
+-------------------------------------------------------------------------------------------------------
+splinefun method=monoH.FC ?spline ## An example of  monotone  interpolation
+n <- 20
+set.seed(11)
+x. <- sort(runif(n)) ; y. <- cumsum(abs(rnorm(n)))
+plot(x.,y.)
+curve(splinefun(x.,y.)(x),                add=TRUE, col=2, n=1001)
+curve(splinefun(x.,y., method="mono")(x), add=TRUE, col=3, n=1001)
+legend("topleft", paste("splinefun( \"", c("fmm", "monoH.CS"), "\" )", sep=''),
+         col=2:3, lty=1)
+-------------------------------------------------------------------------------------------------------
+plyr from to data.frame library(plyr)
+data=data.frame(cbind(id=1:length(from),from,to)) id from to
+1   1    4  1
+2   2    6  1
+3   3    7  1
+4   4    8  2
+5   5    1  3
+6   6    9  3
+7   7    5  4
+8   8    1  5
+9   9    2  6
+10 10    1  7
+11 11   10  7
+12 12    2  8
+13 13    6  8
+14 14    7  8
+15 15   10  8
+16 16    4 10
+17 17    9 10 data=ddply(data, .(id), transform, f1=min(from,to),f2=max(from,to))
+curved=data.frame(data[which(duplicated(data[,4:5])==TRUE),],value=0.2)
+result=join(data[,4:5],curved[,4:6],by=intersect(names(data)[4:5],names(curved)[4:6]))
+result$value[which(is.na(result$value))]=0
+result=data.frame(from,to,curve=result$value) from to curve
+1     4  1   0.0
+2     6  1   0.0
+3     7  1   0.2
+4     8  2   0.2
+5     1  3   0.0
+6     9  3   0.0
+7     5  4   0.0
+8     1  5   0.0
+9     2  6   0.0
+10    1  7   0.2
+11   10  7   0.0
+12    2  8   0.2
+13    6  8   0.0
+14    7  8   0.0
+15   10  8   0.0
+16    4 10   0.0
+17    9 10   0.0 calculate_curve <- function (from,to)
+{
+data=data.frame(cbind(id=1:length(from),from,to))
+data=ddply(data, .(id), transform, f1=min(from,to),f2=max(from,to))
+curved=data.frame(data[which(duplicated(data[,4:5])==TRUE),],value=0.2)
+result=join(data[,4:5],curved[,4:6],by=intersect(names(data)[4:5],names(curved)[4:6]))
+result$value[which(is.na(result$value))]=0
+return (result$value)
+} curve=calculate_curve(from,to)
+-------------------------------------------------------------------------------------------------------
+Pr(y=1) = fi(.5 - .3*x) Pr(y=1) = invlogit(1.6(.5 - .3*x)) arm x1 = rbinom(100,1,.5)
+x2 = rbinom(100,1,.3)
+x3 = rbinom(100,1,.9)
+ystar = -.5  + x1 + x2 - x3 + rnorm(100)
+y = ifelse(ystar>0,1,0)
+probit = glm(y~x1 + x2 + x3, family=binomial(link='probit'))
+xbar <- as.matrix(mean(cbind(1,ttt[1:3])))
+
+# now the graphic, i.e., the marginal effect of x1, x2 and x3
+library(arm)
+curve(invlogit(1.6*(probit$coef[1] + probit$coef[2]*x + probit$coef[3]*xbar[3] + probit$coef[4]*xbar[4]))) #x1
+curve(invlogit(1.6*(probit$coef[1] + probit$coef[2]*xbar[2] + probit$coef[3]*x + probit$coef[4]*xbar[4]))) #x2
+curve(invlogit(1.6*(probit$coef[1] + probit$coef[2]*xbar[2] + probit$coef[3]*xbar[3] + probit$coef[4]*x))) #x3
+-------------------------------------------------------------------------------------------------------
+library(grid)
+
+# function to draw curly braces in red
+# x1...y2 are the ends of the brace
+# for upside down braces, x1 > x2 and y1 > y2
+Brack <- function(x1,y1,x2,y2,h)
+{
+   x2 <- x2-x1; y2 <- y2-y1
+   v1 <- viewport(x=x1,y=y1,width=sqrt(x2^2+y2^2),
+           height=h,angle=180*atan2(y2,x2)/pi,
+           just=c("left","bottom"),gp=gpar(col="red"))
+   pushViewport(v1)
+   grid.curve(x2=0,y2=0,x1=.125,y1=.5,curvature=.5)
+   grid.move.to(.125,.5)
+   grid.line.to(.375,.5)
+   grid.curve(x1=.375,y1=.5,x2=.5,y2=1,curvature=.5)
+   grid.curve(x2=1,y2=0,x1=.875,y1=.5,curvature=-.5)
+   grid.move.to(.875,.5)
+   grid.line.to(.625,.5)
+   grid.curve(x2=.625,y2=.5,x1=.5,y1=1,curvature=.5)
+   popViewport()}
+-------------------------------------------------------------------------------------------------------
+str(summary(model)) summary(model)$fstatistic df <- summary(model)$fstatistic
+curve(df(x, df1 = df[2], df2 = df[3]), from = 0, to = 100) df1 <- length(model$coefficients) - 1
+df2 <- length(model$residuals) - df1 - 1
+curve(df(x, df1 = df1, df2 = df2), from = 0, to = 100)
+-------------------------------------------------------------------------------------------------------
+fstat <- summary(model)$fstatistic
+
+library(HH)
+old.omd <- par(omd=c(.05,.88, .05,1))
+F.setup(df1=fstat['numdf'], df2=fstat['dendf'])
+F.curve(df1=fstat['numdf'], df2=fstat['dendf'], col='blue')
+F.observed(fstat['value'], df1=fstat['numdf'], df2=fstat['dendf'])
+par(old.omd)
+-------------------------------------------------------------------------------------------------------
+polygon(x,pmin(y1,y2),col="gray") x pmin(y1,y2) pmin curve() fun1 <- curve(dnorm(x,mean=0,sd=1),type="l",lwd=2,col="red")
+fun2 <- curve(dnorm(x,mean=3,sd=2),type="l",lwd=2,col="blue",add=TRUE)
+polygon(fun1$x,pmin(fun1$y,fun2$y),col="gray")
+-------------------------------------------------------------------------------------------------------
+shade_under_curve <- function(fun, xmin, xmax, length=100){
+  xvals <- seq(xmin, xmax, length=length)
+  dvals <- match.fun(fun)(xvals)
+  polygon(c(xvals,rev(xvals)),c(rep(0,length),rev(dvals)),col="gray")
+}
+
+
+y1 <- function(x)sapply(x, function(xt)dnorm(xt,mean=0,sd=1))
+y2 <- function(x)sapply(x, function(xt)dnorm(xt,mean=3,sd=2))
+
+my.fun <- function(x){sapply(x, function(xt)min(y1(xt), y2(xt)))} plot(y1, -10, 10, col="red")
+curve(y2, add=TRUE, col="blue")
+shade_under_curve(my.fun, -10, 10, length=1000)
+-------------------------------------------------------------------------------------------------------
+plot(Y.ecdf,do.points = FALSE,
+     verticals = TRUE,col = "blue",
+     xlab = "x", ylab = "Pr(X < x)") curve((1-Y.ecdf(x)), n = 10000, 
+       from = 0, to = 2600, ylab = "Pr(X > x)", 
+       xlab = "x", col="blue", lty=1, lwd=2) from to from to curve((1-Y.ecdf(x)), n = 10000, 
+       from = 250, to = 2600, ylab = "Pr(X > x)", 
+       xlab = "x", col="blue", lty=1, lwd=2)
+-------------------------------------------------------------------------------------------------------
+t <- c(0,2,4,7)
+y <- c(25,11,4,3) y y2 <- log10(y) lm(y2~t) y = mx + b y = A*r^t A = 10^intercept r = 10^slope y = 20.77304*0.7333309^t expLine <- function(t) 20.77304*0.7333309^t plot(t,y) curve(expLine,0,7,n=101,add=TRUE)
+-------------------------------------------------------------------------------------------------------
+n t nu theta nu = var('nu'); theta=var('theta')
+s= var('s'); myexpr = exp((nu / (theta * (1 - nu))) *
+  (1 - (1 + theta * s / nu)^(1 - nu)))
+simplify(derivative(myexpr,s,15))
+## Rderivexpr <- expression(
+-(nu + 1)*(nu + 2)*(nu + 3)*(nu + 4)*(nu + 5)*(nu + 6)*
+(nu + 7)*(nu +
+8)*(nu + 9)*(nu + 10)*(nu + 11)*(nu + 12)*(nu + 13)*theta^14*(s*theta/nu
++ 1)^(-nu - 14)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^13 - 6435*(nu + 1)^2*(nu + 2)^2*(nu + 3)^2*(nu + 4)^2*(nu
++ 5)^2*(nu + 6)*theta^13*(s*theta/nu + 1)^(-2*nu - 13)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^11 - 5005*(nu + 1)^2*(nu +
+2)^2*(nu + 3)^2*(nu + 4)^2*(nu + 5)*(nu + 6)*(nu +
+7)*theta^13*(s*theta/nu + 1)^(-2*nu - 13)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^11 - 3003*(nu + 1)^2*(nu + 2)^2*(nu +
+3)^2*(nu + 4)*(nu + 5)*(nu + 6)*(nu + 7)*(nu + 8)*theta^13*(s*theta/nu +
+1)^(-2*nu - 13)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^11 - 1365*(nu + 1)^2*(nu + 2)^2*(nu + 3)*(nu + 4)*(nu +
+5)*(nu + 6)*(nu + 7)*(nu + 8)*(nu + 9)*theta^13*(s*theta/nu + 1)^(-2*nu
+- 13)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^11 -
+455*(nu + 1)^2*(nu + 2)*(nu + 3)*(nu + 4)*(nu + 5)*(nu + 6)*(nu + 7)*(nu
++ 8)*(nu + 9)*(nu + 10)*theta^13*(s*theta/nu + 1)^(-2*nu -
+13)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^11 -
+15*(nu + 1)*(nu + 2)*(nu + 3)*(nu + 4)*(nu + 5)*(nu + 6)*(nu + 7)*(nu +
+8)*(nu + 9)*(nu + 10)*(nu + 11)*(nu + 12)*theta^13*(s*theta/nu +
+1)^(-2*nu - 13)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^12 - 105*(nu + 1)*(nu + 2)*(nu + 3)*(nu + 4)*(nu + 5)*(nu
++ 6)*(nu + 7)*(nu + 8)*(nu + 9)*(nu + 10)*(nu + 11)*theta^13*(s*theta/nu
++ 1)^(-2*nu - 13)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^11 - 126126*(nu + 1)^3*(nu + 2)^3*(nu +
+3)^3*theta^12*(s*theta/nu + 1)^(-3*nu - 12)*e^(((s*theta/nu + 1)^(-nu +
+1) - 1)*nu/((nu - 1)*theta))/nu^9 - 630630*(nu + 1)^3*(nu + 2)^3*(nu +
+3)^2*(nu + 4)*theta^12*(s*theta/nu + 1)^(-3*nu - 12)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^9 - 225225*(nu + 1)^3*(nu +
+2)^3*(nu + 3)*(nu + 4)*(nu + 5)*theta^12*(s*theta/nu + 1)^(-3*nu -
+12)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^9 -
+210210*(nu + 1)^3*(nu + 2)^2*(nu + 3)^2*(nu + 4)^2*theta^12*(s*theta/nu
++ 1)^(-3*nu - 12)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^9 - 360360*(nu + 1)^3*(nu + 2)^2*(nu + 3)^2*(nu + 4)*(nu +
+5)*theta^12*(s*theta/nu + 1)^(-3*nu - 12)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^9 - 225225*(nu + 1)^3*(nu + 2)^2*(nu +
+3)*(nu + 4)*(nu + 5)*(nu + 6)*theta^12*(s*theta/nu + 1)^(-3*nu -
+12)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^9 -
+50050*(nu + 1)^3*(nu + 2)*(nu + 3)*(nu + 4)*(nu + 5)*(nu + 6)*(nu +
+7)*theta^12*(s*theta/nu + 1)^(-3*nu - 12)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^9 - 25740*(nu + 1)^2*(nu + 2)^2*(nu +
+3)^2*(nu + 4)^2*(nu + 5)^2*theta^12*(s*theta/nu + 1)^(-3*nu -
+12)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^10 -
+45045*(nu + 1)^2*(nu + 2)^2*(nu + 3)^2*(nu + 4)^2*(nu + 5)*(nu +
+6)*theta^12*(s*theta/nu + 1)^(-3*nu - 12)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^10 - 180180*(nu + 1)^2*(nu + 2)^2*(nu +
+3)^2*(nu + 4)^2*(nu + 5)*theta^12*(s*theta/nu + 1)^(-3*nu -
+12)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^9 -
+30030*(nu + 1)^2*(nu + 2)^2*(nu + 3)^2*(nu + 4)*(nu + 5)*(nu + 6)*(nu +
+7)*theta^12*(s*theta/nu + 1)^(-3*nu - 12)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^10 - 135135*(nu + 1)^2*(nu + 2)^2*(nu +
+3)^2*(nu + 4)*(nu + 5)*(nu + 6)*theta^12*(s*theta/nu + 1)^(-3*nu -
+12)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^9 -
+15015*(nu + 1)^2*(nu + 2)^2*(nu + 3)*(nu + 4)*(nu + 5)*(nu + 6)*(nu +
+7)*(nu + 8)*theta^12*(s*theta/nu + 1)^(-3*nu - 12)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^10 - 75075*(nu + 1)^2*(nu +
+2)^2*(nu + 3)*(nu + 4)*(nu + 5)*(nu + 6)*(nu + 7)*theta^12*(s*theta/nu +
+1)^(-3*nu - 12)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^9 - 5460*(nu + 1)^2*(nu + 2)*(nu + 3)*(nu + 4)*(nu +
+5)*(nu + 6)*(nu + 7)*(nu + 8)*(nu + 9)*theta^12*(s*theta/nu + 1)^(-3*nu
+- 12)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^10 -
+30030*(nu + 1)^2*(nu + 2)*(nu + 3)*(nu + 4)*(nu + 5)*(nu + 6)*(nu +
+7)*(nu + 8)*theta^12*(s*theta/nu + 1)^(-3*nu - 12)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^9 - 105*(nu + 1)*(nu + 2)*(nu
++ 3)*(nu + 4)*(nu + 5)*(nu + 6)*(nu + 7)*(nu + 8)*(nu + 9)*(nu + 10)*(nu
++ 11)*theta^12*(s*theta/nu + 1)^(-3*nu - 12)*e^(((s*theta/nu + 1)^(-nu +
+1) - 1)*nu/((nu - 1)*theta))/nu^11 - 1365*(nu + 1)*(nu + 2)*(nu + 3)*(nu
++ 4)*(nu + 5)*(nu + 6)*(nu + 7)*(nu + 8)*(nu + 9)*(nu +
+10)*theta^12*(s*theta/nu + 1)^(-3*nu - 12)*e^(((s*theta/nu + 1)^(-nu +
+1) - 1)*nu/((nu - 1)*theta))/nu^10 - 4095*(nu + 1)*(nu + 2)*(nu + 3)*(nu
++ 4)*(nu + 5)*(nu + 6)*(nu + 7)*(nu + 8)*(nu + 9)*theta^12*(s*theta/nu +
+1)^(-3*nu - 12)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^9 - 2627625*(nu + 1)^4*(nu + 2)^3*theta^11*(s*theta/nu +
+1)^(-4*nu - 11)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^7 - 6306300*(nu + 1)^4*(nu + 2)^2*(nu +
+3)*theta^11*(s*theta/nu + 1)^(-4*nu - 11)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^7 - 1401400*(nu + 1)^4*(nu + 2)*(nu +
+3)*(nu + 4)*theta^11*(s*theta/nu + 1)^(-4*nu - 11)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^7 - 1891890*(nu + 1)^3*(nu +
+2)^3*(nu + 3)^2*theta^11*(s*theta/nu + 1)^(-4*nu - 11)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^8 - 1576575*(nu + 1)^3*(nu +
+2)^3*(nu + 3)*(nu + 4)*theta^11*(s*theta/nu + 1)^(-4*nu -
+11)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^8 -
+4729725*(nu + 1)^3*(nu + 2)^3*(nu + 3)*theta^11*(s*theta/nu + 1)^(-4*nu
+- 11)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^7 -
+2522520*(nu + 1)^3*(nu + 2)^2*(nu + 3)^2*(nu + 4)*theta^11*(s*theta/nu +
+1)^(-4*nu - 11)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^8 - 3783780*(nu + 1)^3*(nu + 2)^2*(nu +
+3)^2*theta^11*(s*theta/nu + 1)^(-4*nu - 11)*e^(((s*theta/nu + 1)^(-nu +
+1) - 1)*nu/((nu - 1)*theta))/nu^7 - 1801800*(nu + 1)^3*(nu + 2)^2*(nu +
+3)*(nu + 4)*(nu + 5)*theta^11*(s*theta/nu + 1)^(-4*nu -
+11)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^8 -
+6306300*(nu + 1)^3*(nu + 2)^2*(nu + 3)*(nu + 4)*theta^11*(s*theta/nu +
+1)^(-4*nu - 11)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^7 - 450450*(nu + 1)^3*(nu + 2)*(nu + 3)*(nu + 4)*(nu +
+5)*(nu + 6)*theta^11*(s*theta/nu + 1)^(-4*nu - 11)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^8 - 1801800*(nu + 1)^3*(nu +
+2)*(nu + 3)*(nu + 4)*(nu + 5)*theta^11*(s*theta/nu + 1)^(-4*nu -
+11)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^7 -
+180180*(nu + 1)^2*(nu + 2)^2*(nu + 3)^2*(nu + 4)^2*(nu +
+5)*theta^11*(s*theta/nu + 1)^(-4*nu - 11)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^9 - 630630*(nu + 1)^2*(nu + 2)^2*(nu +
+3)^2*(nu + 4)^2*theta^11*(s*theta/nu + 1)^(-4*nu - 11)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^8 - 135135*(nu + 1)^2*(nu +
+2)^2*(nu + 3)^2*(nu + 4)*(nu + 5)*(nu + 6)*theta^11*(s*theta/nu +
+1)^(-4*nu - 11)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^9 - 1081080*(nu + 1)^2*(nu + 2)^2*(nu + 3)^2*(nu + 4)*(nu
++ 5)*theta^11*(s*theta/nu + 1)^(-4*nu - 11)*e^(((s*theta/nu + 1)^(-nu +
+1) - 1)*nu/((nu - 1)*theta))/nu^8 - 1891890*(nu + 1)^2*(nu + 2)^2*(nu +
+3)^2*(nu + 4)*theta^11*(s*theta/nu + 1)^(-4*nu - 11)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^7 - 75075*(nu + 1)^2*(nu +
+2)^2*(nu + 3)*(nu + 4)*(nu + 5)*(nu + 6)*(nu + 7)*theta^11*(s*theta/nu +
+1)^(-4*nu - 11)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^9 - 675675*(nu + 1)^2*(nu + 2)^2*(nu + 3)*(nu + 4)*(nu +
+5)*(nu + 6)*theta^11*(s*theta/nu + 1)^(-4*nu - 11)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^8 - 1351350*(nu + 1)^2*(nu +
+2)^2*(nu + 3)*(nu + 4)*(nu + 5)*theta^11*(s*theta/nu + 1)^(-4*nu -
+11)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^7 -
+30030*(nu + 1)^2*(nu + 2)*(nu + 3)*(nu + 4)*(nu + 5)*(nu + 6)*(nu +
+7)*(nu + 8)*theta^11*(s*theta/nu + 1)^(-4*nu - 11)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^9 - 300300*(nu + 1)^2*(nu +
+2)*(nu + 3)*(nu + 4)*(nu + 5)*(nu + 6)*(nu + 7)*theta^11*(s*theta/nu +
+1)^(-4*nu - 11)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^8 - 675675*(nu + 1)^2*(nu + 2)*(nu + 3)*(nu + 4)*(nu +
+5)*(nu + 6)*theta^11*(s*theta/nu + 1)^(-4*nu - 11)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^7 - 455*(nu + 1)*(nu + 2)*(nu
++ 3)*(nu + 4)*(nu + 5)*(nu + 6)*(nu + 7)*(nu + 8)*(nu + 9)*(nu +
+10)*theta^11*(s*theta/nu + 1)^(-4*nu - 11)*e^(((s*theta/nu + 1)^(-nu +
+1) - 1)*nu/((nu - 1)*theta))/nu^10 - 8190*(nu + 1)*(nu + 2)*(nu + 3)*(nu
++ 4)*(nu + 5)*(nu + 6)*(nu + 7)*(nu + 8)*(nu + 9)*theta^11*(s*theta/nu +
+1)^(-4*nu - 11)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^9 - 45045*(nu + 1)*(nu + 2)*(nu + 3)*(nu + 4)*(nu + 5)*(nu
++ 6)*(nu + 7)*(nu + 8)*theta^11*(s*theta/nu + 1)^(-4*nu -
+11)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^8 -
+75075*(nu + 1)*(nu + 2)*(nu + 3)*(nu + 4)*(nu + 5)*(nu + 6)*(nu +
+7)*theta^11*(s*theta/nu + 1)^(-4*nu - 11)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^7 - 1401400*(nu + 1)^5*theta^10*(s*theta/nu
++ 1)^(-5*nu - 10)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^5 - 15765750*(nu + 1)^4*(nu + 2)^2*theta^10*(s*theta/nu +
+1)^(-5*nu - 10)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^6 - 8408400*(nu + 1)^4*(nu + 2)*(nu +
+3)*theta^10*(s*theta/nu + 1)^(-5*nu - 10)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^6 - 21021000*(nu + 1)^4*(nu +
+2)*theta^10*(s*theta/nu + 1)^(-5*nu - 10)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^5 - 4729725*(nu + 1)^3*(nu + 2)^3*(nu +
+3)*theta^10*(s*theta/nu + 1)^(-5*nu - 10)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^7 - 7882875*(nu + 1)^3*(nu +
+2)^3*theta^10*(s*theta/nu + 1)^(-5*nu - 10)*e^(((s*theta/nu + 1)^(-nu +
+1) - 1)*nu/((nu - 1)*theta))/nu^6 - 3783780*(nu + 1)^3*(nu + 2)^2*(nu +
+3)^2*theta^10*(s*theta/nu + 1)^(-5*nu - 10)*e^(((s*theta/nu + 1)^(-nu +
+1) - 1)*nu/((nu - 1)*theta))/nu^7 - 6306300*(nu + 1)^3*(nu + 2)^2*(nu +
+3)*(nu + 4)*theta^10*(s*theta/nu + 1)^(-5*nu - 10)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^7 - 37837800*(nu + 1)^3*(nu +
+2)^2*(nu + 3)*theta^10*(s*theta/nu + 1)^(-5*nu - 10)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^6 - 23648625*(nu + 1)^3*(nu +
+2)^2*theta^10*(s*theta/nu + 1)^(-5*nu - 10)*e^(((s*theta/nu + 1)^(-nu +
+1) - 1)*nu/((nu - 1)*theta))/nu^5 - 1801800*(nu + 1)^3*(nu + 2)*(nu +
+3)*(nu + 4)*(nu + 5)*theta^10*(s*theta/nu + 1)^(-5*nu -
+10)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^7 -
+12612600*(nu + 1)^3*(nu + 2)*(nu + 3)*(nu + 4)*theta^10*(s*theta/nu +
+1)^(-5*nu - 10)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^6 - 18918900*(nu + 1)^3*(nu + 2)*(nu +
+3)*theta^10*(s*theta/nu + 1)^(-5*nu - 10)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^5 - 210210*(nu + 1)^2*(nu + 2)^2*(nu +
+3)^2*(nu + 4)^2*theta^10*(s*theta/nu + 1)^(-5*nu - 10)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^8 - 360360*(nu + 1)^2*(nu +
+2)^2*(nu + 3)^2*(nu + 4)*(nu + 5)*theta^10*(s*theta/nu + 1)^(-5*nu -
+10)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^8 -
+3783780*(nu + 1)^2*(nu + 2)^2*(nu + 3)^2*(nu + 4)*theta^10*(s*theta/nu +
+1)^(-5*nu - 10)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^7 - 5675670*(nu + 1)^2*(nu + 2)^2*(nu +
+3)^2*theta^10*(s*theta/nu + 1)^(-5*nu - 10)*e^(((s*theta/nu + 1)^(-nu +
+1) - 1)*nu/((nu - 1)*theta))/nu^6 - 225225*(nu + 1)^2*(nu + 2)^2*(nu +
+3)*(nu + 4)*(nu + 5)*(nu + 6)*theta^10*(s*theta/nu + 1)^(-5*nu -
+10)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^8 -
+2702700*(nu + 1)^2*(nu + 2)^2*(nu + 3)*(nu + 4)*(nu +
+5)*theta^10*(s*theta/nu + 1)^(-5*nu - 10)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^7 - 9459450*(nu + 1)^2*(nu + 2)^2*(nu +
+3)*(nu + 4)*theta^10*(s*theta/nu + 1)^(-5*nu - 10)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^6 - 9459450*(nu + 1)^2*(nu +
+2)^2*(nu + 3)*theta^10*(s*theta/nu + 1)^(-5*nu - 10)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^5 - 100100*(nu + 1)^2*(nu +
+2)*(nu + 3)*(nu + 4)*(nu + 5)*(nu + 6)*(nu + 7)*theta^10*(s*theta/nu +
+1)^(-5*nu - 10)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^8 - 1351350*(nu + 1)^2*(nu + 2)*(nu + 3)*(nu + 4)*(nu +
+5)*(nu + 6)*theta^10*(s*theta/nu + 1)^(-5*nu - 10)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^7 - 5405400*(nu + 1)^2*(nu +
+2)*(nu + 3)*(nu + 4)*(nu + 5)*theta^10*(s*theta/nu + 1)^(-5*nu -
+10)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^6 -
+6306300*(nu + 1)^2*(nu + 2)*(nu + 3)*(nu + 4)*theta^10*(s*theta/nu +
+1)^(-5*nu - 10)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^5 - 1365*(nu + 1)*(nu + 2)*(nu + 3)*(nu + 4)*(nu + 5)*(nu
++ 6)*(nu + 7)*(nu + 8)*(nu + 9)*theta^10*(s*theta/nu + 1)^(-5*nu -
+10)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^9 -
+30030*(nu + 1)*(nu + 2)*(nu + 3)*(nu + 4)*(nu + 5)*(nu + 6)*(nu + 7)*(nu
++ 8)*theta^10*(s*theta/nu + 1)^(-5*nu - 10)*e^(((s*theta/nu + 1)^(-nu +
+1) - 1)*nu/((nu - 1)*theta))/nu^8 - 225225*(nu + 1)*(nu + 2)*(nu +
+3)*(nu + 4)*(nu + 5)*(nu + 6)*(nu + 7)*theta^10*(s*theta/nu + 1)^(-5*nu
+- 10)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^7 -
+675675*(nu + 1)*(nu + 2)*(nu + 3)*(nu + 4)*(nu + 5)*(nu +
+6)*theta^10*(s*theta/nu + 1)^(-5*nu - 10)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^6 - 675675*(nu + 1)*(nu + 2)*(nu + 3)*(nu +
+4)*(nu + 5)*theta^10*(s*theta/nu + 1)^(-5*nu - 10)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^5 - 21021000*(nu + 1)^4*(nu +
+2)*theta^9*(s*theta/nu + 1)^(-6*nu - 9)*e^(((s*theta/nu + 1)^(-nu + 1) -
+1)*nu/((nu - 1)*theta))/nu^5 - 21021000*(nu + 1)^4*theta^9*(s*theta/nu +
+1)^(-6*nu - 9)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^4 - 2627625*(nu + 1)^3*(nu + 2)^3*theta^9*(s*theta/nu +
+1)^(-6*nu - 9)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^6 - 12612600*(nu + 1)^3*(nu + 2)^2*(nu +
+3)*theta^9*(s*theta/nu + 1)^(-6*nu - 9)*e^(((s*theta/nu + 1)^(-nu + 1) -
+1)*nu/((nu - 1)*theta))/nu^6 - 47297250*(nu + 1)^3*(nu +
+2)^2*theta^9*(s*theta/nu + 1)^(-6*nu - 9)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^5 - 4204200*(nu + 1)^3*(nu + 2)*(nu +
+3)*(nu + 4)*theta^9*(s*theta/nu + 1)^(-6*nu - 9)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^6 - 37837800*(nu + 1)^3*(nu +
+2)*(nu + 3)*theta^9*(s*theta/nu + 1)^(-6*nu - 9)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^5 - 94594500*(nu + 1)^3*(nu +
+2)*theta^9*(s*theta/nu + 1)^(-6*nu - 9)*e^(((s*theta/nu + 1)^(-nu + 1) -
+1)*nu/((nu - 1)*theta))/nu^4 - 21021000*(nu + 1)^3*theta^9*(s*theta/nu +
+
+1)^(-6*nu - 9)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^3 - 630630*(nu + 1)^2*(nu + 2)^2*(nu + 3)^2*(nu +
+4)*theta^9*(s*theta/nu + 1)^(-6*nu - 9)*e^(((s*theta/nu + 1)^(-nu + 1) -
+1)*nu/((nu - 1)*theta))/nu^7 - 3783780*(nu + 1)^2*(nu + 2)^2*(nu +
+3)^2*theta^9*(s*theta/nu + 1)^(-6*nu - 9)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^6 - 450450*(nu + 1)^2*(nu + 2)^2*(nu +
+3)*(nu + 4)*(nu + 5)*theta^9*(s*theta/nu + 1)^(-6*nu -
+9)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^7 -
+6306300*(nu + 1)^2*(nu + 2)^2*(nu + 3)*(nu + 4)*theta^9*(s*theta/nu +
+1)^(-6*nu - 9)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^6 - 28378350*(nu + 1)^2*(nu + 2)^2*(nu +
+3)*theta^9*(s*theta/nu + 1)^(-6*nu - 9)*e^(((s*theta/nu + 1)^(-nu + 1) -
+1)*nu/((nu - 1)*theta))/nu^5 - 23648625*(nu + 1)^2*(nu +
+2)^2*theta^9*(s*theta/nu + 1)^(-6*nu - 9)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^4 - 225225*(nu + 1)^2*(nu + 2)*(nu + 3)*(nu
++ 4)*(nu + 5)*(nu + 6)*theta^9*(s*theta/nu + 1)^(-6*nu -
+9)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^7 -
+3603600*(nu + 1)^2*(nu + 2)*(nu + 3)*(nu + 4)*(nu +
+5)*theta^9*(s*theta/nu + 1)^(-6*nu - 9)*e^(((s*theta/nu + 1)^(-nu + 1) -
+1)*nu/((nu - 1)*theta))/nu^6 - 18918900*(nu + 1)^2*(nu + 2)*(nu + 3)*(nu
++ 4)*theta^9*(s*theta/nu + 1)^(-6*nu - 9)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^5 - 37837800*(nu + 1)^2*(nu + 2)*(nu +
+3)*theta^9*(s*theta/nu + 1)^(-6*nu - 9)*e^(((s*theta/nu + 1)^(-nu + 1) -
+1)*nu/((nu - 1)*theta))/nu^4 - 23648625*(nu + 1)^2*(nu +
+2)*theta^9*(s*theta/nu + 1)^(-6*nu - 9)*e^(((s*theta/nu + 1)^(-nu + 1) -
+1)*nu/((nu - 1)*theta))/nu^3 - 3003*(nu + 1)*(nu + 2)*(nu + 3)*(nu +
+4)*(nu + 5)*(nu + 6)*(nu + 7)*(nu + 8)*theta^9*(s*theta/nu + 1)^(-6*nu -
+9)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^8 -
+75075*(nu + 1)*(nu + 2)*(nu + 3)*(nu + 4)*(nu + 5)*(nu + 6)*(nu +
+7)*theta^9*(s*theta/nu + 1)^(-6*nu - 9)*e^(((s*theta/nu + 1)^(-nu + 1) -
+1)*nu/((nu - 1)*theta))/nu^7 - 675675*(nu + 1)*(nu + 2)*(nu + 3)*(nu +
+4)*(nu + 5)*(nu + 6)*theta^9*(s*theta/nu + 1)^(-6*nu -
+9)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^6 -
+2702700*(nu + 1)*(nu + 2)*(nu + 3)*(nu + 4)*(nu + 5)*theta^9*(s*theta/nu
++ 1)^(-6*nu - 9)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^5 - 4729725*(nu + 1)*(nu + 2)*(nu + 3)*(nu +
+4)*theta^9*(s*theta/nu + 1)^(-6*nu - 9)*e^(((s*theta/nu + 1)^(-nu + 1) -
+1)*nu/((nu - 1)*theta))/nu^4 - 2837835*(nu + 1)*(nu + 2)*(nu +
+3)*theta^9*(s*theta/nu + 1)^(-6*nu - 9)*e^(((s*theta/nu + 1)^(-nu + 1) -
+1)*nu/((nu - 1)*theta))/nu^3 - 7007000*(nu + 1)^4*theta^8*(s*theta/nu +
+1)^(-7*nu - 8)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^4 - 7882875*(nu + 1)^3*(nu + 2)^2*theta^8*(s*theta/nu +
+1)^(-7*nu - 8)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^5 - 6306300*(nu + 1)^3*(nu + 2)*(nu +
+3)*theta^8*(s*theta/nu + 1)^(-7*nu - 8)*e^(((s*theta/nu + 1)^(-nu + 1) -
+1)*nu/((nu - 1)*theta))/nu^5 - 63063000*(nu + 1)^3*(nu +
+2)*theta^8*(s*theta/nu + 1)^(-7*nu - 8)*e^(((s*theta/nu + 1)^(-nu + 1) -
+1)*nu/((nu - 1)*theta))/nu^4 - 63063000*(nu + 1)^3*theta^8*(s*theta/nu +
+1)^(-7*nu - 8)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^3 - 378378*(nu + 1)^2*(nu + 2)^2*(nu +
+3)^2*theta^8*(s*theta/nu + 1)^(-7*nu - 8)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^6 - 630630*(nu + 1)^2*(nu + 2)^2*(nu +
+3)*(nu + 4)*theta^8*(s*theta/nu + 1)^(-7*nu - 8)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^6 - 9459450*(nu + 1)^2*(nu +
+2)^2*(nu + 3)*theta^8*(s*theta/nu + 1)^(-7*nu - 8)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^5 - 23648625*(nu + 1)^2*(nu +
+2)^2*theta^8*(s*theta/nu + 1)^(-7*nu - 8)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^4 - 360360*(nu + 1)^2*(nu + 2)*(nu + 3)*(nu
++ 4)*(nu + 5)*theta^8*(s*theta/nu + 1)^(-7*nu - 8)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^6 - 6306300*(nu + 1)^2*(nu +
+2)*(nu + 3)*(nu + 4)*theta^8*(s*theta/nu + 1)^(-7*nu -
+8)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^5 -
+37837800*(nu + 1)^2*(nu + 2)*(nu + 3)*theta^8*(s*theta/nu + 1)^(-7*nu -
+8)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^4 -
+94594500*(nu + 1)^2*(nu + 2)*theta^8*(s*theta/nu + 1)^(-7*nu -
+8)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^3 -
+47297250*(nu + 1)^2*theta^8*(s*theta/nu + 1)^(-7*nu - 8)*e^(((s*theta/nu
++ 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^2 - 5005*(nu + 1)*(nu +
+2)*(nu + 3)*(nu + 4)*(nu + 5)*(nu + 6)*(nu + 7)*theta^8*(s*theta/nu +
+1)^(-7*nu - 8)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^7 - 135135*(nu + 1)*(nu + 2)*(nu + 3)*(nu + 4)*(nu +
+5)*(nu + 6)*theta^8*(s*theta/nu + 1)^(-7*nu - 8)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^6 - 1351350*(nu + 1)*(nu +
+2)*(nu + 3)*(nu + 4)*(nu + 5)*theta^8*(s*theta/nu + 1)^(-7*nu -
+8)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^5 -
+6306300*(nu + 1)*(nu + 2)*(nu + 3)*(nu + 4)*theta^8*(s*theta/nu +
+1)^(-7*nu - 8)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^4 - 14189175*(nu + 1)*(nu + 2)*(nu +
+3)*theta^8*(s*theta/nu + 1)^(-7*nu - 8)*e^(((s*theta/nu + 1)^(-nu + 1) -
+1)*nu/((nu - 1)*theta))/nu^3 - 14189175*(nu + 1)*(nu +
+2)*theta^8*(s*theta/nu + 1)^(-7*nu - 8)*e^(((s*theta/nu + 1)^(-nu + 1) -
+1)*nu/((nu - 1)*theta))/nu^2 - 4729725*(nu + 1)*theta^8*(s*theta/nu +
+1)^(-7*nu - 8)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu - 6306300*(nu + 1)^3*(nu + 2)*theta^7*(s*theta/nu +
+1)^(-8*nu - 7)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^4 - 21021000*(nu + 1)^3*theta^7*(s*theta/nu + 1)^(-8*nu -
+7)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^3 -
+630630*(nu + 1)^2*(nu + 2)^2*(nu + 3)*theta^7*(s*theta/nu + 1)^(-8*nu -
+7)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^5 -
+4729725*(nu + 1)^2*(nu + 2)^2*theta^7*(s*theta/nu + 1)^(-8*nu -
+7)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^4 -
+420420*(nu + 1)^2*(nu + 2)*(nu + 3)*(nu + 4)*theta^7*(s*theta/nu +
+1)^(-8*nu - 7)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^5 - 7567560*(nu + 1)^2*(nu + 2)*(nu +
+3)*theta^7*(s*theta/nu + 1)^(-8*nu - 7)*e^(((s*theta/nu + 1)^(-nu + 1) -
+1)*nu/((nu - 1)*theta))/nu^4 - 47297250*(nu + 1)^2*(nu +
+2)*theta^7*(s*theta/nu + 1)^(-8*nu - 7)*e^(((s*theta/nu + 1)^(-nu + 1) -
+1)*nu/((nu - 1)*theta))/nu^3 - 63063000*(nu + 1)^2*theta^7*(s*theta/nu +
+1)^(-8*nu - 7)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^2 - 6435*(nu + 1)*(nu + 2)*(nu + 3)*(nu + 4)*(nu + 5)*(nu
++ 6)*theta^7*(s*theta/nu + 1)^(-8*nu - 7)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^6 - 180180*(nu + 1)*(nu + 2)*(nu + 3)*(nu +
+4)*(nu + 5)*theta^7*(s*theta/nu + 1)^(-8*nu - 7)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^5 - 1891890*(nu + 1)*(nu +
+2)*(nu + 3)*(nu + 4)*theta^7*(s*theta/nu + 1)^(-8*nu -
+7)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^4 -
+9459450*(nu + 1)*(nu + 2)*(nu + 3)*theta^7*(s*theta/nu + 1)^(-8*nu -
+7)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^3 -
+23648625*(nu + 1)*(nu + 2)*theta^7*(s*theta/nu + 1)^(-8*nu -
+7)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^2 -
+28378350*(nu + 1)*theta^7*(s*theta/nu + 1)^(-8*nu - 7)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu - 2027025*theta^7*(s*theta/nu
++ 1)^(-8*nu - 7)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta)) - 1401400*(nu + 1)^3*theta^6*(s*theta/nu + 1)^(-9*nu -
+6)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^3 -
+225225*(nu + 1)^2*(nu + 2)^2*theta^6*(s*theta/nu + 1)^(-9*nu -
+6)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^4 -
+360360*(nu + 1)^2*(nu + 2)*(nu + 3)*theta^6*(s*theta/nu + 1)^(-9*nu -
+6)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^4 -
+6306300*(nu + 1)^2*(nu + 2)*theta^6*(s*theta/nu + 1)^(-9*nu -
+6)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^3 -
+18918900*(nu + 1)^2*theta^6*(s*theta/nu + 1)^(-9*nu - 6)*e^(((s*theta/nu
++ 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^2 - 6435*(nu + 1)*(nu +
+2)*(nu + 3)*(nu + 4)*(nu + 5)*theta^6*(s*theta/nu + 1)^(-9*nu -
+6)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^5 -
+180180*(nu + 1)*(nu + 2)*(nu + 3)*(nu + 4)*theta^6*(s*theta/nu +
+1)^(-9*nu - 6)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^4 - 1891890*(nu + 1)*(nu + 2)*(nu + 3)*theta^6*(s*theta/nu
++ 1)^(-9*nu - 6)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^3 - 9459450*(nu + 1)*(nu + 2)*theta^6*(s*theta/nu +
+1)^(-9*nu - 6)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^2 - 23648625*(nu + 1)*theta^6*(s*theta/nu + 1)^(-9*nu -
+6)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu -
+4729725*theta^6*(s*theta/nu + 1)^(-9*nu - 6)*e^(((s*theta/nu + 1)^(-nu +
+1) - 1)*nu/((nu - 1)*theta)) - 225225*(nu + 1)^2*(nu +
+2)*theta^5*(s*theta/nu + 1)^(-10*nu - 5)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^3 - 1801800*(nu + 1)^2*theta^5*(s*theta/nu
++ 1)^(-10*nu - 5)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu^2 - 5005*(nu + 1)*(nu + 2)*(nu + 3)*(nu +
+4)*theta^5*(s*theta/nu + 1)^(-10*nu - 5)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^4 - 135135*(nu + 1)*(nu + 2)*(nu +
+3)*theta^5*(s*theta/nu + 1)^(-10*nu - 5)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^3 - 1351350*(nu + 1)*(nu +
+2)*theta^5*(s*theta/nu + 1)^(-10*nu - 5)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^2 - 6306300*(nu + 1)*theta^5*(s*theta/nu +
+1)^(-10*nu - 5)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu - 2837835*theta^5*(s*theta/nu + 1)^(-10*nu -
+5)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta)) - 50050*(nu
++ 1)^2*theta^4*(s*theta/nu + 1)^(-11*nu - 4)*e^(((s*theta/nu + 1)^(-nu +
+1) - 1)*nu/((nu - 1)*theta))/nu^2 - 3003*(nu + 1)*(nu + 2)*(nu +
+3)*theta^4*(s*theta/nu + 1)^(-11*nu - 4)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^3 - 75075*(nu + 1)*(nu +
+2)*theta^4*(s*theta/nu + 1)^(-11*nu - 4)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu^2 - 675675*(nu + 1)*theta^4*(s*theta/nu +
+1)^(-11*nu - 4)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/nu - 675675*theta^4*(s*theta/nu + 1)^(-11*nu -
+4)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta)) - 1365*(nu +
+1)*(nu + 2)*theta^3*(s*theta/nu + 1)^(-12*nu - 3)*e^(((s*theta/nu +
+1)^(-nu + 1) - 1)*nu/((nu - 1)*theta))/nu^2 - 30030*(nu +
+1)*theta^3*(s*theta/nu + 1)^(-12*nu - 3)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu - 75075*theta^3*(s*theta/nu + 1)^(-12*nu -
+3)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta)) - 455*(nu +
+1)*theta^2*(s*theta/nu + 1)^(-13*nu - 2)*e^(((s*theta/nu + 1)^(-nu + 1)
+- 1)*nu/((nu - 1)*theta))/nu - 4095*theta^2*(s*theta/nu + 1)^(-13*nu -
+2)*e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu - 1)*theta)) -
+105*theta*(s*theta/nu + 1)^(-14*nu - 1)*e^(((s*theta/nu + 1)^(-nu + 1) -
+1)*nu/((nu - 1)*theta)) - e^(((s*theta/nu + 1)^(-nu + 1) - 1)*nu/((nu -
+1)*theta))/(s*theta/nu + 1)^(15*nu))
+dfun <- function(x,nu=1,theta=1) {
+  eval(Rderivexpr,list(s=x,e=exp(1),nu=nu,theta=theta))
+}
+curve(dfun(x,nu=0.5,theta=0.5),from=5,to=6)
+-------------------------------------------------------------------------------------------------------
+dnorm() zmax <- 4
+curve(dnorm, -zmax, zmax, xaxt = 'n', bty = 'n')
+axis(1, -zmax:zmax, pos = 0) dnorm zscore <- 1.65
+segments(zscore, 0, zscore, dnorm(zscore)) x <- seq(zscore, zmax, 0.01)
+y <- c(0, dnorm(x)[1:(length(x)-2)],0)
+polygon(x,y, density = 20) segments text
+-------------------------------------------------------------------------------------------------------
+curve( (x <1)*( (x/10)*1.2 ) +       # one line for each case
+       (!(x <1)&(x<3) )*(x/12)*1.7 + # logical times (local) function
+        (x >=3)*(x/15)*2 ,
+        0,4)                         # limits
+-------------------------------------------------------------------------------------------------------
+ifelse curve(
+    (x <1)           * ( (x/10)*1.2 ) +
+    (!(x <1)&(x<3) ) * ( (x/12)*1.7 ) +
+    (x >=3)          * ( (x/15)*2   ) ,
+    0,4)
+
+# versus
+
+curve(
+    ifelse(x < 1, (x/10)*1.2,
+    ifelse(x < 3, (x/12)*1.7,
+                  (x/15)*2    )),
+    0,4)
+-------------------------------------------------------------------------------------------------------
+tf <- function(t,temp,tmax) temp / log(((t-1) %/% tmax)*tmax + exp(1))
+curve(tf(x,temp=10,tmax=10),from=1,to=1000)
+curve(tf(x,temp=10,tmax=100),col=2,add=TRUE)
+curve(tf(x,temp=10,tmax=5),col=4,add=TRUE) tmax
+-------------------------------------------------------------------------------------------------------
+MASS::eqscplot(0:1,0:1,type="n",xlim=c(-1,1),ylim=c(-0.8,1.5))
+curve(4/5*sqrt(1-x^2)+sqrt(abs(x)),from=-1,to=1,add=TRUE,col=2)
+curve(4/5*-sqrt(1-x^2)+sqrt(abs(x)),from=-1,to=1,add=TRUE,col=2)
+-------------------------------------------------------------------------------------------------------
+g<-function(r)
+    {
+      integrate(
+        function(beta)
+        {
+          1/(cosh(beta)-rho*r)^(n-1)
+        }
+      ,lower=0,upper=Inf)$value   # integrate would return a list otherwise
+    }
+ gv <- Vectorize(g)  
+ # Since `g` is not naturally going to handle the vector that `curve` will send
+ curve(gv(x),from=0,to=1)
+-------------------------------------------------------------------------------------------------------
+prob=TRUE hist hist(samples, prob=TRUE)
+curve(dfun,add=TRUE)
+-------------------------------------------------------------------------------------------------------
+atop \n expression(paste("...\n", alpha[i], "....")) xlabel <- expression(atop("A very long label with text and expression", 
+                          paste((alpha+beta)[ij], "   A very long label ...")))
+curve(x^3 - 3*x, -2, 2, sub=xlabel, xlab="") sub xlab
+-------------------------------------------------------------------------------------------------------
+x <- c(0,1,1,0)
+y <- c(x[1:2]/2, x[3:4]/4)
+polygon(x,y, col = 'green', border = NA) curve(x^2, from=0 , to =1, col="darkblue")
+curve(x^4, from=0 , to =1, add=T, col="darkred")
+x <- c(seq(0, 1, 0.01), seq(1, 0, -0.01))
+y <- c(x[1:101]^2, x[102:202]^4)
+polygon(x,y, col = 'green', border = NA)
+-------------------------------------------------------------------------------------------------------
+dnorm curve w<-rnorm(1000) 
+hist(w,col="red",freq=F,xlim=c(-5,5))
+curve(dnorm,-5,5,add=T,col="blue") hist curve w<-rnorm(1000, mean=10, sd=2) 
+hist(w, col="red", freq=F, xlim=10+c(-5,5))
+curve( dnorm(x, mean=10,sd=2), 5, 15, add=T, col="blue")
+-------------------------------------------------------------------------------------------------------
+oldlogspline logspline mymat <- cbind( c(0,1,5.5,10.5, 15.5), c(1,5.5,10.5, 15.5, Inf) )[rep(1:5, c(7,45,84,104,249)),]
+
+library(logspline)
+
+fit <- oldlogspline(interval=mymat[mymat[,2] < 100,],
+    right=mymat[ mymat[,2]>100, 1], lbound=0)
+fit2 <- oldlogspline.to.logspline(fit)
+
+hist( mymat[,1]+0.5, breaks=c(0,1,5.5,10.5,15.5,60), main='', xlab='Years')
+plot(fit2, add=TRUE, col='blue') survreg survival library(survival)
+
+mymat2 <- mymat
+mymat2[ mymat2>100 ] <- NA
+
+fit3 <- survreg( Surv(mymat2[,1], mymat2[,2], ,type='interval2') ~ 1, 
+    dist='gaussian', control=survreg.control(maxiter=100) )
+curve( dnorm(x, coef(fit3), fit3$scale), from=0, to=60, col='green', add=TRUE) fit4 <- survreg( Surv(mymat2[,1]+.01, mymat2[,2], ,type='interval2') ~ 1,
+    dist='weibull', control=survreg.control(maxiter=100) )
+curve( dweibull(x, scale=exp(coef(fit4)), shape=1/fit4$scale), 
+    from=0, to=60, col='red', add=TRUE) fitdistr MASS library(MASS)
+tmpfun <- function(x, size, prob) {
+    ifelse(x==0, dnbinom(0,size,prob),
+    ifelse(x < 5, pnbinom(5,size,prob)-pnbinom(0,size,prob),
+    ifelse(x < 10, pnbinom(10,size,prob)-pnbinom(5,size,prob),
+    ifelse(x < 15, pnbinom(15,size,prob)-pnbinom(10,size,prob),
+        pnbinom(15,size,prob, lower.tail=FALSE)))))
+}
+
+fit5 <- fitdistr( mymat[,1], tmpfun, start=list(size=6, prob=0.28) )
+lines(0:60, dnbinom(0:60, fit5$estimate[1], fit5$estimate[2]), 
+    type='h', col='orange')
+-------------------------------------------------------------------------------------------------------
+nls(Mass_Ind_CS ~a*Drift_Time^b , dat, start=list(a=100, b=1))
+#---------------------
+Nonlinear regression model
+  model:  Mass_Ind_CS ~ a * Drift_Time^b 
+   data:  dat 
+       a        b 
+227.0176   0.7828 
+ residual sum-of-squares: 10224
+
+Number of iterations to convergence: 5 
+Achieved convergence tolerance: 3.617e-06 
+#---------------------
+ plot(dat, xlim=range(dat$Drift_Time), ylim=range(dat$Mass_Ind_CS) )
+ par(new=T)
+ curve(215.47*x^0.812, from=min(dat$Drift_Time), 
+                        to=max(dat$Drift_Time),
+                         ylim=range(dat$Mass_Ind_CS) )
+ par(new=T)
+ curve(227.0176*x^0.7828, from=min(dat$Drift_Time), 
+                          to=max(dat$Drift_Time), 
+                          ylim=range(dat$Mass_Ind_CS),col="red") anova()
+-------------------------------------------------------------------------------------------------------
+dat <- structure(list(Response = c(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 
+  1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 0L, 0L, 0L, 0L, 0L, 
+  0L, 0L), Temperature = c(29.33, 30.37, 29.52, 29.66, 29.57, 30.04, 
+  30.58, 30.41, 29.61, 30.51, 30.91, 30.74, 29.91, 29.99, 29.99, 
+  29.99, 29.99, 29.99, 29.99, 30.71, 29.56, 29.56, 29.56, 29.56, 
+  29.56, 29.57, 29.51)), .Names = c("Response", "Temperature"), 
+  class = "data.frame", row.names = c(NA, -27L))
+
+temperature.glm <- glm(Response ~ Temperature, data=dat, family=binomial)
+
+plot(dat$Temperature, dat$Response, xlab="Temperature", 
+     ylab="Probability of Response")
+curve(predict(temperature.glm, data.frame(Temperature=x), type="resp"), 
+      add=TRUE, col="red")
+# To add an additional curve, e.g. that which corresponds to 'Set 1':
+curve(plogis(-88.4505 + 2.9677*x), min(dat$Temperature), 
+      max(dat$Temperature), add=TRUE, lwd=2, lty=3)
+legend('bottomright', c('temp.glm', 'Set 1'), lty=c(1, 3), 
+       col=2:1, lwd=1:2, bty='n', cex=0.8) curve x y plogis(z) 1/(1+exp(-z)) min(dat$Temperature) max(dat$Temperature) x y x curve n <- 100 # size of random sample
+
+# generate random temperature data (n draws, uniform b/w 27 and 33)
+temp <- runif(n, 27, 33)
+
+# Define a function to perform a Bernoulli trial for each value of temp, 
+#   with probability of success for each trial determined by the logistic
+#   model with intercept = alpha and coef for temperature = beta.
+# The function also plots the outcomes of these Bernoulli trials against the 
+#   random temp data, and overlays the curve that corresponds to the model
+#   used to simulate the response data.
+sim.response <- function(alpha, beta) {
+  y <- sapply(temp, function(x) rbinom(1, 1, plogis(alpha + beta*x)))  
+  plot(y ~ temp, pch=20, xlab='Temperature', ylab='Response')
+  curve(plogis(alpha + beta*x), min(temp), max(temp), add=TRUE, lwd=2)    
+  return(y)
+} # Simulate response data for your model 'Set 1'
+y <- sim.response(-88.4505, 2.9677)
+
+# Simulate response data for your model 'Set 2'
+y <- sim.response(-88.585533, 2.972168)
+
+# Simulate response data for your model temperature.glm
+# Here, coef(temperature.glm)[1] and coef(temperature.glm)[2] refer to
+#   the intercept and slope, respectively
+y <- sim.response(coef(temperature.glm)[1], coef(temperature.glm)[2])
+-------------------------------------------------------------------------------------------------------
+library(ggplot2)
+
+# Define function. Fitted parameters included as default values.
+HillFunction = function(x, ec50=0.01, hill=0.7, rmax=1.0) {
+    result = rmax / (1 + (ec50 / x)^hill)
+    return(result)
+} 
+
+# Create x such that points are evenly spread in log space.
+x = 10^seq(-5, 5, 0.2) 
+y_fit = HillFunction(x)
+y_raw = y_fit + rnorm(length(y_fit), sd=0.05)
+
+dat = data.frame(x, y_fit, y_raw)
+
+plot_1 = ggplot(data=dat, aes(x=x, y=y_raw)) +
+         geom_point() +
+         geom_line(data=dat, aes(x=x, y=y_fit), colour="red") +
+         scale_x_log10() +
+         opts(title="Figure 1. Proposed workaround.")
+
+png("plot_1.png", height=450, width=450)
+print(plot_1)
+dev.off() stat_function() HillFunction() x missing values HillFunction() x x scale_x_log10() stat_function() y_fit plot_2 = ggplot(dat, aes(x=x, y=y_fit)) +
+         geom_point() +
+         stat_function(fun=HillFunction, colour="red") +
+         scale_x_log10() +
+         opts(title="Figure 2. stat_function() misbehaving?")
+
+png("plot_2.png", height=450, width=450)
+print(plot_2)
+dev.off()
+
+
+png("plot_3.png", height=450, width=450)
+
+plot(x, y_fit, pch=20, log="x")
+curve(HillFunction, col="red", add=TRUE)
+title("Figure 3. curve() behaving as expected.")
+
+dev.off()
+-------------------------------------------------------------------------------------------------------
+ggplot2 0.8.9 directlabels 2.4 directlabels ggplot2 0.9 A B C G d > head(d)
+    Xax variable value
+1  0.22        A 0.451
+2  0.34        A 0.491
+3  0.54        A 0.389
+4  0.34        A 0.425
+5  0.53        A 0.457
+6  0.12        A 0.436 variable library(plyr)
+lm.stats <- ddply(d, "variable", 
+                  function(u) { 
+                    r <- lm(value ~ Xax, data=u)
+                    c(coef(r), r.squared=summary(r)$r.squared) 
+                  })
+my.formatter <- function(x, digits=2) {
+  x <- round(x, digits=digits)
+  out <- paste(x[1], ifelse(x[2]>0, "+", ""), x[2], "x", sep="")
+  out <- paste(out, " (R2=", x[3], ")", sep="")
+  return(out)
+}
+d$variablef <- d$variable
+levels(d$variablef) <- apply(lm.stats[2:4], 1, my.formatter) my.formatter ddply variable p <- ggplot(d, aes(Xax,value, col=variablef)) + 
+       geom_point() + 
+       stat_smooth(method=lm) 
+library(directlabels)
+direct.label(p) labcurve()
+-------------------------------------------------------------------------------------------------------
+c c c+a control=nls.control(maxiter=200) nls SSasympOff start1 <- list(a=1, b=75, c=-5)
+start2 <- list(a=0.5, b=75, c=0.5)  ## a better guess
+
+pfun <- function(params) {
+  data.frame(vec_x=60:90,
+             vec_y=do.call(expFct2,c(list(x=60:90),params)))
+}
+library(ggplot2)
+ggplot(data = dt,aes(x = vec_x, y = vec_y)) +  geom_point() +
+  geom_line(data=pfun(start1))+
+  geom_line(data=pfun(start2),colour="red")+
+  geom_smooth(data=dt, method="nls", formula=y~SSasympOff(x, a, b, c),
+              se=FALSE) nls geom_smooth predict.nls c a b x=b 1-exp(-1) curve()
+-------------------------------------------------------------------------------------------------------
+sapply x <- seq(-1,1,length=20)
+y <- sapply(x, function(a) mean(log(1+a*r)) )
+plot(x,y, type="l") curve r <- runif(100)
+f <- function(a) mean(log(1+a*r))
+f <- Vectorize(f)
+curve(f, xlim=c(-1,1), las=1)
+-------------------------------------------------------------------------------------------------------
+fe<<-fixef(lmer(Reaction ~ Days + (1|Subject) + (0+Days|Subject), sleepstudy))
+fef<-function(x) fe[1] + fe[2]*x
+curve(fef, from = 1, to = 10)
+-------------------------------------------------------------------------------------------------------
+fft 1/N characteristic_function_to_density <- function(
+  phi, # characteristic function; should be vectorized
+  n,   # Number of points, ideally a power of 2
+  a, b # Evaluate the density on [a,b[
+) {
+  i <- 0:(n-1)            # Indices
+  dx <- (b-a)/n           # Step size, for the density
+  x <- a + i * dx         # Grid, for the density
+  dt <- 2*pi / ( n * dx ) # Step size, frequency space
+  c <- -n/2 * dt          # Evaluate the characteristic function on [c,d]
+  d <-  n/2 * dt          # (center the interval on zero)
+  t <- c + i * dt         # Grid, frequency space
+  phi_t <- phi(t)
+  X <- exp( -(0+1i) * i * dt * a ) * phi_t
+  Y <- fft(X)
+  density <- dt / (2*pi) * exp( - (0+1i) * c * x ) * Y
+  data.frame(
+    i = i,
+    t = t,
+    characteristic_function = phi_t,
+    x = x,
+    density = Re(density)
+  )
+}
+
+d <- characteristic_function_to_density(
+  function(t,mu=1,sigma=.5) 
+    exp( (0+1i)*t*mu - sigma^2/2*t^2 ),
+  2^8,
+  -3, 3
+)
+plot(d$x, d$density, las=1)
+curve(dnorm(x,1,.5), add=TRUE)
+-------------------------------------------------------------------------------------------------------
+curve( (x-5)*(x-3)/( (x+1)*(x-4) ), 3 ,5) n vals <- curve( (x-5)*(x-3)/( (x+1)*(x-4) ), -3 ,5, n=1000)
+is.na(vals$y) <- abs(vals$y) > 100
+plot(vals, type="l")
+-------------------------------------------------------------------------------------------------------
+library(Rsolnp)
+get_one_point <- function(...) {
+  r <- NULL
+  while( is.null(r) || r$convergence != 0 ) {
+    x <- rnorm(2)
+    r <- solnp( 
+      rnorm(2), 
+      # Minimize the distance to some point
+      function(u) sum((u-x)^2),
+      # Constraints we want to satisfy
+      ineqfun = function(u) c(sum(u^2), u[2] - u[1]^2),
+      ineqLB = c(1,0),
+      ineqUB = c(2,5)
+    )
+  }
+  r$pars
+}  
+
+# Plot the points and the constraints
+library(parallel) # Very slow: run the optimizations in parallel
+x <- mclapply( 1:10, get_one_point, mc.cores=detectCores() )
+x <- do.call(rbind, x)
+plot(x, 
+  xlim=c(-2,2), ylim=c(0,2), 
+  pch=15, cex=1.5, asp=1, las=1,
+  xlab="", ylab=""
+)
+curve(x^2, add=TRUE)
+curve(sqrt(1-x^2), add=TRUE)
+curve(2*sqrt(1-x^2/4), add=TRUE) Rsolnp solve.QP quadprog
+-------------------------------------------------------------------------------------------------------
+dat <- read.table(text="info  mean  sd
+info1 20.84 4.56
+info2 29.18 5.41
+info3 38.90 6.22", header=T)
+
+dat <- transform(dat, lower= mean-3*sd, upper= mean+3*sd)
+
+plot(x=c(min(dat$lower)-2, max(dat$upper)+2), y=c(0, .25), ylab="", 
+    xlim=c(min(dat$lower)-2, max(dat$upper)+2), xlab="", 
+    axes=FALSE, xaxs = "i", type="n")
+box()
+
+FUN <- function(rownum) {
+    par(new=TRUE)
+    curve(dnorm(x,dat[rownum, 2], dat[rownum, 3]),
+        xlim=c(c(min(dat$lower)-2, max(dat$upper)+2)), 
+        ylim=c(0, .22),
+        ylab="", xlab="")
+}
+
+lapply(seq_len(nrow(dat)), function(i) FUN(i))
+-------------------------------------------------------------------------------------------------------
+curve Vectorize h t Vh <- Vectorize(h, "t") curve curve( Vh(t = x, n = 1, k = 1), from = .5, to = 5)
+-------------------------------------------------------------------------------------------------------
+x curve() dnorm curve(dnorm, -3.5, 3.5, lwd=2, axes = FALSE, xlab = "", ylab = "")
+axis(1, at = -3:3, labels = c("-3s", "-2s", "-1s", "mean", "1s", "2s", "3s")) <- = x <- seq(-4, 4, length=200)
+y <- dnorm(x, mean=0, sd=1)
+plot(x, y, type="l", lwd=2)
+-------------------------------------------------------------------------------------------------------
+curve() help(curve) text() plotmath help(text)
+help(plotmath)
+-------------------------------------------------------------------------------------------------------
+par(new=TRUE) plot(bodysize,survive,xlab="Body size",ylab="Probability of survival") 
+g=glm(survive~bodysize,family=binomial,dat)
+curve(predict(g,data.frame(bodysize=x),type="resp"),add=TRUE)
+points(bodysize,fitted(g),pch=20)
+#then
+par(new=TRUE)
+#
+plot(AggBd$Group.1,AggBd$x,pch=30) plot(AggBd$Group.1,AggBd$x,pch=30,xaxt="n",yaxt="n",xlab="",ylab="")
+-------------------------------------------------------------------------------------------------------
+curve2<-data.frame(x=c(4,5,5,6,6,7),
+                    y=c(2,2,1,1,2,3))
+ fillin <- function(ax, ay, bx, by, scaling= 10, steps= 100) floor(cbind(seq(from = ax, to = bx, len = steps), seq(from = ay, to = by, len = steps)) * scaling)
+ Bmat <- matrix(0, 100, 100)
+ for (i in 2:nrow(curve2)){
+ Bmat[fillin (curve2[i-1,1], curve2[i-1,2], curve2[i,1], curve2[i,2])] =1
+ }
+ Bmat.orig = Bmat
+
+ Bmat = Bmat.orig
+ #construct utility function based on 
+ #manhattan distances to closest point?
+ shift = function(mat, offset){
+ mat0 = array(0, dim = dim(mat)+2)
+ mat0[1:nrow(mat) +1+ offset[1] , 1:ncol(mat) + 1+offset[2]] = mat
+ return(mat0[1:nrow(mat) + 1, 1:ncol(mat) + 1])
+ }
+
+ for (i in 1:100){
+ Bm = (Bmat != 0)
+ Btmp1 = shift(Bm, c(1,0))
+ Btmp2 = shift(Bm, c(-1,0))
+ Btmp3 = shift(Bm, c(0,1))
+ Btmp4 = shift(Bm, c(0,-1))
+
+ Bmat = Bmat + pmax(Bm ,Btmp1, Btmp2, Btmp3, Btmp4)/i
+ }
+
+ Bmat2 = replace(Bmat, Bmat == max(Bmat), max(Bmat) + 10)
+
+ #construct and compare rasterised versions
+ getcurve = function(trans = c(0,1),  curve=data.frame(x=c(1,1,2,2,3) ,
+                    y=c(9,6,6,3,3) ), Bmat = Bmat2){
+ Amat = array(0, dim = dim(Bmat))
+ curve[,1] = curve[,1] + trans[1]
+ curve[,2] = curve[,2] * trans[2]
+ for (i in 2:nrow(curve)){
+ fillin (curve[i-1,1], curve[i-1,2], curve[i,1], curve[i,2]) -> ind
+ if (min(ind) < 1 || max(ind) > nrow(Bmat)) return( array(-1, dim= dim(Bmat)))
+ Amat[ind] =1
+ }
+ Amat = (Amat - mean(Amat))/sd(as.vector(Amat))
+ Amat
+ }
+ compcurve = function(trans = c(0,1), curve=data.frame(x=c(1,1,2,2,3) ,
+                    y=c(9,6,6,3,3) ) , Bmat = Bmat2){
+ Amat = getcurve(trans, curve, Bmat)
+ -sum(Amat * Bmat)
+ }
+ #SANN seems to work for this, but is slow. Beware of finite differencing
+ # - criterion is non-smooth! 
+ optim(c(0,1), compcurve, method = "SANN", Bmat = Bmat2) -> output
+ image(Bmat)
+ contour(getcurve(output$par), add = T)
+-------------------------------------------------------------------------------------------------------
+a <- 4
+plot(x,y) # no change curve( 1/(1+exp(-a*x))  )
+a <- 10
+curve( 1/(1+exp(-a*x)) )
+-------------------------------------------------------------------------------------------------------
+curve() f <- function(x, a)1/(1+exp(-a*x)) curve(f(x, 1), -1, 1, 100) curve(f(x, 4), -1, 1, 100)
+-------------------------------------------------------------------------------------------------------
+d <- data.frame(x,y)  ## need to use data in a data.frame for predict()
+logEstimate <- lm(y~log(x),data=d) predict plot(x,y)
+xvec <- seq(0,7000,length=101)
+logpred <- predict(logEstimate,newdata=data.frame(x=xvec))
+lines(xvec,logpred) coef(logEstimate)
+## (Intercept)      log(x) 
+##  0.6183839   0.0856404 
+curve(0.61838+0.08564*log(x),add=TRUE,col=2) with() with(as.list(coef(logEstimate)),
+      curve(`(Intercept)`+`log(x)`*log(x),add=TRUE,col=4)) est1 <- predict(lm(y~x,data=d),newdata=data.frame(x=xvec))
+plot(est1,logpred)
+-------------------------------------------------------------------------------------------------------
+library(rmutil)  ## for rpareto
+set.seed(101)
+hh2 <- data.frame(V1=rpareto(1000, m=1, s=1.5)) pp <- hist(hh2$V1,plot=FALSE) gamma ghistfun <- function(x) {
+    n <- length(x)
+    scalepar <- var(x)/mean(x)
+    shapepar <- mean(x)^2/var(x)
+    y <- rgamma(n,shape=shapepar,scale=scalepar)
+    xx <- hist(y,plot=FALSE)
+    lines(log(xx$mids),log(xx$density),col="red")
+    curve(dgamma(exp(x),shape=shapepar,scale=scalepar,log=TRUE),
+        add=TRUE,col="blue")
+
+    shapepar
+} n curve(dgamma(x,...)) x log(x) plot(log(pp$mids),log(pp$density))
+ghistfun(hh2$V1)
+-------------------------------------------------------------------------------------------------------
+curve eq = function(x){x*x}; x = (1:50); y = eq(x) plot curve add=TRUE plot(x, y,  xlab = "X-axis", ylab = "Y-axis") 
+curve(eq, add=TRUE)
+-------------------------------------------------------------------------------------------------------
+pdf sim_bayes <- function(p=0.5, N=10, y_lim=15, prior_a=1, prior_b=1) {
+    success <- 0
+    for (i in 1:N) {
+        pdf(paste("posterior",i,".pdf",sep=""), height=4, width=6.5)
+
+        if (runif(1,0,1) <= p)
+            success<-success + 1
+
+        # Start a new plot.
+        curve(dbeta(x,prior_a,prior_b), lty=2,
+              xlim=c(0,1), ylim=c(0,y_lim), xlab='p', ylab='Posterior Density')
+        # Update plot.
+        curve(dbeta(x,success+prior_a, (i-success) + prior_b), add=TRUE)
+
+        legend('topright',
+               legend=c('Prior','Updated Posteriors','Final Posterior'),
+               lty=c(2,1,1), col=c('black','black','red'))
+
+        dev.off()
+    }
+}
+
+# `x` had no visible binding in your implementation, so I took the following
+# from the `dbeta` documentation example.
+x <- seq(0, 1, length=21)
+sim_bayes()
+-------------------------------------------------------------------------------------------------------
+add=TRUE sim_bayes<-function(p=0.5,N=10,y_lim=15,prior_a=1,prior_b=1)
+{
+   print(paste("The prior expectation of p is ",prior_a/(prior_a+prior_b)))
+   success<-0
+   curve(dbeta(x,prior_a,prior_b),xlim=c(0,1),ylim=c(0,y_lim),xlab='p',ylab='Posterior Density',lty=2)
+   legend('topright',legend=c('Prior','Updated Posteriors','Final Posterior'),lty=c(2,1,1),col=c('black','black','red'))
+
+  for(i in 1:N)
+     {
+
+        if(runif(1,0,1)<=p) success<-success+1 #this is where we see if there is a "success"
+
+      curve(dbeta(x,success+prior_a,(i-success)+prior_b)) #plot updated
+      }
+curve(dbeta(x,success+prior_a,(i-success)+prior_b),col='red',lwd=1.5) #plot final posterior
+} sim_bayes(p=0.6,N=90,prior_a=1,prior_b=1)
+-------------------------------------------------------------------------------------------------------
+freq=FALSE curve x a <- 5
+b <- 2
+hist( rnorm(100, a, b), freq=FALSE )
+curve( dnorm(x,a,b), add=TRUE ) freq=TRUE curve out <- hist( rnorm(100, a, b) )
+curve( dnorm(x,a,b)*100*diff(out$breaks[1:2]), add=TRUE )
+-------------------------------------------------------------------------------------------------------
+sapply curve(sapply(x, function(e) mean(var + e))) mean(var) + x
+-------------------------------------------------------------------------------------------------------
+mean Vectorize f <- Vectorize(function(x) mean(var+x))
+curve(f,from=0, to=10)
+-------------------------------------------------------------------------------------------------------
+?curve ?axis ## draw the curve
+curve(1-exp(-x^2/730),from=0,to=370,axes=FALSE)
+axis(side=2)  ## add default lefthand axis
+axis(side=1,at=seq(0,370,by=10))  ## add custom bottom axis
+box(bty="l")  ## add a box cex.axis=0.5 staxlab plotrix
+-------------------------------------------------------------------------------------------------------
+pnorm sf <- 1
+mf <- 0
+f <- function(x) 1/(2*sf^2*pi)*exp(-.5*((x-mf)/sf)^2) *
+                 (1 - sf*sqrt(2*pi)*pnorm(x, mf, sf))
+curve(f, from=-2, to=2) sf*sqrt(2*pi) f dnorm f <- function(x) dnorm(x, mf, sf)/(sqrt(2*pi)*sf) *
+                 (1 - sf*sqrt(2*pi)*pnorm(x, mf, sf))
+-------------------------------------------------------------------------------------------------------
+#define function
+qfun <- function(age,h){
+  #the constraint can be added using algebra
+  g <- 0.05/0.95/h^50 
+  g * (h^age)/(1 + g * (h^age))
+}     
+
+#create data
+age <- 1:75
+
+h <- 0.75
+
+q <- qfun(age,h) 
+plot(q~age)
+#add noise
+q <- q+rnorm(length(q),sd=0.02)
+plot(q~age)
+
+#fit
+fit <- nls(q~qfun(age,h),start=list(h=1))
+summary(fit)
+Formula: q ~ qfun(age, h)
+
+#Parameters:
+#  Estimate Std. Error t value Pr(>|t|)    
+#h 0.749644   0.001678   446.7   <2e-16 ***
+#---
+#Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+#
+#Residual standard error: 0.01865 on 74 degrees of freedom
+#
+#Number of iterations to convergence: 5 
+#Achieved convergence tolerance: 1.735e-06 
+ttt<- function(x) qfun(x,coef(fit)[1])
+curve(ttt,from=1,to=75,add=TRUE)
+-------------------------------------------------------------------------------------------------------
+library(decon) # for DeconPdf
+library(deamer) # for deamerKE
+
+set.seed(12345)
+shape=5; scale=1; mu=0; sd=0.2
+
+x <- rweibull(5000, shape=shape, scale=scale)
+noise <- rnorm(5000, mean=mu, sd=sd)
+y=x+noise
+curve(dweibull(x,shape,scale),lwd=2, from = 0, to = 2)
+
+est <- deamerKE(y, noise.type="Gaussian", mu=mu, sigma=sd, from=0, to=2)
+lines(est)
+
+estDecon <- DeconPdf(y, sd, error="normal", fft=TRUE)
+lines(estDecon, lty=2)
+
+legend('topright', lty=c(1,1,2), lwd=c(2,1,1), 
+    legend=c("true", "deamerKE", "DeconPdf"))
+-------------------------------------------------------------------------------------------------------
+curve plot(f1, 0, 1)
+curve(f2, 0, 1, add=TRUE)
+-------------------------------------------------------------------------------------------------------
+hist(index$LogNR, breaks = 100, prob=T)
+mean_DJ = mean(index$LogNR, na.rm=T);
+sd_DJ = sd(index$LogNR, na.rm=T);
+#For the normal curve
+curve(dnorm(x, mean_DJ, sd_DJ), add=T, col = "grey", lwd = 2)
+#For kernel density
+lines(density(index$LogNR, na.rm=T), col = "blue", lwd = 2) index <- read.table(text="      Date  Close        LogNR
+1  9/24/2012 690.79 -0.013373028
+2  9/21/2012 700.09  0.001987433
+3  9/20/2012 698.70 -0.004854378
+4  9/19/2012 702.10  0.000270653
+5  9/18/2012 701.91  0.003039191
+6  9/17/2012 699.78  0.012221048
+7  9/14/2012 691.28  0.012079375
+8  9/13/2012 682.98  0.019501346
+9  9/12/2012 669.79  0.013830855
+10 9/11/2012 660.59 -0.003249381
+11 9/10/2012 662.74 -0.026356891
+12  9/7/2012 680.44  0.006147243
+13  9/6/2012 676.27  0.008971468
+14  9/5/2012 670.23 -0.007047308
+15  9/4/2012 674.97  0.014520368
+16 8/31/2012 665.24  0.002061531
+17 8/30/2012 663.87 -0.014357104
+18 8/29/2012 673.47 -0.001972899
+19 8/28/2012 674.80 -0.001303241
+20 8/27/2012 675.68  0.018612831
+21 8/24/2012 663.22  0.000889995
+22 8/23/2012 662.63 -0.009372956
+23 8/22/2012 668.87  0.019337473
+24 8/21/2012 656.06 -0.013760331
+25 8/20/2012 665.15  0.025952144
+26 8/17/2012 648.11  0.018327423
+27 8/16/2012 636.34  0.008696599
+28 8/15/2012 630.83 -0.001362355
+29 8/14/2012 631.69  0.002678948
+30 8/13/2012 630.00  0.013262158
+", header=TRUE)
+-------------------------------------------------------------------------------------------------------
+interaction h<-histogram(~star|interaction(stat, var,  sep="\n") + n, data=testData  , 
+              as.table=T ,layout=c(4,3), type="density", breaks=20 ,  
+panel=function(x,params,...){ panel.grid() 
+panel.histogram(x,...,col=1) 
+panel.curve(dnorm(x,0,1), type="l",col=2) } ) 
+plot(h) 
+useOuterStrips(h,strip.left = strip.custom(horizontal = FALSE), 
+                  strip.lines=2, strip.left.lines=1) useOuterStrips
+-------------------------------------------------------------------------------------------------------
+# Some sample data
+testMat <- matrix(1:20, ncol = 5)
+testMatDF <- as.data.frame(testMat)
+names(testMatDF) <- c("Hey there", "Column 2", 
+                      "Some * Symbols", "And ^ More", 
+                      "Final Column")
+rownames(testMatDF) <- paste("Group", 1:4)
+
+# Load the package
+library(gplots)
+# Set par for plotting a three-row plot
+par(mfrow = c(3, 1))
+curve(dnorm, -3, +4)
+textplot(testMat)
+textplot(testMatDF) layout() par(mfrow...) layout(matrix(c(1, 1, 2, 3, 3, 3), 
+              2, 3, byrow = TRUE))
+curve(dnorm, -3, +4)
+textplot(testMat)
+textplot(testMatDF)
+-------------------------------------------------------------------------------------------------------
+approx approxfun approx approxfun dat <- data.frame(x=1:10, y=(1:10)^2) approx approxfun > approx(dat$x, dat$y)
+$x
+ [1]  1.000000  1.183673  1.367347  1.551020  1.734694  1.918367  2.102041
+ [8]  2.285714  2.469388  2.653061  2.836735  3.020408  3.204082  3.387755
+[15]  3.571429  3.755102  3.938776  4.122449  4.306122  4.489796  4.673469
+[22]  4.857143  5.040816  5.224490  5.408163  5.591837  5.775510  5.959184
+[29]  6.142857  6.326531  6.510204  6.693878  6.877551  7.061224  7.244898
+[36]  7.428571  7.612245  7.795918  7.979592  8.163265  8.346939  8.530612
+[43]  8.714286  8.897959  9.081633  9.265306  9.448980  9.632653  9.816327
+[50] 10.000000
+
+$y
+ [1]   1.000000   1.551020   2.102041   2.653061   3.204082   3.755102
+ [7]   4.510204   5.428571   6.346939   7.265306   8.183673   9.142857
+[13]  10.428571  11.714286  13.000000  14.285714  15.571429  17.102041
+[19]  18.755102  20.408163  22.061224  23.714286  25.448980  27.469388
+[25]  29.489796  31.510204  33.530612  35.551020  37.857143  40.244898
+[31]  42.632653  45.020408  47.408163  49.918367  52.673469  55.428571
+[37]  58.183673  60.938776  63.693878  66.775510  69.897959  73.020408
+[43]  76.142857  79.265306  82.551020  86.040816  89.530612  93.020408
+[49]  96.510204 100.000000
+
+> approxfun(dat$x, dat$y)
+function (v) 
+.C(C_R_approxfun, as.double(x), as.double(y), as.integer(n), 
+    xout = as.double(v), as.integer(length(v)), as.integer(method), 
+    as.double(yleft), as.double(yright), as.double(f), NAOK = TRUE, 
+    PACKAGE = "stats")$xout
+<bytecode: 0x05244854>
+<environment: 0x030632fc> a <- approx(dat$x, dat$y)
+af <- approxfun(dat$x, dat$y)
+
+plot(dat)
+points(a, pch=2) plot(dat)
+curve(af, add=TRUE) > uniroot(function(x) {af(x)-4}, interval=c(1,10))
+$root
+[1] 1.999994
+
+$f.root
+[1] -1.736297e-05
+
+$iter
+[1] 24
+
+$estim.prec
+[1] 6.103516e-05
+-------------------------------------------------------------------------------------------------------
+grDevices::devAskNewPage(ask = TRUE) readline abline plot(y) myFun <- function() {
+     x = rnorm(20)
+        y = 7*x^2 - 0.5*x + rnorm(20)
+    y.0 = lm(y ~ 1)
+    plot(y)
+       # We'd get the same constant by just doing mean(y), but fitting it as a
+       # regression model means functions like residuals() and predict() are
+       # available for use later, the same as our other models
+    abline(h=y.0$coefficients[1])
+    # Get evenly spaced points for pretty plotting of other models
+    d = seq(min(x),max(x),length.out=200)
+    # Fit polynomials of order 1 to 9
+    # It would be nicer if we let this run from 0 to 9, but R doesn't allow us to do a polynomial of degree 0
+    for (degree in 1:9) {
+        fm = lm(y ~ poly(x,degree))
+        # Store the results in models called y.1, y.2, through y.9
+        # The assign/paste trick here is often useful for storing results
+            # which do not fit well into arrays!
+            # check: y.1; y.2;...
+        assign(paste("y",degree,sep="."), fm)
+        # Plot them, with different line types
+        readline('Press return to see the next line added')
+        lines(d, predict(fm, data.frame(x=d)), lty=(degree+1))
+    }
+
+        x.new = rnorm(2e4)
+        y.new = 7*x.new^2 - 0.5*x.new + rnorm(2e4)
+        plot(x.new,y.new,xlab="x",ylab="y",pch=24,cex=0.1,col="blue")
+        curve(7*x^2-0.5*x,col="grey",add=TRUE)  # the old curve
+        abline(h=y.0$coefficients[1])
+        d = seq(from=min(x.new),to=max(x.new),length.out=200)
+        for (degree in 1:9) {
+           fm = get(paste("y",degree,sep="."))
+           readline('Press return to see the next line added')
+           lines(d, predict(fm,data.frame(x=d)),lty=(degree+1))
+        }
+        points(x,y,col="red")
+}
+myFun()
+-------------------------------------------------------------------------------------------------------
+curve f = function(x) x^2 + 1   
+curve(f(x), -2,2, ylim=c(0, 5)) points points(runif(100, -2, 2), runif(100, 0, 6)) N = 100000
+sum(f(runif(N, -2, 2)) > runif(N, 0, 6))/N * (4*6)
+-------------------------------------------------------------------------------------------------------
+freq = FALSE points lines hist(expRandom, freq = FALSE)
+points(x,y) y curve hist(expRandom, freq = FALSE)
+curve(dexp, from = 0, to  = 10, add = TRUE)
+-------------------------------------------------------------------------------------------------------
+b*(x-a)^2+c a <- data$x[which.min(data$y)]
+c <- min(data$y)
+
+b1 <- (data$y[which.min(data$x)] - c) / (min(data$x) - a)^2
+b2 <- (data$y[which.max(data$x)] - c) / (max(data$x) - a)^2
+b <- mean(c(b1, b2)) seed <- floor(runif(1,1,1000))
+set.seed(seed)
+a = 1
+b = 2
+c = 3
+
+parabola <- function(x) {
+    b * (x-a)^2 + c
+}
+
+N = 10000
+
+x <- runif(N, -4, 3)
+y <- runif(N, 0, 10)
+
+data <- data.frame(x, y)
+
+data <- subset(data, y >= parabola(x))
+
+plot(data, xlim = c(-5, 5), ylim = c(0, 10), col = "grey")
+
+fr <- function(x) {
+    PAR = x[2] * (data$x - x[1])^2 + x[3]
+    #
+    sum((PAR - data$y)^2 + 100 * plogis(PAR - data$y, scale = 0.00001))
+}
+
+a <- data$x[which.min(data$y)]
+c <- min(data$y)
+
+b1 <- (data$y[which.min(data$x)] - c) / (min(data$x) - a)^2
+b2 <- (data$y[which.max(data$x)] - c) / (max(data$x) - a)^2
+b <- mean(c(b1, b2))
+
+par = optim(c(a, b, c), fr, method="BFGS")$par
+
+a = par[1]
+b = par[2]
+c = par[3]
+
+curve(parabola, add = TRUE, lty = "dashed") range(data$x) \int_{\range(x)} ax^2 + bx+c dx \lambda (ax_i^2+bx_i+c - y_i)^2 if below parabola, 0 otherwise
+-------------------------------------------------------------------------------------------------------
+f f = Vectorize(f)
+print(f(bins)) curve sapply curve(sapply(x, f), from=-5, to=5) ifelse f = function(x) {
+    ifelse(x >= -5 & x <= -3, 3*(1-(x+4)^2)/8, ifelse(x>=3 & x<=5, 3*(1-(x-4)^2)/8, 0))
+} Vectorize
+-------------------------------------------------------------------------------------------------------
+parabola.objective <- function(p) {
+    d = p[2] * (data$x - p[1])^2 + p[3] - data$y
+    #
+    area <- function(x) {
+        p[2] / 3 * (x - p[1])^3 + p[3] * x
+    }
+    #
+    sum(- area(max(data$x)) + area(min(data$x)) + 100 * ifelse(d > 0, d^2, 0))
+}
+
+A <- data$x[which.min(data$y)]
+C <- min(data$y)
+
+B1 <- (data$y[which.min(data$x)] - C) / (min(data$x) - A)^2
+B2 <- (data$y[which.max(data$x)] - C) / (max(data$x) - A)^2
+B <- mean(c(B1, B2))
+
+# the key to getting this working with a small number of points is the
+# optimisation method: BFGS works well with around 300 points or more
+# but L-BFGS-B seems to perform better down to around 100 points.
+#
+O = optim(c(A, B, C), parabola.objective, method="L-BFGS-B")
+
+par = O$par
+
+A = par[1]
+B = par[2]
+C = par[3]
+
+curve(parabola, add = TRUE, lty = "dashed")
+-------------------------------------------------------------------------------------------------------
+?identify ?zoomInPlot rxlim rylim /20 identify() par(mfrow = c(1,2))
+plot(1:10) # 1
+plot(1:10) # 2
+identifyPch(1:10) identifyPch() ?identify par(mfg=c(1, 1)) zoom <- function (x, y, xlim, ylim, xd, yd) 
+{
+  rxlim <- x + c(-1, 1) * (diff(range(xd))/20)
+  rylim <- y + c(-1, 1) * (diff(range(yd))/20)
+  par(mfrow = c(1, 2))
+  plot(xd, yd, xlab = "mean", ylab = "sd")
+  xext <- yext <- rxext <- ryext <- 0
+  if (par("xaxs") == "r") {
+    xext <- diff(xlim) * 0.04
+    rxext <- diff(rxlim) * 0.04
+  }
+  if (par("yaxs") == "r") {
+    yext <- diff(ylim) * 0.04
+    ryext <- diff(rylim) * 0.04
+  }
+  rect(rxlim[1] - rxext, rylim[1] - ryext, rxlim[2] + rxext, 
+       rylim[2] + ryext)
+  xylim <- par("usr")
+  xypin <- par("pin")
+  rxi0 <- xypin[1] * (xylim[2] - (rxlim[1] - rxext))/diff(xylim[1:2])
+  rxi1 <- xypin[1] * (xylim[2] - (rxlim[2] + rxext))/diff(xylim[1:2])
+  y01i <- xypin[2] * (xylim[4] - (rylim[2] + ryext))/diff(xylim[3:4])
+  y02i <- xypin[2] * ((rylim[1] - ryext) - xylim[3])/diff(xylim[3:4])
+  mu <- x
+  curve(dnorm(x, mean = mu, sd = y), from = -4 * y + mu, to = 4 * y + mu, 
+        xlab = paste("mean:", round(mu, 2), ", sd: ", round(y, 2)), ylab = "")
+  xypin <- par("pin")
+  par(xpd = NA)
+  xylim <- par("usr")
+  xymai <- par("mai")
+  x0 <- xylim[1] - diff(xylim[1:2]) * (xymai[2] + xymai[4] + 
+                                         rxi0)/xypin[1]
+  x1 <- xylim[1] - diff(xylim[1:2]) * (xymai[2] + xymai[4] + 
+                                         rxi1)/xypin[1]
+  y01 <- xylim[4] - diff(xylim[3:4]) * y01i/xypin[2]
+  y02 <- xylim[3] + diff(xylim[3:4]) * y02i/xypin[2]
+  par(xpd = TRUE)
+  xend <- xylim[1] - diff(xylim[1:2]) * xymai[2]/(2 * xypin[1])
+  xprop0 <- (xylim[1] - xend)/(xylim[1] - x0)
+  xprop1 <- (xylim[2] - xend)/(xylim[2] - x1)
+  par(xpd = NA)
+  segments(c(x0, x0, x1, x1), 
+           c(y01, y02, y01, y02), 
+           c(xend, xend, xend, xend), 
+           c(xylim[4] - (xylim[4] - y01) * xprop0, 
+             xylim[3] + (y02 - xylim[3]) * xprop0, 
+             xylim[4] - (xylim[4] - y01) * xprop1, 
+             xylim[3] + (y02 - xylim[3]) * xprop1))
+  par(mfg = c(1, 1))
+  plot(xd, yd, xlab = "mean", ylab = "sd")
+}
+
+ident <- function(x, y, ...)
+{
+  ans <- identify(x, y, n = 1, plot = FALSE, ...)
+  if(length(ans)) {
+    zoom(x[ans], y[ans], range(x), range(y), x, y)
+    points(x[ans], y[ans], pch = 19)
+    ident(x, y)
+  }
+}
+
+x <- rnorm(10)
+y <- rnorm(10, mean = 5)
+par(mfrow = c(1, 2))
+plot(x, y, xlab = "mean", ylab = "sd")
+ident(x, y)
+-------------------------------------------------------------------------------------------------------
+par layout png(file='plot2.png')
+par(mfrow= c(3, 1))
+curve(dnorm, -3, 4)
+textplot(testMat)
+textplot(testMatDF)
+dev.off()
+-------------------------------------------------------------------------------------------------------
+##' @method ##' @S3method ##' Create a ggplot of a Kaplan-Meier Survival curve(s)
+##'
+##' @param data  the object to be plotted
+##' @param \dots Unused
+##' @method autoplot survfit
+##' @S3method autoplot survfit
+##' @return A ggplot2 object
+autoplot.survfit <- function(data, ...) {
+    NULL
+}
+
+##' @rdname autoplot.survfit
+##' @method autoplot survfit.fortify
+##' @S3method autoplot survfit.fortify
+autoplot.survfit.fortify <- function(data, ...) {
+    NULL
+} roxygen2 Create a ggplot of a Kaplan-Meier Survival curve(s)
+
+Description:
+
+Create a ggplot of a Kaplan-Meier Survival curve(s)
+
+Usage:
+
+     ## S3 method for class 'survfit'
+      autoplot(data, ...)
+
+     ## S3 method for class 'survfit.fortify'
+      autoplot(data, ...)
+
+Arguments:
+
+    data: the object to be plotted
+
+     ...: Unused
+
+Value:
+
+     A ggplot2 object
+-------------------------------------------------------------------------------------------------------
+# simulate some data
+mydata = rnorm(1000)
+
+# print the quantiles at a few points
+# (it's the inverse of the cumulative distribution function):
+print(quantile(mydata, .5))
+print(quantile(mydata, .75))
+
+# show the curve from 0 to 1
+curve(quantile(mydata, x))
+-------------------------------------------------------------------------------------------------------
+curve(exp(x), from=1, to=5, lwd=5)
+curve(150-exp(x), from=1, to=5, lwd=5, col="darkblue",add=T)
+par(new=TRUE)
+par(oma=c(1,4,5,1))
+par(mfcol=c(2,2), mfg=c(1,1))
+par(mar=c(7,7,1,1))
+curve(exp(x), from=1, to=5, lwd=7, xlab="chi", ylab="exp(x)", cex.lab=2,axes=F)
+axis(1, labels=NA,at=c(0,5))
+axis(2, labels=NA,at=c(0,150))
+text(1,120,"Alpha",adj=c(0,0),cex=1.5)
+text(4,10,"Beta",adj=c(0,0),cex=1.5) oma mar
+-------------------------------------------------------------------------------------------------------
+par(fig = ) par("fig") c(xmin, xmax, ymin, ymax) 0 1 grconvertX() grconvertY() "user" "ndc" "user" "ndc" par("fig") grconvert*() ## pdf("fig-in-fig.pdf", width=10, height=10)
+curve(exp(x), from=1, to=5, lwd=5)
+curve(150-exp(x), from=1, to=5, lwd=5, col="darkblue",add=T)
+
+## Here's the bit I added.
+par(fig = c(grconvertX(c(1, 3), from="user", to="ndc"),
+            grconvertY(c(50, 125), from="user", to="ndc")),
+    mar = c(4,6,1,1),
+    new = TRUE)
+
+curve(exp(x), from=1, to=5, lwd=7, xlab="chi", ylab="exp(x)", cex.lab=4,axes=F)
+axis(1, labels=NA,at=c(0,5))
+axis(2, labels=NA,at=c(0,150))
+text(1,120,"Alpha",adj=c(0,0),cex=3)
+text(3.5,10,"Beta",adj=c(0,0),cex=3)
+## dev.off()
+-------------------------------------------------------------------------------------------------------
+f2 f1 <- function (m, n) {
+  function(x) m * x ^ n
+}
+f3 <- function (m, n) {
+  f2 <- f1(m, n)
+  curve(f2)
+}
+f3(3, 6) f1 f4 <- function (m, n) {
+  f2 <- function(x) m * x ^ n
+  curve(f2)
+}
+f4(3, 6)
+-------------------------------------------------------------------------------------------------------
+curve x <- 1:10
+y <- 2+ 3*(1:10) + rnorm(10)
+plot(1:10, y)
+curve( 2+3*x, 0, 10,  add=TRUE) y_i = 1 - xbeta + delta_i + e_i
+-------------------------------------------------------------------------------------------------------
+library(Rsolnp)
+
+func1 <- function (x) (x-2)^2
+
+func3 <- function (fun, col = "blue", n = 1000, main = "This is a test", ...){
+  curve(func1, ..., n = n, col = col, main = main)
+}
+
+# optimizes func1 and call func2 to plot func1
+func2 <- function (lb, ub, n.restarts = 5, n.sim = 10, ...){
+  output <- gosolnp(fun = func1, LB = lb, UB = ub, n.restarts = n.restarts, 
+  n.sim =  n.sim)$par
+  func3(fun = func1, ...)
+  return(output)
+} func2 ( lb = 0, ub = 8, nrestarts = 5, n.sim = 10, n = 200, from = 0, to = 8) Warning messages:
+1: In plot.window(...) : "nrestarts" is not a graphical parameter
+2: In plot.xy(xy, type, ...) : "nrestarts" is not a graphical parameter
+3: In axis(side = side, at = at, labels = labels, ...) :
+  "nrestarts" is not a graphical parameter
+4: In axis(side = side, at = at, labels = labels, ...) :
+  "nrestarts" is not a graphical parameter
+5: In box(...) : "nrestarts" is not a graphical parameter
+6: In title(...) : "nrestarts" is not a graphical parameter
+-------------------------------------------------------------------------------------------------------
+ifelse values = ifelse(x <= 5, exp(0.68+0.92*x), exp(0.68+0.92*x-0.7*(x-5)) curve(values) ifelse curve curve(ifelse(x <= 5, exp(0.68+0.92*x), exp(0.68+0.92*x-0.7*(x-5)))
+-------------------------------------------------------------------------------------------------------
+ff <- function (xx) ifelse(xx<3,xx,xx+1) curve(expr=ff,from=0,to=2.999,xlim=c(0,6),ylim=c(0,7),xlab="",ylab="") curve(expr=ff,from=3,to=6,add=TRUE) points(3,ff(3),pch=21,bg="black")
+-------------------------------------------------------------------------------------------------------
+asp asp = 1 curve() mean <- 5
+variance <- 0.05
+curve(exp((((x - mean) / variance)^2) * -0.5), mean - 2, mean + 2, asp = 1) xlim == ylim asp
+-------------------------------------------------------------------------------------------------------
+x <- rnorm(1000)
+hist(x)
+curve(dnorm, col = 2, add = TRUE)
+-------------------------------------------------------------------------------------------------------
+function(x) x^2 + x x^2 + x foo <- function(math_fun, var){
+
+   curve(math_fun, -5, 5)  #plot the mathematical function
+   y = math_fun(var)       #compute the function based on a user provided x value
+   points(x=var, y=y)      #plot the value from the last step.
+}
+
+#A user can use the function defined above in a way as shown below:
+Function <- function(x) x^2 + x
+foo(Function, var = 2)
+-------------------------------------------------------------------------------------------------------
+at curve(x^2, -5, 5, axes=FALSE)
+axis(1, pos=0, at=-5:5)
+axis(2, pos=0) axTicks axp curve(x^2, -5, 5, axes=FALSE)
+axis(1, pos=0, at=axTicks(1,axp=c(-10,10,10)))
+axis(2, pos=0)
+-------------------------------------------------------------------------------------------------------
+uniroot n*pi (n+1)*pi y = function(x) x-1/tan(x)
+curve(y,xlim=c(-10,10),n=501,ylim=c(-5,5))
+abline(v=(-3:3)*pi,col="gray")
+abline(h=0,col=2) eps f <- function(n,eps=1e-6) uniroot(y,c(n*pi+eps,(n+1)*pi-eps))$root
+sapply(0:3,f)
+## [1] 0.8603337 3.4256204 6.4372755 9.5293334
+-------------------------------------------------------------------------------------------------------
+R > y = function(x) { x - 1/tan(x) }
+R > curve(y, xlim = c(-10, 10))
+R > abline(h = 0, color = 'red') uniroot R > uniroot(y, interval = c(0, 3))
+$root
+[1] 0.8603
+
+$f.root
+[1] 6.612e-06
+
+$iter
+[1] 7
+
+$estim.prec
+[1] 6.104e-05
+-------------------------------------------------------------------------------------------------------
+yaxs xaxs "i" curve(x^2, -5, 5, yaxs = "i")
+-------------------------------------------------------------------------------------------------------
+stem txtplot curve ascii > with(cars,txtplot(speed,dist))
+     +----+-----------+------------+-----------+-----------+--+
+ 120 +                                                   *    +
+     |                                                        |
+ 100 +                                                        +
+     |                                                   * *  |
+  80 +                          *         *                   +
+     |                                       *      *    *    |
+  60 +                          *              *              +
+     |                             *    * *    *      *       |
+  40 +                        *      *  * *  *                +
+     |                *       * *    *  *    * *              |
+  20 +         *      *  * *  * *  *                          +
+     |           *    *  * *                                  |
+     |  *      *    *                                         |
+   0 +----+-----------+------------+-----------+-----------+--+
+          5          10           15          20          25 > txtacf(ldeaths)
+      +-+--------------+--------------+--------------+--------+
+    1 + *                                                     +
+      | *                                                     |
+      | *  *                        * *  *                    |
+  0.5 + *  *                        * *  *                    +
+      | *  * *                   *  * *  * *                  |
+      | *  * *                   *  * *  * *                  |
+      | *  * *                   *  * *  * *                  |
+    0 + *  * *  * *  * *  * *  * *  * *  * *  * *  * *  * *   +
+      |           *  * *  * *                   *  * *  * *   |
+      |           *  * *  * *                   *  * *  * *   |
+      |           *  * *  * *                      * *  * *   |
+ -0.5 +              * *  *                        * *  *     +
+      |              * *  *                          *        |
+      +-+--------------+--------------+--------------+--------+
+        0             0.5             1             1.5 > txtdensity(rnorm(100,m=5,s=.1))
+   +------+----------+----------+----------+----------+-------+
+   |                           *****                          |
+ 4 +                          **   ***                        +
+   |                         *       ***                      |
+   |                        **         ***                    |
+ 3 +                       **            ***                  +
+   |                     ***               **                 |
+   |                 *****                   **               |
+ 2 +               ***                        **              +
+   |             ***                           **             |
+   |            **                              **            |
+ 1 +           **                                ***          +
+   |         ***                                   ******     |
+   |  ********                                          ***   |
+   +------+----------+----------+----------+----------+-------+
+         4.8        4.9         5         5.1        5.2 > vc <- ToothGrowth[,2]=="VC"
+ > oj <- ToothGrowth[,2]=="OJ"
+ > txtboxplot(ToothGrowth[vc,1],ToothGrowth[oj,1])
+       5      10       15       20       25       30      35   
+  |----+-------+--------+--------+--------+--------+-------+--|
+                  +--------+-----------+                       
+ 1   -------------|        |           |------------------     
+                  +--------+-----------+                       
+                         +------------+----+                   
+ 2          -------------|            |    |---------          
+                         +------------+----+                   
+ Legend: 1=ToothGrowth[vc, 1], 2=ToothGrowth[oj, 1] > txtcurve(sin(pi*x),from=0,to=2)
+      +--+-----------+------------+------------+-----------+--+
+    1 +          *********                                    +
+      |        ***        **                                  |
+      |       **            **                                |
+  0.5 +     **               **                               +
+      |    **                  **                             |
+      |   *                     **                            |
+    0 +  *                       **                        *  +
+      |                            *                      *   |
+      |                             **                  **    |
+ -0.5 +                              ***               **     +
+      |                                **            **       |
+      |                                  **        ***        |
+   -1 +                                    *********          +
+      +--+-----------+------------+------------+-----------+--+
+         0          0.5           1           1.5          2 > txtbarchart(as.factor(res),pch="|")
+    +--+------------+------------+------------+------------+--+
+ 50 +  |                                                      +
+    |  |                                                      |
+ 40 +  |                                                      +
+    |  |                                                      |
+ 30 +  |                         |                            +
+    |  |                         |                            |
+    |  |                         |                            |
+ 20 +  |                         |                         |  +
+    |  |                         |                         |  |
+ 10 +  |                         |                         |  +
+    |  |                         |                         |  |
+  0 +  |                         |                         |  +
+    +--+------------+------------+------------+------------+--+
+       1           1.5           2           2.5           3   
+ Legend: 1=A, 2=B, 3=C stem > stem(log(islands,10))
+
+  The decimal point is at the |
+
+  1 | 1111112222233444
+  1 | 5555556666667899999
+  2 | 3344
+  2 | 59
+  3 | 
+  3 | 5678
+  4 | 012
+-------------------------------------------------------------------------------------------------------
+x <- c(6,211,808,200)
+y <- c(72,183,360,440)
+plot(x,y,pch=19) f <- function(x,a,b) {x/(a+b*x)}
+fit <- nls(y ~ f(x,a,b), start=c(a=1,b=1))
+co <- coef(fit)
+# co will contain your coefficients for a and b
+#          a           b 
+#0.070221853 0.002796513 curve(f(x, a=co["a"], b=co["b"]), add = TRUE, col="green", lwd=2)
+-------------------------------------------------------------------------------------------------------
+# set the margins
+tmpmar <- par("mar")
+tmpmar[3] <- 0.5
+par(mar=tmpmar)
+
+# get underlying plot
+x <- 1:10
+y <- jitter(x^2)
+plot(x, y, pch=20)
+
+# basic straight line of fit
+fit <- glm(y~x)
+co <- coef(fit)
+abline(fit, col="blue", lwd=2)
+
+# exponential
+f <- function(x,a,b) {a * exp(b * x)}
+fit <- nls(y ~ f(x,a,b), start = c(a=1, b=1)) 
+co <- coef(fit)
+curve(f(x, a=co[1], b=co[2]), add = TRUE, col="green", lwd=2) 
+
+# logarithmic
+f <- function(x,a,b) {a * log(x) + b}
+fit <- nls(y ~ f(x,a,b), start = c(a=1, b=1)) 
+co <- coef(fit)
+curve(f(x, a=co[1], b=co[2]), add = TRUE, col="orange", lwd=2) 
+
+# polynomial
+f <- function(x,a,b,d) {(a*x^2) + (b*x) + d}
+fit <- nls(y ~ f(x,a,b,d), start = c(a=1, b=1, d=1)) 
+co <- coef(fit)
+curve(f(x, a=co[1], b=co[2], d=co[3]), add = TRUE, col="pink", lwd=2)
+
+-------------------------------------------------------------------------------------------------------
+plot(NA,xlim=c(0,1),ylim=c(0,1), xaxs="i",yaxs="i") # Empty plot
+a <- curve(x^2, add = TRUE) # First curve
+b <- curve(2*x^2-0.2, add = TRUE) # Second curve
+names(a) <- c('xA','yA')
+names(b) <- c('xB','yB')
+with(as.list(c(b,a)),{
+    id <- yB<=yA
+    # b<a area
+    polygon(x = c(xB[id], rev(xA[id])),
+            y = c(yB[id], rev(yA[id])), 
+            density=10, angle=0, border=NULL)
+    # a>b area
+    polygon(x = c(xB[!id], rev(xA[!id])),
+            y = c(yB[!id], rev(yA[!id])), 
+            density=10, angle=90, border=NULL)
+    }) plot(NA,xlim=c(0,1),ylim=c(0,1), xaxs="i",yaxs="i") # Empty plot
+a <- curve(x^2, add = TRUE) # First curve
+b <- curve(2*x^2-0.2, add = TRUE) # Second curve
+d <- curve(0.5*x^2+0.2, add = TRUE) # Third curve
+
+names(a) <- c('xA','yA')
+names(b) <- c('xB','yB')
+names(d) <- c('xD','yD')
+
+with(as.list(c(a,b,d)),{
+    # Basically you have three conditions: 
+    # curve a is below curve b, curve b is below curve d and curve d is above curve a
+    # assign to each curve coordinates the two conditions that concerns it.
+
+    idA <- yA<=yD & yA<=yB
+    idB <- yB>=yA & yB<=yD
+    idD <- yD<=yB & yD>=yA
+    polygon(x = c(xB[idB], xD[idD], rev(xA[idA])),
+            y = c(yB[idB], yD[idD], rev(yA[idA])), 
+            density=10, angle=0, border=NULL)
+    })
+-------------------------------------------------------------------------------------------------------
+curve(dnorm(x, mean = mean(alvsloss), sd = sd(alvsloss)), add=TRUE, col="blue", lty="dotted")
+-------------------------------------------------------------------------------------------------------
+freq TRUE freq=TRUE freq=FALSE NA mean(...,na.rm=TRUE) dnorm(x, mean = mean(alvsloss,na.rm=TRUE), sd = sd(alvsloss,na.rm=TRUE)) curve lines(dnorm(x, mean = mean(alvsloss,na.rm=TRUE), sd = sd(alvsloss,na.rm=TRUE)), col="blue", lty="dotted") curve(dnorm,from=ToBeFilled,to=ToBeFilled,col="blue", lty="dotted",mean = mean(alvsloss,na.rm=TRUE), sd = sd(alvsloss,na.rm=TRUE))) ToBeFilled
+-------------------------------------------------------------------------------------------------------
+layout(matrix(c(1,2),nrow=1),
+       width=c(4,1)) #Divide your plotting region in two inequal part
+par(mar=c(5,4,4,0)) #Get rid of the margin on the right side
+plot(NA,xlim=c(0,1),ylim=c(0,1),
+     xlab=expression(delta),ylab="K", xaxs="i",yaxs="i") # Here's your delta
+a1 <- curve((x+x^7-x^2-x^4)/(1+x-x^3-x^4), from=0, n=450000, add = TRUE)
+
+...
+
+par(mar=c(5,0,4,2)) #No margin on the left side
+plot(c(0,1),type="n", axes=F, xlab="", ylab="") #Empty plot
+legend("top",legend=c("1","2","3","4","5"), 
+       density=c(20,20,20,20,NA), angle=c(90,0,45,135,NA), 
+       col=c(NA,NA,NA,NA,"black"), bty="n", cex=1.5) text mtext locator par(mar=c(5,4,4,8))
+plot(NA,xlim=c(0,1),ylim=c(0,1),
+     xlab=expression(delta),ylab="K", xaxs="i",yaxs="i") # Here's your delta
+     a1 <- curve((x+x^7-x^2-x^4)/(1+x-x^3-x^4), from=0, n=450000, add = TRUE)
+
+...
+
+legend(1,1,legend=c("1","2","3","4","5"), 
+   density=c(20,20,20,20,NA), angle=c(90,0,45,135,NA), 
+   col=c(NA,NA,NA,NA,"black"), bty="n", cex=1.5, xpd=TRUE)
+-------------------------------------------------------------------------------------------------------
+# Open device:
+pdf("D:/test.pdf") #change for appropriate file path
+plot(NA,xlim=c(0,1),ylim=c(0,1),xlab="delta",ylab="K", xaxs="i",yaxs="i")
+a1 <- curve((x+x^7-x^2-x^4)/(1+x-x^3-x^4), from=0, n=450000, add = TRUE)
+dev.off() #close device jpeg ?jpeg
+-------------------------------------------------------------------------------------------------------
+spline splinefun layout(matrix(c(1,2,3),nrow=3,byrow=TRUE))
+plot(NA,xlim=c(0,1),ylim=c(0,0.2),xlab="delta",ylab="K", xaxs="i",yaxs="i",
+     main='orginal plot with 45000 points') # Empty plot
+a1 <- curve((x+x^7-x^2-x^4)/(1+x-x^3-x^4), from=0, n=45000, add = TRUE)
+x <- seq(0,1,length.out=1000)
+y <- (x+x^7-x^2-x^4)/(1+x-x^3-x^4)
+f <- splinefun(x, y)
+plot(NA,xlim=c(0,1),ylim=c(0,0.2),xlab="delta",ylab="K", xaxs="i",yaxs="i",
+     main='splinefun plot with 1000 points') 
+curve(f(x),0, 1, col = "green", lwd = 1.5,add=TRUE)
+plot(NA,xlim=c(0,1),ylim=c(0,0.2),xlab="delta",ylab="K", xaxs="i",yaxs="i",
+     main='spline plot with 1000 points') 
+lines(spline(x,y), col = 2)
+-------------------------------------------------------------------------------------------------------
+model <- nls(y~a+b*exp(x*z),start = list(a=1, b = -.5, z = -.8),data=results)
+
+modelf <- function(x) predict(model, newdata = data.frame(x = x))
+plot(modelf)
+curve(modelf)
+-------------------------------------------------------------------------------------------------------
+curve curve(x^(2) / 2,from = 0,to = 100,col = 'red',type = 'p',pch = 16,n = 20)
+curve((1-x^(2))/2 + 5000,from = 0,to = 100,col = 'blue',type = 'p',pch = 15,add = TRUE,n = 20)
+legend("topleft", 
+        inset = c(0,0.4), 
+        cex = 1.5, 
+        bty = "n", 
+        legend = c("A", "B"), 
+        text.col = c("red", "blue"),
+        col = c("red", "blue"), 
+        pch = c(16,15)) curve add par
+-------------------------------------------------------------------------------------------------------
+curve f <- function(x){(x^2+1)%%(1+1e7)}
+curve(f, from=1, to=1e5)
+-------------------------------------------------------------------------------------------------------
+x <- seq(from=-3, to=3,by=0.01)
+curve(dnorm(x,0,1), xlim=c(-3,3))
+segments(x, rep(0,length(x)),x,dnorm(x,0,1) , col=heat.colors(length(x)), lwd=2)
+-------------------------------------------------------------------------------------------------------
+cdweibull <- function(x, shape, scale, log = FALSE){
+  dd <- dweibull(x, shape= shape, scale = scale, log = log)
+  dd <- cumsum(dd) * c(0, diff(x))
+  return(dd)
+} dweibull require(MASS)
+
+h = c(31.194, 31.424, 31.253, 25.349, 24.535, 25.562, 29.486, 25.680,
+      26.079, 30.556, 30.552, 30.412, 29.344, 26.072, 28.777, 30.204, 
+      29.677, 29.853, 29.718, 27.860, 28.919, 30.226, 25.937, 30.594, 
+      30.614, 29.106, 15.208, 30.993, 32.075, 31.097, 32.073, 29.600, 
+      29.031, 31.033, 30.412, 30.839, 31.121, 24.802, 29.181, 30.136, 
+      25.464, 28.302, 26.018, 26.263, 25.603, 30.857, 25.693, 31.504, 
+      30.378, 31.403, 28.684, 30.655,  5.933, 31.099, 29.417, 29.444, 
+      19.785, 29.416, 5.682, 28.707, 28.450,  28.961, 26.694, 26.625, 
+      30.568, 28.910, 25.170, 25.816, 25.820)
+
+weib = fitdistr(na.omit(h),densfun=dweibull,start=list(scale=1,shape=5))
+
+hist(h, prob=TRUE, main = "", xlab = "x", 
+     ylab = "y", xlim = c(0,40), breaks = seq(0,40,5), ylim = c(0,1))
+
+curve(cdweibull(x, scale=weib$estimate[1], shape=weib$estimate[2]),
+  from=0, to=40, add=TRUE)
+-------------------------------------------------------------------------------------------------------
+set.seed(1)
+x<-rlnorm(100)
+hist(x, prob=TRUE)
+
+lines(density(x), col='red')
+
+library(ks)
+tmp <- kde(x, hpi(x))
+lines(tmp$eval.points, tmp$estimate, col='green')
+
+library(logspline)
+lsfit <- logspline(x, lbound=0)
+curve( dlogspline(x,lsfit), add=TRUE, col='blue' )
+
+curve( dlnorm, add=TRUE, col='orange' ) rlogspline plogspline qlogspline
+-------------------------------------------------------------------------------------------------------
+f <- function(x) (25 * 200.7341^25 / x^26 * exp(-(200.7341/x)^25))
+g <- function(x) dnorm(x, mean = 200.7341, sd = 40)
+M <- 5
+curve(f, 0, 500)
+curve(M * g(x), 0, 500, add = TRUE, lty = "dashed") k <- 1
+count <- 0
+res <- vector(mode = "numeric", length = 1000)
+while(k < 1001) {
+          z <- rnorm(n = 1, mean = 200.7341, sd = 40)
+          R <- f(z) / M * g(z)
+          if (R > runif(1)) {
+              res[k] <- z
+              k  <- k + 1
+          }
+          count <- count + 1
+    }
+
+(accept_rate <- (k / count) * 100)
+## [1] 0.20773
+
+require(MASS) ## for truehist
+truehist(res)
+curve(f, 0, 250, add = TRUE)
+-------------------------------------------------------------------------------------------------------
+curve *weibull survreg survreg survreg's scale  =    1/(rweibull shape)
+  survreg's intercept = log(rweibull scale) # The parameters
+intercept<-4.0961
+scale<-1.15
+
+par(mfrow=c(1,2),mar=c(5.1,5.1,4.1,2.1)) # Make room for the hat.
+# S(t), the survival function
+curve(pweibull(x, scale=exp(intercept), shape=1/scale, lower.tail=FALSE), 
+      from=0, to=100, col='red', lwd=2, ylab=expression(hat(S)(t)), xlab='t',bty='n',ylim=c(0,1))
+# h(t), the hazard function
+curve(dweibull(x, scale=exp(intercept), shape=1/scale)
+      /pweibull(x, scale=exp(intercept), shape=1/scale, lower.tail=FALSE), 
+      from=0, to=100, col='blue', lwd=2, ylab=expression(hat(h)(t)), xlab='t',bty='n')
+par(mfrow=c(1,1),mar=c(5.1,4.1,4.1,2.1)) pweibull pweibull survreg my.weibull.surv<-function(x,intercept,scale) pweibull(x,scale=exp(intercept),shape=1/scale,lower.tail=FALSE)
+my.weibull.haz<-function(x,intercept,scale) dweibull(x, scale=exp(intercept), shape=1/scale) / pweibull(x,scale=exp(intercept),shape=1/scale,lower.tail=FALSE)
+
+curve(my.weibull.surv(x,intercept,scale),1,100,lwd=2,col='red',ylim=c(0,1),bty='n')
+curve(my.weibull.haz(x,intercept,scale),1,100,lwd=2,col='blue',bty='n') pweibull dweibull my.dweibull <- function(x,shape,scale) (shape/scale) * (x/scale)^(shape-1) * exp(- (x/scale)^shape)
+my.pweibull <- function(x,shape,scale) exp(- (x/scale)^shape) ?dweibull pweibull dweibull
+-------------------------------------------------------------------------------------------------------
+scale=exp(Intercept+beta*x) scale=283.7 shape=1/1.15 curve((shape/scale)*(x/scale)^(shape-1), from=0,to=12,ylab=expression(hat(h)(t)), col="darkblue",xlab="t", lwd=5) curve((x/scale)^(shape), from=0,to=12,ylab=expression(hat(F)(t)), col="darkgreen",xlab="t", lwd=5) curve(1-((x/scale)^(shape)), from=0,to=12,ylab=expression(hat(S)(t)), col="darkred",xlab="t", lwd=5, ylim=c(0,1)) eha hweibull Hweibull
+-------------------------------------------------------------------------------------------------------
+curve plot(y~x)
+par(new=TRUE)
+curve(0.0629*exp(0.0003*x)) curve lines
+-------------------------------------------------------------------------------------------------------
+lower.x <- 0
+upper.x <- 2.1
+step <- (upper.x - lower.x) / 100
+sigma <- 1
+mu <- 0
+bounds <- c(mu-3*sigma, mu+3*sigma)
+cord.x <- c(lower.x,seq(lower.x,upper.x,step),upper.x)
+cord.y <- c(0,dnorm(seq(lower.x,upper.x,step),mu,sigma),0)
+curve(dnorm(x,mu,sigma),xlim=bounds) 
+polygon(cord.x,cord.y,col='skyblue')
+-------------------------------------------------------------------------------------------------------
+x = runif(20)/2
+plot(x, bty="l", ylim=c(0,1))
+
+a = runif(20)/100
+b = runif(20)/4
+my.func <-function(intercept,coefs) curve(plogis(intercept+coefs*x), add=TRUE)
+mapply(my.func,a,b)
+-------------------------------------------------------------------------------------------------------
+curve x <-runif(10)                               
+plot(x, ylim=c(-5,5))                       
+a <-curve(sin, add=TRUE, col="red")         
+b <-curve(cos, add=TRUE, col="blue")        
+xx <-(a$x+b$x)/2 # x average                              
+yy <-(a$y+b$y)/2 # y average                                  
+lines(xx,yy, col="purple")  #draw average curve
+-------------------------------------------------------------------------------------------------------
+add FALSE survfit
+-------------------------------------------------------------------------------------------------------
+sfun <- function(x,brk,a=1) {
+    ifelse(x<brk,0,suppressWarnings(a*sqrt(x-brk)))
+} suppressWarnings() ifelse x curve(sfun(x,1,1),from=0,to=10) ## test (not shown) x <- seq(0,10,length=101)
+set.seed(1)
+y <- rnorm(length(x),sfun(x,1,1),sd=0.25)
+DF <- data.frame(x,y) -1 library("ggplot2")
+theme_set(theme_bw())
+ggplot(DF,aes(x,y))+geom_point()+
+    geom_smooth(method="lm",
+                formula=y~sfun(x,brk=1)-1)
+ggsave("truncsqrt.png")
+-------------------------------------------------------------------------------------------------------
+grades <- mydata$Exam1
+hist(grades, prob=TRUE)
+curve(dnorm(x, mean=mean(grades), sd=sd(grades)), add=TRUE)
+-------------------------------------------------------------------------------------------------------
+set.seed(1) randtoolbox::sobol f <- function(x) {
+  set.seed(1)
+  obj1(x,
+      success             = success,
+      start.capital       = start.capital,
+      target.savings      = target.savings,
+      monthly.mean.return = monthly.mean.return,
+      monthly.ret.std.dev = monthly.ret.std.dev,
+      monthly.inflation   = monthly.inflation,
+      monthly.inf.std.dev = monthly.inf.std.dev,
+      n.obs               = n.obs,
+      n.sim               = n.sim 
+  )
+}
+g <- Vectorize(f)
+curve(g(x), xlim=c(0, 20000)) obj2 <- function(monthly.savings) {
+  set.seed(1)
+  req = matrix(start.capital, n.obs+1, n.sim)
+  monthly.invest.returns <- matrix(0, n.obs, n.sim)
+  monthly.inflation.returns <- matrix(0, n.obs, n.sim)
+  monthly.invest.returns[] <- rnorm(n.obs * n.sim, mean = monthly.mean.return, sd = monthly.ret.std.dev)
+  monthly.inflation.returns[] <- rnorm(n.obs * n.sim, mean = monthly.inflation, sd = monthly.inf.std.dev)
+  for (a in 1:n.obs)
+    req[a + 1, ] <- req[a, ] * (1 + monthly.invest.returns[a,] - monthly.inflation.returns[a,]) + monthly.savings
+  ending.values <- req[nrow(req),]
+  suc <- sum(ending.values>target.savings)/n.sim
+  success - suc
+}
+uniroot( obj2, c(0, 1e6) )
+# [1] 7891.187
+-------------------------------------------------------------------------------------------------------
+x.gen <- rexp(1000, rate = 3)
+hist(x.gen, prob = TRUE)
+
+library(MASS)
+x.est <- fitdistr(x.gen, "exponential")$estimate
+
+curve(dexp(x, rate = x.est), add = TRUE, col = "red", lwd = 2)
+-------------------------------------------------------------------------------------------------------
+curve Vectorize f2 <- Vectorize(f)
+curve(f2, -pi, pi, n = 100)
+-------------------------------------------------------------------------------------------------------
+curve(dunif(x, min = 5, max = 15),0,20,n=101,xlab='Expected Return',ylab='Density')
+-------------------------------------------------------------------------------------------------------
+?curve curve(1.0 * (375 - 515) * exp(-0.01 * x) + 515, from=80, to=250,ylim=c(300,800))
+-------------------------------------------------------------------------------------------------------
+plot(NORM, TEE, ylim = c(-4, 5), main = "NORM and TEE plot") points(NORM[NORM^2 -1> TEE], TEE[ TEE + 1< NORM^2], col = "blue")
+legend(legend = c("TEE > NORM^2 - 1 ", "TEE < NORM^2 - 1" ), col = c(1, 4), x = "topright", pch = 1) par(mfrow = c(1, 2))
+plot(NORM, TEE, ylim = c(-4, 5), main = "NORM and TEE plot")
+plot(NORM, TEE, ylim = c(-4, 5), main = "NORM and TEE plot")
+points(NORM[NORM^2 -1> TEE], TEE[ TEE + 1< NORM^2], col = "blue") screen.split(2,2)
+#[1] 1 2 3 4
+screen(1) # what follows goes in slot (1,1)
+hist(RandomNormal, seq(-3.2, 3.2, .2), prob = TRUE)
+curve(dnorm(x), add = TRUE, col = "red");
+screen(2) # what follows goes in slot (1,2);
+boxplot(DATA.oner);
+screen(3) # similarly for (2,1);
+plot(NORM, TEE, ylim = c(-4, 5), main = "NORM and TEE plot");
+screen(4) # similarly for (2,2);
+plot(NORM, TEE, ylim = c(-4, 5), main = "NORM and TEE plot");
+points(NORM[NORM^2 - 1 > TEE], TEE[TEE + 1 < NORM^2], col = "blue"); screen(1) # Watch the screen (1,1) go blank
+boxplot(DATA.oner, main = "Box Plots of DATA.oner")
+
+screen(2) # again for slot (1,2)
+hist(RandomNormal, seq(-3.2, 3.2, .2), prob = TRUE)
+curve(dnorm(x), add = TRUE, col = "red") split.screen(c(2,1)) # The screen is now split in two
+# [1] 1 2
+split.screen(c(1,2), screen = 2) # splits the second into 2
+# [1] 3 4
+screen(1) # note screen 2 is now refered to as 3 and 4
+hist(RandomNormal, seq(-3.2, 3.2, .2), prob = TRUE)
+curve(dnorm(x), add = TRUE, col = "red")
+legend(legend = c("Theoretical N(0, 1)"), col = c(2, 3), x = "topright", lty = 1)
+
+screen(3) # We call on screen 3 and 4, not 2
+boxplot(DATA.oner, main = "Box Plot of DATA.oner")
+
+screen(4)
+plot(NORM, TEE, ylim = c(-4, 5), main = "NORM and TEE plot")
+-------------------------------------------------------------------------------------------------------
+curve(a,.001,.999) b=function(y) -x4+(x1/((log(-y/(y-1))-b1)/m1))+
+              (x2/((log(-y/(y-1))-b2)/m2))+
+              (x3/((log(-y/(y-1))-b3)/m3)) curve(b,0.001,.9999) nleqslv Vectorize f a abs f <- function(y) {
+    tmp <- log(-y/(y-1))
+    -x4+(x1/((tmp-b1)/m1))+(x2/((tmp-b2)/m2))+(x3/((tmp-b3)/m3)) fjac <- function(x) { h <- 0.00001*x; diag((f(x+h)-f(x))/h) } f y y y z <- nleqslv(ystart,f,fjac, method="Newton")
+y <- z$x Newton Broyden K <- 500
+x1 <- x1 + c(0,runif(K-1,.1*x1,.3*x1))
+x2 <- x2 + c(0,runif(K-1,.01*x2,.03*x2))
+x3 <- x3 + c(0,runif(K-1,.01*x3,.03*x3))
+x4 <- x4 + c(0,runif(K-1,.01*x4,.03*x4))
+nleqslv(rep(.3,K),f,fjac, method="Newton")
+-------------------------------------------------------------------------------------------------------
+approxfun a <- c(1,3,10,-5,0,0,2, 1, 3, 8,2, -2)
+b <- density(a)
+f <- approxfun(b, rule=2)
+is.function(f)
+f(1.2) D library(numDeriv)
+df <- function(x) grad(f,x)
+curve( f(x),  lwd=3, xlim=c(-10,10) )
+curve( df(x), lwd=3, xlim=c(-10,10) )
+-------------------------------------------------------------------------------------------------------
+curve m <- -2
+x1 <- 20
+y1 <- 40
+
+plot(NA,xlim=c(0,40),ylim=c(0,100), xaxs="i",yaxs="i") #Setting first an empty plot 
+                                                       #where to plot your curve
+curve(m*x+y1-m*x1, from=0, to=x1, add=TRUE)            #Then your curve
+-------------------------------------------------------------------------------------------------------
+x <- seq(-2, 2, 0.01)
+y <- seq(-2, 2, 0.01)
+
+plot(x,y, xlim = c(-2,2), ylim=c(-2,2), type='n', asp = 1)
+curve((  1 * (4 - x^2)^0.5 ), add=TRUE, from=-2 , to =2)
+curve(( -1 * (4 - x^2)^0.5 ), add=TRUE, from=-2 , to =2)
+rect(-2,-2,2,2)
+
+# to fill circle and square
+plot(x,y, xlim = c(-2,2), ylim=c(-2,2), type='n', asp = 1)
+x2 <- c(seq(-2, 2, 0.01), seq(-2, 2, 0.01))
+y2 <- c((  1 * (4 - x2[1:401]^2)^0.5 ), ( -1 * (4 - x2[402:802]^2)^0.5 ))
+rect(-2,-2,2,2, col = 'red')
+polygon(x2,y2, col = 'green', border = NA) circle.square.function <- function(radius, x.midpoint, y.midpoint, 
+                                   my.x.lim, my.y.lim) {
+
+  x <- seq(x.midpoint-radius, x.midpoint+radius, 0.01)
+  y <- seq(y.midpoint-radius, y.midpoint+radius, 0.01)
+
+  plot(x,y, xlim = my.x.lim, ylim = my.y.lim, type='n', asp = 1)
+  curve((  1 * (radius^2 - (x - x.midpoint)^2)^0.5 + y.midpoint), add=TRUE, 
+                from = (x.midpoint-radius) , to = (x.midpoint+radius))
+  curve(( -1 * (radius^2 - (x - x.midpoint)^2)^0.5 + y.midpoint), add=TRUE, 
+                from = (x.midpoint-radius) , to = (x.midpoint+radius))
+  rect((x.midpoint-radius),(y.midpoint-radius),
+       (x.midpoint+radius),(y.midpoint+radius))
+
+}
+
+radius     <-  10          # radius of circle
+x.midpoint <- 150          # center of circle on x-axis
+y.midpoint <-  50          # center of circle on y-axis
+my.x.lim   <- c(-100,200)  # x-axis to plot
+my.y.lim   <- c(   0,200)  # y-axis to plot
+
+circle.square.function(radius, x.midpoint, y.midpoint, my.x.lim, my.y.lim)
+-------------------------------------------------------------------------------------------------------
+hist(B[,2], prob=TRUE) curve( dt(x, df=15), add=TRUE, col='blue' ) df
+-------------------------------------------------------------------------------------------------------
+inertia <- function(x0=0, y0=0, a, b, r=1/5, l=0.25, d=3, s=0, w=NULL, cols="black", npoints=101, ...){
+  if(length(cols==1)) cols <- rep(cols,3)
+  # ellipse:
+  f <- function(x) sqrt(round(b^2*(1-(x-x0)^2/a^2),14)) 
+  curve(y0 + f(x), from=x0-a, to=x0-a*r, add=TRUE, n=npoints, col=cols[1], ...)
+  curve(y0 + f(x), from=x0+a*r, to=x0+a, add=TRUE, n=npoints, col=cols[2], ...)
+  curve(y0 - f(x), from=x0-a, to=x0+a, add=TRUE, n=npoints, col=cols[3], ...)
+  # arrow:
+  segments(x0-s, y0-b, x0-l, y0-b+l/d, col=cols[3], ...)
+  segments(x0-s, y0-b, x0-l, y0-b-l/d, col=cols[3], ...)
+  if(!is.null(w)){
+    segments(x0-s+w, y0-b, x0-l, y0-b+l/d, col=cols[3], ...)
+    segments(x0-s+w, y0-b, x0-l, y0-b-l/d, col=cols[3], ...)
+  }
+}
+-------------------------------------------------------------------------------------------------------
+x  <-  c(7, 45, 14, 30, 24, 57)
+y  <-  c(240, 610, 340, 500, 450, 690)
+
+logx  <-  log10(x)
+logy  <-  log10(y)
+
+lm.000  <-  lm(logy ~ logx)
+summary(lm.000)
+
+coef(lm.000)[1]
+coef(lm.000)[2]
+
+plot(x, y)
+curve(x^coef(lm.000)[2]*10^coef(lm.000)[1], add=TRUE, lwd=2)
+-------------------------------------------------------------------------------------------------------
+eval(substitute(curve(y),list(y=D(e,"x")))) do.call(curve,list(D(e,"x")))
+-------------------------------------------------------------------------------------------------------
+e <- expression(x^2+3*x-3)
+de <- D(e, 'x')
+fde <- function(x) eval(de)
+
+curve(fde, from=0, to=10)
+-------------------------------------------------------------------------------------------------------
+curve(dgamma(x, shape=8, scale=0.1), add=TRUE, col='blue')
+-------------------------------------------------------------------------------------------------------
+B <- rlnorm(10000)
+H <- hist(log10(B), freq = FALSE, col="blue", xaxt="n", xlab="B") 
+at <- H$mids
+axis(1,at=at,labels=round(10^at,2))
+curve(dnorm(x, mean=mean(log10(B)), sd=sd(log10(B))), add=TRUE)
+-------------------------------------------------------------------------------------------------------
+curve x t * (9.8) x curve(200 - (1/2)*(9.8)*x^2 + 8*x)
+-------------------------------------------------------------------------------------------------------
+myfunc <- Vectorize(function(xx) {
+  if (xx <= 975){
+    return(975)
+  } else if (xx > 975 && xx <= 1025){
+    return(xx)
+  } else {
+    return (1025)
+  }
+})
+curve(myfunc, 0, 1100, xlim=c(0,1100), ylim=c(0,1100), xlab="", ylab="")
+
+
+-------------------------------------------------------------------------------------------------------
+
+  #find the intervals in which each value is
+  interv <- as.integer(cut(x, c(0,975,1025,Inf),include.lowest = TRUE))
+  #in arithmetic operations logical values TRUE/FALSE are coerced to 1/0
+  (interv==1L)*975 + (interv==2L)*x + (interv==3L)*1025
+}
+
+#note the n=1e3 which achieves a better resolution of the curve
+curve(expr=myfunc,from=0,to=1100,xlim=c(0,1100),ylim=c(0,1100),xlab="",ylab="", n=1e3)
+-------------------------------------------------------------------------------------------------------
+?plot.function curve abline plot( function(x) x^2 - 3*x - 10 , -15, 15) ; abline(h=0,v=0,lty=3) curve(x^2 - 3*x - 10 , -15, 15) ; abline(h=0,v=0,lty=3)
+-------------------------------------------------------------------------------------------------------
+N <- 10000
+ x <- rnbinom(N, 10, .5)
+ hist(x, 
+ xlim=c(min(x),max(x)), probability=T, nclass=max(x)-min(x)+1, 
+   col='lightblue', xlab=' ', ylab=' ', axes=F,
+   main='Positive Skewed')
+lines(density(x,bw=1), col='red', lwd=3) curve(dbeta(x,8,4),xlim=c(0,1))
+title(main="posterior distrobution of p")
+-------------------------------------------------------------------------------------------------------
+stat_function curve geom_line ggplot2 dat <- data.frame(xs=xs,dou=dou,tri=tri)
+library(reshape2)
+library(ggplot2)
+ggplot(melt(dat,id.vars='xs'),
+       aes(xs,value,color=variable))+
+  geom_line() curve curve(x^3,-3,3,col='green',n=600)
+curve(x^2,-3,3,col='red',n=600,add=TRUE)
+-------------------------------------------------------------------------------------------------------
+curve(f, 0, 0.035) abline(h=0.04, col="red") uniroot f_inverse <- function(y, lower=0.0, upper=0.02) 
+   uniroot((function (x) f(x) - y), lower = lower, upper = upper)$root
+
+f_inverse(0.04)
+## [1] 0.01250961
+
+f_inverse(0.04, 0.02, 0.04) # to get the other root...
+## [1] 0.02561455 optimize(f, lower=0, upper=1) optim <- optimize(f, lower=0, upper=1)
+seq1 <- seq(f(0), optim$objective, length=100)
+inv1 <- sapply(seq1, f_inverse, lower=0, upper=optim$minimum)
+seq2 <- seq(optim$objective, f(0.04), length=100)
+inv2 <- sapply(seq2, f_inverse, lower=optim$minimum, upper=1)
+plot(c(seq1, seq2), c(inv1, inv2), type="l") curve(f, 0, .04)
+-------------------------------------------------------------------------------------------------------
+plot(NA,xlim=c(0,1),ylim=c(0,1), xaxs="i",yaxs="i") # Empty plot
+a <- curve(x^2-0.25, add = TRUE) # First curve
+b <- curve(0.5-x^4, add = TRUE) # Second curve
+names(a) <- c('xA','yA')
+names(b) <- c('xB','yB')
+with(as.list(c(b,a)),{
+    id <- yB<=yA
+    # b<a area
+    polygon(x = c(xB[id], rev(xA[id])),
+                    y = c(yB[id], rev(yA[id])), 
+                    density=10, angle=60, border=NULL)
+    # a>b area
+    polygon(x = c(xB[!id], rev(xA[!id])),
+                    y = c(yB[!id], rev(yA[!id])), 
+                    density=10, angle=30, border=NULL)
+})
+-------------------------------------------------------------------------------------------------------
+f <- function(x, p1=0.5, p2=1-p1, m1, m2)
+p1*dnorm(x, m1) + p2*dnorm(x,m2)
+
+x <- seq(-2, 4, len=100)
+f(x, m1=0, m2=2)
+curve(f(x, m1=0, m2=0))
+curve(f(x, m1=1, m2=0,), col="red", add=T)
+curve(f(x, m1=2, m2=0,), col="green", add=T)
+curve(f(x, m1=3, m2=0,), col="blue", add=T)
+curve(f(x, m1=4, m2=0,), col="orange", add=T)
+-------------------------------------------------------------------------------------------------------
+add=TRUE curve pol2 <- function(x) fit2$coefficient[3]*x^2 + fit2$coefficient[2]*x + fit2$coefficient[1]
+plot(sample1$Vegetation_Cover, sample1$NDVI, type="p", lwd=3)
+curve(pol2, col="red", lwd=2, add=T)
+-------------------------------------------------------------------------------------------------------
+#Data generation
+n <- 10000
+datam <- matrix(c(rep(1,n), 2*runif(n)-1, 2*runif(n)-1), n) 
+# leading 1 column needed for computation
+# second column has x coordinates, third column has y coordinates
+datam.df<-data.frame(datam)
+datam.df$X1<-NULL
+f <- c(1.0, 0.5320523, 0.6918301)   # the given target function
+f.col <- ifelse(sign(datam %*% f)==1,"darkred", "darkblue")    
+f.fun<-sign(datam %*% f)
+
+# perceptron algorithm to find g:
+perceptron = function(datam, ylist) {
+  w <- c(1,0,0)             # starting vector
+  made.mistake = TRUE 
+  while (made.mistake) {
+  made.mistake=FALSE 
+  for (i in 1:n) {
+  if (ylist[i] != sign(t(w) %*% datam[i,])) {
+    w <- w + ylist[i]*datam[i,]
+    made.mistake=TRUE 
+  }
+ }
+}
+return(w=w)
+}
+
+
+g <- perceptron(datam, f.fun)
+g.fun<-sign(datam %*% g) plot(datam.df$X2, datam.df$X3, col=f.col, pch=".", cex=2) chull() plot(datam.df$X2, datam.df$X3, col=f.col, pch=".", xlim=c(-1,-0.5), ylim=c(-1,-.5), cex=3, main="f function")
+datam.df.f<-datam.df[f.fun==1,]
+ch.f<-chull(datam.df.f$X2, datam.df.f$X3 )
+ch.f <- rbind(x = datam.df.f[ch.f, ], datam.df.f[ch.f[1], ])
+polygon(ch.f, lwd=3, col=rgb(0,0,180,alpha=50, maxColorValue=255)) g.col <- ifelse(sign(datam %*% g)==1,"darkred", "darkblue")    
+    plot(datam.df$X2, datam.df$X3, col=g.col, pch=".", xlim=c(-1,-0.5), ylim=c(-1,-.5), cex=3, main="g function")
+    datam.df.g<-datam.df[g.fun==1,]
+    ch.g<-chull(datam.df.g$X2, datam.df.g$X3 )
+    ch.g <- rbind(x = datam.df.g[ch.g, ], datam.df.g[ch.g[1], ])
+    polygon(ch.g, col=rgb(0,0,180,alpha=50, maxColorValue=255), lty=3, lwd=3) ch.f
+lm.f<-lm(c(ch.f$X3[ ch.f$X2> -0.99 & ch.f$X2< -0.65 & ch.f$X3<0 ])~c(ch.f$X2[ ch.f$X2>-0.99 & ch.f$X2< -0.65 & ch.f$X3<0]))
+curve(lm.f$coefficients[1]+x*lm.f$coefficients[2], from=-1., to=-0.59, lwd=5, add=T)
+lm.g<-lm(c(ch.g$X3[ ch.g$X2> -0.99 & ch.g$X2< -0.65 & ch.g$X3<0 ])~c(ch.g$X2[ ch.g$X2>-0.99 & ch.g$X2< -0.65 & ch.g$X3<0]))
+curve(lm.g$coefficients[1]+x*lm.g$coefficients[2], from=-1., to=-0.59, lwd=5, add=T, lty=3)
+-------------------------------------------------------------------------------------------------------
+par( mfrow=c(1,2) ) 
+invisible(lapply(1:ncol(Data), function(i){
+  x <- Data[,i]
+  hist(x, col=c("red","blue"),
+       main = paste0("Histogram of ", names(Data)[i]),
+       xlab="X-Axis", ylab="Y-Axis", 
+       cex.lab= 1, col.lab="blue",
+       prob=TRUE)
+
+  curve(dnorm(x, mean=mean(x), sd=sd(x)), 
+        add=TRUE, col="blue", lwd=2)
+
+}))
+
+par( mfrow=c(1,1))
+-------------------------------------------------------------------------------------------------------
+normalpars <- read.table(text=
+"code mean sd 
+DIV 0.1790 0.2099 
+CAS 0.1040 0.1576 
+ATL 0.0960 0.2218 
+COM 0.0980 0.1768", header=TRUE)
+
+plot(1, xlim=c(-1,1), ylim=c(0,3), type='n',
+     xlab="X", ylab="Density")
+for(i in 1:nrow(normalpars)){
+  curve(dnorm(x, mean=normalpars$mean[i], sd=normalpars$sd[i]),
+    add=TRUE)
+}
+-------------------------------------------------------------------------------------------------------
