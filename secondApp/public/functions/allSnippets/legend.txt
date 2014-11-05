@@ -165,4 +165,3 @@ $legend(c, col = 1:2, x = 1, y = .8, lty="99", pch=1:2)
 legend(x=0, y=.15, c, cex=1, pt.cex =1.4, col=c, bty="n", fill="green", border="black")
 legend(x=0, y=.15, c, cex=1, pt.cex =1.4, col=c, bty="o", fill="green", pch=c)
 $legend(x=.75, y=.15, " legend", cex=1, pt.cex =1.4, bty="o", col=c, pch=c, box.col="red")
-

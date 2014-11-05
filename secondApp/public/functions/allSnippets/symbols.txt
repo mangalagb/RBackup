@@ -77,4 +77,3 @@ $symbols(quakes, quakes, circles=radius, inches=0.35, fg="white", bg="red", xlab
 
 symbols(platelay, factor, circles=rep, add=TRUE, inches=FALSE, bg=collist[colgrp])
 $symbols(1:5, rep, circles=rep, add=TRUE, inches=.2, bg=rep, xpd=TRUE)
-

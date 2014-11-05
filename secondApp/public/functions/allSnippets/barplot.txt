@@ -482,4 +482,3 @@ $barplot(rbind, col = c, xlim=c, ylim=c, space=0.1, lwd=5, xlab="X", ylab="Densi
 
 barplot(scores, main="my plot", xlab="my 1000 scores", 1000, 111, 1000, 111, 1000, 111, 100, 10, 1000, 99.9, 100, 10)
 $barplot(t, legend.text=TRUE, beside=TRUE, horiz=TRUE, density=NA, col=c, xlab="crimes", ylab="districts", axes=TRUE, names.arg=colnamesbarplot, cex.names=0.5, las=1)
-

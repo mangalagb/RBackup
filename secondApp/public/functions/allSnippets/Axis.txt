@@ -26,4 +26,3 @@ Axis(x = X, side = 1)
 Axis(Data, col="black", side=1)
 $Axis(y, side = 2)
 Axis(xorig, side = 1, cex.axis=cex.x)
-

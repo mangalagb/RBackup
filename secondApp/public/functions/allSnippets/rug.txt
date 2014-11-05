@@ -13,4 +13,3 @@ $rug(dat100)
 rug(T, col =  adjustcolor, lwd = 4)
 rug(range, lwd=3, col="red")
 $rug(which, col = "red", lwd = 2)
-

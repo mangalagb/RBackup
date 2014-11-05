@@ -27,4 +27,3 @@ stripchart(casp6~trans.factor, data.frame, pch=1, vertical=T)
 
 stripchart(A, method = "stack", offset = .5, at = .15, pch = 19, main = "Dotplot of Random Values", xlab = "Random Values")
 $stripchart(A, method = "stack", offset = .5, at = .15, pch = 19, main = "Dotplot of Random Values", xlab = "Random Values", xaxt="n")
-

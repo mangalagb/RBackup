@@ -27,4 +27,3 @@ $dotchart(x, labels = row.names, cex=.7, groups = factor, gcolor = "black", colo
 dotchart(varImpData[, c)
 dotchart(as.matrix, labels = "")
 $dotchart(dat, dat$Value)
-

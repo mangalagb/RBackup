@@ -53,4 +53,3 @@ $persp(perot, gore, z, col=color[facetcol], theta=-30, lwd=.3, xlab="Perot 96", 
 
 persp(mba.int, theta = 135, phi = 30, col = "green3", scale = FALSE, ltheta = -120, shade = 0.75, expand = 10, border = NA, box = FALSE)
 $persp(x, y, z, theta = 135, phi = 30, col = colorRampPalette, scale = FALSE, ltheta = -120, shade = 0.75, border = NA, box = FALSE)
-

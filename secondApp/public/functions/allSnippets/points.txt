@@ -506,4 +506,3 @@ points(x, y, col = 'red', type = 'o', lwd = 3, pch = 15)
 points(1:10, w, type='b', col=1)
 points(exp, control, ...)
 points(x, fitted, type='b', col='red')
-

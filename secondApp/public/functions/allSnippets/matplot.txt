@@ -125,4 +125,3 @@ matplot(df, df[, 2:3], type = "b", pch=19, col = 1:2)
 matplot(x = df[, 1], y = df[, -1], type = "l", lty = 1, col = cols)
 matplot(SBP.qtr.mat[, 1], SBP.qtr.mat, type="pl", ISOdate, "10 years")
 $matplot(as.numeric, t, type="o", pch=19, lty=1, ann=FALSE)
-

@@ -93,4 +93,3 @@ $contour(axis1, axis2, wf, add = TRUE)
 contour(dens, levels=levels, labels=prob, add=T)
 contour(tern.grid, levels=c, add=T)
 $contour(bar, levels = 0.2, lwd=3, add=TRUE, lwd=c)
-

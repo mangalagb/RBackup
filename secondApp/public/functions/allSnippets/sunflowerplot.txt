@@ -1,3 +1,2 @@
-$sunflowerplot(V1)
+$sunflowerplot(V1, V2)
 sunflowerplot(xy[, 1], xy[, 2])
-

@@ -129,4 +129,3 @@ title(outer=outer, adj=adj, main="C", cex.main=cex, col="black", font=2, line=li
 title(outer=outer, adj=adj, main="A", cex.main=cex, col="black", font=2, line=line)
 title(main="random title", line = -2, outer = TRUE, cex.main=3)
 $title(outer=outer, adj=adj, main="B", cex.main=cex, col="black", font=2, line=line)
-

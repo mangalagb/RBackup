@@ -195,4 +195,3 @@ $rect(y = ycenter[i], x = 0, width = pred[i], height = widths[i], just = c, defa
 
 rect(0, w.l, height, w.r, col = "#01516c", border = "#7199a8", lwd = 1)
 $rect(105, w.l, 125, w.r, col = "white", border = "#7199a8", lwd = 1)
-

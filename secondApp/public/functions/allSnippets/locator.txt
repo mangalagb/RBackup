@@ -17,4 +17,3 @@ locator(type='l')
 
 locator(n=4, type='p', pch=4, col='blue', lwd=2)
 $locator(1, type='p')
-

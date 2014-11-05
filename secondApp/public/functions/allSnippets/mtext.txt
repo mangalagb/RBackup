@@ -168,4 +168,3 @@ $mtext(labs, side = 2, line = loffset, at = y, adj = adjust_ylab, col = color, a
 
 mtext(xlab, side=1, line=1, outer=TRUE, adj=0, at=.8 *)
 $mtext(ylab, side=2, line=1, outer=TRUE, adj=0, at=.8 *)
-

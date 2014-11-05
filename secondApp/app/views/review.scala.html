@@ -29,20 +29,24 @@
    @form(action = routes.Application.doReview()) {
      
    <br><br><br>
+    <input type="submit" value="Tell me more about this function !">
+      <br><br><br>
    
 	@for(func <- functionName){
 	<h3>
+	
 	<input type="radio" name="functionName" value= @func >@func<br><br>
+	
 	</h3>
 	}
 	
 	<br><br><br>
 	
 	
-      <input type="submit" value="Tell me more about this function !">
+     
       
      
-      <br><br><br>
+    
       
       
     }

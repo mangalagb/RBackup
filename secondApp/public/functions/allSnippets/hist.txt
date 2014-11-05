@@ -511,4 +511,3 @@ $hist(w, col="red", freq=F, xlim=c)
 
 hist(pred, breaks=30, main='', probability=TRUE)
 $hist(xxx, breaks=brks, probability=TRUE, xlab='', main='')
-

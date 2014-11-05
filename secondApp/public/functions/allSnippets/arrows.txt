@@ -82,8 +82,7 @@ arrows(locs, y[ok] + 0.5, scores.ses[, i], ...)
 arrows(x[-length, y[-length, x[-1], y[-1], ...)
 $arrows(x0=V1, x1=V1+10, y0=V4)
 arrows(x0=x[1], x1=x[2], y0=y[1])
-
-$arrows(u[1], 0, u[2], 0, xpd = TRUE)
+arrows(u[1], 0, u[2], 0, xpd = TRUE)
 
 arrows(c)
 arrows(Ax[i], Ay[i], Ax[i+1], Ay[i+1], ...)
@@ -101,4 +100,3 @@ $arrows(x.bar, ybar.hat, x.bar, ybar.hat, col = "darkgrey", length = 0.05, angle
 
 arrows(0, x[1], 1, x[2], code=3, length=0.05)
 $arrows(x[int], y[int], xend, yend, length=0.1)
-

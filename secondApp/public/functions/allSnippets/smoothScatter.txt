@@ -11,4 +11,3 @@ $smoothScatter(diamonds, diamonds)
 
 smoothScatter(x, nrpoints=0)
 $smoothScatter(x, nrpoints = 0, postPlotHook = fudgeit)
-

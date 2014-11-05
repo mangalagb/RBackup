@@ -35,4 +35,3 @@ $rasterImage(z, -0.04, -0.04, 1.04, 1.04, interpolate=FALSE)
 
 rasterImage(vnorm, xrange[1], yrange[1], xrange[2], yrange[2], interpolate=FALSE)
 $rasterImage(pics[[blockPic[i, j]]], seqRows[i], seqCols[j], seqRows[i+1], seqCols[j+1], interpolate=FALSE)
-

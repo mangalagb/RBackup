@@ -173,4 +173,3 @@ $polygon(c, c, border="red", col="black", lwd=4, c, c, c)
 
 polygon(x = c, y = c, density=10, angle=30, border=NULL)
 $polygon(x = c, y = c, density=10, angle=60, border=NULL)
-

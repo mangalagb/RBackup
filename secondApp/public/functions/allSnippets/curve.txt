@@ -179,4 +179,3 @@ curve(g, xlim=c)
 curve(dnorm, xlim=bounds)
 curve(dbeta, xlim=c)
 $curve(y, xlim = c)
-

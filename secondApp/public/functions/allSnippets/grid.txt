@@ -624,4 +624,3 @@ grid(dimnames, second, rownames, second, 1], second[)
 grid(level=levels, var=names)
 grid(lwd = 0.3, lty = 7)
 $grid(x = colnames, l = c)
-

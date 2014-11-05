@@ -27,4 +27,3 @@ $axis.POSIXct(1)
 axis.POSIXct(SEQ, at=SEQ, side=1, format="%b %d")
 axis.POSIXct(SEQ, at=SEQ, side=1, format="%b %Y", df, t="l", ylab="Temperature", xlab="Date", xaxt="n")
 $axis.POSIXct(side = 1, x = x, at = tseq, labels = format)
-

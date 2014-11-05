@@ -43,4 +43,3 @@ $filled.contour(x, y, z2, color.palette=rainbow)
 
 filled.contour(volcano, color = jet.colors, asp = 1, nlevels=100)
 $filled.contour(volcano, color = terrain.colors, asp = 1, nlevels=5)
-

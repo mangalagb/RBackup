@@ -1,29 +1,22 @@
-$box(col="dodgerblue")
-
 $box(bty = "L", col = axisCol)
-
-$box(lwd = 2)
 
 $box(lwd=4, bty="u", font=2, cex.axis=1.1, family="Times")
 
 $box(lwd=1, width=116, height=27)
 
-$box(bty="l")
-
-$box(lwd=1)
-
 $box(col = "lightgray")
+box(col = 'lightblue')
+box(col="dodgerblue")
 
 $box(lwd=3)
-
-$box(lwd=5)
-
-$box(col = 'lightblue')
+box(lwd=5)
 
 $box(bty='L')
+box(bty = "l")
+box(bty="l")
 
-$box(bty = "l")
+$box(lwd=1)
+box(lwd = 2)
 
 box()
 $box(which = "plot", bty = "l")
-

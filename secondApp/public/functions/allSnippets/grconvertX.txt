@@ -29,4 +29,3 @@ grconvertX(0, from='nic')
 grconvertX(c, "npc")
 grconvertX(0.005, from='ndc', from='ndc')
 grconvertX(0, from='nfc', from='nfc')
-

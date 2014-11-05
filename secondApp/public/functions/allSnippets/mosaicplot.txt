@@ -7,4 +7,3 @@ $mosaicplot(country ~ name, data = df2)
 
 mosaicplot(dtab)
 $mosaicplot(with)
-

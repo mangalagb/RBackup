@@ -4,12 +4,14 @@ public class SourceCode
 {
 	public String snippet;
 	public String sourceCode;
-	public String toHighlight;
+	public String startHighlight;
+	public String stopHighlight;
 	
 	public SourceCode(SourceCode clusterHead) {
 		this.snippet = clusterHead.snippet;
 		this.sourceCode = clusterHead.sourceCode;
-		this.toHighlight = clusterHead.toHighlight;
+		this.startHighlight = clusterHead.startHighlight;
+		this.stopHighlight = clusterHead.stopHighlight;
 	}
 
 	public SourceCode() {
@@ -23,8 +25,11 @@ public class SourceCode
 	public String getSourceCode() {
         return sourceCode;
     }
-	public String getToHighlight() {
-        return toHighlight;
+	public String getStartHighlight() {
+        return startHighlight;
+    }
+	public String getStopHighlight() {
+        return stopHighlight;
     }
 	
 	public void setSnippet(String name) {
@@ -35,7 +40,10 @@ public class SourceCode
         this.sourceCode = name;
     }
 	
-	public void setToHighlight(String toHighlight) {
-        this.toHighlight = toHighlight;
+	public void setStartHighlight(String startHighlight) {
+        this.startHighlight = startHighlight;
+    }
+	public void setStopHighlight(String stopHighlight) {
+        this.stopHighlight = stopHighlight;
     }
 }

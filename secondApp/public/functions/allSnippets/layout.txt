@@ -107,4 +107,3 @@ layout(matrix, widths = lcm, heights = lcm, TRUE)
 layout(N+1, N+1, widths=unit, heights = unit)
 layout(2, 1, widths = diff, heights = diff)
 layout(2, 2, widths = widths, heights = heights)
-

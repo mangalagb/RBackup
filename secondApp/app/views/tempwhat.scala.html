@@ -41,7 +41,7 @@
     <tr>
    <td width= "700" style = " font-family: Courier New, Courier, monospace; font-size: 19px;"> <div class="panel-title">
 	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse@i">
-       @key.snippet    
+      <font color=#003399> @key.snippet    </font>
    
        <br>
 	 </a>
@@ -67,17 +67,20 @@
       <div class="modal-body" style = " font-family: Courier New, Courier, monospace; font-size: 17px;">
       
         @Html(HtmlFormat.escape(key.sourceCode).toString.replace("\n", "<br />"))
-      </div>
       
       </div>
-      <script type="text/javascript">
-       
-    highlight('@key.toHighlight',@i)
- 
-
-     
-    
-      </script>
+      
+     <!-- <script type="text/javascript">
+          highlight('@key.startHighlight','@key.stopHighlight' , @i)
+      </script>  
+      
+       start = @key.startHighlight
+      <br>
+      stop = @key.stopHighlight  -->
+      
+      </div>
+      
+      
       
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -106,7 +109,9 @@
         <table  cellpadding="10">
         <tr>
        
- 	 	<td width= "700" style ="font-family: Courier New, Courier, monospace; font-size: 17px;"> @innervalue.snippet </td>       
+ 	 	<td width= "700" style ="font-family: Courier New, Courier, monospace; font-size: 17px;">
+ 	 	  <font color=#FF3300>@innervalue.snippet</font>
+ 	 	  </td>       
  	 	  
  	 	  <td width="300"><div class="centerDiv">
       

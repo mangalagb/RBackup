@@ -10,4 +10,3 @@ strheight(s2)
 strheight(s1)
 strheight(labels)
 $strheight()
-

@@ -203,4 +203,3 @@ text(1:19, labels=y, par, srt=45, adj=1.2, xpd=T, cex=0.3)
 text(i, d, i], labels = d, i], cex = 0.75, adj = c)
 text(xloc, yloc - y.off, labels, cex = cex, adj = c)
 text(92, 4, substitute, adj=0, cex=0.85)
-

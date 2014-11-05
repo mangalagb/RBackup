@@ -267,4 +267,3 @@ image(grib2, add=TRUE, col=, attr=1)
 image(x2, add = TRUE, col = "red")
 image(z2, add=TRUE, col=4)
 $image(d, add = TRUE, col = "blue")
-

@@ -351,4 +351,3 @@ $boxplot(b, at = 0:2*3 + 2, xaxt = "n", add = TRUE)
 
 $boxplot(dset3, plot=FALSE, names="month3", result2, result3)
 boxplot(w1[, ], w2[, ], w3[, ], outline=FALSE, names=c)
-
