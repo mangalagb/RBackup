@@ -14,7 +14,7 @@ import models.*;
 public class ReadFile {
 	// A function that reads a file specified by path and returns an arraylist
 	// of lines
-	public static String a1copy="";
+	
 	public ArrayList<String> readFile(String functionName, String path) {
 		BufferedReader br = null;
 
@@ -190,24 +190,24 @@ public class ReadFile {
 										String temporary1 = a1.substring(0, previous);
 										String temporary2 = a1.substring(previous, a1.length());
 										
-										String startHighlightPosition = "startHighlightPosition";
-										temporary2 = startHighlightPosition+temporary2; 
+										String StartHighlightPosition = "StartHighlightPosition";
+										temporary2 = StartHighlightPosition+temporary2; 
 										for(int y=o;y<positions.length;y++)
 										{
-											positions[y] += startHighlightPosition.length();
+											positions[y] += StartHighlightPosition.length();
 										}
 										a1= temporary1 + temporary2;
-										replaceEnds = replaceEnds+ startHighlightPosition.length()+temp2.length()+1;
+										replaceEnds = replaceEnds+ StartHighlightPosition.length()+temp2.length()+1;
 										
 										String temporary3 =  a1.substring(0, replaceEnds);
 										String temporary4 = a1.substring(replaceEnds, a1.length());
-										String stopHighlightPosition = "StopHighlightPosition";
+										String StopHighlightPosition = "StopHighlightPosition";
 										
-										temporary4 = stopHighlightPosition+temporary4;
+										temporary4 = StopHighlightPosition+temporary4;
 										
 										for(int y=o;y<positions.length;y++)
 										{
-											positions[y] += stopHighlightPosition.length();
+											positions[y] += StopHighlightPosition.length();
 										}
 							
 										a1= temporary3 + temporary4;
@@ -252,25 +252,25 @@ public class ReadFile {
 										String temporary1 = a1.substring(0, previous);
 										String temporary2 = a1.substring(previous, a1.length());
 										
-										String startHighlightPosition = "startHighlightPosition";
-										temporary2 = startHighlightPosition+temporary2; 
+										String StartHighlightPosition = "StartHighlightPosition";
+										temporary2 = StartHighlightPosition+temporary2; 
 										for(int y=o;y<positions.length;y++)
 										{
-											positions[y] += startHighlightPosition.length();
+											positions[y] += StartHighlightPosition.length();
 										}
 										a1= temporary1 + temporary2;
-										replaceEnds = replaceEnds+ startHighlightPosition.length()+temp2.length()+1;
+										replaceEnds = replaceEnds+ StartHighlightPosition.length()+temp2.length()+1;
 										//System.out.println(replaceEnds);
 										
 										String temporary3 =  a1.substring(0, replaceEnds);
 										String temporary4 = a1.substring(replaceEnds, a1.length());
-										String stopHighlightPosition = "StopHighlightPosition";
+										String StopHighlightPosition = "StopHighlightPosition";
 										
-										temporary4 = stopHighlightPosition+temporary4;
+										temporary4 = StopHighlightPosition+temporary4;
 										
 										for(int y=o;y<positions.length;y++)
 										{
-											positions[y] += stopHighlightPosition.length();
+											positions[y] += StopHighlightPosition.length();
 										}
 							
 										a1= temporary3 + temporary4;
@@ -347,24 +347,24 @@ public class ReadFile {
 										String temporary1 = a1.substring(0, previous);
 										String temporary2 = a1.substring(previous, a1.length());
 										
-										String startHighlightPosition = "startHighlightPosition";
-										temporary2 = startHighlightPosition+temporary2; 
+										String StartHighlightPosition = "StartHighlightPosition";
+										temporary2 = StartHighlightPosition+temporary2; 
 										for(int y=o;y<positions.length;y++)
 										{
-											positions[y] += startHighlightPosition.length();
+											positions[y] += StartHighlightPosition.length();
 										}
 										a1= temporary1 + temporary2;
-										replaceEnds = replaceEnds+ startHighlightPosition.length()+temp2.length()+1;
+										replaceEnds = replaceEnds+ StartHighlightPosition.length()+temp2.length()+1;
 										
 										String temporary3 =  a1.substring(0, replaceEnds);
 										String temporary4 = a1.substring(replaceEnds, a1.length());
-										String stopHighlightPosition = "StopHighlightPosition";
+										String StopHighlightPosition = "StopHighlightPosition";
 										
-										temporary4 = stopHighlightPosition+temporary4;
+										temporary4 = StopHighlightPosition+temporary4;
 										
 										for(int y=o;y<positions.length;y++)
 										{
-											positions[y] += stopHighlightPosition.length();
+											positions[y] += StopHighlightPosition.length();
 										}
 							
 										a1= temporary3 + temporary4;
@@ -409,25 +409,25 @@ public class ReadFile {
 										String temporary1 = a1.substring(0, previous);
 										String temporary2 = a1.substring(previous, a1.length());
 										
-										String startHighlightPosition = "startHighlightPosition";
-										temporary2 = startHighlightPosition+temporary2; 
+										String StartHighlightPosition = "StartHighlightPosition";
+										temporary2 = StartHighlightPosition+temporary2; 
 										for(int y=o;y<positions.length;y++)
 										{
-											positions[y] += startHighlightPosition.length();
+											positions[y] += StartHighlightPosition.length();
 										}
 										a1= temporary1 + temporary2;
-										replaceEnds = replaceEnds+ startHighlightPosition.length()+temp2.length()+1;
+										replaceEnds = replaceEnds+ StartHighlightPosition.length()+temp2.length()+1;
 										//System.out.println(replaceEnds);
 										
 										String temporary3 =  a1.substring(0, replaceEnds);
 										String temporary4 = a1.substring(replaceEnds, a1.length());
-										String stopHighlightPosition = "StopHighlightPosition";
+										String StopHighlightPosition = "StopHighlightPosition";
 										
-										temporary4 = stopHighlightPosition+temporary4;
+										temporary4 = StopHighlightPosition+temporary4;
 										
 										for(int y=o;y<positions.length;y++)
 										{
-											positions[y] += stopHighlightPosition.length();
+											positions[y] += StopHighlightPosition.length();
 										}
 							
 										a1= temporary3 + temporary4;
@@ -453,8 +453,8 @@ public class ReadFile {
 
 	public String removeUnmatchingCodeSegments(String a1)
 	{
-		String startHighlightPosition = "startHighlightPosition";
-		String stopHighlightPosition = "stopHighlightPosition";
+		String StartHighlightPosition = "StartHighlightPosition";
+		String StopHighlightPosition = "StopHighlightPosition";
 		Iterable<String> itr = Splitter
 				.on("+++++++++++++++++++++++++++++++++")
 				.split(a1);
@@ -464,7 +464,7 @@ public class ReadFile {
 		for (Iterator<String> iterator = myList.iterator(); iterator
 				.hasNext();) {
 			String currentString = iterator.next(); 
-			if (!currentString.contains(startHighlightPosition) && !currentString.contains(stopHighlightPosition))
+			if (!currentString.contains(StartHighlightPosition) && !currentString.contains(StopHighlightPosition))
 				iterator.remove();
 
 		}
@@ -501,10 +501,6 @@ public class ReadFile {
 
 	public static void main(String[] args) throws IOException {
 		ReadFile r = new ReadFile();
-		
-		
-		String result = r.removeUnmatchingCodeSegments(a1copy);
-		System.out.println(result);
 		
 	}
 }

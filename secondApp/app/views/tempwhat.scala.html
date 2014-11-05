@@ -70,10 +70,11 @@
       
       </div>
       
-     <!-- <script type="text/javascript">
-          highlight('@key.startHighlight','@key.stopHighlight' , @i)
+      <script type="text/javascript">
+          highlight(@i)
       </script>  
       
+      <!-- 
        start = @key.startHighlight
       <br>
       stop = @key.stopHighlight  -->
@@ -128,10 +129,19 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">@innervalue.snippet</h4>
       </div>
+      
+       <div id="inputText@i">
       <div class="modal-body" style = " font-family: Courier New, Courier, monospace; font-size: 17px;">
       
        @Html(HtmlFormat.escape(innervalue.sourceCode).toString.replace("\n", "<br />"))
       </div>
+      
+      <script type="text/javascript">
+          highlight(@i)
+      </script> 
+      
+      </div>
+       
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         
